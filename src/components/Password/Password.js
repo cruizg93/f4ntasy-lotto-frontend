@@ -27,7 +27,7 @@ export default function Password() {
 
     useEffect(() => {
         list().then((result) => {
-            setUserList(Array.from(result));
+            setUserList(Array.from(result.data));
         })
     }, []);
 
