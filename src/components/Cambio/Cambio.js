@@ -103,9 +103,7 @@ export default function Cambio() {
         let data = {
             cambio: cambio
         };
-        let jsonData = JSON.parse(sessionStorage.getItem('userData'));
-        let tokenStr = jsonData['accessToken'];
-        update(data, tokenStr).then((result) => {
+        update(data).then((result) => {
             setCurrent(result.cambio);
             setNewCurrent('');
             success_response();
