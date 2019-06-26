@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import {PostData} from '../../service/PostData';
+import {PostData} from '../../service/PostData';
+import {authenticationService} from '../../service/api/authentication/authentication.service';
+
+
 import Auth from '../../auth/Auth';
 import './Login.css';
 import {ToastContainer, toast} from 'react-toastify';
@@ -23,20 +27,33 @@ class Login extends Component {
     };
     loginClickHandler = (e) => {
         e.preventDefault();
-        PostData(this.state).then((result) => {
-            let responseJSON = result;
-            // console.log(responseJSON);
-            if (responseJSON.accessToken) {
-                sessionStorage.setItem('userData', JSON.stringify(responseJSON));
-                // this.setState({redirect: true});
-                Auth.login(() => {
-                    this.props.history.push("/");
-                })
+        authenticationService.login(this.state.username, this.state.password)
+                            .then(
+                                user => {
+                                    console.log(user);
+                                    const { from } = this.props.location.state || { from: { pathname: "/" } };
+                                    this.props.history.push(from);
+                                },
+                                error => {
+                                    // setSubmitting(false);
+                                    // setStatus(error);
+                                }
+                            );
+        // PostData(this.state).then((result) => {
+        //     let responseJSON = result;
+        //     // console.log(responseJSON);
+        //     if (responseJSON.accessToken) {
+        //         sessionStorage.setItem('userData', JSON.stringify(responseJSON));
+        //         // this.setState({redirect: true});
+        //         Auth.login(() => {
+        //             this.props.history.push("/");
+        //         })
+        //
+        //     } else {
+        //         this.error_reponse()
+        //     }
+        // })
 
-            } else {
-                this.error_reponse()
-            }
-        })
     };
 
     loginOnChangeHandler = (e) => {
