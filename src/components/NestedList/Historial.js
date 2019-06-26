@@ -32,25 +32,29 @@ export default function Historial(props) {
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    <ListItem button className={props.classes}>
+                    <ListItem button className={props.classes}
+                              onClick={props.click}>
                         <ListItemIcon>
                             <AccessTime/>
                         </ListItemIcon>
                         <ListItemText primary="Semana en Curso"/>
                     </ListItem>
-                     <ListItem button className={props.classes}>
+                    <ListItem button className={props.classes}
+                              onClick={props.click}>
                         <ListItemIcon>
                             <SettingsBackupRestore/>
                         </ListItemIcon>
                         <ListItemText primary="Semana Pasada"/>
                     </ListItem>
-                     <ListItem button className={props.classes}>
+                    <ListItem button className={props.classes}
+                              onClick={props.click}>
                         <ListItemIcon>
                             <LocalPlay/>
                         </ListItemIcon>
                         <ListItemText primary="Números Ganadores"/>
                     </ListItem>
-                    <ListItem button className={props.classes}>
+                    <ListItem button className={props.classes}
+                              onClick={props.click}>
                         <ListItemIcon>
                             <BarChart/>
                         </ListItemIcon>

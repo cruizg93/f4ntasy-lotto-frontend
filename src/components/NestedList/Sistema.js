@@ -15,7 +15,6 @@ import Create from '@material-ui/icons/Create';
 import Publish from '@material-ui/icons/Publish';
 
 
-
 import {Link} from "react-router-dom";
 
 
@@ -37,31 +36,36 @@ export default function Sistema(props) {
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    <ListItem button className={props.classes} component={Link} to="/jugador/nuevo">
+                    <ListItem button className={props.classes} component={Link} to="/jugador/nuevo"
+                              onClick={props.click}>
                         <ListItemIcon>
                             <GroupAdd/>
                         </ListItemIcon>
                         <ListItemText primary="Crear Jugador"/>
                     </ListItem>
-                    <ListItem button className={props.classes} component={Link} to="/sistema/no_ganador">
+                    <ListItem button className={props.classes} component={Link} to="/sistema/no_ganador"
+                              onClick={props.click}>
                         <ListItemIcon>
                             <Casino/>
                         </ListItemIcon>
                         <ListItemText primary="Número Ganador"/>
                     </ListItem>
-                    <ListItem button className={props.classes} component={Link} to="/sistema/cambio">
+                    <ListItem button className={props.classes} component={Link} to="/sistema/cambio"
+                              onClick={props.click}>
                         <ListItemIcon>
                             <CompareArrows/>
                         </ListItemIcon>
                         <ListItemText primary="Tipo de Cambio"/>
                     </ListItem>
-                    <ListItem button className={props.classes} component={Link} to="/sistema/password/update">
+                    <ListItem button className={props.classes} component={Link} to="/sistema/password/update"
+                              onClick={props.click}>
                         <ListItemIcon>
                             <Create/>
                         </ListItemIcon>
                         <ListItemText primary="Contraseñas"/>
                     </ListItem>
-                    <ListItem button className={props.classes} component={Link} to="/sistema/topes">
+                    <ListItem button className={props.classes} component={Link} to="/sistema/topes"
+                              onClick={props.click}>
                         <ListItemIcon>
                             <Publish/>
                         </ListItemIcon>
