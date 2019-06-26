@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b326030b-bc6d-4185-a88e-f63c85db1e19" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/Fijar/components/entry.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Fijar/components/entry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Password/components/entry.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Password/components/entry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Jugador/Nuevo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Jugador/Nuevo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/api/jugador/jugador.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/api/jugador/jugador.service.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,32 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SideDrawer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/SideDrawer/SideDrawer.js">
+      <file leaf-file-name="Nuevo.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/Jugador/Nuevo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="15" column="62" lean-forward="true" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="entry.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/Password/components/entry.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Password.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Password/Password.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="924">
-              <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+            <state relative-caret-position="308">
+              <caret line="389" column="46" selection-start-line="389" selection-start-column="46" selection-end-line="389" selection-end-column="46" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
@@ -47,20 +26,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="entry.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Fijar/components/entry.js">
+      <file leaf-file-name="jugador.service.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/service/api/jugador/jugador.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1276">
-              <caret line="65" column="14" lean-forward="true" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Nuevo.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Jugador/Nuevo.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="47" />
+            <state relative-caret-position="330">
+              <caret line="54" column="45" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -111,13 +84,13 @@
         <option value="$PROJECT_DIR$/src/components/Cambio/Cambio.js" />
         <option value="$PROJECT_DIR$/src/service/api/cambio/cambio.js" />
         <option value="$PROJECT_DIR$/src/components/Fijar/Fijar.js" />
-        <option value="$PROJECT_DIR$/src/service/api/jugador/jugador.service.js" />
-        <option value="$PROJECT_DIR$/src/components/Jugador/Nuevo.js" />
         <option value="$PROJECT_DIR$/src/service/api/fijar/fijar.js" />
-        <option value="$PROJECT_DIR$/src/components/Password/Password.js" />
         <option value="$PROJECT_DIR$/src/service/api/password/password.js" />
         <option value="$PROJECT_DIR$/src/components/Fijar/components/entry.js" />
         <option value="$PROJECT_DIR$/src/components/Password/components/entry.js" />
+        <option value="$PROJECT_DIR$/src/components/Password/Password.js" />
+        <option value="$PROJECT_DIR$/src/service/api/jugador/jugador.service.js" />
+        <option value="$PROJECT_DIR$/src/components/Jugador/Nuevo.js" />
       </list>
     </option>
   </component>
@@ -515,6 +488,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -668,16 +644,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/SideDrawer/SideDrawer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="15" column="62" lean-forward="true" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/_helpers/handle-response.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -743,16 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/api/jugador/jugador.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="42" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/service/api/password/password.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -773,23 +729,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Fijar/components/entry.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1276">
-          <caret line="65" column="14" lean-forward="true" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Password/Password.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="924">
-          <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Fijar/Fijar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
@@ -800,17 +739,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Jugador/Nuevo.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Fijar/components/entry.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
-          <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="47" />
+          <caret line="65" column="14" lean-forward="true" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Password/Password.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Password/components/entry.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        <state relative-caret-position="176">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SideDrawer/SideDrawer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="62" lean-forward="true" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/api/jugador/jugador.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="54" column="45" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Jugador/Nuevo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="389" column="46" selection-start-line="389" selection-start-column="46" selection-end-line="389" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -253,7 +253,7 @@ export default function Nuevo() {
         });
     }
 
-    function update_jugador(){
+    function update_jugador() {
         jugadorService.count().then((response) => {
             // console.log(response)
             let number = response.data - 3;
@@ -275,7 +275,7 @@ export default function Nuevo() {
         });
     }
 
-    function clean(){
+    function clean() {
         setDiariaPremioMil('');
         setDiariaPremioLempirasMil('');
         setDiariaCostoMil('');
@@ -387,14 +387,7 @@ export default function Nuevo() {
     function onClickHandlerActivate(e) {
         e.preventDefault();
         setSelectState(false);
-        axios.get(
-            `${baseUrl}/admin/jugadores`,
-            {
-                headers: {
-                    "Authorization": `Bearer ${tokenStr}`
-                }
-            }
-        )
+        jugadorService.list_players_username()
             .then((response) => {
                     let users = response.data.map((c, index) =>
                         <option key={index} value={c.id}>{c.username}</option>
