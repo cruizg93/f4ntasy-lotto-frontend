@@ -11,7 +11,7 @@ import Cambio from './components/Cambio/Cambio';
 import Password from './components/Password/Password';
 import Fijar from './components/Fijar/Fijar';
 import {history} from "./_helpers/history";
-
+import {Role} from "./_helpers/role";
 
 class App extends React.Component {
     render() {
@@ -32,30 +32,37 @@ class App extends React.Component {
                             />
                             <PrivateRoute
                                 exact path="/apuestas"
+                                roles={[Role.Admin, Role.Master]}
                                 component={Apuestas}
                             />
-                             <PrivateRoute
+                            <PrivateRoute
                                 exact path="/sistema"
+                                roles={[Role.Admin, Role.Master]}
                                 component={Apuestas}
                             />
-                             <PrivateRoute
+                            <PrivateRoute
                                 exact path="/historial"
+                                roles={[Role.Admin, Role.Master]}
                                 component={Apuestas}
                             />
                             <PrivateRoute
                                 exact path="/jugador/nuevo"
+                                roles={[Role.Admin, Role.Master]}
                                 component={Nuevo}
                             />
                             <PrivateRoute
                                 exact path="/sistema/cambio"
+                                roles={[Role.Admin, Role.Master]}
                                 component={Cambio}
                             />
                             <PrivateRoute
                                 exact path="/sistema/password/update"
+                                roles={[Role.Admin, Role.Master]}
                                 component={Password}
                             />
                             <PrivateRoute
                                 exact path="/sistema/topes"
+                                roles={[Role.Admin, Role.Master]}
                                 component={Fijar}
                             />
                             <Route path="*" render={() => "404 NOT FOUND"}/>
