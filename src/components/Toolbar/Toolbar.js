@@ -38,10 +38,6 @@ class Toolbar extends Component {
     }
 
     componentDidMount(){
-        console.log(this.state.user);
-        // let user=JSON.parse(sessionStorage.getItem('userData'));
-        // // console.log(user['username']);
-        // this.setState({user: user['username']} )
     }
 
     render() {
@@ -65,7 +61,7 @@ class Toolbar extends Component {
                         </ul>
                     </div>
                     <div className="toolbar__user-username">
-                        {/*{this.state.user}*/}
+                        {this.state.user.username}
                     </div>
                     <div className="toolbar__toggle-button">
                         <DrawerToggleButton click={this.props.drawerClickHandler}/>

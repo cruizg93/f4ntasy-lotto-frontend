@@ -12,6 +12,10 @@ import 'react-toastify/dist/ReactToastify.css';
 class Login extends Component {
     constructor(props) {
         super(props);
+        // redirect to home if already logged in
+        if (authenticationService.currentUserValue) {
+            this.props.history.push('/');
+        }
         this.state = {
             username: '',
             password: '',
