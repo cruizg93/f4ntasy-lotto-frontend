@@ -365,11 +365,6 @@ export default function Nuevo() {
             cparam2: cparam2,
             cparam3: cparam3,
         };
-
-        let headers = {
-            'Content-Type': 'application/json',
-            "Authorization": `Bearer ${tokenStr}`
-        };
         jugadorService.new_player(data)
             .then(function (response) {
                 success_response();
