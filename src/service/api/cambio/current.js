@@ -1,13 +1,13 @@
-import { baseUrl } from '../config/const'
-export function PostData(userData) {
+import { baseUrl, tokenStr } from '../../../config/const'
+export function current() {
     return new Promise((resolve, reject) => {
-        fetch(`${baseUrl}/api/auth/signin`, {
-            method: 'POST',
+        fetch(`${baseUrl}/admin/moneda/cambio/current`, {
+            method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${tokenStr}`
+            }
         })
             .then((response) => response.json())
             .then((responseJson) => {

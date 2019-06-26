@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Link, NavLink, Redirect, Prompt, Switch} from 'react-router-dom';
-import Route from 'react-router-dom/Route';
+
 import Toolbar from '../Toolbar/Toolbar';
 import SideDrawer from '../SideDrawer/SideDrawer';
 import Backdrop from '../Backdrop/Backdrop';
-
+import Clock from "../Clock/Clock";
 
 
 class Dashboard extends Component {
@@ -47,29 +46,10 @@ class Dashboard extends Component {
                 <Toolbar drawerClickHandler={this.drawerToggleClickHandler}/>
                 <SideDrawer show={this.state.sideDrawerOpen} logoutClickHandler={this.logoutClickHandler}/>
                 {backdrop}
+
                 <main style={{marginTop: '63px'}}>
-                    <Router>
-                        <Switch>
-                            <Route path="/" render={
-                            () => {
-                                return (<div>
-                                    Welcome home about
-                                </div>);
-                            }}/>
-                        {/*<Route path={"/jugador"} exact strict*/}
-                               {/*component={(props) => <Jugador {...props} isAuthed={true}/>}/>*/}
-
-                        <Route path="/about"  render={
-                            () => {
-                                return (<div>
-                                    Welcome About
-                                </div>);
-                            }
-                        }/>
-                        </Switch>
-
-
-                    </Router>
+                    <Clock/>
+                    {this.props.childComponent}
                 </main>
 
             </div>

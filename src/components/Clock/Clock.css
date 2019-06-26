@@ -1,0 +1,22 @@
+.clock__column {
+    float: left;
+    width: 33.33%;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    background: transparent;
+    padding-bottom: .5rem;
+
+}
+
+.clock__row{
+     border-bottom: 2px solid #747474;
+}
+
+/* Clear floats after the columns */
+.clock__row:after {
+    content: "";
+    display: table;
+    clear: both;
+
+}
