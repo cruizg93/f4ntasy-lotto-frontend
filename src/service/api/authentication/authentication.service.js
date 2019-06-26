@@ -8,6 +8,7 @@ const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('
 export const authenticationService = {
     login,
     logout,
+    type_user,
     currentUser: currentUserSubject.asObservable(),
     get currentUserValue () { return currentUserSubject.value }
 };
@@ -34,4 +35,26 @@ function logout() {
     localStorage.removeItem('currentUser');
     currentUserSubject.next(null);
     window.location.reload(true);
+}
+
+function type_user() {
+    let value =currentUserSubject.value.username;
+    let init_letter=value.charAt(0);
+    let role='Player';
+    switch (init_letter){
+        case 'C':
+            role='Admin';
+            if(value==='C01'){
+                role='Master'
+            }
+            break;
+        case 'P':
+            if(value.includes('x')){
+                role='Asistente'
+            }
+            break;
+        default:
+            break;
+    }
+    return role;
 }

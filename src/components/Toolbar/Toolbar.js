@@ -31,7 +31,6 @@ class Toolbar extends Component {
     componentDidMount(){
         let username=this.state.user.username;
         let userType=username.charAt(0);
-        console.log(userType);
         switch (userType){
             case 'P':
                 this.setState({toolbarClasses: ['toolbar green_bkg']});
