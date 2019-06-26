@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import TextField from '@material-ui/core/TextField';
-import {userStr} from '../../../config/const'
 import {update_number} from '../../../service/api/fijar/fijar';
 
 const useStyles = makeStyles(theme => ({
