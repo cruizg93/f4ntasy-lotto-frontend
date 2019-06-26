@@ -65,6 +65,27 @@ class App extends React.Component {
                                 roles={[Role.Admin, Role.Master]}
                                 component={Fijar}
                             />
+                            <PrivateRoute
+                                exact path="/usuario/apuesta/add"
+                                roles={[Role.Player]}
+                                component={Jugador}
+                            />
+                            <PrivateRoute
+                                exact path="/usuario/apuesta/activas"
+                                roles={[Role.Player]}
+                                component={Jugador}
+                            />
+                            <PrivateRoute
+                                exact path="/usuario/historial"
+                                roles={[Role.Player]}
+                                component={Jugador}
+                            />
+                            <PrivateRoute
+                                exact path="/usuario/password/cambiar"
+                                roles={[Role.Player]}
+                                component={Jugador}
+                            />
+
                             <Route path="*" render={() => "404 NOT FOUND"}/>
                         </Switch>
                     </div>

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b326030b-bc6d-4185-a88e-f63c85db1e19" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,11 +15,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/App.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="456">
-                  <caret line="39" column="65" lean-forward="true" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="65" />
+                <state relative-caret-position="302">
+                  <caret line="78" column="62" selection-start-line="78" selection-start-column="62" selection-end-line="78" selection-end-column="62" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
                   </folding>
@@ -63,18 +63,6 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="MenuLinks.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="610">
-                  <caret line="107" column="13" selection-start-line="107" selection-start-column="13" selection-end-line="107" selection-end-column="13" />
-                  <folding>
-                    <element signature="e#0#26#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="NestedList.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/NestedList/NestedList.js">
               <provider selected="true" editor-type-id="text-editor">
@@ -109,11 +97,23 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="NestedList.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="NestedList.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/NestedList/NestedList.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="286">
-                  <caret line="79" column="54" lean-forward="true" selection-start-line="79" selection-start-column="39" selection-end-line="79" selection-end-column="54" />
+                <state relative-caret-position="244">
+                  <caret line="106" column="57" lean-forward="true" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="57" />
+                  <folding>
+                    <element signature="e#0#26#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="MenuLinks.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="288">
+                  <caret line="98" column="37" lean-forward="true" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
                   </folding>
@@ -160,7 +160,6 @@
         <option value="$PROJECT_DIR$/src/components/NestedList/Sistema.js" />
         <option value="$PROJECT_DIR$/src/components/NestedList/Historial.js" />
         <option value="$PROJECT_DIR$/src/_helpers/role.js" />
-        <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/service/api/authentication/authentication.service.js" />
         <option value="$PROJECT_DIR$/src/components/PrivateRoute/PrivateRoute.js" />
         <option value="$PROJECT_DIR$/src/components/Dashboard/Dashboard.js" />
@@ -168,6 +167,7 @@
         <option value="$PROJECT_DIR$/src/components/SideDrawer/SideDrawer.js" />
         <option value="$PROJECT_DIR$/src/components/NestedList/NestedList.js" />
         <option value="$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js" />
+        <option value="$PROJECT_DIR$/src/App.js" />
       </list>
     </option>
   </component>
@@ -723,16 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="39" column="65" lean-forward="true" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Dashboard/Dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -779,8 +769,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/NestedList/NestedList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-88">
-          <caret line="77" column="37" lean-forward="true" selection-start-line="77" selection-start-column="37" selection-end-line="77" selection-end-column="37" />
+        <state relative-caret-position="244">
+          <caret line="106" column="57" lean-forward="true" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="78" column="62" selection-start-line="78" selection-start-column="62" selection-end-line="78" selection-end-column="62" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -789,8 +789,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="107" column="13" selection-start-line="107" selection-start-column="13" selection-end-line="107" selection-end-column="13" />
+        <state relative-caret-position="288">
+          <caret line="98" column="37" lean-forward="true" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
