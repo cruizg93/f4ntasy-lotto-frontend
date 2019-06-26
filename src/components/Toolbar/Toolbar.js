@@ -5,15 +5,18 @@ import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 import Backdrop from '../Backdrop/Backdrop';
 import {MenuLinks}  from '../MenuLinks/MenuLinks';
 import Button from '@material-ui/core/Button';
+import {authenticationService} from "../../service/api/authentication/authentication.service";
+
 
 import './Toolbar.css';
+import {history} from "../../_helpers/history";
 
 class Toolbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
             sideDrawerOpen: false,
-            user: ''
+            user: authenticationService.currentUserValue
         };
         this.logoutClickHandler = this.logoutClickHandler.bind(this);
     }
@@ -24,19 +27,21 @@ class Toolbar extends Component {
         });
     };
 
+
     backdropClickHandler = () => {
         this.setState({sideDrawerOpen: false})
     };
 
     logoutClickHandler() {
-        sessionStorage.setItem('userData', '');
-        sessionStorage.clear();
+        authenticationService.logout();
+        history.push('/login');
     }
 
     componentDidMount(){
-        let user=JSON.parse(sessionStorage.getItem('userData'));
-        // console.log(user['username']);
-        this.setState({user: user['username']} )
+        console.log(this.state.user);
+        // let user=JSON.parse(sessionStorage.getItem('userData'));
+        // // console.log(user['username']);
+        // this.setState({user: user['username']} )
     }
 
     render() {
@@ -60,7 +65,7 @@ class Toolbar extends Component {
                         </ul>
                     </div>
                     <div className="toolbar__user-username">
-                        {this.state.user}
+                        {/*{this.state.user}*/}
                     </div>
                     <div className="toolbar__toggle-button">
                         <DrawerToggleButton click={this.props.drawerClickHandler}/>

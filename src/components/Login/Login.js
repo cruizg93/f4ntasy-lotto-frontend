@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {PostData} from '../../service/PostData';
-import {PostData} from '../../service/PostData';
+
 import {authenticationService} from '../../service/api/authentication/authentication.service';
 
 

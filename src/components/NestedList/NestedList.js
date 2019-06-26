@@ -12,7 +12,8 @@ import SupervisedUserCircle from '@material-ui/icons/SupervisedUserCircle';
 
 import Historial from './Historial';
 import Sistema from './Sistema';
-
+import {authenticationService} from "../../service/api/authentication/authentication.service";
+import {history} from "../../_helpers/history";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -30,11 +31,15 @@ const useStyles = makeStyles(theme => ({
 
 export default function NestedList() {
     const classes = useStyles();
-     const logout = () => {
-        sessionStorage.setItem('userData', '');
-        sessionStorage.clear();
-        window.location.reload();
+    const logout =() => {
+        authenticationService.logout();
+        history.push('/login');
     };
+    //  const logout = () => {
+    //     sessionStorage.setItem('userData', '');
+    //     sessionStorage.clear();
+    //     window.location.reload();
+    // };
 
     return (
         <List
@@ -61,7 +66,7 @@ export default function NestedList() {
             </ListItem>
             <Sistema classes={classes.nested}/>
             <Historial classes={classes.nested}/>
-            <ListItem button component={Link} to={''} onClick={logout}>
+            <ListItem button onClick={logout}>
                 <ListItemIcon>
                     <SupervisedUserCircle/>
                 </ListItemIcon>

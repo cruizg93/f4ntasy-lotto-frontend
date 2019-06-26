@@ -10,7 +10,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Cambio from './components/Cambio/Cambio';
 import Password from './components/Password/Password';
 import Fijar from './components/Fijar/Fijar';
-
+import {history} from "./_helpers/history";
 
 
 class App extends React.Component {
@@ -18,7 +18,7 @@ class App extends React.Component {
         return (
             <div style={{height: "100%"}} className="App">
                 <CssBaseline/>
-                <Router>
+                <Router history={history}>
                     <div>
                         <Switch>
                             <Route exact path="/login" component={Login}/>
