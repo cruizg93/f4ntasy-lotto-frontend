@@ -9,6 +9,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 import Style from '@material-ui/icons/Style';
 import SupervisedUserCircle from '@material-ui/icons/SupervisedUserCircle';
+import Create from '@material-ui/icons/Create';
+import History from '@material-ui/icons/History';
+import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
 
 import Historial from './Historial';
 import Sistema from './Sistema';
@@ -68,6 +71,42 @@ export default function NestedList(props) {
 
             {isAdmin && <Sistema classes={classes.nested} click={props.click}/>}
             {isAdmin && <Historial classes={classes.nested} click={props.click}/>}
+
+            {!isAdmin &&
+            <ListItem button component={Link} to={'/usuario/apuesta/add'} onClick={props.click}>
+                <ListItemIcon>
+                     <ArrowRightAlt/>
+                </ListItemIcon>
+                <ListItemText primary="Entrar Apuestas"/>
+            </ListItem>
+            }
+            {!isAdmin &&
+            <ListItem button component={Link} to={'/usuario/apuesta/activas'} onClick={props.click}>
+                <ListItemIcon>
+                    <Style/>
+                </ListItemIcon>
+                <ListItemText primary="Apuestas Activas"/>
+            </ListItem>
+            }
+
+            {!isAdmin &&
+            <ListItem button component={Link} to={'/usuario/historial'} onClick={props.click}>
+                <ListItemIcon>
+                     <History/>
+                </ListItemIcon>
+                <ListItemText primary="Historial"/>
+            </ListItem>
+            }
+
+            {!isAdmin &&
+            <ListItem button component={Link} to="/usuario/password/cambiar"
+                      onClick={props.click}>
+                <ListItemIcon>
+                    <Create/>
+                </ListItemIcon>
+                <ListItemText primary="Cambiar Contraseña"/>
+            </ListItem>
+            }
 
             <ListItem button onClick={logout}>
                 <ListItemIcon>
