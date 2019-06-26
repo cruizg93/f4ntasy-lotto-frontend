@@ -94,9 +94,7 @@ export default function Cambio() {
         setNewCurrent(event.target.value);
     };
     useEffect(() => {
-        let jsonData = JSON.parse(sessionStorage.getItem('userData'));
-        let tokenStr = jsonData['accessToken'];
-        current(tokenStr).then((result) => {
+        current().then((result) => {
             setCurrent(result);
         })
     }, []);

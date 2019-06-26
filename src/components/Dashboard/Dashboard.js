@@ -22,15 +22,7 @@ class Dashboard extends Component {
         this.setState({sideDrawerOpen: false})
     };
 
-    logoutClickHandler = () => {
-        this.setState(prevState => ({
-            loggedIn: !prevState.loggedIn
-        }));
-        // console.log("Logout clicked");
-        sessionStorage.setItem('userData', '');
-        sessionStorage.clear();
-        this.setState({redirect: true});
-    };
+
 
     componentDidMount() {
 
@@ -44,7 +36,7 @@ class Dashboard extends Component {
         return (
             <div style={{height: "100%"}} className="App">
                 <Toolbar drawerClickHandler={this.drawerToggleClickHandler}/>
-                <SideDrawer show={this.state.sideDrawerOpen} logoutClickHandler={this.logoutClickHandler}/>
+                <SideDrawer show={this.state.sideDrawerOpen} drawerClickHandler={this.drawerToggleClickHandler} />
                 {backdrop}
 
                 <main style={{marginTop: '63px'}}>

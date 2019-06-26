@@ -54,10 +54,6 @@ class Toolbar extends Component {
     }
 
     render() {
-        let backdrop;
-        if (this.state.sideDrawerOpen) {
-            backdrop = <Backdrop click={this.backdropClickHandler}/>
-        }
         return (
             <header className={this.state.toolbarClasses}>
                 <nav className="toolbar__navigation">

@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function NestedList() {
+export default function NestedList(props) {
     const classes = useStyles();
     const logout =() => {
         authenticationService.logout();
@@ -52,20 +52,20 @@ export default function NestedList() {
             }
             className={classes.root}
         >
-            <ListItem button component={Link} to={'/jugadores'}>
+            <ListItem button component={Link} to={'/jugadores'} onClick={props.click}>
                 <ListItemIcon>
                     <SupervisedUserCircle/>
                 </ListItemIcon>
                 <ListItemText primary="Jugadores"/>
             </ListItem>
-            <ListItem button component={Link} to="/apuestas">
+            <ListItem button component={Link} to="/apuestas" onClick={props.click}>
                 <ListItemIcon>
                     <Style/>
                 </ListItemIcon>
                 <ListItemText primary="Apuestas Activas" />
             </ListItem>
-            <Sistema classes={classes.nested}/>
-            <Historial classes={classes.nested}/>
+            <Sistema classes={classes.nested} click={props.click}/>
+            <Historial classes={classes.nested} click={props.click}/>
             <ListItem button onClick={logout}>
                 <ListItemIcon>
                     <SupervisedUserCircle/>

@@ -1,14 +1,12 @@
 import { baseUrl } from '../../../config/const'
-export function current(tokenStr) {
+import {authHeader} from "../../../_helpers/auth-header";
+
+export function current() {
+    const requestOptions = { method: 'GET', headers: authHeader() };
     return new Promise((resolve, reject) => {
-        fetch(`${baseUrl}/admin/moneda/cambio/current`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                "Authorization": `Bearer ${tokenStr}`
-            }
-        })
+        fetch(`${baseUrl}/admin/moneda/cambio/current`,
+            requestOptions
+        )
             .then((response) => response.json())
             .then((responseJson) => {
                 resolve(responseJson);

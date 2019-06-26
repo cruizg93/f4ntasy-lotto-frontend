@@ -13,7 +13,7 @@ const sideDrawer = props => {
     return (
 
             <nav className={drawerClasses}>
-                <NestedList/>
+                <NestedList click={props.drawerClickHandler}/>
             </nav>
 
 
