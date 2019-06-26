@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import 'react-toastify/dist/ReactToastify.css';
 import {list} from "../../service/api/password/password";
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
@@ -34,6 +33,7 @@ export default function Password() {
     return (
         <React.Fragment>
             <Container maxWidth="sm" className={classes.container}>
+
                 <Grid container spacing={1}
                       direction="row"
                       justify="center"

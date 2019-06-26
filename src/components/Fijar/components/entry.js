@@ -66,7 +66,7 @@ export default function Entry(props) {
             };
 
             update_number(data).then((result)=>{
-                console.log(result)
+
             })
         }
         if (buttonColor === '#ff190a') {
