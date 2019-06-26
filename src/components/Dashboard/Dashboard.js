@@ -4,13 +4,15 @@ import Toolbar from '../Toolbar/Toolbar';
 import SideDrawer from '../SideDrawer/SideDrawer';
 import Backdrop from '../Backdrop/Backdrop';
 import Clock from "../Clock/Clock";
+import {authenticationService} from "../../service/api/authentication/authentication.service";
 
 
 class Dashboard extends Component {
 
     state = {
         sideDrawerOpen: false,
-        redirect: false
+        redirect: false,
+        isAdmin: false
     };
     drawerToggleClickHandler = () => {
         this.setState((prevState) => {
@@ -23,9 +25,11 @@ class Dashboard extends Component {
     };
 
 
-
-    componentDidMount() {
-
+    componentWillMount() {
+        this.setState({
+            isAdmin: (authenticationService.type_user() === 'Admin' ||
+                authenticationService.type_user() === 'Master')
+        })
     }
 
     render() {
@@ -35,8 +39,11 @@ class Dashboard extends Component {
         }
         return (
             <div style={{height: "100%"}} className="App">
-                <Toolbar drawerClickHandler={this.drawerToggleClickHandler}/>
-                <SideDrawer show={this.state.sideDrawerOpen} drawerClickHandler={this.drawerToggleClickHandler} />
+                <Toolbar drawerClickHandler={this.drawerToggleClickHandler} admin={this.state.isAdmin}/>
+                <SideDrawer show={this.state.sideDrawerOpen}
+                            drawerClickHandler={this.drawerToggleClickHandler}
+                            admin={this.state.isAdmin}
+                />
                 {backdrop}
 
                 <main style={{marginTop: '63px'}}>

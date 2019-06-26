@@ -24,22 +24,18 @@ const useStyles = makeStyles(theme => ({
     nested: {
         paddingLeft: theme.spacing(4),
     },
-    fixed:{
+    fixed: {
         position: 'relative !important',
     }
 }));
 
 export default function NestedList(props) {
     const classes = useStyles();
-    const logout =() => {
+    const [isAdmin, setAdminValue] = React.useState(props.admin);
+    const logout = () => {
         authenticationService.logout();
         history.push('/login');
     };
-    //  const logout = () => {
-    //     sessionStorage.setItem('userData', '');
-    //     sessionStorage.clear();
-    //     window.location.reload();
-    // };
 
     return (
         <List
@@ -52,20 +48,27 @@ export default function NestedList(props) {
             }
             className={classes.root}
         >
+            {isAdmin &&
             <ListItem button component={Link} to={'/jugadores'} onClick={props.click}>
                 <ListItemIcon>
                     <SupervisedUserCircle/>
                 </ListItemIcon>
                 <ListItemText primary="Jugadores"/>
             </ListItem>
+            }
+
+            {isAdmin &&
             <ListItem button component={Link} to="/apuestas" onClick={props.click}>
                 <ListItemIcon>
                     <Style/>
                 </ListItemIcon>
-                <ListItemText primary="Apuestas Activas" />
+                <ListItemText primary="Apuestas Activas"/>
             </ListItem>
-            <Sistema classes={classes.nested} click={props.click}/>
-            <Historial classes={classes.nested} click={props.click}/>
+            }
+
+            {isAdmin && <Sistema classes={classes.nested} click={props.click}/>}
+            {isAdmin && <Historial classes={classes.nested} click={props.click}/>}
+
             <ListItem button onClick={logout}>
                 <ListItemIcon>
                     <SupervisedUserCircle/>

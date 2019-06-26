@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import { NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 import Backdrop from '../Backdrop/Backdrop';
-import {MenuLinks}  from '../MenuLinks/MenuLinks';
+import {MenuLinks} from '../MenuLinks/MenuLinks';
 import Button from '@material-ui/core/Button';
 import {authenticationService} from "../../service/api/authentication/authentication.service";
-
+import {Role} from "../../_helpers/role";
 
 import './Toolbar.css';
 import {history} from "../../_helpers/history";
@@ -28,10 +28,11 @@ class Toolbar extends Component {
         });
     };
 
-    componentDidMount(){
-        let username=this.state.user.username;
-        let userType=username.charAt(0);
-        switch (userType){
+    componentDidMount() {
+
+        let username = this.state.user.username;
+        let userType = username.charAt(0);
+        switch (userType) {
             case 'P':
                 this.setState({toolbarClasses: ['toolbar green_bkg']});
                 break;
@@ -62,7 +63,7 @@ class Toolbar extends Component {
                     <div className="spacer"/>
                     <div className="toolbar__navigation-items">
                         <ul>
-                            <MenuLinks/>
+                            <MenuLinks admin={this.props.admin}/>
                             <Button onClick={this.logoutClickHandler} color="inherit">Salir</Button>
                         </ul>
                     </div>
