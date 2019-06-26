@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
-import {PostData} from '../../service/PostData';
 
 import {authenticationService} from '../../service/api/authentication/authentication.service';
 
-
-import Auth from '../../auth/Auth';
 import './Login.css';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

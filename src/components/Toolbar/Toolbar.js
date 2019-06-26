@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { NavLink, Link} from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 import Backdrop from '../Backdrop/Backdrop';
@@ -37,9 +37,6 @@ class Toolbar extends Component {
         history.push('/login');
     }
 
-    componentDidMount(){
-    }
-
     render() {
         let backdrop;
         if (this.state.sideDrawerOpen) {
@@ -55,7 +52,7 @@ class Toolbar extends Component {
                     <div className="toolbar__navigation-items">
                         <ul>
                             <MenuLinks/>
-                            <Button component={Link} to="/login" onClick={this.logoutClickHandler} color="inherit">Salir</Button>
+                            <Button onClick={this.logoutClickHandler} color="inherit">Salir</Button>
 
 
                         </ul>
