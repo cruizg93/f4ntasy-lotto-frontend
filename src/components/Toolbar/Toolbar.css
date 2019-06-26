@@ -8,7 +8,13 @@
     height: 56px;
     z-index: 50;
 }
+.green_bkg{
+    background: #29992a;
+}
 
+.yellow_bkg{
+    background: #fbd534;
+}
 .toolbar__user-username {
     display: flex;
     height: 40px;

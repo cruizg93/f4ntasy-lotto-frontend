@@ -31,7 +31,6 @@ class Login extends Component {
         authenticationService.login(this.state.username, this.state.password)
                             .then(
                                 user => {
-                                    console.log(user);
                                     const { from } = this.props.location.state || { from: { pathname: "/" } };
                                     this.props.history.push(from);
                                 },

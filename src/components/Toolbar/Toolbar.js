@@ -16,7 +16,8 @@ class Toolbar extends Component {
         super(props);
         this.state = {
             sideDrawerOpen: false,
-            user: authenticationService.currentUserValue
+            user: authenticationService.currentUserValue,
+            toolbarClasses: ['toolbar']
         };
         this.logoutClickHandler = this.logoutClickHandler.bind(this);
     }
@@ -27,6 +28,21 @@ class Toolbar extends Component {
         });
     };
 
+    componentDidMount(){
+        let username=this.state.user.username;
+        let userType=username.charAt(0);
+        console.log(userType);
+        switch (userType){
+            case 'P':
+                this.setState({toolbarClasses: ['toolbar green_bkg']});
+                break;
+            case 'C':
+                break;
+            default:
+                this.setState({toolbarClasses: ['toolbar yellow_bkg']});
+                break;
+        }
+    }
 
     backdropClickHandler = () => {
         this.setState({sideDrawerOpen: false})
@@ -43,7 +59,7 @@ class Toolbar extends Component {
             backdrop = <Backdrop click={this.backdropClickHandler}/>
         }
         return (
-            <header className="toolbar">
+            <header className={this.state.toolbarClasses}>
                 <nav className="toolbar__navigation">
                     <div className="toolbar__logo">
                         <NavLink to="/" exact strict>The Logo</NavLink>
@@ -53,8 +69,6 @@ class Toolbar extends Component {
                         <ul>
                             <MenuLinks/>
                             <Button onClick={this.logoutClickHandler} color="inherit">Salir</Button>
-
-
                         </ul>
                     </div>
                     <div className="toolbar__user-username">

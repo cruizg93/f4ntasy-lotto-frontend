@@ -30,7 +30,7 @@ export const PrivateRoute = ({component: Component, ...rest}) => {
                 }
 
                 // authorised so return component
-                return <Dashboard childComponent={<Component{...props}/>} />
+                return <Dashboard childComponent={<Component{...props}/>}/>
             }
 
 
