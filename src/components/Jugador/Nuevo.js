@@ -24,7 +24,10 @@ import InputBase from '@material-ui/core/InputBase';
 import Diaria from "./Diaria/Diaria";
 import Chica from "./Chica/Chica";
 
-import { baseUrl, tokenStr } from '../../config/const'
+import {baseUrl, tokenStr} from '../../config/const'
+
+import {jugadorService} from "../../service/api/jugador/jugador.service";
+
 const BootstrapInput = withStyles(theme => ({
     root: {
         'label + &': {
@@ -251,37 +254,57 @@ export default function Nuevo() {
     }
 
     useEffect(() => {
-        axios.get(
-            `${baseUrl}/admin/jugadores/count`,
-            {
-                headers: {
-                    "Authorization": `Bearer ${tokenStr}`
-                }
+        jugadorService.count().then((response) => {
+            // console.log(response)
+            let number = response.data - 3;
+            let length = Math.log(number) * Math.LOG10E + 1 | 0;
+            // console.log(length)
+            let pword = 'P';
+            switch (length) {
+                case 1:
+                    pword = pword + "00" + number;
+                    break;
+                case 2:
+                    pword = pword + "0" + number;
+                    break;
+                default:
+                    pword = pword + number;
+                    break;
             }
-        )
-            .then((response) => {
-                    let number = response.data - 3;
-                    let length = Math.log(number) * Math.LOG10E + 1 | 0;
-                    // console.log(length)
-                    let pword = 'P';
-                    switch (length) {
-                        case 1:
-                            pword = pword + "00" + number;
-                            break;
-                        case 2:
-                            pword = pword + "0" + number;
-                            break;
-                        default:
-                            pword = pword + number;
-                            break;
-                    }
-                    setPlaceholderUser(pword)
-                },
-                (error) => {
-                    var status = error.response.status
-                }
-            );
-    }, [tokenStr]);
+            setPlaceholderUser(pword)
+        });
+
+        // axios.get(
+        //     `${baseUrl}/admin/jugadores/count`,
+        //     {
+        //         headers: {
+        //             "Authorization": `Bearer ${tokenStr}`
+        //         }
+        //     }
+        // )
+        //     .then((response) => {
+        //             let number = response.data - 3;
+        //             let length = Math.log(number) * Math.LOG10E + 1 | 0;
+        //             // console.log(length)
+        //             let pword = 'P';
+        //             switch (length) {
+        //                 case 1:
+        //                     pword = pword + "00" + number;
+        //                     break;
+        //                 case 2:
+        //                     pword = pword + "0" + number;
+        //                     break;
+        //                 default:
+        //                     pword = pword + number;
+        //                     break;
+        //             }
+        //             setPlaceholderUser(pword)
+        //         },
+        //         (error) => {
+        //             var status = error.response.status
+        //         }
+        //     );
+    }, []);
 
 
     function handleChange(event) {
@@ -332,7 +355,7 @@ export default function Nuevo() {
         if ((cparam1 === 0 && cparam2 === 0) || (selectedChicaType === 'cp' && cparam3 === 0)) {
             submit = false;
         }
-        if(!submit){
+        if (!submit) {
             error_reponse();
             return;
         }
@@ -401,7 +424,7 @@ export default function Nuevo() {
         <div>
 
             <React.Fragment>
-                <ToastContainer autoClose={8000} />
+                <ToastContainer autoClose={8000}/>
                 <Container maxWidth="sm" className={classes.container}>
                     <Grid container spacing={1}
                           direction="row"
