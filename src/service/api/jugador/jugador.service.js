@@ -2,9 +2,11 @@ import {baseUrl} from '../../../config/const';
 import {handleResponse} from '../../../_helpers/handle-response';
 import {authHeader} from "../../../_helpers/auth-header";
 import axios from 'axios';
+import {authenticationService} from "../authentication/authentication.service";
 
 export const jugadorService = {
     count,
+    new_player
 
 };
 
@@ -14,6 +16,24 @@ function count() {
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/jugadores/count`,
             requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function new_player(data) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json',  "Authorization": `Bearer ${currentUser.accessToken}`},
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/admin/jugadores/add`,
+           data, requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);

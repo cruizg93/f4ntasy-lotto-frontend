@@ -253,7 +253,7 @@ export default function Nuevo() {
         });
     }
 
-    useEffect(() => {
+    function update_jugador(){
         jugadorService.count().then((response) => {
             // console.log(response)
             let number = response.data - 3;
@@ -273,37 +273,28 @@ export default function Nuevo() {
             }
             setPlaceholderUser(pword)
         });
+    }
 
-        // axios.get(
-        //     `${baseUrl}/admin/jugadores/count`,
-        //     {
-        //         headers: {
-        //             "Authorization": `Bearer ${tokenStr}`
-        //         }
-        //     }
-        // )
-        //     .then((response) => {
-        //             let number = response.data - 3;
-        //             let length = Math.log(number) * Math.LOG10E + 1 | 0;
-        //             // console.log(length)
-        //             let pword = 'P';
-        //             switch (length) {
-        //                 case 1:
-        //                     pword = pword + "00" + number;
-        //                     break;
-        //                 case 2:
-        //                     pword = pword + "0" + number;
-        //                     break;
-        //                 default:
-        //                     pword = pword + number;
-        //                     break;
-        //             }
-        //             setPlaceholderUser(pword)
-        //         },
-        //         (error) => {
-        //             var status = error.response.status
-        //         }
-        //     );
+    function clean(){
+        setDiariaPremioMil('');
+        setDiariaPremioLempirasMil('');
+        setDiariaCostoMil('');
+        setDiariaComision('');
+        setSelectedDiariaType('dm');
+        setChicaPremioMil('');
+        setChicaPremioDirectoMil('');
+        setChicaPremioPedazosMil('');
+        setChicaCostoMil('');
+        setChicaComision('');
+        setChicaCostoPedazos('');
+        setChicaComisionPedazos('');
+        setSelectedChicaType('cm');
+        setInputUserName('');
+        setInputPassword('')
+    }
+
+    useEffect(() => {
+        update_jugador();
     }, []);
 
 
@@ -379,11 +370,11 @@ export default function Nuevo() {
             'Content-Type': 'application/json',
             "Authorization": `Bearer ${tokenStr}`
         };
-        axios.post(`${baseUrl}/admin/jugadores/add`,
-            data, {headers: headers}
-        )
+        jugadorService.new_player(data)
             .then(function (response) {
                 success_response();
+                update_jugador();
+                clean()
             })
             .catch(function (error) {
                 duplicado();
