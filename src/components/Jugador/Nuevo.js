@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
 import {makeStyles} from '@material-ui/core/styles';
 import {withStyles} from '@material-ui/core/styles';
 
@@ -24,7 +23,6 @@ import InputBase from '@material-ui/core/InputBase';
 import Diaria from "./Diaria/Diaria";
 import Chica from "./Chica/Chica";
 
-import {baseUrl, tokenStr} from '../../config/const'
 
 import {jugadorService} from "../../service/api/jugador/jugador.service";
 

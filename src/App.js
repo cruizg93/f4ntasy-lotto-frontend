@@ -12,6 +12,7 @@ import Password from './components/Password/Password';
 import Fijar from './components/Fijar/Fijar';
 import {history} from "./_helpers/history";
 import {Role} from "./_helpers/role";
+import PlayerPassword from "./components/Player/scenes/Password/Password";
 
 class App extends React.Component {
     render() {
@@ -83,7 +84,7 @@ class App extends React.Component {
                             <PrivateRoute
                                 exact path="/usuario/password/cambiar"
                                 roles={[Role.Player]}
-                                component={Jugador}
+                                component={PlayerPassword}
                             />
 
                             <Route path="*" render={() => "404 NOT FOUND"}/>

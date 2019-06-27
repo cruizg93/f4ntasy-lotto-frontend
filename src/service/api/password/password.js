@@ -36,3 +36,25 @@ export function update_password(updatePassword) {
             })
     });
 }
+
+export function update_password_user(password) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json',  "Authorization": `Bearer ${currentUser.accessToken}`},
+        body: JSON.stringify({username: currentUser.username, password: password
+
+        })
+    };
+    return new Promise((resolve, reject) => {
+
+        axios.post(`${baseUrl}/user/password/update`,
+           requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
