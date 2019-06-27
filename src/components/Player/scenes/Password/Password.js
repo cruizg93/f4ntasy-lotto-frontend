@@ -139,7 +139,7 @@ export default function PlayerPassword() {
                     <Grid
                         className={classes.btnContainer}
                     >
-                        <CrearButton variant="outlined" color="primary">
+                        <CrearButton variant="outlined" color="primary" onClick={handleClickUpdatePassword}>
                             Cambiar
                             {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
 

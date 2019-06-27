@@ -21,12 +21,16 @@ export function list() {
 export function update_password(updatePassword) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
-        headers: {'Content-Type': 'application/json', 'Accept': 'application/json',  "Authorization": `Bearer ${currentUser.accessToken}`},
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
     };
     return new Promise((resolve, reject) => {
 
         axios.post(`${baseUrl}/admin/user/password/update`,
-           updatePassword, requestOptions
+            updatePassword, requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);
@@ -39,16 +43,22 @@ export function update_password(updatePassword) {
 
 export function update_password_user(password) {
     const currentUser = authenticationService.currentUserValue;
+    let data = {
+        username: currentUser.username,
+        password: password
+    };
     const requestOptions = {
-        headers: {'Content-Type': 'application/json', 'Accept': 'application/json',  "Authorization": `Bearer ${currentUser.accessToken}`},
-        body: JSON.stringify({username: currentUser.username, password: password
-
-        })
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
     };
     return new Promise((resolve, reject) => {
 
         axios.post(`${baseUrl}/user/password/update`,
-           requestOptions
+            data,
+            requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);

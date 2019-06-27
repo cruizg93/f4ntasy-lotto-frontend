@@ -7,7 +7,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 export const MenuLinks = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [isAdmin, setAdminValue] = React.useState(props.admin);
-    console.log(isAdmin);
 
     function handleClick(event) {
         setAnchorEl(event.currentTarget);
