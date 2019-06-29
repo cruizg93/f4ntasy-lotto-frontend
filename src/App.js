@@ -13,7 +13,7 @@ import Fijar from './components/Fijar/Fijar';
 import {history} from "./_helpers/history";
 import {Role} from "./_helpers/role";
 import PlayerPassword from "./components/Player/scenes/Password/Password";
-
+import AdicionarApuesta from './components/Player/scenes/Apuesta/Adicionar/index'
 class App extends React.Component {
     render() {
         return (
@@ -69,7 +69,7 @@ class App extends React.Component {
                             <PrivateRoute
                                 exact path="/usuario/apuesta/add"
                                 roles={[Role.Player]}
-                                component={Jugador}
+                                component={AdicionarApuesta}
                             />
                             <PrivateRoute
                                 exact path="/usuario/apuesta/activas"
