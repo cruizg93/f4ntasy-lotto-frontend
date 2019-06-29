@@ -1,18 +1,27 @@
 import React, {useState, useEffect} from 'react';
+import Grid from '@material-ui/core/Grid';
 import {playerService} from "../../../../../service/api/player/player.service";
+import ApuestaData from '../../../components/Apuesta/index';
 
-const AdicionarApuesta=()=>{
-    const [entry, setEntryData]=useState([]);
+const AdicionarApuesta = () => {
+    const [entry, setEntryData] = useState([]);
 
-    useEffect(() =>{
-        playerService.list_apuestas_hoy().then((result)=>{
+    useEffect(() => {
+        playerService.list_apuestas_hoy().then((result) => {
             console.log(result.data);
-            setEntryData(Array.from(result.data))
+            setEntryData(result.data)
         })
-    },[]);
-    return(
+    }, []);
+    return (
         <React.Fragment>
-
+            <Grid container spacing={3}
+                  direction="row"
+                  justify="center"
+                  alignItems="flex-start">
+                {entry.map((apuesta, index)=>
+                    <ApuestaData key={index} {...apuesta} index={index}/>
+                )}
+            </Grid>
         </React.Fragment>
     )
 };

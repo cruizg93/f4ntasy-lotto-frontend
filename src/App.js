@@ -15,9 +15,6 @@ import {Role} from "./_helpers/role";
 import PlayerPassword from "./components/Player/scenes/Password/Password";
 import AdicionarApuesta from './components/Player/scenes/Apuesta/Adicionar/index';
 
-
-
-
 class App extends React.Component {
     render() {
         return (

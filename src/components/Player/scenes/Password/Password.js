@@ -68,7 +68,7 @@ const ShowButton = withStyles({
         color: '#afafaf',
         marginTop: '1rem',
         marginBottom: '1rem',
-        border : 'none',
+        border: 'none',
         '&:hover': {
             backgroundColor: '#e5e5e5',
             borderColor: '#e5e5e5'
@@ -99,55 +99,55 @@ export default function PlayerPassword() {
         setValues({...values, showPassword: !values.showPassword});
     };
 
-    const handleClickUpdatePassword=()=>{
+    const handleClickUpdatePassword = () => {
         update_password_user(values.password)
-            .then((result)=>{
+            .then((result) => {
                 console.log(result)
             })
     }
 
     return (
         <React.Fragment>
-            <Container maxWidth="sm" className={classes.container}>
 
-                <Grid container spacing={1}
-                      direction="row"
-                      justify="center"
-                      alignItems="flex-start">
-                    <Grid item xs={10}>
-                        <TextField
-                            id="player-input-nueva-contrasenna"
-                            label="Nueva contraseña"
-                            margin="normal"
-                            value={values.password}
-                            onChange={handleChange('password')}
-                            variant="outlined"
-                            fullWidth
-                            required
-                            type={values.showPassword ? 'text' : 'password'}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                    </Grid>
-                    <Grid item xs={2}>
-                        <ShowButton variant="outlined" color="primary" onClick={handleClickShowPassword}>
 
-                            {values.showPassword ? <Visibility/> : <VisibilityOff/>}
-                        </ShowButton>
-                    </Grid>
-                    <Grid
-                        className={classes.btnContainer}
-                    >
-                        <CrearButton variant="outlined" color="primary" onClick={handleClickUpdatePassword}>
-                            Cambiar
-                            {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
-
-                            <SaveIcon className={classes.rightIcon}/>
-                        </CrearButton>
-                    </Grid>
+            <Grid container spacing={1}
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+            >
+                <Grid item xs={10}>
+                    <TextField
+                        id="player-input-nueva-contrasenna"
+                        label="Nueva contraseña"
+                        margin="normal"
+                        value={values.password}
+                        onChange={handleChange('password')}
+                        variant="outlined"
+                        fullWidth
+                        required
+                        type={values.showPassword ? 'text' : 'password'}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
                 </Grid>
-            </Container>
+                <Grid item xs={2}>
+                    <ShowButton variant="outlined" color="primary" onClick={handleClickShowPassword}>
+
+                        {values.showPassword ? <Visibility/> : <VisibilityOff/>}
+                    </ShowButton>
+                </Grid>
+                <Grid
+                    className={classes.btnContainer}
+                >
+                    <CrearButton variant="outlined" color="primary" onClick={handleClickUpdatePassword}>
+                        Cambiar
+                        {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
+
+                        <SaveIcon className={classes.rightIcon}/>
+                    </CrearButton>
+                </Grid>
+            </Grid>
         </React.Fragment>
     )
 }

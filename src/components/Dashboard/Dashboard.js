@@ -4,7 +4,9 @@ import Toolbar from '../Toolbar/Toolbar';
 import SideDrawer from '../SideDrawer/SideDrawer';
 import Backdrop from '../Backdrop/Backdrop';
 import Clock from "../Clock/Clock";
+import Container from '@material-ui/core/Container';
 import {authenticationService} from "../../service/api/authentication/authentication.service";
+import {makeStyles} from "@material-ui/core/styles/index";
 
 
 class Dashboard extends Component {
@@ -12,7 +14,7 @@ class Dashboard extends Component {
     state = {
         sideDrawerOpen: false,
         redirect: false,
-        isAdmin: false
+        isAdmin: false,
     };
     drawerToggleClickHandler = () => {
         this.setState((prevState) => {
@@ -48,7 +50,10 @@ class Dashboard extends Component {
 
                 <main style={{marginTop: '63px'}}>
                     <Clock/>
-                    {this.props.childComponent}
+                    <Container maxWidth="sm">
+                        {this.props.childComponent}
+                    </Container>
+
                 </main>
 
             </div>

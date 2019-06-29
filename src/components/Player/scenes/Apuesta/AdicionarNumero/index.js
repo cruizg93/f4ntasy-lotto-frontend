@@ -3,7 +3,6 @@ import {makeStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import List from '@material-ui/core/List';
-import EntrarApuest from '../../../components/EntrarNumero/index';
 import {playerService} from "../../../../../service/api/player/player.service";
 import EntrarNumero from "../../../components/EntrarNumero/index";
 
