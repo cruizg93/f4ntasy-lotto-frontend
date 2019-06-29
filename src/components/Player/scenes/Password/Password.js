@@ -72,7 +72,6 @@ const ShowButton = withStyles({
         '&:hover': {
             backgroundColor: '#e5e5e5',
             borderColor: '#e5e5e5'
-
         },
         '&:active': {
             boxShadow: 'none',
