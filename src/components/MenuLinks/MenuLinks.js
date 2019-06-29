@@ -86,11 +86,11 @@ export const MenuLinks = (props) => {
 
 
             {!isAdmin && <Button component={Link}
-                                 to="/usuario/apuesta/add"
+                                 to="/usuario/apuestas"
                                  color="inherit">Entrar Apuestas</Button>
             }
             {!isAdmin && <Button component={Link}
-                                 to="/usuario/apuesta/activas"
+                                 to="/usuario/apuestas/activas"
                                  color="inherit">Apuestas Activas</Button>
             }
             {!isAdmin && <Button component={Link}

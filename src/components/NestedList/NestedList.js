@@ -73,7 +73,7 @@ export default function NestedList(props) {
             {isAdmin && <Historial classes={classes.nested} click={props.click}/>}
 
             {!isAdmin &&
-            <ListItem button component={Link} to={'/usuario/apuesta/add'} onClick={props.click}>
+            <ListItem button component={Link} to={'/usuario/apuestas'} onClick={props.click}>
                 <ListItemIcon>
                      <ArrowRightAlt/>
                 </ListItemIcon>
@@ -81,7 +81,7 @@ export default function NestedList(props) {
             </ListItem>
             }
             {!isAdmin &&
-            <ListItem button component={Link} to={'/usuario/apuesta/activas'} onClick={props.click}>
+            <ListItem button component={Link} to={'/usuario/apuestas/activas'} onClick={props.click}>
                 <ListItemIcon>
                     <Style/>
                 </ListItemIcon>
