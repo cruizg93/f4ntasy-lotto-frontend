@@ -86,6 +86,20 @@ const AdicionarNumeroApuesta = (props) => {
             setEntryData(Array.from(result.data))
         })
     }, []);
+
+    function limpiarClickHandler() {
+        playerService.list_number().then((result) => {
+            setEntryData([]);
+            setEntryData(Array.from(result.data))
+        })
+    }
+
+    function updateFunction(e){
+        console.log(entry)
+        console.log(e.target.id);
+        console.log(e.target.value);
+    }
+
     return (
         <React.Fragment>
             <Grid container spacing={1}
@@ -100,6 +114,7 @@ const AdicionarNumeroApuesta = (props) => {
                                       max={element.max}
                                       index={index}
                                       {...props}
+                                      onEdit={updateFunction}
                         />
                     )}
                 </List>
@@ -109,7 +124,7 @@ const AdicionarNumeroApuesta = (props) => {
                   justify="center"
                   alignItems="center">
                 <LimpiarButton variant="outlined" color="primary">
-                    <Typography variant="body1" gutterBottom className={classes.root}>
+                    <Typography variant="body1" gutterBottom className={classes.root} onClick={limpiarClickHandler}>
                         Limpiar
                     </Typography>
                 </LimpiarButton>

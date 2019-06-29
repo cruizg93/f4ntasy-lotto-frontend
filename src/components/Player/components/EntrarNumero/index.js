@@ -47,7 +47,7 @@ const EntrarNumero = ({numero, tope, max, ...props}) => {
                 disabled={tope!==0 && tope === max}
                 style={{marginRight: 50, width: 150}}
                 className={classes.root}
-                onChange={handleOnChangeInput}
+                onBlur={props.onEdit}
                 value={numberLimit}
             />
         </ListItem>
