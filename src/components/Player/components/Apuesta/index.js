@@ -4,8 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
-
-
 import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles(theme => ({
@@ -28,7 +26,6 @@ const useStyles = makeStyles(theme => ({
     }
 
 }));
-
 
 const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, ...props}) => {
     const classes = useStyles();
@@ -96,8 +93,6 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, ...prop
 
                     </Grid>
                 </Grid>
-
-
             </Paper>
         </Grid>
 

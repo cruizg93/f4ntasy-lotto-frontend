@@ -1,41 +1,124 @@
 import React, {useState, useEffect} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
 import List from '@material-ui/core/List';
 import {playerService} from "../../../../../service/api/player/player.service";
 import EntrarNumero from "../../../components/EntrarNumero/index";
+import {makeStyles, withStyles} from "@material-ui/core/styles/index";
+import Button from "@material-ui/core/Button/index";
+import Typography from '@material-ui/core/Typography';
 
+const LimpiarButton = withStyles({
+    root: {
+        width: '100px',
+        boxShadow: 'none',
+        textTransform: 'none',
+        fontSize: 16,
+        padding: '6px 12px',
+        lineHeight: 1.5,
+        backgroundColor: '#ff190a',
+        color: '#FFF',
+        marginTop: '1rem',
+        marginBottom: '1rem',
+        marginRight: '.5rem',
+        marginLeft: '.5rem',
+        '&:hover': {
+            backgroundColor: '#fb0f2f',
+            borderColor: 'none',
+        },
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: '#0062cc',
+            borderColor: 'none',
+        },
+        '&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+        },
+    },
+})(Button);
 
-const AdicionarNumeroApuesta = () => {
+const TotalButton = withStyles({
+    root: {
+        width: '100px',
+        boxShadow: 'none',
+        textTransform: 'none',
+        fontSize: 16,
+        padding: '6px 12px',
+        lineHeight: 1.5,
+        backgroundColor: '#2b85c2',
+        color: '#FFF',
+        marginTop: '1rem',
+        marginBottom: '1rem',
+        marginRight: '.5rem',
+        marginLeft: '.5rem',
+        '&:hover': {
+            backgroundColor: '#0069d9',
+            borderColor: '#0062cc',
+        },
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: '#0062cc',
+            borderColor: '#005cbf',
+        },
+        '&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+        },
+    },
+})(Button);
 
-    const [entry, setEntryData]=useState([]);
+const useStyles = makeStyles(theme => ({
+    root: {
+        padding: theme.spacing(2, 2),
+    },
+    component: {
+        textDecoration: 'none',
+    },
+    text: {
+        fontWeight: 'bold'
+    }
 
-    useEffect(() =>{
-        playerService.list_number().then((result)=>{
+}));
+
+const AdicionarNumeroApuesta = (props) => {
+    const classes = useStyles;
+    const [entry, setEntryData] = useState([]);
+    useEffect(() => {
+        playerService.list_number().then((result) => {
             setEntryData(Array.from(result.data))
         })
-    },[]);
+    }, []);
     return (
-       <React.Fragment>
-            <Container maxWidth="sm" className={''}>
-                <Grid container spacing={1}
-                      direction="row"
-                      justify="center"
-                      alignItems="flex-start">
-                    <List dense className={''}>
-                        {entry.map((element,index)=>
-                            <EntrarNumero key={index}
-                                          numero={element.numero}
-                                          tope={element.tope}
-                                          max={element.max}
-                                          index={index}
-                                />
-                        )}
-
-                    </List>
-                </Grid>
-            </Container>
+        <React.Fragment>
+            <Grid container spacing={1}
+                  direction="row"
+                  justify="center"
+                  alignItems="flex-start">
+                <List dense className={''}>
+                    {entry.map((element, index) =>
+                        <EntrarNumero key={index}
+                                      numero={element.numero}
+                                      tope={element.tope}
+                                      max={element.max}
+                                      index={index}
+                                      {...props}
+                        />
+                    )}
+                </List>
+            </Grid>
+            <Grid container spacing={1}
+                  direction="row"
+                  justify="center"
+                  alignItems="center">
+                <LimpiarButton variant="outlined" color="primary">
+                    <Typography variant="body1" gutterBottom className={classes.root}>
+                        Limpiar
+                    </Typography>
+                </LimpiarButton>
+                <TotalButton variant="outlined" color="primary">
+                    <Typography variant="body1" gutterBottom className={classes.root}>
+                        Total
+                    </Typography>
+                </TotalButton>
+            </Grid>
         </React.Fragment>
     )
 };
