@@ -1,4 +1,4 @@
-import {baseUrl, tokenStr} from '../../../config/const'
+import {baseUrl} from '../../../config/const'
 import {authHeader} from "../../../_helpers/auth-header";
 import {authenticationService} from "../authentication/authentication.service";
 

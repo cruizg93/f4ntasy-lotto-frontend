@@ -1,14 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
+
 
 import Paper from '@material-ui/core/Paper';
 

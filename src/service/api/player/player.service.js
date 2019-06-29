@@ -1,5 +1,4 @@
 import {baseUrl} from '../../../config/const';
-import {handleResponse} from '../../../_helpers/handle-response';
 import {authHeader} from "../../../_helpers/auth-header";
 import axios from 'axios';
 import {authenticationService} from "../authentication/authentication.service";

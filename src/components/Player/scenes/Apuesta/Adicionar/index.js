@@ -8,7 +8,6 @@ const AdicionarApuesta = () => {
 
     useEffect(() => {
         playerService.list_apuestas_hoy().then((result) => {
-            console.log(result.data);
             setEntryData(result.data)
         })
     }, []);
