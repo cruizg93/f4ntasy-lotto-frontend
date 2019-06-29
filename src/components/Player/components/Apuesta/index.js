@@ -23,17 +23,18 @@ const useStyles = makeStyles(theme => ({
     component: {
         textDecoration: 'none',
     },
-    text:{
+    text: {
         fontWeight: 'bold'
     }
 
 }));
 
 
-const ApuestaData = ({id, nombre, total, comision, riesgo, ...props}) => {
+const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, ...props}) => {
     const classes = useStyles();
+
     return (
-        <Grid item xs={12} component={Link} to={''} className={classes.component}>
+        <Grid item xs={12} component={Link} to={`${url}/${id}`} className={classes.component}>
             <Paper key={props.index} className={classes.paper}>
                 <Typography variant="h5" gutterBottom>
                     {nombre}
@@ -54,7 +55,7 @@ const ApuestaData = ({id, nombre, total, comision, riesgo, ...props}) => {
                           className={classes.text}
                     >
                         <Typography variant="body1" gutterBottom className={classes.text}>
-                           {total}
+                            {total}
                         </Typography>
 
                     </Grid>
@@ -72,7 +73,7 @@ const ApuestaData = ({id, nombre, total, comision, riesgo, ...props}) => {
                           className={classes.text}
                     >
                         <Typography variant="body1" gutterBottom className={classes.text}>
-                           {comision}
+                            {comision}
                         </Typography>
 
                     </Grid>
@@ -90,7 +91,7 @@ const ApuestaData = ({id, nombre, total, comision, riesgo, ...props}) => {
                           className={classes.text}
                     >
                         <Typography variant="body1" gutterBottom className={classes.text}>
-                           {riesgo}
+                            {riesgo}
                         </Typography>
 
                     </Grid>

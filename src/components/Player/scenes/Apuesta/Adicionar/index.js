@@ -3,10 +3,12 @@ import Grid from '@material-ui/core/Grid';
 import {playerService} from "../../../../../service/api/player/player.service";
 import ApuestaData from '../../../components/Apuesta/index';
 
-const AdicionarApuesta = () => {
+const AdicionarApuesta = (props) => {
     const [entry, setEntryData] = useState([]);
 
+
     useEffect(() => {
+        console.log(props);
         playerService.list_apuestas_hoy().then((result) => {
             setEntryData(result.data)
         })
@@ -18,7 +20,7 @@ const AdicionarApuesta = () => {
                   justify="center"
                   alignItems="flex-start">
                 {entry.map((apuesta, index)=>
-                    <ApuestaData key={index} {...apuesta} index={index}/>
+                    <ApuestaData key={index} {...apuesta} index={index} {...props}/>
                 )}
             </Grid>
         </React.Fragment>
