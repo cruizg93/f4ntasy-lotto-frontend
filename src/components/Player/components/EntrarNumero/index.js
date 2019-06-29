@@ -12,6 +12,7 @@ const EntrarNumero = ({numero, tope, max, ...props}) => {
 
 
     useEffect(()=>{
+        console.log(props);
        if(tope !==0 && tope ===max){
            setColorValue("#BA2220")
        }

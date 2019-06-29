@@ -6,9 +6,7 @@ import ApuestaData from '../../../components/Apuesta/index';
 const AdicionarApuesta = (props) => {
     const [entry, setEntryData] = useState([]);
 
-
     useEffect(() => {
-        console.log(props);
         playerService.list_apuestas_hoy().then((result) => {
             setEntryData(result.data)
         })

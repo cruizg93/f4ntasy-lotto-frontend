@@ -23,6 +23,7 @@ class App extends React.Component {
                 <CssBaseline/>
                 <Router history={history}>
                     <div>
+
                         <Switch>
                             <Route exact path="/login" component={Login}/>
                             <PrivateRoute
@@ -73,7 +74,7 @@ class App extends React.Component {
                                 roles={[Role.Player]}
                                 component={AdicionarApuesta}
                             />
-                             <PrivateRoute
+                            <PrivateRoute
                                 exact path="/usuario/apuestas/:apuestaId"
                                 roles={[Role.Player]}
                                 component={AdicionarNumero}
