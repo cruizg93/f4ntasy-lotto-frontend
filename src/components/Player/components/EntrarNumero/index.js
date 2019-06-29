@@ -6,7 +6,7 @@ import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import TextField from '@material-ui/core/TextField';
 import {Circle} from 'react-shapes';
-const EntrarApuesta = ({numero, tope, max, ...props}) => {
+const EntrarNumero = ({numero, tope, max, ...props}) => {
 
     const [color, setColorValue]=useState('#2FFF21')
 
@@ -16,14 +16,13 @@ const EntrarApuesta = ({numero, tope, max, ...props}) => {
            setColorValue("#BA2220")
        }
 
-
     },[]);
     return (
         <ListItem key={props.index} className={''}>
             <Circle r={10} fill={{color:`${color}`}}  strokeWidth={0} />
             <ListItemText id={props.index} primary={`${numero}`}/>
             <TextField
-                id={`user-pass-change-${props.index}`}
+                id={`user-apuesta-insert-${props.index}`}
                 placeholder="Número"
                 margin="normal"
                 variant="outlined"
@@ -43,4 +42,4 @@ const EntrarApuesta = ({numero, tope, max, ...props}) => {
 
 
 
-export default EntrarApuesta;
+export default EntrarNumero;
