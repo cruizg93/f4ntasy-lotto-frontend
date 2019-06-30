@@ -78,7 +78,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const AdicionarNumeroApuesta = (props) => {
+const AdicionarNumeroApuesta = ({params: apuestaId, ...props}) => {
     const classes = useStyles;
     const [entry, setEntryData] = useState([]);
     useEffect(() => {
@@ -94,10 +94,20 @@ const AdicionarNumeroApuesta = (props) => {
         })
     }
 
-    function updateFunction(e){
-        console.log(entry)
-        console.log(e.target.id);
-        console.log(e.target.value);
+    function submitClickHandler() {
+         playerService.update_number(entry, props.match.params.apuestaId).then((result) => {
+            console.log(result)
+        })
+    }
+
+    function updateFunction(e) {
+        let id = e.target.id;
+        id = id.split('-')[3];
+        if (e.target.value !== '') {
+            entry[id]['current'] = parseFloat(e.target.value) ;
+        } else if (entry[id]['current'] !== 0) {
+            entry[id]['current'] = 0;
+        }
     }
 
     return (
@@ -123,13 +133,13 @@ const AdicionarNumeroApuesta = (props) => {
                   direction="row"
                   justify="center"
                   alignItems="center">
-                <LimpiarButton variant="outlined" color="primary">
-                    <Typography variant="body1" gutterBottom className={classes.root} onClick={limpiarClickHandler}>
+                <LimpiarButton variant="outlined" color="primary" onClick={limpiarClickHandler}>
+                    <Typography variant="body1" gutterBottom className={classes.root} >
                         Limpiar
                     </Typography>
                 </LimpiarButton>
-                <TotalButton variant="outlined" color="primary">
-                    <Typography variant="body1" gutterBottom className={classes.root}>
+                <TotalButton variant="outlined" color="primary" onClick={submitClickHandler}>
+                    <Typography variant="body1" gutterBottom className={classes.root} >
                         Total
                     </Typography>
                 </TotalButton>
