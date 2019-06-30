@@ -22,6 +22,10 @@ const useStyles = makeStyles(theme => ({
     component: {
         textDecoration: 'none',
     },
+    componentDisable: {
+        textDecoration: 'none',
+        pointerEvents: 'none'
+    },
     text: {
         fontWeight: 'bold'
     },
@@ -41,7 +45,8 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
     const classes = useStyles();
 
     return (
-        <Grid item xs={12} component={Link} to={`${url}/${id}`} className={classes.component}>
+        <Grid item xs={12} component={Link} to={`${url}/${id}`}
+              className={estado === 'ABIERTA' ? classes.component : classes.componentDisable}>
             <Paper key={props.index} className={classes.paper}>
                 <Typography variant="h5" gutterBottom>
                     {nombre}

@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b326030b-bc6d-4185-a88e-f63c85db1e19" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/components/Player/components/Apuesta/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Player/components/Apuesta/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Player/scenes/Apuesta/Adicionar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Player/scenes/Apuesta/Adicionar/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,8 +61,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Player/components/Apuesta/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+            <state relative-caret-position="270">
+              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -954,8 +953,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Player/components/Apuesta/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+        <state relative-caret-position="270">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
