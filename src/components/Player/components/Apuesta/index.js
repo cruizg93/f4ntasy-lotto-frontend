@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
+import {red, blue} from "@material-ui/core/colors/index";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -23,11 +24,20 @@ const useStyles = makeStyles(theme => ({
     },
     text: {
         fontWeight: 'bold'
+    },
+    close: {
+        color: red[400]
+    },
+    open: {
+        color: blue[300]
+    },
+    disableLink: {
+        pointerEvents: 'none'
     }
 
 }));
 
-const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, ...props}) => {
+const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado, ...props}) => {
     const classes = useStyles();
 
     return (
@@ -89,6 +99,17 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, ...prop
                     >
                         <Typography variant="body1" gutterBottom className={classes.text}>
                             {riesgo}
+                        </Typography>
+
+                    </Grid>
+                    <Grid item xs={12}
+                          container
+                          justify="center"
+                          className={classes.text}
+                    >
+                        <Typography variant="h5" gutterBottom
+                                    className={estado === 'ABIERTA' ? classes.open : classes.close}>
+                            {estado}
                         </Typography>
 
                     </Grid>
