@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import {playerService} from "../../../../../service/api/player/player.service";
@@ -95,8 +97,8 @@ const AdicionarNumeroApuesta = ({params: apuestaId, ...props}) => {
     }
 
     function submitClickHandler() {
-         playerService.update_number(entry, props.match.params.apuestaId).then((result) => {
-            console.log(result)
+        playerService.update_number(entry, props.match.params.apuestaId).then((result) => {
+           success_response();
         })
     }
 
@@ -104,14 +106,21 @@ const AdicionarNumeroApuesta = ({params: apuestaId, ...props}) => {
         let id = e.target.id;
         id = id.split('-')[3];
         if (e.target.value !== '') {
-            entry[id]['current'] = parseFloat(e.target.value) ;
+            entry[id]['current'] = parseFloat(e.target.value);
         } else if (entry[id]['current'] !== 0) {
             entry[id]['current'] = 0;
         }
     }
 
+    function success_response() {
+        toast.success("Cambio actualizado !", {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    }
+
     return (
         <React.Fragment>
+            <ToastContainer autoClose={8000}/>
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
@@ -134,12 +143,12 @@ const AdicionarNumeroApuesta = ({params: apuestaId, ...props}) => {
                   justify="center"
                   alignItems="center">
                 <LimpiarButton variant="outlined" color="primary" onClick={limpiarClickHandler}>
-                    <Typography variant="body1" gutterBottom className={classes.root} >
+                    <Typography variant="body1" gutterBottom className={classes.root}>
                         Limpiar
                     </Typography>
                 </LimpiarButton>
                 <TotalButton variant="outlined" color="primary" onClick={submitClickHandler}>
-                    <Typography variant="body1" gutterBottom className={classes.root} >
+                    <Typography variant="body1" gutterBottom className={classes.root}>
                         Total
                     </Typography>
                 </TotalButton>

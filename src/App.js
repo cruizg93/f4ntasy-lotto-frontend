@@ -82,6 +82,11 @@ class App extends React.Component {
                             <PrivateRoute
                                 exact path="/usuario/apuestas/activas"
                                 roles={[Role.Player]}
+                                component={AdicionarApuesta}
+                            />
+                            <PrivateRoute
+                                exact path="/usuario/apuestas/activas/:apuestaId"
+                                roles={[Role.Player]}
                                 component={Jugador}
                             />
                             <PrivateRoute
