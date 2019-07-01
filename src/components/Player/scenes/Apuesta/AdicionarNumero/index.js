@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
+import {Redirect} from 'react-router-dom';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid';
@@ -80,10 +81,20 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const AdicionarNumeroApuesta = ({params: apuestaId, ...props}) => {
+const AdicionarNumeroApuesta = ({match, ...props}) => {
     const classes = useStyles;
     const [entry, setEntryData] = useState([]);
+    const mounted = useState(true);
+
     useEffect(() => {
+        const {apuestaId} = match.params.apuestaId;
+        let reg = /^\d+$/;
+        if (!reg.test(apuestaId)) {
+            props.history.push('/usuario/apuestas');
+            return () => {
+                mounted.current = false;
+            }
+        }
         playerService.list_number().then((result) => {
             setEntryData(Array.from(result.data))
         })
@@ -98,7 +109,7 @@ const AdicionarNumeroApuesta = ({params: apuestaId, ...props}) => {
 
     function submitClickHandler() {
         playerService.update_number(entry, props.match.params.apuestaId).then((result) => {
-           success_response();
+            success_response();
         })
     }
 

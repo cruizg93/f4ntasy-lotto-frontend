@@ -80,9 +80,9 @@ class App extends React.Component {
                                 component={AdicionarNumero}
                             />
                             <PrivateRoute
-                                exact path="/usuario/apuestas/activas"
+                                exact strict path="/usuario/apuesta/activas"
                                 roles={[Role.Player]}
-                                component={AdicionarApuesta}
+                                component={Jugador}
                             />
                             <PrivateRoute
                                 exact path="/usuario/apuestas/activas/:apuestaId"
