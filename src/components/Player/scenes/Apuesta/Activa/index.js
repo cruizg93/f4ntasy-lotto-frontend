@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
     },
     negative: {
         padding: theme.spacing(1, 1),
+    },
+    numbers: {
+        paddingLeft: '.5rem'
     }
 
 }));
@@ -151,6 +154,32 @@ const ApuestaActiva = ({...props}) => {
     const [riesgo, setRiesgo] = useState(0.0);
     const [total, setTotal] = useState(0.0);
     const [list, setList] = useState([]);
+    const [disable, setDisable]=useState(true);
+
+    function handleDisableClick(){
+        setDisable(!disable);
+    }
+
+    function updateFunction(e) {
+        let id = e.target.id;
+        console.log(e.target.id);
+        id = id.split('-')[3];
+        if (e.target.value !== '') {
+            list[id]['valor'] = parseFloat(e.target.value);
+        }
+    }
+    function submitUpdateData(){
+        
+
+        playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
+            setTitle(result.data.title);
+            setComision(result.data.comision);
+            setRiesgo(result.data.riesgo);
+            setTotal(result.data.total);
+            setList(Array.from(result.data.list));
+            console.log(Array.from(result.data.list));
+        })
+    }
 
     useEffect(() => {
         playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
@@ -159,7 +188,7 @@ const ApuestaActiva = ({...props}) => {
             setRiesgo(result.data.riesgo);
             setTotal(result.data.total);
             setList(Array.from(result.data.list));
-            console.log(result.data.list);
+            console.log(Array.from(result.data.list));
         })
     }, []);
 
@@ -178,7 +207,10 @@ const ApuestaActiva = ({...props}) => {
 
 
                 {list.map((apuesta, index) =>
-                    <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}/>
+                    <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}
+                                        disable={disable}
+                                        onEdit={updateFunction}
+                    />
                 )}
             </Grid>
             <Grid container>
@@ -195,7 +227,7 @@ const ApuestaActiva = ({...props}) => {
                       justify="flex-start"
                       className={''}
                 >
-                    <Typography variant="body1" gutterBottom className={''}>
+                    <Typography variant="body1" gutterBottom className={classes.numbers}>
                         {total}
                     </Typography>
 
@@ -213,7 +245,7 @@ const ApuestaActiva = ({...props}) => {
                       justify="flex-start"
                       className={''}
                 >
-                    <Typography variant="body1" gutterBottom className={''}>
+                    <Typography variant="body1" gutterBottom className={classes.numbers}>
                         {comision}
                     </Typography>
 
@@ -231,7 +263,7 @@ const ApuestaActiva = ({...props}) => {
                       justify="flex-start"
                       className={''}
                 >
-                    <Typography variant="body1" gutterBottom className={''}>
+                    <Typography variant="body1" gutterBottom className={classes.numbers}>
                         {riesgo}
                     </Typography>
 
@@ -242,14 +274,14 @@ const ApuestaActiva = ({...props}) => {
                   justify="center"
             >
                 <Grid item xs={6}>
-                    <EditarButton variant="outlined" color="primary">
+                    <EditarButton variant="outlined" color="primary" onClick={handleDisableClick}>
                         <Typography variant="body1" gutterBottom>
                             Editar
                         </Typography>
                     </EditarButton>
                 </Grid>
                 <Grid item xs={6}>
-                    <FijarButton variant="outlined" color="primary">
+                    <FijarButton variant="outlined" color="primary" disabled={disable}>
                         <Typography variant="body1" gutterBottom>
                             Fijar
                         </Typography>

@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     }
 
 }));
-const ApuestaActivaEntry = ({numero, valor, ...props}) => {
+const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
     const classes = useStyles();
     useEffect(() => {
 
@@ -56,6 +56,8 @@ const ApuestaActivaEntry = ({numero, valor, ...props}) => {
                     style={{marginRight: 50, width: 150}}
                     className={valor > 0 ? classes.root : classes.negative}
                     value={valor}
+                    disabled={disable}
+                    onBlur={props.onEdit}
                 />
             </Grid>
         </>
