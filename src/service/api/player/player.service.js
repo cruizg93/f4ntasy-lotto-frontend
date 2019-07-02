@@ -6,7 +6,8 @@ import {authenticationService} from "../authentication/authentication.service";
 export const playerService={
     list_number,
     list_apuestas_hoy,
-    update_number
+    update_number,
+    list_apuestas_activas_details
 };
 
 function list_number() {
@@ -23,9 +24,6 @@ const requestOptions = {headers: authHeader()};
             })
     });
 }
-
-
-//user/apuestas/hoy
 
 function list_apuestas_hoy() {
 const requestOptions = {headers: authHeader()};
@@ -57,6 +55,32 @@ function update_number(data, id) {
     };
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/user/apuestas/${id}/numeros/update`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+
+function list_apuestas_activas_details(id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    let send={
+        username: currentUser.username
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/user/apuestas/activas/${id}`,
             send, requestOptions
         )
             .then((responseJson) => {

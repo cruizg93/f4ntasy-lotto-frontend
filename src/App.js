@@ -15,6 +15,7 @@ import {Role} from "./_helpers/role";
 import PlayerPassword from "./components/Player/scenes/Password/Password";
 import AdicionarApuesta from './components/Player/scenes/Apuesta/Adicionar/index';
 import AdicionarNumero from './components/Player/scenes/Apuesta/AdicionarNumero/index';
+import ApuestaActiva from "./components/Player/scenes/Apuesta/Activa";
 
 class App extends React.Component {
     render() {
@@ -80,14 +81,14 @@ class App extends React.Component {
                                 component={AdicionarNumero}
                             />
                             <PrivateRoute
-                                exact strict path="/usuario/apuesta/activas"
+                                exact strict path="/usuario/apuestas/hoy/activas"
                                 roles={[Role.Player]}
-                                component={Jugador}
+                                component={AdicionarApuesta}
                             />
                             <PrivateRoute
-                                exact path="/usuario/apuestas/activas/:apuestaId"
+                                exact path="/usuario/apuestas/hoy/activas/:apuestaId"
                                 roles={[Role.Player]}
-                                component={Jugador}
+                                component={ApuestaActiva}
                             />
                             <PrivateRoute
                                 exact path="/usuario/historial"

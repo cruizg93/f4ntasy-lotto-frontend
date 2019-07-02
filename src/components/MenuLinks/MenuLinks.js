@@ -90,7 +90,7 @@ export const MenuLinks = (props) => {
                                  color="inherit">Entrar Apuestas</Button>
             }
             {!isAdmin && <Button component={Link}
-                                 to="/usuario/apuestas/activas"
+                                 to="/usuario/apuestas/hoy/activas"
                                  color="inherit">Apuestas Activas</Button>
             }
             {!isAdmin && <Button component={Link}

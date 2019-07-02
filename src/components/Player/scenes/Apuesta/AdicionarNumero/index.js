@@ -87,9 +87,8 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
     const mounted = useState(true);
 
     useEffect(() => {
-        const {apuestaId} = match.params.apuestaId;
         let reg = /^\d+$/;
-        if (!reg.test(apuestaId)) {
+        if (!reg.test(match.params.apuestaId)) {
             props.history.push('/usuario/apuestas');
             return () => {
                 mounted.current = false;
@@ -108,7 +107,7 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
     }
 
     function submitClickHandler() {
-        playerService.update_number(entry, props.match.params.apuestaId).then((result) => {
+        playerService.update_number(entry, match.params.apuestaId).then((result) => {
             success_response();
         })
     }
