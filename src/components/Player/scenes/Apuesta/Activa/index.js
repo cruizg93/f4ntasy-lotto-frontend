@@ -10,7 +10,7 @@ import ApuestaActivaEntry from '../../../components/ApuestaActiva/index';
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
-import {toast} from "react-toastify/index";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -173,11 +173,9 @@ const ApuestaActiva = ({...props}) => {
     }
 
     function submitUpdateData() {
-        function submitClickHandler() {
-            playerService.update_number_apuesta_activas(list, match.params.apuestaId).then((result) => {
-                success_response();
-            })
-        }
+        playerService.update_number_apuesta_activas(list, props.match.params.apuestaId).then((result) => {
+            success_response();
+        });
 
         playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
             setTitle(result.data.title);
