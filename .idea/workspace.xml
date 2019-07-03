@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b326030b-bc6d-4185-a88e-f63c85db1e19" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/Player/components/ApuestaActiva/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Player/components/ApuestaActiva/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Player/scenes/Apuesta/Activa/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Player/scenes/Apuesta/Activa/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/api/player/player.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/api/player/player.service.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,8 +41,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Player/scenes/Apuesta/Activa/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="171" column="8" selection-start-line="171" selection-start-column="8" selection-end-line="171" selection-end-column="8" />
+            <state relative-caret-position="88">
+              <caret line="298" column="112" selection-start-line="298" selection-start-column="112" selection-end-line="298" selection-end-column="112" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
                 <element signature="e#866#1553#0" />
@@ -54,11 +54,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Player/scenes/Apuesta/AdicionarNumero/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="2" selection-start-line="2" selection-end-line="3" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="player.service.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/api/player/player.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="704">
-              <caret line="80" column="6" selection-start-line="80" selection-start-column="6" selection-end-line="80" selection-end-column="6" />
+            <state relative-caret-position="358">
+              <caret line="111" column="60" selection-start-line="111" selection-start-column="60" selection-end-line="111" selection-end-column="60" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -129,9 +138,9 @@
         <option value="$PROJECT_DIR$/src/components/NestedList/NestedList.js" />
         <option value="$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/src/service/api/player/player.service.js" />
         <option value="$PROJECT_DIR$/src/components/Player/scenes/Apuesta/AdicionarNumero/index.js" />
         <option value="$PROJECT_DIR$/src/components/Player/components/ApuestaActiva/index.js" />
+        <option value="$PROJECT_DIR$/src/service/api/player/player.service.js" />
         <option value="$PROJECT_DIR$/src/components/Player/scenes/Apuesta/Activa/index.js" />
       </list>
     </option>
@@ -848,16 +857,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/api/player/player.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="80" column="6" selection-start-line="80" selection-start-column="6" selection-end-line="80" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/NestedList/Sistema.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-308">
@@ -879,16 +878,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Player/scenes/Apuesta/AdicionarNumero/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="145" column="61" lean-forward="true" selection-start-line="145" selection-start-column="38" selection-end-line="145" selection-end-column="61" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
           </folding>
@@ -932,10 +921,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/api/player/player.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="111" column="60" selection-start-line="111" selection-start-column="60" selection-end-line="111" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Player/scenes/Apuesta/AdicionarNumero/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" selection-start-line="2" selection-end-line="3" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Player/scenes/Apuesta/Activa/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="171" column="8" selection-start-line="171" selection-start-column="8" selection-end-line="171" selection-end-column="8" />
+        <state relative-caret-position="88">
+          <caret line="298" column="112" selection-start-line="298" selection-start-column="112" selection-end-line="298" selection-end-column="112" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
             <element signature="e#866#1553#0" />

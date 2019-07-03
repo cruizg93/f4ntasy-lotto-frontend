@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {playerService} from "../../../../../service/api/player/player.service";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -8,6 +10,7 @@ import ApuestaActivaEntry from '../../../components/ApuestaActiva/index';
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
+import {toast} from "react-toastify/index";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -154,9 +157,9 @@ const ApuestaActiva = ({...props}) => {
     const [riesgo, setRiesgo] = useState(0.0);
     const [total, setTotal] = useState(0.0);
     const [list, setList] = useState([]);
-    const [disable, setDisable]=useState(true);
+    const [disable, setDisable] = useState(true);
 
-    function handleDisableClick(){
+    function handleDisableClick() {
         setDisable(!disable);
     }
 
@@ -168,8 +171,13 @@ const ApuestaActiva = ({...props}) => {
             list[id]['valor'] = parseFloat(e.target.value);
         }
     }
-    function submitUpdateData(){
-        
+
+    function submitUpdateData() {
+        function submitClickHandler() {
+            playerService.update_number_apuesta_activas(list, match.params.apuestaId).then((result) => {
+                success_response();
+            })
+        }
 
         playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
             setTitle(result.data.title);
@@ -179,6 +187,12 @@ const ApuestaActiva = ({...props}) => {
             setList(Array.from(result.data.list));
             console.log(Array.from(result.data.list));
         })
+    }
+
+    function success_response() {
+        toast.success("Cambio actualizado !", {
+            position: toast.POSITION.TOP_RIGHT
+        });
     }
 
     useEffect(() => {
@@ -194,6 +208,7 @@ const ApuestaActiva = ({...props}) => {
 
     return (
         <React.Fragment>
+            <ToastContainer autoClose={8000}/>
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
@@ -281,7 +296,7 @@ const ApuestaActiva = ({...props}) => {
                     </EditarButton>
                 </Grid>
                 <Grid item xs={6}>
-                    <FijarButton variant="outlined" color="primary" disabled={disable}>
+                    <FijarButton variant="outlined" color="primary" disabled={disable} onClick={submitUpdateData}>
                         <Typography variant="body1" gutterBottom>
                             Fijar
                         </Typography>
