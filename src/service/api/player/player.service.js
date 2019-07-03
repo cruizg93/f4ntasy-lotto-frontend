@@ -109,7 +109,7 @@ function update_number_apuesta_activas(data, id) {
         data: data
     };
     return new Promise((resolve, reject) => {
-        axios.post(`${baseUrl}/apuestas/activas/${id}/update`,
+        axios.post(`${baseUrl}/user/apuestas/activas/${id}/update`,
             send, requestOptions
         )
             .then((responseJson) => {

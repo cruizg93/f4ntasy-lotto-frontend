@@ -165,7 +165,6 @@ const ApuestaActiva = ({...props}) => {
 
     function updateFunction(e) {
         let id = e.target.id;
-        console.log(e.target.id);
         id = id.split('-')[3];
         if (e.target.value !== '') {
             list[id]['valor'] = parseFloat(e.target.value);
@@ -175,16 +174,16 @@ const ApuestaActiva = ({...props}) => {
     function submitUpdateData() {
         playerService.update_number_apuesta_activas(list, props.match.params.apuestaId).then((result) => {
             success_response();
+            playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
+                setTitle(result.data.title);
+                setComision(result.data.comision);
+                setRiesgo(result.data.riesgo);
+                setTotal(result.data.total);
+                setList(Array.from(result.data.list));
+            })
         });
 
-        playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
-            setTitle(result.data.title);
-            setComision(result.data.comision);
-            setRiesgo(result.data.riesgo);
-            setTotal(result.data.total);
-            setList(Array.from(result.data.list));
-            console.log(Array.from(result.data.list));
-        })
+
     }
 
     function success_response() {
