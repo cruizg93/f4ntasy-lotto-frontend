@@ -181,6 +181,14 @@ export default function Nuevo() {
     const [selectedValueMoneda, setSelectedValueMoneda] = React.useState('l');
     const [person, setPerson] = React.useState('');
     const handleChangeSelect = event => {
+        let index = event.target.selectedIndex;
+        let optionElement = event.target.childNodes[index];
+        let option = optionElement.getAttribute('label');
+        adminService.count_player_asistente(event.target.value).then((result) => {
+            setPlaceholderUser(option + "x" + (result.data + 1));
+        });
+
+
         setPerson(event.target.value);
     };
     const [select, setSelectState] = React.useState(true);
@@ -384,9 +392,14 @@ export default function Nuevo() {
             .then((response) => {
                     // console.log(response.data);
                     let users = response.data.map((c, index) =>
-                        <option key={index} value={c.id}>{c.username}</option>
+                        <option key={index} value={c.id} label={c.username}> {c.username}</option>
                     );
                     setPerson(response.data[0].id);
+                    let userId = response.data[0].id;
+                    let username = response.data[0].username;
+                    adminService.count_player_asistente(userId).then((result) => {
+                        setPlaceholderUser(username + "x" + (result.data + 1));
+                    });
                     setOptions(users);
 
                 },
