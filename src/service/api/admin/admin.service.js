@@ -3,7 +3,7 @@ import {authHeader} from "../../../_helpers/auth-header";
 import axios from 'axios';
 import {authenticationService} from "../authentication/authentication.service";
 
-export const jugadorService = {
+export const adminService = {
     count,
     new_player,
     list_players_username: list_players

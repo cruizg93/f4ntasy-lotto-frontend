@@ -24,7 +24,7 @@ import Diaria from "./Diaria/Diaria";
 import Chica from "./Chica/Chica";
 
 
-import {jugadorService} from "../../service/api/jugador/jugador.service";
+import {adminService} from "../../service/api/admin/admin.service";
 
 const BootstrapInput = withStyles(theme => ({
     root: {
@@ -253,7 +253,7 @@ export default function Nuevo() {
     }
 
     function update_jugador() {
-        jugadorService.count().then((response) => {
+        adminService.count().then((response) => {
             let number = response.data - 3;
             let length = Math.log(number) * Math.LOG10E + 1 | 0;
             let pword = 'P';
@@ -362,7 +362,7 @@ export default function Nuevo() {
             cparam2: cparam2,
             cparam3: cparam3,
         };
-        jugadorService.new_player(data)
+        adminService.new_player(data)
             .then(function (response) {
                 success_response();
                 update_jugador();
@@ -380,7 +380,7 @@ export default function Nuevo() {
         e.preventDefault();
         setSelectState(false);
         setHideComponents(true);
-        jugadorService.list_players_username()
+        adminService.list_players_username()
             .then((response) => {
                     // console.log(response.data);
                     let users = response.data.map((c, index) =>
@@ -413,6 +413,7 @@ export default function Nuevo() {
                                           onClick={() => {
                                               setSelectState(true);
                                               setHideComponents(false);
+                                              update_jugador();
                                           }}
                             >
                                 P
