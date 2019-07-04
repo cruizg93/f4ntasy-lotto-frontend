@@ -177,6 +177,7 @@ export default function Nuevo() {
 
     const classes = useStyles();
 
+    const [hideComponents, setHideComponents] = React.useState(false);
     const [selectedValueMoneda, setSelectedValueMoneda] = React.useState('l');
     const [person, setPerson] = React.useState('');
     const handleChangeSelect = event => {
@@ -378,9 +379,10 @@ export default function Nuevo() {
     function onClickHandlerActivate(e) {
         e.preventDefault();
         setSelectState(false);
+        setHideComponents(true);
         jugadorService.list_players_username()
             .then((response) => {
-                // console.log(response.data);
+                    // console.log(response.data);
                     let users = response.data.map((c, index) =>
                         <option key={index} value={c.id}>{c.username}</option>
                     );
@@ -408,7 +410,10 @@ export default function Nuevo() {
                           alignItems="flex-start">
                         <Grid item xs={6}>
                             <PlayerButton variant="outlined" color="primary" className={classes.button}
-                                          onClick={() => setSelectState(true)}
+                                          onClick={() => {
+                                              setSelectState(true);
+                                              setHideComponents(false);
+                                          }}
                             >
                                 P
                             </PlayerButton>
@@ -523,42 +528,51 @@ export default function Nuevo() {
                         </Grid>
 
                     </Grid>
-                    <Divider/>
+                    {hideComponents ? null :
+                        <Divider/>
+                    }
 
-                    <Diaria premio={diariaPremioMil}
-                            onChangePremioMil={handleChangeDiariaPremioMil}
-                            premioLempiras={diariaPremioLempirasMil}
-                            onChangePremioLempirasMil={handleChangeDiariaPremioLempirasMil}
-                            costo={diariaCostoMil}
-                            onChangeCostoMil={handleChangeDiariaCostoMil}
-                            comision={diariaComision}
-                            onChangeComisionMil={handleChangeDiariaComision}
-                            diariaType={selectedDiariaType}
-                            onChangeDiariaType={handleChangeDiariaType}
-                    />
-
-                    <Divider/>
-                    <Chica
-                        premioMil={chicaPremioMil}
-                        onChangePremioMil={handleChangeChicaPremioMil}
-                        premioDirecto={chicaPremioDirectoMil}
-                        onChangePremioDirectoMil={handleChangeChicaPremioDirectoMil}
-                        premioPedazos={chicaPremioPedazosMil}
-                        onChangePremioPedazos={handleChangeChicaPremioPedazosMil}
-                        costoMil={chicaCostoMil}
-                        onChangeCostoMil={handleChangeChicaCostoMil}
-                        comision={chicaComision}
-                        onChangeComisionMil={handleChangeChicaComision}
-                        costoPedazos={chicaCostoPedazos}
-                        onChangeCostoPedazos={handleChangeChicaCostoPedazos}
-                        comisionPedazos={chicaComisionPedazos}
-                        onChangeComisionPedazos={handleChangeChicaComisionPedazos}
-
-                        chicaType={selectedChicaType}
-                        onChangeChicaType={handleChangeChicaType}
+                    {hideComponents ? null :
+                        <Diaria premio={diariaPremioMil}
+                                onChangePremioMil={handleChangeDiariaPremioMil}
+                                premioLempiras={diariaPremioLempirasMil}
+                                onChangePremioLempirasMil={handleChangeDiariaPremioLempirasMil}
+                                costo={diariaCostoMil}
+                                onChangeCostoMil={handleChangeDiariaCostoMil}
+                                comision={diariaComision}
+                                onChangeComisionMil={handleChangeDiariaComision}
+                                diariaType={selectedDiariaType}
+                                onChangeDiariaType={handleChangeDiariaType}
+                        />
+                    }
 
 
-                    />
+                    {hideComponents ? null :
+                        <Divider/>
+                    }
+                    {hideComponents ? null :
+                        <Chica
+                            premioMil={chicaPremioMil}
+                            onChangePremioMil={handleChangeChicaPremioMil}
+                            premioDirecto={chicaPremioDirectoMil}
+                            onChangePremioDirectoMil={handleChangeChicaPremioDirectoMil}
+                            premioPedazos={chicaPremioPedazosMil}
+                            onChangePremioPedazos={handleChangeChicaPremioPedazosMil}
+                            costoMil={chicaCostoMil}
+                            onChangeCostoMil={handleChangeChicaCostoMil}
+                            comision={chicaComision}
+                            onChangeComisionMil={handleChangeChicaComision}
+                            costoPedazos={chicaCostoPedazos}
+                            onChangeCostoPedazos={handleChangeChicaCostoPedazos}
+                            comisionPedazos={chicaComisionPedazos}
+                            onChangeComisionPedazos={handleChangeChicaComisionPedazos}
+
+                            chicaType={selectedChicaType}
+                            onChangeChicaType={handleChangeChicaType}
+
+                        />
+                    }
+
                     <Grid
                         className={classes.btnContainer}
                     >
