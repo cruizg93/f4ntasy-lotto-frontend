@@ -187,8 +187,6 @@ export default function Nuevo() {
         adminService.count_player_asistente(event.target.value).then((result) => {
             setPlaceholderUser(option + "x" + (result.data + 1));
         });
-
-
         setPerson(event.target.value);
     };
     const [select, setSelectState] = React.useState(true);
@@ -313,75 +311,90 @@ export default function Nuevo() {
         if (inputPassword === '' || inputUserName === '') {
             submit = false;
         }
-
         if (!select) {
             utype = person;
         }
+        if (select) {
+            let dparam1 = diariaCostoMil;
+            let dparam2 = diariaPremioMil;
+            if (selectedDiariaType === 'dd') {
+                dparam1 = diariaComision;
+                dparam2 = diariaPremioLempirasMil;
+            }
+            if (dparam1 === '' || dparam1 === 0 || dparam2 === '' || dparam2 === 0) {
+                submit = false;
+            }
 
-        let dparam1 = diariaCostoMil;
-        let dparam2 = diariaPremioMil;
-        if (selectedDiariaType === 'dd') {
-            dparam1 = diariaComision;
-            dparam2 = diariaPremioLempirasMil;
-        }
-        if (dparam1 === '' || dparam1 === 0 || dparam2 === '' || dparam2 === 0) {
-            submit = false;
-        }
+            let cparam1 = 0;
+            let cparam2 = 0;
+            let cparam3 = 0;
+            switch (selectedChicaType) {
+                case 'cd':
+                    cparam1 = chicaComision;
+                    cparam2 = chicaPremioDirectoMil;
+                    break;
+                case 'cp':
+                    cparam1 = chicaComisionPedazos;
+                    cparam2 = chicaCostoPedazos;
+                    cparam3 = chicaPremioPedazosMil;
+                    break;
+                default:
+                    cparam1 = chicaCostoMil;
+                    cparam2 = chicaPremioMil;
+                    break;
+            }
+            if ((cparam1 === 0 && cparam2 === 0) || (selectedChicaType === 'cp' && cparam3 === 0)) {
+                submit = false;
+            }
+            if (!submit) {
+                error_reponse();
+                return;
+            }
 
-        let cparam1 = 0;
-        let cparam2 = 0;
-        let cparam3 = 0;
-        switch (selectedChicaType) {
-            case 'cd':
-                cparam1 = chicaComision;
-                cparam2 = chicaPremioDirectoMil;
-                break;
-            case 'cp':
-                cparam1 = chicaComisionPedazos;
-                cparam2 = chicaCostoPedazos;
-                cparam3 = chicaPremioPedazosMil;
-                break;
-            default:
-                cparam1 = chicaCostoMil;
-                cparam2 = chicaPremioMil;
+            let data = {
+                name: inputUserName,
+                password: inputPassword,
+                username: placeholderUser,
+                utype: utype,
+                mtype: selectedValueMoneda,
+                dtype: selectedDiariaType,
+                dparam1: dparam1,
+                dparam2: dparam2,
+                ctype: selectedChicaType,
+                cparam1: cparam1,
+                cparam2: cparam2,
+                cparam3: cparam3,
+            };
+            adminService.new_player(data)
+                .then(function (response) {
+                    success_response();
+                    update_jugador();
+                    clean()
+                })
+                .catch(function (error) {
+                    duplicado();
 
-                break;
-        }
-
-        if ((cparam1 === 0 && cparam2 === 0) || (selectedChicaType === 'cp' && cparam3 === 0)) {
-            submit = false;
-        }
-        if (!submit) {
-            error_reponse();
-            return;
-        }
-
-        let data = {
-            name: inputUserName,
-            password: inputPassword,
-            username: placeholderUser,
-            utype: utype,
-            mtype: selectedValueMoneda,
-            dtype: selectedDiariaType,
-            dparam1: dparam1,
-            dparam2: dparam2,
-            ctype: selectedChicaType,
-            cparam1: cparam1,
-            cparam2: cparam2,
-            cparam3: cparam3,
-        };
-        adminService.new_player(data)
-            .then(function (response) {
+                });
+        } else {
+            if (!submit) {
+                error_reponse();
+                return;
+            }
+            let data = {
+                name: inputUserName,
+                password: inputPassword,
+                username: placeholderUser,
+                playerId: utype
+            };
+            adminService.add_player_asistente(data).then((result) => {
                 success_response();
+                setInputUserName('');
+                setInputPassword('');
+                setSelectState(true);
+                setHideComponents(false);
                 update_jugador();
-                clean()
             })
-            .catch(function (error) {
-                duplicado();
-
-            });
-
-
+        }
     }
 
     function onClickHandlerActivate(e) {

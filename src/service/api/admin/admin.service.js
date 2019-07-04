@@ -7,7 +7,8 @@ export const adminService = {
     count,
     new_player,
     list_players_username: list_players,
-    count_player_asistente
+    count_player_asistente,
+    add_player_asistente,
 
 };
 
@@ -81,6 +82,28 @@ function count_player_asistente(data) {
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/admin/jugador/asistentes/count`,
             JSON.stringify(send), requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function add_player_asistente(data) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/admin/asistente/add`,
+            JSON.stringify(data), requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);
