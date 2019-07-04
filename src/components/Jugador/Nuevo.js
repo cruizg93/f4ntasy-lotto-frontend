@@ -253,10 +253,8 @@ export default function Nuevo() {
 
     function update_jugador() {
         jugadorService.count().then((response) => {
-            // console.log(response)
             let number = response.data - 3;
             let length = Math.log(number) * Math.LOG10E + 1 | 0;
-            // console.log(length)
             let pword = 'P';
             switch (length) {
                 case 1:
@@ -382,6 +380,7 @@ export default function Nuevo() {
         setSelectState(false);
         jugadorService.list_players_username()
             .then((response) => {
+                // console.log(response.data);
                     let users = response.data.map((c, index) =>
                         <option key={index} value={c.id}>{c.username}</option>
                     );
