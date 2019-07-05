@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b326030b-bc6d-4185-a88e-f63c85db1e19" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NestedList/NestedList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NestedList/NestedList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/PAsistente/components/Apuesta/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/PAsistente/components/ApuestaActiva/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/PAsistente/components/EntrarNumero/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/PAsistente/scene/Apuesta/Activa/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/PAsistente/scene/Apuesta/Adicionar/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/PAsistente/scene/Apuesta/AdicionarNumero/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,7 +17,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.48026314">
+    <splitter split-orientation="horizontal" split-proportion="0.38796517">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
@@ -102,13 +105,36 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="MenuLinks.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="MenuLinks.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="244">
-                  <caret line="112" column="50" selection-start-line="112" selection-start-column="41" selection-end-line="112" selection-end-column="50" />
+                <state relative-caret-position="376">
+                  <caret line="118" column="5" selection-start-line="118" selection-start-column="5" selection-end-line="118" selection-end-column="5" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/PAsistente/components/Apuesta/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <folding>
+                    <element signature="e#0#26#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/components/PAsistente/scene/Apuesta/Activa/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-661">
+                  <folding>
+                    <element signature="e#0#49#0" expanded="true" />
+                    <element signature="e#1125#1811#0" />
                   </folding>
                 </state>
               </provider>
@@ -245,21 +271,14 @@
               <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="PAsistente" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Fijar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Fijar" type="462c0819:PsiDirectoryNode" />
+              <item name="PAsistente" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -267,75 +286,8 @@
               <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Jugador" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="PAsistente" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Jugador" type="462c0819:PsiDirectoryNode" />
-              <item name="Chica" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Jugador" type="462c0819:PsiDirectoryNode" />
-              <item name="Diaria" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="MenuLinks" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="NestedList" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Password" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Password" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Player" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Player" type="462c0819:PsiDirectoryNode" />
-              <item name="scenes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Player" type="462c0819:PsiDirectoryNode" />
-              <item name="scenes" type="462c0819:PsiDirectoryNode" />
               <item name="Apuesta" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -343,8 +295,25 @@
               <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Player" type="462c0819:PsiDirectoryNode" />
-              <item name="scenes" type="462c0819:PsiDirectoryNode" />
+              <item name="PAsistente" type="462c0819:PsiDirectoryNode" />
+              <item name="scene" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="PAsistente" type="462c0819:PsiDirectoryNode" />
+              <item name="scene" type="462c0819:PsiDirectoryNode" />
+              <item name="Apuesta" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="PAsistente" type="462c0819:PsiDirectoryNode" />
+              <item name="scene" type="462c0819:PsiDirectoryNode" />
               <item name="Apuesta" type="462c0819:PsiDirectoryNode" />
               <item name="Activa" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -354,36 +323,31 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="Player" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Player" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Player" type="462c0819:PsiDirectoryNode" />
               <item name="scenes" type="462c0819:PsiDirectoryNode" />
-              <item name="Password" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="PrivateRoute" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="SidebarExample" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="SideDrawer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Toolbar" type="462c0819:PsiDirectoryNode" />
+              <item name="Player" type="462c0819:PsiDirectoryNode" />
+              <item name="scenes" type="462c0819:PsiDirectoryNode" />
+              <item name="Apuesta" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
@@ -504,7 +468,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.32905984" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.2962963" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.08187919" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.152349" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -556,22 +520,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Jugador/Nuevo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -951,22 +899,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1782">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/NestedList/NestedList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="119" column="61" selection-start-line="119" selection-start-column="61" selection-end-line="119" selection-end-column="61" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="118" column="5" selection-start-line="118" selection-start-column="5" selection-end-line="118" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/PAsistente/components/Apuesta/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/PAsistente/scene/Apuesta/Activa/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-661">
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#1125#1811#0" />
           </folding>
         </state>
       </provider>
