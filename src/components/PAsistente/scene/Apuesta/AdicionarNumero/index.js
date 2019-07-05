@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useLayoutEffect} from 'react';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid';
@@ -157,7 +157,16 @@ const AdicionarNumeroApuestaAsistente = ({match, ...props}) => {
                         Limpiar
                     </Typography>
                 </LimpiarButton>
-                <TotalButton variant="outlined" color="primary" onClick={submitClickHandler}>
+                <TotalButton variant="outlined" color="primary"
+                    // onClick={submitClickHandler}
+                             component={Link}
+                             to={{
+                                     pathname: '/asistente/apuesta/detalles',
+                                     state: {
+                                         list: entry,
+                                     }
+                                 }}
+                >
                     <Typography variant="body1" gutterBottom className={classes.root}>
                         Total
                     </Typography>
