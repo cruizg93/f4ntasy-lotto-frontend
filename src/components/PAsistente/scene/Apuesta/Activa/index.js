@@ -172,7 +172,6 @@ const ApuestaActivaAsistente = ({...props}) => {
             setRiesgo(result.data.riesgo);
             setTotal(result.data.total);
             setList(Array.from(result.data.list));
-            console.log(Array.from(result.data.list));
         })
     }, []);
 
@@ -217,42 +216,8 @@ const ApuestaActivaAsistente = ({...props}) => {
                     </Typography>
 
                 </Grid>
-                <Grid item xs={3}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={''}>
-                        comisiones |
-                    </Typography>
-                </Grid>
-                <Grid item xs={9}
-                      container
-                      justify="flex-start"
-                      className={''}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.numbers}>
-                        {comision}
-                    </Typography>
 
-                </Grid>
-                <Grid item xs={3}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={''}>
-                        riesgo |
-                    </Typography>
-                </Grid>
-                <Grid item xs={9}
-                      container
-                      justify="flex-start"
-                      className={''}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.numbers}>
-                        {riesgo}
-                    </Typography>
 
-                </Grid>
             </Grid>
             <Grid container spacing={1}
                   direction="row"
