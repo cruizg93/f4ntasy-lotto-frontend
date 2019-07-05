@@ -100,7 +100,7 @@ export default function PlayerPassword() {
     const handleClickUpdatePassword = () => {
         update_password_user(values.password)
             .then((result) => {
-                console.log(result)
+                // console.log(result)
             })
     }
 

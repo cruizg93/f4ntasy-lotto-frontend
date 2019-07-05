@@ -97,8 +97,34 @@ class App extends React.Component {
                             />
                             <PrivateRoute
                                 exact path="/usuario/password/cambiar"
-                                roles={[Role.Player]}
+                                roles={[Role.Player, Role.Asistente]}
                                 component={PlayerPassword}
+                            />
+
+                            <PrivateRoute
+                                exact path="/asistente/apuestas"
+                                roles={[Role.Asistente]}
+                                component={AdicionarApuesta}
+                            />
+                            <PrivateRoute
+                                exact path="/asistente/apuestas/:apuestaId"
+                                roles={[Role.Asistente]}
+                                component={AdicionarNumero}
+                            />
+                            <PrivateRoute
+                                exact strict path="/asistente/apuestas/hoy/activas"
+                                roles={[Role.Asistente]}
+                                component={AdicionarApuesta}
+                            />
+                            <PrivateRoute
+                                exact path="/asistente/apuestas/hoy/activas/:apuestaId"
+                                roles={[Role.Asistente]}
+                                component={ApuestaActiva}
+                            />
+                            <PrivateRoute
+                                exact path="/asistente/historial"
+                                roles={[Role.Asistente]}
+                                component={Jugador}
                             />
 
                             <Route path="*" render={() => "404 NOT FOUND"}/>
