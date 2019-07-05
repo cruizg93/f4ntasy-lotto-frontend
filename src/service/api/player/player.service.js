@@ -3,8 +3,9 @@ import {authHeader} from "../../../_helpers/auth-header";
 import axios from 'axios';
 import {authenticationService} from "../authentication/authentication.service";
 
-export const playerService={
+export const playerService = {
     list_number,
+    list_number_by_apuesta_id,
     list_apuestas_hoy,
     update_number,
     list_apuestas_activas_details,
@@ -12,7 +13,7 @@ export const playerService={
 };
 
 function list_number() {
-const requestOptions = {headers: authHeader()};
+    const requestOptions = {headers: authHeader()};
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/user/apuestas/numeros`,
             requestOptions
@@ -26,8 +27,27 @@ const requestOptions = {headers: authHeader()};
     });
 }
 
+function list_number_by_apuesta_id(id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {headers: authHeader()};
+    let send = {
+        username: currentUser.username
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/user/apuestas/${id}/numeros`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
 function list_apuestas_hoy() {
-const requestOptions = {headers: authHeader()};
+    const requestOptions = {headers: authHeader()};
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/user/apuestas/hoy`,
             requestOptions
@@ -50,7 +70,7 @@ function update_number(data, id) {
             "Authorization": `Bearer ${currentUser.accessToken}`
         },
     };
-    let send={
+    let send = {
         username: currentUser.username,
         data: data
     };
@@ -77,7 +97,7 @@ function list_apuestas_activas_details(id) {
             "Authorization": `Bearer ${currentUser.accessToken}`
         },
     };
-    let send={
+    let send = {
         username: currentUser.username
     };
     return new Promise((resolve, reject) => {
@@ -94,7 +114,6 @@ function list_apuestas_activas_details(id) {
 }
 
 
-
 function update_number_apuesta_activas(data, id) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
@@ -104,7 +123,7 @@ function update_number_apuesta_activas(data, id) {
             "Authorization": `Bearer ${currentUser.accessToken}`
         },
     };
-    let send={
+    let send = {
         username: currentUser.username,
         data: data
     };

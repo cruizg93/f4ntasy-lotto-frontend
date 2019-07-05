@@ -94,21 +94,15 @@ const AdicionarNumeroApuestaAsistente = ({match, ...props}) => {
                 mounted.current = false;
             }
         }
-        playerService.list_number().then((result) => {
-            setEntryData(Array.from(result.data))
-        })
+        playerService.list_number_by_apuesta_id(match.params.apuestaId).then((result) => {
+            setEntryData(Array.from(result.data));
+        });
     }, []);
 
     function limpiarClickHandler() {
         playerService.list_number().then((result) => {
             setEntryData([]);
             setEntryData(Array.from(result.data))
-        })
-    }
-
-    function submitClickHandler() {
-        playerService.update_number(entry, match.params.apuestaId).then((result) => {
-            success_response();
         })
     }
 
@@ -122,15 +116,8 @@ const AdicionarNumeroApuestaAsistente = ({match, ...props}) => {
         }
     }
 
-    function success_response() {
-        toast.success("Cambio actualizado !", {
-            position: toast.POSITION.TOP_RIGHT
-        });
-    }
-
     return (
         <React.Fragment>
-            <ToastContainer autoClose={8000}/>
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
@@ -141,6 +128,7 @@ const AdicionarNumeroApuestaAsistente = ({match, ...props}) => {
                                       numero={element.numero}
                                       tope={element.tope}
                                       max={element.max}
+                                      current={element.current}
                                       index={index}
                                       {...props}
                                       onEdit={updateFunction}
@@ -158,12 +146,13 @@ const AdicionarNumeroApuestaAsistente = ({match, ...props}) => {
                     </Typography>
                 </LimpiarButton>
                 <TotalButton variant="outlined" color="primary"
-                    // onClick={submitClickHandler}
                              component={Link}
                              to={{
                                      pathname: '/asistente/apuesta/detalles',
                                      state: {
                                          list: entry,
+                                         title: props.location.state.title,
+                                         id: match.params.apuestaId
                                      }
                                  }}
                 >
