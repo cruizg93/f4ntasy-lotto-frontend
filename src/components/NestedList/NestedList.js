@@ -35,6 +35,7 @@ const useStyles = makeStyles(theme => ({
 export default function NestedList(props) {
     const classes = useStyles();
     const [isAdmin, setAdminValue] = React.useState(props.admin);
+    const [isAsistente, setAsistenteValue] = React.useState(!props.admin && props.asistente);
     const logout = () => {
         authenticationService.logout();
         history.push('/login');
@@ -72,7 +73,7 @@ export default function NestedList(props) {
             {isAdmin && <Sistema classes={classes.nested} click={props.click}/>}
             {isAdmin && <Historial classes={classes.nested} click={props.click}/>}
 
-            {!isAdmin &&
+            {!isAsistente &&
             <ListItem button component={Link} to={'/usuario/apuestas'} onClick={props.click}>
                 <ListItemIcon>
                      <ArrowRightAlt/>
@@ -80,7 +81,7 @@ export default function NestedList(props) {
                 <ListItemText primary="Entrar Apuestas"/>
             </ListItem>
             }
-            {!isAdmin &&
+            {!isAsistente &&
             <ListItem button component={Link} to={'/usuario/apuestas/hoy/activas'} onClick={props.click}>
                 <ListItemIcon>
                     <Style/>
@@ -89,7 +90,7 @@ export default function NestedList(props) {
             </ListItem>
             }
 
-            {!isAdmin &&
+            {!isAsistente &&
             <ListItem button component={Link} to={'/usuario/historial'} onClick={props.click}>
                 <ListItemIcon>
                      <History/>
@@ -97,6 +98,33 @@ export default function NestedList(props) {
                 <ListItemText primary="Historial"/>
             </ListItem>
             }
+
+            {isAsistente &&
+            <ListItem button component={Link} to={'/asistente/apuestas'} onClick={props.click}>
+                <ListItemIcon>
+                     <ArrowRightAlt/>
+                </ListItemIcon>
+                <ListItemText primary="Entrar Apuestas"/>
+            </ListItem>
+            }
+            {isAsistente &&
+            <ListItem button component={Link} to={'/asistente/apuestas/hoy/activas'} onClick={props.click}>
+                <ListItemIcon>
+                    <Style/>
+                </ListItemIcon>
+                <ListItemText primary="Apuestas Activas"/>
+            </ListItem>
+            }
+
+            {isAsistente &&
+            <ListItem button component={Link} to={'/asistente/historial'} onClick={props.click}>
+                <ListItemIcon>
+                     <History/>
+                </ListItemIcon>
+                <ListItemText primary="Historial"/>
+            </ListItem>
+            }
+
 
             {!isAdmin &&
             <ListItem button component={Link} to="/usuario/password/cambiar"

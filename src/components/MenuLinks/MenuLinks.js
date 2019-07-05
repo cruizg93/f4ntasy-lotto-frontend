@@ -88,18 +88,33 @@ export const MenuLinks = (props) => {
 
 
             {!isAsistente && <Button component={Link}
-                                 to="/usuario/apuestas"
-                                 color="inherit">Entrar Apuestas</Button>
+                                     to="/usuario/apuestas"
+                                     color="inherit">Entrar Apuestas</Button>
             }
             {!isAsistente && <Button component={Link}
-                                 to="/usuario/apuestas/hoy/activas"
-                                 color="inherit">Apuestas Activas</Button>
+                                     to="/usuario/apuestas/hoy/activas"
+                                     color="inherit">Apuestas Activas</Button>
             }
             {!isAsistente && <Button component={Link}
-                                 to="/usuario/historial"
-                                 color="inherit">Historial</Button>
+                                     to="/usuario/historial"
+                                     color="inherit">Historial</Button>
             }
-            {!isAsistente && <Button component={Link}
+
+
+            {isAsistente && <Button component={Link}
+                                    to="/asistente/apuestas"
+                                    color="inherit">Entrar Apuestas</Button>
+            }
+            {isAsistente && <Button component={Link}
+                                    to="/asistente/apuestas/hoy/activas"
+                                    color="inherit">Apuestas Activas</Button>
+            }
+            {isAsistente && <Button component={Link}
+                                    to="/asistente/historial"
+                                    color="inherit">Historial</Button>
+            }
+
+            {!isAdmin && <Button component={Link}
                                  to="/usuario/password/cambiar"
                                  color="inherit">Cambiar Contraseña</Button>
             }
