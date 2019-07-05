@@ -15,6 +15,7 @@ class Dashboard extends Component {
         sideDrawerOpen: false,
         redirect: false,
         isAdmin: false,
+        isAsistente: false,
     };
     drawerToggleClickHandler = () => {
         this.setState((prevState) => {
@@ -30,7 +31,8 @@ class Dashboard extends Component {
     componentWillMount() {
         this.setState({
             isAdmin: (authenticationService.type_user() === 'Admin' ||
-                authenticationService.type_user() === 'Master')
+                authenticationService.type_user() === 'Master'),
+            isAsistente: authenticationService.type_user() === 'Asistente'
         })
     }
 
@@ -41,10 +43,13 @@ class Dashboard extends Component {
         }
         return (
             <div style={{height: "100%"}} className="App">
-                <Toolbar drawerClickHandler={this.drawerToggleClickHandler} admin={this.state.isAdmin}/>
+                <Toolbar drawerClickHandler={this.drawerToggleClickHandler}
+                         admin={this.state.isAdmin}
+                         asistente={this.state.isAsistente}/>
                 <SideDrawer show={this.state.sideDrawerOpen}
                             drawerClickHandler={this.drawerToggleClickHandler}
                             admin={this.state.isAdmin}
+                            asistente={this.state.isAsistente}
                 />
                 {backdrop}
 

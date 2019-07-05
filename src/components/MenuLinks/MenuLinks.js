@@ -7,6 +7,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 export const MenuLinks = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [isAdmin, setAdminValue] = React.useState(props.admin);
+    const [isAsistente, setAsistenteValue] = React.useState(!props.admin && props.asistente);
+
 
     function handleClick(event) {
         setAnchorEl(event.currentTarget);
@@ -85,19 +87,19 @@ export const MenuLinks = (props) => {
             }
 
 
-            {!isAdmin && <Button component={Link}
+            {!isAsistente && <Button component={Link}
                                  to="/usuario/apuestas"
                                  color="inherit">Entrar Apuestas</Button>
             }
-            {!isAdmin && <Button component={Link}
+            {!isAsistente && <Button component={Link}
                                  to="/usuario/apuestas/hoy/activas"
                                  color="inherit">Apuestas Activas</Button>
             }
-            {!isAdmin && <Button component={Link}
+            {!isAsistente && <Button component={Link}
                                  to="/usuario/historial"
                                  color="inherit">Historial</Button>
             }
-            {!isAdmin && <Button component={Link}
+            {!isAsistente && <Button component={Link}
                                  to="/usuario/password/cambiar"
                                  color="inherit">Cambiar Contraseña</Button>
             }

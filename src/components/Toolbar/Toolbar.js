@@ -66,7 +66,7 @@ class Toolbar extends Component {
                     <div className="spacer"/>
                     <div className="toolbar__navigation-items">
                         <ul>
-                            <MenuLinks admin={this.props.admin}/>
+                            <MenuLinks admin={this.props.admin} asistente={this.props.asistente}/>
                             <Button onClick={this.logoutClickHandler} color="inherit">Salir</Button>
                         </ul>
                     </div>
