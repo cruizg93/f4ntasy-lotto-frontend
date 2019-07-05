@@ -34,12 +34,15 @@ class Toolbar extends Component {
         let userType = username.charAt(0);
         switch (userType) {
             case 'P':
-                this.setState({toolbarClasses: ['toolbar green_bkg']});
+                if(username.indexOf("x")!==-1){
+                    this.setState({toolbarClasses: ['toolbar yellow_bkg']});
+                }else{
+                    this.setState({toolbarClasses: ['toolbar green_bkg']});
+                }
                 break;
             case 'C':
                 break;
             default:
-                this.setState({toolbarClasses: ['toolbar yellow_bkg']});
                 break;
         }
     }
