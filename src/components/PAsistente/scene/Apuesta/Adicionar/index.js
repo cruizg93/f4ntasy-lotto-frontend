@@ -25,4 +25,4 @@ const AdicionarApuestaAsistente = (props) => {
     )
 };
 
-export default AdicionarApuesta;
+export default AdicionarApuestaAsistente;

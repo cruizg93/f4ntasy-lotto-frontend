@@ -287,4 +287,4 @@ const ApuestaActivaAsistente = ({...props}) => {
 };
 
 
-export default ApuestaActiva;
+export default ApuestaActivaAsistente;

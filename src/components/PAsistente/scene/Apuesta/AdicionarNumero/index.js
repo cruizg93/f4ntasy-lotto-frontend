@@ -168,4 +168,4 @@ const AdicionarNumeroApuestaAsistente = ({match, ...props}) => {
 };
 
 
-export default AdicionarNumeroApuesta;
+export default AdicionarNumeroApuestaAsistente;

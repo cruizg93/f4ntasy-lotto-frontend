@@ -17,6 +17,11 @@ import AdicionarApuesta from './components/Player/scenes/Apuesta/Adicionar/index
 import AdicionarNumero from './components/Player/scenes/Apuesta/AdicionarNumero/index';
 import ApuestaActiva from "./components/Player/scenes/Apuesta/Activa";
 
+import ApuestaActivaAsistente from './components/PAsistente/scene/Apuesta/Activa/index';
+import AdicionarApuestaAsistente from './components/PAsistente/scene/Apuesta/Adicionar/index';
+import AdicionarNumeroApuestaAsistente from './components/PAsistente/scene/Apuesta/AdicionarNumero/index';
+
+
 class App extends React.Component {
     render() {
         return (
@@ -104,22 +109,22 @@ class App extends React.Component {
                             <PrivateRoute
                                 exact path="/asistente/apuestas"
                                 roles={[Role.Asistente]}
-                                component={Jugador}
+                                component={AdicionarApuestaAsistente}
                             />
                             <PrivateRoute
                                 exact path="/asistente/apuestas/:apuestaId"
                                 roles={[Role.Asistente]}
-                                component={Jugador}
+                                component={AdicionarNumeroApuestaAsistente}
                             />
                             <PrivateRoute
                                 exact strict path="/asistente/apuestas/hoy/activas"
                                 roles={[Role.Asistente]}
-                                component={Jugador}
+                                component={AdicionarApuestaAsistente}
                             />
                             <PrivateRoute
                                 exact path="/asistente/apuestas/hoy/activas/:apuestaId"
                                 roles={[Role.Asistente]}
-                                component={Jugador}
+                                component={ApuestaActivaAsistente}
                             />
                             <PrivateRoute
                                 exact path="/asistente/historial"

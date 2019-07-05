@@ -71,42 +71,7 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
                         </Typography>
 
                     </Grid>
-                    <Grid item xs={3}
-                          container
-                          justify="flex-end"
-                    >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-                            comisiones |
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={9}
-                          container
-                          justify="flex-start"
-                          className={classes.text}
-                    >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-                            {comision}
-                        </Typography>
 
-                    </Grid>
-                    <Grid item xs={3}
-                          container
-                          justify="flex-end"
-                    >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-                            riesgo |
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={9}
-                          container
-                          justify="flex-start"
-                          className={classes.text}
-                    >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-                            {riesgo}
-                        </Typography>
-
-                    </Grid>
                     <Grid item xs={12}
                           container
                           justify="center"
