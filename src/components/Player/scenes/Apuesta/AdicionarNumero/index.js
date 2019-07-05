@@ -94,13 +94,13 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
                 mounted.current = false;
             }
         }
-        playerService.list_number().then((result) => {
+        playerService.list_number_by_apuesta_id(match.params.apuestaId).then((result) => {
             setEntryData(Array.from(result.data))
         })
     }, []);
 
     function limpiarClickHandler() {
-        playerService.list_number().then((result) => {
+        playerService.list_number_by_apuesta_id(match.params.apuestaId).then((result) => {
             setEntryData([]);
             setEntryData(Array.from(result.data))
         })

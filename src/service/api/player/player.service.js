@@ -9,7 +9,8 @@ export const playerService = {
     list_apuestas_hoy,
     update_number,
     list_apuestas_activas_details,
-    update_number_apuesta_activas
+    update_number_apuesta_activas,
+    list_apuestas_hoy_by_username
 };
 
 function list_number() {
@@ -51,6 +52,25 @@ function list_apuestas_hoy() {
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/user/apuestas/hoy`,
             requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function list_apuestas_hoy_by_username() {
+    const requestOptions = {headers: authHeader()};
+    const currentUser = authenticationService.currentUserValue;
+    let send = {
+        username: currentUser.username
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/user/apuestas/hoy/list`,
+            send, requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);
