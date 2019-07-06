@@ -182,8 +182,6 @@ const ApuestaActiva = ({...props}) => {
                 setList(Array.from(result.data.list));
             })
         });
-
-
     }
 
     function success_response() {
@@ -199,7 +197,6 @@ const ApuestaActiva = ({...props}) => {
             setRiesgo(result.data.riesgo);
             setTotal(result.data.total);
             setList(Array.from(result.data.list));
-            console.log(Array.from(result.data.list));
         })
     }, []);
 
@@ -307,7 +304,15 @@ const ApuestaActiva = ({...props}) => {
                     </ImprimirButton>
                 </Grid>
                 <Grid item xs={6}>
-                    <DetallesButton variant="outlined" color="primary">
+                    <DetallesButton variant="outlined" color="primary"
+                                    component={Link}
+                                    to={{
+                                        pathname: '/usuario/apuesta/detalles',
+                                        state: {
+                                            title: {title},
+                                        }
+                                    }}
+                    >
                         <Typography variant="body1" gutterBottom>
                             Detalles
                         </Typography>
