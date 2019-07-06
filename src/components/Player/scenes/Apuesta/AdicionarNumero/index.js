@@ -87,6 +87,7 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
     const mounted = useState(true);
 
     useEffect(() => {
+        console.log(props);
         let reg = /^\d+$/;
         if (!reg.test(match.params.apuestaId)) {
             props.history.push('/usuario/apuestas');
@@ -158,20 +159,20 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
                     </Typography>
                 </LimpiarButton>
                 {/*<TotalButton variant="outlined" color="primary" onClick={submitClickHandler}>*/}
-                    {/*<Typography variant="body1" gutterBottom className={classes.root}>*/}
-                        {/*Total*/}
-                    {/*</Typography>*/}
+                {/*<Typography variant="body1" gutterBottom className={classes.root}>*/}
+                {/*Total*/}
+                {/*</Typography>*/}
                 {/*</TotalButton>*/}
                 <TotalButton variant="outlined" color="primary"
                              component={Link}
                              to={{
-                                     pathname: '/asistente/apuesta/detalles',
-                                     state: {
-                                         list: entry,
-                                         title: props.location.state.title,
-                                         id: match.params.apuestaId
-                                     }
-                                 }}
+                                 pathname: '/usuario/apuesta/comprar',
+                                 state: {
+                                     list: entry,
+                                     id: match.params.apuestaId,
+                                     title: props.location.state.title
+                                 }
+                             }}
                 >
                     <Typography variant="body1" gutterBottom className={classes.root}>
                         Total

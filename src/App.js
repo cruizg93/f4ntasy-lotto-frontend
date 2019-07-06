@@ -22,6 +22,8 @@ import AdicionarApuestaAsistente from './components/PAsistente/scene/Apuesta/Adi
 import AdicionarNumeroApuestaAsistente from './components/PAsistente/scene/Apuesta/AdicionarNumero/index';
 import DetallesAsistente from './components/PAsistente/scene/Apuesta/Detalle/index';
 import DetallesApuesta from './components/Player/scenes/Apuesta/Detalles/index';
+import ComprarApuesta from './components/Player/scenes/Apuesta/Comprar/index';
+
 
 class App extends React.Component {
     render() {
@@ -110,6 +112,11 @@ class App extends React.Component {
                                 exact path="/usuario/apuesta/detalles"
                                 roles={[Role.Player]}
                                 component={DetallesApuesta}
+                            />
+                            <PrivateRoute
+                                exact path="/usuario/apuesta/comprar"
+                                roles={[Role.Player]}
+                                component={ComprarApuesta}
                             />
                             <PrivateRoute
                                 exact path="/asistente/apuestas"

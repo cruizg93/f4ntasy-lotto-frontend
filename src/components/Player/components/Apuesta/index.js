@@ -45,7 +45,15 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
     const classes = useStyles();
 
     return (
-        <Grid item xs={12} component={Link} to={`${url}/${id}`}
+        <Grid item xs={12} component={Link}
+              to={
+                  {
+                      pathname: `${url}/${id}`,
+                      state: {
+                          title: {nombre},
+                      }
+                  }
+              }
               className={estado === 'ABIERTA' ? classes.component : classes.componentDisable}>
             <Paper key={props.index} className={classes.paper}>
                 <Typography variant="h5" gutterBottom>

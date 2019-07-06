@@ -17,7 +17,7 @@ const AdicionarApuestaAsistente = (props) => {
                   direction="row"
                   justify="center"
                   alignItems="flex-start">
-                {entry.map((apuesta, index)=>
+                {entry.map((apuesta, index) =>
                     <ApuestaData key={index} {...apuesta} index={index} {...props}/>
                 )}
             </Grid>
