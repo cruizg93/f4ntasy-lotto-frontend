@@ -9,6 +9,7 @@ import {red, blue} from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
 import {withStyles} from "@material-ui/core/styles/index";
 import {playerService} from "../../../../../service/api/player/player.service";
+import ShowDetallesApuesta from '../../../components/Detalles/index';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -46,8 +47,14 @@ const useStyles = makeStyles(theme => ({
 const DetallesApuesta = ({...props}) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
+    const [id, setIdValue] = useState(0);
+    const [list, setList] = useState([]);
     useEffect(() => {
+        playerService.detalles_by_apuesta_id(props.location.state.id).then((result) => {
+            setList(Array.from(result.data));
+        })
         setTitle(props.location.state.title.title);
+        setIdValue(props.location.state.id)
     }, []);
     return (
         <React.Fragment>
@@ -61,8 +68,20 @@ const DetallesApuesta = ({...props}) => {
                     {title}
                 </Typography>
 
+
             </Grid>
             <Divider/>
+            <Grid
+                container spacing={1}
+                direction="row"
+                justify="center"
+                alignItems="flex-start"
+            >
+                {list.map((apuestaDetail, index) =>
+                    <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} {...props}
+                    />
+                )}
+            </Grid>
         </React.Fragment>
     )
 

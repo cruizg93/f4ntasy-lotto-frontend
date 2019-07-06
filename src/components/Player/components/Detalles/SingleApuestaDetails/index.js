@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import {makeStyles} from "@material-ui/core/styles/index";
-import NumberFormat from 'react-number-format';
 import {red} from "@material-ui/core/colors/index";
 
 const useStyles = makeStyles(theme => ({
@@ -27,14 +25,11 @@ const useStyles = makeStyles(theme => ({
     }
 
 }));
-const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
+const SingleApuestaDetails=({numero, valor, ...props})=>{
     const classes = useStyles();
-    useEffect(() => {
-
-    }, []);
     return (
-        <>
-            <Grid item xs={6}
+        <React.Fragment>
+             <Grid item xs={6}
                   container
                   justify="flex-end"
             >
@@ -46,21 +41,13 @@ const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
                   container
                   justify="flex-start"
             >
-                <NumberFormat
-                    id={`user-apuesta-data-${props.index}`}
-                    placeholder="Número"
-                    margin="normal"
-                    variant="outlined"
-                    style={{marginRight: 50, width: 150}}
-                    className={valor > 0 ? classes.root : classes.negative}
-                    value={valor}
-                    disabled={disable}
-                    onBlur={props.onEdit}
-                />
+                <Typography id={`text-${props.index}`} variant="body1" gutterBottom className={classes.text}>
+                    {valor}
+                </Typography>
             </Grid>
-        </>
+            <Divider/>
+        </React.Fragment>
     )
 };
 
-
-export default ApuestaActivaEntry;
+export default SingleApuestaDetails;

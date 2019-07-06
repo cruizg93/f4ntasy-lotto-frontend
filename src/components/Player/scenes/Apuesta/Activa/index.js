@@ -310,6 +310,7 @@ const ApuestaActiva = ({...props}) => {
                                         pathname: '/usuario/apuesta/detalles',
                                         state: {
                                             title: {title},
+                                            id: props.match.params.apuestaId
                                         }
                                     }}
                     >
