@@ -44,6 +44,36 @@ const useStyles = makeStyles(theme => ({
     }
 
 }));
+
+const ImprimirButton = withStyles({
+    root: {
+        width: '100%',
+        boxShadow: 'none',
+        textTransform: 'none',
+        fontSize: 16,
+        padding: '6px 12px',
+        lineHeight: 1.5,
+        backgroundColor: '#2b85c2',
+        color: '#FFF',
+        marginTop: '1rem',
+        marginBottom: '1rem',
+        marginRight: '.5rem',
+        marginLeft: '.5rem',
+        '&:hover': {
+            backgroundColor: '#0069d9',
+            borderColor: '#0062cc',
+        },
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: '#0062cc',
+            borderColor: '#005cbf',
+        },
+        '&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+        },
+    },
+})(Button);
+
 const DetallesApuesta = ({...props}) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
@@ -81,6 +111,20 @@ const DetallesApuesta = ({...props}) => {
                     <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} {...props}
                     />
                 )}
+            </Grid>
+            <Grid container spacing={1}
+                  direction="row"
+                  justify="center"
+            >
+
+                <Grid item xs={6}>
+                    <ImprimirButton variant="outlined" color="primary">
+                        <Typography variant="body1" gutterBottom>
+                            Imprimir
+                        </Typography>
+                    </ImprimirButton>
+                </Grid>
+
             </Grid>
         </React.Fragment>
     )

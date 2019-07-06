@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+
 import {makeStyles} from "@material-ui/core/styles/index";
 import {red} from "@material-ui/core/colors/index";
 
@@ -15,7 +15,6 @@ const useStyles = makeStyles(theme => ({
     text: {
         fontWeight: 'bold',
         width: '60px',
-        border: '1px #000 solid',
         padding: '5px',
         textAlign: 'center'
     },
@@ -32,20 +31,22 @@ const SingleApuestaDetails=({numero, valor, ...props})=>{
              <Grid item xs={6}
                   container
                   justify="flex-end"
+                   spacing={1}
             >
-                <Typography id={`text-${props.index}`} variant="body1" gutterBottom className={classes.text}>
+                <Typography id={`text-${props.index}`} variant="body1" gutterBottom className={classes.text }>
                     {numero}
                 </Typography>
             </Grid>
             <Grid item xs={6}
                   container
                   justify="flex-start"
+                  spacing={1}
             >
-                <Typography id={`text-${props.index}`} variant="body1" gutterBottom className={classes.text}>
+                <Typography id={`text-${props.index}`} variant="body1" gutterBottom className={classes.negative}>
                     {valor}
                 </Typography>
             </Grid>
-            <Divider/>
+
         </React.Fragment>
     )
 };
