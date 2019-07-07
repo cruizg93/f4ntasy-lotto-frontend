@@ -158,11 +158,6 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
                         Limpiar
                     </Typography>
                 </LimpiarButton>
-                {/*<TotalButton variant="outlined" color="primary" onClick={submitClickHandler}>*/}
-                {/*<Typography variant="body1" gutterBottom className={classes.root}>*/}
-                {/*Total*/}
-                {/*</Typography>*/}
-                {/*</TotalButton>*/}
                 <TotalButton variant="outlined" color="primary"
                              component={Link}
                              to={{

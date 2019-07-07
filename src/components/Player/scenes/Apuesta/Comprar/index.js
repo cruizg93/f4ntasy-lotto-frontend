@@ -112,7 +112,7 @@ const ComprarApuesta = ({...props}) => {
 
     useEffect(() => {
         setElements(props.location.state.list);
-        setTitle(props.location.state.title);
+        setTitle(props.location.state.title.nombre);
         setIdValue(props.location.state.id);
         let totald = 0;
         props.location.state.list.forEach(function (item, index) {
@@ -120,12 +120,18 @@ const ComprarApuesta = ({...props}) => {
                 totald = totald + item.current;
             }
         });
+        let comision1 = 0;
+        playerService.comision_directo("directo").then((result) => {
+            comision1 = result.data;
+            setComision(result.data);
+        })
         setTotal(totald);
+        setRiesgo(totald - comision1);
     }, []);
 
     function submitClickHandler() {
         playerService.update_number(elements, id).then((result) => {
-            props.history.push("/asistente/apuestas");
+            props.history.push("/usuario/apuestas");
             return () => {
                 mounted.current = false;
             }
@@ -143,7 +149,6 @@ const ComprarApuesta = ({...props}) => {
                 <Typography variant="h5" gutterBottom>
                     {title}
                 </Typography>
-
             </Grid>
             <Divider/>
             <Grid
@@ -196,7 +201,6 @@ const ComprarApuesta = ({...props}) => {
                     <Typography variant="body1" gutterBottom className={classes.text}>
                         {comision}
                     </Typography>
-
                 </Grid>
                 <Grid item xs={3}
                       container
@@ -214,12 +218,8 @@ const ComprarApuesta = ({...props}) => {
                     <Typography variant="body1" gutterBottom className={classes.text}>
                         {riesgo}
                     </Typography>
-
                 </Grid>
             </Grid>
-
-
-
             <Grid container spacing={1}
                   direction="row"
                   justify="center"

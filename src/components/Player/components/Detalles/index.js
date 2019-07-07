@@ -40,9 +40,6 @@ const ShowDetallesApuesta = ({title, apuestas, total, ...props}) => {
         setTitleData(title);
         setApuestasData(Array.from(apuestas));
         setTotalData(total);
-        console.log(title);
-        console.log(apuestas);
-        console.log(total);
 
     }, [])
     return (

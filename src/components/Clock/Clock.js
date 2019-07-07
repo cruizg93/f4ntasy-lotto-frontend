@@ -1,20 +1,27 @@
 import React, {Component} from 'react';
 import './Clock.css';
-
+import axios from 'axios';
+import {playerService} from "../../service/api/player/player.service";
 
 class Clock extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            time: new Date()
+            time: new Date(),
+            balance: 0.0
         };
-
     }
 
     tick() {
         this.setState({
             time: new Date()
         });
+    }
+
+    updateBalance() {
+        playerService.get_balance().then((result) => {
+            this.setState({balance: result})
+        })
     }
 
 
@@ -31,12 +38,15 @@ class Clock extends Component {
             () => this.tick(),
             1000
         );
-
+        this.balanceId = setInterval(
+            () => this.updateBalance(),
+            1000
+        )
     }
 
     componentWillUnmount() {
         clearInterval(this.timerID);
-        // this._isMounted = false;
+        clearInterval(this.balanceId);
     }
 
 

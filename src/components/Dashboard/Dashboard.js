@@ -54,7 +54,10 @@ class Dashboard extends Component {
                 {backdrop}
 
                 <main style={{marginTop: '63px'}}>
-                    <Clock/>
+                    <Clock
+                            admin={this.state.isAdmin}
+                            asistente={this.state.isAsistente}
+                    />
                     <Container maxWidth="sm">
                         {this.props.childComponent}
                     </Container>

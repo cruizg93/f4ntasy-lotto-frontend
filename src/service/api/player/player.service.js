@@ -11,7 +11,9 @@ export const playerService = {
     list_apuestas_activas_details,
     update_number_apuesta_activas,
     list_apuestas_hoy_by_username,
-    detalles_by_apuesta_id
+    detalles_by_apuesta_id,
+    comision_directo,
+    get_balance
 };
 
 function list_number() {
@@ -49,6 +51,26 @@ function list_number_by_apuesta_id(id) {
 }
 
 
+function comision_directo(type) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {headers: authHeader()};
+    let send = {
+        username: currentUser.username,
+        type: type
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/user/jugador/comision`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
 function detalles_by_apuesta_id(id) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {headers: authHeader()};
@@ -73,6 +95,21 @@ function list_apuestas_hoy() {
     const requestOptions = {headers: authHeader()};
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/user/apuestas/hoy`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function get_balance() {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/user/balance`,
             requestOptions
         )
             .then((responseJson) => {
