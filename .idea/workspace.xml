@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b326030b-bc6d-4185-a88e-f63c85db1e19" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Jugador/components/Editar/Editar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Jugador/components/Editar/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Jugador/Jugador.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Jugador/Jugador.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Jugador/components/JugadorEntry/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Jugador/components/JugadorEntry/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Jugador/components/Editar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Jugador/components/Editar/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/api/admin/admin.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/api/admin/admin.service.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,8 +19,8 @@
           <file leaf-file-name="admin.service.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/service/api/admin/admin.service.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+                <state relative-caret-position="110">
+                  <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
                 </state>
               </provider>
             </entry>
@@ -45,10 +40,34 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/Jugador/components/Editar/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="368">
-                  <caret line="226" column="47" selection-start-line="226" selection-start-column="47" selection-end-line="226" selection-end-column="47" />
+                <state relative-caret-position="205">
+                  <caret line="262" selection-start-line="262" selection-end-line="262" />
                   <folding>
                     <element signature="e#0#49#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Player/scenes/Apuesta/Comprar/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="346">
+                  <caret line="136" column="13" lean-forward="true" selection-start-line="133" selection-start-column="12" selection-end-line="136" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/PAsistente/scene/Apuesta/Activa/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="174">
+                  <caret line="132" column="4" selection-start-line="132" selection-start-column="4" selection-end-line="132" selection-end-column="49" />
+                  <folding>
+                    <element signature="e#0#49#0" expanded="true" />
+                    <element signature="e#1125#1811#0" />
+                    <element signature="e#1857#2549#0" />
+                    <element signature="e#2592#3284#0" />
                   </folding>
                 </state>
               </provider>
@@ -61,8 +80,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/Jugador/components/Editar/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="308">
-                  <caret line="173" column="42" selection-start-line="173" selection-start-column="26" selection-end-line="173" selection-end-column="42" />
+                <state relative-caret-position="500">
+                  <caret line="378" column="39" selection-start-line="378" selection-start-column="39" selection-end-line="378" selection-end-column="39" />
                   <folding>
                     <element signature="e#0#49#0" expanded="true" />
                   </folding>
@@ -100,6 +119,8 @@
       <find>console.lo</find>
       <find>match</find>
       <find>AdicionarApuesta</find>
+      <find>Fijar</find>
+      <find>mounted</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -654,30 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Player/scenes/Apuesta/Detalles/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-610">
-          <caret line="76" column="6" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-            <element signature="e#1351#2043#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/PAsistente/scene/Apuesta/Activa/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1012">
-          <caret line="168" column="45" lean-forward="true" selection-start-line="168" selection-start-column="45" selection-end-line="168" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-            <element signature="e#1125#1811#0" />
-            <element signature="e#1857#2549#0" />
-            <element signature="e#2592#3284#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/PAsistente/scene/Apuesta/Adicionar/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -725,13 +722,6 @@
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Player/scenes/Apuesta/Comprar/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="132" column="29" lean-forward="true" selection-start-line="132" selection-start-column="29" selection-end-line="132" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -882,15 +872,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/service/api/admin/admin.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+        <state relative-caret-position="110">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Player/scenes/Apuesta/Detalles/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-506">
+          <caret line="76" column="6" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#1351#2043#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/PAsistente/scene/Apuesta/Activa/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="132" column="4" selection-start-line="132" selection-start-column="4" selection-end-line="132" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#1125#1811#0" />
+            <element signature="e#1857#2549#0" />
+            <element signature="e#2592#3284#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Player/scenes/Apuesta/Comprar/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="136" column="13" lean-forward="true" selection-start-line="133" selection-start-column="12" selection-end-line="136" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Jugador/components/Editar/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="226" column="47" selection-start-line="226" selection-start-column="47" selection-end-line="226" selection-end-column="47" />
+        <state relative-caret-position="500">
+          <caret line="378" column="39" selection-start-line="378" selection-start-column="39" selection-end-line="378" selection-end-column="39" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
           </folding>

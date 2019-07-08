@@ -83,6 +83,64 @@ const PlayerButton = withStyles({
 
     },
 })(Button);
+const EditarButton = withStyles({
+    root: {
+        width: '100%',
+        boxShadow: 'none',
+        textTransform: 'none',
+        fontSize: 16,
+        padding: '6px 12px',
+        lineHeight: 1.5,
+        backgroundColor: '#ff190a',
+        color: '#FFF',
+        marginTop: '1rem',
+        marginBottom: '1rem',
+        marginRight: '.5rem',
+        marginLeft: '.5rem',
+        '&:hover': {
+            backgroundColor: '#fb0f2f',
+            borderColor: 'none',
+        },
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: '#0062cc',
+            borderColor: 'none',
+        },
+        '&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+        },
+    },
+})(Button);
+
+const FijarButton = withStyles({
+    root: {
+        width: '100%',
+        boxShadow: 'none',
+        textTransform: 'none',
+        fontSize: 16,
+        padding: '6px 12px',
+        lineHeight: 1.5,
+        backgroundColor: '#29992a',
+        color: '#FFF',
+        marginTop: '1rem',
+        marginBottom: '1rem',
+        marginRight: '.5rem',
+        marginLeft: '.5rem',
+        '&:hover': {
+            backgroundColor: '#52d94f',
+            borderColor: '#62cc68',
+        },
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: '#0062cc',
+            borderColor: '#005cbf',
+        },
+        '&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+        },
+    },
+})(Button);
+
 const useStyles = makeStyles(theme => ({
     margin: {
         margin: theme.spacing(1),
@@ -124,6 +182,12 @@ const useStyles = makeStyles(theme => ({
 }));
 const EditarJugador = (props) => {
     const classes = useStyles();
+    const mounted = useState(true);
+    const [disable, setDisable] = useState(true);
+
+    function handleDisableClick() {
+        setDisable(!disable);
+    }
 
     const [selectedValueMoneda, setSelectedValueMoneda] = React.useState('l');
     const [person, setPerson] = React.useState('');
@@ -196,7 +260,7 @@ const EditarJugador = (props) => {
 
     useEffect(() => {
         adminService.get_player_by_id(props.match.params.jugadorId).then((result) => {
-            console.log(result.data);
+
             if (result.data.costoChicaPedazos !== 0
             ) {
                 setSelectedChicaType('cp')
@@ -215,11 +279,11 @@ const EditarJugador = (props) => {
                 setChicaCostoMil(result.data.costoChicaMiles);
             }
 
-            if(result.data.premioDirecto!==0){
+            if (result.data.premioDirecto !== 0) {
                 setSelectedDiariaType('dd');
                 setDiariaPremioLempirasMil(result.data.premioDirecto);
                 setDiariaComision(result.data.comisionDirecto);
-            }else{
+            } else {
                 setDiariaPremioMil(result.data.premioMil);
                 setDiariaCostoMil(result.data.costoMil);
             }
@@ -227,7 +291,7 @@ const EditarJugador = (props) => {
             setInputUserName(result.data.name);
 
         })
-        console.log(props);
+
     }, [])
 
     function clean() {
@@ -252,7 +316,7 @@ const EditarJugador = (props) => {
         setSelectedValueMoneda(event.target.value);
     }
 
-    function onClickHandlerCreate() {
+    function onClickHandlerEditar() {
         let utype = 'p';
         let submit = true;
         if (inputPassword === '' || inputUserName === '') {
@@ -310,11 +374,14 @@ const EditarJugador = (props) => {
             cparam2: cparam2,
             cparam3: cparam3,
         };
-        adminService.new_player(data)
+        console.log(data);
+        adminService.edit_player(data)
             .then(function (response) {
-                success_response();
-                // update_jugador();
-                clean()
+                props.history.push("/");
+                return () => {
+                    mounted.current = false;
+                };
+
             })
             .catch(function (error) {
                 duplicado();
@@ -484,9 +551,25 @@ const EditarJugador = (props) => {
                 />
 
 
-                <Grid
-                    className={classes.btnContainer}
+                <Grid container spacing={1}
+                      direction="row"
+                      justify="center"
                 >
+                    <Grid item xs={6}>
+                        <EditarButton variant="outlined" color="primary" onClick={handleDisableClick}>
+                            <Typography variant="body1" gutterBottom>
+                                Editar
+                            </Typography>
+                        </EditarButton>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <FijarButton variant="outlined" color="primary" disabled={disable}
+                                     onClick={onClickHandlerEditar}>
+                            <Typography variant="body1" gutterBottom>
+                                Fijar
+                            </Typography>
+                        </FijarButton>
+                    </Grid>
 
                 </Grid>
 
