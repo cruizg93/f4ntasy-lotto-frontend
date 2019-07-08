@@ -9,6 +9,7 @@ export const adminService = {
     list_players_username: list_players,
     count_player_asistente,
     add_player_asistente,
+    list_players_details,
 
 };
 
@@ -54,6 +55,21 @@ function list_players() {
     const requestOptions = {headers: authHeader()};
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/jugadores`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    })
+}
+
+function list_players_details() {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/admin/jugador/list`,
             requestOptions
         )
             .then((responseJson) => {

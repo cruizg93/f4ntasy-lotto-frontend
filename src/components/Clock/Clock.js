@@ -38,10 +38,10 @@ class Clock extends Component {
             () => this.tick(),
             1000
         );
-        this.balanceId = setInterval(
-            () => this.updateBalance(),
-            1000
-        )
+        // this.balanceId = setInterval(
+        //     () => this.updateBalance(),
+        //     1000
+        // )
     }
 
     componentWillUnmount() {

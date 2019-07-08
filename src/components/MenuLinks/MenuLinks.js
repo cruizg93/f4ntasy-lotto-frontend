@@ -9,6 +9,11 @@ export const MenuLinks = (props) => {
     const [isAdmin, setAdminValue] = React.useState(props.admin);
     const [isAsistente, setAsistenteValue] = React.useState(!props.admin && props.asistente);
 
+    React.useEffect(() => {
+        console.log(!props.admin && props.asistente)
+        console.log(props.asistente)
+
+    }, [])
 
     function handleClick(event) {
         setAnchorEl(event.currentTarget);
@@ -86,18 +91,20 @@ export const MenuLinks = (props) => {
             <Button component={Link} to="/jugadores" color="inherit">Jugadores</Button>
             }
 
-
-            {!isAsistente && <Button component={Link}
-                                     to="/usuario/apuestas"
-                                     color="inherit">Entrar Apuestas</Button>
-            }
-            {!isAsistente && <Button component={Link}
-                                     to="/usuario/apuestas/hoy/activas"
-                                     color="inherit">Apuestas Activas</Button>
-            }
-            {!isAsistente && <Button component={Link}
-                                     to="/usuario/historial"
-                                     color="inherit">Historial</Button>
+            {!isAdmin && <>
+                {!isAsistente && <Button component={Link}
+                                         to="/usuario/apuestas"
+                                         color="inherit">Entrar Apuestas</Button>
+                }
+                {!isAsistente && <Button component={Link}
+                                         to="/usuario/apuestas/hoy/activas"
+                                         color="inherit">Apuestas Activas</Button>
+                }
+                {!isAsistente && <Button component={Link}
+                                         to="/usuario/historial"
+                                         color="inherit">Historial</Button>
+                }
+            </>
             }
 
 
