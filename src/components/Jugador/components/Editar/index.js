@@ -171,6 +171,7 @@ const useStyles = makeStyles(theme => ({
         background: '#FFF',
         marginTop: '1rem',
         marginBottom: '1rem',
+        zIndex: 0,
     },
     btnContainer: {
         display: 'flex',
@@ -260,10 +261,12 @@ const EditarJugador = (props) => {
 
     useEffect(() => {
         adminService.get_player_by_id(props.match.params.jugadorId).then((result) => {
-
+            if(result.data.moneda.monedaName==='DOLAR'){
+                setSelectedValueMoneda('d');
+            }
             if (result.data.costoChicaPedazos !== 0
             ) {
-                setSelectedChicaType('cp')
+                setSelectedChicaType('cp');
                 setChicaCostoPedazos(result.data.costoChicaPedazos);
                 setChicaComisionPedazos(result.data.comisionChicaPedazos);
                 setChicaPremioPedazosMil(result.data.premioChicaPedazos)

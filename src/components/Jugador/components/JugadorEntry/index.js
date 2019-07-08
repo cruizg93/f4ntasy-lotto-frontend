@@ -77,6 +77,19 @@ const useStyles = makeStyles(theme => ({
     iconClose: {
         margin: '0 auto',
         display: 'block',
+    },
+    paper: {
+        textDecoration: 'none',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    paperDisable: {
+        pointerEvents: 'none',
+        textDecoration: 'none',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
     }
 
 }));
@@ -97,7 +110,19 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
 
                 <Grid container spacing={3}>
                     <Grid item xs={6}>
-                        <Paper className={classes.paper} xs={12}>
+                        <Paper className={total === 0 ? classes.paperDisable : classes.paper} xs={12}
+                               component={Link} to={
+                            {
+                                pathname: `/jugador/apuestas/detalles/`,
+                                state: {
+                                    // list: entry,
+                                    id: id,
+                                    // username: props.location.state.title
+                                }
+                            }
+                        }
+
+                        >
                             {username} | {monedaSymbol}
                         </Paper>
                         <Grid container>
@@ -158,9 +183,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                                 {
                                     pathname: `/jugador/editar/${id}`,
                                     state: {
-                                        // list: entry,
                                         id: id,
-                                        // title: props.location.state.title
                                     }
                                 }
                             }
@@ -178,23 +201,27 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                         <Grid item xs={12}
                               container
                               justify="center"
-                              component={Link} to={
-                            {
-                                pathname: `/jugador/balance/${id}`,
-                                state: {
-                                    // list: entry,
-                                    id: id,
-                                    // title: props.location.state.title
-                                }
-                            }
-                        }
+
                         >
-                            <Typography variant="body1" gutterBottom className={classes.text}>
-                                Balance |
-                            </Typography>
-                            <Typography variant="body1" gutterBottom className={classes.text}>
-                                {monedaSymbol} {balance}
-                            </Typography>
+                            <Paper className={balance === 0 ? classes.paperDisable : classes.paper} xs={12}
+                                   component={Link} to={
+                                {
+                                    pathname: `/jugador/balance/${id}`,
+                                    state: {
+                                        // list: entry,
+                                        id: id,
+                                        // title: props.location.state.title
+                                    }
+                                }
+                            }>
+                                <Typography variant="body1" gutterBottom className={classes.text}>
+                                    Balance
+                                </Typography>
+                                <Typography variant="body1" gutterBottom className={classes.text}>
+                                    {monedaSymbol} {balance}
+                                </Typography>
+                            </Paper>
+
                         </Grid>
                     </Grid>
                 </Grid>

@@ -131,7 +131,7 @@ function count_player_asistente(data) {
 
     let send = {
         id: data
-    }
+    };
 
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/admin/jugador/asistentes/count`,
@@ -158,6 +158,31 @@ function add_player_asistente(data) {
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/admin/asistente/add`,
             JSON.stringify(data), requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function list_apuestas_details(username,id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    let send = {
+        username: username
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/admin/apuestas/activas/${id}`,
+            send, requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);

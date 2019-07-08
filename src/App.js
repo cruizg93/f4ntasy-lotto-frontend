@@ -12,9 +12,9 @@ import Password from './components/Password/Password';
 import Fijar from './components/Fijar/Fijar';
 import {history} from "./_helpers/history";
 import {Role} from "./_helpers/role";
-import EdiarJugador from './components/Jugador/components/Editar/index';
-
-
+import EditarJugador from './components/Jugador/components/Editar/index';
+import BalanceJugador from './components/Jugador/scene/Balance/index';
+import JugadorDetalles from './components/Jugador/scene/Apuesta/Detalles/index';
 
 import PlayerPassword from "./components/Player/scenes/Password/Password";
 import AdicionarApuesta from './components/Player/scenes/Apuesta/Adicionar/index';
@@ -45,7 +45,19 @@ class App extends React.Component {
                             />
                             <PrivateRoute
                                 exact path="/jugador/editar/:jugadorId"
-                                component={EdiarJugador}
+                                roles={[Role.Admin, Role.Master]}
+                                component={EditarJugador}
+                            />
+                             <PrivateRoute
+                                exact path="/jugador/balance/:jugadorId"
+                                roles={[Role.Admin, Role.Master]}
+                                component={BalanceJugador}
+                            />
+
+                             <PrivateRoute
+                                exact path="/jugador/apuestas/detalles"
+                                roles={[Role.Admin, Role.Master]}
+                                component={JugadorDetalles}
                             />
                             <PrivateRoute
                                 exact path="/jugadores"
