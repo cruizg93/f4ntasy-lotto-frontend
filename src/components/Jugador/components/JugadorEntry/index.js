@@ -113,11 +113,10 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                         <Paper className={total === 0 ? classes.paperDisable : classes.paper} xs={12}
                                component={Link} to={
                             {
-                                pathname: `/jugador/apuestas/detalles/`,
+                                pathname: `/jugador/apuestas/detalles`,
                                 state: {
-                                    // list: entry,
                                     id: id,
-                                    // username: props.location.state.title
+                                    username: username
                                 }
                             }
                         }

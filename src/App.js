@@ -15,7 +15,9 @@ import {Role} from "./_helpers/role";
 import EditarJugador from './components/Jugador/components/Editar/index';
 import BalanceJugador from './components/Jugador/scene/Balance/index';
 import JugadorDetalles from './components/Jugador/scene/Apuesta/Detalles/index';
+import DesgloseApuestaJugador from './components/Jugador/scene/Apuesta/Detalles/Desglose/index';
 
+import ApuestaActivaJugadorDetalles from './components/Jugador/scene/Apuesta/Detalles/Single/index';
 import PlayerPassword from "./components/Player/scenes/Password/Password";
 import AdicionarApuesta from './components/Player/scenes/Apuesta/Adicionar/index';
 import AdicionarNumero from './components/Player/scenes/Apuesta/AdicionarNumero/index';
@@ -54,11 +56,23 @@ class App extends React.Component {
                                 component={BalanceJugador}
                             />
 
-                             <PrivateRoute
+                            <PrivateRoute
                                 exact path="/jugador/apuestas/detalles"
                                 roles={[Role.Admin, Role.Master]}
                                 component={JugadorDetalles}
                             />
+
+                            <PrivateRoute
+                                exact path="/jugador/apuestas/detalles/:apuestaId"
+                                roles={[Role.Admin, Role.Master]}
+                                component={ApuestaActivaJugadorDetalles}
+                            />
+                            <PrivateRoute
+                                exact path="/jugador/apuestas/detalles/:apuestaId/desglose"
+                                roles={[Role.Admin, Role.Master]}
+                                component={DesgloseApuestaJugador}
+                            />
+
                             <PrivateRoute
                                 exact path="/jugadores"
                                 component={Jugador}

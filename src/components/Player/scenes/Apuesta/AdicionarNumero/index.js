@@ -87,7 +87,7 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
     const mounted = useState(true);
 
     useEffect(() => {
-        console.log(props);
+
         let reg = /^\d+$/;
         if (!reg.test(match.params.apuestaId)) {
             props.history.push('/usuario/apuestas');

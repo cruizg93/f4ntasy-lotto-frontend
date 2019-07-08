@@ -377,7 +377,7 @@ const EditarJugador = (props) => {
             cparam2: cparam2,
             cparam3: cparam3,
         };
-        console.log(data);
+
         adminService.edit_player(data)
             .then(function (response) {
                 props.history.push("/");

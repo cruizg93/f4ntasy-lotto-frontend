@@ -11,7 +11,10 @@ export const adminService = {
     count_player_asistente,
     add_player_asistente,
     list_players_details,
-    get_player_by_id
+    get_player_by_id,
+    list_apuestas_details,
+    list_apuestas_activas_details_by_user_id,
+    details_apuesta_activa_by_user_id
 };
 
 
@@ -168,7 +171,7 @@ function add_player_asistente(data) {
     });
 }
 
-function list_apuestas_details(username,id) {
+function list_apuestas_details(username) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
         headers: {
@@ -181,7 +184,58 @@ function list_apuestas_details(username,id) {
         username: username
     };
     return new Promise((resolve, reject) => {
-        axios.post(`${baseUrl}/admin/apuestas/activas/${id}`,
+        axios.post(`${baseUrl}/admin/jugador/apuestas/hoy/list`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function list_apuestas_activas_details_by_user_id(username,id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    let send = {
+        username: username
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/admin/jugador/apuestas/${id}`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+
+function details_apuesta_activa_by_user_id(username,id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    let send = {
+        username: username
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/admin/jugador/apuestas/activa/${id}/detalles`,
             send, requestOptions
         )
             .then((responseJson) => {
