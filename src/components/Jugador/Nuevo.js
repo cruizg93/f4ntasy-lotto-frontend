@@ -14,14 +14,14 @@ import Button from '@material-ui/core/Button';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import SaveIcon from '@material-ui/icons/Save';
 import './Nuevo.css';
-import './Diaria/Diaria'
+import './components/Diaria/Diaria'
 import {green} from '@material-ui/core/colors';
 
 
 import Divider from '@material-ui/core/Divider';
 import InputBase from '@material-ui/core/InputBase';
-import Diaria from "./Diaria/Diaria";
-import Chica from "./Chica/Chica";
+import Diaria from "./components/Diaria/Diaria";
+import Chica from "./components/Chica/Chica";
 
 
 import {adminService} from "../../service/api/admin/admin.service";

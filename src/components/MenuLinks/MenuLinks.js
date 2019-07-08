@@ -9,12 +9,6 @@ export const MenuLinks = (props) => {
     const [isAdmin, setAdminValue] = React.useState(props.admin);
     const [isAsistente, setAsistenteValue] = React.useState(!props.admin && props.asistente);
 
-    React.useEffect(() => {
-        console.log(!props.admin && props.asistente)
-        console.log(props.asistente)
-
-    }, [])
-
     function handleClick(event) {
         setAnchorEl(event.currentTarget);
     }
@@ -106,8 +100,6 @@ export const MenuLinks = (props) => {
                 }
             </>
             }
-
-
             {isAsistente && <Button component={Link}
                                     to="/asistente/apuestas"
                                     color="inherit">Entrar Apuestas</Button>
