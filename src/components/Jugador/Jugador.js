@@ -38,6 +38,7 @@ const useStyles = makeStyles(theme => ({
         background: '#FFF',
         marginTop: '1rem',
         marginBottom: '1rem',
+        zIndex: 0,
     },
     btnContainer: {
         display: 'flex',
@@ -48,7 +49,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const Jugador = ({props}) => {
+const Jugador = (props) => {
     const classes = useStyles();
     const [jugadorList, setJugadorList] = useState([]);
     useEffect(() => {

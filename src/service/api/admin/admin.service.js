@@ -10,7 +10,7 @@ export const adminService = {
     count_player_asistente,
     add_player_asistente,
     list_players_details,
-
+    get_player_by_id
 };
 
 
@@ -81,6 +81,21 @@ function list_players_details() {
     })
 }
 
+function get_player_by_id(id) {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/admin/jugador/${id}`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    })
+}
+
 function count_player_asistente(data) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
@@ -91,7 +106,7 @@ function count_player_asistente(data) {
         },
     };
 
-    let send={
+    let send = {
         id: data
     }
 

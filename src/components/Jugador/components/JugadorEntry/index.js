@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -80,7 +81,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const JugadorDataShow = ({balance, comision, id, monedaType, riesgo, total, username, ...props}) => {
+const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, total, username, ...props}) => {
     const classes = useStyles();
     const [monedaSymbol, setMonedaSymbol] = useState('$');
 
@@ -136,7 +137,6 @@ const JugadorDataShow = ({balance, comision, id, monedaType, riesgo, total, user
                             </Grid>
 
                             <Grid item xs={7}>
-
                                 <Typography variant="body1" gutterBottom className={classes.text}>
                                     {monedaSymbol} {riesgo}
                                 </Typography>
@@ -154,6 +154,16 @@ const JugadorDataShow = ({balance, comision, id, monedaType, riesgo, total, user
                               justify="center"
                         >
                             <AsistButton variant="outlined" color="primary" className={classes.button}
+                                         component={Link} to={
+                                {
+                                    pathname: `/jugador/editar/${id}`,
+                                    state: {
+                                        // list: entry,
+                                        id: id,
+                                        // title: props.location.state.title
+                                    }
+                                }
+                            }
                             >
                                 Editar
                             </AsistButton>
@@ -168,6 +178,16 @@ const JugadorDataShow = ({balance, comision, id, monedaType, riesgo, total, user
                         <Grid item xs={12}
                               container
                               justify="center"
+                              component={Link} to={
+                            {
+                                pathname: `/jugador/balance/${id}`,
+                                state: {
+                                    // list: entry,
+                                    id: id,
+                                    // title: props.location.state.title
+                                }
+                            }
+                        }
                         >
                             <Typography variant="body1" gutterBottom className={classes.text}>
                                 Balance |

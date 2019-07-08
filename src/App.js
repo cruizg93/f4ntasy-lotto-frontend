@@ -12,6 +12,10 @@ import Password from './components/Password/Password';
 import Fijar from './components/Fijar/Fijar';
 import {history} from "./_helpers/history";
 import {Role} from "./_helpers/role";
+import EdiarJugador from './components/Jugador/components/Editar/index';
+
+
+
 import PlayerPassword from "./components/Player/scenes/Password/Password";
 import AdicionarApuesta from './components/Player/scenes/Apuesta/Adicionar/index';
 import AdicionarNumero from './components/Player/scenes/Apuesta/AdicionarNumero/index';
@@ -38,6 +42,10 @@ class App extends React.Component {
                             <PrivateRoute
                                 exact path="/"
                                 component={Jugador}
+                            />
+                            <PrivateRoute
+                                exact path="/jugador/editar/:jugadorId"
+                                component={EdiarJugador}
                             />
                             <PrivateRoute
                                 exact path="/jugadores"
