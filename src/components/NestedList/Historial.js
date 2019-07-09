@@ -40,8 +40,12 @@ export default function Historial(props) {
                         </ListItemIcon>
                         <ListItemText primary="Semana en Curso"/>
                     </ListItem>
+
                     <ListItem button className={props.classes}
-                              onClick={props.click}>
+                              component={Link} to="/historial/semana/anterior"
+                              onClick={props.click}
+
+                    >
                         <ListItemIcon>
                             <SettingsBackupRestore/>
                         </ListItemIcon>

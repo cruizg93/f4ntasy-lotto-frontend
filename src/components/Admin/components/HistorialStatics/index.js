@@ -110,7 +110,7 @@ const HistorialStatic = ({title, totalSemanal, comisionSemanal, netaSemanal, tot
             >
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     Resumen de todos los sorteos ya terminados, de todos los jugadores, y de la
-                    {semana==='current' ? "SEMANA EN CURSO" : "SEMANA EN ANTERIOR"}
+                    {semana==='current' ? " SEMANA EN CURSO" : " SEMANA EN ANTERIOR"}
 
                 </Typography>
                 <Typography variant="body1" gutterBottom className={classes.text}>

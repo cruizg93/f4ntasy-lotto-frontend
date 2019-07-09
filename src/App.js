@@ -26,7 +26,10 @@ import ApuestasActivasAdmin from './components/Admin/scences/ApuestasActivas/ind
 import ApuestaActivaAdminDetalle from './components/Admin/scences/ApuestasActivas/Detalles/index';
 import HistorialSemanaActualAdmin from './components/Admin/scences/Historial/SemanaActual/index';
 import HistorialUsuarioDetalles from './components/Admin/components/HistorialUsuarioDetalles/index';
-import HistorialUserSingleDayDetail from './components/Admin/scences/Historial/SemanaActual/HistorialUserSingleDayDetail/index';
+import HistorialUserSingleDayDetail
+    from './components/Admin/scences/Historial/SemanaActual/HistorialUserSingleDayDetail/index';
+import HistorialSemanaAnteriorAdmin from './components/Admin/scences/Historial/SemanaAnterior/index';
+
 
 import ApuestaActivaAsistente from './components/PAsistente/scene/Apuesta/Activa/index';
 import AdicionarApuestaAsistente from './components/PAsistente/scene/Apuesta/Adicionar/index';
@@ -55,7 +58,7 @@ class App extends React.Component {
                                 roles={[Role.Admin, Role.Master]}
                                 component={EditarJugador}
                             />
-                             <PrivateRoute
+                            <PrivateRoute
                                 exact path="/jugador/balance/:jugadorId"
                                 roles={[Role.Admin, Role.Master]}
                                 component={BalanceJugador}
@@ -82,7 +85,7 @@ class App extends React.Component {
                                 exact path="/jugadores"
                                 component={Jugador}
                             />
-                             <PrivateRoute
+                            <PrivateRoute
                                 exact path="/apuestas/activas"
                                 roles={[Role.Admin, Role.Master]}
                                 component={ApuestasActivasAdmin}
@@ -120,6 +123,11 @@ class App extends React.Component {
                                 component={HistorialUserSingleDayDetail}
                             />
 
+                            <PrivateRoute
+                                exact path="/historial/semana/anterior"
+                                roles={[Role.Admin, Role.Master]}
+                                component={HistorialSemanaAnteriorAdmin}
+                            />
                             <PrivateRoute
                                 exact path="/jugador/nuevo"
                                 roles={[Role.Admin, Role.Master]}

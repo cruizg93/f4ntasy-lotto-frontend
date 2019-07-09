@@ -86,7 +86,8 @@ export const MenuLinks = (props) => {
                           to="/historial/semana/actual">
                     Semana en Curso
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={handleClose} component={Link}
+                          to="/historial/semana/anterior">
                     Semana Pasada
                 </MenuItem>
                 <MenuItem onClick={handleClose} component={Link}
