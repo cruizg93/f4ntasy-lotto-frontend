@@ -2,12 +2,11 @@ import React, {useState, useEffect} from 'react';
 import Grid from '@material-ui/core/Grid';
 import {adminService} from "../../../../../service/api/admin/admin.service";
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
-import Divider from '@material-ui/core/Divider';
+
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import {red, blue} from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
-import ApuestaActivaRiesgoEntry from '../../../components/ApuestasActiva/Detalles/index';
+import HistorialSemanaActualUserEntry from '../../../components/HistorialSemanal/index';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -44,6 +43,10 @@ const useStyles = makeStyles(theme => ({
     textBlock: {
         fontWeight: 'bold',
         display: 'block !important'
+    },
+    textNoDisponible: {
+        fontWeight: 'bold',
+        margin: '2rem',
     },
     close: {
         color: red[400]
@@ -139,14 +142,14 @@ const LempiraButton = withStyles({
 })(Button);
 const HistorialSemanaActualAdmin = (props) => {
     const classes = useStyles();
-    const [riesgoList, setRiesgoList] = useState([]);
+    const [usuariosList, setUsuariosList] = useState([]);
     const [moneda, setMoneda] = useState("dolar");
     const [total, setTotal] = useState(0.0);
     const [comision, setComision] = useState(0.0);
     const [neta, setNeta] = useState(0.0);
     const [title, setTitle] = useState(0.0);
     const [totalSemanal, setTotalSemanal] = useState(0.0);
-    const [totalPremioSemanal, setTotalPremioSemanal]=useState(0.0);
+    const [totalPremioSemanal, setTotalPremioSemanal] = useState(0.0);
     const [comisionSemanal, setComisionSemanal] = useState(0.0);
     const [netaSemanal, setNetaSemanal] = useState(0.0);
     const [balanceSemanal, setBalanceSemanal] = useState(0.0);
@@ -154,87 +157,46 @@ const HistorialSemanaActualAdmin = (props) => {
     const [dineroApostadoMaxRiesgo, setDineroApostadoMaxRiesgo] = useState(0.0);
     const [posiblePremioMaxRiesgo, setPosiblePremioMaxRiesgo] = useState(0.0);
     const [totalRiesgoMaxRiesgo, setTotalRiesgoMaxRiesgo] = useState(0.0);
-//balance: 0
-// comisionToday: 0
-// comisionesSemana: 0
-// entradaNetaSemana: 0
-// entradaNetaToday: 229.28571428571428
-// pairJBList: []
-// riesgoMaximo:
-// comision: 0
-// numero: 7
-// totalValor: 4036.224489795918
-// valor: 89.6938775510204
-// __proto__: Object
-// totalPremio: 0
-// totalSemana: 0
-// totalToday: 229.28571428571428
 
     useEffect(() => {
         adminService.get_historial_by_type("dolar").then((result) => {
-            console.log(result.data);
-            setNumeroMaxRiesgo(result.data.riesgoMaximo.numero);
-            setDineroApostadoMaxRiesgo(result.data.riesgoMaximo.valor);
-            setPosiblePremioMaxRiesgo((result.data.riesgoMaximo.totalValor / result.data.entradaNetaToday).toFixed(2));
-            setTotalRiesgoMaxRiesgo(result.data.riesgoMaximo.totalValor)
-            setNeta((result.data.entradaNetaToday).toFixed(2));
-            setComision((result.data.comisionToday).toFixed(2));
-            setTotal((result.data.totalToday).toFixed(2))
-            setTitle(result.data.title)
-            setTotalSemanal((result.data.totalSemana).toFixed(2));
-            setTotalPremioSemanal((result.data.totalPremio).toFixed(2));
-            setComisionSemanal((result.data.comisionesSemana).toFixed(2))
-            setNetaSemanal((result.data.entradaNetaSemana).toFixed(2));
-            setBalanceSemanal((result.data.balance).toFixed(2))
-
+            update(result)
         })
-        // setTotal(props.location.state.total);
-        // setComision(props.location.state.comision);
-        // setNeta(props.location.state.neta);
-        // setTitle(props.location.state.title.title);
-        //
-        // adminService.get_apuesta_activa_by_type_and_id(moneda, props.match.params.apuestaId).then((result) => {
-        //     console.log(result.data);
-        //     setNumeroMaxRiesgo(result.data.maxRiesgo.numero);
-        //     setDineroApostadoMaxRiesgo(result.data.maxRiesgo.dineroApostado);
-        //     setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
-        //     setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
-        //     setRiesgoList(Array.from(result.data.tuplaRiesgos));
-        //     setTotal(result.data.total);
-        //     setComision(result.data.comision);
-        //     setNeta(result.data.total - result.data.comision);
-        // })
+
     }, []);
+
+    function update(result) {
+        setNumeroMaxRiesgo(result.data.riesgoMaximo.numero);
+        setDineroApostadoMaxRiesgo((result.data.riesgoMaximo.valor).toFixed(2));
+        setPosiblePremioMaxRiesgo((result.data.riesgoMaximo.totalValor / result.data.entradaNetaToday).toFixed(2));
+        setTotalRiesgoMaxRiesgo((result.data.riesgoMaximo.totalValor).toFixed(2));
+        setNeta((result.data.entradaNetaToday).toFixed(2));
+        setComision((result.data.comisionToday).toFixed(2));
+        setTotal((result.data.totalToday).toFixed(2))
+        setTitle(result.data.title)
+        setTotalSemanal((result.data.totalSemana).toFixed(2));
+        setTotalPremioSemanal((result.data.totalPremio).toFixed(2));
+        setComisionSemanal((result.data.comisionesSemana).toFixed(2));
+        setNetaSemanal((result.data.entradaNetaSemana).toFixed(2));
+        setBalanceSemanal((result.data.balance).toFixed(2));
+        setUsuariosList(Array.from(result.data.pairJBList))
+
+    }
 
     function get_in_dolar() {
         if (moneda === 'lempira') {
-            adminService.get_apuesta_activa_by_type_and_id("dolar", props.match.params.apuestaId).then((result) => {
-                setMoneda("dolar")
-                setNumeroMaxRiesgo(result.data.maxRiesgo.numero);
-                setDineroApostadoMaxRiesgo(result.data.maxRiesgo.dineroApostado);
-                setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
-                setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
-                setRiesgoList(Array.from(result.data.tuplaRiesgos));
-                setTotal(result.data.total);
-                setComision(result.data.comision);
-                setNeta(result.data.total - result.data.comision);
+            adminService.get_historial_by_type("dolar").then((result) => {
+                setMoneda("dolar");
+                update(result)
             })
         }
     }
 
     function get_in_lempira() {
         if (moneda === 'dolar') {
-            adminService.get_apuesta_activa_by_type_and_id("lempira", props.match.params.apuestaId).then((result) => {
+            adminService.get_historial_by_type("lempira").then((result) => {
                 setMoneda("lempira");
-                setNumeroMaxRiesgo(result.data.maxRiesgo.numero);
-                setDineroApostadoMaxRiesgo(result.data.maxRiesgo.dineroApostado);
-                setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
-                setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
-                setRiesgoList([]);
-                setRiesgoList(Array.from(result.data.tuplaRiesgos));
-                setTotal(result.data.total);
-                setComision(result.data.comision);
-                setNeta(result.data.total - result.data.comision);
+                update(result)
             })
         }
     }
@@ -456,6 +418,14 @@ const HistorialSemanaActualAdmin = (props) => {
                   justify="center"
                   alignItems="center">
 
+                {usuariosList.length > 0 ?
+                    usuariosList.map((usuario, index) =>
+                        <HistorialSemanaActualUserEntry key={index} {...usuario} type={moneda} {...props}/>
+                    ) :
+                    <Typography variant="body1" gutterBottom className={classes.textNoDisponible}>
+                        No hay resultados disponibles para esta semana
+                    </Typography>
+                }
             </Grid>
             <Grid container spacing={1}
                   direction="row"
@@ -463,7 +433,8 @@ const HistorialSemanaActualAdmin = (props) => {
             >
 
                 <Grid item xs={6}>
-                    <ImprimirButton variant="outlined" color="primary">
+                    <ImprimirButton variant="outlined" color="primary"
+                                    disabled={usuariosList.length === 0}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir
                         </Typography>
