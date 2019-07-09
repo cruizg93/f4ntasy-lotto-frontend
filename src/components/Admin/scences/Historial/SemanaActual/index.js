@@ -36,6 +36,11 @@ const useStyles = makeStyles(theme => ({
         border: '1px solid #747474',
         margin: '1rem',
     },
+    textWithBorderTop: {
+        fontWeight: 'bold',
+        borderTop: '1px solid #747474',
+        margin: '1rem',
+    },
     textBlock: {
         fontWeight: 'bold',
         display: 'block !important'
@@ -140,13 +145,49 @@ const HistorialSemanaActualAdmin = (props) => {
     const [comision, setComision] = useState(0.0);
     const [neta, setNeta] = useState(0.0);
     const [title, setTitle] = useState(0.0);
+    const [totalSemanal, setTotalSemanal] = useState(0.0);
+    const [totalPremioSemanal, setTotalPremioSemanal]=useState(0.0);
+    const [comisionSemanal, setComisionSemanal] = useState(0.0);
+    const [netaSemanal, setNetaSemanal] = useState(0.0);
+    const [balanceSemanal, setBalanceSemanal] = useState(0.0);
     const [numeroMaxRiesgo, setNumeroMaxRiesgo] = useState(0.0);
     const [dineroApostadoMaxRiesgo, setDineroApostadoMaxRiesgo] = useState(0.0);
     const [posiblePremioMaxRiesgo, setPosiblePremioMaxRiesgo] = useState(0.0);
     const [totalRiesgoMaxRiesgo, setTotalRiesgoMaxRiesgo] = useState(0.0);
-
+//balance: 0
+// comisionToday: 0
+// comisionesSemana: 0
+// entradaNetaSemana: 0
+// entradaNetaToday: 229.28571428571428
+// pairJBList: []
+// riesgoMaximo:
+// comision: 0
+// numero: 7
+// totalValor: 4036.224489795918
+// valor: 89.6938775510204
+// __proto__: Object
+// totalPremio: 0
+// totalSemana: 0
+// totalToday: 229.28571428571428
 
     useEffect(() => {
+        adminService.get_historial_by_type("dolar").then((result) => {
+            console.log(result.data);
+            setNumeroMaxRiesgo(result.data.riesgoMaximo.numero);
+            setDineroApostadoMaxRiesgo(result.data.riesgoMaximo.valor);
+            setPosiblePremioMaxRiesgo((result.data.riesgoMaximo.totalValor / result.data.entradaNetaToday).toFixed(2));
+            setTotalRiesgoMaxRiesgo(result.data.riesgoMaximo.totalValor)
+            setNeta((result.data.entradaNetaToday).toFixed(2));
+            setComision((result.data.comisionToday).toFixed(2));
+            setTotal((result.data.totalToday).toFixed(2))
+            setTitle(result.data.title)
+            setTotalSemanal((result.data.totalSemana).toFixed(2));
+            setTotalPremioSemanal((result.data.totalPremio).toFixed(2));
+            setComisionSemanal((result.data.comisionesSemana).toFixed(2))
+            setNetaSemanal((result.data.entradaNetaSemana).toFixed(2));
+            setBalanceSemanal((result.data.balance).toFixed(2))
+
+        })
         // setTotal(props.location.state.total);
         // setComision(props.location.state.comision);
         // setNeta(props.location.state.neta);
@@ -204,16 +245,16 @@ const HistorialSemanaActualAdmin = (props) => {
                 <Grid item xs={12}
                       container
                       justify="center"
-                      className={classes.textWithBorder}
+                      alignItems="center"
+                      className={classes.text}
                 >
                     <Typography variant="body1" gutterBottom className={classes.text}>
-                        Apuestas activas de todos los jugadores para el sorteo:
+                        Resumen de todos los sorteos ya terminados, de todos los jugadores, y de la
+                        SEMANA EN CURSO
                     </Typography>
                     <Typography variant="body1" gutterBottom className={classes.text}>
-
                         {title}
                     </Typography>
-
                 </Grid>
                 <Grid container spacing={1}
                       direction="row"
@@ -235,6 +276,104 @@ const HistorialSemanaActualAdmin = (props) => {
                         </LempiraButton>
                     </Grid>
                 </Grid>
+                <Grid item xs={6}
+                      container
+                      justify="flex-end"
+                >
+                    <Typography variant="body1" gutterBottom className={classes.text}>
+                        Total Apuestas |
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}
+                      container
+                      justify="flex-start"
+                      className={classes.text}
+                >
+                    <Typography variant="body1" gutterBottom className={classes.text}>
+                        {totalSemanal}
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}
+                      container
+                      justify="flex-end"
+                >
+                    <Typography variant="body1" gutterBottom className={classes.text}>
+                        Total Comisiones |
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}
+                      container
+                      justify="flex-start"
+                      className={classes.text}
+                >
+                    <Typography variant="body1" gutterBottom className={classes.text}>
+                        {comisionSemanal}
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}
+                      container
+                      justify="flex-end"
+                >
+                    <Typography variant="body1" gutterBottom className={classes.text}>
+                        Entrada Neta |
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}
+                      container
+                      justify="flex-start"
+                      className={classes.text}
+                >
+                    <Typography variant="body1" gutterBottom className={classes.text}>
+                        {netaSemanal}
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}
+                      container
+                      justify="flex-end"
+                >
+                    <Typography variant="body1" gutterBottom className={classes.text}>
+                        Total Premios |
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}
+                      container
+                      justify="flex-start"
+                      className={classes.text}
+                >
+                    <Typography variant="body1" gutterBottom className={classes.text}>
+                        {totalPremioSemanal}
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}
+                      container
+                      justify="flex-end"
+                >
+                    <Typography variant="body1" gutterBottom className={classes.text}>
+                        Ganancia/Perdida |
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}
+                      container
+                      justify="flex-start"
+                      className={classes.text}
+                >
+                    <Typography variant="body1" gutterBottom className={classes.text}>
+                        {balanceSemanal}
+                    </Typography>
+                </Grid>
+            </Grid>
+            <Grid container>
+                <Grid item xs={12}
+                      container
+                      justify="center"
+                      className={classes.textWithBorderTop}
+                >
+                    <Typography variant="body1" gutterBottom className={classes.text}>
+                        Resumen de apuestas activas para el dias de hoy
+                    </Typography>
+
+                </Grid>
+
                 <Grid item xs={6}
                       container
                       justify="flex-end"

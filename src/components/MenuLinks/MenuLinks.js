@@ -87,7 +87,7 @@ export const MenuLinks = (props) => {
                     Semana en Curso
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                    emana Pasada
+                    Semana Pasada
                 </MenuItem>
                 <MenuItem onClick={handleClose} component={Link}
                           to="/sistema/cambio">
