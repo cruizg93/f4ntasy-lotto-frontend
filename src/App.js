@@ -128,6 +128,17 @@ class App extends React.Component {
                                 roles={[Role.Admin, Role.Master]}
                                 component={HistorialSemanaAnteriorAdmin}
                             />
+
+                            <PrivateRoute
+                                exact path="/historial/semana/anterior/usuario/:userId"
+                                roles={[Role.Admin, Role.Master]}
+                                component={HistorialUsuarioDetalles}
+                            />
+                            <PrivateRoute
+                                exact path="/historial/semana/anterior/usuario/:userId/desglose"
+                                roles={[Role.Admin, Role.Master]}
+                                component={HistorialUserSingleDayDetail}
+                            />
                             <PrivateRoute
                                 exact path="/jugador/nuevo"
                                 roles={[Role.Admin, Role.Master]}
