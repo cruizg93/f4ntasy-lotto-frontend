@@ -276,7 +276,8 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                                         pathname: `/jugador/apuestas/detalles/${props.location.state.id}/desglose`,
                                         state: {
                                             title: title,
-                                            id: props.match.params.apuestaId
+                                            username: props.location.state.username,
+                                            id: props.location.state.id
                                         }
                                     }}
                     >
