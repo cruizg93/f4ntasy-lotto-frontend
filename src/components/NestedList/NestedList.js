@@ -62,7 +62,7 @@ export default function NestedList(props) {
             }
 
             {isAdmin &&
-            <ListItem button component={Link} to="/apuestas" onClick={props.click}>
+            <ListItem button component={Link} to="/apuestas/activas" onClick={props.click}>
                 <ListItemIcon>
                     <Style/>
                 </ListItemIcon>

@@ -20,7 +20,7 @@ export const MenuLinks = (props) => {
     return (
         <>
             {isAdmin && <Button component={Link} to="/jugadores" color="inherit">Jugadores</Button>}
-            {isAdmin && <Button component={Link} to="/apuestas" color="inherit">Apuestas Activas</Button>}
+            {isAdmin && <Button component={Link} to="/apuestas/activas" color="inherit">Apuestas Activas</Button>}
 
             {isAdmin &&
             <Button
