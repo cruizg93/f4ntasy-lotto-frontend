@@ -29,6 +29,8 @@ import HistorialUsuarioDetalles from './components/Admin/components/HistorialUsu
 import HistorialUserSingleDayDetail
     from './components/Admin/scences/Historial/SemanaActual/HistorialUserSingleDayDetail/index';
 import HistorialSemanaAnteriorAdmin from './components/Admin/scences/Historial/SemanaAnterior/index';
+import NumerosGanadores from './components/Admin/scences/Historial/NumerosGanadores/index';
+
 
 
 import ApuestaActivaAsistente from './components/PAsistente/scene/Apuesta/Activa/index';
@@ -123,6 +125,12 @@ class App extends React.Component {
                                 component={HistorialUserSingleDayDetail}
                             />
 
+
+                            <PrivateRoute
+                                exact path="/historial/numeros/ganadores"
+                                roles={[Role.Admin, Role.Master]}
+                                component={NumerosGanadores}
+                            />
                             <PrivateRoute
                                 exact path="/historial/semana/anterior"
                                 roles={[Role.Admin, Role.Master]}

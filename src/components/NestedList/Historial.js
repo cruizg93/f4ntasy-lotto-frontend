@@ -51,7 +51,10 @@ export default function Historial(props) {
                         </ListItemIcon>
                         <ListItemText primary="Semana Pasada"/>
                     </ListItem>
+
+
                     <ListItem button className={props.classes}
+                              component={Link} to="/historial/numeros/ganadores"
                               onClick={props.click}>
                         <ListItemIcon>
                             <LocalPlay/>

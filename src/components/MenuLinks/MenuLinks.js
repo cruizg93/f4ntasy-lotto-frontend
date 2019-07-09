@@ -91,7 +91,7 @@ export const MenuLinks = (props) => {
                     Semana Pasada
                 </MenuItem>
                 <MenuItem onClick={handleClose} component={Link}
-                          to="/sistema/cambio">
+                          to="/historial/numeros/ganadores">
                     Números Ganadores
                 </MenuItem>
                 <MenuItem onClick={handleClose} component={Link}

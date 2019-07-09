@@ -21,7 +21,8 @@ export const adminService = {
     get_historial_by_type,
     get_historial_current_week_by_id_and_type,
     get_historial_current_week_by_id_and_type_details,
-    get_historial_semana_anterior_by_type
+    get_historial_semana_anterior_by_type,
+    get_historial_numeros_ganadores
 };
 
 
@@ -412,4 +413,19 @@ function get_historial_semana_anterior_by_type(type) {
                 reject(error);
             })
     });
+}
+
+function get_historial_numeros_ganadores() {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/admin/historial/numeros/ganadores`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    })
 }
