@@ -132,7 +132,7 @@ const LempiraButton = withStyles({
         },
     },
 })(Button);
-const ApuestaActivaAdminDetalle = (props) => {
+const HistorialSemanaActualAdmin = (props) => {
     const classes = useStyles();
     const [riesgoList, setRiesgoList] = useState([]);
     const [moneda, setMoneda] = useState("dolar");
@@ -147,21 +147,22 @@ const ApuestaActivaAdminDetalle = (props) => {
 
 
     useEffect(() => {
-        setTotal(props.location.state.total);
-        setComision(props.location.state.comision);
-        setNeta(props.location.state.neta);
-        setTitle(props.location.state.title.title);
-
-        adminService.get_apuesta_activa_by_type_and_id(moneda, props.match.params.apuestaId).then((result) => {
-            setNumeroMaxRiesgo(result.data.maxRiesgo.numero);
-            setDineroApostadoMaxRiesgo(result.data.maxRiesgo.dineroApostado);
-            setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
-            setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
-            setRiesgoList(Array.from(result.data.tuplaRiesgos));
-            setTotal(result.data.total);
-            setComision(result.data.comision);
-            setNeta(result.data.total - result.data.comision);
-        })
+        // setTotal(props.location.state.total);
+        // setComision(props.location.state.comision);
+        // setNeta(props.location.state.neta);
+        // setTitle(props.location.state.title.title);
+        //
+        // adminService.get_apuesta_activa_by_type_and_id(moneda, props.match.params.apuestaId).then((result) => {
+        //     console.log(result.data);
+        //     setNumeroMaxRiesgo(result.data.maxRiesgo.numero);
+        //     setDineroApostadoMaxRiesgo(result.data.maxRiesgo.dineroApostado);
+        //     setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
+        //     setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
+        //     setRiesgoList(Array.from(result.data.tuplaRiesgos));
+        //     setTotal(result.data.total);
+        //     setComision(result.data.comision);
+        //     setNeta(result.data.total - result.data.comision);
+        // })
     }, []);
 
     function get_in_dolar() {
@@ -315,9 +316,7 @@ const ApuestaActivaAdminDetalle = (props) => {
                   direction="row"
                   justify="center"
                   alignItems="center">
-                {riesgoList.map((numero, index) =>
-                    <ApuestaActivaRiesgoEntry key={index} moneda={moneda} {...numero} total={total} {...props}/>
-                )}
+
             </Grid>
             <Grid container spacing={1}
                   direction="row"
@@ -337,4 +336,4 @@ const ApuestaActivaAdminDetalle = (props) => {
     )
 };
 
-export default ApuestaActivaAdminDetalle;
+export default HistorialSemanaActualAdmin;

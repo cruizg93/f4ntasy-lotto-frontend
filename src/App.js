@@ -24,6 +24,7 @@ import AdicionarNumero from './components/Player/scenes/Apuesta/AdicionarNumero/
 import ApuestaActiva from "./components/Player/scenes/Apuesta/Activa";
 import ApuestasActivasAdmin from './components/Admin/scences/ApuestasActivas/index';
 import ApuestaActivaAdminDetalle from './components/Admin/scences/ApuestasActivas/Detalles/index';
+import HistorialSemanaActualAdmin from './components/Admin/scences/Historial/SemanaActual/index';
 
 import ApuestaActivaAsistente from './components/PAsistente/scene/Apuesta/Activa/index';
 import AdicionarApuestaAsistente from './components/PAsistente/scene/Apuesta/Adicionar/index';
@@ -100,9 +101,9 @@ class App extends React.Component {
                                 component={Apuestas}
                             />
                             <PrivateRoute
-                                exact path="/historial"
+                                exact path="/historial/semana/actual"
                                 roles={[Role.Admin, Role.Master]}
-                                component={Apuestas}
+                                component={HistorialSemanaActualAdmin}
                             />
                             <PrivateRoute
                                 exact path="/jugador/nuevo"
