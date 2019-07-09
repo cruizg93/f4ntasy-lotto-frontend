@@ -6,6 +6,8 @@ import {Link} from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
 import {red, blue} from "@material-ui/core/colors/index";
+import {adminService} from "../../../../service/api/admin/admin.service";
+import HistorialUsuarioDetallesEntry from '../HistorialUsuarioDetalles/HUDEntry/index';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -52,6 +54,7 @@ const HistorialUsuarioDetalles = (props) => {
     const [moneda, setMoneda] = useState(0);
     const [semana, setSemana] = useState(0);
     const [balance, setBalance] = useState(0.0);
+    const [daysEntry, setDaysEntry] =useState([])
 
 
     useEffect(() => {
@@ -59,6 +62,11 @@ const HistorialUsuarioDetalles = (props) => {
         setUsername(props.location.state.username);
         setMoneda(props.location.state.type);
         setSemana(props.location.state.semana);
+        adminService.get_historial_current_week_by_id_and_type(props.location.state.id, props.location.state.type)
+            .then((result)=>{
+                setDaysEntry(Array.from(result.data.uddList))
+                setBalance((result.data.balance).toFixed(2))
+            })
     }, []);
     return (
         <Grid container>
@@ -80,6 +88,22 @@ const HistorialUsuarioDetalles = (props) => {
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     {balance}
                 </Typography>
+            </Grid>
+
+             <Grid container spacing={3}
+                  direction="row"
+                  justify="center"
+                  alignItems="center">
+
+                {daysEntry.length > 0 ?
+                    daysEntry.map((entry, index) =>
+                        <HistorialUsuarioDetallesEntry key={index} {...entry} id={id} username={username}
+                                                       type={moneda} {...props}/>
+                    ) :
+                    <Typography variant="body1" gutterBottom className={classes.textNoDisponible}>
+                        No hay resultados disponibles para esta semana
+                    </Typography>
+                }
             </Grid>
         </Grid>
 

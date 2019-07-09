@@ -40,7 +40,8 @@ const useStyles = makeStyles(theme => ({
     }
 
 }));
-const HistorialUsuarioDetallesEntry = ({id, username, moneda,...props}) => {
+
+const HistorialUsuarioDetallesEntry = ({id, username, moneda, title, balance, date,...props}) => {
     const classes = useStyles();
 
     useEffect(() => {
@@ -55,13 +56,15 @@ const HistorialUsuarioDetallesEntry = ({id, username, moneda,...props}) => {
                           pathname: `/historial/semana/actual/usuario/${id}/desglose`,
                           state: {
                               id: id,
-                              username: username
+                              username: username,
+                              date: date,
+                              moneda: moneda
                           }
                       }
                   }
             >
                 <Typography variant="body1" gutterBottom className={classes.text}>
-
+                    {title}
                 </Typography>
             </Grid>
             <Grid item xs={7}>
@@ -69,7 +72,7 @@ const HistorialUsuarioDetallesEntry = ({id, username, moneda,...props}) => {
                     {moneda === "dolar" ? "$" : "L"}
                 </Typography>
                 <Typography variant="body1" gutterBottom className={classes.text}>
-
+                    {balance}
                 </Typography>
             </Grid>
         </Grid>

@@ -25,6 +25,8 @@ import ApuestaActiva from "./components/Player/scenes/Apuesta/Activa";
 import ApuestasActivasAdmin from './components/Admin/scences/ApuestasActivas/index';
 import ApuestaActivaAdminDetalle from './components/Admin/scences/ApuestasActivas/Detalles/index';
 import HistorialSemanaActualAdmin from './components/Admin/scences/Historial/SemanaActual/index';
+import HistorialUsuarioDetalles from './components/Admin/components/HistorialUsuarioDetalles/index';
+import HistorialUserSingleDayDetail from './components/Admin/scences/Historial/SemanaActual/HistorialUserSingleDayDetail/index';
 
 import ApuestaActivaAsistente from './components/PAsistente/scene/Apuesta/Activa/index';
 import AdicionarApuestaAsistente from './components/PAsistente/scene/Apuesta/Adicionar/index';
@@ -105,6 +107,19 @@ class App extends React.Component {
                                 roles={[Role.Admin, Role.Master]}
                                 component={HistorialSemanaActualAdmin}
                             />
+
+                            <PrivateRoute
+                                exact path="/historial/semana/actual/usuario/:userId"
+                                roles={[Role.Admin, Role.Master]}
+                                component={HistorialUsuarioDetalles}
+                            />
+
+                            <PrivateRoute
+                                exact path="/historial/semana/actual/usuario/:userId/desglose"
+                                roles={[Role.Admin, Role.Master]}
+                                component={HistorialUserSingleDayDetail}
+                            />
+
                             <PrivateRoute
                                 exact path="/jugador/nuevo"
                                 roles={[Role.Admin, Role.Master]}
