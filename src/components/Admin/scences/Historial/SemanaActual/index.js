@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import {red, blue} from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
+import HistorialStatic from '../../../components/HistorialStatics/index';
 import HistorialSemanaActualUserEntry from '../../../components/HistorialSemanal/index';
 
 const useStyles = makeStyles(theme => ({
@@ -88,58 +89,7 @@ const ImprimirButton = withStyles({
         },
     },
 })(Button);
-const DolarButton = withStyles({
-    root: {
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        margin: '.5rem',
-        lineHeight: 1.5,
-        backgroundColor: '#2fff21',
-        borderColor: 'none',
-        color: '#000',
-        '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 
-const LempiraButton = withStyles({
-    root: {
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        margin: '.5rem',
-        border: '1px solid',
-        lineHeight: 1.5,
-        backgroundColor: '#ffe634',
-        borderColor: 'none',
-        color: '#FFF',
-        '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 const HistorialSemanaActualAdmin = (props) => {
     const classes = useStyles();
     const [usuariosList, setUsuariosList] = useState([]);
@@ -203,127 +153,10 @@ const HistorialSemanaActualAdmin = (props) => {
 
     return (
         <React.Fragment>
-            <Grid container>
-                <Grid item xs={12}
-                      container
-                      justify="center"
-                      alignItems="center"
-                      className={classes.text}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        Resumen de todos los sorteos ya terminados, de todos los jugadores, y de la
-                        SEMANA EN CURSO
-                    </Typography>
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        {title}
-                    </Typography>
-                </Grid>
-                <Grid container spacing={1}
-                      direction="row"
-                      justify="center"
-                      alignItems="flex-start">
-                    <Grid item xs={6}>
-                        <DolarButton variant="outlined" color="primary" className={classes.button}
-                                     onClick={() => {
-                                         get_in_dolar()
-                                     }}
-                        >
-                            ver en $
-                        </DolarButton>
-                        <LempiraButton variant="outlined" color="primary" className={classes.button}
-                                       onClick={() => {
-                                           get_in_lempira()
-                                       }}>
-                            ver en L
-                        </LempiraButton>
-                    </Grid>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        Total Apuestas |
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.text}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        {totalSemanal}
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        Total Comisiones |
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.text}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        {comisionSemanal}
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        Entrada Neta |
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.text}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        {netaSemanal}
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        Total Premios |
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.text}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        {totalPremioSemanal}
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        Ganancia/Perdida |
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.text}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        {balanceSemanal}
-                    </Typography>
-                </Grid>
-            </Grid>
+            <HistorialStatic title={title} totalSemanal={totalSemanal} comisionSemanal={comisionSemanal}
+            netaSemanal={netaSemanal} totalPremioSemanal={totalPremioSemanal} balanceSemanal={balanceSemanal}
+            clickDolar={get_in_dolar} clickLempira={get_in_lempira} semana={"current"}
+            />
             <Grid container>
                 <Grid item xs={12}
                       container
