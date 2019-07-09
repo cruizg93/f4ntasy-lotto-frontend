@@ -43,7 +43,9 @@ export default function Sistema(props) {
                         </ListItemIcon>
                         <ListItemText primary="Crear Jugador"/>
                     </ListItem>
-                    <ListItem button className={props.classes} component={Link} to="/sistema/no_ganador"
+                    <ListItem button className={props.classes}
+                              component={Link}
+                              to="/sistema/numero/ganador"
                               onClick={props.click}>
                         <ListItemIcon>
                             <Casino/>

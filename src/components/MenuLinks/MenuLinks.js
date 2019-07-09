@@ -18,6 +18,7 @@ export const MenuLinks = (props) => {
     function handleCloseHistorial() {
         setAnchorE2(null);
     }
+
     function handleClick(event) {
         setAnchorEl(event.currentTarget);
     }
@@ -52,7 +53,11 @@ export const MenuLinks = (props) => {
                 onClose={handleClose}
             >
                 <MenuItem onClick={handleClose} component={Link} to="/jugador/nuevo">Crear Jugador</MenuItem>
-                <MenuItem onClick={handleClose}>Número Ganador</MenuItem>
+                <MenuItem onClick={handleClose}
+                          component={Link}
+                          to="/sistema/numero/ganador">
+                    Número Ganador
+                </MenuItem>
                 <MenuItem onClick={handleClose}>Tipo de Cambio</MenuItem>
                 <MenuItem onClick={handleClose}>Constraseña</MenuItem>
                 <MenuItem onClick={handleClose}>Fijar Topes</MenuItem>
@@ -101,9 +106,6 @@ export const MenuLinks = (props) => {
             </Menu>
             }
 
-            {isAdmin &&
-            <Button component={Link} to="/jugadores" color="inherit">Jugadores</Button>
-            }
 
             {!isAdmin && <>
                 {!isAsistente && <Button component={Link}
