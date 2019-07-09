@@ -52,6 +52,13 @@ const useStyles = makeStyles(theme => ({
 const Jugador = (props) => {
     const classes = useStyles();
     const [jugadorList, setJugadorList] = useState([]);
+
+    function reload(){
+        adminService.list_players_details().then((result) => {
+            setJugadorList([]);
+            setJugadorList(Array.from(result.data))
+        })
+    }
     useEffect(() => {
         adminService.list_players_details().then((result) => {
             setJugadorList(Array.from(result.data))
@@ -60,12 +67,12 @@ const Jugador = (props) => {
     return (
         <React.Fragment>
             <Container maxWidth="sm" className={classes.container}>
-                    <Grid container spacing={5}>
-                        {jugadorList.map((jugador, index) =>
-                            <JugadorDataShow key={index} {...jugador} {...props}/>
-                        )}
+                <Grid container spacing={5}>
+                    {jugadorList.map((jugador, index) =>
+                        <JugadorDataShow key={index} {...jugador} {...props} handler={reload}/>
+                    )}
 
-                    </Grid>
+                </Grid>
             </Container>
 
         </React.Fragment>

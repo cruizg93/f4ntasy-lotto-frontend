@@ -8,6 +8,14 @@ import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import HighlightOff from "@material-ui/icons/HighlightOff";
 
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import {adminService} from "../../../../service/api/admin/admin.service";
+
 const AsistButton = withStyles({
     root: {
         boxShadow: 'none',
@@ -97,6 +105,23 @@ const useStyles = makeStyles(theme => ({
 const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, total, username, ...props}) => {
     const classes = useStyles();
     const [monedaSymbol, setMonedaSymbol] = useState('$');
+
+    const [open, setOpen] = React.useState(false);
+    const handler= props.handler;
+    function handleClickOpen() {
+        setOpen(true);
+    }
+
+    function handleClose() {
+        setOpen(false);
+    }
+
+    function deletePlayer(){
+        adminService.delete_player_by_id(id).then((result)=>{
+            handler();
+        })
+    }
+
 
     useEffect(() => {
         if (monedaType === "lempira") {
@@ -194,9 +219,36 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                               container
                               justify="center"
                               className={classes.svgContainer}
+
                         >
-                            <HighlightOff className={classes.iconClose}/>
+                            <HighlightOff className={classes.iconClose} onClick={handleClickOpen}/>
                         </Grid>
+                        <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-eliminar-usuario"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle
+                                id="alert-dialog-eliminar-usuario">{`Deseas eliminar usuario ${username}`}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    Una vez eliminado el usuario no podrá obtener los datos generados del mismo
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose} color="primary">
+                                    Cancelar
+                                </Button>
+                                <Button onClick={() => {
+                                    handleClose();
+                                    deletePlayer();
+
+                                }} color="primary" autoFocus>
+                                    Aceptar
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
                         <Grid item xs={12}
                               container
                               justify="center"

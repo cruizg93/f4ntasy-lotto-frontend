@@ -14,7 +14,8 @@ export const adminService = {
     get_player_by_id,
     list_apuestas_details,
     list_apuestas_activas_details_by_user_id,
-    details_apuesta_activa_by_user_id
+    details_apuesta_activa_by_user_id,
+    delete_player_by_id
 };
 
 
@@ -246,3 +247,19 @@ function details_apuesta_activa_by_user_id(username,id) {
             })
     });
 }
+
+function delete_player_by_id(id) {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/admin/jugadores/delete/${id}`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    })
+}
+///jugadores/delete/{id}
