@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b326030b-bc6d-4185-a88e-f63c85db1e19" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NestedList/Historial.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NestedList/Historial.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Admin/scences/Historial/SemanaAnterior/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Admin/scences/Historial/SemanaAnterior/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/api/admin/admin.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/api/admin/admin.service.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,7 +38,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MenuLinks.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MenuLinks.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="484">
@@ -75,8 +74,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Admin/components/HistorialStatics/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="112" column="81" selection-start-line="112" selection-start-column="81" selection-end-line="112" selection-end-column="81" />
+            <state relative-caret-position="412">
+              <caret line="124" column="94" lean-forward="true" selection-start-line="124" selection-start-column="94" selection-end-line="124" selection-end-column="94" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
@@ -87,11 +86,32 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/Historial/SemanaAnterior/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="96" column="44" lean-forward="true" selection-start-line="96" selection-start-column="44" selection-end-line="96" selection-end-column="44" />
+            <state relative-caret-position="396">
+              <caret line="153" column="45" selection-start-line="153" selection-start-column="45" selection-end-line="153" selection-end-column="45" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/Admin/components/HistorialSemanal/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-225">
+              <caret line="42" column="6" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.service.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/service/api/admin/admin.service.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="23" column="41" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -176,17 +196,17 @@
         <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/src/index.css" />
         <option value="$PROJECT_DIR$/src/components/Admin/components/HistorialSemanal/index.js" />
-        <option value="$PROJECT_DIR$/src/service/api/admin/admin.service.js" />
         <option value="$PROJECT_DIR$/src/components/Admin/components/HistorialUsuarioDetalles/index.js" />
         <option value="$PROJECT_DIR$/src/components/Admin/components/HistorialUsuarioDetalles/HUDEntry/index.js" />
         <option value="$PROJECT_DIR$/src/components/Admin/scences/Historial/SemanaActual/HistorialUserSingleDayDetail/index.js" />
         <option value="$PROJECT_DIR$/src/components/Admin/components/HistorialUsuarioDetalles/HUSDDetail/index.js" />
-        <option value="$PROJECT_DIR$/src/components/Admin/components/HistorialStatics/index.js" />
         <option value="$PROJECT_DIR$/src/components/Admin/scences/Historial/SemanaActual/index.js" />
-        <option value="$PROJECT_DIR$/src/components/Admin/scences/Historial/SemanaAnterior/index.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/components/NestedList/Historial.js" />
         <option value="$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js" />
+        <option value="$PROJECT_DIR$/src/components/Admin/components/HistorialStatics/index.js" />
+        <option value="$PROJECT_DIR$/src/service/api/admin/admin.service.js" />
+        <option value="$PROJECT_DIR$/src/components/Admin/scences/Historial/SemanaAnterior/index.js" />
       </list>
     </option>
   </component>
@@ -875,13 +895,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/api/admin/admin.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7288">
-          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/Historial/SemanaActual/HistorialUserSingleDayDetail/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -939,46 +952,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Admin/components/HistorialSemanal/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="924">
-          <caret line="42" column="36" selection-end-line="80" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Admin/components/HistorialStatics/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="112" column="81" selection-start-line="112" selection-start-column="81" selection-end-line="112" selection-end-column="81" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/Historial/SemanaActual/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="101" column="60" selection-end-line="281" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/Historial/SemanaAnterior/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="96" column="44" lean-forward="true" selection-start-line="96" selection-start-column="44" selection-end-line="96" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
@@ -1003,6 +976,53 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
           <caret line="89" column="56" selection-start-line="89" selection-start-column="56" selection-end-line="89" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/Historial/SemanaActual/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="101" column="60" selection-end-line="281" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Admin/components/HistorialStatics/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="124" column="94" lean-forward="true" selection-start-line="124" selection-start-column="94" selection-end-line="124" selection-end-column="94" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/api/admin/admin.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="23" column="41" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/Historial/SemanaAnterior/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="153" column="45" selection-start-line="153" selection-start-column="45" selection-end-line="153" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Admin/components/HistorialSemanal/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-225">
+          <caret line="42" column="6" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

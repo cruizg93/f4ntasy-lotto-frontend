@@ -89,40 +89,26 @@ const ImprimirButton = withStyles({
         },
     },
 })(Button);
-
 const HistorialSemanaAnteriorAdmin = (props) => {
     const classes = useStyles();
     const [usuariosList, setUsuariosList] = useState([]);
     const [moneda, setMoneda] = useState("dolar");
-    const [total, setTotal] = useState(0.0);
-    const [comision, setComision] = useState(0.0);
-    const [neta, setNeta] = useState(0.0);
     const [title, setTitle] = useState(0.0);
     const [totalSemanal, setTotalSemanal] = useState(0.0);
     const [totalPremioSemanal, setTotalPremioSemanal] = useState(0.0);
     const [comisionSemanal, setComisionSemanal] = useState(0.0);
     const [netaSemanal, setNetaSemanal] = useState(0.0);
     const [balanceSemanal, setBalanceSemanal] = useState(0.0);
-    const [numeroMaxRiesgo, setNumeroMaxRiesgo] = useState(0.0);
-    const [dineroApostadoMaxRiesgo, setDineroApostadoMaxRiesgo] = useState(0.0);
-    const [posiblePremioMaxRiesgo, setPosiblePremioMaxRiesgo] = useState(0.0);
-    const [totalRiesgoMaxRiesgo, setTotalRiesgoMaxRiesgo] = useState(0.0);
+
 
     useEffect(() => {
-        adminService.get_historial_by_type("dolar").then((result) => {
+        adminService.get_historial_semana_anterior_by_type("dolar").then((result) => {
             update(result)
         })
 
     }, []);
 
     function update(result) {
-        setNumeroMaxRiesgo(result.data.riesgoMaximo.numero);
-        setDineroApostadoMaxRiesgo((result.data.riesgoMaximo.valor).toFixed(2));
-        setPosiblePremioMaxRiesgo((result.data.riesgoMaximo.totalValor / result.data.entradaNetaToday).toFixed(2));
-        setTotalRiesgoMaxRiesgo((result.data.riesgoMaximo.totalValor).toFixed(2));
-        setNeta((result.data.entradaNetaToday).toFixed(2));
-        setComision((result.data.comisionToday).toFixed(2));
-        setTotal((result.data.totalToday).toFixed(2))
         setTitle(result.data.title)
         setTotalSemanal((result.data.totalSemana).toFixed(2));
         setTotalPremioSemanal((result.data.totalPremio).toFixed(2));
@@ -135,7 +121,7 @@ const HistorialSemanaAnteriorAdmin = (props) => {
 
     function get_in_dolar() {
         if (moneda === 'lempira') {
-            adminService.get_historial_by_type("dolar").then((result) => {
+            adminService.get_historial_semana_anterior_by_type("dolar").then((result) => {
                 setMoneda("dolar");
                 update(result)
             })
@@ -144,7 +130,7 @@ const HistorialSemanaAnteriorAdmin = (props) => {
 
     function get_in_lempira() {
         if (moneda === 'dolar') {
-            adminService.get_historial_by_type("lempira").then((result) => {
+            adminService.get_historial_semana_anterior_by_type("lempira").then((result) => {
                 setMoneda("lempira");
                 update(result)
             })
@@ -155,7 +141,7 @@ const HistorialSemanaAnteriorAdmin = (props) => {
         <React.Fragment>
             <HistorialStatic title={title} totalSemanal={totalSemanal} comisionSemanal={comisionSemanal}
             netaSemanal={netaSemanal} totalPremioSemanal={totalPremioSemanal} balanceSemanal={balanceSemanal}
-            clickDolar={get_in_dolar} clickLempira={get_in_lempira} semana={"current"}
+            clickDolar={get_in_dolar} clickLempira={get_in_lempira} semana={"last"}
             />
 
             <Grid container spacing={3}
