@@ -41,14 +41,6 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-//balance: 87.615
-// comision: 2.385
-// estado: "CERRADA"
-// id: 3
-// neta: 87.615
-// premio: 0
-// title: "Julio 8, 2019 - 9 pm"
-// total: 90
 const ApuestasActivasAdminData = ({
                                       match: {url}, total, title, premio, neta, id,
                                       estado, comision, balance, ...props
@@ -61,6 +53,9 @@ const ApuestasActivasAdminData = ({
                       pathname: `${url}/${id}`,
                       state: {
                           title: {title},
+                          total: total,
+                          comision: comision,
+                          neta: neta,
                       }
                   }
               }

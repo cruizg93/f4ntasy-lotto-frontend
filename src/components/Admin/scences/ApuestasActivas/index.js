@@ -7,7 +7,6 @@ const ApuestasActivasAdmin = (props) => {
     const [apuestasActivas, setApuestasActivasList] = useState([]);
     useEffect(() => {
         adminService.get_apuestas_activas().then((result) => {
-            console.log(result.data);
             setApuestasActivasList(Array.from(result.data));
         })
     }, [])

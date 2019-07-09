@@ -23,6 +23,7 @@ import AdicionarApuesta from './components/Player/scenes/Apuesta/Adicionar/index
 import AdicionarNumero from './components/Player/scenes/Apuesta/AdicionarNumero/index';
 import ApuestaActiva from "./components/Player/scenes/Apuesta/Activa";
 import ApuestasActivasAdmin from './components/Admin/scences/ApuestasActivas/index';
+import ApuestaActivaAdminDetalle from './components/Admin/scences/ApuestasActivas/Detalles/index';
 
 import ApuestaActivaAsistente from './components/PAsistente/scene/Apuesta/Activa/index';
 import AdicionarApuestaAsistente from './components/PAsistente/scene/Apuesta/Adicionar/index';
@@ -82,6 +83,11 @@ class App extends React.Component {
                                 exact path="/apuestas/activas"
                                 roles={[Role.Admin, Role.Master]}
                                 component={ApuestasActivasAdmin}
+                            />
+                            <PrivateRoute
+                                exact path="/apuestas/activas/:apuestaId"
+                                roles={[Role.Admin, Role.Master]}
+                                component={ApuestaActivaAdminDetalle}
                             />
                             <PrivateRoute
                                 exact path="/apuestas"

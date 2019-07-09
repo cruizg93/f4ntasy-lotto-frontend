@@ -16,7 +16,8 @@ export const adminService = {
     list_apuestas_activas_details_by_user_id,
     details_apuesta_activa_by_user_id,
     delete_player_by_id,
-    get_apuestas_activas
+    get_apuestas_activas,
+    get_apuesta_activa_by_type_and_id
 };
 
 
@@ -278,4 +279,30 @@ function get_apuestas_activas() {
                 reject(error);
             })
     })
+}
+
+
+function get_apuesta_activa_by_type_and_id(type, id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    let send = {
+        type: type
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/admin/apuestas/activas/${id}`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
 }
