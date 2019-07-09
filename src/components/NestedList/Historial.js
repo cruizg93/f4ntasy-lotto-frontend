@@ -13,6 +13,7 @@ import LocalPlay from '@material-ui/icons/LocalPlay';
 import BarChart from '@material-ui/icons/BarChart';
 
 import SettingsBackupRestore from '@material-ui/icons/SettingsBackupRestore';
+import {Link} from "react-router-dom";
 
 export default function Historial(props) {
     const [open, setOpen] = React.useState(false);
@@ -32,7 +33,7 @@ export default function Historial(props) {
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    <ListItem button className={props.classes}
+                    <ListItem button className={props.classes} component={Link} to="/historial/semana/actual"
                               onClick={props.click}>
                         <ListItemIcon>
                             <AccessTime/>
