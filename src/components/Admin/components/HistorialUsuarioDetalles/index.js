@@ -29,6 +29,11 @@ const useStyles = makeStyles(theme => ({
     text: {
         fontWeight: 'bold'
     },
+    textWithBorder: {
+        fontWeight: 'bold',
+        border: '1px solid #747474',
+        margin: '1rem',
+    },
     close: {
         color: red[400]
     },
@@ -40,34 +45,37 @@ const useStyles = makeStyles(theme => ({
     }
 
 }));
-const HistorialSemanaActualUserEntry = ({id, nombre, balance, moneda, type, ...props}) => {
+const HistorialUsuarioDetalles = (props) => {
     const classes = useStyles();
+    const [id, setId] = useState(0);
+    const [username, setUsername] = useState(0);
+    const [moneda, setMoneda] = useState(0);
+    const [semana, setSemana] = useState(0);
+    const [balance, setBalance] = useState(0.0);
+
 
     useEffect(() => {
-
+        setId(props.location.state.id);
+        setUsername(props.location.state.username);
+        setMoneda(props.location.state.type);
+        setSemana(props.location.state.semana);
     }, []);
     return (
         <Grid container>
-            <Grid item xs={5} component={Link}
-                  to={
-                      {
-                          pathname: `/historial/semana/actual/usuario/${id}`,
-                          state: {
-                              id: id,
-                              username: nombre,
-                              moneda: type,
-                              semana: 'current'
-                          }
-                      }
-                  }
+            <Grid item xs={12}
             >
-                <Typography variant="body1" gutterBottom className={classes.text}>
-                    # {nombre} - {moneda === "dolar" ? "$" : "L"}
+                <Typography variant="h5" gutterBottom className={classes.textWithBorder}>
+                    Detalles Balance - {username}
+                </Typography>
+                <Typography variant="body1" gutterBottom className={classes.textWithBorder}>
+                    {semana === 'current' ? "Semana en curso" : "Semana anterior"}
+                    {moneda === "dolar" ? "$" : "L"}
+                    - {balance}
                 </Typography>
             </Grid>
-            <Grid item xs={7}>
+            <Grid item xs={12}>
                 <Typography variant="body1" gutterBottom className={classes.text}>
-                    {type === "dolar" ? "$" : "L"}
+                    {moneda === "dolar" ? "$" : "L"}
                 </Typography>
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     {balance}
@@ -78,4 +86,4 @@ const HistorialSemanaActualUserEntry = ({id, nombre, balance, moneda, type, ...p
     )
 };
 
-export default HistorialSemanaActualUserEntry;
+export default HistorialUsuarioDetalles;

@@ -40,10 +40,11 @@ const useStyles = makeStyles(theme => ({
     }
 
 }));
-const HistorialSemanaActualUserEntry = ({id, nombre, balance, moneda, type, ...props}) => {
+const HistorialUsuarioDetallesEntry = ({id, username, moneda,...props}) => {
     const classes = useStyles();
 
     useEffect(() => {
+
 
     }, []);
     return (
@@ -51,26 +52,24 @@ const HistorialSemanaActualUserEntry = ({id, nombre, balance, moneda, type, ...p
             <Grid item xs={5} component={Link}
                   to={
                       {
-                          pathname: `/historial/semana/actual/usuario/${id}`,
+                          pathname: `/historial/semana/actual/usuario/${id}/desglose`,
                           state: {
                               id: id,
-                              username: nombre,
-                              moneda: type,
-                              semana: 'current'
+                              username: username
                           }
                       }
                   }
             >
                 <Typography variant="body1" gutterBottom className={classes.text}>
-                    # {nombre} - {moneda === "dolar" ? "$" : "L"}
+
                 </Typography>
             </Grid>
             <Grid item xs={7}>
                 <Typography variant="body1" gutterBottom className={classes.text}>
-                    {type === "dolar" ? "$" : "L"}
+                    {moneda === "dolar" ? "$" : "L"}
                 </Typography>
                 <Typography variant="body1" gutterBottom className={classes.text}>
-                    {balance}
+
                 </Typography>
             </Grid>
         </Grid>
@@ -78,4 +77,4 @@ const HistorialSemanaActualUserEntry = ({id, nombre, balance, moneda, type, ...p
     )
 };
 
-export default HistorialSemanaActualUserEntry;
+export default HistorialUsuarioDetallesEntry;
