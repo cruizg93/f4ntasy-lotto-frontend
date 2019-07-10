@@ -218,3 +218,79 @@ function update_number_apuesta_activas(data, id) {
             })
     });
 }
+
+
+function list_historial_apuestas() {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    let send = {
+        username: currentUser.username
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/user/historial`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function get_historial_apuestas_details_by_id(id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    let send = {
+        username: currentUser.username
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/user/historial/apuesta/${id}`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function get_historial_apuestas_user_details_by_id(id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    let send = {
+        username: currentUser.username
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/user/historial/apuesta/${id}/detalles`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
