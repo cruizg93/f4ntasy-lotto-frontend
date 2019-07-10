@@ -59,7 +59,10 @@ export const MenuLinks = (props) => {
                     Número Ganador
                 </MenuItem>
                 <MenuItem onClick={handleClose}>Tipo de Cambio</MenuItem>
-                <MenuItem onClick={handleClose}>Constraseña</MenuItem>
+                <MenuItem onClick={handleClose}
+                          component={Link}
+                          to="/sistema/password/update"
+                >Constraseña</MenuItem>
                 <MenuItem onClick={handleClose}>Fijar Topes</MenuItem>
             </Menu>
             }
@@ -100,7 +103,7 @@ export const MenuLinks = (props) => {
                     Números Ganadores
                 </MenuItem>
                 <MenuItem onClick={handleClose} component={Link}
-                          to="/sistema/password/update">
+                          to="/historial/balance">
                     Perdidas y Ganancias
                 </MenuItem>
             </Menu>
