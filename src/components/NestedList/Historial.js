@@ -61,7 +61,7 @@ export default function Historial(props) {
                         </ListItemIcon>
                         <ListItemText primary="Números Ganadores"/>
                     </ListItem>
-                    
+
                     <ListItem button className={props.classes}
                               component={Link} to="/historial/balance"
                               onClick={props.click}>

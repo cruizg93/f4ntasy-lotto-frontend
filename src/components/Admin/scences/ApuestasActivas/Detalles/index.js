@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react';
 import Grid from '@material-ui/core/Grid';
 import {adminService} from "../../../../../service/api/admin/admin.service";
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
-import Divider from '@material-ui/core/Divider';
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import {red, blue} from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";

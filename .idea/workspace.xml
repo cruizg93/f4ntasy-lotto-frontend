@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b326030b-bc6d-4185-a88e-f63c85db1e19" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Admin/scences/Historial/Balance/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Admin/scences/ApuestasActivas/Detalles/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Admin/scences/ApuestasActivas/Detalles/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Admin/scences/Historial/Balance/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Admin/scences/Historial/Balance/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/NestedList/Historial.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NestedList/Historial.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/api/admin/admin.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/api/admin/admin.service.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,26 +28,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Historial.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/NestedList/Historial.js">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/Historial/Balance/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
+            <state relative-caret-position="182">
+              <caret line="126" column="58" selection-start-line="126" selection-start-column="58" selection-end-line="126" selection-end-column="58" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#0#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/Historial/Balance/index.js">
+        <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/ApuestasActivas/Detalles/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="17" column="18" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="66">
+              <caret line="3" column="54" selection-start-line="3" selection-start-column="54" selection-end-line="3" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -67,8 +61,8 @@
       <file leaf-file-name="admin.service.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/api/admin/admin.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="463" column="37" selection-start-line="463" selection-start-column="37" selection-end-line="463" selection-end-column="37" />
+            <state relative-caret-position="243">
+              <caret line="27" column="26" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -147,7 +141,6 @@
         <option value="$PROJECT_DIR$/src/components/Admin/components/ApuestasActiva/index.js" />
         <option value="$PROJECT_DIR$/src/components/Admin/scences/ApuestasActivas/index.js" />
         <option value="$PROJECT_DIR$/src/components/Admin/components/ApuestasActiva/Detalles/index.js" />
-        <option value="$PROJECT_DIR$/src/components/Admin/scences/ApuestasActivas/Detalles/index.js" />
         <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/src/index.css" />
         <option value="$PROJECT_DIR$/src/components/Admin/components/HistorialSemanal/index.js" />
@@ -162,13 +155,14 @@
         <option value="$PROJECT_DIR$/src/components/Admin/components/NumerosGanadoresEntry/NumerosActivosUserEntry/index.js" />
         <option value="$PROJECT_DIR$/src/components/Admin/components/NumerosGanadoresEntry/index.js" />
         <option value="$PROJECT_DIR$/src/components/NestedList/Sistema.js" />
-        <option value="$PROJECT_DIR$/src/service/api/admin/admin.service.js" />
         <option value="$PROJECT_DIR$/src/components/Admin/scences/Sistema/NumeroGanador/index.js" />
         <option value="$PROJECT_DIR$/src/components/Admin/components/NumeroGanadorEntry/index.js" />
-        <option value="$PROJECT_DIR$/src/components/Admin/scences/Historial/Balance/index.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/components/MenuLinks/MenuLinks.js" />
         <option value="$PROJECT_DIR$/src/components/NestedList/Historial.js" />
+        <option value="$PROJECT_DIR$/src/components/Admin/scences/ApuestasActivas/Detalles/index.js" />
+        <option value="$PROJECT_DIR$/src/service/api/admin/admin.service.js" />
+        <option value="$PROJECT_DIR$/src/components/Admin/scences/Historial/Balance/index.js" />
       </list>
     </option>
   </component>
@@ -272,6 +266,16 @@
               <item name="Admin" type="462c0819:PsiDirectoryNode" />
               <item name="scences" type="462c0819:PsiDirectoryNode" />
               <item name="ApuestasActivas" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fantasy-frontend-webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="scences" type="462c0819:PsiDirectoryNode" />
+              <item name="ApuestasActivas" type="462c0819:PsiDirectoryNode" />
+              <item name="Detalles" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fantasy-frontend-webapp" type="b2602c69:ProjectViewProjectNode" />
@@ -777,16 +781,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/ApuestasActivas/Detalles/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-176">
-          <caret line="154" column="111" selection-start-line="154" selection-start-column="111" selection-end-line="154" selection-end-column="111" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/NestedList/Sistema.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
@@ -894,59 +888,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/api/admin/admin.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="463" column="37" selection-start-line="463" selection-start-column="37" selection-end-line="463" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/ApuestasActivas/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" column="36" lean-forward="true" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Admin/components/NumeroGanadorEntry/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
           <caret line="103" column="88" selection-start-line="103" selection-start-column="88" selection-end-line="103" selection-end-column="88" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/Sistema/NumeroGanador/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/Historial/Balance/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="17" column="18" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="152" column="62" selection-start-line="152" selection-start-column="44" selection-end-line="152" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -964,6 +911,60 @@
           <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="152" column="62" selection-start-line="152" selection-start-column="44" selection-end-line="152" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/Sistema/NumeroGanador/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/ApuestasActivas/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="19" column="36" lean-forward="true" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/api/admin/admin.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="27" column="26" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/ApuestasActivas/Detalles/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="54" selection-start-line="3" selection-start-column="54" selection-end-line="3" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/Historial/Balance/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="126" column="58" selection-start-line="126" selection-start-column="58" selection-end-line="126" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
