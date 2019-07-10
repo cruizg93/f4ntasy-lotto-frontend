@@ -66,8 +66,7 @@ const BalanceAdmin = (props) => {
     const classes = useStyles();
 
     function handleDateChange(date) {
-        setSelectedDate(date);
-        console.log(date);
+        setSelectedDate(date);       
     }
 
     function handleDateChange1(date) {
