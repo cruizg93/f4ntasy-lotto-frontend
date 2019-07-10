@@ -13,7 +13,10 @@ export const playerService = {
     list_apuestas_hoy_by_username,
     detalles_by_apuesta_id,
     comision_directo,
-    get_balance
+    get_balance,
+    list_historial_apuestas,
+    get_historial_apuestas_details_by_id,
+    get_historial_apuestas_user_details_by_id
 };
 
 function list_number() {

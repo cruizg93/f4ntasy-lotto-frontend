@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
-import ApuestaActivaEntry from '../../../components/ApuestaActiva/index';
+import UserEntryDetail from '../../../components/Historial/UserEntryDetail/index';
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
         border: '1px #000 solid',
         padding: '5px',
         textAlign: 'center'
+    },
+    textSimple: {
+        fontWeight: 'bold',
     },
     negative: {
         padding: theme.spacing(1, 1),
@@ -98,50 +101,29 @@ const DetallesPlayer = ({...props}) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
     const [comision, setComision] = useState(0.0);
-    const [riesgo, setRiesgo] = useState(0.0);
+    const [premio, setPremio] = useState(0.0);
+    const [balance, setBalance] = useState(0.0);
+    const [numeroValue, setNumeroValue] = useState(0);
+
     const [total, setTotal] = useState(0.0);
     const [list, setList] = useState([]);
     const [disable, setDisable] = useState(true);
 
-    function handleDisableClick() {
-        setDisable(!disable);
-    }
 
-    function updateFunction(e) {
-        let id = e.target.id;
-        id = id.split('-')[3];
-        if (e.target.value !== '') {
-            list[id]['valor'] = parseFloat(e.target.value);
-        }
-    }
 
-    function submitUpdateData() {
-        playerService.update_number_apuesta_activas(list, props.match.params.apuestaId).then((result) => {
-            success_response();
-            playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
-                setTitle(result.data.title);
-                setComision(result.data.comision);
-                setRiesgo(result.data.riesgo);
-                setTotal(result.data.total);
-                setList(Array.from(result.data.list));
-            })
-        });
-    }
 
-    function success_response() {
-        toast.success("Cambio actualizado !", {
-            position: toast.POSITION.TOP_RIGHT
-        });
-    }
 
     useEffect(() => {
-        playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
-            setTitle(result.data.title);
-            setComision(result.data.comision);
-            setRiesgo(result.data.riesgo);
-            setTotal(result.data.total);
-            setList(Array.from(result.data.list));
+        playerService.get_historial_apuestas_details_by_id(props.location.state.id).then((result)=>{
+            setList(result.data);
         })
+        setTitle(props.location.state.title);
+        setComision(props.location.state.comision);
+        setPremio(props.location.state.premio);
+        setTotal(props.location.state.total);
+        setBalance(props.location.state.balance);
+        setNumeroValue(props.location.state.numero)
+
     }, []);
 
     return (
@@ -151,7 +133,7 @@ const DetallesPlayer = ({...props}) => {
                   justify="center"
                   alignItems="flex-start">
                 <Typography variant="h5" gutterBottom>
-                    {title}
+                    {title} {" @ "} {numeroValue}
                 </Typography>
                 <Grid item xs={12}>
                     <Divider/>
@@ -159,9 +141,8 @@ const DetallesPlayer = ({...props}) => {
 
 
                 {list.map((apuesta, index) =>
-                    <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}
+                    <UserEntryDetail key={index} {...apuesta} index={index} {...props}
                                         disable={disable}
-                                        onEdit={updateFunction}
                     />
                 )}
             </Grid>
@@ -170,16 +151,16 @@ const DetallesPlayer = ({...props}) => {
                       container
                       justify="flex-end"
                 >
-                    <Typography variant="body1" gutterBottom className={''}>
-                        apuestas |
+                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                        Total apuestas |
                     </Typography>
                 </Grid>
                 <Grid item xs={6}
                       container
                       justify="flex-start"
-                      className={''}
+                      className={classes.textSimple}
                 >
-                    <Typography variant="body1" gutterBottom className={classes.numbers}>
+                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
                         {total}
                     </Typography>
 
@@ -188,16 +169,16 @@ const DetallesPlayer = ({...props}) => {
                       container
                       justify="flex-end"
                 >
-                    <Typography variant="body1" gutterBottom className={''}>
-                        comisiones |
+                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                        Comisiones |
                     </Typography>
                 </Grid>
                 <Grid item xs={6}
                       container
                       justify="flex-start"
-                      className={''}
+                      className={classes.textSimple}
                 >
-                    <Typography variant="body1" gutterBottom className={classes.numbers}>
+                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
                         {comision}
                     </Typography>
 
@@ -206,17 +187,17 @@ const DetallesPlayer = ({...props}) => {
                       container
                       justify="flex-end"
                 >
-                    <Typography variant="body1" gutterBottom className={''}>
-                        riesgo |
+                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                        Premio |
                     </Typography>
                 </Grid>
                 <Grid item xs={6}
                       container
                       justify="flex-start"
-                      className={''}
+                      className={classes.textSimple}
                 >
-                    <Typography variant="body1" gutterBottom className={classes.numbers}>
-                        {riesgo}
+                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                        {premio}
                     </Typography>
 
                 </Grid>
@@ -224,17 +205,17 @@ const DetallesPlayer = ({...props}) => {
                       container
                       justify="flex-end"
                 >
-                    <Typography variant="body1" gutterBottom className={''}>
-                        Ganancias/Perdidas |
+                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                        Ganancia/Perdida |
                     </Typography>
                 </Grid>
                 <Grid item xs={6}
                       container
                       justify="flex-start"
-                      className={''}
+                      className={classes.textSimple}
                 >
-                    <Typography variant="body1" gutterBottom className={classes.numbers}>
-                        {riesgo}
+                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                        {balance}
                     </Typography>
 
                 </Grid>
@@ -254,10 +235,11 @@ const DetallesPlayer = ({...props}) => {
                     <DetallesButton variant="outlined" color="primary"
                                     component={Link}
                                     to={{
-                                        pathname: '/usuario/apuesta/detalles',
+                                        pathname: `/usuario/historial/${props.match.params.apuestaId}/desgloce`,
                                         state: {
-                                            title: {title},
-                                            id: props.match.params.apuestaId
+                                            title: title,
+                                            id: props.match.params.apuestaId,
+                                            numero: numeroValue
                                         }
                                     }}
                     >

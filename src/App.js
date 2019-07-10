@@ -40,6 +40,8 @@ import AdicionarNumeroApuestaAsistente from './components/PAsistente/scene/Apues
 import DetallesAsistente from './components/PAsistente/scene/Apuesta/Detalle/index';
 import DetallesApuesta from './components/Player/scenes/Apuesta/Detalles/index';
 import ComprarApuesta from './components/Player/scenes/Apuesta/Comprar/index';
+import HistorialPlayer from './components/Player/scenes/Historial/index';
+import DetallesPlayer from './components/Player/scenes/Historial/Detalles/index';
 
 
 class App extends React.Component {
@@ -202,7 +204,17 @@ class App extends React.Component {
                             <PrivateRoute
                                 exact path="/usuario/historial"
                                 roles={[Role.Player]}
-                                component={Jugador}
+                                component={HistorialPlayer}
+                            />
+                            <PrivateRoute
+                                exact path="/usuario/historial/:apuestaId"
+                                roles={[Role.Player]}
+                                component={DetallesPlayer}
+                            />
+                            <PrivateRoute
+                                exact path="/usuario/historial/:apuestaId/desgloce"
+                                roles={[Role.Player]}
+                                component={DetallesPlayer}
                             />
                             <PrivateRoute
                                 exact path="/usuario/password/cambiar"
