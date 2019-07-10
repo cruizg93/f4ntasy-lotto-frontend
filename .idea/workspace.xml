@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b326030b-bc6d-4185-a88e-f63c85db1e19" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/Player/scenes/Apuesta/Comprar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Player/scenes/Apuesta/Comprar/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="b326030b-bc6d-4185-a88e-f63c85db1e19" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -147,13 +145,14 @@
       <find>console.log</find>
       <find>imprimir</find>
       <find>pathname</find>
-      <find />
+      <find>No hay</find>
       <find>onClick</find>
       <find>[]</find>
       <find>handler</find>
       <find>Balance</find>
       <find>console</find>
       <find>Number</find>
+      <find>comision</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -583,7 +582,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
