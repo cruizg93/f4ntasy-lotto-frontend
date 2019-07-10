@@ -102,7 +102,6 @@ const NumeroGanadorEntry = ({match: {url}, apuestaId, title, numero, status, ...
     function clickButton() {
         if (numeroApuesta !== '' && numeroApuesta !== -1 && numeroApuesta >= 0 && numeroApuesta < 100) {
             adminService.fix_numero_ganador(numeroApuesta, idApuesta).then((result) => {
-                console.log(result.data);
                 handler();
             })
         }

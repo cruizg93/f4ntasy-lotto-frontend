@@ -10,7 +10,6 @@ const NumeroGanador = (props) => {
 
     useEffect(() => {
         adminService.get_numeros_ganadores().then((result)=>{
-            console.log(result.data)
             setEntryData(Array.from(result.data));
         })
     }, []);
