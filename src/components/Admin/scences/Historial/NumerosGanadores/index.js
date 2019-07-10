@@ -55,20 +55,31 @@ const useStyles = makeStyles(theme => ({
 
 }));
 const NumerosGanadores = (props) => {
-    const classes= useStyles();
+    const classes = useStyles();
     const [numerosGanadoresList, setNumerosGanadoresList] = useState([]);
     useEffect(() => {
+
         adminService.get_historial_numeros_ganadores().then((result) => {
-            console.log(result.data);
             setNumerosGanadoresList(Array.from(result.data));
         })
     }, [])
+
+    function handleUpdate() {
+        setTimeout(() => {
+            adminService.get_historial_numeros_ganadores().then((result) => {
+                setNumerosGanadoresList([]);
+                setNumerosGanadoresList(Array.from(result.data));
+            })
+        }, 3000)
+
+    }
+
     return (
         <React.Fragment>
 
             {numerosGanadoresList.length > 0 ?
                 numerosGanadoresList.map((numero, index) =>
-                    <NumerosGanadoresEntry key={index} {...numero} {...props}/>
+                    <NumerosGanadoresEntry key={index} {...numero} handle={handleUpdate} {...props}/>
                 ) :
                 <Typography variant="body1" gutterBottom className={classes.textNoDisponible}>
                     No hay resultados disponibles para esta semana

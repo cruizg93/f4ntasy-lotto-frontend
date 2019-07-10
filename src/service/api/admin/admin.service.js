@@ -25,7 +25,8 @@ export const adminService = {
     get_historial_numeros_ganadores,
     get_numeros_ganadores,
     fix_numero_ganador,
-    get_ganancias_perdidas
+    get_ganancias_perdidas,
+    update_numero_ganador
 };
 
 
@@ -489,6 +490,32 @@ function get_ganancias_perdidas(inicio, fin) {
     };
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/admin/historial/balance`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+
+function update_numero_ganador(numero, id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    let send = {
+        numero: numero
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/admin/numeros/ganadores/${id}/update`,
             send, requestOptions
         )
             .then((responseJson) => {
