@@ -42,6 +42,8 @@ import DetallesApuesta from './components/Player/scenes/Apuesta/Detalles/index';
 import ComprarApuesta from './components/Player/scenes/Apuesta/Comprar/index';
 import HistorialPlayer from './components/Player/scenes/Historial/index';
 import DetallesPlayer from './components/Player/scenes/Historial/Detalles/index';
+import DetallesPAsistente from './components/PAsistente/scene/Historial/Detalles/index';
+import HistorialAsistente from './components/PAsistente/scene/Historial/index';
 
 
 class App extends React.Component {
@@ -259,7 +261,13 @@ class App extends React.Component {
                             <PrivateRoute
                                 exact path="/asistente/historial"
                                 roles={[Role.Asistente]}
-                                component={Jugador}
+                                component={HistorialAsistente}
+                            />
+
+                             <PrivateRoute
+                                exact path="/asistente/historial/:apuestaId"
+                                roles={[Role.Asistente]}
+                                component={DetallesPAsistente}
                             />
 
                             <Route path="*" render={() => "404 NOT FOUND"}/>
