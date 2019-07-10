@@ -123,10 +123,10 @@ const ComprarApuesta = ({...props}) => {
         let comision1 = 0;
         playerService.comision_directo("directo").then((result) => {
             comision1 = result.data;
-            setComision(result.data);
+            setComision((result.data).toFixed(2));
         })
-        setTotal(totald);
-        setRiesgo(totald - comision1);
+        setTotal(totald.toFixed(2));
+        setRiesgo((totald - comision1).toFixed(2));
     }, []);
 
     function submitClickHandler() {
