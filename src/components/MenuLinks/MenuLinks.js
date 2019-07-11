@@ -58,7 +58,11 @@ export const MenuLinks = (props) => {
                           to="/sistema/numero/ganador">
                     Número Ganador
                 </MenuItem>
-                <MenuItem onClick={handleClose}>Tipo de Cambio</MenuItem>
+                <MenuItem onClick={handleClose}
+                          component={Link}
+                          to={"/sistema/cambio"}
+                >
+                    Tipo de Cambio</MenuItem>
                 <MenuItem onClick={handleClose}
                           component={Link}
                           to="/sistema/password/update"
