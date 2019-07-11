@@ -98,7 +98,40 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-    }
+    },
+    paperUser: {
+        textDecoration: 'none',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '5px 10px 5px 10px',
+        margin: '3rem',
+    },
+    paperUserDisable: {
+        pointerEvents: 'none',
+        textDecoration: 'none',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '5px 10px 5px 10px',
+        margin: '3rem',
+    },
+    paperBalance: {
+        textDecoration: 'none',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '5px 10px 5px 10px',
+
+    },
+    paperBalanceDisable: {
+        pointerEvents: 'none',
+        textDecoration: 'none',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '5px 10px 5px 10px',
+    },
 
 }));
 
@@ -107,7 +140,8 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
     const [monedaSymbol, setMonedaSymbol] = useState('$');
 
     const [open, setOpen] = React.useState(false);
-    const handler= props.handler;
+    const handler = props.handler;
+
     function handleClickOpen() {
         setOpen(true);
     }
@@ -116,8 +150,8 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
         setOpen(false);
     }
 
-    function deletePlayer(){
-        adminService.delete_player_by_id(id).then((result)=>{
+    function deletePlayer() {
+        adminService.delete_player_by_id(id).then((result) => {
             handler();
         })
     }
@@ -135,7 +169,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
 
                 <Grid container spacing={3}>
                     <Grid item xs={6}>
-                        <Paper className={total === 0 ? classes.paperDisable : classes.paper} xs={12}
+                        <Paper className={total === 0 ? classes.paperUserDisable : classes.paperUser} xs={12}
                                component={Link} to={
                             {
                                 pathname: `/jugador/apuestas/detalles`,
@@ -149,7 +183,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                         >
                             {username} | {monedaSymbol}
                         </Paper>
-                        <Grid container>
+                        <Grid container className={classes.margin}>
                             <Grid item xs={5}
                                   container
                                   justify="flex-end">
@@ -254,7 +288,8 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                               justify="center"
 
                         >
-                            <Paper className={balance === 0 ? classes.paperDisable : classes.paper} xs={12}
+                            <Paper className={balance === 0 ? classes.paperBalanceDisable : classes.paperBalance}
+                                   xs={12}
                                    component={Link} to={
                                 {
                                     pathname: `/jugador/balance/${id}`,
