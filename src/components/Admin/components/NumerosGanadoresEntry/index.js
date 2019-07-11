@@ -61,6 +61,7 @@ const NumerosGanadoresEntry = ({id, title, numero, pairJBS, ...props}) => {
     const [expanded, setExpanded] = React.useState(false);
     const [currentRole, setCurrentRole] = useState('Player');
     const [newNumber, setNewNumber] = useState(-1);
+    const [oldNumber, setOldNumber] = useState(-1);
 
     const handle = props.handle;
     const handleChange = panel => (event, isExpanded) => {
@@ -86,7 +87,7 @@ const NumerosGanadoresEntry = ({id, title, numero, pairJBS, ...props}) => {
         if (newNumber !== '' && newNumber !== 1
             && newNumber >= 0 && newNumber < 100
         ) {
-            adminService.update_numero_ganador(newNumber, id).then((result) => {
+            adminService.update_numero_ganador(newNumber,oldNumber, id).then((result) => {
 
             })
         }
@@ -94,6 +95,7 @@ const NumerosGanadoresEntry = ({id, title, numero, pairJBS, ...props}) => {
     }
 
     useEffect(() => {
+        setOldNumber(numero)
         setCurrentRole(authenticationService.type_user())
 
     }, [])

@@ -85,8 +85,6 @@ const NumeroGanadorEntry = ({match: {url}, apuestaId, title, numero, status, ...
     const [idApuesta, setId] = useState(0);
     const [titleApuesta, setTitleApuesta] = useState('');
     const [numeroApuesta, setNumeroApuesta] = useState(-1);
-    const [numeroOld, setNumeroOld] = useState(-1);
-
     const [statusApuesta, setStatus] = useState("abierta");
     const handler = props.handler;
 
@@ -95,7 +93,6 @@ const NumeroGanadorEntry = ({match: {url}, apuestaId, title, numero, status, ...
         setTitleApuesta(title);
         setNumeroApuesta(numero);
         setStatus(status);
-        setNumeroOld(numero)
     }, [])
 
     function onNumberChange(e) {
@@ -104,7 +101,7 @@ const NumeroGanadorEntry = ({match: {url}, apuestaId, title, numero, status, ...
 
     function clickButton() {
         if (numeroApuesta !== '' && numeroApuesta !== -1 && numeroApuesta >= 0 && numeroApuesta < 100) {
-            adminService.fix_numero_ganador(numeroApuesta, numeroOld, idApuesta).then((result) => {
+            adminService.fix_numero_ganador(numeroApuesta, idApuesta).then((result) => {
                 handler();
             })
         }

@@ -450,7 +450,7 @@ function get_numeros_ganadores() {
 }
 
 
-function fix_numero_ganador(numero, numeroOld, id) {
+function fix_numero_ganador(numero, id) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
         headers: {
@@ -461,7 +461,6 @@ function fix_numero_ganador(numero, numeroOld, id) {
     };
     let send = {
         numero: numero,
-        anterior: numeroOld
     };
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/admin/numeros/ganadores/${id}`,
@@ -503,7 +502,7 @@ function get_ganancias_perdidas(inicio, fin) {
 }
 
 
-function update_numero_ganador(numero, id) {
+function update_numero_ganador(numero, numeroOld, id) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
         headers: {
@@ -513,7 +512,8 @@ function update_numero_ganador(numero, id) {
         },
     };
     let send = {
-        numero: numero
+        numero: numero,
+        anterior: numeroOld
     };
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/admin/numeros/ganadores/${id}/update`,
