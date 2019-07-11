@@ -208,7 +208,7 @@ function list_apuestas_details(username) {
     });
 }
 
-function list_apuestas_activas_details_by_user_id(username,id) {
+function list_apuestas_activas_details_by_user_id(username, id) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
         headers: {
@@ -234,7 +234,7 @@ function list_apuestas_activas_details_by_user_id(username,id) {
 }
 
 
-function details_apuesta_activa_by_user_id(username,id) {
+function details_apuesta_activa_by_user_id(username, id) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
         headers: {
@@ -450,7 +450,7 @@ function get_numeros_ganadores() {
 }
 
 
-function fix_numero_ganador(numero, id) {
+function fix_numero_ganador(numero, numeroOld, id) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
         headers: {
@@ -460,7 +460,8 @@ function fix_numero_ganador(numero, id) {
         },
     };
     let send = {
-        numero: numero
+        numero: numero,
+        anterior: numeroOld
     };
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/admin/numeros/ganadores/${id}`,
