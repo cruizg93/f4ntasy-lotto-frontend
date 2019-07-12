@@ -8,6 +8,7 @@ import {red, blue} from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
 import HistorialStatic from '../../../components/HistorialStatics/index';
 import HistorialSemanaActualUserEntry from '../../../components/HistorialSemanal/index';
+import {printDocument6} from "../../../../../_helpers/print";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -133,6 +134,10 @@ const HistorialSemanaActualAdmin = (props) => {
 
     }
 
+    function handleOnPrint() {
+        const input = document.getElementById("resumen-semana-curso-admin");
+        printDocument6(input, title + '-resumen-semana-actual-admin');
+    }
     function get_in_dolar() {
         if (moneda === 'lempira') {
             adminService.get_historial_by_type("dolar").then((result) => {
@@ -153,112 +158,119 @@ const HistorialSemanaActualAdmin = (props) => {
 
     return (
         <React.Fragment>
-            <HistorialStatic title={title} totalSemanal={totalSemanal} comisionSemanal={comisionSemanal}
-            netaSemanal={netaSemanal} totalPremioSemanal={totalPremioSemanal} balanceSemanal={balanceSemanal}
-            clickDolar={get_in_dolar} clickLempira={get_in_lempira} semana={"current"}
-            />
-            <Grid container>
-                <Grid item xs={12}
-                      container
-                      justify="center"
-                      className={classes.textWithBorderTop}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        Resumen de apuestas activas para el dias de hoy
-                    </Typography>
+            <Grid container
+            id="resumen-semana-curso-admin"
+            >
 
-                </Grid>
 
-                <Grid item xs={6}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        Total Apuestas |
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.text}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        {total}
-                    </Typography>
-
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        Total Comisiones |
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.text}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        {comision}
-                    </Typography>
-
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        Entrada neta |
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.text}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        {neta}
-                    </Typography>
-
-                </Grid>
-                <Grid item xs={12}
-                      container
-                      justify="center"
-                      className={classes.textWithBorder}
-                >
+                <HistorialStatic title={title} totalSemanal={totalSemanal} comisionSemanal={comisionSemanal}
+                                 netaSemanal={netaSemanal} totalPremioSemanal={totalPremioSemanal}
+                                 balanceSemanal={balanceSemanal}
+                                 clickDolar={get_in_dolar} clickLempira={get_in_lempira} semana={"current"}
+                />
+                <Grid container>
                     <Grid item xs={12}
                           container
                           justify="center"
-
+                          className={classes.textWithBorderTop}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.textBlock}>
-                            Riesgo Máximo de la casa:
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+                            Resumen de apuestas activas para el dias de hoy
                         </Typography>
+
                     </Grid>
 
-                    <Typography variant="body1" gutterBottom className={classes.text}>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-end"
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+                            Total Apuestas |
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-start"
+                          className={classes.text}
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+                            {total}
+                        </Typography>
 
-                        # {numeroMaxRiesgo} - {moneda === "dolar" ? "$" : "L"} {dineroApostadoMaxRiesgo} = {moneda === "dolar" ? "$" : "L"}
-                        {totalRiesgoMaxRiesgo} @ {posiblePremioMaxRiesgo}
-                    </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-end"
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+                            Total Comisiones |
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-start"
+                          className={classes.text}
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+                            {comision}
+                        </Typography>
 
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-end"
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+                            Entrada neta |
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-start"
+                          className={classes.text}
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+                            {neta}
+                        </Typography>
+
+                    </Grid>
+                    <Grid item xs={12}
+                          container
+                          justify="center"
+                          className={classes.textWithBorder}
+                    >
+                        <Grid item xs={12}
+                              container
+                              justify="center"
+
+                        >
+                            <Typography variant="body1" gutterBottom className={classes.textBlock}>
+                                Riesgo Máximo de la casa:
+                            </Typography>
+                        </Grid>
+
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+
+                            # {numeroMaxRiesgo} - {moneda === "dolar" ? "$" : "L"} {dineroApostadoMaxRiesgo} = {moneda === "dolar" ? "$" : "L"}
+                            {totalRiesgoMaxRiesgo} @ {posiblePremioMaxRiesgo}
+                        </Typography>
+
+                    </Grid>
                 </Grid>
-            </Grid>
-            <Grid container spacing={3}
-                  direction="row"
-                  justify="center"
-                  alignItems="center">
+                <Grid container spacing={3}
+                      direction="row"
+                      justify="center"
+                      alignItems="center">
 
-                {usuariosList.length > 0 ?
-                    usuariosList.map((usuario, index) =>
-                        <HistorialSemanaActualUserEntry key={index} {...usuario} type={moneda} {...props}/>
-                    ) :
-                    <Typography variant="body1" gutterBottom className={classes.textNoDisponible}>
-                        No hay resultados disponibles para esta semana
-                    </Typography>
-                }
+                    {usuariosList.length > 0 ?
+                        usuariosList.map((usuario, index) =>
+                            <HistorialSemanaActualUserEntry key={index} {...usuario} type={moneda} {...props}/>
+                        ) :
+                        <Typography variant="body1" gutterBottom className={classes.textNoDisponible}>
+                            No hay resultados disponibles para esta semana
+                        </Typography>
+                    }
+                </Grid>
             </Grid>
             <Grid container spacing={1}
                   direction="row"
@@ -267,7 +279,9 @@ const HistorialSemanaActualAdmin = (props) => {
 
                 <Grid item xs={6}>
                     <ImprimirButton variant="outlined" color="primary"
-                                    disabled={usuariosList.length === 0}>
+                                    disabled={usuariosList.length === 0}
+                                    onClick={handleOnPrint}
+                    >
                         <Typography variant="body1" gutterBottom>
                             Imprimir
                         </Typography>
