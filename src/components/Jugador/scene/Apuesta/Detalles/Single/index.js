@@ -10,6 +10,7 @@ import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
 import {adminService} from "../../../../../../service/api/admin/admin.service";
+import {printDocument6} from "../../../../../../_helpers/print";
 
 
 const useStyles = makeStyles(theme => ({
@@ -160,6 +161,11 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
     const [disable, setDisable] = useState(true);
 
 
+    function handleOnPrint() {
+        const input = document.getElementById("user-apuesta-activa-entries");
+        printDocument6(input, title + '-detalles-apuestas-activas-user');
+    }
+
     function updateFunction(e) {
         let id = e.target.id;
         id = id.split('-')[3];
@@ -193,77 +199,86 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                 <Grid item xs={12}>
                     <Divider/>
                 </Grid>
-
-
-                {list.map((apuesta, index) =>
-                    <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}
-                                        disable={disable}
-                                        onEdit={updateFunction}
-                    />
-                )}
             </Grid>
-            <Grid container>
-                <Grid item xs={3}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={''}>
-                        apuestas |
-                    </Typography>
+            <Grid container
+                  id="user-apuesta-activa-entries"
+            >
+                <Grid container spacing={1}
+                      direction="row"
+                      justify="center"
+                      alignItems="flex-start">
+                    {list.map((apuesta, index) =>
+                        <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}
+                                            disable={disable}
+                                            onEdit={updateFunction}
+                        />
+                    )}
                 </Grid>
-                <Grid item xs={9}
-                      container
-                      justify="flex-start"
-                      className={''}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.numbers}>
-                        {total}
-                    </Typography>
+                <Grid container>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-end"
+                    >
+                        <Typography variant="body1" gutterBottom className={''}>
+                            apuestas |
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-start"
+                          className={''}
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.numbers}>
+                            {total}
+                        </Typography>
 
-                </Grid>
-                <Grid item xs={3}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={''}>
-                        comisiones |
-                    </Typography>
-                </Grid>
-                <Grid item xs={9}
-                      container
-                      justify="flex-start"
-                      className={''}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.numbers}>
-                        {comision}
-                    </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-end"
+                    >
+                        <Typography variant="body1" gutterBottom className={''}>
+                            comisiones |
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-start"
+                          className={''}
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.numbers}>
+                            {comision}
+                        </Typography>
 
-                </Grid>
-                <Grid item xs={3}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={''}>
-                        riesgo |
-                    </Typography>
-                </Grid>
-                <Grid item xs={9}
-                      container
-                      justify="flex-start"
-                      className={''}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.numbers}>
-                        {riesgo}
-                    </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-end"
+                    >
+                        <Typography variant="body1" gutterBottom className={''}>
+                            riesgo |
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-start"
+                          className={''}
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.numbers}>
+                            {riesgo}
+                        </Typography>
 
+                    </Grid>
                 </Grid>
             </Grid>
+
+
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
             >
                 <Grid item xs={6}>
-                    <ImprimirButton variant="outlined" color="primary">
+                    <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir
                         </Typography>
