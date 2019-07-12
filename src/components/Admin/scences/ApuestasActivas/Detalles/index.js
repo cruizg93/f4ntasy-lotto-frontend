@@ -6,7 +6,7 @@ import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import {red, blue} from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
 import ApuestaActivaRiesgoEntry from '../../../components/ApuestasActiva/Detalles/index';
-import {printDocument} from "../../../../../_helpers/print";
+import {printDocument, printDocument6} from "../../../../../_helpers/print";
 
 
 const useStyles = makeStyles(theme => ({
@@ -198,8 +198,8 @@ const ApuestaActivaAdminDetalle = (props) => {
     }
 
     function handleOnPrint() {
-        const input = document.getElementById('apuesta-activa-entries');
-        printDocument(input)
+        const input = document.getElementById("resumen-apuesta-activa-data-admin");
+        printDocument6(input, title + '-resumen-apuesta-activa-admin');
     }
 
     return (
@@ -239,106 +239,114 @@ const ApuestaActivaAdminDetalle = (props) => {
                         </LempiraButton>
                     </Grid>
                 </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        Total Apuestas |
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.text}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        {total}
-                    </Typography>
-
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        Total Comisiones |
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.text}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        {comision}
-                    </Typography>
-
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        Entrada neta |
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.text}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        {neta}
-                    </Typography>
-
-                </Grid>
-                <Grid item xs={12}
-                      container
+                <Grid container spacing={1}
+                      direction="row"
                       justify="center"
-                      className={classes.textWithBorder}
+                      id="resumen-apuesta-activa-data-admin"
                 >
+
+
+                    <Grid item xs={6}
+                          container
+                          justify="flex-end"
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+                            Total Apuestas |
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-start"
+                          className={classes.text}
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+                            {total}
+                        </Typography>
+
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-end"
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+                            Total Comisiones |
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-start"
+                          className={classes.text}
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+                            {comision}
+                        </Typography>
+
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-end"
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+                            Entrada neta |
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-start"
+                          className={classes.text}
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+                            {neta}
+                        </Typography>
+
+                    </Grid>
                     <Grid item xs={12}
                           container
                           justify="center"
-
+                          className={classes.textWithBorder}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.textBlock}>
-                            Riesgo Máximo de la casa:
+                        <Grid item xs={12}
+                              container
+                              justify="center"
+
+                        >
+                            <Typography variant="body1" gutterBottom className={classes.textBlock}>
+                                Riesgo Máximo de la casa:
+                            </Typography>
+                        </Grid>
+
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+
+                            # {numeroMaxRiesgo} - {moneda === "dolar" ? "$" : "L"} {dineroApostadoMaxRiesgo} = {moneda === "dolar" ? "$" : "L"}
+                            {totalRiesgoMaxRiesgo} @ {posiblePremioMaxRiesgo}
                         </Typography>
+
                     </Grid>
-
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-
-                        # {numeroMaxRiesgo} - {moneda === "dolar" ? "$" : "L"} {dineroApostadoMaxRiesgo} = {moneda === "dolar" ? "$" : "L"}
-                        {totalRiesgoMaxRiesgo} @ {posiblePremioMaxRiesgo}
-                    </Typography>
-
+                    <Grid container spacing={3}
+                          direction="row"
+                          justify="center"
+                          alignItems="center">
+                        {riesgoList.map((numero, index) =>
+                            <ApuestaActivaRiesgoEntry key={index} moneda={moneda} {...numero} total={total} {...props}/>
+                        )}
+                    </Grid>
                 </Grid>
+
             </Grid>
-            <div id="apuesta-activa-entries">
-                <Grid container spacing={3}
-                      direction="row"
-                      justify="center"
-                      alignItems="center">
-                    {riesgoList.map((numero, index) =>
-                        <ApuestaActivaRiesgoEntry key={index} moneda={moneda} {...numero} total={total} {...props}/>
-                    )}
-                </Grid>
-            </div>
+
+
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
             >
 
                 <Grid item xs={6}>
-                    <ImprimirButton variant="outlined" color="primary">
+                    <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir
                         </Typography>
                     </ImprimirButton>
                 </Grid>
-
             </Grid>
         </React.Fragment>
     )
