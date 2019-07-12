@@ -91,7 +91,6 @@ export function printDocument5(elems) {
 
 
     elems.forEach((elem, idx) => {
-        console.log(elem);
         if (idx !== 0 && idx % 21 === 0 && idx < elems.length - 1) {
             domtoimage.toPng(elem)
                 .then(function (dataUrl) {

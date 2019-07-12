@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button/index";
 import {withStyles} from "@material-ui/core/styles/index";
 import {playerService} from "../../../../../service/api/player/player.service";
 import ShowDetallesApuesta from '../../../components/Detalles/index';
+import {printDocument6} from "../../../../../_helpers/print";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -86,6 +87,11 @@ const DetallesApuesta = ({...props}) => {
         setTitle(props.location.state.title.title);
         setIdValue(props.location.state.id)
     }, []);
+
+    function handleOnPrint() {
+        const input = document.getElementById("apuesta-activa-numeros-detalles");
+        printDocument6(input, title+'-activa-detalles');
+    }
     return (
         <React.Fragment>
             <Grid
@@ -106,6 +112,7 @@ const DetallesApuesta = ({...props}) => {
                 direction="row"
                 justify="center"
                 alignItems="flex-start"
+                id="apuesta-activa-numeros-detalles"
             >
                 {list.map((apuestaDetail, index) =>
                     <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} {...props}
@@ -118,7 +125,7 @@ const DetallesApuesta = ({...props}) => {
             >
 
                 <Grid item xs={6}>
-                    <ImprimirButton variant="outlined" color="primary">
+                    <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir
                         </Typography>
