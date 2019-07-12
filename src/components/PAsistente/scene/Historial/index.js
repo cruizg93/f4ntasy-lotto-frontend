@@ -8,7 +8,6 @@ const HistorialAsistente = (props) => {
 
     useEffect(() => {
         playerService.list_historial_apuestas().then((result) => {
-            console.log(result.data);
             setEntryData(result.data)
         })
     }, []);

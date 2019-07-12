@@ -10,6 +10,7 @@ import AsistenteEntryDetail from '../../../components/Historial/AsistenteEntryDe
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
+import {printDocument6} from "../../../../../_helpers/print";
 
 
 const useStyles = makeStyles(theme => ({
@@ -69,7 +70,6 @@ const ImprimirButton = withStyles({
 })(Button);
 
 
-
 const DetallesPAsistente = ({...props}) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
@@ -83,11 +83,8 @@ const DetallesPAsistente = ({...props}) => {
     const [disable, setDisable] = useState(true);
 
 
-
-
-
     useEffect(() => {
-        playerService.get_historial_apuestas_details_by_id(props.location.state.id).then((result)=>{
+        playerService.get_historial_apuestas_details_by_id(props.location.state.id).then((result) => {
             setList(result.data);
         })
         setTitle(props.location.state.title);
@@ -98,6 +95,11 @@ const DetallesPAsistente = ({...props}) => {
         setNumeroValue(props.location.state.numero)
 
     }, []);
+
+    function handleOnPrint() {
+        const input = document.getElementById("container-apuesta-historial-data-asistente");
+        printDocument6(input, title + '-historail-detalles');
+    }
 
     return (
         <React.Fragment>
@@ -111,40 +113,52 @@ const DetallesPAsistente = ({...props}) => {
                 <Grid item xs={12}>
                     <Divider/>
                 </Grid>
-
-
-                {list.map((apuesta, index) =>
-                    <AsistenteEntryDetail key={index} {...apuesta} index={index} {...props}
-                                        disable={disable}
-                    />
-                )}
             </Grid>
-            <Grid container>
-                <Grid item xs={6}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
-                        Total apuestas |
-                    </Typography>
-                </Grid>
-                <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.textSimple}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
-                        {total}
-                    </Typography>
+            <Grid container spacing={1}
+                  direction="row"
+                  justify="center"
+                  id="container-apuesta-historial-data-asistente"
+            >
 
+                <Grid container spacing={1}
+                      direction="row"
+                      justify="center"
+                      alignItems="flex-start">
+
+                    {list.map((apuesta, index) =>
+                        <AsistenteEntryDetail key={index} {...apuesta} index={index} {...props}
+                                              disable={disable}
+                        />
+                    )}
+                </Grid>
+                <Grid container>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-end"
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                            Total apuestas |
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="flex-start"
+                          className={classes.textSimple}
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                            {total}
+                        </Typography>
+                    </Grid>
                 </Grid>
             </Grid>
+
+
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
             >
                 <Grid item xs={6}>
-                    <ImprimirButton variant="outlined" color="primary">
+                    <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir
                         </Typography>

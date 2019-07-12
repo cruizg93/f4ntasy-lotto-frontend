@@ -10,6 +10,7 @@ import ApuestaActivaEntry from '../../../components/ApuestaActiva/index';
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
+import {printDocument6} from "../../../../../_helpers/print";
 
 
 const useStyles = makeStyles(theme => ({
@@ -158,6 +159,10 @@ const ApuestaActivaAsistente = ({...props}) => {
 
 
     }
+    function handleOnPrint() {
+        const input = document.getElementById("container-apuesta-activa-data-asistente");
+        printDocument6(input, title+'-activa-asistente');
+    }
 
     function success_response() {
         toast.success("Cambio actualizado !", {
@@ -188,36 +193,43 @@ const ApuestaActivaAsistente = ({...props}) => {
                 <Grid item xs={12}>
                     <Divider/>
                 </Grid>
-
-
-                {list.map((apuesta, index) =>
-                    <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}
-                                        disable={disable}
-                                        onEdit={updateFunction}
-                    />
-                )}
             </Grid>
-            <Grid container>
-                <Grid item xs={3}
-                      container
-                      justify="flex-end"
-                >
-                    <Typography variant="body1" gutterBottom className={''}>
-                        apuestas |
-                    </Typography>
+            <Grid container spacing={1}
+                  direction="row"
+                  justify="center"
+                  alignItems="flex-start"
+                  id="container-apuesta-activa-data-asistente">
+
+                <Grid container spacing={1}
+                      direction="row"
+                      justify="center"
+                      alignItems="flex-start">
+                    {list.map((apuesta, index) =>
+                        <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}
+                                            disable={disable}
+                                            onEdit={updateFunction}
+                        />
+                    )}
                 </Grid>
-                <Grid item xs={9}
-                      container
-                      justify="flex-start"
-                      className={''}
-                >
-                    <Typography variant="body1" gutterBottom className={classes.numbers}>
-                        {total}
-                    </Typography>
-
+                <Grid container>
+                    <Grid item xs={3}
+                          container
+                          justify="flex-end"
+                    >
+                        <Typography variant="body1" gutterBottom className={''}>
+                            apuestas |
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={9}
+                          container
+                          justify="flex-start"
+                          className={''}
+                    >
+                        <Typography variant="body1" gutterBottom className={classes.numbers}>
+                            {total}
+                        </Typography>
+                    </Grid>
                 </Grid>
-
-
             </Grid>
             <Grid container spacing={1}
                   direction="row"
@@ -238,7 +250,7 @@ const ApuestaActivaAsistente = ({...props}) => {
                     </FijarButton>
                 </Grid>
                 <Grid item xs={6}>
-                    <ImprimirButton variant="outlined" color="primary">
+                    <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir
                         </Typography>
