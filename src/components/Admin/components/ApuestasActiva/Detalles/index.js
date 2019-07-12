@@ -53,8 +53,9 @@ const ApuestaActivaRiesgoEntry = ({numero, dineroApostado, posibleRiesgo, totalR
 
         >
             <Typography variant="body1" gutterBottom className={classes.text}>
-                # {numero} - {moneda === "dolar" ? "$" : "L"} {dineroApostado} = {moneda === "dolar" ? "$" : "L"}
-                {totalRiesgo} @ {(totalRiesgo/total).toFixed(2)}
+                # {numero} - {moneda === "dolar" ? "$" : "L"} {dineroApostado.toFixed(2)} =
+                {moneda === "dolar" ? "$" : "L"}
+                {totalRiesgo.toFixed(2)} @ {(totalRiesgo / total).toFixed(2)}
             </Typography>
 
         </Grid>

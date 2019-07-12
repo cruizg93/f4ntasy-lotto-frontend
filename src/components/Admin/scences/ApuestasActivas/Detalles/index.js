@@ -147,22 +147,26 @@ const ApuestaActivaAdminDetalle = (props) => {
 
 
     useEffect(() => {
-        setTotal(props.location.state.total);
-        setComision(props.location.state.comision);
-        setNeta(props.location.state.neta);
+        setTotal((props.location.state.total).toFixed(2));
+        setComision((props.location.state.comision).toFixed(2));
+        setNeta((props.location.state.neta).toFixed(2));
         setTitle(props.location.state.title.title);
 
         adminService.get_apuesta_activa_by_type_and_id(moneda, props.match.params.apuestaId).then((result) => {
-            setNumeroMaxRiesgo(result.data.maxRiesgo.numero);
-            setDineroApostadoMaxRiesgo(result.data.maxRiesgo.dineroApostado);
-            setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
-            setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
-            setRiesgoList(Array.from(result.data.tuplaRiesgos));
-            setTotal(result.data.total);
-            setComision(result.data.comision);
-            setNeta(result.data.total - result.data.comision);
+            update(result)
         })
     }, []);
+
+    function update(result) {
+        setNumeroMaxRiesgo(result.data.maxRiesgo.numero);
+        setDineroApostadoMaxRiesgo(result.data.maxRiesgo.dineroApostado);
+        setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
+        setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
+        setRiesgoList(Array.from(result.data.tuplaRiesgos));
+        setTotal((result.data.total).toFixed(2));
+        setComision(result.data.comision.toFixed(2));
+        setNeta((result.data.total - result.data.comision).toFixed(2));
+    }
 
     function get_in_dolar() {
         if (moneda === 'lempira') {
@@ -317,8 +321,8 @@ const ApuestaActivaAdminDetalle = (props) => {
 
                         <Typography variant="body1" gutterBottom className={classes.text}>
 
-                            # {numeroMaxRiesgo} - {moneda === "dolar" ? "$" : "L"} {dineroApostadoMaxRiesgo} = {moneda === "dolar" ? "$" : "L"}
-                            {totalRiesgoMaxRiesgo} @ {posiblePremioMaxRiesgo}
+                            # {numeroMaxRiesgo} - {moneda === "dolar" ? "$" : "L"} {dineroApostadoMaxRiesgo.toFixed(2)} = {moneda === "dolar" ? "$" : "L"}
+                            {totalRiesgoMaxRiesgo.toFixed(2)} @ {posiblePremioMaxRiesgo}
                         </Typography>
 
                     </Grid>
