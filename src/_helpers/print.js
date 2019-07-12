@@ -85,3 +85,50 @@ export function printDocument4(input) {
     //         // saveAs(blob, 'my-node.png');
     //     });
 }
+
+export function printDocument5(elems) {
+    let pdf = new jsPDF("portrait", "mm", "a4");
+
+
+    elems.forEach((elem, idx) => {
+        console.log(elem);
+        if (idx !== 0 && idx % 21 === 0 && idx < elems.length - 1) {
+            domtoimage.toPng(elem)
+                .then(function (dataUrl) {
+                    let img = new Image();
+                    img.src = dataUrl;
+                    pdf.addImage(img, 'PNG', 0, 0);
+                    pdf.addPage();
+                    // document.body.appendChild(img);
+                })
+                .catch(function (error) {
+                    console.error('oops, something went wrong!', error);
+                });
+        } else {
+            domtoimage.toPng(elem)
+                .then(function (dataUrl) {
+                    let img = new Image();
+                    img.src = dataUrl;
+                    pdf.addImage(img, 'PNG', 0, 0);
+
+                    // document.body.appendChild(img);
+                })
+                .catch(function (error) {
+                    console.error('oops, something went wrong!', error);
+                });
+        }
+    });
+    // pdf.save("download.pdf");
+}
+
+
+export function printDocument6(elems, title) {
+    // let pdf = new jsPDF("portrait", "mm", "a4");
+
+    domtoimage.toBlob(elems)
+        .then(function (blob) {
+            // pdf.addImage(blob, 'PNG', 0, 0);
+            // pdf.save("download.pdf");
+            saveAs(blob, title + '-apuesta.png');
+        });
+}

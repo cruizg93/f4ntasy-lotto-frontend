@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from "@material-ui/core/styles/index";
 import NumberFormat from 'react-number-format';
 import {red} from "@material-ui/core/colors/index";
+import './ApuestaActiva.css';
 
 const useStyles = makeStyles(theme => ({
     root: {
