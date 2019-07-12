@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button/index";
 import {withStyles} from "@material-ui/core/styles/index";
 import ShowDetallesApuesta from '../../../../../Player/components/Detalles/index';
 import {adminService} from "../../../../../../service/api/admin/admin.service";
+import {printDocument6} from "../../../../../../_helpers/print";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -87,6 +88,11 @@ const DesgloseApuestaJugador = ({...props}) => {
         setTitle(props.location.state.title.title);
         setIdValue(props.location.state.id)
     }, []);
+
+    function handleOnPrint() {
+        const input = document.getElementById("destalles-apuesta-usuario-desglose");
+        printDocument6(input, title+'-activa-asistente');
+    }
     return (
         <React.Fragment>
             <Grid
@@ -107,6 +113,7 @@ const DesgloseApuestaJugador = ({...props}) => {
                 direction="row"
                 justify="center"
                 alignItems="flex-start"
+                id="destalles-apuesta-usuario-desglose"
             >
                 {list.map((apuestaDetail, index) =>
                     <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} {...props}
@@ -119,7 +126,7 @@ const DesgloseApuestaJugador = ({...props}) => {
             >
 
                 <Grid item xs={6}>
-                    <ImprimirButton variant="outlined" color="primary">
+                    <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir
                         </Typography>
