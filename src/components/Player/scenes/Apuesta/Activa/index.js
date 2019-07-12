@@ -10,7 +10,7 @@ import ApuestaActivaEntry from '../../../components/ApuestaActiva/index';
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
-
+import {printDocument, printDocument2, printDocument4} from "../../../../../_helpers/print";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -190,6 +190,13 @@ const ApuestaActiva = ({...props}) => {
         });
     }
 
+    function handleOnPrint() {
+        // let input = document.querySelectorAll(".entrada-datos");
+        // console.log(input);
+        const input = document.getElementById("apuestas-activas-data-entry");
+        printDocument4(input);
+    }
+
     useEffect(() => {
         playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
             setTitle(result.data.title);
@@ -214,13 +221,16 @@ const ApuestaActiva = ({...props}) => {
                     <Divider/>
                 </Grid>
 
+                <Grid container spacing={1} id="apuestas-activas-data-entry">
+                    {list.map((apuesta, index) =>
+                        <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}
+                                            disable={disable}
+                                            onEdit={updateFunction}
+                        />
+                    )}
+                </Grid>
 
-                {list.map((apuesta, index) =>
-                    <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}
-                                        disable={disable}
-                                        onEdit={updateFunction}
-                    />
-                )}
+
             </Grid>
             <Grid container>
                 <Grid item xs={3}
@@ -297,7 +307,7 @@ const ApuestaActiva = ({...props}) => {
                     </FijarButton>
                 </Grid>
                 <Grid item xs={6}>
-                    <ImprimirButton variant="outlined" color="primary">
+                    <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir
                         </Typography>

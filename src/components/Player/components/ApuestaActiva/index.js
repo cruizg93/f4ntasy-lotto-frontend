@@ -11,6 +11,9 @@ const useStyles = makeStyles(theme => ({
     root: {
         padding: theme.spacing(1, 1),
     },
+    item: {
+        padding: theme.spacing(1, 1),
+    },
     component: {
         textDecoration: 'none',
     },

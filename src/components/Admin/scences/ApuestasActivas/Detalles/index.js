@@ -6,6 +6,8 @@ import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import {red, blue} from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
 import ApuestaActivaRiesgoEntry from '../../../components/ApuestasActiva/Detalles/index';
+import {printDocument} from "../../../../../_helpers/print";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -195,6 +197,11 @@ const ApuestaActivaAdminDetalle = (props) => {
         }
     }
 
+    function handleOnPrint() {
+        const input = document.getElementById('apuesta-activa-entries');
+        printDocument(input)
+    }
+
     return (
         <React.Fragment>
             <Grid container>
@@ -309,14 +316,16 @@ const ApuestaActivaAdminDetalle = (props) => {
 
                 </Grid>
             </Grid>
-            <Grid container spacing={3}
-                  direction="row"
-                  justify="center"
-                  alignItems="center">
-                {riesgoList.map((numero, index) =>
-                    <ApuestaActivaRiesgoEntry key={index} moneda={moneda} {...numero} total={total} {...props}/>
-                )}
-            </Grid>
+            <div id="apuesta-activa-entries">
+                <Grid container spacing={3}
+                      direction="row"
+                      justify="center"
+                      alignItems="center">
+                    {riesgoList.map((numero, index) =>
+                        <ApuestaActivaRiesgoEntry key={index} moneda={moneda} {...numero} total={total} {...props}/>
+                    )}
+                </Grid>
+            </div>
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
