@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
+import Cambio from './Cambio/index';
+import Balance from './Balance/index';
+
 import './Clock.css';
-import axios from 'axios';
-import {playerService} from "../../service/api/player/player.service";
 
 class Clock extends Component {
     constructor(props) {
         super(props);
         this.state = {
             time: new Date(),
-            balance: 0.0
+            isAdmin: false,
+            isAsistente: false,
         };
     }
 
@@ -16,12 +18,6 @@ class Clock extends Component {
         this.setState({
             time: new Date()
         });
-    }
-
-    updateBalance() {
-        playerService.get_balance().then((result) => {
-            this.setState({balance: result})
-        })
     }
 
 
@@ -33,20 +29,22 @@ class Clock extends Component {
         "Noviembre", "Diciembre"
     ];
 
+    componentWillMount() {
+        this.setState({
+            isAdmin: this.props.admin,
+            isAsistente: this.props.asistente,
+        })
+    }
+
     componentDidMount() {
         this.timerID = setInterval(
             () => this.tick(),
             1000
         );
-        // this.balanceId = setInterval(
-        //     () => this.updateBalance(),
-        //     1000
-        // )
     }
 
     componentWillUnmount() {
         clearInterval(this.timerID);
-        clearInterval(this.balanceId);
     }
 
 
@@ -65,7 +63,16 @@ class Clock extends Component {
 
                 </div>
                 <div className={'clock__column'}>
-                    Otro
+
+
+                    {(!this.state.isAdmin && !this.state.isAsistente) &&
+                    <Balance/>
+
+                    }
+                    {this.state.isAdmin &&
+                    <Cambio/>
+
+                    }
                 </div>
 
             </div>

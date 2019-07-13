@@ -26,7 +26,8 @@ export const adminService = {
     get_numeros_ganadores,
     fix_numero_ganador,
     get_ganancias_perdidas,
-    update_numero_ganador
+    update_numero_ganador,
+    get_current_cambio
 };
 
 
@@ -526,4 +527,21 @@ function update_numero_ganador(numero, numeroOld, id) {
                 reject(error);
             })
     });
+}
+
+///moneda/cambio/current
+
+function get_current_cambio() {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/admin/moneda/cambio/current`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    })
 }
