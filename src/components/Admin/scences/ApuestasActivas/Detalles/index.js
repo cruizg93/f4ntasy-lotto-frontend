@@ -172,14 +172,15 @@ const ApuestaActivaAdminDetalle = (props) => {
         if (moneda === 'lempira') {
             adminService.get_apuesta_activa_by_type_and_id("dolar", props.match.params.apuestaId).then((result) => {
                 setMoneda("dolar")
-                setNumeroMaxRiesgo(result.data.maxRiesgo.numero);
-                setDineroApostadoMaxRiesgo(result.data.maxRiesgo.dineroApostado);
-                setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
-                setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
-                setRiesgoList(Array.from(result.data.tuplaRiesgos));
-                setTotal(result.data.total);
-                setComision(result.data.comision);
-                setNeta(result.data.total - result.data.comision);
+                // setNumeroMaxRiesgo(result.data.maxRiesgo.numero);
+                // setDineroApostadoMaxRiesgo(result.data.maxRiesgo.dineroApostado);
+                // setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
+                // setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
+                // setRiesgoList(Array.from(result.data.tuplaRiesgos));
+                // setTotal(result.data.total);
+                // setComision(result.data.comision);
+                // setNeta(result.data.total - result.data.comision);
+                 update(result)
             })
         }
     }
@@ -188,15 +189,16 @@ const ApuestaActivaAdminDetalle = (props) => {
         if (moneda === 'dolar') {
             adminService.get_apuesta_activa_by_type_and_id("lempira", props.match.params.apuestaId).then((result) => {
                 setMoneda("lempira");
-                setNumeroMaxRiesgo(result.data.maxRiesgo.numero);
-                setDineroApostadoMaxRiesgo(result.data.maxRiesgo.dineroApostado);
-                setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
-                setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
-                setRiesgoList([]);
-                setRiesgoList(Array.from(result.data.tuplaRiesgos));
-                setTotal(result.data.total);
-                setComision(result.data.comision);
-                setNeta(result.data.total - result.data.comision);
+                // setNumeroMaxRiesgo(result.data.maxRiesgo.numero);
+                // setDineroApostadoMaxRiesgo(result.data.maxRiesgo.dineroApostado);
+                // setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
+                // setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
+                // setRiesgoList([]);
+                // setRiesgoList(Array.from(result.data.tuplaRiesgos));
+                // setTotal(result.data.total);
+                // setComision(result.data.comision);
+                // setNeta(result.data.total - result.data.comision);
+                 update(result)
             })
         }
     }

@@ -9,29 +9,30 @@ const NumeroGanador = (props) => {
 
 
     useEffect(() => {
-        adminService.get_numeros_ganadores().then((result)=>{
+        adminService.get_numeros_ganadores().then((result) => {
             setEntryData(Array.from(result.data));
         })
     }, []);
 
     function reload() {
-        adminService.get_numeros_ganadores().then((result)=>{
+        adminService.get_numeros_ganadores().then((result) => {
             setEntryData([])
             setEntryData(Array.from(result.data));
         })
     }
+
     return (
         <React.Fragment>
             <Grid container spacing={3}
                   direction="row"
                   justify="center"
                   alignItems="flex-start">
-                {entry.length !==0 ?
-                    entry.map((apuesta, index)=>
+                {entry.length !== 0 ?
+                    entry.map((apuesta, index) =>
                         <NumeroGanadorEntry key={index} {...apuesta} {...props} handler={reload}/>
                     )
 
-                :
+                    :
                     "No hay datos disponibles"
                 }
             </Grid>
