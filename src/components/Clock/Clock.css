@@ -6,11 +6,16 @@
     text-align: center;
     background: transparent;
     padding-bottom: .5rem;
+    font-size: 14pt;
 
 }
 
-.clock__row{
-     border-bottom: 2px solid #747474;
+.clock__row {
+    border-bottom: 2px solid #747474;
+    position: fixed;
+    display: block;
+    width: 100%;
+    top: 4rem;
 }
 
 /* Clear floats after the columns */

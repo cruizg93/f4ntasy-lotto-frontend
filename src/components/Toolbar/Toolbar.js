@@ -61,7 +61,7 @@ class Toolbar extends Component {
             <header className={this.state.toolbarClasses}>
                 <nav className="toolbar__navigation">
                     <div className="toolbar__logo">
-                        <NavLink to="/" exact strict>The Logo</NavLink>
+                        <NavLink to="/" exact strict>F4ntasy L0tt0</NavLink>
                     </div>
                     <div className="spacer"/>
                     <div className="toolbar__navigation-items">
