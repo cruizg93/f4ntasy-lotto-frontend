@@ -135,7 +135,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, total, username, ...props}) => {
+const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, total, username, name, ...props}) => {
     const classes = useStyles();
     const [monedaSymbol, setMonedaSymbol] = useState('$');
 
@@ -181,7 +181,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                         }
 
                         >
-                            {username} | {monedaSymbol}
+                            {username} {" "}|{" "}{name}{" "} {monedaSymbol}
                         </Paper>
                         <Grid container className={classes.margin}>
                             <Grid item xs={5}
