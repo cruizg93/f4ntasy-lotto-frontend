@@ -154,9 +154,9 @@ export default function Diaria({
                             onChange={onChangeComisionMil}
                         />
                         <TextField
-                            id="diaria-directo-input-premio-miles"
-                            label="Premio x mil"
-                            placeholder="Premio x mil"
+                            id="diaria-directo-input-premio"
+                            label="Premio"
+                            placeholder="Premio"
                             margin="normal"
                             variant="outlined"
                             fullWidth

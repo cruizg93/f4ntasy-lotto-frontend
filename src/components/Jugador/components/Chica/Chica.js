@@ -160,9 +160,9 @@ export default function Chica({
                             onChange={onChangeComisionMil}
                         />
                         <NumberFormat
-                            id="chica-directo-input-premio-miles"
-                            label="Premio x mil"
-                            placeholder="Premio x mil"
+                            id="chica-directo-input-premio"
+                            label="Premio"
+                            placeholder="Premio"
                             margin="normal"
                             variant="outlined"
                             fullWidth
@@ -237,9 +237,9 @@ export default function Chica({
                             onChange={onChangeCostoPedazos}
                         />
                         <NumberFormat
-                            id="chica-pedazos-input-premio-miles"
-                            label="Premio x mil"
-                            placeholder="Premio x mil"
+                            id="chica-pedazos-input-premio"
+                            label="Premio"
+                            placeholder="Premio"
                             margin="normal"
                             variant="outlined"
                             fullWidth
