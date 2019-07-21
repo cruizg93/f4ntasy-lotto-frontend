@@ -16,6 +16,8 @@ export const authenticationService = {
 };
 
 function login(username, password) {
+    let user=username[0].toUpperCase()+username.slice(1);
+    username=user;      
     const requestOptions = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
