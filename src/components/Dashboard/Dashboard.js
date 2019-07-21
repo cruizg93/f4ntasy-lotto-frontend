@@ -6,8 +6,7 @@ import Backdrop from '../Backdrop/Backdrop';
 import Clock from "../Clock/Clock";
 import Container from '@material-ui/core/Container';
 import {authenticationService} from "../../service/api/authentication/authentication.service";
-import {makeStyles} from "@material-ui/core/styles/index";
-
+import './Dashboard.css';
 
 class Dashboard extends Component {
 
@@ -26,7 +25,6 @@ class Dashboard extends Component {
     backdropClickHandler = () => {
         this.setState({sideDrawerOpen: false})
     };
-
 
     componentWillMount() {
         this.setState({
@@ -58,7 +56,7 @@ class Dashboard extends Component {
                             admin={this.state.isAdmin}
                             asistente={this.state.isAsistente}
                     />
-                    <Container maxWidth="sm">
+                    <Container maxWidth="sm" className={"container__box"}>
                         {this.props.childComponent}
                     </Container>
 

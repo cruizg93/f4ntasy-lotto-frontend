@@ -461,44 +461,47 @@ export default function Nuevo() {
                             </NativeSelect>
                         </Grid>
                     </Grid>
-                    <Grid container spacing={1}
-                          direction="row"
-                          justify="center"
-                          alignItems="flex-start">
-                        <Grid item xs={6}>
-                            <Typography variant="h6" gutterBottom className={"form__center-label"}>
-                                Tipo de moneda
-                            </Typography>
+                    {hideComponents ? null :
+                        <Grid container spacing={1}
+                                direction="row"
+                                justify="center"
+                                alignItems="flex-start">
+                            <Grid item xs={6}>
+                                <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                                    Tipo de moneda
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <FormControlLabel
+                                    value="lempiras"
+                                    control={
+                                        <GreenRadio
+                                            checked={selectedValueMoneda === 'l'}
+                                            onChange={handleChange}
+                                            value="l"
+                                            name="radio-button-moneda"
+                                            inputProps={{'aria-label': 'L'}}
+                                        />}
+                                    label="Lempiras"
+                                    labelPlacement="bottom"
+                                />
+                                <FormControlLabel
+                                    value="dolar"
+                                    control={
+                                        <GreenRadio
+                                            checked={selectedValueMoneda === 'd'}
+                                            onChange={handleChange}
+                                            value="d"
+                                            name="radio-button-moneda"
+                                            inputProps={{'aria-label': 'D'}}
+                                        />}
+                                    label="Dolares"
+                                    labelPlacement="bottom"
+                                />
+                            </Grid>
                         </Grid>
-                        <Grid item xs={6}>
-                            <FormControlLabel
-                                value="lempiras"
-                                control={
-                                    <GreenRadio
-                                        checked={selectedValueMoneda === 'l'}
-                                        onChange={handleChange}
-                                        value="l"
-                                        name="radio-button-moneda"
-                                        inputProps={{'aria-label': 'L'}}
-                                    />}
-                                label="Lempiras"
-                                labelPlacement="bottom"
-                            />
-                            <FormControlLabel
-                                value="dolar"
-                                control={
-                                    <GreenRadio
-                                        checked={selectedValueMoneda === 'd'}
-                                        onChange={handleChange}
-                                        value="d"
-                                        name="radio-button-moneda"
-                                        inputProps={{'aria-label': 'D'}}
-                                    />}
-                                label="Dolares"
-                                labelPlacement="bottom"
-                            />
-                        </Grid>
-                    </Grid>
+                    }
+                   
 
                     <Divider/>
                     <Grid container spacing={1}
