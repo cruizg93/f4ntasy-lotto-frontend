@@ -5,8 +5,11 @@ import Grid from '@material-ui/core/Grid'
 import Container from '@material-ui/core/Container';
 import './Jugador.css';
 import {adminService} from "../../service/api/admin/admin.service";
-import {makeStyles} from "@material-ui/core/styles/index";
+import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import JugadorDataShow from './components/JugadorEntry/index';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -50,6 +53,33 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
+const FijarButton = withStyles({
+    root: {
+        width: '100%',
+        boxShadow: 'none',
+        textTransform: 'none',
+        fontSize: 16,
+        padding: '6px 12px',
+        lineHeight: 1.5,
+        backgroundColor: '#29992a',
+        color: '#FFF',
+        marginTop: '.5rem',
+        marginBottom: '2rem',       
+        '&:hover': {
+            backgroundColor: '#52d94f',
+            borderColor: '#62cc68',
+        },
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: '#0062cc',
+            borderColor: '#005cbf',
+        },
+        '&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+        },
+    },
+})(Button);
+
 const Jugador = (props) => {
     const classes = useStyles();
     const [jugadorList, setJugadorList] = useState([]);
@@ -83,6 +113,22 @@ const Jugador = (props) => {
         <React.Fragment>
             <ToastContainer autoClose={8000}/>
             <Container maxWidth="sm" className={classes.container}>
+            <Grid item xs={12}>
+                        <FijarButton variant="outlined" color="primary" 
+                        component={Link}
+                        to={
+                            {
+                                pathname: `/jugador/nuevo`,                               
+                            }
+                        }
+                        
+                        
+                        >
+                            <Typography variant="body1" gutterBottom>
+                                CREAR NUEVO JUGADOR
+                            </Typography>
+                        </FijarButton>
+                    </Grid>
                 <Grid container spacing={5}>
                     {jugadorList.map((jugador, index) =>
                         <JugadorDataShow key={index} {...jugador} {...props} handler={reload} toast={toast_notification}/>
