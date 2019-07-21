@@ -238,7 +238,7 @@ export default function Nuevo() {
     };
     //Input
     const [inputUserName, setInputUserName] = useState(''); // '' is the initial state value
-    const [inputPassword, setInputPassword] = useState(''); // '' is the initial state value
+    const [inputPassword, setInputPassword] = useState('123456789'); // '' is the initial state value
 
     function success_response() {
         toast.success("Usuario guardado !", {
@@ -532,6 +532,9 @@ export default function Nuevo() {
                                 margin="normal"
                                 variant="outlined"
                                 type="password"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
                                 fullWidth
                                 required
                                 value={inputPassword}
