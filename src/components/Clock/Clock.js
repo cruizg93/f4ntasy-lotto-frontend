@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Cambio from './Cambio/index';
 import Balance from './Balance/index';
+import Time from './Time/index';
+
 
 import './Clock.css';
 
@@ -52,16 +54,7 @@ class Clock extends Component {
 
         return (
             <div className={'clock__row'}>
-                <div className={'clock__column'}>
-                    {this.monthNames[this.state.time.getMonth()] + " " + this.state.time.getUTCDate() + ", " + this.state.time.getFullYear()}
-                </div>
-                <div className={'clock__column'}>
-                    {
-                        this.state.time.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
-                    }
-
-
-                </div>
+                    <Time/>
                 <div className={'clock__column'}>
 
 
