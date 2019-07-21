@@ -141,6 +141,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
 
     const [open, setOpen] = React.useState(false);
     const handler = props.handler;
+    const toast = props.toast;
 
     function handleClickOpen() {
         setOpen(true);
@@ -152,7 +153,11 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
 
     function deletePlayer() {
         adminService.delete_player_by_id(id).then((result) => {
-            handler();
+            if(result.data === "Apuestas"){
+                toast("fail");
+            }else{                
+                handler();
+            }            
         })
     }
 

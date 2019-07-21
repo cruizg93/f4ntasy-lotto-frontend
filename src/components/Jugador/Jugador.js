@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid'
 import Container from '@material-ui/core/Container';
 import './Jugador.css';
@@ -55,6 +56,7 @@ const Jugador = (props) => {
 
     function reload(){
         adminService.list_players_details().then((result) => {
+            toast_notification("success");
             setJugadorList([]);
             setJugadorList(Array.from(result.data))
         })
@@ -64,12 +66,26 @@ const Jugador = (props) => {
             setJugadorList(Array.from(result.data))
         })
     }, []);
+
+    function toast_notification(type) {
+        if(type === "success"){
+            toast.success("Usuario eliminado !", {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        }else{
+            toast.error("Existen apuestas activas asociadas al usuario", {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        }
+       
+    }
     return (
         <React.Fragment>
+            <ToastContainer autoClose={8000}/>
             <Container maxWidth="sm" className={classes.container}>
                 <Grid container spacing={5}>
                     {jugadorList.map((jugador, index) =>
-                        <JugadorDataShow key={index} {...jugador} {...props} handler={reload}/>
+                        <JugadorDataShow key={index} {...jugador} {...props} handler={reload} toast={toast_notification}/>
                     )}
 
                 </Grid>
