@@ -110,10 +110,14 @@ function list_apuestas_hoy() {
 }
 
 function get_balance() {
+    const currentUser = authenticationService.currentUserValue;
     const requestOptions = {headers: authHeader()};
+    let send = {
+        username: currentUser.username
+    };    
     return new Promise((resolve, reject) => {
-        axios.get(`${baseUrl}/user/balance`,
-            requestOptions
+        axios.post(`${baseUrl}/user/balance`,
+            send, requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);
