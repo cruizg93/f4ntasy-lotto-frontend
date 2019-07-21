@@ -15,7 +15,9 @@
     position: fixed;
     display: block;
     width: 100%;
-    top: 4rem;
+    top: 3.5rem;
+    background-color: white;
+    z-index: 25;   
 }
 
 /* Clear floats after the columns */
