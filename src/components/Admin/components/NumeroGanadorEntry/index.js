@@ -177,7 +177,7 @@ const NumeroGanadorEntry = ({match: {url}, apuestaId, title, numero, status, ...
                             >
                                 <TotalButton variant="outlined" color="primary" onClick={clickButton}>
                                     <Typography variant="body1" gutterBottom>
-                                        Total
+                                        Fijar
                                     </Typography>
                                 </TotalButton>
                             </Grid>
