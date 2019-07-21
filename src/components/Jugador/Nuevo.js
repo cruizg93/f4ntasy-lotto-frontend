@@ -259,8 +259,8 @@ export default function Nuevo() {
     }
 
     function update_jugador() {
-        adminService.count().then((response) => {
-            let number = response.data - 3;
+        adminService.count().then((response) => {            
+            let number = response.data;
             let length = Math.log(number) * Math.LOG10E + 1 | 0;
             let pword = 'P';
             switch (length) {
