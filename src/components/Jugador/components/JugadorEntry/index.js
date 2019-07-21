@@ -14,6 +14,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+
+import Divider from '@material-ui/core/Divider';
+
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {adminService} from "../../../../service/api/admin/admin.service";
 
 const AsistButton = withStyles({
@@ -78,6 +85,10 @@ const useStyles = makeStyles(theme => ({
     text: {
         display: 'flex'
     },
+    textLabel: {
+        display: 'flex',
+        marginRight: '.5rem'
+    },
     svgContainer: {
         display: 'flex',
         alignItems: 'center',
@@ -135,11 +146,15 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, total, username, name, ...props}) => {
+const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, total, username, name, asistentes, ...props}) => {
     const classes = useStyles();
     const [monedaSymbol, setMonedaSymbol] = useState('$');
 
     const [open, setOpen] = React.useState(false);
+
+    const [expanded, setExpanded] = React.useState(false);   
+    const [asignedAsistentes, setAsignedAsistentes]= React.useState([]);
+
     const handler = props.handler;
     const toast = props.toast;
 
@@ -159,19 +174,26 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                 handler();
             }            
         })
-    }
+    }  
+
+    
+
+    const handleChangeExpand = panel => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
+    };
 
 
     useEffect(() => {
         if (monedaType === "lempira") {
             setMonedaSymbol('L')
         }
+        if(asistentes)
+            setAsignedAsistentes(Array.from(asistentes))
     }, [])
     return (
 
         <Grid item xs={12}>
             <Paper className={classes.paper}>
-
                 <Grid container spacing={3}>
                     <Grid item xs={6}>
                         <Paper className={total === 0 ? classes.paperUserDisable : classes.paperUser} xs={12}
@@ -186,14 +208,14 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                         }
 
                         >
-                            {username} {" "}|{" "}{name}{" "} {monedaSymbol}
+                            {username} {" | "}{name}{" | "} {monedaSymbol}
                         </Paper>
                         <Grid container className={classes.margin}>
                             <Grid item xs={5}
                                   container
                                   justify="flex-end">
-                                <Typography variant="body1" gutterBottom className={classes.text}>
-                                    apuestas |
+                                <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                                    apuestas 
                                 </Typography>
                             </Grid>
                             <Grid item xs={7}>
@@ -204,8 +226,8 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                             <Grid item xs={5}
                                   container
                                   justify="flex-end">
-                                <Typography variant="body1" gutterBottom className={classes.text}>
-                                    comisiones |
+                                <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                                    comisiones 
                                 </Typography>
                             </Grid>
 
@@ -219,8 +241,8 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                                   container
                                   justify="flex-end"
                             >
-                                <Typography variant="body1" gutterBottom className={classes.text}>
-                                    riesgo |
+                                <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                                    riesgo 
                                 </Typography>
                             </Grid>
 
@@ -315,6 +337,34 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
 
                         </Grid>
                     </Grid>
+                    {asistentes && 
+                        <>
+                            <Grid item xs={12}>
+                                <Divider/>
+                            </Grid>                            
+                            <Grid item xs={12}>
+                                <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChangeExpand('panel1')}
+                            TransitionProps={{unmountOnExit: true}}>
+                                    <ExpansionPanelSummary
+                                        expandIcon={<ExpandMoreIcon/>}
+                                        aria-controls="panel1bh-content"
+                                        id="panel1bh-header"
+                                    >
+                                       <Typography variant="body1" gutterBottom className={classes.text}>
+                                        {asignedAsistentes.length}{" Jugadores X asignados"} 
+                                        </Typography>     
+
+                                    </ExpansionPanelSummary>
+                                    <ExpansionPanelDetails>                                  
+
+                                    asistentes
+                                    </ExpansionPanelDetails>
+                                 </ExpansionPanel>
+                                
+                            </Grid>
+                        </>
+                    }
+                    
                 </Grid>
             </Paper>
         </Grid>
