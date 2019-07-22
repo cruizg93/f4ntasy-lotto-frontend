@@ -21,6 +21,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AsistenteDataShow from '../AsistenteEntry/index';
 import {adminService} from "../../../../service/api/admin/admin.service";
 
 const AsistButton = withStyles({
@@ -143,6 +144,12 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         padding: '5px 10px 5px 10px',
     },
+    expansionPanel:{
+        boxShadow: 'none'
+    },
+    expansionPanelTextHeader:{      
+        marginLeft: '9rem'
+    }
 
 }));
 
@@ -174,9 +181,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                 handler();
             }            
         })
-    }  
-
-    
+    }      
 
     const handleChangeExpand = panel => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
@@ -338,26 +343,28 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                         </Grid>
                     </Grid>
                     {asistentes && 
-                        <>
-                            <Grid item xs={12}>
+                        <>                                                   
+                            <Grid item xs={12}
+                            
+                            >
                                 <Divider/>
-                            </Grid>                            
-                            <Grid item xs={12}>
                                 <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChangeExpand('panel1')}
-                            TransitionProps={{unmountOnExit: true}}>
+                            TransitionProps={{unmountOnExit: true}} className={classes.expansionPanel}>
                                     <ExpansionPanelSummary
                                         expandIcon={<ExpandMoreIcon/>}
                                         aria-controls="panel1bh-content"
-                                        id="panel1bh-header"
+                                        id="panel1bh-header"                                       
                                     >
-                                       <Typography variant="body1" gutterBottom className={classes.text}>
-                                        {asignedAsistentes.length}{" Jugadores X asignados"} 
+                                       <Typography variant="body1" gutterBottom className={classes.expansionPanelTextHeader} >
+                                            {asignedAsistentes.length}{" Jugadores X asignados"} 
                                         </Typography>     
 
                                     </ExpansionPanelSummary>
                                     <ExpansionPanelDetails>                                  
-
-                                    asistentes
+                                        {asignedAsistentes.map((asistente, index)=>
+                                            <AsistenteDataShow key={index} {...asistente} {...props} />
+                                        )}
+                                    
                                     </ExpansionPanelDetails>
                                  </ExpansionPanel>
                                 
