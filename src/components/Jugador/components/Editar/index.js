@@ -15,35 +15,12 @@ import {green} from '@material-ui/core/colors';
 
 
 import Divider from '@material-ui/core/Divider';
-import InputBase from '@material-ui/core/InputBase';
 import Diaria from "../Diaria/Diaria";
 import Chica from "../Chica/Chica";
 import {adminService} from "../../../../service/api/admin/admin.service";
 
 import './Editar.css';
 
-const BootstrapInput = withStyles(theme => ({
-    root: {
-        'label + &': {
-            marginTop: theme.spacing(3),
-        },
-    },
-    input: {
-        borderRadius: 4,
-        position: 'relative',
-        backgroundColor: theme.palette.background.paper,
-        border: '1px solid #ced4da',
-        fontSize: 16,
-        width: '10rem',
-        padding: '10px 26px 10px 12px',
-        transition: theme.transitions.create(['border-color', 'box-shadow']),
-        '&:focus': {
-            borderRadius: 4,
-            borderColor: '#80bdff',
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-        },
-    },
-}))(InputBase);
 
 const GreenRadio = withStyles({
     root: {

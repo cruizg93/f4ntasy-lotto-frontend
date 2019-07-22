@@ -27,6 +27,7 @@ class Dashboard extends Component {
     };
 
     componentWillMount() {
+        console.log(this.props)
         this.setState({
             isAdmin: (authenticationService.type_user() === 'Admin' ||
                 authenticationService.type_user() === 'Master'),

@@ -12,6 +12,7 @@ import Password from './components/Password/Password';
 import Fijar from './components/Fijar/Fijar';
 import {history} from "./_helpers/history";
 import {Role} from "./_helpers/role";
+import EditarAsistente from './components/Admin/scences/Asistente/Editar/index';
 import EditarJugador from './components/Jugador/components/Editar/index';
 import BalanceJugador from './components/Jugador/scene/Balance/index';
 import JugadorDetalles from './components/Jugador/scene/Apuesta/Detalles/index';
@@ -57,9 +58,23 @@ class App extends React.Component {
                         <Switch>
                             <Route exact path="/login" component={Login}/>
                             <PrivateRoute
+                                key="jugadores"
                                 exact path="/"
+                                //roles={[Role.Admin, Role.Master]}
                                 component={Jugador}
                             />
+                           {/*  <PrivateRoute
+                                key="apuestas-jugador"
+                                exact path="/"
+                                roles={[Role.Player]}
+                                component={AdicionarApuesta}
+                            />
+                            <PrivateRoute
+                                key="apuestas-asistente"
+                                exact path="/"
+                                roles={[Role.Asistente]}
+                                component={AdicionarApuestaAsistente}
+                            /> */}
                             <PrivateRoute
                                 exact path="/jugador/editar/:jugadorId"
                                 roles={[Role.Admin, Role.Master]}
@@ -87,9 +102,14 @@ class App extends React.Component {
                                 roles={[Role.Admin, Role.Master]}
                                 component={DesgloseApuestaJugador}
                             />
-
+                            <PrivateRoute
+                                exact path="/asistente/editar/:userId"
+                                roles={[Role.Admin, Role.Master]}
+                                component={EditarAsistente}
+                            />                           
                             <PrivateRoute
                                 exact path="/jugadores"
+                                roles={[Role.Admin, Role.Master]}
                                 component={Jugador}
                             />
                             <PrivateRoute

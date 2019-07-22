@@ -27,7 +27,9 @@ export const adminService = {
     fix_numero_ganador,
     get_ganancias_perdidas,
     update_numero_ganador,
-    get_current_cambio
+    get_current_cambio,
+    get_asistente_by_id,
+    edit_asistente
 };
 
 
@@ -135,6 +137,21 @@ function get_player_by_id(id) {
     })
 }
 
+function get_asistente_by_id(id) {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/admin/asistente/${id}`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    })
+}
+
 function count_player_asistente(data) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
@@ -174,6 +191,28 @@ function add_player_asistente(data) {
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/admin/asistente/add`,
             JSON.stringify(data), requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function edit_asistente(data) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/admin/asistente/update`,
+            data, requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);

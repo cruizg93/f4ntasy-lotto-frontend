@@ -120,7 +120,6 @@ const AsistenteDataShow = ({match, id, username, name, ...props}) => {
     } 
 
     return (
-
         <Grid item container xs={12}>            
                 <Grid container spacing={3}>
                     <Grid item xs={5}
