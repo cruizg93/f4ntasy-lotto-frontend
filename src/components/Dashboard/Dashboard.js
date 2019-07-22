@@ -26,8 +26,7 @@ class Dashboard extends Component {
         this.setState({sideDrawerOpen: false})
     };
 
-    componentWillMount() {
-        console.log(this.props)
+    componentWillMount() {        
         this.setState({
             isAdmin: (authenticationService.type_user() === 'Admin' ||
                 authenticationService.type_user() === 'Master'),
