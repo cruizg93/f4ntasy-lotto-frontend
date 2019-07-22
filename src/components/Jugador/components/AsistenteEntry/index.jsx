@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
@@ -8,19 +7,11 @@ import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import HighlightOff from "@material-ui/icons/HighlightOff";
 
-
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
-import Divider from '@material-ui/core/Divider';
-
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {adminService} from "../../../../service/api/admin/admin.service";
 
 const AsistButton = withStyles({
@@ -105,7 +96,7 @@ const useStyles = makeStyles(theme => ({
 
 const AsistenteDataShow = ({match, id, username, name, ...props}) => {
     const classes = useStyles();    
-    const [open, setOpen] = React.useState(false);   
+    const [open, setOpen] = useState(false);   
 
     const handler = props.handler;
     const toast = props.toast;
@@ -126,15 +117,11 @@ const AsistenteDataShow = ({match, id, username, name, ...props}) => {
                 handler();
             }            
         })
-    }  
-    
+    } 
 
-    useEffect(() => {
-      
-    }, [])
     return (
 
-        <Grid item xs={12}>            
+        <Grid item container xs={12}>            
                 <Grid container spacing={3}>
                     <Grid item xs={5}
                             container

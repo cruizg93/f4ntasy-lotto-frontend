@@ -149,6 +149,9 @@ const useStyles = makeStyles(theme => ({
     },
     expansionPanelTextHeader:{      
         marginLeft: '9rem'
+    },
+    expansionPanelBody:{      
+        display: 'block'
     }
 
 }));
@@ -360,7 +363,8 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                                         </Typography>     
 
                                     </ExpansionPanelSummary>
-                                    <ExpansionPanelDetails>                                  
+                                    <ExpansionPanelDetails className={classes.expansionPanelBody}> 
+
                                         {asignedAsistentes.map((asistente, index)=>
                                             <AsistenteDataShow key={index} {...asistente} {...props} />
                                         )}
