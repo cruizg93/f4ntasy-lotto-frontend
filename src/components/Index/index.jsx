@@ -18,16 +18,10 @@ const Index=({...props})=>{
             
             {admin ? 
                 <Jugadores {...props} />
-                : null
+                : (asistente ? <AdicionarApuestaAsistente {...props}/> 
+                    : <AdicionarApuesta {...props}/>)
             }
-            {asistente ?
-                <AdicionarApuestaAsistente {...props}/>
-                : null
-            }
-            {player ?
-                <AdicionarApuesta {...props}/>
-                : null
-            }
+            
         </React.Fragment>
     )
 }
