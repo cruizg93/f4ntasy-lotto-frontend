@@ -45,6 +45,8 @@ import DetallesPlayer from './components/Player/scenes/Historial/Detalles/index'
 import DetallesPAsistente from './components/PAsistente/scene/Historial/Detalles/index';
 import HistorialAsistente from './components/PAsistente/scene/Historial/index';
 
+import Temporal from './components/Admin/scences/Temporal/index';
+
 import Index from './components/Index/index';
 class App extends React.Component {
     render() {
@@ -61,7 +63,12 @@ class App extends React.Component {
                                 exact path="/"   
                                 roles={[Role.Admin, Role.Master, Role.Player, Role.Asistente]}                             
                                 component={Index}
-                            />                          
+                            />   
+                            <PrivateRoute                                
+                                exact path="/temporal"   
+                                roles={[Role.Admin, Role.Master]}                             
+                                component={Temporal}
+                            />                         
                             <PrivateRoute
                                 exact path="/jugador/editar/:jugadorId"
                                 roles={[Role.Admin, Role.Master]}

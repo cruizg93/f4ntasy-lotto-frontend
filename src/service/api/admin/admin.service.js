@@ -29,9 +29,25 @@ export const adminService = {
     update_numero_ganador,
     get_current_cambio,
     get_asistente_by_id,
-    edit_asistente
+    edit_asistente,
+    temporal_service
 };
 
+
+function temporal_service(id) {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/admin/temporal/${id}`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
 
 function count() {
     const requestOptions = {headers: authHeader()};
