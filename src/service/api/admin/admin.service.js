@@ -30,7 +30,9 @@ export const adminService = {
     get_current_cambio,
     get_asistente_by_id,
     edit_asistente,
-    temporal_service
+    temporal_service,
+    temporal_reset_balance_service,
+    temporal_insert_service
 };
 
 
@@ -38,6 +40,39 @@ function temporal_service(id) {
     const requestOptions = {headers: authHeader()};
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/temporal/${id}`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+///temporal/reset/balance
+///temporal/crear/apuesta
+
+function temporal_reset_balance_service() {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/admin/temporal/reset/balance`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function temporal_insert_service() {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/admin/temporal/crear/apuesta`,
             requestOptions
         )
             .then((responseJson) => {
