@@ -46,6 +46,7 @@ import DetallesPAsistente from './components/PAsistente/scene/Historial/Detalles
 import HistorialAsistente from './components/PAsistente/scene/Historial/index';
 
 import Temporal from './components/Admin/scences/Temporal/index';
+import NewUser from './components/Admin/scences/Usuario/New/index';
 
 import Index from './components/Index/index';
 class App extends React.Component {
@@ -162,7 +163,17 @@ class App extends React.Component {
                                 component={BalanceAdmin}
                             />
                             <PrivateRoute
-                                exact path="/jugador/nuevo"
+                                exact path="/usuario/nuevo"
+                                roles={[Role.Admin, Role.Master]}
+                                component={NewUser}
+                            />
+                             <PrivateRoute
+                                exact path="/usuario/nuevo/jugador"
+                                roles={[Role.Admin, Role.Master]}
+                                component={Nuevo}
+                            />
+                            <PrivateRoute
+                                exact path="/usuario/nuevo/asistente"
                                 roles={[Role.Admin, Role.Master]}
                                 component={Nuevo}
                             />
