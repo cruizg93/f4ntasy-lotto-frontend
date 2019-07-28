@@ -47,6 +47,7 @@ import HistorialAsistente from './components/PAsistente/scene/Historial/index';
 
 import Temporal from './components/Admin/scences/Temporal/index';
 import NewUser from './components/Admin/scences/Usuario/New/index';
+import NewAsistente from './components/Admin/scences/Asistente/New/index';
 
 import Index from './components/Index/index';
 class App extends React.Component {
@@ -175,7 +176,7 @@ class App extends React.Component {
                             <PrivateRoute
                                 exact path="/usuario/nuevo/asistente"
                                 roles={[Role.Admin, Role.Master]}
-                                component={Nuevo}
+                                component={NewAsistente}
                             />
                             <PrivateRoute
                                 exact path="/sistema/cambio"

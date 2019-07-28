@@ -11,91 +11,17 @@ import Container from '@material-ui/core/Container';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
-import NativeSelect from '@material-ui/core/NativeSelect';
 import SaveIcon from '@material-ui/icons/Save';
 import './Nuevo.css';
 import './components/Diaria/Diaria'
 import {green} from '@material-ui/core/colors';
 
-
 import Divider from '@material-ui/core/Divider';
-import InputBase from '@material-ui/core/InputBase';
 import Diaria from "./components/Diaria/Diaria";
 import Chica from "./components/Chica/Chica";
 
 
 import {adminService} from "../../service/api/admin/admin.service";
-
-const BootstrapInput = withStyles(theme => ({
-    root: {
-        'label + &': {
-            marginTop: theme.spacing(3),
-        },
-    },
-    input: {
-        borderRadius: 4,
-        position: 'relative',
-        backgroundColor: theme.palette.background.paper,
-        border: '1px solid #ced4da',
-        fontSize: 16,
-        width: '10rem',
-        padding: '10px 26px 10px 12px',
-        transition: theme.transitions.create(['border-color', 'box-shadow']),
-        '&:focus': {
-            borderRadius: 4,
-            borderColor: '#80bdff',
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-        },
-    },
-}))(InputBase);
-
-const PlayerButton = withStyles({
-    root: {
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        border: '1px solid',
-        lineHeight: 1.5,
-        backgroundColor: '#2fff21',
-        borderColor: 'none',
-        color: '#000',
-        '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-
-const AsistButton = withStyles({
-    root: {
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        border: '1px solid',
-        lineHeight: 1.5,
-        backgroundColor: '#ffe634',
-        borderColor: 'none',
-        color: '#FFF',
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 
 const GreenRadio = withStyles({
     root: {
@@ -176,30 +102,12 @@ const useStyles = makeStyles(theme => ({
 export default function Nuevo() {
 
     const classes = useStyles();
-
-    const [hideComponents, setHideComponents] = React.useState(false);
     const [selectedValueMoneda, setSelectedValueMoneda] = React.useState('l');
-    const [person, setPerson] = React.useState('');
-    const handleChangeSelect = event => {
-        let index = event.target.selectedIndex;
-        let optionElement = event.target.childNodes[index];
-        let option = optionElement.getAttribute('label');
-        adminService.count_player_asistente(event.target.value).then((result) => {
-            setPlaceholderUser(option + "x" + (result.data + 1));
-        });
-        setPerson(event.target.value);
-    };
-    const [select, setSelectState] = React.useState(true);
-    const [options, setOptions] = React.useState('<option value=""/>');
-
     const [placeholderUser, setPlaceholderUser] = React.useState("P000");
-
     const [diariaPremioMil, setDiariaPremioMil] = React.useState('');
     const [diariaPremioLempirasMil, setDiariaPremioLempirasMil] = React.useState('');
-
     const [diariaCostoMil, setDiariaCostoMil] = React.useState('');
     const [diariaComision, setDiariaComision] = React.useState('');
-
     const handleChangeDiariaPremioMil = event => setDiariaPremioMil(event.target.value);
     const handleChangeDiariaCostoMil = event => setDiariaCostoMil(event.target.value);
     const handleChangeDiariaComision = event => setDiariaComision(event.target.value);
@@ -208,13 +116,9 @@ export default function Nuevo() {
     const [selectedDiariaType, setSelectedDiariaType] = React.useState('dm');
 
     const handleChangeDiariaType = event => setSelectedDiariaType(event.target.value);
-
-
     const [chicaPremioMil, setChicaPremioMil] = React.useState('');
     const [chicaPremioDirectoMil, setChicaPremioDirectoMil] = React.useState('');
     const [chicaPremioPedazosMil, setChicaPremioPedazosMil] = React.useState('');
-
-
     const [chicaCostoMil, setChicaCostoMil] = React.useState('');
     const [chicaComision, setChicaComision] = React.useState('');
     const [chicaCostoPedazos, setChicaCostoPedazos] = React.useState('');
@@ -222,7 +126,6 @@ export default function Nuevo() {
     const [chicaComisionPedazos, setChicaComisionPedazos] = React.useState('');
 
     const [selectedChicaType, setSelectedChicaType] = React.useState('cm');
-
 
     const handleChangeChicaPremioMil = event => setChicaPremioMil(event.target.value);
     const handleChangeChicaPremioDirectoMil = event => setChicaPremioDirectoMil(event.target.value);
@@ -293,7 +196,7 @@ export default function Nuevo() {
         setChicaComisionPedazos('');
         setSelectedChicaType('cm');
         setInputUserName('');
-        setInputPassword('')
+        setInputPassword('123456789')
     }
 
     useEffect(() => {
@@ -311,164 +214,77 @@ export default function Nuevo() {
         if (inputPassword === '' || inputUserName === '') {
             submit = false;
         }
-        if (!select) {
-            utype = person;
+        let dparam1 = diariaCostoMil;
+        let dparam2 = diariaPremioMil;
+        if (selectedDiariaType === 'dd') {
+            dparam1 = diariaComision;
+            dparam2 = diariaPremioLempirasMil;
         }
-        if (select) {
-            let dparam1 = diariaCostoMil;
-            let dparam2 = diariaPremioMil;
-            if (selectedDiariaType === 'dd') {
-                dparam1 = diariaComision;
-                dparam2 = diariaPremioLempirasMil;
-            }
-            if (dparam1 === '' || dparam1 === 0 || dparam2 === '' || dparam2 === 0) {
-                submit = false;
-            }
-
-            let cparam1 = 0;
-            let cparam2 = 0;
-            let cparam3 = 0;
-            switch (selectedChicaType) {
-                case 'cd':
-                    cparam1 = chicaComision;
-                    cparam2 = chicaPremioDirectoMil;
-                    break;
-                case 'cp':
-                    cparam1 = chicaComisionPedazos;
-                    cparam2 = chicaCostoPedazos;
-                    cparam3 = chicaPremioPedazosMil;
-                    break;
-                default:
-                    cparam1 = chicaCostoMil;
-                    cparam2 = chicaPremioMil;
-                    break;
-            }
-            if ((cparam1 === 0 && cparam2 === 0) || (selectedChicaType === 'cp' && cparam3 === 0)) {
-                submit = false;
-            }
-            if (!submit) {
-                error_reponse();
-                return;
-            }
-
-            let data = {
-                name: inputUserName,
-                password: inputPassword,
-                username: placeholderUser,
-                utype: utype,
-                mtype: selectedValueMoneda,
-                dtype: selectedDiariaType,
-                dparam1: dparam1,
-                dparam2: dparam2,
-                ctype: selectedChicaType,
-                cparam1: cparam1,
-                cparam2: cparam2,
-                cparam3: cparam3,
-            };
-            adminService.new_player(data)
-                .then(function (response) {
-                    success_response();
-                    update_jugador();
-                    clean()
-                })
-                .catch(function (error) {
-                    duplicado();
-
-                });
-        } else {
-            if (!submit) {
-                error_reponse();
-                return;
-            }
-            let data = {
-                name: inputUserName,
-                password: inputPassword,
-                username: placeholderUser,
-                playerId: utype
-            };
-            adminService.add_player_asistente(data).then((result) => {
+        if (dparam1 === '' || dparam1 === 0 || dparam2 === '' || dparam2 === 0) {
+            submit = false;
+        }
+        let cparam1 = 0;
+        let cparam2 = 0;
+        let cparam3 = 0;
+        switch (selectedChicaType) {
+            case 'cd':
+                cparam1 = chicaComision;
+                cparam2 = chicaPremioDirectoMil;
+                break;
+            case 'cp':
+                cparam1 = chicaComisionPedazos;
+                cparam2 = chicaCostoPedazos;
+                cparam3 = chicaPremioPedazosMil;
+                break;
+            default:
+                cparam1 = chicaCostoMil;
+                cparam2 = chicaPremioMil;
+                break;
+        }
+        if ((cparam1 === 0 && cparam2 === 0) || (selectedChicaType === 'cp' && cparam3 === 0)) {
+            submit = false;
+        }
+        if (!submit) {
+            error_reponse();
+            return;
+        }
+        let data = {
+            name: inputUserName,
+            password: inputPassword,
+            username: placeholderUser,
+            utype: utype,
+            mtype: selectedValueMoneda,
+            dtype: selectedDiariaType,
+            dparam1: dparam1,
+            dparam2: dparam2,
+            ctype: selectedChicaType,
+            cparam1: cparam1,
+            cparam2: cparam2,
+            cparam3: cparam3,
+        };
+        adminService.new_player(data)
+            .then(function (response) {
                 success_response();
-                setInputUserName('');
-                setInputPassword('');
-                setSelectState(true);
-                setHideComponents(false);
                 update_jugador();
+                clean()
             })
-        }
+            .catch(function (error) {
+                duplicado();
+            });        
     }
-
-    function onClickHandlerActivate(e) {
-        e.preventDefault();
-        setSelectState(false);
-        setHideComponents(true);
-        adminService.list_players_username()
-            .then((response) => {
-                    // console.log(response.data);
-                    let users = response.data.map((c, index) =>
-                        <option key={index} value={c.id} label={c.username}> {c.username}</option>
-                    );
-                    setPerson(response.data[0].id);
-                    let userId = response.data[0].id;
-                    let username = response.data[0].username;
-                    adminService.count_player_asistente(userId).then((result) => {
-                        setPlaceholderUser(username + "x" + (result.data + 1));
-                    });
-                    setOptions(users);
-
-                },
-                (error) => {
-                    var status = error.response.status
-                }
-            );
-
-    }
-
 
     return (
         <div>
-
             <React.Fragment>
                 <ToastContainer autoClose={8000}/>
-                <Container maxWidth="sm" className={classes.container}>
+                <Container maxWidth="sm" className={classes.container}>                 
                     <Grid container spacing={1}
-                          direction="row"
-                          justify="center"
-                          alignItems="flex-start">
-                        <Grid item xs={6}>
-                            <PlayerButton variant="outlined" color="primary" className={classes.button}
-                                          onClick={() => {
-                                              setSelectState(true);
-                                              setHideComponents(false);
-                                              update_jugador();
-                                          }}
-                            >
-                                P
-                            </PlayerButton>
-                            <AsistButton variant="outlined" color="primary" className={classes.button}
-                                         onClick={onClickHandlerActivate}>
-                                X
-                            </AsistButton>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <NativeSelect
-                                value={person}
-                                className={classes.margin}
-                                onChange={handleChangeSelect}
-                                input={<BootstrapInput name="person" id="person-customized-native-simple"/>}
-                                disabled={select}
-                            >
-                                {options}
-                            </NativeSelect>
-                        </Grid>
-                    </Grid>
-                    {hideComponents ? null :
-                        <Grid container spacing={1}
                                 direction="row"
                                 justify="center"
                                 alignItems="flex-start">
                             <Grid item xs={6}>
                                 <Typography variant="h6" gutterBottom className={"form__center-label"}>
-                                    Tipo de moneda
+                                    Crear Jugador P
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
@@ -499,10 +315,7 @@ export default function Nuevo() {
                                     labelPlacement="bottom"
                                 />
                             </Grid>
-                        </Grid>
-                    }
-                   
-
+                    </Grid>
                     <Divider/>
                     <Grid container spacing={1}
                           direction="row"
@@ -560,13 +373,9 @@ export default function Nuevo() {
                             />
                         </Grid>
 
-                    </Grid>
-                    {hideComponents ? null :
-                        <Divider/>
-                    }
-
-                    {hideComponents ? null :
-                        <Diaria premio={diariaPremioMil}
+                    </Grid>                   
+                    <Divider/>                  
+                    <Diaria premio={diariaPremioMil}
                                 onChangePremioMil={handleChangeDiariaPremioMil}
                                 premioLempiras={diariaPremioLempirasMil}
                                 onChangePremioLempirasMil={handleChangeDiariaPremioLempirasMil}
@@ -576,15 +385,9 @@ export default function Nuevo() {
                                 onChangeComisionMil={handleChangeDiariaComision}
                                 diariaType={selectedDiariaType}
                                 onChangeDiariaType={handleChangeDiariaType}
-                        />
-                    }
-
-
-                    {hideComponents ? null :
-                        <Divider/>
-                    }
-                    {hideComponents ? null :
-                        <Chica
+                    />                  
+                    <Divider/>
+                    <Chica
                             premioMil={chicaPremioMil}
                             onChangePremioMil={handleChangeChicaPremioMil}
                             premioDirecto={chicaPremioDirectoMil}
@@ -603,20 +406,15 @@ export default function Nuevo() {
                             chicaType={selectedChicaType}
                             onChangeChicaType={handleChangeChicaType}
 
-                        />
-                    }
-
+                    />
                     <Grid
                         className={classes.btnContainer}
                     >
                         <CrearButton variant="outlined" color="primary" onClick={onClickHandlerCreate}>
                             Crear
-                            {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
-
                             <SaveIcon className={classes.rightIcon}/>
                         </CrearButton>
                     </Grid>
-
                 </Container>
             </React.Fragment>
 

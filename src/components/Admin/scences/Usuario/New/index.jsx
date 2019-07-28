@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {Link} from "react-router-dom";
+
 
 import './New.css';
 
@@ -105,15 +107,15 @@ const NewUser = ({ ...props }) => {
                     justify="center"
                     alignItems="flex-start">
                     <Grid item xs={6}>
-                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                        <Typography variant="h6" gutterTop className={"form__center-label"}>
                             Escoger tipo de jugador
                         </Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <PlayerButton variant="outlined" color="primary" className={classes.button}>
+                        <PlayerButton variant="outlined" color="primary" className={classes.button}  component={Link} to="/usuario/nuevo/jugador">
                             P
                             </PlayerButton>
-                        <AsistButton variant="outlined" color="primary" className={classes.button}>
+                        <AsistButton variant="outlined" color="primary" className={classes.button} component={Link} to="/usuario/nuevo/asistente">
                             X
                             </AsistButton>
                     </Grid>
