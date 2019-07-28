@@ -7,8 +7,6 @@ import Button from "@material-ui/core/Button/index";
 import TextField from '@material-ui/core/TextField';
 import {update_password} from '../../../service/api/password/password';
 
-
-
 const useStyles = makeStyles(theme => ({
     margin: {
         margin: theme.spacing(1),
@@ -83,8 +81,6 @@ export default function Entry(props) {
     const handleOnChangeInput = event => setPasswordInput(event.target.value);
 
     return (
-
-
             <ListItem key={props.index} className={classes.item}>
                 <ListItemText id={props.index} primary={`${props.index + 1} - ${props.username}`}/>
                 <TextField
@@ -108,7 +104,5 @@ export default function Entry(props) {
                 </ListItemSecondaryAction>
 
             </ListItem>
-
-
     )
 }

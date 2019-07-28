@@ -14,14 +14,12 @@ const Index=({...props})=>{
         setPlayer(authenticationService.type_user() === 'Player')        
     }, [props])
     return (
-        <React.Fragment>
-            
+        <React.Fragment>            
             {admin ? 
                 <Jugadores {...props} />
                 : (asistente ? <AdicionarApuestaAsistente {...props}/> 
                     : <AdicionarApuesta {...props}/>)
-            }
-            
+            }            
         </React.Fragment>
     )
 }

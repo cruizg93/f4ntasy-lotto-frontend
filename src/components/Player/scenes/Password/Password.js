@@ -65,7 +65,7 @@ const ShowButton = withStyles({
         lineHeight: 1.5,
         backgroundColor: 'transparent',
         color: '#afafaf',
-        marginTop: '1rem',
+        marginTop: '1.5rem',
         marginBottom: '1rem',
         border: 'none',
         '&:hover': {
@@ -140,7 +140,6 @@ export default function PlayerPassword() {
                 >
                     <CrearButton variant="outlined" color="primary" onClick={handleClickUpdatePassword}>
                         Cambiar
-                        {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
 
                         <SaveIcon className={classes.rightIcon}/>
                     </CrearButton>

@@ -51,9 +51,6 @@ function temporal_service(id) {
     });
 }
 
-///temporal/reset/balance
-///temporal/crear/apuesta
-
 function temporal_reset_balance_service() {
     const requestOptions = {headers: authHeader()};
     return new Promise((resolve, reject) => {

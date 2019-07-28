@@ -63,5 +63,4 @@ function type_user() {
         }
         return role;
     }
-
 }
