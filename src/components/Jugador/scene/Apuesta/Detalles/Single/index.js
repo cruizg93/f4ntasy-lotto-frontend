@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
 import {adminService} from "../../../../../../service/api/admin/admin.service";
 import {printDocument6} from "../../../../../../_helpers/print";
+import Container from '@material-ui/core/Container';
 
 
 const useStyles = makeStyles(theme => ({
@@ -32,8 +33,18 @@ const useStyles = makeStyles(theme => ({
     },
     numbers: {
         paddingLeft: '.5rem'
+    },
+    fixedElement:{
+        position: 'fixed',
+        width: '100%',        
+        height: '76px',
+        bottom: '0',
+        left: '0',
+        backgroundColor: 'white'      
+    },
+    apuestasContainer:{
+        marginBottom: '5rem'
     }
-
 }));
 
 
@@ -202,6 +213,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
             </Grid>
             <Grid container
                   id="user-apuesta-activa-entries"
+                  className={classes.apuestasContainer}
             >
                 <Grid container spacing={1}
                       direction="row"
@@ -267,42 +279,40 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                         <Typography variant="body1" gutterBottom className={classes.numbers}>
                             {riesgo}
                         </Typography>
-
                     </Grid>
                 </Grid>
             </Grid>
-
-
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
+                  className={classes.fixedElement}
             >
-                <Grid item xs={6}>
-                    <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
-                        <Typography variant="body1" gutterBottom>
-                            Imprimir
-                        </Typography>
-                    </ImprimirButton>
-                </Grid>
-                <Grid item xs={6}>
-                    <DetallesButton variant="outlined" color="primary"
-                                    component={Link}
-                                    to={{
-                                        pathname: `/jugador/apuestas/detalles/${props.location.state.id}/desglose`,
-                                        state: {
-                                            title: title,
-                                            username: props.location.state.username,
-                                            id: props.location.state.id
-                                        }
-                                    }}
-                    >
-                        <Typography variant="body1" gutterBottom>
-                            Detalles
-                        </Typography>
-                        <Clear className={classes.rightIcon}/>
-                    </DetallesButton>
-                </Grid>
-
+                    <Grid item xs={2}>
+                        <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
+                            <Typography variant="body1" gutterBottom>
+                                Imprimir
+                            </Typography>
+                        </ImprimirButton>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <DetallesButton variant="outlined" color="primary"
+                                        component={Link}
+                                        to={{
+                                            pathname: `/jugador/apuestas/detalles/${props.location.state.id}/desglose`,
+                                            state: {
+                                                title: title,
+                                                username: props.location.state.username,
+                                                id: props.location.state.id
+                                            }
+                                        }}
+                        >
+                            <Typography variant="body1" gutterBottom>
+                                Detalles
+                            </Typography>
+                            <Clear className={classes.rightIcon}/>
+                        </DetallesButton>
+                    </Grid>
+                
             </Grid>
 
         </React.Fragment>
