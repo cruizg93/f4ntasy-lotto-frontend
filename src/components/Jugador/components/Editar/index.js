@@ -371,35 +371,14 @@ const EditarJugador = (props) => {
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000}/>
-            <Container maxWidth="sm" className={classes.container}>
-                <Grid container spacing={1}
-                      direction="row"
-                      justify="center"
-                      alignItems="flex-start">
-                    <Grid item xs={3}>
-                        <Typography variant="body1" gutterBottom className={"form__center-label"}>
-                            Jugador =
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={3}>
-                        <PlayerButton variant="outlined" color="primary" className={classes.button}
-
-                        >
-                            P
-                        </PlayerButton>
-                    </Grid>
-                    <Grid item xs={6}>
-                        {placeholderUser} / {inputUserName}
-                    </Grid>
-
-                </Grid>
+            <Container maxWidth="sm" className={classes.container}>               
                 <Grid container spacing={1}
                       direction="row"
                       justify="center"
                       alignItems="flex-start">
                     <Grid item xs={6}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
-                            Tipo de moneda
+                        {placeholderUser} / {inputUserName}
                         </Typography>
                     </Grid>
                     <Grid item xs={6}>
