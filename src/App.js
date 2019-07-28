@@ -57,7 +57,6 @@ class App extends React.Component {
                 <CssBaseline/>
                 <Router history={history}>
                     <div>
-
                         <Switch>
                             <Route exact path="/login" component={Login}/>
                             <PrivateRoute

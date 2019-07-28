@@ -32,8 +32,18 @@ const useStyles = makeStyles(theme => ({
     },
     numbers: {
         paddingLeft: '.5rem'
+    },
+    fixedElement:{
+        position: 'fixed',
+        width: '100%',        
+        height: '76px',
+        bottom: '0',
+        left: '0',
+        backgroundColor: 'white'      
+    },
+    apuestasContainer:{
+        marginBottom: '5rem'
     }
-
 }));
 
 
@@ -226,7 +236,9 @@ const ApuestaActiva = ({...props}) => {
                   direction="row"
                   justify="center"
                   alignItems="flex-start"
-                  id="container-apuesta-activa-data">
+                  id="container-apuesta-activa-data"
+                  className={classes.apuestasContainer}
+                  >
                 <Grid container spacing={1}
                       direction="row"
                       justify="center"
@@ -304,29 +316,30 @@ const ApuestaActiva = ({...props}) => {
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
+                  className={classes.fixedElement}
             >
-                <Grid item xs={6}>
+                <Grid item xs={2}>
                     <EditarButton variant="outlined" color="primary" onClick={handleDisableClick}>
                         <Typography variant="body1" gutterBottom>
                             Editar
                         </Typography>
                     </EditarButton>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={2}>
                     <FijarButton variant="outlined" color="primary" disabled={disable} onClick={submitUpdateData}>
                         <Typography variant="body1" gutterBottom>
                             Fijar
                         </Typography>
                     </FijarButton>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={2}>
                     <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir
                         </Typography>
                     </ImprimirButton>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={2}>
                     <DetallesButton variant="outlined" color="primary"
                                     component={Link}
                                     to={{
