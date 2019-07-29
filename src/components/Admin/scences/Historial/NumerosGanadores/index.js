@@ -58,7 +58,6 @@ const NumerosGanadores = (props) => {
     const classes = useStyles();
     const [numerosGanadoresList, setNumerosGanadoresList] = useState([]);
     useEffect(() => {
-
         adminService.get_historial_numeros_ganadores().then((result) => {
             setNumerosGanadoresList(Array.from(result.data));
         })

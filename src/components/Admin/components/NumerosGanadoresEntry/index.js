@@ -87,7 +87,6 @@ const NumerosGanadoresEntry = ({id, title, numero, pairJBS, ...props}) => {
             && newNumber >= 0 && newNumber < 100
         ) {
             adminService.update_numero_ganador(newNumber,oldNumber, id).then((result) => {
-
             })
         }
         setNewNumber(-1)
