@@ -120,9 +120,7 @@ const Jugador = (props) => {
                             {
                                 pathname: `/jugador/nuevo`,                               
                             }
-                        }
-                        
-                        
+                        }                     
                         >
                             <Typography variant="body1" gutterBottom>
                                 CREAR NUEVO JUGADOR

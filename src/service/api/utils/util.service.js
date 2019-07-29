@@ -36,7 +36,7 @@ function isFirstConnection() {
     let send = {
         username: currentUser.username         
     };
-   
+
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/utils/connection/first`,
             send, requestOptions

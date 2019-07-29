@@ -32,8 +32,7 @@ class Dashboard extends Component {
 
     componentWillMount() {
         utilService.isFirstConnection().then((result)=>{
-            this.setState({noFirst : result.data});
-            console.log(this.state.noFirst)
+            this.setState({noFirst : result.data});            
         })
         this.setState({
             isAdmin: (authenticationService.type_user() === 'Admin' ||

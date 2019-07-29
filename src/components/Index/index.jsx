@@ -13,13 +13,29 @@ const Index=({...props})=>{
         setAsistente(authenticationService.type_user() === 'Asistente')    
         setPlayer(authenticationService.type_user() === 'Player')        
     }, [props])
+
+    function components() {
+        if(admin){
+            return <Jugadores {...props} />;
+        }else if(asistente){
+            return <AdicionarApuestaAsistente {...props}/>;
+        }else {
+            return <AdicionarApuesta {...props}/>;            
+        }
+    }
     return (
-        <React.Fragment>            
-            {admin ? 
-                <Jugadores {...props} />
-                : (asistente ? <AdicionarApuestaAsistente {...props}/> 
-                    : <AdicionarApuesta {...props}/>)
-            }            
+        <React.Fragment>     
+           {components()}
+        </React.Fragment>
+    )
+
+    /* return <Main components={components}/> */
+}
+
+function Main(props){
+    return (
+        <React.Fragment>     
+           {props.components}
         </React.Fragment>
     )
 }
