@@ -47,8 +47,7 @@ class Dashboard extends Component {
             backdrop = <Backdrop click={this.backdropClickHandler}/>
         }
         return (
-            <div style={{height: "100%"}} className="App">
-                {this.state.noFirst ? 
+            <div style={{height: "100%"}} className="App">               
                     <>
                          <Toolbar drawerClickHandler={this.drawerToggleClickHandler}
                             admin={this.state.isAdmin}
@@ -71,9 +70,7 @@ class Dashboard extends Component {
 
                         </main>
                     </>
-                :
-                     <FirstChangePassword/>
-                }           
+                       
 
             </div>
         );

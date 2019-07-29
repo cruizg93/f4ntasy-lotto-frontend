@@ -3,6 +3,7 @@ import './FirstChange.css';
 
 import { utilService } from '../../../../service/api/utils/util.service';
 import { authenticationService } from '../../../../service/api/authentication/authentication.service';
+import { history } from "../../../../_helpers/history";
 
 const FirstChangePassword = ({ ...props }) => {
     const [password, setPassword] = useState('');
@@ -14,23 +15,13 @@ const FirstChangePassword = ({ ...props }) => {
         setUsername(authenticationService.currentUserValue.username);
     })
     function updatePassword() {
+        console.log(password)
         if (password !== '') {
             utilService.firstConnection(password).then((result) => {
-                console.log(result.data)
-                /* authenticationService.login(username, password)
-                    .then(
-                        user => {
-                            const { from } = this.props.location.state || { from: { pathname: "/" } };
-                            this.props.history.push(from);
-                        },
-                        error => {
-                            // setSubmitting(false);
-                            // setStatus(error);
-                        }
-                    ); */
+                authenticationService.logout();
+                history.push('/login');
             })
         }
-
     }
     return (
         <React.Fragment>
