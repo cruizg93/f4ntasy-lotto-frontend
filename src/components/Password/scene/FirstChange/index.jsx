@@ -19,12 +19,10 @@ const FirstChangePassword = ({ ...props }) => {
             <div className="login-page">
                 <div className="form">
                     <form className="login-form">
-                        <input type="password" placeholder="password" name="password"
+                        <input type="Password" placeholder="Password" name="password"
                             value={password}
                             onChange={handlePasswordChange} />
-                        <button ref={btn => {
-                            this.btn = btn;
-                        }} onClick={updatePassword}>Acceder
+                        <button onClick={updatePassword}>Acceder
                         </button>
                     </form>
                 </div>
@@ -32,3 +30,5 @@ const FirstChangePassword = ({ ...props }) => {
         </React.Fragment>
     )
 }
+
+export default FirstChangePassword;

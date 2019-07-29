@@ -30,12 +30,13 @@ export const PrivateRoute = ({component: Component, roles, ...rest}) => {
                 }
                 // check if route is restricted by role
                 if (roles && roles.indexOf(currentRole) === -1) {
+                   
                     // role not authorised so redirect to home page
                     return <Redirect to={{pathname: '/'}}/>
-                }
+                }                                       
 
-                // authorised so return component
-                return <Dashboard childComponent={<Component{...props}/>}/>
+               // authorised so return component
+               return <Dashboard childComponent={<Component{...props}/>}/>
             }
 
 
