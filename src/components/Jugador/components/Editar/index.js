@@ -236,6 +236,7 @@ const EditarJugador = (props) => {
 
     useEffect(() => {
         adminService.get_player_by_id(props.match.params.jugadorId).then((result) => {
+            console.log(result.data)
             if(result.data.moneda.monedaName==='DOLAR'){
                 setSelectedValueMoneda('d');
             }
@@ -247,8 +248,8 @@ const EditarJugador = (props) => {
                 setChicaPremioPedazosMil(result.data.premioChicaPedazos)
 
             } else if (result.data.comisionChicaDirecto !== 0
-                && result.data.premioDirecto !== 0
-            ) {
+                && result.data.premioChicaDirecto !== 0
+            ) {                
                 setSelectedChicaType('cd');
                 setChicaPremioDirectoMil(result.data.premioChicaDirecto);
                 setChicaComision(result.data.comisionChicaDirecto);
@@ -270,25 +271,7 @@ const EditarJugador = (props) => {
 
         })
 
-    }, [])
-
-    function clean() {
-        setDiariaPremioMil('');
-        setDiariaPremioLempirasMil('');
-        setDiariaCostoMil('');
-        setDiariaComision('');
-        setSelectedDiariaType('dm');
-        setChicaPremioMil('');
-        setChicaPremioDirectoMil('');
-        setChicaPremioPedazosMil('');
-        setChicaCostoMil('');
-        setChicaComision('');
-        setChicaCostoPedazos('');
-        setChicaComisionPedazos('');
-        setSelectedChicaType('cm');
-        setInputUserName('');
-        setInputPassword('')
-    }
+    }, [])    
 
     function handleChange(event) {
         setSelectedValueMoneda(event.target.value);
@@ -351,7 +334,7 @@ const EditarJugador = (props) => {
             cparam1: cparam1,
             cparam2: cparam2,
             cparam3: cparam3,
-        };
+        };        
 
         adminService.edit_player(data)
             .then(function (response) {
