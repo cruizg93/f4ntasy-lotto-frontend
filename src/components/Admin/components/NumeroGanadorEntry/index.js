@@ -80,7 +80,7 @@ const TotalButton = withStyles({
     },
 })(Button);
 
-const NumeroGanadorEntry = ({match: {url}, apuestaId, title, numero, status, ...props}) => {
+const NumeroGanadorEntry = ({match: {url}, sorteId, title, numero, status, ...props}) => {
     const classes = useStyles();
     const [idApuesta, setId] = useState(0);
     const [titleApuesta, setTitleApuesta] = useState('');
@@ -88,19 +88,19 @@ const NumeroGanadorEntry = ({match: {url}, apuestaId, title, numero, status, ...
     const [statusApuesta, setStatus] = useState("abierta");
     const handler = props.handler;
 
-    useEffect(() => {
-        setId(apuestaId);
+    useEffect(() => {        
+        setId(sorteId);
         setTitleApuesta(title);
         setNumeroApuesta(numero);
         setStatus(status);
-    }, [])
+    }, [sorteId, title, numero, status])
 
     function onNumberChange(e) {
         setNumeroApuesta(e.target.value);
     }
 
     function clickButton() {
-        if (numeroApuesta !== '' && numeroApuesta !== -1 && numeroApuesta >= 0 && numeroApuesta < 100) {
+        if (numeroApuesta !== '' && numeroApuesta !== -1 && numeroApuesta >= 0 && numeroApuesta < 100) {           
             adminService.fix_numero_ganador(numeroApuesta, idApuesta).then((result) => {
                 handler();
             })

@@ -122,12 +122,7 @@ class App extends React.Component {
                                 exact path="/apuestas/activas/:apuestaId"
                                 roles={[Role.Admin, Role.Master]}
                                 component={ApuestaActivaAdminDetalle}
-                            />
-                            <PrivateRoute
-                                exact path="/apuestas"
-                                roles={[Role.Admin, Role.Master]}
-                                component={Apuestas}
-                            />                            
+                            />                                                 
                             <PrivateRoute
                                 exact path="/historial/semana/actual"
                                 roles={[Role.Admin, Role.Master]}
