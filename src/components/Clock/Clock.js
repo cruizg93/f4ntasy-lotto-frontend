@@ -55,19 +55,13 @@ class Clock extends Component {
         return (
             <div className={'clock__row'}>
                     <Time/>
-                <div className={'clock__column'}>
-
-
+                
                     {(!this.state.isAdmin && !this.state.isAsistente) &&
                     <Balance/>
-
                     }
                     {this.state.isAdmin &&
                     <Cambio/>
-
                     }
-                </div>
-
             </div>
         )
     }

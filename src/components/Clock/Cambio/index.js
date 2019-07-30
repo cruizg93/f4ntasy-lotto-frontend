@@ -40,7 +40,9 @@ class Cambio extends Component {
     render() {
         return (
             <React.Fragment>
-                {"L @ "}{this.state.cambio}
+                <div className={'clock__column'}>                    
+                         {"L @ "}{this.state.cambio}                   
+                </div>               
             </React.Fragment>
         )
     }

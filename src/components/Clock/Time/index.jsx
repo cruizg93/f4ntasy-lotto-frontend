@@ -46,8 +46,6 @@ class Time extends Component {
                     {
                         this.state.time
                     }
-
-
                 </div>
             </React.Fragment>
         )

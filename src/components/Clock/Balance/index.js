@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {playerService} from "../../../service/api/player/player.service";
-
+import './Balance.css';
 
 class Balance extends Component {
 
@@ -30,8 +30,10 @@ class Balance extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                {this.state.balance}
+            <React.Fragment >
+                <div className={this.state.balance < 0 ? 'clock__column red__balance' : this.state.balance > 0 ? "clock__column green__balance" : "clock__column"}>                    
+                    {this.state.balance}                 
+                </div>                           
             </React.Fragment>
         )
     }
