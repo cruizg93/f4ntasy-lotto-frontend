@@ -17,7 +17,7 @@ const Index=({...props})=>{
     return (
         <React.Fragment>     
            {admin && <Jugadores {...props} />}
-           {asistente && <AdicionarApuestaAsistente {...props}/>}
+           {asistente && <AdicionarApuestaAsistente {...props} main={true}/>}
            {(!asistente && !admin) ? <AdicionarApuesta {...props} main={true}/> : null}
         </React.Fragment>
     )

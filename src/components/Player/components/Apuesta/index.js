@@ -44,12 +44,11 @@ const useStyles = makeStyles(theme => ({
 const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado, ...props}) => {
     const classes = useStyles();
     const [pathnameUrl, setPathnameURL]=React.useState(`${url}/${id}`)
-    React.useEffect(()=>{
-        console.log(props.main)
+    React.useEffect(()=>{       
         if(props.main){
             setPathnameURL(`${url}usuario/apuestas/${id}`)
         }
-    })
+    },[props, url, id])
     return (
         <Grid item xs={12} component={Link}
               to={
