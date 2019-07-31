@@ -9,7 +9,9 @@ import EntrarNumero from "../../../components/EntrarNumero/index";
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Typography from '@material-ui/core/Typography';
-
+import {Colors} from '../../../../../utils/__colors';
+import { FaShoppingCart } from 'react-icons/fa';
+//FaRegTrashAlt
 const LimpiarButton = withStyles({
     root: {
         width: '100px',
@@ -17,21 +19,19 @@ const LimpiarButton = withStyles({
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#ff190a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
+        lineHeight: 1.5,        
+        color: Colors.Btn_Red,        
+        marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#fb0f2f',
-            borderColor: 'none',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: 'none',
+            boxShadow: 'none',           
+            border: 'none',
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
@@ -42,25 +42,24 @@ const LimpiarButton = withStyles({
 const TotalButton = withStyles({
     root: {
         width: '100px',
+        height: '100%',
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#2b85c2',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
+        lineHeight: 1.5,        
+        color: Colors.Btn_Blue,       
+        marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
             boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
+            backgroundColor: Colors.Btn_Hover,            
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
@@ -84,8 +83,13 @@ const useStyles = makeStyles(theme => ({
         height: '76px',
         bottom: '0',
         left: '0',
-        backgroundColor: '#efeff4'      
+        backgroundColor: Colors.Main      
     },
+    textApuestaDescription:{
+        height: '76px',
+        fontWeight: 'bold',
+        marginTop: '1rem'
+    }
 
 }));
 
@@ -93,7 +97,7 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
     const classes = useStyles();
     const [entry, setEntryData] = useState([]);
     const mounted = useState(true);
-
+    const [name, setName] = useState('');
     useEffect(() => {
 
         let reg = /^\d+$/;
@@ -104,14 +108,16 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
             }
         }
         playerService.list_number_by_apuesta_id(match.params.apuestaId).then((result) => {
-            setEntryData(Array.from(result.data))
+            console.log(result.data);
+            setName(result.data.name);
+            setEntryData(Array.from(result.data.list))
         })
     }, []);
 
     function limpiarClickHandler() {
         playerService.list_number_by_apuesta_id(match.params.apuestaId).then((result) => {
             setEntryData([]);
-            setEntryData(Array.from(result.data))
+            setEntryData(Array.from(result.data.list))
         })
     }
 
@@ -163,6 +169,9 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
                   alignItems="center"
                   className={classes.fixedElement}
                   >
+                <Typography variant="body1" gutterBottom className={classes.textApuestaDescription}>
+                        {name}
+                </Typography>      
                 <LimpiarButton variant="outlined" color="primary" onClick={limpiarClickHandler}>
                     <Typography variant="body1" gutterBottom className={classes.root}>
                         Limpiar
@@ -178,10 +187,12 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
                                      title: props.location.state.title
                                  }
                              }}
+                             className={classes.root}
                 >
-                    <Typography variant="body1" gutterBottom className={classes.root}>
-                        Total
+                    <Typography variant="body1" gutterBottom >
+                        Total <FaShoppingCart/>
                     </Typography>
+                    
                 </TotalButton>
             </Grid>
         </React.Fragment>
