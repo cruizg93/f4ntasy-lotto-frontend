@@ -118,7 +118,7 @@ const Jugador = (props) => {
                         component={Link}
                         to={
                             {
-                                pathname: `/jugador/nuevo`,                               
+                                pathname: `/usuario/nuevo`,                               
                             }
                         }                     
                         >
