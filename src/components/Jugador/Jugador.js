@@ -134,10 +134,8 @@ const Jugador = (props) => {
 
                 </Grid>
             </Container>
-
         </React.Fragment>
     );
-
 }
 
 export default Jugador;

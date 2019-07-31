@@ -77,12 +77,20 @@ const useStyles = makeStyles(theme => ({
     },
     text: {
         fontWeight: 'bold'
-    }
+    },
+    fixedElement:{
+        position: 'fixed',
+        width: '100%',        
+        height: '76px',
+        bottom: '0',
+        left: '0',
+        backgroundColor: '#efeff4'      
+    },
 
 }));
 
 const AdicionarNumeroApuesta = ({match, ...props}) => {
-    const classes = useStyles;
+    const classes = useStyles();
     const [entry, setEntryData] = useState([]);
     const mounted = useState(true);
 
@@ -152,7 +160,9 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
-                  alignItems="center">
+                  alignItems="center"
+                  className={classes.fixedElement}
+                  >
                 <LimpiarButton variant="outlined" color="primary" onClick={limpiarClickHandler}>
                     <Typography variant="body1" gutterBottom className={classes.root}>
                         Limpiar
