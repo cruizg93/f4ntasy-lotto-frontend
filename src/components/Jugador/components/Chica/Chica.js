@@ -9,6 +9,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import {red} from "@material-ui/core/colors/index";
 import NumberFormat from 'react-number-format';
+import {Colors} from '../../../../utils/__colors';
+import Divider from '@material-ui/core/Divider';
 
 const RedRadio = withStyles({
     root: {
@@ -23,9 +25,14 @@ const RedRadio = withStyles({
 const useStyles = makeStyles(theme => ({
     card: {
         display: 'flex',
-        marginTop: '.5rem'
+        marginTop: '.5rem',
+        background : Colors.Main,
+        boxShadow: 'none',       
+        borderRadius: '0'
     },
-
+    inputData: {
+        background : Colors.Input_bkg,
+    }
 }));
 
 export default function Chica({
@@ -95,6 +102,7 @@ export default function Chica({
                             }}
                             customInput={TextField}
                             onChange={onChangeCostoMil}
+                            className={classes.inputData}
                         />
                         <NumberFormat
                             id="chica-miles-input-premio-miles"
@@ -110,11 +118,15 @@ export default function Chica({
                             customInput={TextField}
                             value={chicaType !== 'cm' ? '' : premioMil}
                             onChange={onChangePremioMil}
+                            className={classes.inputData}
+
                         />
                     </Grid>
                 </CardContent>
             </Card>
-
+            <Grid item xs={12}>
+                <Divider />
+            </Grid>
             <Card className={classes.card}>
                 <CardContent>
                     <Grid container spacing={1}
@@ -158,6 +170,8 @@ export default function Chica({
                             customInput={TextField}
                             value={chicaType !== 'cd' ? '' : comision}
                             onChange={onChangeComisionMil}
+                            className={classes.inputData}
+
                         />
                         <NumberFormat
                             id="chica-directo-input-premio"
@@ -173,10 +187,15 @@ export default function Chica({
                             customInput={TextField}
                             value={chicaType !== 'cd' ? '' : premioDirecto}
                             onChange={onChangePremioDirectoMil}
+                            className={classes.inputData}
+
                         />
                     </Grid>
                 </CardContent>
             </Card>
+            <Grid item xs={12}>
+                <Divider />
+            </Grid>
             <Card className={classes.card}>
                 <CardContent>
                     <Grid container spacing={1}
@@ -220,6 +239,8 @@ export default function Chica({
                             customInput={TextField}
                             value={chicaType !== 'cp' ? '' : comisionPedazos}
                             onChange={onChangeComisionPedazos}
+                            className={classes.inputData}
+
                         />
                         <NumberFormat
                             id="chica-pedazos-input-costo"
@@ -235,6 +256,8 @@ export default function Chica({
                             customInput={TextField}
                             value={chicaType !== 'cp' ? '' : costoPedazos}
                             onChange={onChangeCostoPedazos}
+                            className={classes.inputData}
+
                         />
                         <NumberFormat
                             id="chica-pedazos-input-premio"
@@ -250,6 +273,8 @@ export default function Chica({
                             customInput={TextField}
                             value={chicaType !== 'cp' ? '' : premioPedazos}
                             onChange={onChangePremioPedazos}
+                            className={classes.inputData}
+
                         />
                     </Grid>
                 </CardContent>

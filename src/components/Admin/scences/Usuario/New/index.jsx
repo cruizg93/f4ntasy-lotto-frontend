@@ -107,7 +107,7 @@ const NewUser = ({ ...props }) => {
                     justify="center"
                     alignItems="flex-start">
                     <Grid item xs={6}>
-                        <Typography variant="h6" gutterTop className={"form__center-label"}>
+                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
                             Escoger tipo de jugador
                         </Typography>
                     </Grid>

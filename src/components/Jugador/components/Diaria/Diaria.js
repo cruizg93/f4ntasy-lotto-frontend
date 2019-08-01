@@ -8,6 +8,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import {green} from "@material-ui/core/colors/index";
+import {Colors} from '../../../../utils/__colors';
+import NumberFormat from 'react-number-format';
+import Divider from '@material-ui/core/Divider';
+
 
 const GreenRadio = withStyles({
     root: {
@@ -22,8 +26,14 @@ const GreenRadio = withStyles({
 const useStyles = makeStyles(theme => ({
     card: {
         display: 'flex',
-        marginTop: '.5rem'
+        marginTop: '.5rem',
+        background : Colors.Main,
+        boxShadow: 'none',       
+        borderRadius: '0'
     },
+    inputData: {
+        background : Colors.Input_bkg,
+    }
 
 }));
 
@@ -54,7 +64,9 @@ export default function Diaria({
                     <Grid container spacing={1}
                           direction="row"
                           justify="center"
-                          alignItems="flex-start">
+                          alignItems="flex-start"
+                          className={classes.boxContainerNuevo}
+                          >
                         <Grid item xs={3}>
                             <Typography variant="h6" gutterBottom className={"form__center-label"}>
                                 DIARIA
@@ -78,7 +90,7 @@ export default function Diaria({
                                     />}
                             />
                         </Grid>
-                        <TextField
+                        <NumberFormat
                             id="diaria-miles-input-costo-miles"
                             label="Costo x mil"
                             placeholder="Costo x mil"
@@ -91,8 +103,10 @@ export default function Diaria({
                                 shrink: true,
                             }}
                             onChange={onChangeCostoMil}
+                            className={classes.inputData}
+                            customInput={TextField}
                         />
-                        <TextField
+                        <NumberFormat
                             id="diaria-miles-input-premio-miles"
                             label="Premio x mil"
                             placeholder="Premio x mil"
@@ -105,11 +119,15 @@ export default function Diaria({
                                 shrink: true,
                             }}
                             onChange={onChangePremioMil}
+                            className={classes.inputData}
+                            customInput={TextField}
                         />
                     </Grid>
                 </CardContent>
             </Card>
-
+            <Grid item xs={12}>
+                <Divider />
+            </Grid>
             <Card className={classes.card}>
                 <CardContent>
                     <Grid container spacing={1}
@@ -139,7 +157,7 @@ export default function Diaria({
                                     />}
                             />
                         </Grid>
-                        <TextField
+                        <NumberFormat
                             id="diaria-directo-input-comision-porciento"
                             label="Comisión %"
                             placeholder="Comisión %"
@@ -152,8 +170,11 @@ export default function Diaria({
                             }}
                             disabled={diariaType!=='dd'}
                             onChange={onChangeComisionMil}
+                            className={classes.inputData}
+                            customInput={TextField}
+
                         />
-                        <TextField
+                        <NumberFormat
                             id="diaria-directo-input-premio"
                             label="Premio"
                             placeholder="Premio"
@@ -167,6 +188,9 @@ export default function Diaria({
                             }}
                             // value={select ? '': premioL}
                             onChange={onChangePremioLempirasMil}
+                            className={classes.inputData}
+                            customInput={TextField}
+
                         />
                     </Grid>
                 </CardContent>
