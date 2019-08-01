@@ -77,6 +77,11 @@ const TemporalView = ({...props}) =>{
             reload();
         })
     }
+    function insert_apuesta_chica(){
+        adminService.temporal_insert_chica_service().then((result) => {
+            reload();
+        })
+    }
     useEffect(() => {
         adminService.get_apuestas_activas().then((result) => {
             setApuestasActivasList(Array.from(result.data));
@@ -110,6 +115,16 @@ const TemporalView = ({...props}) =>{
                                     </Typography>
                             </ReiniciarBalances>
 
+                        </Grid>
+                        <Grid item xs={6}
+                            container
+                            justify="flex-end"
+                        >
+                            <CrearApuesta variant="outlined" color="primary" onClick={insert_apuesta_chica} >
+                                    <Typography variant="body1" gutterBottom>
+                                        Crear Apuesta Chica
+                                    </Typography>
+                            </CrearApuesta>
                         </Grid>
 
                     </Grid>

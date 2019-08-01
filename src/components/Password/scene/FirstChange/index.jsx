@@ -14,8 +14,7 @@ const FirstChangePassword = ({ ...props }) => {
     useEffect(() => {
         setUsername(authenticationService.currentUserValue.username);
     })
-    function updatePassword() {
-        console.log(password)
+    function updatePassword() {        
         if (password !== '') {
             utilService.firstConnection(password).then((result) => {
                 authenticationService.logout();

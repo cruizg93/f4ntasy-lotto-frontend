@@ -235,8 +235,7 @@ const EditarJugador = (props) => {
     }
 
     useEffect(() => {
-        adminService.get_player_by_id(props.match.params.jugadorId).then((result) => {
-            console.log(result.data)
+        adminService.get_player_by_id(props.match.params.jugadorId).then((result) => {            
             if(result.data.moneda.monedaName==='DOLAR'){
                 setSelectedValueMoneda('d');
             }

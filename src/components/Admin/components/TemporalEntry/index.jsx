@@ -75,8 +75,7 @@ const TemporalEntry = ({match: {url}, total, title, premio, neta, id,
     const classes = useStyles();
     const handle=props.handle;
     function handleClickEditar(){
-        adminService.temporal_service(id).then((result)=>{
-            console.log(result.data)
+        adminService.temporal_service(id).then((result)=>{            
             handle();
         })
     }    

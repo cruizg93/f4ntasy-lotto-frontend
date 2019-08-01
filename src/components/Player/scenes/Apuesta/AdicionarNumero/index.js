@@ -108,7 +108,7 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
             }
         }
         playerService.list_number_by_apuesta_id(match.params.apuestaId).then((result) => {
-            console.log(result.data);
+           
             setName(result.data.name);
             setEntryData(Array.from(result.data.list))
         })

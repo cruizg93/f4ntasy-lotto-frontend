@@ -32,7 +32,8 @@ export const adminService = {
     edit_asistente,
     temporal_service,
     temporal_reset_balance_service,
-    temporal_insert_service
+    temporal_insert_service,
+    temporal_insert_chica_service
 };
 
 
@@ -80,6 +81,21 @@ function temporal_insert_service() {
             })
     });
 }
+function temporal_insert_chica_service() {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/admin/temporal/crear/apuesta/chica`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
 
 function count() {
     const requestOptions = {headers: authHeader()};
