@@ -25,7 +25,8 @@
     background: transparent;
     border: 2px solid #FFF;
     color: white;
-    margin: 0 .5rem;
+    margin: 0 1rem;
+    font-size: 14pt;
 }
 .toolbar__user-username:hover{
     cursor: pointer;
