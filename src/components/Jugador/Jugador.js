@@ -10,6 +10,7 @@ import JugadorDataShow from './components/JugadorEntry/index';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
+import {Colors} from '../../utils/__colors';
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -33,7 +34,6 @@ const useStyles = makeStyles(theme => ({
             border: 'none',
         },
     },
-
     card: {
         display: 'flex',
         marginTop: '.5rem'
@@ -53,21 +53,24 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const FijarButton = withStyles({
+const CrearButton = withStyles({
     root: {
         width: '100%',
         boxShadow: 'none',
         textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
+        fontSize: 16,       
         lineHeight: 1.5,
-        backgroundColor: '#29992a',
-        color: '#FFF',
-        marginTop: '.5rem',
-        marginBottom: '2rem',       
+        padding: "15px 0",
+        backgroundColor: Colors.Main,
+        color: Colors.Btn_Blue_Dark,
+        marginTop: '1rem',
+        marginBottom: '1rem',
+        border: 'none !important',
+        borderRadius: '0',
         '&:hover': {
-            backgroundColor: '#52d94f',
-            borderColor: '#62cc68',
+            backgroundColor: '#0069d9',
+            borderColor: '#0062cc',
+            color: Colors.Input_bkg
         },
         '&:active': {
             boxShadow: 'none',
@@ -79,7 +82,6 @@ const FijarButton = withStyles({
         },
     },
 })(Button);
-
 const Jugador = (props) => {
     const classes = useStyles();
     const [jugadorList, setJugadorList] = useState([]);
@@ -106,15 +108,14 @@ const Jugador = (props) => {
             toast.error("Existen apuestas activas asociadas al usuario", {
                 position: toast.POSITION.TOP_RIGHT
             });
-        }
-       
+        }       
     }
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000}/>
             <Container maxWidth="sm" className={classes.container}>
             <Grid item xs={12}>
-                        <FijarButton variant="outlined" color="primary" 
+                        <CrearButton variant="outlined" color="primary" 
                         component={Link}
                         to={
                             {
@@ -125,7 +126,7 @@ const Jugador = (props) => {
                             <Typography variant="body1" gutterBottom>
                                 CREAR NUEVO JUGADOR
                             </Typography>
-                        </FijarButton>
+                        </CrearButton>
                     </Grid>
                 <Grid container spacing={5}>
                     {jugadorList.map((jugador, index) =>

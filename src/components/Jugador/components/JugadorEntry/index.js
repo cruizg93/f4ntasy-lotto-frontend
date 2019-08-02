@@ -23,6 +23,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AsistenteDataShow from '../AsistenteEntry/index';
 import {adminService} from "../../../../service/api/admin/admin.service";
+import { Colors } from '../../../../utils/__colors';
+import {FaTrashAlt} from 'react-icons/fa';
 
 const AsistButton = withStyles({
     root: {
@@ -94,16 +96,22 @@ const useStyles = makeStyles(theme => ({
     svgContainer: {
         display: 'flex',
         alignItems: 'center',
+        color: Colors.Btn_Blue
     },
     iconClose: {
         margin: '0 auto',
         display: 'block',
+        '&:hover':{
+            cursor: "pointer"
+        }        
     },
     paper: {
         textDecoration: 'none',
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
+        background: Colors.Main,
+        borderRadius: "0",
     },
     paperDisable: {
         pointerEvents: 'none',
@@ -153,7 +161,53 @@ const useStyles = makeStyles(theme => ({
     },
     expansionPanelBody:{      
         display: 'block'
-    }
+    },
+    labelUser: {
+        textDecoration: 'none',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '5px 10px 5px 10px',
+        margin: '1rem',
+        color: Colors.Btn_Blue,
+    },
+    labelUserDisable: {
+        pointerEvents: 'none',
+        textDecoration: 'none',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '5px 10px 5px 10px',
+        margin: '1rem',
+        borderRight:"#afb6b8 1px solid",
+        color: Colors.Btn_Blue,
+    },
+    editarLink:{
+        textDecoration: "none",
+        pointerEvents: 'none',       
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '5px 10px 5px 10px',
+        margin: '1rem',
+        borderRight:"#afb6b8 1px solid",
+        color: Colors.Btn_Blue,
+        '&:hover':{
+            cursor: "pointer"
+        }
+    },
+    balanceLink:{
+        textDecoration: "none",
+        pointerEvents: 'none',       
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',        
+        margin: '.5rem',        
+        color: Colors.Btn_Blue,
+        '&:hover':{
+            cursor: "pointer"
+        }
+    },
 
 }));
 
@@ -203,23 +257,49 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
 
         <Grid item xs={12}>
             <Paper className={classes.paper}>
-                <Grid container spacing={3}>
-                    <Grid item xs={6}>
-                        <Paper className={total === 0 ? classes.paperUserDisable : classes.paperUser} xs={12}
-                               component={Link} to={
+                <Grid container>
+                    <Grid item xs={6} 
+                    className={total === 0 ? classes.labelUserDisable : classes.labelUser}
+                        component={Link} to={
                             {
-                                pathname: `/jugador/apuestas/detalles`,
+                            pathname: `/jugador/apuestas/detalles`,
                                 state: {
                                     id: id,
                                     username: username
                                 }
                             }
                         }
+                    >
+                        {username} {" - "}{monedaSymbol} {"  "} {name}
+                    </Grid>
+                    <Grid item xs={2} className={classes.editarLink}
+                        component={Link} to={
+                            {
+                                pathname: `/jugador/editar/${id}`,
+                                state: {
+                                    id: id,
+                                }
+                            }
+                        }
+                    >
+                        Editar
+                    </Grid>
+                    <Grid item xs={2}
+                              container
+                              justify="center"
+                              className={classes.svgContainer}
 
                         >
-                            {username} {" | "}{name}{" | "} {monedaSymbol}
-                        </Paper>
-                        <Grid container className={classes.margin}>
+                            <FaTrashAlt className={classes.iconClose} onClick={handleClickOpen}/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Divider/>
+                    </Grid>        
+                    <Grid item xs={6}
+                              container
+                              justify="center"                         
+                              className={classes.margin}
+                        >
                             <Grid item xs={5}
                                   container
                                   justify="flex-end">
@@ -260,39 +340,48 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                                     {monedaSymbol} {riesgo}
                                 </Typography>
                             </Grid>
-                        </Grid>
-
                     </Grid>
+
+                    <Grid item xs={5}
+                              container
+                              justify="center"                         
+                              className={classes.margin}
+                        >
+                            <Grid item xs={10}
+                                  container
+                                  justify="center"
+                                  className={classes.balanceLink}
+                                  component={Link} to={
+                                    {
+                                        pathname: `/jugador/balance/${id}`,
+                                        state: {
+                                            // list: entry,
+                                            id: id,
+                                            // title: props.location.state.title
+                                        }
+                                    }
+                                }
+                                  
+                                  >
+                                <Typography variant="body1" gutterBottom >
+                                    Balance 
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={10}
+                                 container
+                                 justify="center"
+                            >
+                                <Typography variant="body1" gutterBottom className={classes.text}>
+                                    {monedaSymbol} {total}
+                                </Typography>
+                            </Grid>
+                        </Grid>                 
 
                     <Grid item
                           container
                           xs={6}>
 
-                        <Grid item xs={7}
-                              container
-                              justify="center"
-                        >
-                            <AsistButton variant="outlined" color="primary" className={classes.button}
-                                         component={Link} to={
-                                {
-                                    pathname: `/jugador/editar/${id}`,
-                                    state: {
-                                        id: id,
-                                    }
-                                }
-                            }
-                            >
-                                Editar
-                            </AsistButton>
-                        </Grid>
-                        <Grid item xs={3}
-                              container
-                              justify="center"
-                              className={classes.svgContainer}
-
-                        >
-                            <HighlightOff className={classes.iconClose} onClick={handleClickOpen}/>
-                        </Grid>
+                        
                         <Dialog
                             open={open}
                             onClose={handleClose}
@@ -319,32 +408,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                                 </Button>
                             </DialogActions>
                         </Dialog>
-                        <Grid item xs={12}
-                              container
-                              justify="center"
-
-                        >
-                            <Paper className={balance === 0 ? classes.paperBalanceDisable : classes.paperBalance}
-                                   xs={12}
-                                   component={Link} to={
-                                {
-                                    pathname: `/jugador/balance/${id}`,
-                                    state: {
-                                        // list: entry,
-                                        id: id,
-                                        // title: props.location.state.title
-                                    }
-                                }
-                            }>
-                                <Typography variant="body1" gutterBottom className={classes.text}>
-                                    Balance
-                                </Typography>
-                                <Typography variant="body1" gutterBottom className={classes.text}>
-                                    {monedaSymbol} {balance}
-                                </Typography>
-                            </Paper>
-
-                        </Grid>
+                        
                     </Grid>
                     {asistentes && 
                         <>                                                   
