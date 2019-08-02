@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import {adminService} from "../../../service/api/admin/admin.service";
-
+import './Cambio.css';
 
 class Cambio extends Component {
 
@@ -36,12 +37,20 @@ class Cambio extends Component {
         clearInterval(this.cambioId);
     }
 
+    clickHandler = (e) => {
+        e.preventDefault();
+        /* this.props.history.push('/sistema/cambio'); */
+        console.log(this.props.history)
+    }
+
 
     render() {
         return (
             <React.Fragment>
-                <div className={'clock__column'}>                    
-                         {"L @ "}{this.state.cambio}                   
+                <div className={"clock__column"}>      
+                    <Link to="/sistema/cambio" className={"column__cambio"}>
+                        {"L @ "}{this.state.cambio}
+                    </Link>                                            
                 </div>               
             </React.Fragment>
         )

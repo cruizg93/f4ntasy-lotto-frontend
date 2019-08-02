@@ -1,0 +1,9 @@
+.column__cambio:hover,
+.column__cambio{
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+}
+.column__cambio:active{
+    color: black;
+}

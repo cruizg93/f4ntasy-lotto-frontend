@@ -33,6 +33,9 @@ const useStyles = makeStyles(theme => ({
     },
     inputData: {
         background : Colors.Input_bkg,
+    },
+    labelChica:{
+        marginTop: ".5rem"
     }
 
 }));
@@ -73,8 +76,8 @@ export default function Diaria({
                             </Typography>
                         </Grid>
                         <Grid item xs={6}>
-                            <Typography variant="body1" gutterBottom>
-                                apostador tipo "por miles"
+                            <Typography variant="body1" gutterBottom className={classes.labelChica}>
+                            "x por miles"
                             </Typography>
                         </Grid>
                         <Grid item xs={1}>
@@ -140,8 +143,8 @@ export default function Diaria({
                             </Typography>
                         </Grid>
                         <Grid item xs={6}>
-                            <Typography variant="body1" gutterBottom>
-                                apostador tipo directo "L/ $"
+                            <Typography variant="body1" gutterBottom className={classes.labelChica}>
+                                "directo L/ $"                                
                             </Typography>
                         </Grid>
                         <Grid item xs={1}>
