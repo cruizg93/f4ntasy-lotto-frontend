@@ -160,8 +160,7 @@ const NumeroGanadorEntry = ({match: {url}, sorteId, title, numero, status, type,
             setCambiar(true)
     }, [sorteId, title, numero, status, type])
 
-    function onNumberChange(e) {
-       
+    function onNumberChange(e) {       
         setNumeroApuesta(e.target.value);
     }
 
@@ -173,8 +172,7 @@ const NumeroGanadorEntry = ({match: {url}, sorteId, title, numero, status, type,
         }
     }
 
-    const cambiarHandle = () =>{
-        console.log(cambiar)
+    const cambiarHandle = () =>{       
         setCambiar(!cambiar);
     }
 
