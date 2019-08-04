@@ -103,6 +103,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                                         title: nombre,
                                         username: username,
                                         id: id,
+                                        moneda: moneda,
                                     }
                                 }
                             }

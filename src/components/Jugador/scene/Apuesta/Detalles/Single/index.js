@@ -11,7 +11,7 @@ import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
 import {adminService} from "../../../../../../service/api/admin/admin.service";
 import {printDocument6} from "../../../../../../_helpers/print";
-import Container from '@material-ui/core/Container';
+import {Colors} from "../../../../../../utils/__colors";
 
 
 const useStyles = makeStyles(theme => ({
@@ -33,6 +33,9 @@ const useStyles = makeStyles(theme => ({
     },
     numbers: {
         paddingLeft: '.5rem'
+    },  
+    apuestasContainer:{
+        marginBottom: '5rem'
     },
     fixedElement:{
         position: 'fixed',
@@ -40,65 +43,41 @@ const useStyles = makeStyles(theme => ({
         height: '76px',
         bottom: '0',
         left: '0',
-        backgroundColor: 'white'      
+        backgroundColor: Colors.Main      
     },
-    apuestasContainer:{
-        marginBottom: '5rem'
-    }
+    textBalancePositivo:{
+        color: Colors.Green
+    },
+    textBalanceNegativo:{
+        color: Colors.Btn_Red
+    },    
+    textBalance:{
+        color: Colors.Black
+    },
 }));
 
 
-const EditarButton = withStyles({
-    root: {
-        width: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#ff190a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        '&:hover': {
-            backgroundColor: '#fb0f2f',
-            borderColor: 'none',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: 'none',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-
 const ImprimirButton = withStyles({
     root: {
-        width: '100%',
+        width: '100px',
+        height: '100%',
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#2b85c2',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
+        lineHeight: 1.5,        
+        color: Colors.Btn_Red,        
+        marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
+            boxShadow: 'none',           
+            border: 'none',
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
@@ -106,56 +85,27 @@ const ImprimirButton = withStyles({
     },
 })(Button);
 
-const FijarButton = withStyles({
-    root: {
-        width: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#29992a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        '&:hover': {
-            backgroundColor: '#52d94f',
-            borderColor: '#62cc68',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 const DetallesButton = withStyles({
     root: {
-        width: '100%',
+        width: '100px',
+        height: '100%',
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#ff9d15',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
+        lineHeight: 1.5,        
+        color: Colors.Btn_Blue,       
+        marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#ffe634',
-            borderColor: '#cc9f0e',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
             boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
+            backgroundColor: Colors.Btn_Hover,            
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
@@ -170,6 +120,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
     const [total, setTotal] = useState(0.0);
     const [list, setList] = useState([]);
     const [disable, setDisable] = useState(true);
+    const [moneda, setMoneda] = useState("");
 
 
     function handleOnPrint() {
@@ -186,7 +137,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
     }
 
     useEffect(() => {
-
+        
         adminService.list_apuestas_activas_details_by_user_id(props.location.state.username,
             props.location.state.id).then((result) => {
             setTitle(result.data.title);
@@ -194,8 +145,9 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
             setRiesgo(result.data.riesgo);
             setTotal(result.data.total);
             setList(Array.from(result.data.list));
+            setMoneda(props.location.state.moneda)
         })
-    }, []);
+    }, [props]);
 
     return (
         <React.Fragment>
@@ -232,25 +184,26 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                           justify="flex-end"
                     >
                         <Typography variant="body1" gutterBottom className={''}>
-                            apuestas |
+                            {"Apuestas "}{moneda=== "LEMPIRAS" ? " L " : " $ "} 
                         </Typography>
                     </Grid>
                     <Grid item xs={6}
                           container
-                          justify="flex-start"
-                          className={''}
+                          justify="flex-start"                          
                     >
-                        <Typography variant="body1" gutterBottom className={classes.numbers}>
-                            {total}
+                        <Typography variant="body1" gutterBottom 
+                                className={total < 0 ? classes.textBalanceNegativo : 
+                                (total !== 0 ? classes.textBalancePositivo : classes.textBalance)}
+                            >
+                               {" "}{total}
                         </Typography>
-
                     </Grid>
                     <Grid item xs={6}
                           container
                           justify="flex-end"
                     >
                         <Typography variant="body1" gutterBottom className={''}>
-                            comisiones |
+                        {"Comisiones "}{moneda=== "LEMPIRAS" ? " L " : " $ "}                           
                         </Typography>
                     </Grid>
                     <Grid item xs={6}
@@ -258,26 +211,30 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                           justify="flex-start"
                           className={''}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.numbers}>
-                            {comision}
+                        <Typography variant="body1" gutterBottom 
+                                className={comision < 0 ? classes.textBalanceNegativo : 
+                                (comision !== 0 ? classes.textBalancePositivo : classes.textBalance)}
+                                >
+                                {" "}{comision}
                         </Typography>
-
                     </Grid>
                     <Grid item xs={6}
                           container
                           justify="flex-end"
                     >
                         <Typography variant="body1" gutterBottom className={''}>
-                            riesgo |
+                            {"Riesgo "} {moneda=== "LEMPIRAS" ? " L " : " $ "}
                         </Typography>
                     </Grid>
                     <Grid item xs={6}
                           container
-                          justify="flex-start"
-                          className={''}
+                          justify="flex-start"                         
                     >
-                        <Typography variant="body1" gutterBottom className={classes.numbers}>
-                            {riesgo}
+                        <Typography variant="body1" gutterBottom 
+                                className={riesgo < 0 ? classes.textBalanceNegativo : 
+                                (riesgo !== 0 ? classes.textBalancePositivo : classes.textBalance)}
+                            >
+                                {" "}{riesgo}
                         </Typography>
                     </Grid>
                 </Grid>
@@ -285,36 +242,38 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
+                  alignItems="center"
                   className={classes.fixedElement}
             >
-                    <Grid item xs={2}>
-                        <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
-                            <Typography variant="body1" gutterBottom>
-                                Imprimir
-                            </Typography>
-                        </ImprimirButton>
-                    </Grid>
-                    <Grid item xs={2}>
-                        <DetallesButton variant="outlined" color="primary"
-                                        component={Link}
-                                        to={{
-                                            pathname: `/jugador/apuestas/detalles/${props.location.state.id}/desglose`,
-                                            state: {
-                                                title: title,
-                                                username: props.location.state.username,
-                                                id: props.location.state.id
-                                            }
-                                        }}
-                        >
-                            <Typography variant="body1" gutterBottom>
-                                Detalles
-                            </Typography>
-                            <Clear className={classes.rightIcon}/>
-                        </DetallesButton>
-                    </Grid>
-                
+                <Typography variant="body1" gutterBottom className={classes.textApuestaDescription}>
+                    {title}
+                </Typography>
+            
+            
+                <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
+                    <Typography variant="body1" gutterBottom className={classes.root}>
+                        Imprimir
+                    </Typography>
+                </ImprimirButton>
+            
+            
+                <DetallesButton variant="outlined" color="primary"
+                                component={Link}
+                                to={{
+                                    pathname: `/jugador/apuestas/detalles/${props.location.state.id}/desglose`,
+                                    state: {
+                                        title: title,
+                                        username: props.location.state.username,
+                                        id: props.location.state.id
+                                    }
+                                }}
+                >
+                    <Typography variant="body1" gutterBottom className={classes.root}>
+                        Detalles
+                    </Typography>
+                    <Clear className={classes.rightIcon}/>
+                </DetallesButton>              
             </Grid>
-
         </React.Fragment>
     )
 };
