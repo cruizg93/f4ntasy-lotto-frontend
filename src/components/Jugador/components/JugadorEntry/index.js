@@ -252,7 +252,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
         }
         if(asistentes)
             setAsignedAsistentes(Array.from(asistentes))
-    }, [])
+    }, [asistentes, monedaType])
     return (
 
         <Grid item xs={12}>

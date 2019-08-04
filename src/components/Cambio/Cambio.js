@@ -8,9 +8,6 @@ import Divider from '@material-ui/core/Divider';
 import {makeStyles} from '@material-ui/core/styles';
 import {current, update} from '../../service/api/cambio/cambio';
 import NumberFormat from 'react-number-format';
-import Button from "@material-ui/core/Button/index";
-import {withStyles} from "@material-ui/core/styles/index";
-import SwapHoriz from '@material-ui/icons/SwapHoriz';
 import {Colors} from '../../utils/__colors';
 
 const useStyles = makeStyles(theme => ({

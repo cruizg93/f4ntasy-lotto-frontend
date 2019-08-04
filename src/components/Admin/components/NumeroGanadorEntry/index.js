@@ -9,15 +9,19 @@ import NumberFormat from 'react-number-format';
 import {withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import {adminService} from "../../../../service/api/admin/admin.service";
+import {Colors} from "../../../../utils/__colors";
 
 const useStyles = makeStyles(theme => ({
     root: {
         padding: theme.spacing(3, 2),
     },
     paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
+        textDecoration: 'none',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        background: Colors.Main,
+        borderRadius: "0",
         '&:hover': {
             backgroundColor: '#e5e5e5',
         },
@@ -49,7 +53,62 @@ const useStyles = makeStyles(theme => ({
     },
     disableLink: {
         pointerEvents: 'none'
+    },
+    textLabel: {
+        display: 'flex',
+        margin: '.5rem'
+    },
+    textSorteoAbierto:{
+        color: Colors.Green
+    },
+    typeContainer:{
+        textDecoration: "none",             
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',        
+        margin: '1rem',
+        borderRight:"#afb6b8 1px solid",
+    },
+    titleContainer:{
+        textDecoration: "none",             
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',        
+        margin: '1rem',        
+    },
+    sorteoStatusContainer:{
+        textDecoration: "none",             
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',        
+        margin: '1rem',        
+        borderRight:"#afb6b8 1px solid",
+    },
+    editarLabel:{
+        textDecoration: "none",             
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '5px 10px 5px 10px',
+        margin: '1rem',
+        color: Colors.Btn_Blue,
+        '&:hover':{
+            cursor: "pointer"
+        }
+    },
+    fijarLabel:{
+        textDecoration: "none",             
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '5px 10px 5px 10px',
+        margin: '1rem',
+        color: Colors.Btn_Red,
+        '&:hover':{
+            cursor: "pointer"
+        }
     }
+
 
 }));
 
@@ -80,22 +139,29 @@ const TotalButton = withStyles({
     },
 })(Button);
 
-const NumeroGanadorEntry = ({match: {url}, sorteId, title, numero, status, ...props}) => {
+const NumeroGanadorEntry = ({match: {url}, sorteId, title, numero, status, type, ...props}) => {
     const classes = useStyles();
     const [idApuesta, setId] = useState(0);
     const [titleApuesta, setTitleApuesta] = useState('');
     const [numeroApuesta, setNumeroApuesta] = useState(-1);
     const [statusApuesta, setStatus] = useState("abierta");
+    const [apuestaType, setApuestaType]=useState("Diaria");
+    const [cambiar, setCambiar] = useState(false);
     const handler = props.handler;
 
     useEffect(() => {        
         setId(sorteId);
         setTitleApuesta(title);
         setNumeroApuesta(numero);
-        setStatus(status);
-    }, [sorteId, title, numero, status])
+        setStatus(status);        
+        setApuestaType(type === "DIARIA" ? "Diaria" : "Chica")
+        console.log(status)
+        if( status === 'bloqueada')
+            setCambiar(true)
+    }, [sorteId, title, numero, status, type])
 
     function onNumberChange(e) {
+       
         setNumeroApuesta(e.target.value);
     }
 
@@ -107,96 +173,91 @@ const NumeroGanadorEntry = ({match: {url}, sorteId, title, numero, status, ...pr
         }
     }
 
+    const cambiarHandle = () =>{
+        console.log(cambiar)
+        setCambiar(!cambiar);
+    }
+
     return (
         <Grid item xs={12}>
             <Paper key={props.index} className={classes.paper}>
-                <Typography variant="h5" gutterBottom>
-                    {titleApuesta}
-                </Typography>
-                <Divider/>
                 <Grid container>
-                    {numero !== -1 ?
-
-                        <Grid item
-                              container
-                              justify="center"
-
-                        >
-                            <Grid item xs={9}
-                                  container
-                                  justify="center"
-
-                            >
-                                <Typography variant="body1" gutterBottom className={classes.text}>
-                                    Sorteo ya terminó. El numero ganador fue el
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={3}
-                                  container
-                                  justify="center"
-
-                            >
-                                {numeroApuesta}
-                            </Grid>
-
+                    <Grid item xs={2} className={classes.typeContainer}>
+                        <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                            {apuestaType} 
+                        </Typography>
+                    </Grid> 
+                    <Grid item xs={8} className={classes.titleContainer}>
+                        <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                            {titleApuesta} 
+                        </Typography>
+                    </Grid>    
+                    <Grid item xs={12}>
+                        <Divider/>
+                    </Grid>
+                    {status === 'abierta' ? 
+                        <Grid item xs={12} className={`${classes.titleContainer} form__center-label`}>
+                            <Typography variant="h6" gutterBottom className={classes.textSorteoAbierto}>
+                                {"Sorteo Abierto"} 
+                            </Typography>
                         </Grid>
-                        :
-                        null
-
+                        : null
                     }
-                    {status === "cerrada" ?
+                    {status !== 'abierta' ?
                         <>
-                            <Grid item xs={12}
-                                  container
-                                  justify="center"
-                            >
+                        <Grid item xs={8}                             
+                            className={classes.sorteoStatusContainer}
+                        >
+                            <Grid item 
+                                container
+                                justify="center"
+                                xs={12}>
                                 <Typography variant="body1" gutterBottom className={classes.textRed}>
-                                    Sorteo ya esta bloqueado
+                                        Sorteo Cerrado
                                 </Typography>
                             </Grid>
-
-                            <Grid item xs={6}
-                                  container
-                                  justify="flex-end"
-
-                            >
-                                <NumberFormat
+                            <Grid item 
+                                container
+                                justify="center"
+                                xs={12}>
+                                { !cambiar  ?
+                                    <NumberFormat
                                     id={`admin-numero-ganador-insert`}
                                     placeholder="Número"
                                     margin="normal"
                                     variant="outlined"
                                     className={classes.btnHeight}
                                     onChange={onNumberChange}
-                                />
-                            </Grid>
-
-                            <Grid item xs={6}
-                                  container
-                                  justify="flex-start"
-
-                            >
-                                <TotalButton variant="outlined" color="primary" onClick={clickButton}>
-                                    <Typography variant="body1" gutterBottom>
-                                        Fijar
+                                    />
+                                :
+                                    <Typography variant="body1" gutterBottom className={classes.text}>
+                                       Número ganador {numeroApuesta}
                                     </Typography>
-                                </TotalButton>
-                            </Grid>
+                                }
+                            </Grid>                            
+                        </Grid>
+                        <Grid item xs={2} className={classes.titleContainer}>
+                            { !cambiar ?
+                                <Typography variant="body1" gutterBottom 
+                                    className={ classes.editarLabel }
+                                    onClick={clickButton}
+                                >
+                                {"Fijar"} 
+                                </Typography>
+                            :
+                            <Typography variant="body1" gutterBottom 
+                                className={ classes.fijarLabel }
+                                onClick={cambiarHandle}
+                            >
+                                { "Cambiar" }
+                            </Typography>
+                            }
+                        </Grid>  
                         </>
-
-                        :
-                        null
+                    :null
                     }
-
-                    {status === "abierta" ?
-                        <Typography variant="body1" gutterBottom className={classes.root}>
-                            Sorteo sigue activo
-                        </Typography>
-                        :
-                        null
-                    }
-
-
-                </Grid>
+                                     
+                </Grid>               
             </Paper>
         </Grid>
 
