@@ -18,6 +18,7 @@ import Divider from '@material-ui/core/Divider';
 import Diaria from "../Diaria/Diaria";
 import Chica from "../Chica/Chica";
 import {adminService} from "../../../../service/api/admin/admin.service";
+import {Colors} from "../../../../utils/__colors";
 
 import './Editar.css';
 
@@ -90,6 +91,36 @@ const FijarButton = withStyles({
     },
 })(Button);
 
+const EditarFijarButton = withStyles({
+    root: {
+        width: '100%',
+        boxShadow: 'none',
+        textTransform: 'none',
+        fontSize: 16,       
+        lineHeight: 1.5,
+        padding: "15px 0",
+        backgroundColor: Colors.Main,
+        color: Colors.Btn_Blue_Dark,
+        marginTop: '1rem',
+        marginBottom: '1rem',
+        border: 'none !important',
+        borderRadius: '0',
+        '&:hover': {
+            backgroundColor: '#0069d9',
+            borderColor: '#0062cc',
+            color: Colors.Input_bkg
+        },
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: '#0062cc',
+            borderColor: '#005cbf',
+        },
+        '&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+        },
+    },
+})(Button);
+
 const useStyles = makeStyles(theme => ({
     margin: {
         margin: theme.spacing(1),
@@ -127,6 +158,28 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         flexDirection: 'column',
         alignItems: 'center',
+    },
+    headerContainer: {
+        background : Colors.Main,
+        marginBottom: "1rem"
+    },
+    editarJugadorLabel:{
+        borderBottom: `${Colors.Btn_Red} 2px solid`,
+        paddingBottom: "1rem !important",
+        marginTop: ".5rem",
+    },
+    boxContainerNuevo: {
+        background : Colors.Main,
+        marginTop: "1rem",
+    },
+    inputData: {
+        background : Colors.Input_bkg,
+    },
+    editLabel:{
+        color : Colors.Btn_Red
+    },
+    fijarLabel:{
+        color : Colors.Green
     }
 
 }));
@@ -136,6 +189,13 @@ const EditarJugador = (props) => {
     const [disable, setDisable] = useState(true);
 
     function handleDisableClick() {
+        setDisable(!disable);
+    }
+
+    const editarFijarHandler = (e) => {
+        if(!disable){
+            onClickHandlerEditar();
+        }
         setDisable(!disable);
     }
 
@@ -209,7 +269,7 @@ const EditarJugador = (props) => {
     }
 
     useEffect(() => {
-        adminService.get_player_by_id(props.match.params.jugadorId).then((result) => {            
+        adminService.get_player_by_id(props.match.params.jugadorId).then((result) => {          
             if(result.data.moneda.monedaName==='DOLAR'){
                 setSelectedValueMoneda('d');
             }
@@ -256,7 +316,6 @@ const EditarJugador = (props) => {
         if (inputPassword === '' || inputUserName === '') {
             submit = false;
         }
-
 
         let dparam1 = diariaCostoMil;
         let dparam2 = diariaPremioMil;
@@ -327,11 +386,28 @@ const EditarJugador = (props) => {
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000}/>
-            <Container maxWidth="sm" className={classes.container}>               
+            <Container maxWidth="sm" className={classes.container}>  
+                <Grid container spacing={1}
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start"
+                    className={classes.headerContainer}
+                    >
+                    <Grid item xs={6} className={classes.editarJugadorLabel}>
+                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                            Editar Jugador P
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        
+                    </Grid>
+                </Grid>             
                 <Grid container spacing={1}
                       direction="row"
                       justify="center"
-                      alignItems="flex-start">
+                      alignItems="flex-start"
+                      className={classes.headerContainer}
+                      >
                     <Grid item xs={6}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
                         {placeholderUser} / {inputUserName}
@@ -372,7 +448,9 @@ const EditarJugador = (props) => {
                       direction="row"
                       justify="center"
                       alignItems="center">
-                    <Grid item xs={12}>
+                    <Grid item xs={12}
+                        className={classes.boxContainerNuevo}
+                    >
                         <TextField
                             id="user"
                             label="Nuevo Usuario"
@@ -387,6 +465,7 @@ const EditarJugador = (props) => {
                             InputLabelProps={{
                                 shrink: true,
                             }}
+                            className={classes.inputData}
                         />
 
                         <TextField
@@ -394,8 +473,7 @@ const EditarJugador = (props) => {
                             label="Contraseña"
                             placeholder="Nueva Contraseña"
                             margin="normal"
-                            variant="outlined"
-                            type="password"
+                            variant="outlined"                            
                             fullWidth
                             required
                             value={inputPassword}
@@ -403,6 +481,7 @@ const EditarJugador = (props) => {
                                 shrink: true,
                             }}
                             onInput={e => setInputPassword(e.target.value)}
+                            className={classes.inputData}
                         />
 
                         <TextField
@@ -418,6 +497,7 @@ const EditarJugador = (props) => {
                                 shrink: true,
                             }}
                             onInput={e => setInputUserName(e.target.value)}
+                            className={classes.inputData}
                         />
                     </Grid>
 
@@ -463,29 +543,19 @@ const EditarJugador = (props) => {
 
                 />
 
-
                 <Grid container spacing={1}
-                      direction="row"
-                      justify="center"
-                >
-                    <Grid item xs={6}>
-                        <EditarButton variant="outlined" color="primary" onClick={handleDisableClick}>
-                            <Typography variant="body1" gutterBottom>
-                                Editar
-                            </Typography>
-                        </EditarButton>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <FijarButton variant="outlined" color="primary" disabled={disable}
-                                     onClick={onClickHandlerEditar}>
-                            <Typography variant="body1" gutterBottom>
-                                Fijar
-                            </Typography>
-                        </FijarButton>
-                    </Grid>
-
+                                direction="row"
+                                justify="center"
+                                alignItems="flex-start"
+                                
+                                >
+                        <EditarFijarButton variant="outlined" color="primary" 
+                            className={disable ? classes.editLabel : classes.fijarLabel }
+                            onClick={editarFijarHandler}
+                        >
+                            {disable ? "Editar" : "Fijar"}                                                    
+                        </EditarFijarButton>
                 </Grid>
-
             </Container>
         </React.Fragment>
     )

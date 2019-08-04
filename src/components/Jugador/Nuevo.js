@@ -332,8 +332,7 @@ export default function Nuevo({...props}) {
                             </DialogContent>
                             <DialogActions>                                
                                 <Button onClick={() => {
-                                    handleClose();                                   
-
+                                    handleClose();  
                                 }} color="primary" autoFocus>
                                     Aceptar
                                 </Button>
