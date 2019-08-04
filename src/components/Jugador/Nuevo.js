@@ -11,7 +11,6 @@ import Container from '@material-ui/core/Container';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
-import SaveIcon from '@material-ui/icons/Save';
 import './Nuevo.css';
 import './components/Diaria/Diaria'
 import {green} from '@material-ui/core/colors';

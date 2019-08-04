@@ -31,33 +31,7 @@ const GreenRadio = withStyles({
     },
     checked: {},
 })(props => <Radio color="default" {...props} />);
-const PlayerButton = withStyles({
-    root: {
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        border: '1px solid',
-        lineHeight: 1.5,
-        backgroundColor: '#29992a',
-        borderColor: 'none',
-        color: '#000',
-        pointerEvents: 'none',
-        '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
 
-    },
-})(Button);
 const EditarButton = withStyles({
     root: {
         width: '100%',
