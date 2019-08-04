@@ -171,11 +171,9 @@ const NumeroGanadorEntry = ({match: {url}, sorteId, title, numero, status, type,
             })
         }
     }
-
     const cambiarHandle = () =>{       
         setCambiar(!cambiar);
     }
-
     return (
         <Grid item xs={12}>
             <Paper key={props.index} className={classes.paper}>
