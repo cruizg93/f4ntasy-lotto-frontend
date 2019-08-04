@@ -16,6 +16,7 @@ import InputBase from '@material-ui/core/InputBase';
 
 
 import { adminService } from '../../../../../service/api/admin/admin.service';
+import { Colors } from '../../../../../utils/__colors';
 
 const BootstrapInput = withStyles(theme => ({
     root: {
@@ -42,18 +43,22 @@ const BootstrapInput = withStyles(theme => ({
 
 const CrearButton = withStyles({
     root: {
+        width: '100%',
         boxShadow: 'none',
         textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
+        fontSize: 16,       
         lineHeight: 1.5,
-        backgroundColor: '#29992a',
-        color: '#FFF',
+        padding: "15px 0",
+        backgroundColor: Colors.Main,
+        color: Colors.Btn_Blue_Dark,
         marginTop: '1rem',
         marginBottom: '1rem',
+        border: 'none !important',
+        borderRadius: '0',
         '&:hover': {
             backgroundColor: '#0069d9',
             borderColor: '#0062cc',
+            color: Colors.Input_bkg
         },
         '&:active': {
             boxShadow: 'none',
@@ -87,7 +92,10 @@ const useStyles = makeStyles(theme => ({
             border: 'none',
         },
     },
-
+    headerContainer: {
+        background : Colors.Main,
+        marginBottom: "1rem",
+    },
     card: {
         display: 'flex',
         marginTop: '.5rem'
@@ -102,6 +110,18 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         flexDirection: 'column',
         alignItems: 'center',
+    },
+    crearAsistenteLabel:{
+        borderBottom: `${Colors.Btn_Red} 2px solid`,
+        paddingBottom: "1rem !important",
+        marginTop: ".5rem",
+    },
+    boxContainerNuevo: {
+        background : Colors.Main,
+        marginTop: "1rem",
+    },
+    inputData: {
+        background : Colors.Input_bkg,
     }
 
 }));
@@ -197,12 +217,24 @@ const NewAsistente = ({ ...props }) => {
                 <Grid container spacing={1}
                     direction="row"
                     justify="center"
-                    alignItems="flex-start">
-                    <Grid item xs={12}>
+                    alignItems="flex-start"
+                    className={classes.headerContainer}
+                    >
+                    <Grid item xs={6} className={classes.crearAsistenteLabel}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
                             Crear Jugador X
                         </Typography>
                     </Grid>
+                    <Grid item xs={6}>
+                        
+                    </Grid>
+                </Grid>
+                <Grid container spacing={1}
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start"
+                    className={classes.headerContainer}
+                    >                   
                     <Grid item xs={6}>
                         <NativeSelect
                             value={person}
@@ -225,7 +257,9 @@ const NewAsistente = ({ ...props }) => {
                     direction="row"
                     justify="center"
                     alignItems="center">
-                    <Grid item xs={12}>
+                    <Grid item xs={12}
+                     className={classes.boxContainerNuevo}
+                    >
                         <TextField
                             id="user"
                             label="Nuevo Usuario"
@@ -240,6 +274,7 @@ const NewAsistente = ({ ...props }) => {
                             InputLabelProps={{
                                 shrink: true,
                             }}
+                            className={classes.inputData}
                         />
 
                         <TextField
@@ -247,8 +282,7 @@ const NewAsistente = ({ ...props }) => {
                             label="Contraseña"
                             placeholder="Nueva Contraseña"
                             margin="normal"
-                            variant="outlined"
-                            type="password"
+                            variant="outlined"                            
                             InputProps={{
                                 readOnly: true,
                             }}
@@ -259,6 +293,7 @@ const NewAsistente = ({ ...props }) => {
                                 shrink: true,
                             }}
                             onInput={e => setInputPassword(e.target.value)}
+                            className={classes.inputData}
                         />
 
                         <TextField
@@ -274,17 +309,18 @@ const NewAsistente = ({ ...props }) => {
                                 shrink: true,
                             }}
                             onInput={e => setInputUserName(e.target.value)}
+                            className={classes.inputData}
                         />
                     </Grid>
                 </Grid>
-                <Grid
-                    className={classes.btnContainer}
-                >
+                <Grid container spacing={1}
+                                direction="row"
+                                justify="center"
+                                alignItems="flex-start"
+                                
+                                >
                     <CrearButton variant="outlined" color="primary" onClick={onClickHandlerCreate}>
-                        Crear
-                            {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
-
-                        <SaveIcon className={classes.rightIcon} />
+                        Crear                        
                     </CrearButton>
                 </Grid>
             </Container>
