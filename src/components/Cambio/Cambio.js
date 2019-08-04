@@ -11,6 +11,7 @@ import NumberFormat from 'react-number-format';
 import Button from "@material-ui/core/Button/index";
 import {withStyles} from "@material-ui/core/styles/index";
 import SwapHoriz from '@material-ui/icons/SwapHoriz';
+import {Colors} from '../../utils/__colors';
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -33,7 +34,6 @@ const useStyles = makeStyles(theme => ({
             border: 'none',
         },
     },
-
     card: {
         display: 'flex',
         marginTop: '.5rem'
@@ -42,46 +42,33 @@ const useStyles = makeStyles(theme => ({
         background: '#FFF',
         marginTop: '1rem',
         marginBottom: '1rem',
-    },
-    btnContainer: {
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
+    },   
     textField: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
         width: 100,
         marginBottom: '.5rem'
     },
+    headerContainer: {
+        background : Colors.Main,
+        marginBottom: "1rem",
+    },
+    setCambioLabel:{
+        borderBottom: `${Colors.Btn_Red} 2px solid`,
+        paddingBottom: "1rem !important",
+        marginTop: ".5rem",
+    },
+    fijarElement:{
+        color: Colors.Btn_Blue,           
+        '&:hover':{
+            cursor: "pointer",
+        }
+    },
+    fijarLabel:{
+        margin: "0",
+    }
 
 }));
-const CrearButton = withStyles({
-    root: {
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#29992a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 
 export default function Cambio() {
     const classes = useStyles();
@@ -121,32 +108,42 @@ export default function Cambio() {
             <ToastContainer autoClose={8000}/>
             <Container maxWidth="sm" className={classes.container}>
                 <Grid container spacing={1}
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start"
+                    className={classes.headerContainer}
+                    >
+                    <Grid item xs={6} className={classes.setCambioLabel}>
+                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                            Fijar tipo de Cambio
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        
+                    </Grid>
+                </Grid>
+                <Grid container spacing={1}
                       direction="row"
                       justify="center"
-                      alignItems="flex-start">
+                      alignItems="flex-start"
+                      className={classes.headerContainer}
+                      >
                     <Grid item xs={12}>
-                        <Typography variant="body1" gutterBottom className={"form__center-label"}>
+                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
                             Tipo de cambio en sistema
                         </Typography>
-                        <Typography variant="body1" gutterBottom className={"form__center-label"}>
+                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
                             $1.00 = {currentValue} Lempiras
                         </Typography>
                         <Divider/>
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <Typography variant="body1" gutterBottom className={"form__center-label"}>
-                            Nuevo tipo de cambio
-                        </Typography>
-
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Grid container justify="center" spacing={spacing}>
-
-                            <Typography variant="body1" gutterBottom>
+                    </Grid>                    
+                    <Grid item xs={9} style={{
+                        borderRight:"#afb6b8 1px solid",
+                    }}>
+                        <Grid container justify="center" spacing={spacing} className={classes.fijarLabel}>
+                            <Typography variant="h6" gutterBottom>
                                 $1.00 =
                             </Typography>
-
                             <NumberFormat
                                 id="cambio-update"
                                 label="Lempiras"
@@ -158,18 +155,14 @@ export default function Cambio() {
 
                         </Grid>
                     </Grid>
-
-                </Grid>
-                <Grid
-                    className={classes.btnContainer}
-                >
-                    <CrearButton variant="outlined" color="primary" onClick={handleOnClickCambio}>
-                        Fijar
-                        {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
-
-                        <SwapHoriz className={classes.rightIcon}/>
-                    </CrearButton>
-                </Grid>
+                    <Grid item xs={3} onClick={handleOnClickCambio} className={classes.fijarElement}>
+                        <Grid container justify="center" spacing={spacing} className={classes.fijarLabel}>
+                            <Typography variant="h6" gutterBottom >
+                                Fijar
+                            </Typography>                           
+                        </Grid>
+                    </Grid>
+                </Grid>             
             </Container>
         </React.Fragment>
     );
