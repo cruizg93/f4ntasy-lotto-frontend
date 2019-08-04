@@ -6,8 +6,6 @@ import Typography from '@material-ui/core/Typography';
 
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
-import HighlightOff from "@material-ui/icons/HighlightOff";
-
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -154,10 +152,12 @@ const useStyles = makeStyles(theme => ({
         padding: '5px 10px 5px 10px',
     },
     expansionPanel:{
-        boxShadow: 'none'
+        boxShadow: 'none',
+        background: Colors.Main
     },
     expansionPanelTextHeader:{      
-        marginLeft: '9rem'
+        marginLeft: '9rem',
+        color: Colors.Gray_Ligth
     },
     expansionPanelBody:{      
         display: 'block'
@@ -169,6 +169,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         padding: '5px 10px 5px 10px',
         margin: '1rem',
+        borderRight:"#afb6b8 1px solid",
         color: Colors.Btn_Blue,
     },
     labelUserDisable: {
@@ -183,8 +184,7 @@ const useStyles = makeStyles(theme => ({
         color: Colors.Btn_Blue,
     },
     editarLink:{
-        textDecoration: "none",
-        pointerEvents: 'none',       
+        textDecoration: "none",             
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',

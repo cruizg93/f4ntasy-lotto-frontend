@@ -6,4 +6,5 @@ export const Colors = {
     Btn_Hover: '#b5b5b5',
     Input_bkg: '#f9f9f9',
     Black: '#000000',
+    Gray_Ligth: "#808080"
 }

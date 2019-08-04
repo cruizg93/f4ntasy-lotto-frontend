@@ -11,6 +11,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
 import {Colors} from '../../utils/__colors';
+import {FaEdit} from 'react-icons/fa';
+
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -49,6 +51,11 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         flexDirection: 'column',
         alignItems: 'center',
+    },
+    editIcon:{
+        marginLeft: ".5rem",
+        marginTop: ".5rem",
+        paddingTop: ".2rem"
     }
 
 }));
@@ -124,8 +131,9 @@ const Jugador = (props) => {
                         }                     
                         >
                             <Typography variant="body1" gutterBottom>
-                                CREAR NUEVO JUGADOR
+                                CREAR NUEVO JUGADOR  <FaEdit className={classes.editIcon}/>
                             </Typography>
+
                         </CrearButton>
                     </Grid>
                 <Grid container spacing={5}>

@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import HighlightOff from "@material-ui/icons/HighlightOff";
+import Divider from '@material-ui/core/Divider';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -13,6 +14,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {adminService} from "../../../../service/api/admin/admin.service";
+import {Colors} from '../../../../utils/__colors';
+import {FaTrashAlt} from 'react-icons/fa';
+
 
 const AsistButton = withStyles({
     root: {
@@ -57,7 +61,6 @@ const useStyles = makeStyles(theme => ({
             border: 'none',
         },
     },
-
     card: {
         display: 'flex',
         marginTop: '.5rem'
@@ -80,18 +83,45 @@ const useStyles = makeStyles(theme => ({
     svgContainer: {
         display: 'flex',
         alignItems: 'center',
+        color: Colors.Btn_Blue
     },
     iconClose: {
         margin: '0 auto',
         display: 'block',
+        '&:hover':{
+            cursor: "pointer"
+        }  
     },
     paper: {
         textDecoration: 'none',
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-    }
-
+    },
+    editarLink:{
+        textDecoration: "none",          
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '5px 10px 5px 10px !important',
+        
+        margin: '.5rem',
+        borderRight:"#afb6b8 1px solid",
+        color: Colors.Btn_Blue,
+        '&:hover':{
+            cursor: "pointer"
+        }
+    },
+    labelUser: {
+        textDecoration: 'none',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '0 !important',
+        margin: '.5rem',
+        borderRight:"#afb6b8 1px solid",
+        color: Colors.Btn_Blue,
+    },
 }));
 
 const AsistenteDataShow = ({match, id, username, name, ...props}) => {
@@ -122,45 +152,42 @@ const AsistenteDataShow = ({match, id, username, name, ...props}) => {
     return (
         <Grid item container xs={12}>            
                 <Grid container spacing={3}>
-                    <Grid item xs={5}
+                    <Grid item xs={12}>
+                        <Divider/>
+                    </Grid>  
+                    <Grid item xs={6}
                             container
-                            justify="center"
+                            justify="flex-start"
                             direction="column"
+                            className={classes.labelUser}
                             >         
                         <Typography variant="body1" gutterBottom className={classes.text}>
-                            {username} {` (${name})`}{}  
+                            {username} {` [ ${name} ]`}{}  
                         </Typography>                                                                     
                     </Grid>
-                    <Grid item
-                          container
-                          xs={6}>
-
-                        <Grid item xs={7}
-                              container
-                              justify="center"
-                        >
-                            <AsistButton variant="outlined" color="primary" className={classes.button}
-                                         component={Link} to={
-                                {
-                                    pathname: `/asistente/editar/${id}`,
-                                    state: {
-                                        id: id,
-                                    }
+                    <Grid item xs={2}
+                          justify="center"
+                          className={classes.editarLink}
+                        component={Link} to={
+                            {
+                                pathname: `/asistente/editar/${id}`,
+                                state: {
+                                    id: id,
                                 }
                             }
-                            >
-                                Editar
-                            </AsistButton>
-                        </Grid>
-                        <Grid item xs={3}
+                        }
+                    >
+                        Editar
+                    </Grid>
+                    <Grid item xs={2}
                               container
                               justify="center"
                               className={classes.svgContainer}
 
                         >
-                            <HighlightOff className={classes.iconClose} onClick={handleClickOpen}/>
-                        </Grid>
-                        <Dialog
+                            <FaTrashAlt className={classes.iconClose} onClick={handleClickOpen}/>
+                    </Grid>
+                    <Dialog
                             open={open}
                             onClose={handleClose}
                             aria-labelledby="alert-dialog-eliminar-usuario"
@@ -185,9 +212,7 @@ const AsistenteDataShow = ({match, id, username, name, ...props}) => {
                                     Aceptar
                                 </Button>
                             </DialogActions>
-                        </Dialog>                        
-                    </Grid>                   
-                    
+                        </Dialog>                    
                 </Grid>           
         </Grid>
     )
