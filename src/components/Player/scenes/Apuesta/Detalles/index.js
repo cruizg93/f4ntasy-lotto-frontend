@@ -11,6 +11,7 @@ import {withStyles} from "@material-ui/core/styles/index";
 import {playerService} from "../../../../../service/api/player/player.service";
 import ShowDetallesApuesta from '../../../components/Detalles/index';
 import {printDocument6} from "../../../../../_helpers/print";
+import HeaderDescription from "../../../../HeaderDescription/index";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -80,12 +81,14 @@ const DetallesApuesta = ({...props}) => {
     const [title, setTitle] = useState('');
     const [id, setIdValue] = useState(0);
     const [list, setList] = useState([]);
+    const [apuestaType, setApuestaType]= useState("Diaria");
     useEffect(() => {
         playerService.detalles_by_apuesta_id(props.location.state.id).then((result) => {
             setList(Array.from(result.data));
         })
         setTitle(props.location.state.title.title);
-        setIdValue(props.location.state.id)
+        setIdValue(props.location.state.id);
+        setApuestaType(props.location.state.type);
     }, []);
 
     function handleOnPrint() {
@@ -94,6 +97,7 @@ const DetallesApuesta = ({...props}) => {
     }
     return (
         <React.Fragment>
+            <HeaderDescription name={"Detalle Apuestas X"}/>
             <Grid
                 container spacing={1}
                 direction="row"
@@ -103,8 +107,6 @@ const DetallesApuesta = ({...props}) => {
                 <Typography variant="h5" gutterBottom>
                     {title}
                 </Typography>
-
-
             </Grid>
             <Divider/>
             <Grid

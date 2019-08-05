@@ -169,6 +169,8 @@ const ApuestaActiva = ({...props}) => {
     const [total, setTotal] = useState(0.0);
     const [list, setList] = useState([]);
     const [disable, setDisable] = useState(true);
+    const [apuestaType, setApuestaType] = useState('CHICA');
+
 
     function handleDisableClick() {
         setDisable(!disable);
@@ -185,7 +187,7 @@ const ApuestaActiva = ({...props}) => {
     function submitUpdateData() {
         playerService.update_number_apuesta_activas(list, props.match.params.apuestaId).then((result) => {
             success_response();
-            playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
+            playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {                
                 setTitle(result.data.title);
                 setComision(result.data.comision);
                 setRiesgo(result.data.riesgo);
@@ -210,13 +212,14 @@ const ApuestaActiva = ({...props}) => {
 
     useEffect(() => {
         playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
+            setApuestaType(result.data.type)
             setTitle(result.data.title);
             setComision(result.data.comision);
             setRiesgo(result.data.riesgo);
             setTotal(result.data.total);
             setList(Array.from(result.data.list));
         })
-    }, []);
+    }, [props]);
 
     return (
         <React.Fragment>
@@ -346,7 +349,8 @@ const ApuestaActiva = ({...props}) => {
                                         pathname: '/usuario/apuesta/detalles',
                                         state: {
                                             title: {title},
-                                            id: props.match.params.apuestaId
+                                            id: props.match.params.apuestaId,
+                                            type : apuestaType 
                                         }
                                     }}
                     >
