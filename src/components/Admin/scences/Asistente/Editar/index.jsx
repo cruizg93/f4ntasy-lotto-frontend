@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button';
 
 
 import {adminService} from "../../../../../service/api/admin/admin.service";
-
+import {Colors}  from "../../../../../utils/__colors";
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -51,21 +51,45 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         flexDirection: 'column',
         alignItems: 'center',
+    },
+    headerContainer: {
+        background : Colors.Main,
+        marginBottom: "1rem"
+    },
+    editarAsistenteLabel:{
+        borderBottom: `${Colors.Btn_Red} 2px solid`,
+        paddingBottom: "1rem !important",
+        marginTop: ".5rem",
+    },
+    inputData: {
+        background : Colors.Input_bkg,
+    },
+    editLabel:{
+        color : `${Colors.Btn_Red} !important`,
+    },
+    fijarLabel:{
+        color : `${Colors.Green} !important`,
     }
-
 }));
-
-const AsistButton = withStyles({
+const EditarFijarButton = withStyles({
     root: {
+        width: '100%',
         boxShadow: 'none',
         textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        border: '1px solid',
+        fontSize: 16,       
         lineHeight: 1.5,
-        backgroundColor: '#ffe634',
-        borderColor: 'none',
-        color: '#FFF',
+        padding: "15px 0",
+        backgroundColor: Colors.Main,
+        color: Colors.Btn_Blue_Dark,
+        marginTop: '1rem',
+        marginBottom: '1rem',
+        border: 'none !important',
+        borderRadius: '0',
+        '&:hover': {
+            backgroundColor: '#0069d9',
+            borderColor: '#0062cc',
+            color: Colors.Input_bkg
+        },
         '&:active': {
             boxShadow: 'none',
             backgroundColor: '#0062cc',
@@ -76,6 +100,7 @@ const AsistButton = withStyles({
         },
     },
 })(Button);
+
 const EditarButton = withStyles({
     root: {
         width: '100%',
@@ -137,12 +162,25 @@ const FijarButton = withStyles({
 const EditarAsistente= ({...props}) =>{
     const classes = useStyles();
     const [placeholderUser, setPlaceholderUser] = React.useState("P000");
+    const [placeholderUserName, setPlaceholderUserName] = React.useState("");
+    
     const [inputUserName, setInputUserName] = useState(''); // '' is the initial state value
+   
     const [inputPassword, setInputPassword] = useState('123456789'); // '' is the initial state value
     const [disable, setDisable] = useState(true);
+    const [jugadorName, setJugadorName]=useState('');
+    const [jugadorUsername, setJugadorUserName]=useState('');
+    const [jugadorMoneda, setJugadorMoneda]=useState('L');
 
-    function handleDisableClick() {
-        
+
+    function handleDisableClick() {        
+        setDisable(!disable);
+    }
+
+    const editarFijarHandler = (e) => {
+        if(!disable){
+            onClickHandlerEditar();
+        }
         setDisable(!disable);
     }
     function onClickHandlerEditar() {
@@ -162,10 +200,15 @@ const EditarAsistente= ({...props}) =>{
         })
     }
     useEffect(()=>{
-        adminService.get_asistente_by_id(props.location.state.id).then((result)=>{            
-            setPlaceholderUser(result.data.username)            
+        adminService.get_asistente_by_id(props.location.state.id).then((result)=>{    
+            setPlaceholderUserName(result.data.username)
+            setPlaceholderUser(result.data.username);
+            setPlaceholderUserName(result.data.name)   
+            setJugadorName(result.data.jugadorName);
+            setJugadorUserName(result.data.jugadorUsername);
+            setJugadorMoneda(result.data.jugadorMoneda !== "LEMPIRAS" ? "$":"L");
         })        
-    })
+    }, [props])
     
     function success_response() {
         toast.success("Usuario guardado !", {
@@ -189,31 +232,45 @@ const EditarAsistente= ({...props}) =>{
         <React.Fragment>
             <ToastContainer autoClose={8000}/>
             <Container maxWidth="sm" className={classes.container}>
-            <Grid container spacing={1}
-                      direction="row"
-                      justify="center"
-                      alignItems="flex-start">
-                    <Grid item xs={3}>
-                        <Typography variant="body1" gutterBottom className={"form__center-label"}>
-                            Asistente =
+                <Grid container spacing={1}
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start"
+                    className={classes.headerContainer}
+                    >
+                    <Grid item xs={6} className={classes.editarAsistenteLabel}>
+                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                            Editar Jugador X
                         </Typography>
                     </Grid>
-                    <Grid item xs={3}>
-                        <AsistButton variant="outlined" color="primary" className={classes.button}
-
-                        >
-                            X
-                        </AsistButton>
-                    </Grid>
                     <Grid item xs={6}>
-                        {placeholderUser} / {inputUserName}
+                        
                     </Grid>
+                </Grid> 
 
-                </Grid>
                 <Grid container spacing={1}
                       direction="row"
                       justify="center"
-                      alignItems="center">
+                      alignItems="flex-start"
+                      className={classes.headerContainer}
+                      >
+                    <Grid item xs={12}>
+                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                        {placeholderUser} {placeholderUserName} {"(asociado)"}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                        {jugadorUsername} {jugadorName} {jugadorMoneda} {"(principal)"}
+                        </Typography>
+                    </Grid>
+                </Grid>           
+                <Grid container spacing={1}
+                      direction="row"
+                      justify="center"
+                      alignItems="center"
+                      className={classes.headerContainer}
+                      >
                     <Grid item xs={12}>
                         <TextField
                             id="user"
@@ -229,6 +286,7 @@ const EditarAsistente= ({...props}) =>{
                             InputLabelProps={{
                                 shrink: true,
                             }}
+                            className={classes.inputData}
                         />
 
                         <TextField
@@ -236,8 +294,7 @@ const EditarAsistente= ({...props}) =>{
                             label="Contraseña"
                             placeholder="Nueva Contraseña"
                             margin="normal"
-                            variant="outlined"
-                            type="password"
+                            variant="outlined"                            
                             fullWidth
                             required
                             value={inputPassword}
@@ -246,6 +303,8 @@ const EditarAsistente= ({...props}) =>{
                             }}
                             onInput={e => setInputPassword(e.target.value)}
                             disabled={disable}
+                            className={classes.inputData}
+
                         />
 
                         <TextField
@@ -262,30 +321,23 @@ const EditarAsistente= ({...props}) =>{
                             }}
                             onChange={e => setInputUserName(e.target.value)}
                             disabled={disable}
+                            className={classes.inputData}
                         />
                     </Grid>
                 </Grid>
                 <Grid container spacing={1}
-                      direction="row"
-                      justify="center"
-                >
-                    <Grid item xs={6}>
-                        <EditarButton variant="outlined" color="primary" onClick={handleDisableClick}>
-                            <Typography variant="body1" gutterBottom>
-                                Editar
-                            </Typography>
-                        </EditarButton>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <FijarButton variant="outlined" color="primary" disabled={disable}
-                                     onClick={onClickHandlerEditar}>
-                            <Typography variant="body1" gutterBottom>
-                                Fijar
-                            </Typography>
-                        </FijarButton>
-                    </Grid>
-
-                </Grid>
+                                direction="row"
+                                justify="center"
+                                alignItems="flex-start"
+                                
+                                >
+                        <EditarFijarButton variant="outlined" color="primary" 
+                            className={disable ? classes.editLabel : classes.fijarLabel }
+                            onClick={editarFijarHandler}
+                        >
+                            {disable ? "Editar" : "Fijar"}                                                    
+                        </EditarFijarButton>
+                </Grid>                
             </Container>
         </React.Fragment>
     )
