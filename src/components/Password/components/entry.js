@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -22,6 +22,8 @@ const useStyles = makeStyles(theme => ({
 }));
 const EditarButton = withStyles({
     root: {
+        width: "70px",
+        height: "57px",
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
@@ -29,8 +31,7 @@ const EditarButton = withStyles({
         lineHeight: 1.5,
         backgroundColor: '#2fff21',
         color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
+        marginTop: '.5rem',       
         '&:hover': {
             backgroundColor: '#0069d9',
             borderColor: '#0062cc',
@@ -52,6 +53,15 @@ export default function Entry(props) {
     const [buttonColor, setButtonColor] = useState('#2fff21');
     const [stateInput, setInputState] = useState(true);
     const [passwordInput, setPasswordInput] = useState('');
+    const [typeUser, setTypeUser] = useState('Jugador');
+
+    useEffect(()=>{
+        if(props.username.includes('C')){
+            setTypeUser('Casa');
+        }else if(props.username.includes('x')){
+            setTypeUser('Asistente')
+        }
+    },[props])
 
     function handleOnClickEditarButton() {
         if (buttonText === 'Editar') {
@@ -82,7 +92,7 @@ export default function Entry(props) {
 
     return (
             <ListItem key={props.index} className={classes.item}>
-                <ListItemText id={props.index} primary={`${props.index + 1} - ${props.username}`}/>
+                <ListItemText id={props.index} primary={`${props.username} ${typeUser}`}/>
                 <TextField
                     id={`user-pass-change-${props.index}`}
                     placeholder="Contraseña"
