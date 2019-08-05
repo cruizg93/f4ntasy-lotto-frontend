@@ -98,8 +98,7 @@ export default function Entry(props) {
                     placeholder="Contraseña"
                     margin="normal"
                     variant="outlined"
-                    disabled={stateInput}
-                    type="password"
+                    disabled={stateInput}                   
                     style={{marginRight: 50, width: 150}}
                     InputLabelProps={{
                         shrink: true,
