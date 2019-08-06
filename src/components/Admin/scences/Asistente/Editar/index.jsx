@@ -199,8 +199,8 @@ const EditarAsistente= ({...props}) =>{
             success_response();
         })
     }
-    useEffect(()=>{
-        adminService.get_asistente_by_id(props.location.state.id).then((result)=>{    
+    useEffect(()=>{        
+         adminService.get_asistente_by_id(props.match.params.userId).then((result)=>{    
             setPlaceholderUserName(result.data.username)
             setPlaceholderUser(result.data.username);
             setPlaceholderUserName(result.data.name)   
