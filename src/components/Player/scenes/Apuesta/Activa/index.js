@@ -170,7 +170,7 @@ const ApuestaActiva = ({...props}) => {
     const [list, setList] = useState([]);
     const [disable, setDisable] = useState(true);
     const [apuestaType, setApuestaType] = useState('CHICA');
-
+    const [monedaType, setMonedaType]=React.useState("$");
 
     function handleDisableClick() {
         setDisable(!disable);
@@ -211,6 +211,8 @@ const ApuestaActiva = ({...props}) => {
     }
 
     useEffect(() => {
+        
+        setMonedaType(props.location.state.moneda)
         playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
             setApuestaType(result.data.type)
             setTitle(result.data.title);
@@ -273,7 +275,7 @@ const ApuestaActiva = ({...props}) => {
                           className={''}
                     >
                         <Typography variant="body1" gutterBottom className={classes.numbers}>
-                            {total}
+                            {monedaType}{" "}{total}
                         </Typography>
 
                     </Grid>
@@ -291,7 +293,7 @@ const ApuestaActiva = ({...props}) => {
                           className={''}
                     >
                         <Typography variant="body1" gutterBottom className={classes.numbers}>
-                            {comision}
+                            {monedaType}{" "}{comision}
                         </Typography>
 
                     </Grid>
@@ -309,7 +311,7 @@ const ApuestaActiva = ({...props}) => {
                           className={''}
                     >
                         <Typography variant="body1" gutterBottom className={classes.numbers}>
-                            {riesgo}
+                        {monedaType}{" "}{riesgo}
                         </Typography>
 
                     </Grid>
@@ -350,7 +352,8 @@ const ApuestaActiva = ({...props}) => {
                                         state: {
                                             title: {title},
                                             id: props.match.params.apuestaId,
-                                            type : apuestaType 
+                                            type : apuestaType,
+                                            moneda : monedaType,
                                         }
                                     }}
                     >

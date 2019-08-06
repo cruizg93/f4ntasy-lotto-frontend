@@ -41,14 +41,16 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado, ...props}) => {
+const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado, moneda, ...props}) => {
     const classes = useStyles();
     const [pathnameUrl, setPathnameURL]=React.useState(`${url}/${id}`)
+    const [monedaType, setMonedaType]=React.useState("$")
     React.useEffect(()=>{       
         if(props.main){
             setPathnameURL(`${url}usuario/apuestas/${id}`)
         }
-    },[props, url, id])
+        setMonedaType(moneda === "LEMPIRAS" ? " L " : " $ ");
+    },[props, url, id, moneda])
     return (
         <Grid item xs={12} component={Link}
               to={
@@ -56,6 +58,7 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
                       pathname: pathnameUrl,
                       state: {
                           title: {nombre},
+                          moneda: monedaType,
                       }
                   }
               }
@@ -80,7 +83,7 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
                           className={classes.text}
                     >
                         <Typography variant="body1" gutterBottom className={classes.text}>
-                            {total}
+                            {monedaType}{" "}{total}
                         </Typography>
 
                     </Grid>
@@ -98,7 +101,7 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
                           className={classes.text}
                     >
                         <Typography variant="body1" gutterBottom className={classes.text}>
-                            {comision}
+                            {monedaType}{" "}{comision}
                         </Typography>
 
                     </Grid>
@@ -116,7 +119,7 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
                           className={classes.text}
                     >
                         <Typography variant="body1" gutterBottom className={classes.text}>
-                            {riesgo}
+                        {monedaType}{" "}{riesgo}
                         </Typography>
 
                     </Grid>

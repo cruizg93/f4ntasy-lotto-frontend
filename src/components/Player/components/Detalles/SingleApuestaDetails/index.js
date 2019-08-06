@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     negative: {
         padding: theme.spacing(1, 1),
         color: red[400]
-    }
+    }    
 
 }));
 const SingleApuestaDetails=({numero, valor, ...props})=>{
@@ -34,7 +34,7 @@ const SingleApuestaDetails=({numero, valor, ...props})=>{
                    spacing={1}
             >
                 <Typography id={`text-${props.index}`} variant="body1" gutterBottom className={classes.text }>
-                    {numero}
+                    {numero}{" "}{props.moneda}
                 </Typography>
             </Grid>
             <Grid item xs={6}
@@ -43,7 +43,7 @@ const SingleApuestaDetails=({numero, valor, ...props})=>{
                   spacing={1}
             >
                 <Typography id={`text-${props.index}`} variant="body1" gutterBottom className={classes.negative}>
-                    {valor}
+                    {" "}{valor.toFixed(2)}
                 </Typography>
             </Grid>
 

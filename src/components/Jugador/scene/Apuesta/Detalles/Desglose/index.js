@@ -11,6 +11,9 @@ import {withStyles} from "@material-ui/core/styles/index";
 import ShowDetallesApuesta from '../../../../../Player/components/Detalles/index';
 import {adminService} from "../../../../../../service/api/admin/admin.service";
 import {printDocument6} from "../../../../../../_helpers/print";
+import {Colors} from "../../../../../../utils/__colors";
+import HeaderDescription from "../../../../../HeaderDescription/index";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -42,8 +45,13 @@ const useStyles = makeStyles(theme => ({
     },
     disableLink: {
         pointerEvents: 'none'
+    },
+    containerData:{
+        background: Colors.Main,
+    },
+    apuestaContainer:{
+        borderRight:"#afb6b8 1px solid",
     }
-
 }));
 
 const ImprimirButton = withStyles({
@@ -51,18 +59,19 @@ const ImprimirButton = withStyles({
         width: '100%',
         boxShadow: 'none',
         textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
+        fontSize: 16,       
         lineHeight: 1.5,
-        backgroundColor: '#2b85c2',
-        color: '#FFF',
+        padding: "15px 0",
+        backgroundColor: Colors.Main,
+        color: Colors.Btn_Blue_Dark,
         marginTop: '1rem',
         marginBottom: '1rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
+        border: 'none !important',
+        borderRadius: '0',
         '&:hover': {
             backgroundColor: '#0069d9',
             borderColor: '#0062cc',
+            color: Colors.Input_bkg
         },
         '&:active': {
             boxShadow: 'none',
@@ -80,12 +89,14 @@ const DesgloseApuestaJugador = ({...props}) => {
     const [title, setTitle] = useState('');
     const [id, setIdValue] = useState(0);
     const [list, setList] = useState([]);
+    
     useEffect(() => {
         adminService.details_apuesta_activa_by_user_id(props.location.state.username,
-            props.location.state.id).then((result) => {
+            props.location.state.id).then((result) => {               
+            console.log(result.data)           
             setList(Array.from(result.data));
         })
-        setTitle(props.location.state.title.title);
+        setTitle(props.location.state.title);
         setIdValue(props.location.state.id)
     }, []);
 
@@ -95,18 +106,14 @@ const DesgloseApuestaJugador = ({...props}) => {
     }
     return (
         <React.Fragment>
-            <Grid
-                container spacing={1}
-                direction="row"
-                justify="center"
-                alignItems="flex-start"
-            >
-                <Typography variant="h5" gutterBottom>
-                    {title}
-                </Typography>
-
-
-            </Grid>
+            <HeaderDescription name={"Detalle Apuestas X"}/>
+            <Grid container
+                          spacing={1}
+                          direction="row"
+                          justify="center"
+                          className={classes.containerData}
+                    >                          
+            </Grid>           
             <Divider/>
             <Grid
                 container spacing={1}
@@ -117,6 +124,8 @@ const DesgloseApuestaJugador = ({...props}) => {
             >
                 {list.map((apuestaDetail, index) =>
                     <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} {...props}
+                    apuestaTitle={title}
+                    
                     />
                 )}
             </Grid>
