@@ -9,5 +9,6 @@ export const Colors = {
     Gray_Ligth: "#808080",
     Gray_Ligth_2: "#c0c0c0",
     Green: "#008000",
+    Lempira: "#ff8040",
     
 }

@@ -6,15 +6,19 @@ import {Link} from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
 import {red, blue} from "@material-ui/core/colors/index";
+import {Colors} from "../../../../utils/__colors";
 
 const useStyles = makeStyles(theme => ({
     root: {
         padding: theme.spacing(3, 2),
     },
     paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
+        textDecoration: 'none',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        background: Colors.Main,
+        borderRadius: "0",
         '&:hover': {
             backgroundColor: '#e5e5e5',
         },
@@ -37,15 +41,53 @@ const useStyles = makeStyles(theme => ({
     },
     disableLink: {
         pointerEvents: 'none'
+    },
+    textLabel: {
+        display: 'flex',
+        margin: '.5rem'
+    },
+    textSorteoAbierto:{
+        color: Colors.Green,        
+    },
+    typeContainer:{
+        textDecoration: "none",             
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',        
+        margin: '1rem',
+        borderRight:"#afb6b8 1px solid",
+    },
+    titleContainer:{
+        textDecoration: "none",             
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',        
+        margin: '1rem',        
+    },
+    textSorteoAbierto:{
+        color: Colors.Green
+    },
+    sorteoTextContainer:{
+        borderRight:"#afb6b8 1px solid",
+        textDecoration: "none",             
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',        
+        paddingRight: ".5rem"
     }
 
 }));
 
 const ApuestasActivasAdminData = ({
                                       match: {url}, total, title, premio, neta, id,
-                                      estado, comision, balance, ...props
+                                      estado, comision, balance, type, ...props
                                   }) => {
     const classes = useStyles();
+    const [moneda, setMoneda] =  React.useState(" $ ");
+
+    React.useEffect(()=>{
+        setMoneda(props.moneda === "lempira" ? " L " : " $ " )
+    })
     return (
         <Grid item xs={12} component={Link}
               to={
@@ -61,17 +103,28 @@ const ApuestasActivasAdminData = ({
               }
               className={estado === 'ABIERTA' ? classes.component : classes.componentDisable}>
             <Paper key={props.index} className={classes.paper}>
-                <Typography variant="h5" gutterBottom>
-                    {title}
-                </Typography>
-                <Divider/>
+                <Grid container>
+                <Grid item xs={2} className={classes.typeContainer}>
+                        <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                            {type} 
+                        </Typography>
+                    </Grid> 
+                    <Grid item xs={8} className={classes.titleContainer}>
+                        <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                            {title} 
+                        </Typography>
+                    </Grid>    
+                    <Grid item xs={12}>
+                        <Divider/>
+                    </Grid>
+                </Grid>               
                 <Grid container>
                     <Grid item xs={6}
                           container
                           justify="flex-end"
                     >
                         <Typography variant="body1" gutterBottom className={classes.text}>
-                            Total Apuestas |
+                            Total Apuestas | {moneda}
                         </Typography>
                     </Grid>
                     <Grid item xs={6}
@@ -89,7 +142,7 @@ const ApuestasActivasAdminData = ({
                           justify="flex-end"
                     >
                         <Typography variant="body1" gutterBottom className={classes.text}>
-                            Total Comisiones |
+                            Total Comisiones | {moneda}
                         </Typography>
                     </Grid>
                     <Grid item xs={6}
@@ -107,7 +160,7 @@ const ApuestasActivasAdminData = ({
                           justify="flex-end"
                     >
                         <Typography variant="body1" gutterBottom className={classes.text}>
-                            Entrada neta |
+                            Entrada neta | {moneda}
                         </Typography>
                     </Grid>
                     <Grid item xs={6}
@@ -126,7 +179,7 @@ const ApuestasActivasAdminData = ({
                               justify="flex-end"
                         >
                             <Typography variant="body1" gutterBottom className={classes.text}>
-                                Premios |
+                                Premios | {moneda}
                             </Typography>
                         </Grid>
                         <Grid item xs={6}
@@ -144,7 +197,7 @@ const ApuestasActivasAdminData = ({
                               justify="flex-end"
                         >
                             <Typography variant="body1" gutterBottom className={classes.text}>
-                                Ganancia/Perdida |
+                                Ganancia/Perdida | {moneda}
                             </Typography>
                         </Grid>
                         <Grid item xs={6}
@@ -160,15 +213,18 @@ const ApuestasActivasAdminData = ({
 
 
                     </>}
-
-                    <Grid item xs={12}
+                    <Grid item xs={12}>
+                        <Divider/>
+                    </Grid>
+                    
+                    <Grid item xs={6}
                           container
                           justify="center"
                           className={classes.text}
                     >
                         <Typography variant="h5" gutterBottom
-                                    className={estado === 'ABIERTA' ? classes.open : classes.close}>
-                            {estado}
+                                    className={`${estado === 'ABIERTA' ? classes.textSorteoAbierto : classes.close} ${classes.sorteoTextContainer}`}>
+                            {estado === 'ABIERTA' ? "Sorteo Abierto" : "Sorteo Cerrado"}
                         </Typography>
 
                     </Grid>

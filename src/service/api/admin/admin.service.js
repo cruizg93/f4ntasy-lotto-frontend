@@ -379,10 +379,10 @@ function delete_player_by_id(id) {
 }
 
 
-function get_apuestas_activas() {
+function get_apuestas_activas(moneda) {
     const requestOptions = {headers: authHeader()};
     return new Promise((resolve, reject) => {
-        axios.get(`${baseUrl}/admin/apuestas/activas`,
+        axios.get(`${baseUrl}/admin/apuestas/activas/${moneda}`,
             requestOptions
         )
             .then((responseJson) => {

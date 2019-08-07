@@ -61,7 +61,8 @@ const ReiniciarBalances = withStyles({
 const TemporalView = ({...props}) =>{
     const [apuestasActivas, setApuestasActivasList] = useState([]);
     function reload(){
-        adminService.get_apuestas_activas().then((result) => {
+        adminService.get_apuestas_activas("dolar").then((result) => {
+
             setApuestasActivasList([]);
             setApuestasActivasList(Array.from(result.data));
         })
@@ -83,7 +84,8 @@ const TemporalView = ({...props}) =>{
         })
     }
     useEffect(() => {
-        adminService.get_apuestas_activas().then((result) => {
+        adminService.get_apuestas_activas("dolar").then((result) => {
+            console.log(result.data)
             setApuestasActivasList(Array.from(result.data));
         })
     }, [])
