@@ -79,7 +79,6 @@ const ApuestasActivasAdmin = (props) => {
     const classes=useStyles();
     useEffect(() => {
         adminService.get_apuestas_activas("dolar").then((result) => {
-            console.log(result.data)
             setApuestasActivasList(Array.from(result.data));
         })
     }, [])

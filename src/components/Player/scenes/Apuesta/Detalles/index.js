@@ -93,7 +93,6 @@ const DetallesApuesta = ({...props}) => {
     useEffect(() => {        
         playerService.detalles_by_apuesta_id(props.location.state.id).then((result) => {
             setList(Array.from(result.data));
-            console.log(result.data)
         })
         setTitle(props.location.state.title.title);
         setIdValue(props.location.state.id);

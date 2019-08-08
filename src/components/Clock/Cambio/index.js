@@ -40,7 +40,6 @@ class Cambio extends Component {
     clickHandler = (e) => {
         e.preventDefault();
         /* this.props.history.push('/sistema/cambio'); */
-        console.log(this.props.history)
     }
 
 

@@ -93,7 +93,6 @@ const DesgloseApuestaJugador = ({...props}) => {
     useEffect(() => {
         adminService.details_apuesta_activa_by_user_id(props.location.state.username,
             props.location.state.id).then((result) => {               
-            console.log(result.data)           
             setList(Array.from(result.data));
         })
         setTitle(props.location.state.title);

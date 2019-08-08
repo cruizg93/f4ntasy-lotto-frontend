@@ -156,7 +156,6 @@ const NumeroGanadorEntry = ({match: {url}, sorteId, title, numero, status, type,
         setNumeroApuesta(numero);
         setStatus(status);        
         setApuestaType(type === "DIARIA" ? "Diaria" : "Chica")
-        console.log(status)
         if( status === 'bloqueada')
             setCambiar(true)
     }, [sorteId, title, numero, status, type])

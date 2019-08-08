@@ -160,7 +160,6 @@ const NewAsistente = ({ ...props }) => {
     function users() {
         adminService.list_players_username()
             .then((response) => {
-                // console.log(response.data);
                 let users = response.data.map((c, index) =>
                     <option key={index} value={c.id} label={c.username}> {c.username}</option>
                 );

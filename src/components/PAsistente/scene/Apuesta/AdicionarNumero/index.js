@@ -107,7 +107,6 @@ const AdicionarNumeroApuestaAsistente = ({match, ...props}) => {
                 mounted.current = false;
             }
         }  
-        console.log(match);
         playerService.list_number_by_apuesta_id(match.params.apuestaId).then((result) => {           
             setTitle(result.data.name);
             setApuestaEntryData(Array.from(result.data.list))

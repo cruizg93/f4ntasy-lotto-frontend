@@ -203,9 +203,7 @@ const ApuestaActiva = ({...props}) => {
         });
     }
 
-    function handleOnPrint() {
-        // let input = document.querySelectorAll(".entrada-datos");
-        // console.log(input);
+    function handleOnPrint() {        
         const input = document.getElementById("container-apuesta-activa-data");
         printDocument6(input, title+'-activa');
     }
