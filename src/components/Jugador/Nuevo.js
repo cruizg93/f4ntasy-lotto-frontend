@@ -309,7 +309,7 @@ export default function Nuevo({...props}) {
                 clean();
             })
             .catch(function (error) {
-                duplicado();
+                error_reponse();
             });        
     }
 
