@@ -225,7 +225,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
 
 
     useEffect(() => {
-        if (monedaType === "lempira") {
+        if (monedaType === "lempiras") {
             setMonedaSymbol('L')
         }
         if(asistentes)
