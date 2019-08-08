@@ -33,7 +33,8 @@ export const adminService = {
     temporal_service,
     temporal_reset_balance_service,
     temporal_insert_service,
-    temporal_insert_chica_service
+    temporal_insert_chica_service,
+    cerrar_apuesta
 };
 
 
@@ -567,7 +568,7 @@ function fix_numero_ganador(numero, id) {
         numero: numero,
     };
     return new Promise((resolve, reject) => {
-        axios.post(`${baseUrl}/admin/numeros/ganadores/${id}`,
+        axios.post(`${baseUrl}/admin/numero/ganador/${id}`,
             send, requestOptions
         )
             .then((responseJson) => {
@@ -647,4 +648,29 @@ function get_current_cambio() {
                 reject(error);
             })
     })
+}
+
+function cerrar_apuesta(id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };   
+    const send={
+        idData: id
+    }
+    return new Promise((resolve, reject) => {
+        axios.put(`${baseUrl}/admin/apuesta/bloquear/${id}`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
 }

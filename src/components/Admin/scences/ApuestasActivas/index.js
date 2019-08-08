@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {adminService} from "../../../../service/api/admin/admin.service";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -96,8 +98,21 @@ const ApuestasActivasAdmin = (props) => {
             setApuestasActivasList(Array.from(result.data));
         })
     }
+
+    function toast_notification(type) {
+        if(type === "success"){
+            toast.success("Numero adcionado", {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        }else{
+            toast.error("Numero incorrecto", {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        }       
+    }
     return (
         <React.Fragment>
+            <ToastContainer autoClose={8000}/>
              <Grid container spacing={1}
                     direction="row"
                     justify="center"
@@ -127,7 +142,10 @@ const ApuestasActivasAdmin = (props) => {
                   justify="center"
                   alignItems="flex-start">
                 {apuestasActivas.map((apuesta, index)=>
-                    <ApuestasActivasAdminData key={index} {...apuesta} index={index} {...props} moneda={moneda}/>
+                    <ApuestasActivasAdminData key={index} {...apuesta} index={index} {...props} moneda={moneda} 
+                        update={updateApuestasActivas}
+                        toast={toast_notification}
+                    />
                 )}
             </Grid>
         </React.Fragment>

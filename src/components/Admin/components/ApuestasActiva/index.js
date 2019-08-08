@@ -5,8 +5,20 @@ import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import {red, blue} from "@material-ui/core/colors/index";
 import {Colors} from "../../../../utils/__colors";
+import {FaInfoCircle} from 'react-icons/fa';
+import {adminService} from "../../../../service/api/admin/admin.service";
+import Button from "@material-ui/core/Button/index";
+import TextField from '@material-ui/core/TextField';
+import NumberFormat from 'react-number-format';
+
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -64,9 +76,26 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',        
         margin: '1rem',        
     },
-    textSorteoAbierto:{
-        color: Colors.Green
+    infoContainer:{
+        textDecoration: "none",             
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',        
+        margin: '1rem', 
+        color: Colors.Black,
+        '&:hover':{            
+            color: Colors.Gray_Ligth_2
+        } 
     },
+    infoLabel:{
+        display: 'flex',
+        margin: '.5rem',
+        height: "2rem",
+        width: "2rem",
+        '&:hover':{
+            cursor: "pointer"            
+        }           
+    },    
     sorteoTextContainer:{
         borderRight:"#afb6b8 1px solid",
         textDecoration: "none",             
@@ -74,6 +103,26 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'row',
         alignItems: 'center',        
         paddingRight: ".5rem"
+    },
+    numeroGanadorContainer: {
+        color: Colors.Btn_Blue,
+        marginTop: '.5rem',
+        '&:hover':{
+            cursor: 'pointer',
+        }
+    },
+    circle:{
+        padding: 10,
+        margin: 5,
+        display: "flex",
+        background: Colors.Yellow,
+        borderRadius: "50%",
+        border: `${Colors.Green} 2px solid`,
+        width: 35,
+        height: 35,
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center', 
     }
 
 }));
@@ -84,36 +133,79 @@ const ApuestasActivasAdminData = ({
                                   }) => {
     const classes = useStyles();
     const [moneda, setMoneda] =  React.useState(" $ ");
+    const [open, setOpen] = useState(false);   
+    const [numero, setNumero] = useState(0);
+    const toast = props.toast;                                
 
     React.useEffect(()=>{
         setMoneda(props.moneda === "lempira" ? " L " : " $ " )
-    })
+    },[])
+
+    function handleClickOpen() {
+        setOpen(true);
+    }
+
+    function handleClose() {
+        setNumero(0);
+        setOpen(false);
+    }
+
+    const update = props.update;
+
+    const bloquearApuesta = (e) => {
+        e.preventDefault()
+        adminService.cerrar_apuesta(id).then((result)=>{
+            update();
+        })
+    }
+
+    const fijarNumeroGanador = () =>{
+        if (numero !== '' && numero !== -1 && numero >= 0 && numero < 100) {           
+            adminService.fix_numero_ganador(numero, id).then((result) => {
+                update();
+            })
+            toast("success");
+        }else{
+            toast("fail");
+            setNumero(0);
+        }
+    }
     return (
-        <Grid item xs={12} component={Link}
-              to={
-                  {
-                      pathname: `${url}/${id}`,
-                      state: {
-                          title: {title},
-                          total: total,
-                          comision: comision,
-                          neta: neta,
-                      }
-                  }
-              }
-              className={estado === 'ABIERTA' ? classes.component : classes.componentDisable}>
+        <Grid item xs={12} className={estado !== 'BLOQUEADA' ? classes.component : classes.componentDisable}>
             <Paper key={props.index} className={classes.paper}>
                 <Grid container>
-                <Grid item xs={2} className={classes.typeContainer}>
+                    <Grid item xs={2} className={classes.typeContainer}>
                         <Typography variant="body1" gutterBottom className={classes.textLabel}>
                             {type} 
                         </Typography>
                     </Grid> 
-                    <Grid item xs={8} className={classes.titleContainer}>
+                    <Grid item xs={6} className={classes.titleContainer}>
                         <Typography variant="body1" gutterBottom className={classes.textLabel}>
                             {title} 
                         </Typography>
-                    </Grid>    
+                    </Grid> 
+                    <Grid item xs={1} 
+                    container
+                    justify="center"
+                    alignItems="center"                    
+                    className={classes.infoContainer}
+                    component={Link}
+                            to={
+                                {
+                                    pathname: `${url}/${id}`,
+                                    state: {
+                                        title: {title},
+                                        total: total,
+                                        comision: comision,
+                                        neta: neta,
+                                    }
+                                }
+                            }                          
+                    >
+                        <FaInfoCircle className={classes.infoLabel}                    
+                        
+                        />
+                    </Grid>   
                     <Grid item xs={12}>
                         <Divider/>
                     </Grid>
@@ -226,10 +318,78 @@ const ApuestasActivasAdminData = ({
                                     className={`${estado === 'ABIERTA' ? classes.textSorteoAbierto : classes.close} ${classes.sorteoTextContainer}`}>
                             {estado === 'ABIERTA' ? "Sorteo Abierto" : "Sorteo Cerrado"}
                         </Typography>
-
+                    </Grid>
+                    <Grid item xs={6}
+                          container
+                          justify="center"
+                          className={classes.text}
+                    >
+                        {estado === 'ABIERTA' ? 
+                            <Typography variant="body1" gutterBottom className={classes.numeroGanadorContainer}
+                                onClick={bloquearApuesta}
+                            >
+                                {"Bloquear"}
+                            </Typography>
+                            : null
+                        }
+                         {estado === 'CERRADA' ? 
+                            <Typography variant="body1" gutterBottom className={classes.numeroGanadorContainer}
+                                onClick={handleClickOpen}
+                            >
+                                {"Asignar numero ganador"}
+                            </Typography>
+                            : null
+                        }
+                        {estado === 'BLOQUEADA' ? 
+                            <Typography variant="body1" gutterBottom className={classes.circle}>
+                                {props.numeroGanador}
+                            </Typography>
+                            : null
+                        }
+                        
                     </Grid>
                 </Grid>
             </Paper>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-add-numero-ganador"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle
+                    id="alert-dialog-add-numero-ganador">{`Adicionr número ganador`}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Adicionr número ganador a apuesta {title}                        
+                    </DialogContentText>
+                    <NumberFormat
+                            id="numero-ganador-input"
+                            // hintText="Costo x mil"
+                            label="Numero ganador"
+                            placeholder="Numero ganador(0-99)"
+                            margin="normal"
+                            variant="outlined"
+                            fullWidth
+                            value={numero}                            
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            customInput={TextField}
+                            onChange={(e) => setNumero(e.target.value)}                           
+                        />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Cancelar
+                    </Button>
+                    <Button onClick={() => {
+                        handleClose();
+                        fijarNumeroGanador();
+                    }} color="primary" autoFocus>
+                        Aceptar
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Grid>
     )
 }

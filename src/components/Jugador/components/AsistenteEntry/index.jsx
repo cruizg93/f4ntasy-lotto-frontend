@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
-import HighlightOff from "@material-ui/icons/HighlightOff";
 import Divider from '@material-ui/core/Divider';
 
 import Dialog from '@material-ui/core/Dialog';

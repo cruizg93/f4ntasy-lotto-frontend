@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button/index";
 import {adminService} from "../../../../service/api/admin/admin.service";
 import {Colors} from "../../../../utils/__colors";
 
+
 const useStyles = makeStyles(theme => ({
     root: {
         padding: theme.spacing(3, 2),
@@ -187,7 +188,7 @@ const NumeroGanadorEntry = ({match: {url}, sorteId, title, numero, status, type,
                         <Typography variant="body1" gutterBottom className={classes.textLabel}>
                             {titleApuesta} 
                         </Typography>
-                    </Grid>    
+                    </Grid>
                     <Grid item xs={12}>
                         <Divider/>
                     </Grid>
