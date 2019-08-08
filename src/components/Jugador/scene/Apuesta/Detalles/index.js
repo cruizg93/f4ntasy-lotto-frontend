@@ -73,14 +73,13 @@ const JugadorDetalles = ({...props}) => {
         const classes=useStyles();
         useEffect(() => {
             
-            adminService.list_apuestas_details(props.location.state.username).then((result) => {
+            adminService.list_apuestas_details(props.location.state.username).then((result) => {                
                 setApuestasList(Array.from(result.data.sorteos));
                 setName(result.data.name);
                 setMoneda(result.data.moneda);
                 setUsername(props.location.state.username)
             })
-
-        }, [props])
+        }, [])
         return (
             <React.Fragment>
                 <Grid container spacing={1}

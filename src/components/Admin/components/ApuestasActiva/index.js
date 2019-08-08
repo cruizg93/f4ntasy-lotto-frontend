@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
         pointerEvents: 'none'
     },
     text: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',     
     },
     close: {
         color: red[400]
@@ -57,6 +57,11 @@ const useStyles = makeStyles(theme => ({
     textLabel: {
         display: 'flex',
         margin: '.5rem'
+    },
+    textValueLabel: {
+        display: 'flex',
+        marginLeft: '.5rem',
+        fontWeight: 'bold',
     },
     textSorteoAbierto:{
         color: Colors.Green,        
@@ -162,6 +167,7 @@ const ApuestasActivasAdminData = ({
     const fijarNumeroGanador = () =>{
         if (numero !== '' && numero !== -1 && numero >= 0 && numero < 100) {           
             adminService.fix_numero_ganador(numero, id).then((result) => {
+                console.log(result.data)
                 update();
             })
             toast("success");
@@ -224,8 +230,8 @@ const ApuestasActivasAdminData = ({
                           justify="flex-start"
                           className={classes.text}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-                            {total}
+                        <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
+                            {total.toFixed(2)}
                         </Typography>
 
                     </Grid>
@@ -242,8 +248,8 @@ const ApuestasActivasAdminData = ({
                           justify="flex-start"
                           className={classes.text}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-                            {comision}
+                        <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
+                            {comision.toFixed(2)}
                         </Typography>
 
                     </Grid>
@@ -260,8 +266,8 @@ const ApuestasActivasAdminData = ({
                           justify="flex-start"
                           className={classes.text}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-                            {neta}
+                        <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
+                            {neta.toFixed(2)}
                         </Typography>
 
                     </Grid>
@@ -279,8 +285,8 @@ const ApuestasActivasAdminData = ({
                               justify="flex-start"
                               className={classes.text}
                         >
-                            <Typography variant="body1" gutterBottom className={classes.text}>
-                                {premio}
+                            <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
+                                {premio.toFixed(2)}
                             </Typography>
 
                         </Grid>
@@ -297,8 +303,8 @@ const ApuestasActivasAdminData = ({
                               justify="flex-start"
                               className={classes.text}
                         >
-                            <Typography variant="body1" gutterBottom className={classes.text}>
-                                {balance}
+                            <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
+                                {balance.toFixed(2)}
                             </Typography>
 
                         </Grid>

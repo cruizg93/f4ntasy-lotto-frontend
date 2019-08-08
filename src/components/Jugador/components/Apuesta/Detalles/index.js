@@ -84,7 +84,7 @@ const useStyles = makeStyles(theme => ({
     }       
 
 }));
-const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo, estado, username, moneda, ...props}) => {
+const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo, estado, username, moneda, type, ...props}) => {
     const classes = useStyles();
     useEffect(() => {
 
@@ -104,6 +104,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                                         username: username,
                                         id: id,
                                         moneda: moneda,
+                                        type: type
                                     }
                                 }
                             }
@@ -136,7 +137,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                                 className={total < 0 ? classes.textBalanceNegativo : 
                                 (total !== 0 ? classes.textBalancePositivo : classes.textBalance)}
                             >
-                               {" "}{total}
+                               {" "}{total.toFixed(2)}
                             </Typography>
                         </Grid>
                         <Grid item xs={3}
@@ -156,7 +157,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                                 className={comision < 0 ? classes.textBalanceNegativo : 
                                 (comision !== 0 ? classes.textBalancePositivo : classes.textBalance)}
                                 >
-                                {" "}{comision}
+                                {" "}{comision.toFixed(2)}
                             </Typography>
                         </Grid>
                         <Grid item xs={3}
@@ -176,7 +177,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                                 className={riesgo < 0 ? classes.textBalanceNegativo : 
                                 (riesgo !== 0 ? classes.textBalancePositivo : classes.textBalance)}
                             >
-                                {" "}{riesgo}
+                                {" "}{riesgo.toFixed(2)}
                             </Typography>
                         </Grid>
                         <Grid item xs={12}

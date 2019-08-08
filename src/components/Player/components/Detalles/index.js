@@ -53,13 +53,15 @@ const ShowDetallesApuesta = ({title, apuestas, total, ...props}) => {
     const [titleData, setTitleData] = useState('');
     const [apuestasData, setApuestasData] = useState([]);
     const [totalData, setTotalData] = useState(0.0);
-    const [moneda, setMoneda] = useState(" L ")
+    const [moneda, setMoneda] = useState(" L ");
+   
 
     useEffect(() => {
         setTitleData(title);
         setApuestasData(Array.from(apuestas));
         setTotalData(total);
         setMoneda((props.moneda === "LEMPIRAS" || props.moneda === " L ") ? "L" : " $ ");
+       
 
     }, [])
     return (
@@ -70,28 +72,30 @@ const ShowDetallesApuesta = ({title, apuestas, total, ...props}) => {
                  justify="center"
                  className={classes.containerData}
             >
-                <Grid item xs={3}
-                    className={classes.apuestaContainer}
-                    >                     
-                    <Typography variant="h5" gutterBottom>
-                        
-                    </Typography>
-                 </Grid>
-                 <Grid item xs={8}>
-                    <Typography variant="h5" gutterBottom
-                        style={{marginLeft: ".5rem"}}
-                    >
-                        {props.apuestaTitle}
-                    </Typography>                     
-                 </Grid>
-                
-
+                {props.apuestaTitle &&
+                <>
+                    <Grid item xs={3}
+                        className={classes.apuestaContainer}
+                        >                     
+                        <Typography variant="h5" gutterBottom>
+                            
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={8}>
+                        <Typography variant="h5" gutterBottom
+                            style={{marginLeft: ".5rem"}}
+                        >
+                            {props.apuestaTitle}
+                        </Typography>                     
+                    </Grid>
+                 </>
+                }
                 <Grid item xs={12}
                       container
                       justify="center"
                 >
                     <Typography variant="body1" gutterBottom className={classes.text}>
-                        {"DAFAD"}{titleData}
+                        {" "}{titleData}
                     </Typography>
                 </Grid>
                 <Grid item xs={12}
@@ -106,7 +110,7 @@ const ShowDetallesApuesta = ({title, apuestas, total, ...props}) => {
                 <Grid item xs={6}
                       container
                       justify="flex-end"
-                      spacing={1}
+                      
                 >
                     <Typography variant="body1" gutterBottom className={classes.text}>
                         Total | {moneda}
@@ -115,7 +119,7 @@ const ShowDetallesApuesta = ({title, apuestas, total, ...props}) => {
                 <Grid item xs={6}
                       container
                       justify="flex-start"
-                      spacing={1}
+                      
                 >
                     <Typography id={`text-${props.index}`} variant="body1" gutterBottom className={classes.negative}>
                         {"  "}{total.toFixed(2)}

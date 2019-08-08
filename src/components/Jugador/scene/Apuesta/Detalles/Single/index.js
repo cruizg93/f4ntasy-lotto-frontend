@@ -46,14 +46,22 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: Colors.Main      
     },
     textBalancePositivo:{
-        color: Colors.Green
+        color: Colors.Green,
+        marginLeft:".5rem"
     },
     textBalanceNegativo:{
-        color: Colors.Btn_Red
+        color: Colors.Btn_Red,
+        marginLeft:".5rem"
     },    
     textBalance:{
-        color: Colors.Black
+        color: Colors.Black,
+        marginLeft:".5rem"
     },
+    textApuestaDescription:{
+        height: '76px',
+        fontWeight: 'bold',
+        marginTop: '1rem'
+    }
 }));
 
 
@@ -121,6 +129,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
     const [list, setList] = useState([]);
     const [disable, setDisable] = useState(true);
     const [moneda, setMoneda] = useState("");
+    const [type, setType]= useState("DIARIA");
 
 
     function handleOnPrint() {
@@ -137,7 +146,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
     }
 
     useEffect(() => {
-        
+        console.log(props)
         adminService.list_apuestas_activas_details_by_user_id(props.location.state.username,
             props.location.state.id).then((result) => {
             setTitle(result.data.title);
@@ -146,8 +155,9 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
             setTotal(result.data.total);
             setList(Array.from(result.data.list));
             setMoneda(props.location.state.moneda)
+            setType(props.location.state.type)
         })
-    }, [props]);
+    }, []);
 
     return (
         <React.Fragment>
@@ -157,7 +167,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                   justify="center"
                   alignItems="flex-start">
                 <Typography variant="h5" gutterBottom>
-                    {title}
+                    {type}{" - "}{title}
                 </Typography>
                 <Grid item xs={12}>
                     <Divider/>
@@ -195,7 +205,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                                 className={total < 0 ? classes.textBalanceNegativo : 
                                 (total !== 0 ? classes.textBalancePositivo : classes.textBalance)}
                             >
-                               {" "}{total}
+                               {" "}{total.toFixed(2)}
                         </Typography>
                     </Grid>
                     <Grid item xs={6}
@@ -264,7 +274,8 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                                     state: {
                                         title: title,
                                         username: props.location.state.username,
-                                        id: props.location.state.id
+                                        id: props.location.state.id,
+                                        type: type
                                     }
                                 }}
                 >

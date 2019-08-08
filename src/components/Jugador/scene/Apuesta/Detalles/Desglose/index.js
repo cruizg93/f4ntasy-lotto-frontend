@@ -89,14 +89,16 @@ const DesgloseApuestaJugador = ({...props}) => {
     const [title, setTitle] = useState('');
     const [id, setIdValue] = useState(0);
     const [list, setList] = useState([]);
+    const [type, setType] = useState("DIARIA")
     
     useEffect(() => {
         adminService.details_apuesta_activa_by_user_id(props.location.state.username,
-            props.location.state.id).then((result) => {               
+            props.location.state.id).then((result) => {                            
             setList(Array.from(result.data));
         })
         setTitle(props.location.state.title);
-        setIdValue(props.location.state.id)
+        setIdValue(props.location.state.id);
+        setType(props.location.state.type);    
     }, []);
 
     function handleOnPrint() {
@@ -120,10 +122,29 @@ const DesgloseApuestaJugador = ({...props}) => {
                 justify="center"
                 alignItems="flex-start"
                 id="destalles-apuesta-usuario-desglose"
+                className={classes.containerData}
+
             >
+                <Grid item xs={3}
+                    className={classes.apuestaContainer}
+                    >                     
+                    <Typography variant="h5" gutterBottom>
+                        {type}
+                    </Typography>
+                 </Grid>
+                 <Grid item xs={8}>
+                    <Typography variant="h5" gutterBottom
+                        style={{marginLeft: ".5rem"}}
+                    >
+                        {title}
+                    </Typography>                     
+                 </Grid>
+                 <Grid item xs={12}>
+                    <Divider/>
+                 </Grid>
                 {list.map((apuestaDetail, index) =>
                     <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} {...props}
-                    apuestaTitle={title}
+                    
                     
                     />
                 )}
@@ -133,7 +154,7 @@ const DesgloseApuestaJugador = ({...props}) => {
                   justify="center"
             >
 
-                <Grid item xs={6}>
+                <Grid item xs={12}>
                     <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir

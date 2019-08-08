@@ -83,16 +83,25 @@ const ApuestasActivasAdmin = (props) => {
         })
     }, [])
 
-    const changeMonedaType = () =>{
-        if(moneda === 'dolar')
-            setMoneda("lempira")
-        else
+    const changeMonedaType = (type) =>{
+
+        if(type === 'dolar')
             setMoneda("dolar")
-        updateApuestasActivas();    
+        else
+            setMoneda("lempira") 
+        updateApuestasActivas(type)             
     }
 
-    const updateApuestasActivas = () => {
-        adminService.get_apuestas_activas(moneda).then((result) => {
+    const handleDolar = () =>{
+        changeMonedaType("dolar")
+    }
+
+    const handleLempira = () =>{
+        changeMonedaType("lempira")
+    }
+
+    const updateApuestasActivas = (monedaType) => {
+        adminService.get_apuestas_activas(monedaType).then((result) => {
             setApuestasActivasList([]);
             setApuestasActivasList(Array.from(result.data));
         })
@@ -124,12 +133,12 @@ const ApuestasActivasAdmin = (props) => {
                         </Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <Dolar variant="outlined" color="primary" onClick={changeMonedaType}>
+                        <Dolar variant="outlined" color="primary" onClick={handleDolar}>
                             <Typography variant="body1" gutterBottom className={classes.root}>
-                                P
+                                $
                             </Typography>
                         </Dolar>
-                         <Lempira variant="outlined" color="primary" onClick={changeMonedaType}>
+                         <Lempira variant="outlined" color="primary" onClick={handleLempira}>
                              <Typography variant="body1" gutterBottom >
                                  L
                              </Typography>                    
