@@ -12,4 +12,5 @@ export const Colors = {
     Lempira: "#ff8040",
     Yellow: "#f9f055",
     
+    
 }
