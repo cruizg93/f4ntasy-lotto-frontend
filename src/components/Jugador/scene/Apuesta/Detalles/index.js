@@ -1,12 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useReducer} from 'react';
 import Grid from '@material-ui/core/Grid';
 import {makeStyles} from '@material-ui/core/styles';
 import {adminService} from "../../../../../service/api/admin/admin.service";
 import JugadorDetallesEntry from '../../../components/Apuesta/Detalles/index';
 import {Colors} from '../../../../../utils/__colors'
 import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -65,19 +63,24 @@ const useStyles = makeStyles(theme => ({
     },   
 }));
 
+const userNameReducer = (state, action) =>{
+    return state;
+}
+
 const JugadorDetalles = ({...props}) => {
         const [apuestasList, setApuestasList] = useState([]);
         const [name, setName] =useState('');
-        const [moneda, setMoneda] = useState("L");
-        const [username, setUsername] = useState('')
+        const [moneda, setMoneda] = useState("L");     
         const classes=useStyles();
-        useEffect(() => {
-            
-            adminService.list_apuestas_details(props.location.state.username).then((result) => {                
+
+        const username = useReducer(userNameReducer, props.location.state.username);
+
+        useEffect(() => {            
+            adminService.list_apuestas_details(username[0]).then((result) => {                
                 setApuestasList(Array.from(result.data.sorteos));
                 setName(result.data.name);
                 setMoneda(result.data.moneda);
-                setUsername(props.location.state.username)
+               /*  setUsername(props.location.state.username) */
             })
         }, [])
         return (

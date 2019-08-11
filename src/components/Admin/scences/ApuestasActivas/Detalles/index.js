@@ -6,7 +6,7 @@ import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import {red, blue} from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
 import ApuestaActivaRiesgoEntry from '../../../components/ApuestasActiva/Detalles/index';
-import {printDocument, printDocument6} from "../../../../../_helpers/print";
+import {printDocument6} from "../../../../../_helpers/print";
 
 
 const useStyles = makeStyles(theme => ({
