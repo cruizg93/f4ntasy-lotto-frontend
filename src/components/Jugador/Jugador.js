@@ -101,8 +101,7 @@ const Jugador = (props) => {
         })
     }
     useEffect(() => {
-        adminService.list_players_details().then((result) => {
-            console.log(result.data)                             
+        adminService.list_players_details().then((result) => {                                
             setJugadorList(Array.from(result.data))
         })
     }, []);

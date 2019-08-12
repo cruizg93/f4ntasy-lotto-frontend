@@ -145,8 +145,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
         }
     }
 
-    useEffect(() => {
-        console.log(props)
+    useEffect(() => {       
         adminService.list_apuestas_activas_details_by_user_id(props.location.state.username,
             props.location.state.id).then((result) => {
             setTitle(result.data.title);

@@ -7,8 +7,7 @@ const AdicionarApuesta = (props) => {
     const [entry, setEntryData] = useState([]);
 
     useEffect(() => {
-        playerService.list_apuestas_hoy_by_username().then((result) => { 
-            console.log(result.data);
+        playerService.list_apuestas_hoy_by_username().then((result) => {
             setEntryData(result.data);
         })
     }, []);

@@ -225,8 +225,7 @@ const ApuestaActiva = ({...props}) => {
 
     useEffect(() => {        
         setMonedaType(props.location.state.moneda)
-        playerService.list_apuestas_activas_details(apuestaId).then((result) => {
-            console.log(result.data.list);
+        playerService.list_apuestas_activas_details(apuestaId).then((result) => {           
             setApuestaType(result.data.type)
             setTitle(result.data.title);
             setComision(result.data.comision);

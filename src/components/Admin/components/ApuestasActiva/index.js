@@ -166,8 +166,7 @@ const ApuestasActivasAdminData = ({
 
     const fijarNumeroGanador = () =>{
         if (numero !== '' && numero !== -1 && numero >= 0 && numero < 100) {           
-            adminService.fix_numero_ganador(numero, id).then((result) => {
-                console.log(result.data)
+            adminService.fix_numero_ganador(numero, id).then((result) => {               
                 update();
             })
             toast("success");
