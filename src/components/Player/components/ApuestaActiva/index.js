@@ -1,12 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from "@material-ui/core/styles/index";
 import NumberFormat from 'react-number-format';
 import {red} from "@material-ui/core/colors/index";
+import {FaTrashAlt} from 'react-icons/fa';
+
 import './ApuestaActiva.css';
+import { Colors } from '../../../../utils/__colors';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -28,17 +29,24 @@ const useStyles = makeStyles(theme => ({
     negative: {
         padding: theme.spacing(1, 1),
         color: red[400]
+    },
+    deleteIcon:{
+        background: Colors.Btn_Red,
+        color: Colors.Input_bkg,
+        width: "1.5rem",
+        height: "1.5rem",
+        padding: ".2rem",
+        '&:hover':{
+            cursor: "pointer"
+        }
     }
 
 }));
 const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
-    const classes = useStyles();
-    useEffect(() => {
-
-    }, []);
+    const classes = useStyles();    
     return (
         <>
-            <Grid item xs={6}
+            <Grid item xs={4}
                   container
                   justify="flex-end"
             >
@@ -46,7 +54,7 @@ const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
                     {numero}
                 </Typography>
             </Grid>
-            <Grid item xs={6}
+            <Grid item xs={3}
                   container
                   justify="flex-start"
             >
@@ -60,6 +68,14 @@ const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
                     value={valor}
                     disabled={disable}
                     onBlur={props.onEdit}
+                />
+            </Grid>
+            <Grid item xs={4}
+                  container
+                  justify="flex-start"
+            >
+                <FaTrashAlt id={`delete-apuesta-activa-valor-${props.index}`} className={`${classes.deleteIcon} form__center-label` }
+                    onClick={props.delete}
                 />
             </Grid>
         </>

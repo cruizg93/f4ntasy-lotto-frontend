@@ -11,6 +11,6 @@ export const Colors = {
     Green: "#008000",
     Lempira: "#ff8040",
     Yellow: "#f9f055",
-    
+    Orange:  "#ff8000",
     
 }

@@ -88,6 +88,7 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
         if(props.main){
             setPathnameURL(`${url}usuario/apuestas/${id}`)
         }
+        console.log(url)
         /* setMonedaType(moneda === "LEMPIRAS" ? " L " : " $ ");  */             
     },[])
     return (

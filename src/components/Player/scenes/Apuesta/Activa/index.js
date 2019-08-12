@@ -10,8 +10,9 @@ import ApuestaActivaEntry from '../../../components/ApuestaActiva/index';
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
-import {printDocument, printDocument5, printDocument6} from "../../../../../_helpers/print";
+import {printDocument6} from "../../../../../_helpers/print";
 import './Activa.css'
+import {Colors} from '../../../../../utils/__colors'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -39,7 +40,7 @@ const useStyles = makeStyles(theme => ({
         height: '76px',
         bottom: '0',
         left: '0',
-        backgroundColor: 'white'      
+        backgroundColor: Colors.Main      
     },
     apuestasContainer:{
         marginBottom: '5rem'
@@ -49,55 +50,79 @@ const useStyles = makeStyles(theme => ({
 
 const EditarButton = withStyles({
     root: {
-        width: '100%',
+        width: '100px',
+        height: '100%',
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#ff190a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
+        lineHeight: 1.5,        
+        color: Colors.Green,        
+        marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#fb0f2f',
-            borderColor: 'none',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: 'none',
+            boxShadow: 'none',           
+            border: 'none',
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
         },
     },
 })(Button);
-
+const EliminarTodoButton = withStyles({
+    root: {
+        width: '100px',
+        height: '100%',
+        boxShadow: 'none',
+        textTransform: 'none',
+        fontSize: 16,
+        padding: '6px 12px',
+        lineHeight: 1.5,        
+        color: Colors.Btn_Red,        
+        marginBottom: '1.5rem',
+        marginRight: '.5rem',
+        marginLeft: '.5rem',
+        border: 'none',
+        '&:hover': {
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
+        },
+        '&:active': {
+            boxShadow: 'none',           
+            border: 'none',
+        },
+        '&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+        },
+    },
+})(Button);
 const ImprimirButton = withStyles({
     root: {
-        width: '100%',
+        width: '100px',
+        height: '100%',
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#2b85c2',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
+        lineHeight: 1.5,        
+        color: Colors.Btn_Blue,        
+        marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
+            boxShadow: 'none',           
+            border: 'none',
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
@@ -105,56 +130,27 @@ const ImprimirButton = withStyles({
     },
 })(Button);
 
-const FijarButton = withStyles({
-    root: {
-        width: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#29992a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        '&:hover': {
-            backgroundColor: '#52d94f',
-            borderColor: '#62cc68',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 const DetallesButton = withStyles({
     root: {
-        width: '100%',
+        width: '100px',
+        height: '100%',
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#ff9d15',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
+        lineHeight: 1.5,        
+        color: Colors.Orange,       
+        marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#ffe634',
-            borderColor: '#cc9f0e',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
             boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
+            backgroundColor: Colors.Btn_Hover,            
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
@@ -172,7 +168,12 @@ const ApuestaActiva = ({...props}) => {
     const [apuestaType, setApuestaType] = useState('CHICA');
     const [monedaType, setMonedaType]=React.useState("$");
 
+    const apuestaId = props.match.params.apuestaId;
+
     function handleDisableClick() {
+        if(!disable){
+            submitUpdateData();
+        }       
         setDisable(!disable);
     }
 
@@ -185,9 +186,9 @@ const ApuestaActiva = ({...props}) => {
     }
 
     function submitUpdateData() {
-        playerService.update_number_apuesta_activas(list, props.match.params.apuestaId).then((result) => {
+        playerService.update_number_apuesta_activas(list, apuestaId).then((result) => {
             success_response();
-            playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {                
+            playerService.list_apuestas_activas_details(apuestaId).then((result) => {                
                 setTitle(result.data.title);
                 setComision(result.data.comision);
                 setRiesgo(result.data.riesgo);
@@ -195,6 +196,20 @@ const ApuestaActiva = ({...props}) => {
                 setList(Array.from(result.data.list));
             })
         });
+    }
+
+    function deleteOneFunction(e) {
+        let id = e.target.id;
+        id = id.split('-')[4];
+        list[id]['valor'] = parseFloat(0);      
+        submitUpdateData();      
+    }
+
+    function eliminarCompleto(){
+        list.forEach((elem, idx) => {
+            elem['valor']= 0.0;            
+        })
+        submitUpdateData();
     }
 
     function success_response() {
@@ -208,10 +223,10 @@ const ApuestaActiva = ({...props}) => {
         printDocument6(input, title+'-activa');
     }
 
-    useEffect(() => {
-        
+    useEffect(() => {        
         setMonedaType(props.location.state.moneda)
-        playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
+        playerService.list_apuestas_activas_details(apuestaId).then((result) => {
+            console.log(result.data.list);
             setApuestaType(result.data.type)
             setTitle(result.data.title);
             setComision(result.data.comision);
@@ -219,7 +234,7 @@ const ApuestaActiva = ({...props}) => {
             setTotal(result.data.total);
             setList(Array.from(result.data.list));
         })
-    }, [props]);
+    },[]);
 
     return (
         <React.Fragment>
@@ -251,6 +266,7 @@ const ApuestaActiva = ({...props}) => {
                         <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}
                                             disable={disable}
                                             onEdit={updateFunction}
+                                            delete={deleteOneFunction}
                         />
                     )}
                     {/*</Grid>*/}
@@ -324,16 +340,18 @@ const ApuestaActiva = ({...props}) => {
                 <Grid item xs={2}>
                     <EditarButton variant="outlined" color="primary" onClick={handleDisableClick}>
                         <Typography variant="body1" gutterBottom>
-                            Editar
+                            {disable ? "Editar" : "Fijar"}                            
                         </Typography>
                     </EditarButton>
                 </Grid>
                 <Grid item xs={2}>
-                    <FijarButton variant="outlined" color="primary" disabled={disable} onClick={submitUpdateData}>
+                    <EliminarTodoButton variant="outlined" color="primary" 
+                         onClick={eliminarCompleto}
+                        >
                         <Typography variant="body1" gutterBottom>
-                            Fijar
+                            Eliminar completo
                         </Typography>
-                    </FijarButton>
+                    </EliminarTodoButton>
                 </Grid>
                 <Grid item xs={2}>
                     <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
