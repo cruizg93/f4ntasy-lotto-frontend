@@ -4,7 +4,6 @@ import {Route} from 'react-router-dom';
 import Login from './components/Login/Login';
 import {PrivateRoute} from './components/PrivateRoute/PrivateRoute';
 import Jugador from './components/Jugador/Jugador';
-import Apuestas from './components/Apuestas/Apuestas';
 import Nuevo from './components/Jugador/Nuevo';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Cambio from './components/Cambio/Cambio';
