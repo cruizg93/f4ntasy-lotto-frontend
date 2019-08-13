@@ -98,8 +98,7 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
     const [entry, setEntryData] = useState([]);
     const mounted = useState(true);
     const [name, setName] = useState('');
-    useEffect(() => {
-
+    useEffect(() => {        
         let reg = /^\d+$/;
         if (!reg.test(match.params.apuestaId)) {
             props.history.push('/usuario/apuestas');
@@ -184,7 +183,8 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
                                  state: {
                                      list: entry,
                                      id: match.params.apuestaId,
-                                     title: props.location.state.title
+                                     title: props.location.state.title,
+                                     moneda: props.location.state.moneda
                                  }
                              }}
                              className={classes.root}

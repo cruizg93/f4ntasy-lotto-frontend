@@ -29,7 +29,8 @@ const useStyles = makeStyles(theme => ({
         pointerEvents: 'none'
     },
     text: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginLeft: ".5rem"
     },
     close: {
         color: red[400]
@@ -102,17 +103,18 @@ const TotalButton = withStyles({
 })(Button);
 const ComprarApuesta = ({...props}) => {
     const classes = useStyles();
-    const [elements, setElements] = useState([]);
-    const [title, setTitle] = useState('');
+    const [elements, setElements] = useState(props.location.state.list);
+    const title = useState(props.location.state.title.nombre);
     const [total, setTotal] = useState(0.0);
     const [comision, setComision] = useState(0.0);
-    const [riesgo, setRiesgo] = useState(0.0);
-    const [id, setIdValue] = useState(0);
+    const moneda = useState(props.location.state.moneda);
+    const [id, setIdValue] = useState(props.location.state.id);
     const mounted = useState(true);
+    const apuestaType = props.location.state.title.nombre.includes("Chica")
 
     useEffect(() => {
-        setElements(props.location.state.list);
-        setTitle(props.location.state.title.nombre);
+        console.log(props)    
+        setElements(props.location.state.list);        
         setIdValue(props.location.state.id);
         let totald = 0;
         props.location.state.list.forEach(function (item, index) {
@@ -121,12 +123,18 @@ const ComprarApuesta = ({...props}) => {
             }
         });
         let comision1 = 0;
-        playerService.comision_directo("directo").then((result) => {
-            comision1 = result.data;
-            setComision((result.data).toFixed(2));
-        })
-        setTotal(totald.toFixed(2));
-        setRiesgo((totald - comision1).toFixed(2));
+        if (apuestaType) {
+            playerService.comision_directo("chica").then((result) => {
+                comision1 = totald * result.data /100;
+                setComision((comision1).toFixed(2));
+            })
+        }else{
+            playerService.comision_directo("directo").then((result) => {
+                comision1 = totald * result.data /100;
+                setComision((comision1).toFixed(2));
+            })
+        }       
+        setTotal(totald.toFixed(2));        
     }, []);
 
     function submitClickHandler() {
@@ -140,15 +148,17 @@ const ComprarApuesta = ({...props}) => {
 
     return (
         <React.Fragment>
-            <Grid
-                container spacing={1}
+            <Grid 
+                container 
+                spacing={1}
                 direction="row"
                 justify="center"
                 alignItems="flex-start"
             >
-                <Typography variant="h5" gutterBottom>
+                <Typography variant="h6" gutterBottom>
                     {title}
                 </Typography>
+                
             </Grid>
             <Divider/>
             <Grid
@@ -172,16 +182,16 @@ const ComprarApuesta = ({...props}) => {
                       justify="flex-end"
                 >
                     <Typography variant="body1" gutterBottom className={classes.text}>
-                        apuestas |
+                        Apuestas 
                     </Typography>
                 </Grid>
-                <Grid item xs={9}
+                <Grid item xs={8}
                       container
                       justify="flex-start"
                       className={classes.text}
                 >
                     <Typography variant="body1" gutterBottom className={classes.text}>
-                        {total}
+                        {moneda}{" "}{total}
                     </Typography>
 
                 </Grid>
@@ -190,16 +200,16 @@ const ComprarApuesta = ({...props}) => {
                       justify="flex-end"
                 >
                     <Typography variant="body1" gutterBottom className={classes.text}>
-                        comision |
+                        Comision 
                     </Typography>
                 </Grid>
-                <Grid item xs={9}
+                <Grid item xs={8}
                       container
                       justify="flex-start"
                       className={classes.text}
                 >
                     <Typography variant="body1" gutterBottom className={classes.text}>
-                        {comision}
+                        {moneda}{" "}{comision}
                     </Typography>
                 </Grid>
                 <Grid item xs={3}
@@ -207,16 +217,16 @@ const ComprarApuesta = ({...props}) => {
                       justify="flex-end"
                 >
                     <Typography variant="body1" gutterBottom className={classes.text}>
-                        riesgo |
+                        Riesgo 
                     </Typography>
                 </Grid>
-                <Grid item xs={9}
+                <Grid item xs={8}
                       container
                       justify="flex-start"
                       className={classes.text}
                 >
                     <Typography variant="body1" gutterBottom className={classes.text}>
-                        {riesgo}
+                        {moneda}{" "}{total - comision}
                     </Typography>
                 </Grid>
             </Grid>
