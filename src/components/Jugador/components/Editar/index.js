@@ -33,64 +33,6 @@ const GreenRadio = withStyles({
     checked: {},
 })(props => <Radio color="default" {...props} />);
 
-const EditarButton = withStyles({
-    root: {
-        width: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#ff190a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        '&:hover': {
-            backgroundColor: '#fb0f2f',
-            borderColor: 'none',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: 'none',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-
-const FijarButton = withStyles({
-    root: {
-        width: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#29992a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        '&:hover': {
-            backgroundColor: '#52d94f',
-            borderColor: '#62cc68',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-
 const EditarFijarButton = withStyles({
     root: {
         width: '100%',
@@ -188,10 +130,6 @@ const EditarJugador = (props) => {
     const mounted = useState(true);
     const [disable, setDisable] = useState(true);
 
-    function handleDisableClick() {
-        setDisable(!disable);
-    }
-
     const editarFijarHandler = (e) => {
         if(!disable){
             onClickHandlerEditar();
@@ -200,8 +138,7 @@ const EditarJugador = (props) => {
     }
 
     const [selectedValueMoneda, setSelectedValueMoneda] = React.useState('l');
-    const [person, setPerson] = React.useState('');
-
+    
     const [placeholderUser, setPlaceholderUser] = React.useState("P000");
 
     const [diariaPremioMil, setDiariaPremioMil] = React.useState('');
@@ -250,12 +187,6 @@ const EditarJugador = (props) => {
     const [inputUserName, setInputUserName] = useState(''); // '' is the initial state value
     const [inputPassword, setInputPassword] = useState(''); // '' is the initial state value
 
-    function success_response() {
-        toast.success("Usuario guardado !", {
-            position: toast.POSITION.TOP_RIGHT
-        });
-    }
-
     function duplicado() {
         toast.warn("Usuario duplicado !", {
             position: toast.POSITION.TOP_RIGHT
@@ -269,7 +200,7 @@ const EditarJugador = (props) => {
     }
 
     useEffect(() => {
-        adminService.get_player_by_id(props.match.params.jugadorId).then((result) => {          
+        adminService.get_player_by_id(props.match.params.jugadorId).then((result) => {      
             if(result.data.moneda.monedaName==='DOLAR'){
                 setSelectedValueMoneda('d');
             }
@@ -366,7 +297,8 @@ const EditarJugador = (props) => {
             cparam1: cparam1,
             cparam2: cparam2,
             cparam3: cparam3,
-        };        
+        };   
+        
 
         adminService.edit_player(data)
             .then(function (response) {
@@ -380,7 +312,7 @@ const EditarJugador = (props) => {
                 duplicado();
 
             });
-
+ 
     }
 
     return (
@@ -393,12 +325,12 @@ const EditarJugador = (props) => {
                     alignItems="flex-start"
                     className={classes.headerContainer}
                     >
-                    <Grid item xs={6} className={classes.editarJugadorLabel}>
+                    <Grid item xs={8} className={classes.editarJugadorLabel}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
                             Editar Jugador P
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                         
                     </Grid>
                 </Grid>             
@@ -426,6 +358,7 @@ const EditarJugador = (props) => {
                                 />}
                             label="Lempiras"
                             labelPlacement="bottom"
+                            
                         />
                         <FormControlLabel
                             value="dolar"
