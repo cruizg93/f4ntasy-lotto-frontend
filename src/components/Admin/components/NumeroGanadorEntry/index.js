@@ -6,8 +6,6 @@ import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
 import {red, blue} from "@material-ui/core/colors/index";
 import NumberFormat from 'react-number-format';
-import {withStyles} from "@material-ui/core/styles/index";
-import Button from "@material-ui/core/Button/index";
 import {adminService} from "../../../../service/api/admin/admin.service";
 import {Colors} from "../../../../utils/__colors";
 
@@ -29,8 +27,9 @@ const useStyles = makeStyles(theme => ({
     },
     btnHeight: {
         height: '40px',
-        width: '150px',
-        marginRight: '1rem',
+        width: '150px',      
+        marginBottom: '1rem',
+        fontSize: "14pt",
     },
     component: {
         textDecoration: 'none',
@@ -66,23 +65,43 @@ const useStyles = makeStyles(theme => ({
         textDecoration: "none",             
         justifyContent: 'center',
         flexDirection: 'row',
-        alignItems: 'center',        
-        margin: '1rem',
+        alignItems: 'center',
         borderRight:"#afb6b8 1px solid",
+        color: Colors.Btn_Blue
     },
     titleContainer:{
         textDecoration: "none",             
         justifyContent: 'center',
         flexDirection: 'row',
-        alignItems: 'center',        
-        margin: '1rem',        
+        alignItems: 'center',
+    },
+    titleContainerShort:{
+        textDecoration: "none",             
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRight:"#afb6b8 1px solid",
+        color: Colors.Btn_Blue
+    },
+    hourContainer:{
+        textDecoration: "none",             
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        color: Colors.Btn_Blue
+    },
+    fijarContainer:{
+        textDecoration: "none",             
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center', 
+        marginLeft: '.8rem'       
     },
     sorteoStatusContainer:{
         textDecoration: "none",             
         justifyContent: 'center',
         flexDirection: 'row',
-        alignItems: 'center',        
-        margin: '1rem',        
+        alignItems: 'center',
         borderRight:"#afb6b8 1px solid",
     },
     editarLabel:{
@@ -92,7 +111,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         padding: '5px 10px 5px 10px',
         margin: '1rem',
-        color: Colors.Btn_Blue,
+        color: Colors.Green,
         '&:hover':{
             cursor: "pointer"
         }
@@ -113,37 +132,12 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-
-const TotalButton = withStyles({
-    root: {
-        width: '150px',
-        height: '40px',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        lineHeight: 1.5,
-        backgroundColor: '#29992a',
-        color: '#FFF',
-        marginLeft: '1rem',
-        '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-
 const NumeroGanadorEntry = ({match: {url}, sorteId, title, numero, status, type, ...props}) => {
     const classes = useStyles();
     const [idApuesta, setId] = useState(0);
-    const [titleApuesta, setTitleApuesta] = useState('');
+    const [titleApuesta, setTitleApuesta] = useState(title.split('-')[0]);
+    const apuestaHour = useState(title.split('-')[1]); 
+    
     const [numeroApuesta, setNumeroApuesta] = useState(-1);
     const [statusApuesta, setStatus] = useState("abierta");
     const [apuestaType, setApuestaType]=useState("Diaria");
@@ -151,14 +145,13 @@ const NumeroGanadorEntry = ({match: {url}, sorteId, title, numero, status, type,
     const handler = props.handler;
 
     useEffect(() => {        
-        setId(sorteId);
-        setTitleApuesta(title);
+        setId(sorteId);       
         setNumeroApuesta(numero);
         setStatus(status);        
         setApuestaType(type === "DIARIA" ? "Diaria" : "Chica")
         if( status === 'bloqueada')
             setCambiar(true)
-    }, [sorteId, title, numero, status, type])
+    }, [sorteId, numero, status, type])
 
     function onNumberChange(e) {       
         setNumeroApuesta(e.target.value);
@@ -178,14 +171,20 @@ const NumeroGanadorEntry = ({match: {url}, sorteId, title, numero, status, type,
         <Grid item xs={12}>
             <Paper key={props.index} className={classes.paper}>
                 <Grid container>
-                    <Grid item xs={2} className={classes.typeContainer}>
+                    <Grid item xs={3} className={classes.typeContainer}>
                         <Typography variant="body1" gutterBottom className={classes.textLabel}>
                             {apuestaType} 
                         </Typography>
                     </Grid> 
-                    <Grid item xs={8} className={classes.titleContainer}>
+                    <Grid item xs={6} className={classes.titleContainerShort}>
                         <Typography variant="body1" gutterBottom className={classes.textLabel}>
                             {titleApuesta} 
+                        </Typography>
+                    </Grid>
+                    
+                    <Grid item xs={3} className={classes.hourContainer}>
+                        <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                            {apuestaHour} 
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
@@ -201,7 +200,7 @@ const NumeroGanadorEntry = ({match: {url}, sorteId, title, numero, status, type,
                     }
                     {status !== 'abierta' ?
                         <>
-                        <Grid item xs={8}                             
+                        <Grid item xs={9}                             
                             className={classes.sorteoStatusContainer}
                         >
                             <Grid item 
@@ -232,7 +231,7 @@ const NumeroGanadorEntry = ({match: {url}, sorteId, title, numero, status, type,
                                 }
                             </Grid>                            
                         </Grid>
-                        <Grid item xs={2} className={classes.titleContainer}>
+                        <Grid item xs={2} className={`${classes.fijarContainer} form__center-label`}>
                             { !cambiar ?
                                 <Typography variant="body1" gutterBottom 
                                     className={ classes.editarLabel }
