@@ -38,31 +38,46 @@ const useStyles = makeStyles(theme => ({
     container: {
         background: '#FFF',
         marginTop: '1rem',
-        marginBottom: '1rem',
+        marginBottom: '1rem',        
     },   
     textField: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
         width: 100,
-        marginBottom: '.5rem'
+        marginBottom: '.5rem',
+        marginTop: ".2rem",
+        fontSize: "14pt"
     },
     headerContainer: {
         background : Colors.Main,
         marginBottom: "1rem",
+    },
+    bodyContainer: {
+        background : Colors.Main,
+        marginBottom: "1rem",
+        border: `rgba(0, 0, 0, 0.12) 1px solid`,
     },
     setCambioLabel:{
         borderBottom: `${Colors.Btn_Red} 2px solid`,
         paddingBottom: "1rem !important",
         marginTop: ".5rem",
     },
-    fijarElement:{
-        color: Colors.Btn_Blue,           
-        '&:hover':{
-            cursor: "pointer",
+    fijarElement: {
+        color: Colors.Green,      
+        cursor: 'pointer',     
+        '&:hover': {            
+            background: Colors.Gray_Ligth
         }
     },
-    fijarLabel:{
-        margin: "0",
+    fijarLabel: {
+        margin: "0",        
+    },  
+    headerTitle: {
+        fontSize: "12pt",
+        marginLeft: ".5rem"
+    },
+    leftMargin:{
+        marginLeft: ".5rem"
     }
 
 }));
@@ -110,26 +125,26 @@ export default function Cambio() {
                     alignItems="flex-start"
                     className={classes.headerContainer}
                     >
-                    <Grid item xs={6} className={classes.setCambioLabel}>
-                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                    <Grid item xs={8} className={classes.setCambioLabel}>
+                        <Typography variant="h6" gutterBottom className={`${classes.headerTitle} form__left-label`}>
                             Fijar tipo de Cambio
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                         
                     </Grid>
                 </Grid>
-                <Grid container spacing={1}
+                <Grid container 
                       direction="row"
                       justify="center"
                       alignItems="flex-start"
-                      className={classes.headerContainer}
+                      className={classes.bodyContainer}
                       >
                     <Grid item xs={12}>
-                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                        <Typography variant="h6" gutterBottom className={`${classes.leftMargin} form__left-label`}>
                             Tipo de cambio en sistema
                         </Typography>
-                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                        <Typography variant="h6" gutterBottom className={`${classes.leftMargin} form__left-label`}>
                             $1.00 = {currentValue} Lempiras
                         </Typography>
                         <Divider/>
@@ -152,12 +167,14 @@ export default function Cambio() {
 
                         </Grid>
                     </Grid>
-                    <Grid item xs={3} onClick={handleOnClickCambio} className={classes.fijarElement}>
-                        <Grid container justify="center" spacing={spacing} className={classes.fijarLabel}>
+                    <Grid item xs={3} 
+                        container 
+                        justify="center"
+                        onClick={handleOnClickCambio} 
+                        className={classes.fijarElement}>
                             <Typography variant="h6" gutterBottom >
                                 Fijar
                             </Typography>                           
-                        </Grid>
                     </Grid>
                 </Grid>             
             </Container>
