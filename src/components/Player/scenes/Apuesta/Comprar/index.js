@@ -113,7 +113,7 @@ const ComprarApuesta = ({...props}) => {
     const apuestaType = props.location.state.title.nombre.includes("Chica")
 
     useEffect(() => {
-        console.log(props)    
+        
         setElements(props.location.state.list);        
         setIdValue(props.location.state.id);
         let totald = 0;
@@ -125,16 +125,20 @@ const ComprarApuesta = ({...props}) => {
         let comision1 = 0;
         if (apuestaType) {
             playerService.comision_directo("chica").then((result) => {
-                comision1 = totald * result.data /100;
+                comision1 = totald * result.data.comision /100;
+                totald = totald * result.data.costoMil                
                 setComision((comision1).toFixed(2));
+                setTotal(totald.toFixed(2));  
             })
         }else{
             playerService.comision_directo("directo").then((result) => {
-                comision1 = totald * result.data /100;
+                comision1 = totald * result.data.comision /100;
                 setComision((comision1).toFixed(2));
+                totald = totald * result.data.costoMil;
+                setTotal(totald.toFixed(2)); 
             })
         }       
-        setTotal(totald.toFixed(2));        
+              
     }, []);
 
     function submitClickHandler() {
@@ -226,7 +230,7 @@ const ComprarApuesta = ({...props}) => {
                       className={classes.text}
                 >
                     <Typography variant="body1" gutterBottom className={classes.text}>
-                        {moneda}{" "}{total - comision}
+                        {moneda}{" "}{(total - comision).toFixed(2)}
                     </Typography>
                 </Grid>
             </Grid>

@@ -58,7 +58,7 @@ const SingleApuestaDetails=({numero, valor, ...props})=>{
                   spacing={1}
             >
                 <Typography variant="body1" gutterBottom className={classes.textMoneda}>
-                    {props.moneda}
+                    
                 </Typography>
                 <Typography id={`text-${props.index}`} variant="body1" gutterBottom className={classes.negative}>
                     {" "}{valor.toFixed(2)}

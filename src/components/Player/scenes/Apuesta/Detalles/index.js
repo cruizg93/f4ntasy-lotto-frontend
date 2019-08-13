@@ -85,17 +85,16 @@ const ImprimirButton = withStyles({
 })(Button);
 const DetallesApuesta = ({...props}) => {
     const classes = useStyles();
-    const [title, setTitle] = useState('');
-    const [id, setIdValue] = useState(0);
+    const [title, setTitle] = useState('');   
     const [list, setList] = useState([]);
     const [apuestaType, setApuestaType]= useState("Diaria");
     const [moneda, setMoneda] = useState(" $ ");
-    useEffect(() => {        
+    useEffect(() => {  
+        console.log(props.location.state.id)      
         playerService.detalles_by_apuesta_id(props.location.state.id).then((result) => {
             setList(Array.from(result.data));
         })
-        setTitle(props.location.state.title.title);
-        setIdValue(props.location.state.id);
+        setTitle(props.location.state.title.title);        
         setApuestaType(props.location.state.type);
         setMoneda(props.location.state.moneda);
     }, []);

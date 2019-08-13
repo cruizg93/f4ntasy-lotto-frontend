@@ -135,7 +135,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                         >
                             <Typography variant="body1" gutterBottom 
                                 className={total < 0 ? classes.textBalanceNegativo : 
-                                (total !== 0 ? classes.textBalancePositivo : classes.textBalance)}
+                                (total !== 0 ? classes.textBalance : classes.textBalance)}
                             >
                                {" "}{total.toFixed(2)}
                             </Typography>
@@ -155,7 +155,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                         >
                             <Typography variant="body1" gutterBottom 
                                 className={comision < 0 ? classes.textBalanceNegativo : 
-                                (comision !== 0 ? classes.textBalancePositivo : classes.textBalance)}
+                                (comision !== 0 ? classes.textBalance : classes.textBalance)}
                                 >
                                 {" "}{comision.toFixed(2)}
                             </Typography>
@@ -175,7 +175,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                         >
                             <Typography variant="body1" gutterBottom 
                                 className={riesgo < 0 ? classes.textBalanceNegativo : 
-                                (riesgo !== 0 ? classes.textBalancePositivo : classes.textBalance)}
+                                (riesgo !== 0 ? classes.textBalance : classes.textBalance)}
                             >
                                 {" "}{riesgo.toFixed(2)}
                             </Typography>

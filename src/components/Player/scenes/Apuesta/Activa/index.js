@@ -190,9 +190,9 @@ const ApuestaActiva = ({...props}) => {
             success_response();
             playerService.list_apuestas_activas_details(apuestaId).then((result) => {                
                 setTitle(result.data.title);
-                setComision(result.data.comision);
-                setRiesgo(result.data.riesgo);
-                setTotal(result.data.total);
+                setComision(result.data.comision.toFixed(2));
+                setRiesgo(result.data.riesgo.toFixed(2));
+                setTotal(result.data.total.toFixed(2));
                 setList(Array.from(result.data.list));
             })
         });
@@ -228,9 +228,9 @@ const ApuestaActiva = ({...props}) => {
         playerService.list_apuestas_activas_details(apuestaId).then((result) => {           
             setApuestaType(result.data.type)
             setTitle(result.data.title);
-            setComision(result.data.comision);
-            setRiesgo(result.data.riesgo);
-            setTotal(result.data.total);
+            setComision(result.data.comision.toFixed(2));
+            setRiesgo(result.data.riesgo.toFixed(2));
+            setTotal(result.data.total.toFixed(2));
             setList(Array.from(result.data.list));
         })
     },[]);
