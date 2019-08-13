@@ -77,6 +77,7 @@ const useStyles = makeStyles(theme => ({
     iconClose: {
         margin: '0 auto',
         display: 'block',
+        color: Colors.Btn_Red,
         '&:hover':{
             cursor: "pointer"
         }        
