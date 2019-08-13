@@ -79,10 +79,8 @@ const useStyles = makeStyles(theme => ({
         textDecoration: "none",          
         justifyContent: 'center',
         flexDirection: 'row',
-        alignItems: 'center',
-        padding: '5px 10px 5px 10px !important',
-        
-        margin: '.5rem',
+        alignItems: 'center',        
+        padding: '1rem 10px 1rem 10px !important',       
         borderRight:"#afb6b8 1px solid",
         color: Colors.Btn_Blue,
         '&:hover':{
@@ -95,7 +93,7 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'row',
         alignItems: 'center',
         padding: '0 !important',
-        margin: '.5rem',
+       
         borderRight:"#afb6b8 1px solid",
         color: Colors.Btn_Blue,
     },
@@ -127,11 +125,12 @@ const AsistenteDataShow = ({match, id, username, name, ...props}) => {
     } 
 
     return (
-        <Grid item container xs={12}>            
-                <Grid container spacing={3}>
+        <Grid item>  
+                            
+                <Grid container>
                     <Grid item xs={12}>
-                        <Divider/>
-                    </Grid>  
+                            <Divider/>
+                    </Grid>
                     <Grid item xs={6}
                             container
                             justify="flex-start"
@@ -139,10 +138,14 @@ const AsistenteDataShow = ({match, id, username, name, ...props}) => {
                             className={classes.labelUser}
                             >         
                         <Typography variant="body1" gutterBottom className={classes.text}>
-                            {username} {` [ ${name} ]`}{}  
-                        </Typography>                                                                     
+                            {username} 
+                        </Typography>   
+                        <Typography variant="body1" gutterBottom className={classes.text}>
+                           {` [ ${name} ]`}{}  
+                        </Typography>                                                                  
                     </Grid>
-                    <Grid item xs={2}
+                    <Grid item xs={3}
+                          container
                           justify="center"
                           className={classes.editarLink}
                         component={Link} to={

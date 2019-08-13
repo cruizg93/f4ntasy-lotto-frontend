@@ -134,11 +134,12 @@ const useStyles = makeStyles(theme => ({
         background: Colors.Main
     },
     expansionPanelTextHeader:{      
-        marginLeft: '9rem',
+        marginLeft: '2rem',
         color: Colors.Gray_Ligth
     },
     expansionPanelBody:{      
-        display: 'block'
+        display: 'block',
+        padding: "0 !important"
     },
     labelUser: {
         textDecoration: 'none',
@@ -156,8 +157,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        padding: '5px 10px 5px 10px',
-        margin: '1rem',
+        padding: '1rem 10px 1rem 10px',        
         borderRight:"#afb6b8 1px solid",
         color: Colors.Btn_Blue,
     },
@@ -166,8 +166,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        padding: '5px 10px 5px 10px',
-        margin: '1rem',
+        padding: '1rem 10px 1rem 10px',        
         borderRight:"#afb6b8 1px solid",
         color: Colors.Btn_Blue,
         '&:hover':{
@@ -250,7 +249,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                     >
                         {username} {" - "}{monedaSymbol} {"  "} {name}
                     </Grid>
-                    <Grid item xs={2} className={classes.editarLink}
+                    <Grid item xs={3} className={classes.editarLink}
                         component={Link} to={
                             {
                                 pathname: `/jugador/editar/${id}`,
@@ -273,24 +272,24 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                     <Grid item xs={12}>
                         <Divider/>
                     </Grid>        
-                    <Grid item xs={6}
+                    <Grid item xs={12} sm={6}
                               container
                               justify="center"                         
                               className={classes.margin}
                         >
-                            <Grid item xs={5}
+                            <Grid item xs={7}
                                   container
                                   justify="flex-end">
                                 <Typography variant="body1" gutterBottom className={classes.textLabel}>
                                     apuestas 
                                 </Typography>
                             </Grid>
-                            <Grid item xs={7}>
+                            <Grid item xs={4}>
                                 <Typography variant="body1" gutterBottom className={classes.text}>
                                     {monedaSymbol} {total}
                                 </Typography>
                             </Grid>
-                            <Grid item xs={5}
+                            <Grid item xs={7}
                                   container
                                   justify="flex-end">
                                 <Typography variant="body1" gutterBottom className={classes.textLabel}>
@@ -298,13 +297,13 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                                 </Typography>
                             </Grid>
 
-                            <Grid item xs={7}>
+                            <Grid item xs={4}>
                                 <Typography variant="body1" gutterBottom className={classes.text}>
                                     {monedaSymbol} {comision}
                                 </Typography>
                             </Grid>
 
-                            <Grid item xs={5}
+                            <Grid item xs={7}
                                   container
                                   justify="flex-end"
                             >
@@ -313,14 +312,14 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                                 </Typography>
                             </Grid>
 
-                            <Grid item xs={7}>
+                            <Grid item xs={4}>
                                 <Typography variant="body1" gutterBottom className={classes.text}>
                                     {monedaSymbol} {riesgo}
                                 </Typography>
                             </Grid>
                     </Grid>
 
-                    <Grid item xs={5}
+                    <Grid item xs={12} sm={5}
                               container
                               justify="center"                         
                               className={classes.margin}
