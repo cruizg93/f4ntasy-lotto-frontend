@@ -62,26 +62,25 @@ const useStyles = makeStyles(theme => ({
 
 const EditarButton = withStyles({
     root: {
-        width: '100%',
+        width: '120px',
+        height: '100%',
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#ff190a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
+        lineHeight: 1.5,        
+        color: Colors.Btn_Red,        
+        marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#fb0f2f',
-            borderColor: 'none',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: 'none',
+            boxShadow: 'none',           
+            border: 'none',
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
@@ -91,26 +90,24 @@ const EditarButton = withStyles({
 
 const TotalButton = withStyles({
     root: {
-        width: '100%',
+        width: '120px',  
+        height: '100%',      
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#2b85c2',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
+        lineHeight: 1.5,        
+        color: Colors.Btn_Blue,       
+        marginBottom: '1.5rem',
+        marginRight: '.5rem',        
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
             boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
+            backgroundColor: Colors.Btn_Hover,            
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
@@ -185,30 +182,9 @@ const DetalleAsistente = ({list, ...props}) => {
                   justify="center"
             >
                 <Typography variant="body1" gutterBottom>
-                    apuesta | {total}
+                    Apuesta | {total.toFixed(2)}
                 </Typography>
-            </Grid>
-            <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
-            >
-                <Grid item xs={6}>
-                    <EditarButton variant="outlined" color="primary"
-                    onClick={props.history.goBack}
-                    >
-                        <Typography variant="body1" gutterBottom>
-                            Editar
-                        </Typography>
-                    </EditarButton>
-                </Grid>
-                <Grid item xs={6}>
-                    <TotalButton variant="outlined" color="primary" onClick={submitClickHandler}>
-                        <Typography variant="body1" gutterBottom>
-                            Comprar
-                        </Typography>
-                    </TotalButton>
-                </Grid>
-            </Grid>
+            </Grid>          
             <Grid container spacing={1}
                   direction="row"
                   justify="center"

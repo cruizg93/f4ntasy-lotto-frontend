@@ -11,7 +11,7 @@ import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
 import {printDocument6} from "../../../../../_helpers/print";
-
+import {Colors} from "../../../../../utils/__colors";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -32,6 +32,17 @@ const useStyles = makeStyles(theme => ({
     },
     numbers: {
         paddingLeft: '.5rem'
+    },
+    fixedElement:{
+        position: 'fixed',
+        width: '100%',        
+        height: '76px',
+        bottom: '0',
+        left: '0',
+        backgroundColor: Colors.Main      
+    },
+    apuestasContainer:{
+        marginBottom: '5rem'
     }
 
 }));
@@ -39,55 +50,79 @@ const useStyles = makeStyles(theme => ({
 
 const EditarButton = withStyles({
     root: {
-        width: '100%',
+        width: '100px',
+        height: '100%',
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#ff190a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
+        lineHeight: 1.5,        
+        color: Colors.Green,        
+        marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#fb0f2f',
-            borderColor: 'none',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: 'none',
+            boxShadow: 'none',           
+            border: 'none',
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
         },
     },
 })(Button);
-
-const ImprimirButton = withStyles({
+const EliminarTodoButton = withStyles({
     root: {
-        width: '100%',
+        width: '100px',
+        height: '100%',
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#2b85c2',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
+        lineHeight: 1.5,        
+        color: Colors.Btn_Red,        
+        marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
+            boxShadow: 'none',           
+            border: 'none',
+        },
+        '&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+        },
+    },
+})(Button);
+const ImprimirButton = withStyles({
+    root: {
+        width: '100px',
+        height: '100%',
+        boxShadow: 'none',
+        textTransform: 'none',
+        fontSize: 16,
+        padding: '6px 12px',
+        lineHeight: 1.5,        
+        color: Colors.Btn_Blue,        
+        marginBottom: '1.5rem',
+        marginRight: '.5rem',
+        marginLeft: '.5rem',
+        border: 'none',
+        '&:hover': {
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
+        },
+        '&:active': {
+            boxShadow: 'none',           
+            border: 'none',
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
@@ -135,6 +170,7 @@ const ApuestaActivaAsistente = ({...props}) => {
 
     function handleDisableClick() {
         setDisable(!disable);
+        submitUpdateData()
     }
 
     function updateFunction(e) {
@@ -217,7 +253,7 @@ const ApuestaActivaAsistente = ({...props}) => {
                           justify="flex-end"
                     >
                         <Typography variant="body1" gutterBottom className={''}>
-                            apuestas |
+                            Apuestas |
                         </Typography>
                     </Grid>
                     <Grid item xs={9}
@@ -226,36 +262,31 @@ const ApuestaActivaAsistente = ({...props}) => {
                           className={''}
                     >
                         <Typography variant="body1" gutterBottom className={classes.numbers}>
-                            {total}
+                            {total.toFixed(2)}
                         </Typography>
                     </Grid>
                 </Grid>
-            </Grid>
+            </Grid>            
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
+                  className={classes.fixedElement}
             >
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                     <EditarButton variant="outlined" color="primary" onClick={handleDisableClick}>
                         <Typography variant="body1" gutterBottom>
-                            Editar
+                            {disable ? "Editar" : "Fijar"}                            
                         </Typography>
                     </EditarButton>
-                </Grid>
-                <Grid item xs={6}>
-                    <FijarButton variant="outlined" color="primary" disabled={disable} onClick={submitUpdateData}>
-                        <Typography variant="body1" gutterBottom>
-                            Fijar
-                        </Typography>
-                    </FijarButton>
-                </Grid>
-                <Grid item xs={6}>
+                </Grid>                
+                <Grid item xs={4}>
                     <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir
                         </Typography>
                     </ImprimirButton>
                 </Grid>
+                
 
             </Grid>
 
