@@ -50,16 +50,16 @@ const useStyles = makeStyles(theme => ({
         textDecoration: "none",             
         justifyContent: 'center',
         flexDirection: 'row',
-        alignItems: 'center',        
-        margin: '1rem',
+        alignItems: 'center',
+        padding: "1rem 10px 10px .5rem",
         borderRight:"#afb6b8 1px solid",
     },
     titleContainer:{
         textDecoration: "none",             
         justifyContent: 'center',
         flexDirection: 'row',
-        alignItems: 'center',        
-        margin: '1rem',        
+        alignItems: 'center', 
+        padding: "1rem 0 10px .5rem",
     },
     textValueLabel: {
         display: 'flex',
@@ -83,12 +83,12 @@ const useStyles = makeStyles(theme => ({
 const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado, moneda, ...props}) => {
     const classes = useStyles();
     const [pathnameUrl, setPathnameURL]=React.useState(`${url}/${id}`)
-    const [monedaType, setMonedaType]=React.useState(moneda === "LEMPIRAS" ? " L " : " $ ")
+    const monedaType = React.useState(moneda === "LEMPIRAS" ? " L " : " $ ")
+  
     React.useLayoutEffect(()=>{       
         if(props.main){
             setPathnameURL(`${url}usuario/apuestas/${id}`)
-        }       
-        /* setMonedaType(moneda === "LEMPIRAS" ? " L " : " $ ");  */             
+        }    
     },[])
     return (
         <React.Fragment>
@@ -107,7 +107,7 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
                     
                     <Paper key={props.index} className={classes.paper}>
                         <Grid container>
-                            <Grid item xs={2} className={classes.typeContainer}>
+                            <Grid item xs={3} className={classes.typeContainer}>
                                 <Typography variant="body1" gutterBottom className={classes.textLabel}>
                                     {props.type} 
                                 </Typography>
