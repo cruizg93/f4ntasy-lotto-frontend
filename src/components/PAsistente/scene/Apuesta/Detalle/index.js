@@ -10,7 +10,8 @@ import ShowNumber from '../../../components/ShowNumero/index';
 import Button from "@material-ui/core/Button/index";
 import {withStyles} from "@material-ui/core/styles/index";
 import {playerService} from "../../../../../service/api/player/player.service";
-
+import { FaShoppingCart } from 'react-icons/fa';
+import {Colors} from "../../../../../utils/__colors";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -42,6 +43,19 @@ const useStyles = makeStyles(theme => ({
     },
     disableLink: {
         pointerEvents: 'none'
+    },
+    fixedElement:{
+        position: 'fixed',
+        width: '100%',        
+        height: '76px',
+        bottom: '0',
+        left: '0',
+        backgroundColor: Colors.Main      
+    },
+    textApuestaDescription:{
+        height: '76px',
+        fontWeight: 'bold',
+        marginTop: '1rem'
     }
 
 }));
@@ -195,7 +209,26 @@ const DetalleAsistente = ({list, ...props}) => {
                     </TotalButton>
                 </Grid>
             </Grid>
-
+            <Grid container spacing={1}
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                  className={classes.fixedElement}
+                  >
+                <Typography variant="body1" gutterBottom className={classes.textApuestaDescription}>
+                        {title}
+                </Typography>      
+                <EditarButton variant="outlined" color="primary" onClick={props.history.goBack}>
+                    <Typography variant="body1" gutterBottom>
+                        Editar
+                    </Typography>
+                </EditarButton>
+                <TotalButton variant="outlined" color="primary" onClick={submitClickHandler}>
+                    <Typography variant="body1" gutterBottom >
+                        Comprar <FaShoppingCart/>
+                    </Typography>                    
+                </TotalButton>
+            </Grid>        
         </React.Fragment>
 
     )

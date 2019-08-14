@@ -1,7 +1,5 @@
-import React, {useState, useEffect, useLayoutEffect} from 'react';
-import {Redirect, Link} from 'react-router-dom';
-import {ToastContainer, toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import {playerService} from "../../../../../service/api/player/player.service";

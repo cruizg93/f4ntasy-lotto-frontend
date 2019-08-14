@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ShowNumber from '../../../../PAsistente/components/ShowNumero/index';
 import {playerService} from "../../../../../service/api/player/player.service";
+import {Colors} from "../../../../../utils/__colors";
+import { FaShoppingCart } from 'react-icons/fa';
 
 
 const useStyles = makeStyles(theme => ({
@@ -40,32 +42,45 @@ const useStyles = makeStyles(theme => ({
     },
     disableLink: {
         pointerEvents: 'none'
+    },
+    fixedElement:{
+        position: 'fixed',
+        width: '100%',        
+        height: '76px',
+        bottom: '0',
+        left: '0',
+        backgroundColor: Colors.Main      
+    },
+    textApuestaDescription:{
+        height: '76px',
+        fontWeight: 'bold',
+        marginTop: '1rem'
     }
 
 }));
 
+
 const EditarButton = withStyles({
     root: {
-        width: '100%',
+        width: '120px',
+        height: '100%',
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#ff190a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
+        lineHeight: 1.5,        
+        color: Colors.Btn_Red,        
+        marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#fb0f2f',
-            borderColor: 'none',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: 'none',
+            boxShadow: 'none',           
+            border: 'none',
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
@@ -75,26 +90,24 @@ const EditarButton = withStyles({
 
 const TotalButton = withStyles({
     root: {
-        width: '100%',
+        width: '120px',  
+        height: '100%',      
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#2b85c2',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
+        lineHeight: 1.5,        
+        color: Colors.Btn_Blue,       
+        marginBottom: '1.5rem',
+        marginRight: '.5rem',        
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
             boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
+            backgroundColor: Colors.Btn_Hover,            
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
@@ -233,27 +246,26 @@ const ComprarApuesta = ({...props}) => {
                         {moneda}{" "}{(total - comision).toFixed(2)}
                     </Typography>
                 </Grid>
-            </Grid>
+            </Grid>            
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
-            >
-                <Grid item xs={6}>
-                    <EditarButton variant="outlined" color="primary"
-                                  onClick={props.history.goBack}
-                    >
-                        <Typography variant="body1" gutterBottom>
-                            Editar
-                        </Typography>
-                    </EditarButton>
-                </Grid>
-                <Grid item xs={6}>
-                    <TotalButton variant="outlined" color="primary" onClick={submitClickHandler}>
-                        <Typography variant="body1" gutterBottom>
-                            Comprar
-                        </Typography>
-                    </TotalButton>
-                </Grid>
+                  alignItems="center"
+                  className={classes.fixedElement}
+                  >
+                <Typography variant="body1" gutterBottom className={classes.textApuestaDescription}>
+                        {title}
+                </Typography>      
+                <EditarButton variant="outlined" color="primary" onClick={props.history.goBack}>
+                    <Typography variant="body1" gutterBottom>
+                        Editar
+                    </Typography>
+                </EditarButton>
+                <TotalButton variant="outlined" color="primary" onClick={submitClickHandler}>
+                    <Typography variant="body1" gutterBottom >
+                        Comprar <FaShoppingCart/>
+                    </Typography>                    
+                </TotalButton>
             </Grid>
         </React.Fragment>
     )

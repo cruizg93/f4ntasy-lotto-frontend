@@ -83,7 +83,7 @@ const useStyles = makeStyles(theme => ({
 const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado, moneda, ...props}) => {
     const classes = useStyles();
     const [pathnameUrl, setPathnameURL]=React.useState(`${url}/${id}`)
-    const monedaType = React.useState(moneda === "LEMPIRAS" ? " L " : " $ ")
+    const [monedaType, setMonedaType] = React.useState(moneda === "LEMPIRAS" ? " L " : " $ ")
   
     React.useLayoutEffect(()=>{       
         if(props.main){
