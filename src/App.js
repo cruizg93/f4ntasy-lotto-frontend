@@ -44,7 +44,6 @@ import DetallesPlayer from './components/Player/scenes/Historial/Detalles/index'
 import DetallesPAsistente from './components/PAsistente/scene/Historial/Detalles/index';
 import HistorialAsistente from './components/PAsistente/scene/Historial/index';
 
-import Temporal from './components/Admin/scences/Temporal/index';
 import NewUser from './components/Admin/scences/Usuario/New/index';
 import NewAsistente from './components/Admin/scences/Asistente/New/index';
 import FirstChangePassword from './components/Password/scene/FirstChange/index'
@@ -70,12 +69,7 @@ class App extends React.Component {
                                 exact path="/password/new"   
                                 roles={[Role.Admin, Role.Master, Role.Player, Role.Asistente]}                             
                                 component={FirstChangePassword}
-                            />   
-                            <PrivateRoute                                
-                                exact path="/temporal"   
-                                roles={[Role.Admin, Role.Master]}                             
-                                component={Temporal}
-                            />                         
+                            />                 
                             <PrivateRoute
                                 exact path="/jugador/editar/:jugadorId"
                                 roles={[Role.Admin, Role.Master]}
