@@ -254,6 +254,7 @@ export default function Nuevo({...props}) {
         if (inputPassword === '' || inputUserName === '' || selectedValueMoneda === '' || selectedDiariaType === '' || selectedChicaType === '') {
             submit = false;
         }
+        
         let dparam1 = diariaCostoMil;
         let dparam2 = diariaPremioMil;
         if (selectedDiariaType === 'dd') {
@@ -263,6 +264,7 @@ export default function Nuevo({...props}) {
         if (dparam1 === '' || dparam1 === 0 || dparam2 === '' || dparam2 === 0) {
             submit = false;
         }
+        
         let cparam1 = 0;
         let cparam2 = 0;
         let cparam3 = 0;
@@ -284,6 +286,7 @@ export default function Nuevo({...props}) {
         if ((cparam1 === 0 && cparam2 === 0) || (selectedChicaType === 'cp' && cparam3 === 0)) {
             submit = false;
         }
+       
         if (!submit) {
             error_reponse();
             return;
@@ -302,13 +305,13 @@ export default function Nuevo({...props}) {
             cparam2: cparam2,
             cparam3: cparam3,
         };
-        adminService.new_player(data)
-            .then(function (response) {                
-                update_jugador();
-                handleClickOpen();
+       
+         adminService.new_player(data)
+            .then(function (response) {  
+                handleClickOpen();                              
                 clean();
             })
-            .catch(function (error) {
+            .catch(function (error) {               
                 error_reponse();
             });        
     }
