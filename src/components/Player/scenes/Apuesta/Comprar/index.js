@@ -114,6 +114,8 @@ const TotalButton = withStyles({
         },
     },
 })(Button);
+
+
 const ComprarApuesta = ({...props}) => {
     const classes = useStyles();
     const [elements, setElements] = useState(props.location.state.list);
@@ -125,6 +127,38 @@ const ComprarApuesta = ({...props}) => {
     const mounted = useState(true);
     const apuestaType = props.location.state.title.nombre.includes("Chica")
 
+    const TitleValue =() => {
+        return (
+            <React.Fragment>
+               {props.location.state.title.nombre}
+            </React.Fragment>
+          );   
+    }
+
+    const TotalValue = () => {
+        return (
+          <React.Fragment>
+             {props.location.state.moneda}{" "}{total}
+          </React.Fragment>
+        );      
+    };
+    
+    const ComisionValue = () => {
+        return (
+          <React.Fragment>
+             {props.location.state.moneda}{" "}{comision}
+          </React.Fragment>
+        );      
+    };
+
+    const RiesgoValue = () => {
+        return (
+          <React.Fragment>
+             {props.location.state.moneda}{" "}{(total-comision).toFixed(2)}
+          </React.Fragment>
+        );      
+    };
+    
     useEffect(() => {
         
         setElements(props.location.state.list);        
@@ -173,7 +207,7 @@ const ComprarApuesta = ({...props}) => {
                 alignItems="flex-start"
             >
                 <Typography variant="h6" gutterBottom>
-                    {title}
+                    <TitleValue />
                 </Typography>
                 
             </Grid>
@@ -208,7 +242,7 @@ const ComprarApuesta = ({...props}) => {
                       className={classes.text}
                 >
                     <Typography variant="body1" gutterBottom className={classes.text}>
-                        {moneda}{" "}{total}
+                        <TotalValue />
                     </Typography>
 
                 </Grid>
@@ -226,7 +260,7 @@ const ComprarApuesta = ({...props}) => {
                       className={classes.text}
                 >
                     <Typography variant="body1" gutterBottom className={classes.text}>
-                        {moneda}{" "}{comision}
+                        <ComisionValue/>
                     </Typography>
                 </Grid>
                 <Grid item xs={3}
@@ -243,7 +277,7 @@ const ComprarApuesta = ({...props}) => {
                       className={classes.text}
                 >
                     <Typography variant="body1" gutterBottom className={classes.text}>
-                        {moneda}{" "}{(total - comision).toFixed(2)}
+                        <RiesgoValue/>
                     </Typography>
                 </Grid>
             </Grid>            
@@ -254,7 +288,7 @@ const ComprarApuesta = ({...props}) => {
                   className={classes.fixedElement}
                   >
                 <Typography variant="body1" gutterBottom className={classes.textApuestaDescription}>
-                        {title}
+                    <TitleValue />                        
                 </Typography>      
                 <EditarButton variant="outlined" color="primary" onClick={props.history.goBack}>
                     <Typography variant="body1" gutterBottom>
