@@ -201,7 +201,7 @@ const ApuestaActiva = ({...props}) => {
     function deleteOneFunction(e) {
         let id = e.target.id;
         id = id.split('-')[4];
-        list[id]['valor'] = parseFloat(0);      
+        list[id]['valor'] = 0.0;   
         submitUpdateData();      
     }
 
@@ -224,8 +224,10 @@ const ApuestaActiva = ({...props}) => {
     }
 
     useEffect(() => {        
+       
         setMonedaType(props.location.state.moneda)
-        playerService.list_apuestas_activas_details(apuestaId).then((result) => {           
+        playerService.list_apuestas_activas_details(apuestaId).then((result) => {   
+            console.log(result.data)        
             setApuestaType(result.data.type)
             setTitle(result.data.title);
             setComision(result.data.comision.toFixed(2));

@@ -126,16 +126,17 @@ const DetallesApuesta = ({...props}) => {
                         {title}
                     </Typography>                     
                  </Grid>
-                 <Grid item xs={12}>
-                    <Divider/>
-                 </Grid>
-                 <Grid
+                 
+                 <Grid item xs={12}
                     container spacing={1}
                     direction="row"
                     justify="center"
                     alignItems="flex-start"
                     id="apuesta-activa-numeros-detalles"
                     >
+                        <Grid item xs={12}>
+                             <Divider/>
+                        </Grid>
                         {list.map((apuestaDetail, index) =>
                             <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} moneda={moneda} {...props}
                             />
