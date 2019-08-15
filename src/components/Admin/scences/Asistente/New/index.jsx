@@ -227,7 +227,7 @@ const NewAsistente = ({ ...props }) => {
         let index = event.target.selectedIndex;
         let optionElement = event.target.childNodes[index];
         let option = optionElement.getAttribute('label');
-        console.log(event.target.value);
+       
         if(event.target.value !== ''){
             adminService.count_player_asistente(event.target.value).then((result) => {
                 setPlaceholderUser(option + "x" + (result.data + 1));

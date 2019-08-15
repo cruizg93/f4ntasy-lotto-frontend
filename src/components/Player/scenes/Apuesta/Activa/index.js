@@ -227,7 +227,7 @@ const ApuestaActiva = ({...props}) => {
        
         setMonedaType(props.location.state.moneda)
         playerService.list_apuestas_activas_details(apuestaId).then((result) => {   
-            console.log(result.data)        
+          
             setApuestaType(result.data.type)
             setTitle(result.data.title);
             setComision(result.data.comision.toFixed(2));

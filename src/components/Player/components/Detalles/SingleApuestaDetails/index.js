@@ -71,7 +71,6 @@ const SingleApuestaDetails=({numero, valor, ...props})=>{
         
     }
 
-    console.log(props)
     return (
         <React.Fragment>
              <Grid item xs={4}
