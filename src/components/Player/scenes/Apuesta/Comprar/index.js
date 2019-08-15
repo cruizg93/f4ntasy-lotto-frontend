@@ -10,6 +10,12 @@ import {playerService} from "../../../../../service/api/player/player.service";
 import {Colors} from "../../../../../utils/__colors";
 import { FaShoppingCart } from 'react-icons/fa';
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import {timeService} from "../../../../../service/api/time/time.service";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -119,13 +125,34 @@ const TotalButton = withStyles({
 const ComprarApuesta = ({...props}) => {
     const classes = useStyles();
     const [elements, setElements] = useState(props.location.state.list);
-    const title = useState(props.location.state.title.nombre);
+    const title = props.location.state.title.nombre;
     const [total, setTotal] = useState(0.0);
     const [comision, setComision] = useState(0.0);
     const moneda = useState(props.location.state.moneda);
     const [id, setIdValue] = useState(props.location.state.id);
     const mounted = useState(true);
     const apuestaType = props.location.state.title.nombre.includes("Chica")
+    const [time, setTime]=useState("");
+
+    const [open, setOpen] = useState(false);   
+
+   
+
+    function handleClickOpen() {
+        timeService.time().then((result)=>{
+            setTime(result.data.time)                  
+        })
+        setOpen(true);
+    }
+
+    function handleClose() { 
+        submitClickHandler()       
+        setOpen(false);
+        props.history.push("/");
+        return () => {
+            mounted.current = false;
+        };        
+    }
 
     const TitleValue =() => {
         return (
@@ -189,8 +216,8 @@ const ComprarApuesta = ({...props}) => {
     }, []);
 
     function submitClickHandler() {
-        playerService.update_number(elements, id).then((result) => {
-            props.history.push("/usuario/apuestas");
+        playerService.update_number(elements, id).then((result) => {          
+            props.history.push("/");
             return () => {
                 mounted.current = false;
             }
@@ -199,6 +226,27 @@ const ComprarApuesta = ({...props}) => {
 
     return (
         <React.Fragment>
+            <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-crear-usuario"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle
+                                id="alert-dialog-crear-usuario">Compra de numeros</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    {`Compra para el sorteo ${title} a las ${time}`}
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>                                
+                                <Button onClick={() => {
+                                    handleClose();  
+                                }} color="primary" autoFocus>
+                                    Aceptar
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
             <Grid 
                 container 
                 spacing={1}
@@ -295,7 +343,7 @@ const ComprarApuesta = ({...props}) => {
                         Editar
                     </Typography>
                 </EditarButton>
-                <TotalButton variant="outlined" color="primary" onClick={submitClickHandler}>
+                <TotalButton variant="outlined" color="primary" onClick={handleClickOpen}>
                     <Typography variant="body1" gutterBottom >
                         Comprar <FaShoppingCart/>
                     </Typography>                    

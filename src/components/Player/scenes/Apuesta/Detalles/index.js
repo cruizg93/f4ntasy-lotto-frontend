@@ -103,6 +103,13 @@ const DetallesApuesta = ({...props}) => {
         const input = document.getElementById("apuesta-activa-numeros-detalles");
         printDocument6(input, title+'-activa-detalles');
     }
+
+    const update = () => {
+        playerService.detalles_by_apuesta_id(props.location.state.id).then((result) => {
+            setList([]);
+            setList(Array.from(result.data));
+        })
+    }
     return (
         <React.Fragment>
             <HeaderDescription name={"Detalle Apuestas X"}/>
@@ -138,7 +145,9 @@ const DetallesApuesta = ({...props}) => {
                              <Divider/>
                         </Grid>
                         {list.map((apuestaDetail, index) =>
-                            <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} moneda={moneda} {...props}
+                            <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} moneda={moneda} 
+                                update={update}
+                            {...props}
                             />
                         )}
                 </Grid>
