@@ -55,9 +55,10 @@ export default function Chica({
                                   onChangeCostoPedazos,
                                   onChangeComisionPedazos,
                                   chicaType,
-                                  onChangeChicaType,
+                                  onChangeChicaType,...props
                               }) {
     const classes = useStyles();
+    const activate = props.activate ? props.activate : false;
 
 
     return (
@@ -88,6 +89,7 @@ export default function Chica({
                                         value="cm"
                                         name="radio-button-chica"
                                         inputProps={{'aria-label': 'CM'}}
+                                        disabled={activate}
                                     />}
                             />
                         </Grid>
@@ -100,7 +102,7 @@ export default function Chica({
                             variant="outlined"
                             fullWidth
                             value={chicaType !== 'cm' ? '' : costoMil}
-                            disabled={chicaType !== 'cm'}
+                            disabled={chicaType !== 'cm' ||  activate }
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -115,7 +117,7 @@ export default function Chica({
                             margin="normal"
                             variant="outlined"
                             fullWidth
-                            disabled={chicaType !== 'cm'}
+                            disabled={chicaType !== 'cm' ||  activate }
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -157,6 +159,8 @@ export default function Chica({
                                         value="cd"
                                         name="radio-button-chica"
                                         inputProps={{'aria-label': 'CD'}}
+                                        disabled={activate}
+
                                     />}
                             />
                         </Grid>
@@ -170,7 +174,7 @@ export default function Chica({
                             InputLabelProps={{
                                 shrink: true,
                             }}
-                            disabled={chicaType !== 'cd'}
+                            disabled={chicaType !== 'cd' ||  activate }
                             customInput={TextField}
                             value={chicaType !== 'cd' ? '' : comision}
                             onChange={onChangeComisionMil}
@@ -184,7 +188,7 @@ export default function Chica({
                             margin="normal"
                             variant="outlined"
                             fullWidth
-                            disabled={chicaType !== 'cd'}
+                            disabled={chicaType !== 'cd' ||  activate }
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -226,6 +230,8 @@ export default function Chica({
                                         value="cp"
                                         name="radio-button-chica"
                                         inputProps={{'aria-label': 'CP'}}
+                                        disabled={activate}
+
                                     />}
                             />
                         </Grid>
@@ -239,7 +245,7 @@ export default function Chica({
                             InputLabelProps={{
                                 shrink: true,
                             }}
-                            disabled={chicaType !== 'cp'}
+                            disabled={chicaType !== 'cp' ||  activate }
                             customInput={TextField}
                             value={chicaType !== 'cp' ? '' : comisionPedazos}
                             onChange={onChangeComisionPedazos}
@@ -253,7 +259,7 @@ export default function Chica({
                             margin="normal"
                             variant="outlined"
                             fullWidth
-                            disabled={chicaType !== 'cp'}
+                            disabled={chicaType !== 'cp' ||  activate }
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -270,7 +276,7 @@ export default function Chica({
                             margin="normal"
                             variant="outlined"
                             fullWidth
-                            disabled={chicaType !== 'cp'}
+                            disabled={chicaType !== 'cp' ||  activate }
                             InputLabelProps={{
                                 shrink: true,
                             }}

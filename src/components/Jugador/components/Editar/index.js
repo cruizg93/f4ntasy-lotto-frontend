@@ -355,6 +355,7 @@ const EditarJugador = (props) => {
                                     value="l"
                                     name="radio-button-moneda"
                                     inputProps={{'aria-label': 'L'}}
+                                    disabled={disable}
                                 />}
                             label="Lempiras"
                             labelPlacement="bottom"
@@ -369,6 +370,7 @@ const EditarJugador = (props) => {
                                     value="d"
                                     name="radio-button-moneda"
                                     inputProps={{'aria-label': 'D'}}
+                                    disabled={disable}
                                 />}
                             label="Dolares"
                             labelPlacement="bottom"
@@ -399,6 +401,7 @@ const EditarJugador = (props) => {
                                 shrink: true,
                             }}
                             className={classes.inputData}
+
                         />
 
                         <TextField
@@ -415,6 +418,7 @@ const EditarJugador = (props) => {
                             }}
                             onInput={e => setInputPassword(e.target.value)}
                             className={classes.inputData}
+                            disabled={disable}
                         />
 
                         <TextField
@@ -431,6 +435,7 @@ const EditarJugador = (props) => {
                             }}
                             onInput={e => setInputUserName(e.target.value)}
                             className={classes.inputData}
+                            disabled={disable}
                         />
                     </Grid>
 
@@ -449,6 +454,7 @@ const EditarJugador = (props) => {
                         onChangeComisionMil={handleChangeDiariaComision}
                         diariaType={selectedDiariaType}
                         onChangeDiariaType={handleChangeDiariaType}
+                        activate={disable}
                 />
 
 
@@ -473,6 +479,7 @@ const EditarJugador = (props) => {
 
                     chicaType={selectedChicaType}
                     onChangeChicaType={handleChangeChicaType}
+                    activate={disable}
 
                 />
 

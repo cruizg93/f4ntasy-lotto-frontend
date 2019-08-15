@@ -47,13 +47,15 @@ export default function Diaria({
                                    onChangeCostoMil,
                                    onChangeComisionMil,
                                    diariaType,
-                                   onChangeDiariaType,
+                                   onChangeDiariaType,...props
                                }) {
 
 
     const classes = useStyles();
     // const [selectedValue, setSelectedValue] = React.useState('dm');
     const [select, setSelectState] = React.useState(true);
+
+    const activate = props.activate ? props.activate : false;
 
     function handleChange(event) {
         // setSelectedValue(event.target.value);
@@ -90,6 +92,7 @@ export default function Diaria({
                                         value="dm"
                                         name="radio-button-diaria"
                                         inputProps={{'aria-label': 'DM'}}
+                                        disabled={activate}
                                     />}
                             />
                         </Grid>
@@ -101,7 +104,7 @@ export default function Diaria({
                             value={diariaType!=='dm' ? '' : costo}
                             variant="outlined"
                             fullWidth
-                            disabled={diariaType!=='dm'}
+                            disabled={diariaType!=='dm' ||  activate }
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -117,7 +120,7 @@ export default function Diaria({
                             margin="normal"
                             variant="outlined"
                             fullWidth
-                            disabled={diariaType!=='dm'}
+                            disabled={diariaType!=='dm' ||  activate}
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -157,6 +160,8 @@ export default function Diaria({
                                         value="dd"
                                         name="radio-button-diaria"
                                         inputProps={{'aria-label': 'DD'}}
+                                        disabled={activate}
+
                                     />}
                             />
                         </Grid>
@@ -171,7 +176,7 @@ export default function Diaria({
                             InputLabelProps={{
                                 shrink: true,
                             }}
-                            disabled={diariaType!=='dd'}
+                            disabled={diariaType!=='dd' ||  activate}
                             onChange={onChangeComisionMil}
                             className={classes.inputData}
                             customInput={TextField}
@@ -184,7 +189,7 @@ export default function Diaria({
                             margin="normal"
                             variant="outlined"
                             fullWidth
-                            disabled={diariaType!=='dd'}
+                            disabled={diariaType!=='dd' ||  activate}
                             value={diariaType!=='dd' ? '' : premioLempiras}
                             InputLabelProps={{
                                 shrink: true,
