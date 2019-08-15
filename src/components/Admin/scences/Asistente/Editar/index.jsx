@@ -207,8 +207,8 @@ const EditarAsistente= ({...props}) =>{
             setJugadorName(result.data.jugadorName);
             setJugadorUserName(result.data.jugadorUsername);
             setJugadorMoneda(result.data.jugadorMoneda !== "LEMPIRAS" ? "$":"L");
-        })        
-    }, [props])
+        })
+    },[])
     
     function success_response() {
         toast.success("Usuario guardado !", {
@@ -315,11 +315,11 @@ const EditarAsistente= ({...props}) =>{
                             variant="outlined"
                             fullWidth
                             required
-                            value={inputUserName}
+                            value={inputUserName !== ''? inputUserName : placeholderUserName}
                             InputLabelProps={{
                                 shrink: true,
                             }}
-                            onChange={e => setInputUserName(e.target.value)}
+                            onInput={e => setInputUserName(e.target.value)}
                             disabled={disable}
                             className={classes.inputData}
                         />

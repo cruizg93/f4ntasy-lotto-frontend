@@ -8,11 +8,16 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import SaveIcon from '@material-ui/icons/Save';
 
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Divider from '@material-ui/core/Divider';
 import InputBase from '@material-ui/core/InputBase';
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 import { adminService } from '../../../../../service/api/admin/admin.service';
@@ -127,16 +132,32 @@ const useStyles = makeStyles(theme => ({
 }));
 const NewAsistente = ({ ...props }) => {
     const classes = useStyles();
-    const [placeholderUser, setPlaceholderUser] = React.useState("P000x1");
+    const [placeholderUser, setPlaceholderUser] = React.useState("P000x0");
     const [inputUserName, setInputUserName] = useState(''); // '' is the initial state value
     const [inputPassword, setInputPassword] = useState('123456789'); // '' is the initial state value
     const [person, setPerson] = React.useState('');
     const [options, setOptions] = React.useState('<option value=""/>');
+    const [open, setOpen] = useState(false);   
+
+    const mounted = useState(true);
+
+    function handleClickOpen() {
+        setOpen(true);
+    }
+
+    function handleClose() {
+        onClickHandlerCreate();
+        setOpen(false);
+        props.history.push("/");
+        return () => {
+            mounted.current = false;
+        };        
+    }
 
     function onClickHandlerCreate() {
         let utype = person;
         let submit = true;
-        if (inputPassword === '' || inputUserName === '') {
+        if (inputPassword === '' || inputUserName === '' || placeholderUser.includes("P000x0")) {
             submit = false;
         }
         if (!submit) {
@@ -163,12 +184,15 @@ const NewAsistente = ({ ...props }) => {
                 let users = response.data.map((c, index) =>
                     <option key={index} value={c.id} label={c.username}> {c.username}</option>
                 );
-                setPerson(response.data[0].id);
-                let userId = response.data[0].id;
-                let username = response.data[0].username;
-                adminService.count_player_asistente(userId).then((result) => {
-                    setPlaceholderUser(username + "x" + (result.data + 1));
-                });
+                setPerson(response.data[0].id ? response.data[0].id : person);
+               
+                if(response.data[0].id && response.data[0].id !== null){
+                    let userId = response.data[0].id;
+                    let username = response.data[0].username;
+                    adminService.count_player_asistente(userId).then((result) => {
+                        setPlaceholderUser(username + "x" + (result.data + 1));
+                    });
+                }               
                 setOptions(users);
             },
                 (error) => {
@@ -203,16 +227,42 @@ const NewAsistente = ({ ...props }) => {
         let index = event.target.selectedIndex;
         let optionElement = event.target.childNodes[index];
         let option = optionElement.getAttribute('label');
-
-        adminService.count_player_asistente(event.target.value).then((result) => {
-            setPlaceholderUser(option + "x" + (result.data + 1));
-        });
+        console.log(event.target.value);
+        if(event.target.value !== ''){
+            adminService.count_player_asistente(event.target.value).then((result) => {
+                setPlaceholderUser(option + "x" + (result.data + 1));
+            });
+        }else{
+            setPlaceholderUser("P000x0");
+        }
+        
         setPerson(event.target.value);
     };
 
     return (
         <React.Fragment>
             <Container maxWidth="sm" className={classes.container}>
+            <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-crear-usuario"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle
+                                id="alert-dialog-crear-usuario">Su Asistente a sido creado exitosamente</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    {`Usuario: ${placeholderUser} contraseña: ${inputPassword}`}
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>                                
+                                <Button onClick={() => {
+                                    handleClose();  
+                                }} color="primary" autoFocus>
+                                    Aceptar
+                                </Button>
+                            </DialogActions>
+                        </Dialog> 
                 <Grid container spacing={1}
                     direction="row"
                     justify="center"
@@ -318,7 +368,7 @@ const NewAsistente = ({ ...props }) => {
                                 alignItems="flex-start"
                                 
                                 >
-                    <CrearButton variant="outlined" color="primary" onClick={onClickHandlerCreate}>
+                    <CrearButton variant="outlined" color="primary" onClick={handleClickOpen}>
                         Crear                        
                     </CrearButton>
                 </Grid>
