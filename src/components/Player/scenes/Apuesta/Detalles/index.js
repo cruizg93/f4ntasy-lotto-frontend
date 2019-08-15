@@ -89,8 +89,7 @@ const DetallesApuesta = ({...props}) => {
     const [list, setList] = useState([]);
     const [apuestaType, setApuestaType]= useState("Diaria");
     const [moneda, setMoneda] = useState(" $ ");
-    useEffect(() => {  
-        console.log(props.location.state.id)      
+    useEffect(() => { 
         playerService.detalles_by_apuesta_id(props.location.state.id).then((result) => {
             setList(Array.from(result.data));
         })

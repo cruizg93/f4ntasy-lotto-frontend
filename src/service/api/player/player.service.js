@@ -16,7 +16,8 @@ export const playerService = {
     get_balance,
     list_historial_apuestas,
     get_historial_apuestas_details_by_id,
-    get_historial_apuestas_user_details_by_id
+    get_historial_apuestas_user_details_by_id,
+    delete_apuesta_number
 };
 
 function list_number() {
@@ -291,6 +292,35 @@ function get_historial_apuestas_user_details_by_id(id) {
     };
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/user/historial/apuesta/${id}/detalles`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+
+//sorteos/activos/{id}/delete/number
+
+function delete_apuesta_number(id, numeroValue, userIdValue) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    let send = {
+        userId: userIdValue,
+        numero: numeroValue
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/user/sorteos/activos/${id}/delete/number`,
             send, requestOptions
         )
             .then((responseJson) => {
