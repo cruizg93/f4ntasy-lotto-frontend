@@ -17,7 +17,8 @@ export const playerService = {
     list_historial_apuestas,
     get_historial_apuestas_details_by_id,
     get_historial_apuestas_user_details_by_id,
-    delete_apuesta_number
+    delete_apuesta_number,
+    list_apuestas_asistente_hoy_by_username
 };
 
 function list_number() {
@@ -137,6 +138,25 @@ function list_apuestas_hoy_by_username() {
     };
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/user/apuestas/hoy/list`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function list_apuestas_asistente_hoy_by_username() {
+    const requestOptions = {headers: authHeader()};
+    const currentUser = authenticationService.currentUserValue;
+    let send = {
+        username: currentUser.username
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/user/apuestas/asistente/hoy/list`,
             send, requestOptions
         )
             .then((responseJson) => {

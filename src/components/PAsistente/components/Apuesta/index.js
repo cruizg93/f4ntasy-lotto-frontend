@@ -84,7 +84,7 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
         if(props.main){
             setPathnameURL(`${url}asistente/apuestas/${id}`)
         }
-    }, [props, url, id])
+    }, [])
     return (
         <Grid item xs={12} component={Link} to={
             {

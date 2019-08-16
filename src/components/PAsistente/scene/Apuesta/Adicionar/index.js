@@ -7,7 +7,7 @@ const AdicionarApuestaAsistente = (props) => {
     const [entry, setEntryData] = useState([]);
   
     useEffect(() => {
-        playerService.list_apuestas_hoy_by_username().then((result) => {    
+        playerService.list_apuestas_asistente_hoy_by_username().then((result) => {    
           
             setEntryData(result.data)
         })

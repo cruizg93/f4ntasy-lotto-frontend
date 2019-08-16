@@ -206,13 +206,18 @@ const ApuestaActivaAsistente = ({...props}) => {
         });
     }
 
-    useEffect(() => {
+    useEffect(() => {        
         playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
             setTitle(result.data.title);
             setComision(result.data.comision);
             setRiesgo(result.data.riesgo);
-            setTotal(result.data.total);
+           /*  setTotal(result.data.total); */
             setList(Array.from(result.data.list));
+            let total = 0;
+            result.data.list.forEach(function (item, index) {
+                total = total + item['valor'];           
+            });
+            setTotal(total);
         })
     }, []);    
 
@@ -269,7 +274,7 @@ const ApuestaActivaAsistente = ({...props}) => {
                           className={''}
                     >
                         <Typography variant="body1" gutterBottom className={classes.numbers}>
-                            {total.toFixed(2)}
+                            {total}
                         </Typography>
                     </Grid>
                 </Grid>
