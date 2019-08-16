@@ -170,6 +170,8 @@ const ApuestaActiva = ({...props}) => {
 
     const apuestaId = props.match.params.apuestaId;
 
+    const mounted = useState(true);
+
     function handleDisableClick() {
         if(!disable){
             submitUpdateData();
@@ -198,10 +200,8 @@ const ApuestaActiva = ({...props}) => {
         });
     }
 
-    function deleteOneFunction(e) {
-        let id = e.target.id;
-        id = id.split('-')[4];
-        list[id]['valor'] = 0.0;   
+    function deleteOneFunction(entryId) {       
+        list[entryId]['valor'] = 0.0;   
         submitUpdateData();      
     }
 
@@ -268,6 +268,7 @@ const ApuestaActiva = ({...props}) => {
                                             disable={disable}
                                             onEdit={updateFunction}
                                             delete={deleteOneFunction}
+                                            mounted={mounted}
                         />
                     )}
                     {/*</Grid>*/}
