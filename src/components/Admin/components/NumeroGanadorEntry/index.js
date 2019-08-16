@@ -21,9 +21,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         background: Colors.Main,
         borderRadius: "0",
-        '&:hover': {
-            backgroundColor: '#e5e5e5',
-        },
+       
     },
     btnHeight: {
         height: '40px',

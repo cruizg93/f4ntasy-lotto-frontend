@@ -13,9 +13,7 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
-        '&:hover': {
-            backgroundColor: '#e5e5e5',
-        },
+        
     },
     component: {
         textDecoration: 'none',
