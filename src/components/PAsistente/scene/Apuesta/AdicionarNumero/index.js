@@ -100,12 +100,13 @@ const AdicionarNumeroApuestaAsistente = ({match, ...props}) => {
     useEffect(() => {
         let reg = /^\d+$/;
         if (!reg.test(match.params.apuestaId)) {
-            props.history.push('/usuario/apuestas');
+            props.history.push('/');
             return () => {
                 mounted.current = false;
             }
         }  
-        playerService.list_number_by_apuesta_id(match.params.apuestaId).then((result) => {           
+        playerService.list_number_by_apuesta_id(match.params.apuestaId).then((result) => {    
+            console.log(result.data)       
             setTitle(result.data.name);
             setApuestaEntryData(Array.from(result.data.list))
         });     

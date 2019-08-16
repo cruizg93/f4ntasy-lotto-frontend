@@ -12,6 +12,12 @@ import {withStyles} from "@material-ui/core/styles/index";
 import {playerService} from "../../../../../service/api/player/player.service";
 import { FaShoppingCart } from 'react-icons/fa';
 import {Colors} from "../../../../../utils/__colors";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import {timeService} from "../../../../../service/api/time/time.service";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -123,6 +129,26 @@ const DetalleAsistente = ({list, ...props}) => {
     const [id, setIdValue]=useState(0);
     const mounted = useState(true);
 
+    const [time, setTime]=useState("");
+
+    const [open, setOpen] = useState(false); 
+
+    function handleClickOpen() {
+        timeService.time().then((result)=>{
+            setTime(result.data.time)                  
+        })
+        setOpen(true);
+    }
+
+    function handleClose() { 
+        submitClickHandler()       
+        setOpen(false);
+        props.history.push("/");
+        return () => {
+            mounted.current = false;
+        };        
+    }
+
     useEffect(() => {
         setElements(props.location.state.list);
         setTitle(props.location.state.title);
@@ -150,6 +176,29 @@ const DetalleAsistente = ({list, ...props}) => {
     }
     return (
         <React.Fragment>
+            <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-crear-usuario"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle
+                                id="alert-dialog-crear-usuario">Compra de numeros</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    {`Compra para el sorteo ${title} a las ${time}`}
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>                                
+                                <Button onClick={() => {
+                                    handleClose();  
+                                }} color="primary" autoFocus>
+                                    Aceptar
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+
+
             <Grid
                 container spacing={1}
                 direction="row"
@@ -199,7 +248,7 @@ const DetalleAsistente = ({list, ...props}) => {
                         Editar
                     </Typography>
                 </EditarButton>
-                <TotalButton variant="outlined" color="primary" onClick={submitClickHandler}>
+                <TotalButton variant="outlined" color="primary" onClick={handleClickOpen}>
                     <Typography variant="body1" gutterBottom >
                         Comprar <FaShoppingCart/>
                     </Typography>                    
