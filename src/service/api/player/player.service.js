@@ -18,7 +18,8 @@ export const playerService = {
     get_historial_apuestas_details_by_id,
     get_historial_apuestas_user_details_by_id,
     delete_apuesta_number,
-    list_apuestas_asistente_hoy_by_username
+    list_apuestas_asistente_hoy_by_username,
+    list_of_numbers_by_apuesta_id
 };
 
 function list_number() {
@@ -55,6 +56,25 @@ function list_number_by_apuesta_id(id) {
     });
 }
 
+
+function list_of_numbers_by_apuesta_id(id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {headers: authHeader()};
+    let send = {
+        username: currentUser.username
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/user/apuestas/${id}/numeros/list`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
 
 function comision_directo(type) {
     const currentUser = authenticationService.currentUserValue;

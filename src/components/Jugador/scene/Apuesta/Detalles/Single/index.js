@@ -243,7 +243,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                                 className={riesgo < 0 ? classes.textBalanceNegativo : 
                                 (riesgo !== 0 ? classes.textBalancePositivo : classes.textBalance)}
                             >
-                                {" "}{riesgo}
+                                {" "}{riesgo.toFixed(2)}
                         </Typography>
                     </Grid>
                 </Grid>

@@ -92,7 +92,7 @@ const DesgloseApuestaJugador = ({...props}) => {
     const [type, setType] = useState("DIARIA")
     
     useEffect(() => {
-        adminService.details_apuesta_activa_by_user_id(props.location.state.username,
+        adminService.details_apuesta_activa_by_apuesta_id(props.location.state.username,
             props.location.state.id).then((result) => {                            
             setList(Array.from(result.data));
         })

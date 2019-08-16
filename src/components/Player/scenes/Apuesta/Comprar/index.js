@@ -218,6 +218,7 @@ const ComprarApuesta = ({...props}) => {
     function submitClickHandler() {
         playerService.update_number(elements, id).then((result) => {          
             props.history.push("/");
+            window.location.reload(true);         
             return () => {
                 mounted.current = false;
             }

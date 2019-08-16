@@ -287,7 +287,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                             </Grid>
                             <Grid item xs={4}>
                                 <Typography variant="body1" gutterBottom className={classes.text}>
-                                    {monedaSymbol} {total}
+                                    {monedaSymbol} {total.toFixed(2)}
                                 </Typography>
                             </Grid>
                             <Grid item xs={7}
@@ -300,7 +300,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
 
                             <Grid item xs={4}>
                                 <Typography variant="body1" gutterBottom className={classes.text}>
-                                    {monedaSymbol} {comision}
+                                    {monedaSymbol} {comision.toFixed(2)}
                                 </Typography>
                             </Grid>
 
@@ -315,7 +315,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
 
                             <Grid item xs={4}>
                                 <Typography variant="body1" gutterBottom className={classes.text}>
-                                    {monedaSymbol} {riesgo}
+                                    {monedaSymbol} {riesgo.toFixed(2)}
                                 </Typography>
                             </Grid>
                     </Grid>
@@ -350,7 +350,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                                  justify="center"
                             >
                                 <Typography variant="body1" gutterBottom className={classes.text}>
-                                    {monedaSymbol} {total}
+                                    {monedaSymbol} {balance.toFixed(2)}
                                 </Typography>
                             </Grid>
                         </Grid>                 

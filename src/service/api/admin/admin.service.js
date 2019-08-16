@@ -34,7 +34,8 @@ export const adminService = {
     temporal_reset_balance_service,
     temporal_insert_service,
     temporal_insert_chica_service,
-    cerrar_apuesta
+    cerrar_apuesta,
+    details_apuesta_activa_by_apuesta_id
 };
 
 
@@ -363,6 +364,33 @@ function details_apuesta_activa_by_user_id(username, id) {
             })
     });
 }
+
+///jugador/apuestas/activas/{id}/detalles
+function details_apuesta_activa_by_apuesta_id(username, id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    let send = {
+        username: username
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/admin/jugador/apuestas/activas/${id}/detalles`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
 
 function delete_player_by_id(id) {
     const requestOptions = {headers: authHeader()};

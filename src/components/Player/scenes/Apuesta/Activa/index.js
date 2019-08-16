@@ -14,6 +14,12 @@ import {printDocument6} from "../../../../../_helpers/print";
 import './Activa.css'
 import {Colors} from '../../../../../utils/__colors'
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 const useStyles = makeStyles(theme => ({
     root: {
         padding: theme.spacing(1, 1),
@@ -172,6 +178,19 @@ const ApuestaActiva = ({...props}) => {
 
     const mounted = useState(true);
 
+    const [open, setOpen] = useState(false);   
+
+   
+
+    function handleClickOpen() {
+        setOpen(true);
+    }
+
+    function handleClose() {
+        eliminarCompleto()
+        setOpen(false);      
+    }
+
     function handleDisableClick() {
         if(!disable){
             submitUpdateData();
@@ -240,6 +259,27 @@ const ApuestaActiva = ({...props}) => {
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000}/>
+            <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-crear-usuario"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle
+                                id="alert-dialog-crear-usuario">Eliminar números</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    {`Desea eliminar todos los números?`}
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>                                
+                                <Button onClick={() => {
+                                    handleClose();  
+                                }} color="primary" autoFocus>
+                                    Aceptar
+                                </Button>
+                            </DialogActions>
+            </Dialog> 
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
@@ -348,7 +388,7 @@ const ApuestaActiva = ({...props}) => {
                 </Grid>
                 <Grid item xs={2}>
                     <EliminarTodoButton variant="outlined" color="primary" 
-                         onClick={eliminarCompleto}
+                         onClick={handleClickOpen}
                         >
                         <Typography variant="body1" gutterBottom>
                             Eliminar completo

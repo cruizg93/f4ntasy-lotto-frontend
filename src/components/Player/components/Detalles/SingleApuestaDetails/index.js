@@ -59,6 +59,7 @@ const SingleApuestaDetails=({numero, valor, ...props})=>{
     const classes = useStyles();
 
     const [open, setOpen] = useState(false);  
+    const numberValue = valor.toFixed(2)
     function handleClickOpen() {
         setOpen(true);
     }
@@ -94,7 +95,7 @@ const SingleApuestaDetails=({numero, valor, ...props})=>{
                     
                 </Typography>
                 <Typography id={`text-${props.index}`} variant="body1" gutterBottom className={classes.negative}>
-                    {" "}{valor.toFixed(2)}
+                    {" "}{parseFloat(numberValue.toString())}
                 </Typography>
             </Grid>
            

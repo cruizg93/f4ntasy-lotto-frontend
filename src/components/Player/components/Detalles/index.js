@@ -53,14 +53,15 @@ const ShowDetallesApuesta = ({title, apuestas, total, ...props}) => {
     const [titleData, setTitleData] = useState('');
     const [apuestasData, setApuestasData] = useState([]);
     const [totalData, setTotalData] = useState(0.0);
-    const [moneda, setMoneda] = useState(" L ");
+    const [moneda, setMoneda] = useState();
    
 
     useEffect(() => {
         setTitleData(title);
         setApuestasData(Array.from(apuestas));
         setTotalData(total);
-        setMoneda((props.moneda === "LEMPIRAS" || props.moneda === " L ") ? "L" : " $ ");
+        if(props.moneda)
+            setMoneda((props.moneda === "LEMPIRAS" || props.moneda === " L ") ? "L" : " $ ");
        
 
     }, [])

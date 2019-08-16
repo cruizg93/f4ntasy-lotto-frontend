@@ -106,15 +106,15 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
                 mounted.current = false;
             }
         }
-        playerService.list_number_by_apuesta_id(match.params.apuestaId).then((result) => {
-           
+        playerService.list_of_numbers_by_apuesta_id(match.params.apuestaId).then((result) => {
+                
             setName(result.data.name);
             setEntryData(Array.from(result.data.list))
         })
     }, []);
 
     function limpiarClickHandler() {
-        playerService.list_number_by_apuesta_id(match.params.apuestaId).then((result) => {
+        playerService.list_of_numbers_by_apuesta_id(match.params.apuestaId).then((result) => {
             setEntryData([]);
             setEntryData(Array.from(result.data.list))
         })

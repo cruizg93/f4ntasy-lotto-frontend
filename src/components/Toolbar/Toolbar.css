@@ -81,8 +81,8 @@
 }
 
 @media (min-width: 769px) {
-    .toolbar__toggle-button,
-    .toolbar__user-username {
+    .toolbar__toggle-button
+    {
         display: none;
     }
 
