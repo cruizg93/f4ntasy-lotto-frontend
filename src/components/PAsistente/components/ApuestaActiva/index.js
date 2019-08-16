@@ -8,6 +8,17 @@ import {makeStyles} from "@material-ui/core/styles/index";
 import {Circle} from 'react-shapes';
 import NumberFormat from 'react-number-format';
 import {red} from "@material-ui/core/colors/index";
+import {FaTrashAlt} from 'react-icons/fa';
+import {Colors} from '../../../../utils/__colors';
+import Button from '@material-ui/core/Button';
+
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -26,17 +37,65 @@ const useStyles = makeStyles(theme => ({
     negative: {
         padding: theme.spacing(1, 1),
         color: red[400]
+    },
+    deleteIcon:{
+        background: Colors.Btn_Red,
+        color: Colors.Input_bkg,
+        width: "1.5rem",
+        height: "1.5rem",
+        padding: ".2rem",
+        '&:hover':{
+            cursor: "pointer"
+        }
     }
 
 }));
 const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
     const classes = useStyles();
+    const [open, setOpen] = useState(false);  
+    const eventId= props.index; 
+
+    
+
+    function handleClickOpen(e) {       
+        setOpen(true);
+    }
+
+    function handleClose() {
+        props.delete(eventId);
+        setOpen(false);
+        props.history.push("/");
+        return () => {
+            props.mounted.current = false;
+        };        
+    }
     useEffect(() => {
 
     }, []);
     return (
         <>
-            <Grid item xs={6}
+        <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-crear-usuario"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle
+                                id="alert-dialog-crear-usuario">Desea eliminar la apuesta al número {numero}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    {`Una vez eliminada la apuesta no podrá recuperarla`}
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>                                
+                                <Button onClick={() => {
+                                    handleClose();  
+                                }} color="primary" autoFocus>
+                                    Aceptar
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+            <Grid item xs={4}
                   container
                   justify="flex-end"
             >
@@ -44,7 +103,7 @@ const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
                     {numero}
                 </Typography>
             </Grid>
-            <Grid item xs={6}
+            <Grid item xs={3}
                   container
                   justify="flex-start"
             >
@@ -58,6 +117,14 @@ const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
                     value={valor}
                     disabled={disable}
                     onBlur={props.onEdit}
+                />
+            </Grid>
+            <Grid item xs={4}
+                  container
+                  justify="flex-start"
+            >
+                <FaTrashAlt id={`delete-apuesta-activa-valor-${props.index}`} className={`${classes.deleteIcon} form__center-label` }
+                    onClick={handleClickOpen}
                 />
             </Grid>
         </>

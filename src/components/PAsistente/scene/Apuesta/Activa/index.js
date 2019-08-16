@@ -167,7 +167,7 @@ const ApuestaActivaAsistente = ({...props}) => {
     const [total, setTotal] = useState(0.0);
     const [list, setList] = useState([]);
     const [disable, setDisable] = useState(true);
-
+    const mounted = useState(true);
     function handleDisableClick() {
         setDisable(!disable);
         submitUpdateData()
@@ -214,7 +214,12 @@ const ApuestaActivaAsistente = ({...props}) => {
             setTotal(result.data.total);
             setList(Array.from(result.data.list));
         })
-    }, []);
+    }, []);    
+
+    function handledeleteOneFunction(entryId) {
+       list[entryId]['valor'] = 0.0;   
+        submitUpdateData();   
+    }
 
     return (
         <React.Fragment>
@@ -244,6 +249,8 @@ const ApuestaActivaAsistente = ({...props}) => {
                         <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}
                                             disable={disable}
                                             onEdit={updateFunction}
+                                            delete={handledeleteOneFunction}
+                                            mounted={mounted}
                         />
                     )}
                 </Grid>
