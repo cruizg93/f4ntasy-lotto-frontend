@@ -7,6 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
 import {red, blue} from "@material-ui/core/colors/index";
 import {Colors} from "../../../../utils/__colors";
+import {utils} from '../../../../utils/util';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -20,7 +21,8 @@ const useStyles = makeStyles(theme => ({
         background: Colors.Main,
         borderRadius: "0",
         '&:hover': {
-            backgroundColor: Colors.Gray_Ligth,
+            backgroundColor: utils.isMobileDevice ?  Colors.Gray_Ligth : "none",
+            //backgroundColor:  Colors.Gray_Ligth,
         },
     },
     component: {
