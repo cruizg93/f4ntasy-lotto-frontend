@@ -179,6 +179,8 @@ const ApuestaActiva = ({...props}) => {
     const mounted = useState(true);
 
     const [open, setOpen] = useState(false);   
+    const [openEdit, setOpenEdit] = useState(false);   
+
 
    
 
@@ -191,9 +193,18 @@ const ApuestaActiva = ({...props}) => {
         setOpen(false);      
     }
 
+    function handleClickOpenEdit() {
+        setOpenEdit(true);
+    }
+
+    function handleCloseEdit() {
+        setOpenEdit(false);      
+    }
+
     function handleDisableClick() {
         if(!disable){
             submitUpdateData();
+            handleClickOpenEdit();
         }       
         setDisable(!disable);
     }
@@ -280,6 +291,27 @@ const ApuestaActiva = ({...props}) => {
                                 </Button>
                             </DialogActions>
             </Dialog> 
+            <Dialog
+                            open={openEdit}
+                            onClose={handleCloseEdit}
+                            aria-labelledby="alert-dialog-update-data"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle
+                                id="alert-dialog-update-data">Apuesta</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    {`Su cambio a la compra a sido exitoso`}
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>                                
+                                <Button onClick={() => {
+                                    handleCloseEdit();  
+                                }} color="primary" autoFocus>
+                                    Aceptar
+                                </Button>
+                            </DialogActions>
+            </Dialog> 
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
@@ -322,7 +354,7 @@ const ApuestaActiva = ({...props}) => {
 
                     >
                         <Typography variant="body1" gutterBottom className={''}>
-                            apuestas |
+                            Apuestas |
                         </Typography>
                     </Grid>
                     <Grid item xs={9}
@@ -340,7 +372,7 @@ const ApuestaActiva = ({...props}) => {
                           justify="flex-end"
                     >
                         <Typography variant="body1" gutterBottom className={''}>
-                            comisiones |
+                            Comisiones |
                         </Typography>
                     </Grid>
                     <Grid item xs={9}
@@ -358,7 +390,7 @@ const ApuestaActiva = ({...props}) => {
                           justify="flex-end"
                     >
                         <Typography variant="body1" gutterBottom className={''}>
-                            riesgo |
+                            Riesgo |
                         </Typography>
                     </Grid>
                     <Grid item xs={9}
