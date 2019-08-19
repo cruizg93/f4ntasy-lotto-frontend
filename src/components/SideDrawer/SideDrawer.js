@@ -15,7 +15,8 @@ const sideDrawer = props => {
             <nav className={drawerClasses}>
                 <NestedList click={props.drawerClickHandler}
                             admin={props.admin}
-                            asistente={props.asistente}/>
+                            asistente={props.asistente}
+                            logout={props.logoutClickHandler}/>
             </nav>
 
 

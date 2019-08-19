@@ -19,7 +19,7 @@ class Toolbar extends Component {
             user: authenticationService.currentUserValue,
             toolbarClasses: ['toolbar']
         };
-        this.logoutClickHandler = this.logoutClickHandler.bind(this);
+        /* this.logoutClickHandler = this.logoutClickHandler.bind(this); */
     }
 
     drawerToggleClickHandler = () => {
@@ -51,10 +51,10 @@ class Toolbar extends Component {
         this.setState({sideDrawerOpen: false})
     };
 
-    logoutClickHandler() {
+   /*  logoutClickHandler() {
         authenticationService.logout();
         history.push('/login');
-    }
+    } */
 
     render() {
         return (
@@ -67,7 +67,7 @@ class Toolbar extends Component {
                     <div className="toolbar__navigation-items">
                         <ul>
                             <MenuLinks admin={this.props.admin} asistente={this.props.asistente}/>
-                            <Button onClick={this.logoutClickHandler} color="inherit">Salir</Button>
+                            <Button onClick={this.props.logoutClickHandler} color="inherit">Salir</Button>
                         </ul>
                     </div>
                     <div className="toolbar__user-username">

@@ -35,11 +35,7 @@ const useStyles = makeStyles(theme => ({
 export default function NestedList(props) {
     const classes = useStyles();
     const [isAdmin, setAdminValue] = React.useState(props.admin);
-    const [isAsistente, setAsistenteValue] = React.useState(!props.admin && props.asistente);
-    const logout = () => {
-        authenticationService.logout();
-        history.push('/login');
-    };
+    const [isAsistente, setAsistenteValue] = React.useState(!props.admin && props.asistente);  
 
     return (
         <List
@@ -136,7 +132,7 @@ export default function NestedList(props) {
             </ListItem>
             }
 
-            <ListItem button onClick={logout}>
+            <ListItem button onClick={props.logout}>
                 <ListItemIcon>
                     <SupervisedUserCircle/>
                 </ListItemIcon>
