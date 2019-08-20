@@ -181,14 +181,15 @@ const ApuestaActiva = ({...props}) => {
     const [open, setOpen] = useState(false);   
     const [openEdit, setOpenEdit] = useState(false);   
 
-
-   
-
     function handleClickOpen() {
         setOpen(true);
     }
 
     function handleClose() {
+        setOpen(false);      
+    }
+
+    function handleCloseAccept() {
         eliminarCompleto()
         setOpen(false);      
     }
@@ -283,9 +284,12 @@ const ApuestaActiva = ({...props}) => {
                                     {`Desea eliminar todos los números?`}
                                 </DialogContentText>
                             </DialogContent>
-                            <DialogActions>                                
+                            <DialogActions>  
+                                <Button onClick={handleClose} color="primary">
+                                    Cancelar
+                                </Button>                              
                                 <Button onClick={() => {
-                                    handleClose();  
+                                    handleCloseAccept();  
                                 }} color="primary" autoFocus>
                                     Aceptar
                                 </Button>
