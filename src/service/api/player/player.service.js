@@ -44,7 +44,7 @@ function list_number_by_apuesta_id(id) {
         username: currentUser.username
     };
     return new Promise((resolve, reject) => {
-        axios.post(`${baseUrl}/user/apuestas/${id}/numeros`,
+        axios.post(`${baseUrl}/user/apuestas/${id}/numeros/list`,
             send, requestOptions
         )
             .then((responseJson) => {
