@@ -35,7 +35,7 @@ const BootstrapInput = withStyles(theme => ({
         backgroundColor: theme.palette.background.paper,
         border: '1px solid #ced4da',
         fontSize: 16,
-        width: '10rem',
+        width: '11rem',
         padding: '10px 26px 10px 12px',
         transition: theme.transitions.create(['border-color', 'box-shadow']),
         '&:focus': {
@@ -142,7 +142,12 @@ const NewAsistente = ({ ...props }) => {
     const mounted = useState(true);
 
     function handleClickOpen() {
-        setOpen(true);
+        if (inputPassword === '' || inputUserName === '' || placeholderUser.includes("P000x0")) {
+            error_reponse();
+        }else{
+            setOpen(true);
+        }
+        
     }
 
     function handleClose() {
@@ -241,6 +246,7 @@ const NewAsistente = ({ ...props }) => {
 
     return (
         <React.Fragment>
+             <ToastContainer autoClose={8000}/>
             <Container maxWidth="sm" className={classes.container}>
             <Dialog
                             open={open}
