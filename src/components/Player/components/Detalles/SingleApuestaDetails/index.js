@@ -64,7 +64,11 @@ const SingleApuestaDetails=({numero, valor, ...props})=>{
         setOpen(true);
     }
 
-    function handleClose() {
+    function handleClose() {       
+            setOpen(false);
+    }
+
+    function handleCloseAccept() {
         playerService.delete_apuesta_number(props.location.state.id, numero, props.userId).then((result)=>{
             props.update();
             setOpen(false);
@@ -74,6 +78,7 @@ const SingleApuestaDetails=({numero, valor, ...props})=>{
 
     return (
         <React.Fragment>
+            
              <Grid item xs={4}
                   container
                   justify="flex-end"
@@ -121,9 +126,7 @@ const SingleApuestaDetails=({numero, valor, ...props})=>{
                             </DialogContent>
                             <DialogActions>                               
                                 <Button onClick={() => {
-                                    handleClose();
-                                    
-
+                                    handleCloseAccept();
                                 }} color="primary" autoFocus>
                                     Aceptar
                                 </Button>

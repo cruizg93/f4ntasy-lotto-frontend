@@ -2,10 +2,9 @@ import React, {useState, useEffect} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import {makeStyles, withStyles} from "@material-ui/core/styles/index";
+import {makeStyles} from "@material-ui/core/styles/index";
 import SingleApuestaDetails from '../../components/Detalles/SingleApuestaDetails/index';
 import {red, blue} from "@material-ui/core/colors/index";
-import Button from "@material-ui/core/Button/index";
 import {Colors} from "../../../../utils/__colors";
 
 const useStyles = makeStyles(theme => ({
