@@ -244,7 +244,7 @@ const EditarJugador = (props) => {
     function onClickHandlerEditar() {
         let utype = 'p';
         let submit = true;
-        if (inputPassword === '' || inputUserName === '') {
+        if (inputUserName === '') {
             submit = false;
         }
 
@@ -286,7 +286,7 @@ const EditarJugador = (props) => {
 
         let data = {
             name: inputUserName,
-            password: inputPassword,
+            password: inputPassword === '' ? "1" : inputPassword,
             username: placeholderUser,
             utype: utype,
             mtype: selectedValueMoneda,
@@ -407,7 +407,7 @@ const EditarJugador = (props) => {
                         <TextField
                             id="password"
                             label="Contraseña"
-                            placeholder="Nueva Contraseña"
+                            placeholder="Si no edita este campo la contraseña no se cambia"
                             margin="normal"
                             variant="outlined"                            
                             fullWidth
