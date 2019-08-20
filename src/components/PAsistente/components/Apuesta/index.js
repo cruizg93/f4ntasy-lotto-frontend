@@ -18,10 +18,7 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'row',
         alignItems: 'center',
         background: Colors.Main,
-        borderRadius: "0",
-        '&:hover': {
-            backgroundColor: Colors.Gray_Ligth,
-        },
+        borderRadius: "0",        
     },
     component: {
         textDecoration: 'none',
