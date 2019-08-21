@@ -65,6 +65,14 @@ const useStyles = makeStyles(theme => ({
     text: {
         display: 'flex'
     },
+    textPositive: {
+        display: 'flex',
+        color: Colors.Green
+    },
+    textNegative: {
+        display: 'flex',
+        color: Colors.Btn_Red
+    },
     textLabel: {
         display: 'flex',
         marginRight: '.5rem'
@@ -198,8 +206,11 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
     const [expanded, setExpanded] = React.useState(false);   
     const [asignedAsistentes, setAsignedAsistentes]= React.useState([]);
 
+    const symbol = balance < 0 ? " - " : (balance > 0 ? " + " : "")
+
     const handler = props.handler;
     const toast = props.toast;
+
 
     function handleClickOpen() {
         setOpen(true);
@@ -349,8 +360,8 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                                  container
                                  justify="center"
                             >
-                                <Typography variant="body1" gutterBottom className={classes.text}>
-                                    {monedaSymbol} {balance.toFixed(2)}
+                                <Typography variant="body1" gutterBottom className={balance < 0 ? classes.textNegative : (balance > 0 ? classes.textPositive : classes.text) }>
+                                    {monedaSymbol} {symbol} {balance.toFixed(2)}
                                 </Typography>
                             </Grid>
                         </Grid>                 
