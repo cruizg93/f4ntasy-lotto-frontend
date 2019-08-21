@@ -66,7 +66,7 @@ export const MenuLinks = (props) => {
                 <MenuItem onClick={handleClose}
                           component={Link}
                           to="/sistema/password/update"
-                >Constraseña</MenuItem>
+                >Contraseña</MenuItem>
                 <MenuItem onClick={handleClose}>Fijar Topes</MenuItem>
             </Menu>
             }
