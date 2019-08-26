@@ -360,10 +360,10 @@ const ApuestasActivasAdminData = ({
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle
-                    id="alert-dialog-add-numero-ganador">{`Adicionr número ganador`}</DialogTitle>
+                    id="alert-dialog-add-numero-ganador">{`ADICIONAR NUMERO GANADOR`}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        Adicionr número ganador a apuesta {title}                        
+                        {type} - {title}                        
                     </DialogContentText>
                     <NumberFormat
                             id="numero-ganador-input"
@@ -373,7 +373,7 @@ const ApuestasActivasAdminData = ({
                             margin="normal"
                             variant="outlined"
                             fullWidth
-                            value={numero}                            
+                                                        
                             InputLabelProps={{
                                 shrink: true,
                             }}
