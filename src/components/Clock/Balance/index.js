@@ -7,13 +7,14 @@ class Balance extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            balance: 0.0
+            balance: 0.0,
+            symbol: ""
         };
     }
 
     updateBalance() {
         playerService.get_balance().then((result) => {
-            this.setState({balance: result.data})
+            this.setState({balance: result.data, symbol : (result.data < 0 ? " - ": (result.data > 0 ? " + " : ""))})
         })
     }
 
