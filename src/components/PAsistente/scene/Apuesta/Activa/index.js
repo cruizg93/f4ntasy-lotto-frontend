@@ -170,7 +170,8 @@ const ApuestaActivaAsistente = ({...props}) => {
     const mounted = useState(true);
     function handleDisableClick() {
         setDisable(!disable);
-        submitUpdateData()
+        if(!disable)
+            submitUpdateData()
     }
 
     function updateFunction(e) {
@@ -188,7 +189,11 @@ const ApuestaActivaAsistente = ({...props}) => {
                 setTitle(result.data.title);
                 setComision(result.data.comision);
                 setRiesgo(result.data.riesgo);
-                setTotal(result.data.total);
+                let total = 0;
+                result.data.list.forEach(function (item, index) {
+                    total = total + item['valor'];           
+                });
+                setTotal(total);
                 setList(Array.from(result.data.list));
             })
         });
