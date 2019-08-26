@@ -19,6 +19,7 @@ import Diaria from "../Diaria/Diaria";
 import Chica from "../Chica/Chica";
 import {adminService} from "../../../../service/api/admin/admin.service";
 import {Colors} from "../../../../utils/__colors";
+import AlertDialog from "../../../AlertDialog/index";
 
 import './Editar.css';
 
@@ -131,10 +132,11 @@ const EditarJugador = (props) => {
     const [disable, setDisable] = useState(true);
 
     const editarFijarHandler = (e) => {
-        if(!disable){
+        if(!disable && editable){
             onClickHandlerEditar();
         }
-        setDisable(!disable);
+        if(editable)
+            setDisable(!disable);
     }
 
     const [selectedValueMoneda, setSelectedValueMoneda] = React.useState('l');
@@ -170,6 +172,8 @@ const EditarJugador = (props) => {
 
     const [selectedChicaType, setSelectedChicaType] = React.useState('cm');
 
+    const [editable, setEditable] = React.useState(true);
+
 
     const handleChangeChicaPremioMil = event => setChicaPremioMil(event.target.value);
     const handleChangeChicaPremioDirectoMil = event => setChicaPremioDirectoMil(event.target.value);
@@ -201,6 +205,8 @@ const EditarJugador = (props) => {
 
     useEffect(() => {
         adminService.get_player_by_id(props.match.params.jugadorId).then((result) => {      
+           
+            setEditable(result.data.editable);
             if(result.data.moneda.monedaName==='DOLAR'){
                 setSelectedValueMoneda('d');
             }
@@ -319,6 +325,10 @@ const EditarJugador = (props) => {
         <React.Fragment>
             <ToastContainer autoClose={8000}/>
             <Container maxWidth="sm" className={classes.container}>  
+                {!editable ?
+                    <AlertDialog msg={"El jugador tiene apuestas activas"} />
+                    : null
+                }
                 <Grid container spacing={1}
                     direction="row"
                     justify="center"
