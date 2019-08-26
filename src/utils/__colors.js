@@ -12,5 +12,6 @@ export const Colors = {
     Lempira: "#ff8040",
     Yellow: "#f9f055",
     Orange:  "#ff8000",
+    Ligth_Red: "#ff8080"
     
 }
