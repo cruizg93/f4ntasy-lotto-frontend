@@ -184,7 +184,8 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
                                      list: entry,
                                      id: match.params.apuestaId,
                                      title: props.location.state.title,
-                                     moneda: props.location.state.moneda
+                                     moneda: props.location.state.moneda,
+                                     apuestaName: name
                                  }
                              }}
                              className={classes.root}
