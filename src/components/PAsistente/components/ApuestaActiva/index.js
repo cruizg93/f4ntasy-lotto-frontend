@@ -61,7 +61,11 @@ const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
         setOpen(true);
     }
 
-    function handleClose() {
+    function handleClose() {        
+        setOpen(false);
+    }
+
+    function handleCloseAccept() {
         props.delete(eventId);
         setOpen(false);
         props.history.push("/");
@@ -87,9 +91,12 @@ const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
                                     {`Una vez eliminada la apuesta no podrá recuperarla`}
                                 </DialogContentText>
                             </DialogContent>
-                            <DialogActions>                                
+                            <DialogActions>
+                            <Button onClick={handleClose} color="primary">
+                                            Cancel
+                                </Button>                                
                                 <Button onClick={() => {
-                                    handleClose();  
+                                    handleCloseAccept();  
                                 }} color="primary" autoFocus>
                                     Aceptar
                                 </Button>
