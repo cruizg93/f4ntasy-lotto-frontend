@@ -180,6 +180,8 @@ const ApuestaActiva = ({...props}) => {
 
     const [open, setOpen] = useState(false);   
     const [openEdit, setOpenEdit] = useState(false);   
+    const [openCompraChange, setOpenCompraChange] = useState(false);   
+
 
     function handleClickOpen() {
         setOpen(true);
@@ -204,8 +206,7 @@ const ApuestaActiva = ({...props}) => {
 
     function handleDisableClick() {
         if(!disable){
-            submitUpdateData();
-            handleClickOpenEdit();
+            setOpenCompraChange(true);
         }       
         setDisable(!disable);
     }
@@ -254,6 +255,16 @@ const ApuestaActiva = ({...props}) => {
         printDocument6(input, title+'-activa');
     }
 
+    function handleCloseCompraChangeAccept(){
+        setOpenCompraChange(false);
+        submitUpdateData();
+        handleClickOpenEdit();
+    }
+
+    function handleCloseCompraChange(){
+        setOpenCompraChange(false);
+    }
+
     useEffect(() => {        
        
         setMonedaType(props.location.state.moneda)
@@ -271,6 +282,30 @@ const ApuestaActiva = ({...props}) => {
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000}/>
+            <Dialog
+                            open={openCompraChange}
+                            onClose={handleCloseCompraChange}
+                            aria-labelledby="alert-dialog-confirm-edit"
+                            aria-describedby="alert-dialog-description-confirm-edit"
+                        >
+                            <DialogTitle
+                                id="alert-dialog-confirm-edit">Cambio a la compra</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description-confirm-edit">
+                                    {`Está seguro que quiere hacer el cambio a la compra?`}
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>  
+                                <Button onClick={handleCloseCompraChange} color="primary">
+                                    Cancelar
+                                </Button>                              
+                                <Button onClick={() => {
+                                    handleCloseCompraChangeAccept();  
+                                }} color="primary" autoFocus>
+                                    Aceptar
+                                </Button>
+                            </DialogActions>
+            </Dialog> 
             <Dialog
                             open={open}
                             onClose={handleClose}
@@ -345,6 +380,7 @@ const ApuestaActiva = ({...props}) => {
                                             onEdit={updateFunction}
                                             delete={deleteOneFunction}
                                             mounted={mounted}
+                                            update={submitUpdateData}
                         />
                     )}
                     {/*</Grid>*/}
