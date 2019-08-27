@@ -141,6 +141,10 @@ const DetalleAsistente = ({list, ...props}) => {
     }
 
     function handleClose() { 
+        setOpen(false);
+    }
+
+    function handleCloseAccept() { 
         submitClickHandler()       
         setOpen(false);
         props.history.push("/");
@@ -189,9 +193,12 @@ const DetalleAsistente = ({list, ...props}) => {
                                     {`Compra para el sorteo ${title} a las ${time}`}
                                 </DialogContentText>
                             </DialogContent>
-                            <DialogActions>                                
+                            <DialogActions>
+                                <Button onClick={handleClose} color="primary">
+                                            Cancel
+                                </Button>                                
                                 <Button onClick={() => {
-                                    handleClose();  
+                                    handleCloseAccept();  
                                 }} color="primary" autoFocus>
                                     Aceptar
                                 </Button>
