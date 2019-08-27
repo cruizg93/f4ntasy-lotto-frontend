@@ -52,6 +52,7 @@ const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
     const classes = useStyles();   
     const [open, setOpen] = React.useState(false);  
     const eventId= props.index; 
+    const update = props.update;
 
     
 
@@ -60,12 +61,16 @@ const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
     }
 
     function handleClose() {
+        setOpen(false);
+    } 
+    function handleCloseAccept() {
         props.delete(eventId);
         setOpen(false);
-        props.history.push("/");
+        update();
+        /* props.history.push("/");
         return () => {
             props.mounted.current = false;
-        };        
+        };    */     
     } 
     return (
         <>
@@ -82,9 +87,12 @@ const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
                                     {`Una vez eliminada la apuesta no podrá recuperarla`}
                                 </DialogContentText>
                             </DialogContent>
-                            <DialogActions>                                
+                            <DialogActions>      
+                                <Button onClick={handleClose} color="primary">
+                                            Cancel
+                                </Button>                           
                                 <Button onClick={() => {
-                                    handleClose();  
+                                    handleCloseAccept();  
                                 }} color="primary" autoFocus>
                                     Aceptar
                                 </Button>
