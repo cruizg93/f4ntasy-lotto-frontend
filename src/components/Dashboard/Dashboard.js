@@ -37,6 +37,7 @@ class Dashboard extends Component {
         super(props);
         this.logoutClickHandler = this.logoutClickHandler.bind(this);
         this.handleClickOpen = this.handleClickOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
 
     }
 
@@ -72,7 +73,9 @@ class Dashboard extends Component {
     }
 
     handleClose() {
-        this.setState({open: !this.open});             
+        this.setState((prevState) => {
+            return {open: !prevState.open};
+        });
     }
 
     handleCloseAccept() {
@@ -101,7 +104,10 @@ class Dashboard extends Component {
                                     {`Desea salir?`}
                                 </DialogContentText>
                             </DialogContent>
-                            <DialogActions>                                
+                            <DialogActions>
+                                <Button onClick={this.handleClose} color="primary">
+                                            Cancel
+                                </Button>                                 
                                 <Button onClick={() => {
                                     this.handleCloseAccept();  
                                 }} color="primary" autoFocus>
