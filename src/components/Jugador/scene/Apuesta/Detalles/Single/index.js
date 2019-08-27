@@ -224,7 +224,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                                 className={comision < 0 ? classes.textBalanceNegativo : 
                                 (comision !== 0 ? classes.textBalancePositivo : classes.textBalance)}
                                 >
-                                {" "}{comision}
+                                {" "}{comision.toFixed(2)}
                         </Typography>
                     </Grid>
                     <Grid item xs={6}
