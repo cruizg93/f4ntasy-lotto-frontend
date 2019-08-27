@@ -131,7 +131,7 @@ const ComprarApuesta = ({...props}) => {
     const moneda = useState(props.location.state.moneda);
     const [id, setIdValue] = useState(props.location.state.id);
     const mounted = useState(true);
-    const apuestaType = props.location.state.title.nombre.includes("Chica")
+    const apuestaType = props.location.state.apuestaName.includes("CHICA")
     const [time, setTime]=useState("");
 
     const [open, setOpen] = useState(false);   
@@ -146,6 +146,10 @@ const ComprarApuesta = ({...props}) => {
     }
 
     function handleClose() { 
+        setOpen(false);
+    }
+
+    function handleCloseAccept() { 
         submitClickHandler()       
         setOpen(false);
         props.history.push("/");
@@ -187,7 +191,7 @@ const ComprarApuesta = ({...props}) => {
     };
     
     useEffect(() => {
-        
+       
         setElements(props.location.state.list);        
         setIdValue(props.location.state.id);
         let totald = 0;
@@ -240,9 +244,12 @@ const ComprarApuesta = ({...props}) => {
                                     {`Compra para el sorteo ${title} a las ${time}`}
                                 </DialogContentText>
                             </DialogContent>
-                            <DialogActions>                                
+                            <DialogActions>    
+                                <Button onClick={handleClose} color="primary">
+                                            Cancel
+                                </Button>                             
                                 <Button onClick={() => {
-                                    handleClose();  
+                                    handleCloseAccept();  
                                 }} color="primary" autoFocus>
                                     Aceptar
                                 </Button>
