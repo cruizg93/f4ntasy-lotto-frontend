@@ -151,6 +151,10 @@ const NewAsistente = ({ ...props }) => {
     }
 
     function handleClose() {
+        setOpen(false);
+    }
+
+    function handleAceptarClose() {
         onClickHandlerCreate();
         setOpen(false);
         props.history.push("/");
@@ -232,10 +236,11 @@ const NewAsistente = ({ ...props }) => {
         let index = event.target.selectedIndex;
         let optionElement = event.target.childNodes[index];
         let option = optionElement.getAttribute('label');
-       
+        let placeValue=option.split("-");
         if(event.target.value !== ''){
             adminService.count_player_asistente(event.target.value).then((result) => {
-                setPlaceholderUser(option + "x" + (result.data + 1));
+                console.log(placeValue)
+                setPlaceholderUser(placeValue[0].trim() + "x" + (result.data + 1));
             });
         }else{
             setPlaceholderUser("P000x0");
@@ -246,7 +251,7 @@ const NewAsistente = ({ ...props }) => {
 
     return (
         <React.Fragment>
-             <ToastContainer autoClose={8000}/>
+            <ToastContainer autoClose={8000}/>
             <Container maxWidth="sm" className={classes.container}>
             <Dialog
                             open={open}
@@ -261,9 +266,12 @@ const NewAsistente = ({ ...props }) => {
                                     {`Usuario: ${placeholderUser} contraseña: ${inputPassword}`}
                                 </DialogContentText>
                             </DialogContent>
-                            <DialogActions>                                
+                            <DialogActions>   
+                                <Button onClick={handleClose} color="primary">
+                                            Cancel
+                                </Button>                             
                                 <Button onClick={() => {
-                                    handleClose();  
+                                    handleAceptarClose();  
                                 }} color="primary" autoFocus>
                                     Aceptar
                                 </Button>
