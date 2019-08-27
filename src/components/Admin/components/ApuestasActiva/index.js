@@ -137,8 +137,8 @@ const ApuestasActivasAdminData = ({
     const classes = useStyles();
     const [moneda, setMoneda] =  React.useState(" $ ");
     const [open, setOpen] = useState(false);   
-    const [numero, setNumero] = useState(0);
-    const toast = props.toast;                                
+    const [numero, setNumero] = useState('');
+    const toast = props.toast;
 
     React.useEffect(()=>{
         setMoneda(props.moneda === "lempira" ? " L " : " $ " )
@@ -149,7 +149,7 @@ const ApuestasActivasAdminData = ({
     }
 
     function handleClose() {
-        setNumero(0);
+        setNumero('');
         setOpen(false);
     }
 
@@ -158,20 +158,28 @@ const ApuestasActivasAdminData = ({
     const bloquearApuesta = (e) => {
         e.preventDefault()
         adminService.cerrar_apuesta(id).then((result)=>{
-            update();
+            update(props.moneda);
         })
+    }
+
+
+    const handleChangeNumeroGanador = (e) => {
+        const twoDigitRegExp = new RegExp('^[0-9]{2}$');
+        if (e.target.value === '' || twoDigitRegExp.test(e.target.value)) {
+            setNumero(e.target.value)
+        }
     }
 
     const fijarNumeroGanador = () =>{
         if (numero !== '' && numero !== -1 && numero >= 0 && numero < 100) {           
             adminService.fix_numero_ganador(numero, id).then((result) => {               
-                update();
+                update(props.moneda);
             })
             toast("success");
         }else{
             toast("fail");
-            setNumero(0);
-        }
+            setNumero('');
+        } 
     }
     return (
         <Grid item xs={12} className={estado !== 'BLOQUEADA' ? classes.component : classes.componentDisable}>
@@ -373,12 +381,14 @@ const ApuestasActivasAdminData = ({
                             margin="normal"
                             variant="outlined"
                             fullWidth
-                                                        
+                            value={numero}   
+                            allowNegative={false}  
+                            format="##"                       
                             InputLabelProps={{
                                 shrink: true,
                             }}
                             customInput={TextField}
-                            onChange={(e) => setNumero(e.target.value)}                           
+                            onChange={(e) => handleChangeNumeroGanador(e)}                           
                         />
                 </DialogContent>
                 <DialogActions>
