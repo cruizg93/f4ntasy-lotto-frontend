@@ -11,6 +11,8 @@ import {withStyles} from "@material-ui/core/styles/index";
 import {playerService} from "../../../../../service/api/player/player.service";
 import ShowDetallesApuesta from '../../../components/Detalles/index';
 import {printDocument6} from "../../../../../_helpers/print";
+import HeaderDescription from "../../../../HeaderDescription/index";
+import {Colors} from "../../../../../utils/__colors";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -42,6 +44,12 @@ const useStyles = makeStyles(theme => ({
     },
     disableLink: {
         pointerEvents: 'none'
+    },
+    containerData:{
+        background: Colors.Main,
+    },
+    apuestaContainer:{
+        borderRight:"#afb6b8 1px solid",
     }
 
 }));
@@ -51,18 +59,19 @@ const ImprimirButton = withStyles({
         width: '100%',
         boxShadow: 'none',
         textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
+        fontSize: 16,       
         lineHeight: 1.5,
-        backgroundColor: '#2b85c2',
-        color: '#FFF',
+        padding: "15px 0",
+        backgroundColor: Colors.Main,
+        color: Colors.Btn_Blue_Dark,
         marginTop: '1rem',
         marginBottom: '1rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
+        border: 'none !important',
+        borderRadius: '0',
         '&:hover': {
             backgroundColor: '#0069d9',
             borderColor: '#0062cc',
+            color: Colors.Input_bkg
         },
         '&:active': {
             boxShadow: 'none',
@@ -74,65 +83,87 @@ const ImprimirButton = withStyles({
         },
     },
 })(Button);
-
 const DetallesApuesta = ({...props}) => {
     const classes = useStyles();
-    const [title, setTitle] = useState('');
-    const [id, setIdValue] = useState(0);
+    const [title, setTitle] = useState('');   
     const [list, setList] = useState([]);
-    useEffect(() => {
+    const [apuestaType, setApuestaType]= useState("Diaria");
+    const [moneda, setMoneda] = useState(" $ ");
+    useEffect(() => { 
         playerService.detalles_by_apuesta_id(props.location.state.id).then((result) => {
             setList(Array.from(result.data));
         })
-        setTitle(props.location.state.title.title);
-        setIdValue(props.location.state.id)
+        setTitle(props.location.state.title.title);        
+        setApuestaType(props.location.state.type);
+        setMoneda(props.location.state.moneda);
     }, []);
 
     function handleOnPrint() {
         const input = document.getElementById("apuesta-activa-numeros-detalles");
         printDocument6(input, title+'-activa-detalles');
     }
+
+    const update = () => {
+        playerService.detalles_by_apuesta_id(props.location.state.id).then((result) => {
+            setList([]);
+            setList(Array.from(result.data));
+        })
+    }
     return (
         <React.Fragment>
-            <Grid
-                container spacing={1}
-                direction="row"
-                justify="center"
-                alignItems="flex-start"
-            >
-                <Typography variant="h5" gutterBottom>
-                    {title}
-                </Typography>
-
-
-            </Grid>
-            <Divider/>
-            <Grid
-                container spacing={1}
-                direction="row"
-                justify="center"
-                alignItems="flex-start"
-                id="apuesta-activa-numeros-detalles"
-            >
-                {list.map((apuestaDetail, index) =>
-                    <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} {...props}
-                    />
-                )}
-            </Grid>
-            <Grid container spacing={1}
+            <HeaderDescription name={"Detalle Apuestas X"}/>
+            <Grid container
+                          spacing={1}
+                          direction="row"
+                          justify="center"
+                          className={classes.containerData}
+                    >
+                 <Grid item xs={3}
+                    className={classes.apuestaContainer}
+                    >                     
+                    <Typography variant="h5" gutterBottom>
+                        {apuestaType}
+                    </Typography>
+                 </Grid>
+                 <Grid item xs={8}>
+                    <Typography variant="h5" gutterBottom
+                        style={{marginLeft: ".5rem"}}
+                    >
+                        {title}
+                    </Typography>                     
+                 </Grid>
+                 
+                 <Grid item xs={12}
+                    container spacing={1}
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start"
+                    id="apuesta-activa-numeros-detalles"
+                    >
+                        <Grid item xs={12}>
+                             <Divider/>
+                        </Grid>
+                        {list.map((apuestaDetail, index) =>
+                            <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} moneda={moneda} 
+                                update={update}
+                            {...props}
+                            />
+                        )}
+                </Grid>
+                <Grid container spacing={1}
                   direction="row"
                   justify="center"
-            >
-
-                <Grid item xs={6}>
-                    <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
-                        <Typography variant="body1" gutterBottom>
-                            Imprimir
-                        </Typography>
-                    </ImprimirButton>
+                    >
+                    <Grid item xs={12}>
+                        <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
+                            <Typography variant="body1" gutterBottom>
+                                Imprimir
+                            </Typography>
+                        </ImprimirButton>
+                    </Grid>
                 </Grid>
-
             </Grid>
+            
         </React.Fragment>
     )
 

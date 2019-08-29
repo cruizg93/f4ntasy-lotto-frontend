@@ -35,11 +35,7 @@ const useStyles = makeStyles(theme => ({
 export default function NestedList(props) {
     const classes = useStyles();
     const [isAdmin, setAdminValue] = React.useState(props.admin);
-    const [isAsistente, setAsistenteValue] = React.useState(!props.admin && props.asistente);
-    const logout = () => {
-        authenticationService.logout();
-        history.push('/login');
-    };
+    const [isAsistente, setAsistenteValue] = React.useState(!props.admin && props.asistente);  
 
     return (
         <List
@@ -73,7 +69,7 @@ export default function NestedList(props) {
             {isAdmin && <Sistema classes={classes.nested} click={props.click}/>}
             {isAdmin && <Historial classes={classes.nested} click={props.click}/>}
 
-            {!isAsistente &&
+            {(!isAdmin && !isAsistente) &&
             <ListItem button component={Link} to={'/usuario/apuestas'} onClick={props.click}>
                 <ListItemIcon>
                      <ArrowRightAlt/>
@@ -81,7 +77,7 @@ export default function NestedList(props) {
                 <ListItemText primary="Entrar Apuestas"/>
             </ListItem>
             }
-            {!isAsistente &&
+            {(!isAdmin && !isAsistente) &&
             <ListItem button component={Link} to={'/usuario/apuestas/hoy/activas'} onClick={props.click}>
                 <ListItemIcon>
                     <Style/>
@@ -90,7 +86,7 @@ export default function NestedList(props) {
             </ListItem>
             }
 
-            {!isAsistente &&
+            {(!isAdmin && !isAsistente) &&
             <ListItem button component={Link} to={'/usuario/historial'} onClick={props.click}>
                 <ListItemIcon>
                      <History/>
@@ -136,7 +132,7 @@ export default function NestedList(props) {
             </ListItem>
             }
 
-            <ListItem button onClick={logout}>
+            <ListItem button onClick={props.logout}>
                 <ListItemIcon>
                     <SupervisedUserCircle/>
                 </ListItemIcon>

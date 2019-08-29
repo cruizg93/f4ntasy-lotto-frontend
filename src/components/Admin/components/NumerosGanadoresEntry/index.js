@@ -8,7 +8,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import List from '@material-ui/core/List';
 import NumerosActivosUserEntry from './NumerosActivosUserEntry/index';
 import {authenticationService} from "../../../../service/api/authentication/authentication.service";
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -87,8 +86,10 @@ const NumerosGanadoresEntry = ({id, title, numero, pairJBS, ...props}) => {
         if (newNumber !== '' && newNumber !== 1
             && newNumber >= 0 && newNumber < 100
         ) {
-            adminService.update_numero_ganador(newNumber,oldNumber, id).then((result) => {
-
+          /*   adminService.update_numero_ganador(newNumber,oldNumber, id).then((result) => {
+            }) */
+            
+            adminService.fix_numero_ganador(newNumber, id).then((result) => {
             })
         }
         setNewNumber(-1)

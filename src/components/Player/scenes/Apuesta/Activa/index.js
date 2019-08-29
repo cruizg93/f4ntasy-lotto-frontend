@@ -10,8 +10,15 @@ import ApuestaActivaEntry from '../../../components/ApuestaActiva/index';
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
-import {printDocument, printDocument5, printDocument6} from "../../../../../_helpers/print";
+import {printDocument6} from "../../../../../_helpers/print";
 import './Activa.css'
+import {Colors} from '../../../../../utils/__colors'
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -32,62 +39,96 @@ const useStyles = makeStyles(theme => ({
     },
     numbers: {
         paddingLeft: '.5rem'
+    },
+    fixedElement:{
+        position: 'fixed',
+        width: '100%',        
+        height: '76px',
+        bottom: '0',
+        left: '0',
+        backgroundColor: Colors.Main      
+    },
+    apuestasContainer:{
+        marginBottom: '5rem'
     }
-
 }));
 
 
 const EditarButton = withStyles({
     root: {
-        width: '100%',
+        width: '100px',
+        height: '100%',
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#ff190a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
+        lineHeight: 1.5,        
+        color: Colors.Green,        
+        marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#fb0f2f',
-            borderColor: 'none',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: 'none',
+            boxShadow: 'none',           
+            border: 'none',
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
         },
     },
 })(Button);
-
+const EliminarTodoButton = withStyles({
+    root: {
+        width: '100px',
+        height: '100%',
+        boxShadow: 'none',
+        textTransform: 'none',
+        fontSize: 16,
+        padding: '6px 12px',
+        lineHeight: 1.5,        
+        color: Colors.Btn_Red,        
+        marginBottom: '1.5rem',
+        marginRight: '.5rem',
+        marginLeft: '.5rem',
+        border: 'none',
+        '&:hover': {
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
+        },
+        '&:active': {
+            boxShadow: 'none',           
+            border: 'none',
+        },
+        '&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+        },
+    },
+})(Button);
 const ImprimirButton = withStyles({
     root: {
-        width: '100%',
+        width: '100px',
+        height: '100%',
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#2b85c2',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
+        lineHeight: 1.5,        
+        color: Colors.Btn_Blue,        
+        marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
+            boxShadow: 'none',           
+            border: 'none',
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
@@ -95,56 +136,27 @@ const ImprimirButton = withStyles({
     },
 })(Button);
 
-const FijarButton = withStyles({
-    root: {
-        width: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#29992a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        '&:hover': {
-            backgroundColor: '#52d94f',
-            borderColor: '#62cc68',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 const DetallesButton = withStyles({
     root: {
-        width: '100%',
+        width: '100px',
+        height: '100%',
         boxShadow: 'none',
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#ff9d15',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
+        lineHeight: 1.5,        
+        color: Colors.Orange,       
+        marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
+        border: 'none',
         '&:hover': {
-            backgroundColor: '#ffe634',
-            borderColor: '#cc9f0e',
+            backgroundColor: Colors.Btn_Hover,
+            border: 'none',
         },
         '&:active': {
             boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
+            backgroundColor: Colors.Btn_Hover,            
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
@@ -159,8 +171,43 @@ const ApuestaActiva = ({...props}) => {
     const [total, setTotal] = useState(0.0);
     const [list, setList] = useState([]);
     const [disable, setDisable] = useState(true);
+    const [apuestaType, setApuestaType] = useState('CHICA');
+    const [monedaType, setMonedaType]=React.useState("$");
+
+    const apuestaId = props.match.params.apuestaId;
+
+    const mounted = useState(true);
+
+    const [open, setOpen] = useState(false);   
+    const [openEdit, setOpenEdit] = useState(false);   
+    const [openCompraChange, setOpenCompraChange] = useState(false);   
+
+
+    function handleClickOpen() {
+        setOpen(true);
+    }
+
+    function handleClose() {
+        setOpen(false);      
+    }
+
+    function handleCloseAccept() {
+        eliminarCompleto()
+        setOpen(false);      
+    }
+
+    function handleClickOpenEdit() {
+        setOpenEdit(true);
+    }
+
+    function handleCloseEdit() {
+        setOpenEdit(false);      
+    }
 
     function handleDisableClick() {
+        if(!disable){
+            setOpenCompraChange(true);
+        }       
         setDisable(!disable);
     }
 
@@ -173,16 +220,28 @@ const ApuestaActiva = ({...props}) => {
     }
 
     function submitUpdateData() {
-        playerService.update_number_apuesta_activas(list, props.match.params.apuestaId).then((result) => {
+        playerService.update_number_apuesta_activas(list, apuestaId).then((result) => {
             success_response();
-            playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
+            playerService.list_apuestas_activas_details(apuestaId).then((result) => {                
                 setTitle(result.data.title);
-                setComision(result.data.comision);
-                setRiesgo(result.data.riesgo);
-                setTotal(result.data.total);
+                setComision(result.data.comision.toFixed(2));
+                setRiesgo(result.data.riesgo.toFixed(2));
+                setTotal(result.data.total.toFixed(2));
                 setList(Array.from(result.data.list));
             })
         });
+    }
+
+    function deleteOneFunction(entryId) {       
+        list[entryId]['valor'] = 0.0;   
+        submitUpdateData();      
+    }
+
+    function eliminarCompleto(){
+        list.forEach((elem, idx) => {
+            elem['valor']= 0.0;            
+        })
+        submitUpdateData();
     }
 
     function success_response() {
@@ -191,26 +250,107 @@ const ApuestaActiva = ({...props}) => {
         });
     }
 
-    function handleOnPrint() {
-        // let input = document.querySelectorAll(".entrada-datos");
-        // console.log(input);
+    function handleOnPrint() {        
         const input = document.getElementById("container-apuesta-activa-data");
         printDocument6(input, title+'-activa');
     }
 
-    useEffect(() => {
-        playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
+    function handleCloseCompraChangeAccept(){
+        setOpenCompraChange(false);
+        submitUpdateData();
+        handleClickOpenEdit();
+    }
+
+    function handleCloseCompraChange(){
+        setOpenCompraChange(false);
+    }
+
+    useEffect(() => {        
+       
+        setMonedaType(props.location.state.moneda)
+        playerService.list_apuestas_activas_details(apuestaId).then((result) => {   
+          
+            setApuestaType(result.data.type)
             setTitle(result.data.title);
-            setComision(result.data.comision);
-            setRiesgo(result.data.riesgo);
-            setTotal(result.data.total);
+            setComision(result.data.comision.toFixed(2));
+            setRiesgo(result.data.riesgo.toFixed(2));
+            setTotal(result.data.total.toFixed(2));
             setList(Array.from(result.data.list));
         })
-    }, []);
+    },[]);
 
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000}/>
+            <Dialog
+                            open={openCompraChange}
+                            onClose={handleCloseCompraChange}
+                            aria-labelledby="alert-dialog-confirm-edit"
+                            aria-describedby="alert-dialog-description-confirm-edit"
+                        >
+                            <DialogTitle
+                                id="alert-dialog-confirm-edit">Cambio a la compra</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description-confirm-edit">
+                                    {`Está seguro que quiere hacer el cambio a la compra?`}
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>  
+                                <Button onClick={handleCloseCompraChange} color="primary">
+                                    Cancelar
+                                </Button>                              
+                                <Button onClick={() => {
+                                    handleCloseCompraChangeAccept();  
+                                }} color="primary" autoFocus>
+                                    Aceptar
+                                </Button>
+                            </DialogActions>
+            </Dialog> 
+            <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-crear-usuario"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle
+                                id="alert-dialog-crear-usuario">Eliminar números</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    {`Desea eliminar todos los números?`}
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>  
+                                <Button onClick={handleClose} color="primary">
+                                    Cancelar
+                                </Button>                              
+                                <Button onClick={() => {
+                                    handleCloseAccept();  
+                                }} color="primary" autoFocus>
+                                    Aceptar
+                                </Button>
+                            </DialogActions>
+            </Dialog> 
+            <Dialog
+                            open={openEdit}
+                            onClose={handleCloseEdit}
+                            aria-labelledby="alert-dialog-update-data"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle
+                                id="alert-dialog-update-data">Apuesta</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    {`Su cambio a la compra a sido exitoso`}
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>                                
+                                <Button onClick={() => {
+                                    handleCloseEdit();  
+                                }} color="primary" autoFocus>
+                                    Aceptar
+                                </Button>
+                            </DialogActions>
+            </Dialog> 
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
@@ -226,7 +366,9 @@ const ApuestaActiva = ({...props}) => {
                   direction="row"
                   justify="center"
                   alignItems="flex-start"
-                  id="container-apuesta-activa-data">
+                  id="container-apuesta-activa-data"
+                  className={classes.apuestasContainer}
+                  >
                 <Grid container spacing={1}
                       direction="row"
                       justify="center"
@@ -236,6 +378,9 @@ const ApuestaActiva = ({...props}) => {
                         <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}
                                             disable={disable}
                                             onEdit={updateFunction}
+                                            delete={deleteOneFunction}
+                                            mounted={mounted}
+                                            update={submitUpdateData}
                         />
                     )}
                     {/*</Grid>*/}
@@ -249,7 +394,7 @@ const ApuestaActiva = ({...props}) => {
 
                     >
                         <Typography variant="body1" gutterBottom className={''}>
-                            apuestas |
+                            Apuestas |
                         </Typography>
                     </Grid>
                     <Grid item xs={9}
@@ -258,7 +403,7 @@ const ApuestaActiva = ({...props}) => {
                           className={''}
                     >
                         <Typography variant="body1" gutterBottom className={classes.numbers}>
-                            {total}
+                            {monedaType}{" "}{total}
                         </Typography>
 
                     </Grid>
@@ -267,7 +412,7 @@ const ApuestaActiva = ({...props}) => {
                           justify="flex-end"
                     >
                         <Typography variant="body1" gutterBottom className={''}>
-                            comisiones |
+                            Comisiones |
                         </Typography>
                     </Grid>
                     <Grid item xs={9}
@@ -276,7 +421,7 @@ const ApuestaActiva = ({...props}) => {
                           className={''}
                     >
                         <Typography variant="body1" gutterBottom className={classes.numbers}>
-                            {comision}
+                            {monedaType}{" "}{comision}
                         </Typography>
 
                     </Grid>
@@ -285,7 +430,7 @@ const ApuestaActiva = ({...props}) => {
                           justify="flex-end"
                     >
                         <Typography variant="body1" gutterBottom className={''}>
-                            riesgo |
+                            Riesgo |
                         </Typography>
                     </Grid>
                     <Grid item xs={9}
@@ -294,7 +439,7 @@ const ApuestaActiva = ({...props}) => {
                           className={''}
                     >
                         <Typography variant="body1" gutterBottom className={classes.numbers}>
-                            {riesgo}
+                        {monedaType}{" "}{riesgo}
                         </Typography>
 
                     </Grid>
@@ -304,36 +449,41 @@ const ApuestaActiva = ({...props}) => {
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
+                  className={classes.fixedElement}
             >
-                <Grid item xs={6}>
+                <Grid item xs={2}>
                     <EditarButton variant="outlined" color="primary" onClick={handleDisableClick}>
                         <Typography variant="body1" gutterBottom>
-                            Editar
+                            {disable ? "Editar" : "Fijar"}                            
                         </Typography>
                     </EditarButton>
                 </Grid>
-                <Grid item xs={6}>
-                    <FijarButton variant="outlined" color="primary" disabled={disable} onClick={submitUpdateData}>
+                <Grid item xs={2}>
+                    <EliminarTodoButton variant="outlined" color="primary" 
+                         onClick={handleClickOpen}
+                        >
                         <Typography variant="body1" gutterBottom>
-                            Fijar
+                            Eliminar completo
                         </Typography>
-                    </FijarButton>
+                    </EliminarTodoButton>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={2}>
                     <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir
                         </Typography>
                     </ImprimirButton>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={2}>
                     <DetallesButton variant="outlined" color="primary"
                                     component={Link}
                                     to={{
                                         pathname: '/usuario/apuesta/detalles',
                                         state: {
                                             title: {title},
-                                            id: props.match.params.apuestaId
+                                            id: props.match.params.apuestaId,
+                                            type : apuestaType,
+                                            moneda : monedaType,
                                         }
                                     }}
                     >

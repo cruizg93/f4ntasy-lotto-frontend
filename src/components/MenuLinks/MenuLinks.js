@@ -52,7 +52,7 @@ export const MenuLinks = (props) => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose} component={Link} to="/jugador/nuevo">Crear Jugador</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to="/usuario/nuevo">Crear Jugador</MenuItem>
                 <MenuItem onClick={handleClose}
                           component={Link}
                           to="/sistema/numero/ganador">
@@ -66,7 +66,7 @@ export const MenuLinks = (props) => {
                 <MenuItem onClick={handleClose}
                           component={Link}
                           to="/sistema/password/update"
-                >Constraseña</MenuItem>
+                >Contraseña</MenuItem>
                 <MenuItem onClick={handleClose}>Fijar Topes</MenuItem>
             </Menu>
             }

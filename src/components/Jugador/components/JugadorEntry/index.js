@@ -6,37 +6,24 @@ import Typography from '@material-ui/core/Typography';
 
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
-import HighlightOff from "@material-ui/icons/HighlightOff";
-
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import {adminService} from "../../../../service/api/admin/admin.service";
 
-const AsistButton = withStyles({
-    root: {
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        border: '1px solid',
-        lineHeight: 1.5,
-        backgroundColor: '#ffe634',
-        borderColor: 'none',
-        color: '#FFF',
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
+import Divider from '@material-ui/core/Divider';
+
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AsistenteDataShow from '../AsistenteEntry/index';
+import {adminService} from "../../../../service/api/admin/admin.service";
+import { Colors } from '../../../../utils/__colors';
+import {FaTrashAlt} from 'react-icons/fa';
+
 const useStyles = makeStyles(theme => ({
     margin: {
         margin: theme.spacing(1),
@@ -78,19 +65,38 @@ const useStyles = makeStyles(theme => ({
     text: {
         display: 'flex'
     },
+    textPositive: {
+        display: 'flex',
+        color: Colors.Green
+    },
+    textNegative: {
+        display: 'flex',
+        color: Colors.Btn_Red
+    },
+    textLabel: {
+        display: 'flex',
+        marginRight: '.5rem'
+    },
     svgContainer: {
         display: 'flex',
         alignItems: 'center',
+        color: Colors.Btn_Blue
     },
     iconClose: {
         margin: '0 auto',
         display: 'block',
+        color: Colors.Btn_Red,
+        '&:hover':{
+            cursor: "pointer"
+        }        
     },
     paper: {
         textDecoration: 'none',
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
+        background: Colors.Main,
+        borderRadius: "0",
     },
     paperDisable: {
         pointerEvents: 'none',
@@ -132,15 +138,79 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         padding: '5px 10px 5px 10px',
     },
+    expansionPanel:{
+        boxShadow: 'none',
+        background: Colors.Main
+    },
+    expansionPanelTextHeader:{      
+        marginLeft: '2rem',
+        color: Colors.Gray_Ligth
+    },
+    expansionPanelBody:{      
+        display: 'block',
+        padding: "0 !important"
+    },
+    labelUser: {
+        textDecoration: 'none',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '5px 10px 5px 10px',
+        margin: '1rem',
+        borderRight:"#afb6b8 1px solid",
+        color: Colors.Btn_Blue,
+    },
+    labelUserDisable: {
+        pointerEvents: 'none',
+        textDecoration: 'none',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '1rem 10px 1rem 10px',        
+        borderRight:"#afb6b8 1px solid",
+        color: Colors.Btn_Blue,
+    },
+    editarLink:{
+        textDecoration: "none",             
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '1rem 10px 1rem 10px',        
+        borderRight:"#afb6b8 1px solid",
+        color: Colors.Btn_Blue,
+        '&:hover':{
+            cursor: "pointer"
+        }
+    },
+    balanceLink:{
+        textDecoration: "none",
+        pointerEvents: 'none',       
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',        
+        margin: '.5rem',        
+        color: Colors.Btn_Blue,
+        '&:hover':{
+            cursor: "pointer"
+        }
+    },
 
 }));
 
-const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, total, username, ...props}) => {
+const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, total, username, name, asistentes, ...props}) => {
     const classes = useStyles();
     const [monedaSymbol, setMonedaSymbol] = useState('$');
 
     const [open, setOpen] = React.useState(false);
+
+    const [expanded, setExpanded] = React.useState(false);   
+    const [asignedAsistentes, setAsignedAsistentes]= React.useState([]);
+
+    const symbol = balance < 0 ? " - " : (balance > 0 ? " + " : "")
+
     const handler = props.handler;
+    const toast = props.toast;
+
 
     function handleClickOpen() {
         setOpen(true);
@@ -152,111 +222,155 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
 
     function deletePlayer() {
         adminService.delete_player_by_id(id).then((result) => {
-            handler();
+            if(result.data === "Apuestas"){
+                toast("fail");
+            }else{                
+                handler();
+            }            
         })
-    }
+    }      
+
+    const handleChangeExpand = panel => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
+    };
 
 
     useEffect(() => {
-        if (monedaType === "lempira") {
+        if (monedaType === "lempiras") {
             setMonedaSymbol('L')
         }
-    }, [])
+        if(asistentes)
+            setAsignedAsistentes(Array.from(asistentes))
+    }, [asistentes, monedaType])
     return (
 
         <Grid item xs={12}>
             <Paper className={classes.paper}>
-
-                <Grid container spacing={3}>
-                    <Grid item xs={6}>
-                        <Paper className={total === 0 ? classes.paperUserDisable : classes.paperUser} xs={12}
-                               component={Link} to={
+                <Grid container>
+                    <Grid item xs={6} 
+                    className={total === 0 ? classes.labelUserDisable : classes.labelUser}
+                        component={Link} to={
                             {
-                                pathname: `/jugador/apuestas/detalles`,
+                            pathname: `/jugador/apuestas/detalles`,
                                 state: {
                                     id: id,
                                     username: username
                                 }
                             }
                         }
-
-                        >
-                            {username} | {monedaSymbol}
-                        </Paper>
-                        <Grid container className={classes.margin}>
-                            <Grid item xs={5}
-                                  container
-                                  justify="flex-end">
-                                <Typography variant="body1" gutterBottom className={classes.text}>
-                                    apuestas |
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={7}>
-                                <Typography variant="body1" gutterBottom className={classes.text}>
-                                    {monedaSymbol} {total}
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={5}
-                                  container
-                                  justify="flex-end">
-                                <Typography variant="body1" gutterBottom className={classes.text}>
-                                    comisiones |
-                                </Typography>
-                            </Grid>
-
-                            <Grid item xs={7}>
-                                <Typography variant="body1" gutterBottom className={classes.text}>
-                                    {monedaSymbol} {comision}
-                                </Typography>
-                            </Grid>
-
-                            <Grid item xs={5}
-                                  container
-                                  justify="flex-end"
-                            >
-                                <Typography variant="body1" gutterBottom className={classes.text}>
-                                    riesgo |
-                                </Typography>
-                            </Grid>
-
-                            <Grid item xs={7}>
-                                <Typography variant="body1" gutterBottom className={classes.text}>
-                                    {monedaSymbol} {riesgo}
-                                </Typography>
-                            </Grid>
-                        </Grid>
-
+                    >
+                        {username} {" - "}{monedaSymbol} {"  "} {name}
                     </Grid>
-
-                    <Grid item
-                          container
-                          xs={6}>
-
-                        <Grid item xs={7}
-                              container
-                              justify="center"
-                        >
-                            <AsistButton variant="outlined" color="primary" className={classes.button}
-                                         component={Link} to={
-                                {
-                                    pathname: `/jugador/editar/${id}`,
-                                    state: {
-                                        id: id,
-                                    }
+                    <Grid item xs={3} className={classes.editarLink}
+                        component={Link} to={
+                            {
+                                pathname: `/jugador/editar/${id}`,
+                                state: {
+                                    id: id,
                                 }
                             }
-                            >
-                                Editar
-                            </AsistButton>
-                        </Grid>
-                        <Grid item xs={3}
+                        }
+                    >
+                        Editar
+                    </Grid>
+                    <Grid item xs={2}
                               container
                               justify="center"
                               className={classes.svgContainer}
 
                         >
-                            <HighlightOff className={classes.iconClose} onClick={handleClickOpen}/>
-                        </Grid>
+                            <FaTrashAlt className={classes.iconClose} onClick={handleClickOpen}/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Divider/>
+                    </Grid>        
+                    <Grid item xs={12} sm={6}
+                              container
+                              justify="center"                         
+                              className={classes.margin}
+                        >
+                            <Grid item xs={7}
+                                  container
+                                  justify="flex-end">
+                                <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                                    apuestas 
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <Typography variant="body1" gutterBottom className={classes.text}>
+                                    {monedaSymbol} {total.toFixed(2)}
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={7}
+                                  container
+                                  justify="flex-end">
+                                <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                                    comisiones 
+                                </Typography>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <Typography variant="body1" gutterBottom className={classes.text}>
+                                    {monedaSymbol} {comision.toFixed(2)}
+                                </Typography>
+                            </Grid>
+
+                            <Grid item xs={7}
+                                  container
+                                  justify="flex-end"
+                            >
+                                <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                                    riesgo 
+                                </Typography>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <Typography variant="body1" gutterBottom className={classes.text}>
+                                    {monedaSymbol} {riesgo.toFixed(2)}
+                                </Typography>
+                            </Grid>
+                    </Grid>
+
+                    <Grid item xs={12} sm={5}
+                              container
+                              justify="center"                         
+                              className={classes.margin}
+                        >
+                            <Grid item xs={10}
+                                  container
+                                  justify="center"
+                                  className={classes.balanceLink}
+                                  component={Link} to={
+                                    {
+                                        pathname: `/jugador/balance/${id}`,
+                                        state: {
+                                            // list: entry,
+                                            id: id,
+                                            // title: props.location.state.title
+                                        }
+                                    }
+                                }
+                                  
+                                  >
+                                <Typography variant="body1" gutterBottom >
+                                    Balance 
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={10}
+                                 container
+                                 justify="center"
+                            >
+                                <Typography variant="body1" gutterBottom className={balance < 0 ? classes.textNegative : (balance > 0 ? classes.textPositive : classes.text) }>
+                                    {monedaSymbol} {symbol} {balance.toFixed(2)}
+                                </Typography>
+                            </Grid>
+                        </Grid>                 
+
+                    <Grid item
+                          container
+                          xs={6}>
+
+                        
                         <Dialog
                             open={open}
                             onClose={handleClose}
@@ -283,33 +397,39 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                                 </Button>
                             </DialogActions>
                         </Dialog>
-                        <Grid item xs={12}
-                              container
-                              justify="center"
-
-                        >
-                            <Paper className={balance === 0 ? classes.paperBalanceDisable : classes.paperBalance}
-                                   xs={12}
-                                   component={Link} to={
-                                {
-                                    pathname: `/jugador/balance/${id}`,
-                                    state: {
-                                        // list: entry,
-                                        id: id,
-                                        // title: props.location.state.title
-                                    }
-                                }
-                            }>
-                                <Typography variant="body1" gutterBottom className={classes.text}>
-                                    Balance
-                                </Typography>
-                                <Typography variant="body1" gutterBottom className={classes.text}>
-                                    {monedaSymbol} {balance}
-                                </Typography>
-                            </Paper>
-
-                        </Grid>
+                        
                     </Grid>
+                    {asistentes && 
+                        <>                                                   
+                            <Grid item xs={12}
+                            
+                            >
+                                <Divider/>
+                                <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChangeExpand('panel1')}
+                            TransitionProps={{unmountOnExit: true}} className={classes.expansionPanel}>
+                                    <ExpansionPanelSummary
+                                        expandIcon={<ExpandMoreIcon/>}
+                                        aria-controls="panel1bh-content"
+                                        id="panel1bh-header"                                       
+                                    >
+                                       <Typography variant="body1" gutterBottom className={classes.expansionPanelTextHeader} >
+                                            {asignedAsistentes.length}{" Jugadores X asignados"} 
+                                        </Typography>     
+
+                                    </ExpansionPanelSummary>
+                                    <ExpansionPanelDetails className={classes.expansionPanelBody}> 
+
+                                        {asignedAsistentes.map((asistente, index)=>
+                                            <AsistenteDataShow key={index} {...asistente} {...props} />
+                                        )}
+                                    
+                                    </ExpansionPanelDetails>
+                                 </ExpansionPanel>
+                                
+                            </Grid>
+                        </>
+                    }
+                    
                 </Grid>
             </Paper>
         </Grid>

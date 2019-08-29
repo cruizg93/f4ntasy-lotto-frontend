@@ -19,7 +19,7 @@ class Toolbar extends Component {
             user: authenticationService.currentUserValue,
             toolbarClasses: ['toolbar']
         };
-        this.logoutClickHandler = this.logoutClickHandler.bind(this);
+        /* this.logoutClickHandler = this.logoutClickHandler.bind(this); */
     }
 
     drawerToggleClickHandler = () => {
@@ -51,23 +51,23 @@ class Toolbar extends Component {
         this.setState({sideDrawerOpen: false})
     };
 
-    logoutClickHandler() {
+   /*  logoutClickHandler() {
         authenticationService.logout();
         history.push('/login');
-    }
+    } */
 
     render() {
         return (
             <header className={this.state.toolbarClasses}>
                 <nav className="toolbar__navigation">
                     <div className="toolbar__logo">
-                        <NavLink to="/" exact strict>The Logo</NavLink>
+                        <NavLink to="/" exact strict>F4ntasy L0tt0</NavLink>
                     </div>
                     <div className="spacer"/>
                     <div className="toolbar__navigation-items">
                         <ul>
                             <MenuLinks admin={this.props.admin} asistente={this.props.asistente}/>
-                            <Button onClick={this.logoutClickHandler} color="inherit">Salir</Button>
+                            <Button onClick={this.props.logoutClickHandler} color="inherit">Salir</Button>
                         </ul>
                     </div>
                     <div className="toolbar__user-username">

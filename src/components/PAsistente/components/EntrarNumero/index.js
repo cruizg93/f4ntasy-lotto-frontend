@@ -28,9 +28,9 @@ const EntrarNumero = ({numero, tope, max, current, ...props}) => {
         if (tope !== 0 && tope === max) {
             setColorValue("#BA2220")
         }
-        if(current !== 0){
-            setNumberLimit(current);
-        }
+       /*  if(current !== 0){
+            setNumberLimit(current); */
+        /* } */
     }, []);
 
     function handleOnChangeInput(e) {

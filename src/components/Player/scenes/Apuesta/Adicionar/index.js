@@ -8,7 +8,7 @@ const AdicionarApuesta = (props) => {
 
     useEffect(() => {
         playerService.list_apuestas_hoy_by_username().then((result) => {
-            setEntryData(result.data)
+            setEntryData(result.data);
         })
     }, []);
     return (

@@ -27,8 +27,76 @@ export const adminService = {
     fix_numero_ganador,
     get_ganancias_perdidas,
     update_numero_ganador,
-    get_current_cambio
+    get_current_cambio,
+    get_asistente_by_id,
+    edit_asistente,
+    temporal_service,
+    temporal_reset_balance_service,
+    temporal_insert_service,
+    temporal_insert_chica_service,
+    cerrar_apuesta,
+    details_apuesta_activa_by_apuesta_id
 };
+
+
+function temporal_service(id) {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/admin/temporal/${id}`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function temporal_reset_balance_service() {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/admin/temporal/reset/balance`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function temporal_insert_service() {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/admin/temporal/crear/apuesta`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+function temporal_insert_chica_service() {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/admin/temporal/crear/apuesta/chica`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
 
 
 function count() {
@@ -135,6 +203,21 @@ function get_player_by_id(id) {
     })
 }
 
+function get_asistente_by_id(id) {
+    const requestOptions = {headers: authHeader()};
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/admin/asistente/${id}`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    })
+}
+
 function count_player_asistente(data) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
@@ -174,6 +257,28 @@ function add_player_asistente(data) {
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/admin/asistente/add`,
             JSON.stringify(data), requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function edit_asistente(data) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/admin/asistente/update`,
+            data, requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);
@@ -260,6 +365,33 @@ function details_apuesta_activa_by_user_id(username, id) {
     });
 }
 
+///jugador/apuestas/activas/{id}/detalles
+function details_apuesta_activa_by_apuesta_id(username, id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    let send = {
+        username: username
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/admin/jugador/apuestas/activas/${id}/detalles`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+
 function delete_player_by_id(id) {
     const requestOptions = {headers: authHeader()};
     return new Promise((resolve, reject) => {
@@ -276,10 +408,10 @@ function delete_player_by_id(id) {
 }
 
 
-function get_apuestas_activas() {
+function get_apuestas_activas(moneda) {
     const requestOptions = {headers: authHeader()};
     return new Promise((resolve, reject) => {
-        axios.get(`${baseUrl}/admin/apuestas/activas`,
+        axios.get(`${baseUrl}/admin/apuestas/activas/${moneda}`,
             requestOptions
         )
             .then((responseJson) => {
@@ -464,7 +596,7 @@ function fix_numero_ganador(numero, id) {
         numero: numero,
     };
     return new Promise((resolve, reject) => {
-        axios.post(`${baseUrl}/admin/numeros/ganadores/${id}`,
+        axios.post(`${baseUrl}/admin/numero/ganador/${id}`,
             send, requestOptions
         )
             .then((responseJson) => {
@@ -544,4 +676,29 @@ function get_current_cambio() {
                 reject(error);
             })
     })
+}
+
+function cerrar_apuesta(id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };   
+    const send={
+        idData: id
+    }
+    return new Promise((resolve, reject) => {
+        axios.put(`${baseUrl}/admin/apuesta/bloquear/${id}`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
 }

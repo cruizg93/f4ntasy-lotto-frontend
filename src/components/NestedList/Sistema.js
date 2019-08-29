@@ -36,7 +36,7 @@ export default function Sistema(props) {
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    <ListItem button className={props.classes} component={Link} to="/jugador/nuevo"
+                    <ListItem button className={props.classes} component={Link} to="/usuario/nuevo"
                               onClick={props.click}>
                         <ListItemIcon>
                             <GroupAdd/>

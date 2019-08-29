@@ -9,6 +9,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import {red} from "@material-ui/core/colors/index";
 import NumberFormat from 'react-number-format';
+import {Colors} from '../../../../utils/__colors';
+import Divider from '@material-ui/core/Divider';
 
 const RedRadio = withStyles({
     root: {
@@ -23,8 +25,17 @@ const RedRadio = withStyles({
 const useStyles = makeStyles(theme => ({
     card: {
         display: 'flex',
-        marginTop: '.5rem'
+        marginTop: '.5rem',
+        background : Colors.Main,
+        boxShadow: 'none',       
+        borderRadius: '0'
     },
+    inputData: {
+        background : Colors.Input_bkg,
+    },
+    labelChica:{
+        marginTop: ".5rem"
+    }
 
 }));
 
@@ -44,9 +55,10 @@ export default function Chica({
                                   onChangeCostoPedazos,
                                   onChangeComisionPedazos,
                                   chicaType,
-                                  onChangeChicaType,
+                                  onChangeChicaType,...props
                               }) {
     const classes = useStyles();
+    const activate = props.activate ? props.activate : false;
 
 
     return (
@@ -63,8 +75,8 @@ export default function Chica({
                             </Typography>
                         </Grid>
                         <Grid item xs={6}>
-                            <Typography variant="body1" gutterBottom>
-                                apostador tipo "por miles"
+                            <Typography variant="body1" gutterBottom className={classes.labelChica}>
+                                "x por miles"
                             </Typography>
                         </Grid>
                         <Grid item xs={1}>
@@ -77,6 +89,7 @@ export default function Chica({
                                         value="cm"
                                         name="radio-button-chica"
                                         inputProps={{'aria-label': 'CM'}}
+                                        disabled={activate}
                                     />}
                             />
                         </Grid>
@@ -89,12 +102,13 @@ export default function Chica({
                             variant="outlined"
                             fullWidth
                             value={chicaType !== 'cm' ? '' : costoMil}
-                            disabled={chicaType !== 'cm'}
+                            disabled={chicaType !== 'cm' ||  activate }
                             InputLabelProps={{
                                 shrink: true,
                             }}
                             customInput={TextField}
                             onChange={onChangeCostoMil}
+                            className={classes.inputData}
                         />
                         <NumberFormat
                             id="chica-miles-input-premio-miles"
@@ -103,18 +117,22 @@ export default function Chica({
                             margin="normal"
                             variant="outlined"
                             fullWidth
-                            disabled={chicaType !== 'cm'}
+                            disabled={chicaType !== 'cm' ||  activate }
                             InputLabelProps={{
                                 shrink: true,
                             }}
                             customInput={TextField}
                             value={chicaType !== 'cm' ? '' : premioMil}
                             onChange={onChangePremioMil}
+                            className={classes.inputData}
+
                         />
                     </Grid>
                 </CardContent>
             </Card>
-
+            <Grid item xs={12}>
+                <Divider />
+            </Grid>
             <Card className={classes.card}>
                 <CardContent>
                     <Grid container spacing={1}
@@ -127,8 +145,8 @@ export default function Chica({
                             </Typography>
                         </Grid>
                         <Grid item xs={6}>
-                            <Typography variant="body1" gutterBottom>
-                                apostador tipo directo "L/ $"
+                            <Typography variant="body1" gutterBottom className={classes.labelChica}>
+                                "directo L/ $"
                             </Typography>
                         </Grid>
                         <Grid item xs={1}>
@@ -141,6 +159,8 @@ export default function Chica({
                                         value="cd"
                                         name="radio-button-chica"
                                         inputProps={{'aria-label': 'CD'}}
+                                        disabled={activate}
+
                                     />}
                             />
                         </Grid>
@@ -154,29 +174,36 @@ export default function Chica({
                             InputLabelProps={{
                                 shrink: true,
                             }}
-                            disabled={chicaType !== 'cd'}
+                            disabled={chicaType !== 'cd' ||  activate }
                             customInput={TextField}
                             value={chicaType !== 'cd' ? '' : comision}
                             onChange={onChangeComisionMil}
+                            className={classes.inputData}
+
                         />
                         <NumberFormat
-                            id="chica-directo-input-premio-miles"
-                            label="Premio x mil"
-                            placeholder="Premio x mil"
+                            id="chica-directo-input-premio"
+                            label="Premio"
+                            placeholder="Premio"
                             margin="normal"
                             variant="outlined"
                             fullWidth
-                            disabled={chicaType !== 'cd'}
+                            disabled={chicaType !== 'cd' ||  activate }
                             InputLabelProps={{
                                 shrink: true,
                             }}
                             customInput={TextField}
                             value={chicaType !== 'cd' ? '' : premioDirecto}
                             onChange={onChangePremioDirectoMil}
+                            className={classes.inputData}
+
                         />
                     </Grid>
                 </CardContent>
             </Card>
+            <Grid item xs={12}>
+                <Divider />
+            </Grid>
             <Card className={classes.card}>
                 <CardContent>
                     <Grid container spacing={1}
@@ -189,8 +216,8 @@ export default function Chica({
                             </Typography>
                         </Grid>
                         <Grid item xs={6}>
-                            <Typography variant="body1" gutterBottom>
-                                apostador tipo directo "por pedazos"
+                            <Typography variant="body1" gutterBottom className={classes.labelChica}>
+                                "x pedazos"
                             </Typography>
                         </Grid>
                         <Grid item xs={1}>
@@ -203,6 +230,8 @@ export default function Chica({
                                         value="cp"
                                         name="radio-button-chica"
                                         inputProps={{'aria-label': 'CP'}}
+                                        disabled={activate}
+
                                     />}
                             />
                         </Grid>
@@ -216,10 +245,12 @@ export default function Chica({
                             InputLabelProps={{
                                 shrink: true,
                             }}
-                            disabled={chicaType !== 'cp'}
+                            disabled={chicaType !== 'cp' ||  activate }
                             customInput={TextField}
                             value={chicaType !== 'cp' ? '' : comisionPedazos}
                             onChange={onChangeComisionPedazos}
+                            className={classes.inputData}
+
                         />
                         <NumberFormat
                             id="chica-pedazos-input-costo"
@@ -228,28 +259,32 @@ export default function Chica({
                             margin="normal"
                             variant="outlined"
                             fullWidth
-                            disabled={chicaType !== 'cp'}
+                            disabled={chicaType !== 'cp' ||  activate }
                             InputLabelProps={{
                                 shrink: true,
                             }}
                             customInput={TextField}
                             value={chicaType !== 'cp' ? '' : costoPedazos}
                             onChange={onChangeCostoPedazos}
+                            className={classes.inputData}
+
                         />
                         <NumberFormat
-                            id="chica-pedazos-input-premio-miles"
-                            label="Premio x mil"
-                            placeholder="Premio x mil"
+                            id="chica-pedazos-input-premio"
+                            label="Premio"
+                            placeholder="Premio"
                             margin="normal"
                             variant="outlined"
                             fullWidth
-                            disabled={chicaType !== 'cp'}
+                            disabled={chicaType !== 'cp' ||  activate }
                             InputLabelProps={{
                                 shrink: true,
                             }}
                             customInput={TextField}
                             value={chicaType !== 'cp' ? '' : premioPedazos}
                             onChange={onChangePremioPedazos}
+                            className={classes.inputData}
+
                         />
                     </Grid>
                 </CardContent>

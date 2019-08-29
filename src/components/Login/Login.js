@@ -38,21 +38,7 @@ class Login extends Component {
                                     // setSubmitting(false);
                                     // setStatus(error);
                                 }
-                            );
-        // PostData(this.state).then((result) => {
-        //     let responseJSON = result;
-        //     // console.log(responseJSON);
-        //     if (responseJSON.accessToken) {
-        //         sessionStorage.setItem('userData', JSON.stringify(responseJSON));
-        //         // this.setState({redirect: true});
-        //         Auth.login(() => {
-        //             this.props.history.push("/");
-        //         })
-        //
-        //     } else {
-        //         this.error_reponse()
-        //     }
-        // })
+                            );     
 
     };
 

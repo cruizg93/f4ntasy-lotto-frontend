@@ -4,7 +4,6 @@ import {Route} from 'react-router-dom';
 import Login from './components/Login/Login';
 import {PrivateRoute} from './components/PrivateRoute/PrivateRoute';
 import Jugador from './components/Jugador/Jugador';
-import Apuestas from './components/Apuestas/Apuestas';
 import Nuevo from './components/Jugador/Nuevo';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Cambio from './components/Cambio/Cambio';
@@ -12,6 +11,7 @@ import Password from './components/Password/Password';
 import Fijar from './components/Fijar/Fijar';
 import {history} from "./_helpers/history";
 import {Role} from "./_helpers/role";
+import EditarAsistente from './components/Admin/scences/Asistente/Editar/index';
 import EditarJugador from './components/Jugador/components/Editar/index';
 import BalanceJugador from './components/Jugador/scene/Balance/index';
 import JugadorDetalles from './components/Jugador/scene/Apuesta/Detalles/index';
@@ -33,7 +33,6 @@ import NumerosGanadores from './components/Admin/scences/Historial/NumerosGanado
 import NumeroGanador from './components/Admin/scences/Sistema/NumeroGanador/index';
 import BalanceAdmin from './components/Admin/scences/Historial/Balance/index';
 
-
 import ApuestaActivaAsistente from './components/PAsistente/scene/Apuesta/Activa/index';
 import AdicionarApuestaAsistente from './components/PAsistente/scene/Apuesta/Adicionar/index';
 import AdicionarNumeroApuestaAsistente from './components/PAsistente/scene/Apuesta/AdicionarNumero/index';
@@ -45,7 +44,11 @@ import DetallesPlayer from './components/Player/scenes/Historial/Detalles/index'
 import DetallesPAsistente from './components/PAsistente/scene/Historial/Detalles/index';
 import HistorialAsistente from './components/PAsistente/scene/Historial/index';
 
+import NewUser from './components/Admin/scences/Usuario/New/index';
+import NewAsistente from './components/Admin/scences/Asistente/New/index';
+import FirstChangePassword from './components/Password/scene/FirstChange/index'
 
+import Index from './components/Index/index';
 class App extends React.Component {
     render() {
         return (
@@ -53,13 +56,20 @@ class App extends React.Component {
                 <CssBaseline/>
                 <Router history={history}>
                     <div>
-
                         <Switch>
                             <Route exact path="/login" component={Login}/>
                             <PrivateRoute
-                                exact path="/"
-                                component={Jugador}
-                            />
+                                key="main"
+                                exact path="/"   
+                                roles={[Role.Admin, Role.Master, Role.Player, Role.Asistente]}                             
+                                component={Index}
+                            /> 
+                            <PrivateRoute
+                                key="password"
+                                exact path="/password/new"   
+                                roles={[Role.Admin, Role.Master, Role.Player, Role.Asistente]}                             
+                                component={FirstChangePassword}
+                            />                 
                             <PrivateRoute
                                 exact path="/jugador/editar/:jugadorId"
                                 roles={[Role.Admin, Role.Master]}
@@ -70,7 +80,6 @@ class App extends React.Component {
                                 roles={[Role.Admin, Role.Master]}
                                 component={BalanceJugador}
                             />
-
                             <PrivateRoute
                                 exact path="/jugador/apuestas/detalles"
                                 roles={[Role.Admin, Role.Master]}
@@ -87,9 +96,14 @@ class App extends React.Component {
                                 roles={[Role.Admin, Role.Master]}
                                 component={DesgloseApuestaJugador}
                             />
-
+                            <PrivateRoute
+                                exact path="/asistente/editar/:userId"
+                                roles={[Role.Admin, Role.Master]}
+                                component={EditarAsistente}
+                            />                           
                             <PrivateRoute
                                 exact path="/jugadores"
+                                roles={[Role.Admin, Role.Master]}
                                 component={Jugador}
                             />
                             <PrivateRoute
@@ -101,47 +115,32 @@ class App extends React.Component {
                                 exact path="/apuestas/activas/:apuestaId"
                                 roles={[Role.Admin, Role.Master]}
                                 component={ApuestaActivaAdminDetalle}
-                            />
-                            <PrivateRoute
-                                exact path="/apuestas"
-                                roles={[Role.Admin, Role.Master]}
-                                component={Apuestas}
-                            />
-                            <PrivateRoute
-                                exact path="/sistema"
-                                roles={[Role.Admin, Role.Master]}
-                                component={Apuestas}
-                            />
+                            />                                                 
                             <PrivateRoute
                                 exact path="/historial/semana/actual"
                                 roles={[Role.Admin, Role.Master]}
                                 component={HistorialSemanaActualAdmin}
                             />
-
                             <PrivateRoute
                                 exact path="/historial/semana/actual/usuario/:userId"
                                 roles={[Role.Admin, Role.Master]}
                                 component={HistorialUsuarioDetalles}
                             />
-
                             <PrivateRoute
                                 exact path="/historial/semana/actual/usuario/:userId/desglose"
                                 roles={[Role.Admin, Role.Master]}
                                 component={HistorialUserSingleDayDetail}
                             />
-
                             <PrivateRoute
                                 exact path="/historial/numeros/ganadores"
                                 roles={[Role.Admin, Role.Master]}
                                 component={NumerosGanadores}
                             />
-
                             <PrivateRoute
                                 exact path="/historial/semana/anterior"
                                 roles={[Role.Admin, Role.Master]}
                                 component={HistorialSemanaAnteriorAdmin}
                             />
-
                             <PrivateRoute
                                 exact path="/historial/semana/anterior/usuario/:userId"
                                 roles={[Role.Admin, Role.Master]}
@@ -159,9 +158,19 @@ class App extends React.Component {
                                 component={BalanceAdmin}
                             />
                             <PrivateRoute
-                                exact path="/jugador/nuevo"
+                                exact path="/usuario/nuevo"
+                                roles={[Role.Admin, Role.Master]}
+                                component={NewUser}
+                            />
+                             <PrivateRoute
+                                exact path="/usuario/nuevo/jugador"
                                 roles={[Role.Admin, Role.Master]}
                                 component={Nuevo}
+                            />
+                            <PrivateRoute
+                                exact path="/usuario/nuevo/asistente"
+                                roles={[Role.Admin, Role.Master]}
+                                component={NewAsistente}
                             />
                             <PrivateRoute
                                 exact path="/sistema/cambio"
@@ -269,7 +278,6 @@ class App extends React.Component {
                                 roles={[Role.Asistente]}
                                 component={DetallesPAsistente}
                             />
-
                             <Route path="*" render={() => "404 NOT FOUND"}/>
                         </Switch>
                     </div>
