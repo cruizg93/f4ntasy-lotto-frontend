@@ -60,7 +60,14 @@ const useStyles = makeStyles(theme => ({
         marginTop: "1rem",
         paddingTop: "1rem",
         paddingBottom: "1rem"
-    },   
+    }, 
+    pageTitle:{
+        borderBottom: "1px solid red",
+        borderRight:"#afb6b8 1px solid",
+        "& h6":{
+            fontWeight: "bold"
+        }
+    }  
 }));
 
 const userNameReducer = (state, action) =>{
@@ -86,26 +93,27 @@ const JugadorDetalles = ({...props}) => {
         return (
             <React.Fragment>
                 <Grid container spacing={1}
-                                direction="row"
-                                justify="center"
-                                alignItems="flex-start"
-                                className={classes.headerContainer}
-                                >
-                            <Grid item xs={6} >
-                                <Typography variant="h6" gutterBottom className={"form__center-label"}>
-                                   Apuestas Detalles
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Typography variant="h6" gutterBottom className={"form__center-label"}
-                                    style={ {
-                                        color: Colors.Btn_Blue,
-                                    }}
-                                >
-                                   {username}{" "}{name}{" "}{moneda === "LEMPIRAS" ? "L" : "$"}
-                                </Typography>
-                            </Grid>
+                        direction="row"
+                        justify="center"
+                        alignItems="stretch"
+                        className={classes.headerContainer}
+                        >
+                    <Grid item xs={6} className={classes.pageTitle} >
+                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                            Apuestas Detalles
+                        </Typography>
                     </Grid>
+                    <Grid item xs={6}>
+                        <Typography variant="h6" gutterBottom className={"form__center-label"}
+                            style={ {
+                                color: Colors.Btn_Blue,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            {username}{" - "}{moneda === "LEMPIRAS" ? "L" : "$"}{" "}{name}
+                        </Typography>
+                    </Grid>
+                </Grid>
                 <Grid container spacing={1}
                       direction="row"
                       justify="center"

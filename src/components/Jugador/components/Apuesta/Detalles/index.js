@@ -6,6 +6,8 @@ import {Link} from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
 import {red, blue} from "@material-ui/core/colors/index";
+import ChicaTitle from './Chica';
+import DiariaTitle from './Diaria';
 
 import {Colors} from "../../../../../utils/__colors";
 
@@ -47,11 +49,12 @@ const useStyles = makeStyles(theme => ({
         color: Colors.Black
     },
     close: {
-       
+        fontWeight: 'bold',
         color: Colors.Btn_Red
     },
     open: {        
-        color: Colors.Green
+        color: Colors.Green,
+        fontWeight: 'bold'
     },
     disableLink: {
         pointerEvents: 'none'
@@ -71,20 +74,32 @@ const useStyles = makeStyles(theme => ({
         border:"#afb6b8 1px solid",
         "&:hover":{
             cursor: "pointer",
-            background: Colors.Gray_Ligth_2,
-            color: Colors.Input_bkg,
+            /*background: Colors.Gray_Ligth_2,
+            color: Colors.Input_bkg,*/
         }   
     },
-    headerLabelUser: {
+    headerLabelApuestaChica: {
+        background: "#009439",
+        color: "#ebd700",
         borderRight:"#afb6b8 1px solid",
         borderBottom:"#afb6b8 1px solid",
     },
-    headerLabelSorteo: {        
+    headerLabelApuestaDiaria: {
+        background: "#ebd700",
+        color: "#009439",
+        borderRight:"#afb6b8 1px solid",
         borderBottom:"#afb6b8 1px solid",
+    },
+    headerLabelSorteo: {      
+        borderRight :"#afb6b8 1px solid", 
+        borderBottom:"#afb6b8 1px solid",
+        '& h6':{
+            fontWeight: 'bold'
+        }
     }       
 
 }));
-const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo, estado, username, moneda, type, ...props}) => {
+const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo, estado, username, moneda, type, day, hour, ...props}) => {
     const classes = useStyles();
     useEffect(() => {
 
@@ -92,105 +107,107 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
     return (
         <>
          <Grid container spacing={1}
-                          direction="row"
-                          justify="center"
-                          alignItems="flex-start"
-                          component={Link}
-                            to={
-                                {
-                                    pathname: `${url}/${id}`,
-                                    state: {
-                                        title: nombre,
-                                        username: username,
-                                        id: id,
-                                        moneda: moneda,
-                                        type: type
-                                    }
-                                }
-                            }
-                          className={classes.boxContainerNuevo}
-                          >
-                        <Grid item xs={3} className={classes.headerLabelUser}>
-                            <Typography variant="h6" gutterBottom className={"form__center-label"}>
-                                {username}
-                            </Typography>
-                        </Grid>      
-                        <Grid item xs={9} className={classes.headerLabelSorteo}>
-                            <Typography variant="h6" gutterBottom className={"form__center-label"}>
-                                {nombre}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={3}
-                            container
-                            justify="flex-end"
-                            >
-                            <Typography variant="body1" gutterBottom className={classes.textData}>
-                                {"Apuestas "}{moneda=== "LEMPIRAS" ? " L " : " $ "} 
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={9}
-                            container
-                            justify="flex-start"
-                            className={classes.text}
-                        >
-                            <Typography variant="body1" gutterBottom 
-                                className={total < 0 ? classes.textBalanceNegativo : 
-                                (total !== 0 ? classes.textBalance : classes.textBalance)}
-                            >
-                               {" "}{total.toFixed(2)}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={3}
-                            container
-                            justify="flex-end"
-                            >
-                            <Typography variant="body1" gutterBottom className={classes.textData}>
-                                {"Comisiones "}{moneda=== "LEMPIRAS" ? " L " : " $ "}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={9}
-                            container
-                            justify="flex-start"
-                            className={classes.text}
-                        >
-                            <Typography variant="body1" gutterBottom 
-                                className={comision < 0 ? classes.textBalanceNegativo : 
-                                (comision !== 0 ? classes.textBalance : classes.textBalance)}
-                                >
-                                {" "}{comision.toFixed(2)}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={3}
-                            container
-                            justify="flex-end"
-                            >
-                            <Typography variant="body1" gutterBottom className={classes.textData}>
-                                {"Riesgo "} {moneda=== "LEMPIRAS" ? " L " : " $ "}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={9}
-                            container
-                            justify="flex-start"
-                            className={classes.text}
-                        >
-                            <Typography variant="body1" gutterBottom 
-                                className={riesgo < 0 ? classes.textBalanceNegativo : 
-                                (riesgo !== 0 ? classes.textBalance : classes.textBalance)}
-                            >
-                                {" "}{riesgo.toFixed(2)}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12}
-                          container
-                          justify="center"
-                          className={classes.statusLabel}
-                        >
-                            <Typography variant="h5" gutterBottom
-                                        className={estado === 'ABIERTA' ? classes.open : classes.close}>
-                                {estado === 'ABIERTA' ? "Sorteo Abierto" : "Sorteo Cerrado" }
-                            </Typography>
-
-                        </Grid>
+                direction="row"
+                justify="center"
+                alignItems="flex-start"
+                component={total==0?'div':Link}
+                to={
+                    {
+                        pathname: `${url}/${id}`,
+                        state: {
+                            title: nombre,
+                            username: username,
+                            id: id,
+                            moneda: moneda,
+                            type: type,
+                            day: day,
+                            hour: hour
+                        }
+                    }
+                }
+                className={classes.boxContainerNuevo}
+                >
+            {type=== "DIARIA" ? <DiariaTitle/>:<ChicaTitle/>}    
+            <Grid item xs={3} className={classes.headerLabelSorteo}>
+                <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                {type=== "DIARIA" ?hour:"12 pm"}
+                </Typography>
+            </Grid>
+            <Grid item xs={6} className={classes.headerLabelSorteo}>
+                <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                    {day}
+                </Typography>
+            </Grid>
+            <Grid item xs={3}
+                container
+                justify="flex-end"
+                >
+                <Typography variant="body1" gutterBottom className={classes.textData}>
+                    {"Apuestas "}
+                </Typography>
+            </Grid>
+            <Grid item xs={9}
+                container
+                justify="flex-start"
+                className={classes.text}
+            >
+                <Typography variant="body1" gutterBottom 
+                    className={total < 0 ? classes.textBalanceNegativo : 
+                    (total !== 0 ? classes.textBalance : classes.textBalance)}
+                >
+                    {moneda=== "LEMPIRAS" ? " L " : " $ "} {total.toFixed(2)}
+                </Typography>
+            </Grid>
+            <Grid item xs={3}
+                container
+                justify="flex-end"
+                >
+                <Typography variant="body1" gutterBottom className={classes.textData}>
+                    {"Comisiones "}
+                </Typography>
+            </Grid>
+            <Grid item xs={9}
+                container
+                justify="flex-start"
+                className={classes.text}
+            >
+                <Typography variant="body1" gutterBottom 
+                    className={comision < 0 ? classes.textBalanceNegativo : 
+                    (comision !== 0 ? classes.textBalance : classes.textBalance)}
+                    >
+                    {moneda=== "LEMPIRAS" ? " L " : " $ "}{comision.toFixed(2)}
+                </Typography>
+            </Grid>
+            <Grid item xs={3}
+                container
+                justify="flex-end"
+                >
+                <Typography variant="body1" gutterBottom className={classes.textData}>
+                    {"Riesgo "}
+                </Typography>
+            </Grid>
+            <Grid item xs={9}
+                container
+                justify="flex-start"
+                className={classes.text}
+            >
+                <Typography variant="body1" gutterBottom 
+                    className={riesgo < 0 ? classes.textBalanceNegativo : 
+                    (riesgo !== 0 ? classes.textBalance : classes.textBalance)}
+                >
+                     {moneda=== "LEMPIRAS" ? " L " : " $ "} {riesgo.toFixed(2)}
+                </Typography>
+            </Grid>
+            <Grid item xs={12}
+                container
+                justify="center"
+                className={classes.statusLabel}
+            >
+                <Typography variant="h5"
+                            className={estado === 'ABIERTA' ? classes.open : classes.close}>
+                    {estado === 'ABIERTA' ? "Sorteo Abierto" : "Sorteo Cerrado" }
+                </Typography>
+            </Grid>
         </Grid>      
         </>
     )
