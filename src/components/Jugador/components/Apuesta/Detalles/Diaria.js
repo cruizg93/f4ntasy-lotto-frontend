@@ -2,27 +2,29 @@ import React, { useState } from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import DiariaLogo from './assets/Diaria Logo.png';
+
 
 const useStyles = makeStyles(theme => ({
     headerLabel: {
-        background: "#009439",
+        backgroundColor: "#409144",
         borderRight:"#afb6b8 1px solid",
         borderBottom:"#afb6b8 1px solid",
-        '& h5':{
-            color: "#f9f000",
-            fontFamily : "cooper black"
-        }
+        textAlign: "center",
+        "& img":{
+            width:"100%",
+            maxWidth:"7rem",
+            height: "100%",
+            objectFit: "contain"
+        }   
     }
 }));
 
-const DiariaTitle = (...props) =>{
+const DiariaTitle = (xsValue, ...props) =>{
         const classes = useStyles();
         return (
             <Grid item xs={4} className={classes.headerLabel}>
-                <Typography variant="h5" gutterBottom className={"form__center-label"}>
-                    Diaria
-                </Typography>
-            </Grid>   
+                <img src={DiariaLogo} alt="DiariaLogo" /></Grid>   
         )
     
 };
