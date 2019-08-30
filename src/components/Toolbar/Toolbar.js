@@ -10,6 +10,7 @@ import {Role} from "../../_helpers/role";
 
 import './Toolbar.css';
 import {history} from "../../_helpers/history";
+import LogoMini from './assets/Fantasy_LOTTO_Logo_mini.png';
 
 class Toolbar extends Component {
     constructor(props) {
@@ -61,7 +62,17 @@ class Toolbar extends Component {
             <header className={this.state.toolbarClasses}>
                 <nav className="toolbar__navigation">
                     <div className="toolbar__logo">
-                        <NavLink to="/" exact strict>F4ntasy L0tt0</NavLink>
+                        <NavLink to="/" exact strict style={{
+                                                    display:"flex",
+                                                    justifyContent:"center",
+                                                    alignItems:"center",
+                                                    overflow:"hidden"
+                        }}>
+                            <img src={LogoMini} alt="Logo" style={{
+                            flexShrink: "0",
+                            minWidth: "100%",
+                            minHeight: "100%",
+                        }}/></NavLink>
                     </div>
                     <div className="spacer"/>
                     <div className="toolbar__navigation-items">
