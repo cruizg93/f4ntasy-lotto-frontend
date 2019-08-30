@@ -10,6 +10,8 @@ import ChicaTitle from './Chica';
 import DiariaTitle from './Diaria';
 
 import {Colors} from "../../../../../utils/__colors";
+import {Currency} from '../../../../../utils/__currency';
+import {formatCurrency} from '../../../../../utils/__currency';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -49,10 +51,12 @@ const useStyles = makeStyles(theme => ({
         color: Colors.Black
     },
     close: {
-        color: Colors.Btn_Red
+        color: Colors.Btn_Red,
+        fontWeight: "bold"
     },
     open: {        
-        color: Colors.Green
+        color: Colors.Green,
+        fontWeight: "bold"
     },
     disableLink: {
         pointerEvents: 'none'
@@ -88,6 +92,7 @@ const useStyles = makeStyles(theme => ({
 }));
 const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo, estado, username, moneda, type, day, hour, ...props}) => {
     const classes = useStyles();
+    const apuestaCurrency = moneda==="LEMPIRAS"?Currency.Lempiras:Currency.Dollar;
     useEffect(() => {
 
     }, [])
@@ -114,23 +119,25 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                 }
                 className={classes.boxContainerNuevo}
                 >
-            {type=== "DIARIA" ? <DiariaTitle/>:<ChicaTitle/>}    
-            <Grid item xs={3} className={classes.headerLabelSorteoHour}>
-                <Typography variant="h6" gutterBottom className={"form__center-label"}>
-                {type=== "DIARIA" ?hour:"12 pm"}
-                </Typography>
-            </Grid>
-            <Grid item xs={5} className={classes.headerLabelSorteo}>
-                <Typography variant="h6" gutterBottom className={"form__center-label"}>
-                    {day}
-                </Typography>
+            <Grid container>
+                {type=== "DIARIA" ? <DiariaTitle />:<ChicaTitle />}    
+                <Grid item xs={3} className={classes.headerLabelSorteoHour}>
+                    <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                    {type=== "DIARIA" ?hour:"12 pm"}
+                    </Typography>
+                </Grid>
+                <Grid item xs={5} className={classes.headerLabelSorteo}>
+                    <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                        {day}
+                    </Typography>
+                </Grid>
             </Grid>
             <Grid item xs={4}
                 container
                 justify="flex-end"
                 >
                 <Typography variant="body1" gutterBottom className={classes.textData}>
-                    {"Ventas "}{moneda=== "LEMPIRAS" ? "L" : "$"}
+                    {"Ventas "}{apuestaCurrency.symbol}{'\u00A0'}
                 </Typography>
             </Grid>
             <Grid item xs={8}
@@ -142,7 +149,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                     className={total < 0 ? classes.textBalanceNegativo : 
                     (total !== 0 ? classes.textBalance : classes.textBalance)}
                 >
-                {'\u00A0'}{total.toFixed(2)}
+                {formatCurrency(apuestaCurrency,total)}
                 </Typography>
             </Grid>
             <Grid item xs={4}
@@ -150,7 +157,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                 justify="flex-end"
                 >
                 <Typography variant="body1" gutterBottom className={classes.textData}>
-                    {"Comision "}{moneda=== "LEMPIRAS" ? "L" : "$"}
+                    {"Comision "}{apuestaCurrency.symbol}{'\u00A0'}
                 </Typography>
             </Grid>
             <Grid item xs={8}
@@ -162,7 +169,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                     className={comision < 0 ? classes.textBalanceNegativo : 
                     (comision !== 0 ? classes.textBalance : classes.textBalance)}
                     >
-                    {'\u00A0'}{comision.toFixed(2)}
+                    {formatCurrency(apuestaCurrency,comision)}
                 </Typography>
             </Grid>
             <Grid item xs={4}
@@ -170,7 +177,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                 justify="flex-end"
                 >
                 <Typography variant="body1" gutterBottom className={classes.textData}>
-                    {"Total "}{moneda=== "LEMPIRAS" ? "L" : "$"} 
+                    {"Total "}{apuestaCurrency.symbol}{'\u00A0'}
                 </Typography>
             </Grid>
             <Grid item xs={8}
@@ -182,7 +189,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                     className={riesgo < 0 ? classes.textBalanceNegativo : 
                     (riesgo !== 0 ? classes.textBalance : classes.textBalance)}
                 >
-                    {'\u00A0'}{riesgo.toFixed(2)}
+                    {formatCurrency(apuestaCurrency,riesgo)}
                 </Typography>
             </Grid>
             <Grid item xs={12}
@@ -190,7 +197,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                 justify="center"
                 className={classes.statusLabel}
             >
-                <Typography variant="h5"
+                <Typography variant="h6"
                             className={estado === 'ABIERTA' ? classes.open : classes.close}>
                     {estado === 'ABIERTA' ? "Sorteo Abierto" : "Sorteo Cerrado" }
                 </Typography>
