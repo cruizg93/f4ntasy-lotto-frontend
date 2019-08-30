@@ -43,8 +43,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
     },
     headerContainer: {
-        background : Colors.Main,
-        marginBottom: "1rem"
+        background : Colors.Main
     },
     crearJugadorLabel:{
         borderBottom: `${Colors.Btn_Red} 2px solid`,
@@ -62,11 +61,10 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: "1rem"
     }, 
     pageTitle:{
-        borderBottom: "1px solid red",
+        borderBottom: "2px solid red",
         borderRight:"#afb6b8 1px solid",
-        "& h6":{
-            fontWeight: "bold"
-        }
+        borderLeft:"#afb6b8 1px solid",
+        borderTop:"#afb6b8 1px solid"
     }  
 }));
 
@@ -103,14 +101,19 @@ const JugadorDetalles = ({...props}) => {
                             Apuestas Detalles
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={6}
+                        style={{
+                            borderRight:"#afb6b8 1px solid",
+                            borderTop:"#afb6b8 1px solid",
+                            borderBottom:"#afb6b8 1px solid",
+                        }}
+                    >
                         <Typography variant="h6" gutterBottom className={"form__center-label"}
                             style={ {
-                                color: Colors.Btn_Blue,
-                                fontWeight: "bold",
+                                color: Colors.Btn_Blue_Dark,                                
                             }}
                         >
-                            {username}{" - "}{moneda === "LEMPIRAS" ? "L" : "$"}{" "}{name}
+                            {username}{" - "}{moneda === "LEMPIRAS" ? "L" : "$"}{" ["}{name}{"]"}
                         </Typography>
                     </Grid>
                 </Grid>

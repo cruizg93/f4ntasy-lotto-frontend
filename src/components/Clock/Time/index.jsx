@@ -43,9 +43,7 @@ class Time extends Component {
                     {this.state.date}
                 </div>
                 <div className={'clock__column'}>
-                    {
-                        this.state.time
-                    }
+                    {this.state.time}
                 </div>
             </React.Fragment>
         )

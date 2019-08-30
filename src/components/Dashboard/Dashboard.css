@@ -1,5 +1,6 @@
 .container__box{
     margin-top: 7rem;
+    margin-bottom: 1rem;
     max-width: 900px !important;
 }
 

@@ -49,12 +49,10 @@ const useStyles = makeStyles(theme => ({
         color: Colors.Black
     },
     close: {
-        fontWeight: 'bold',
         color: Colors.Btn_Red
     },
     open: {        
-        color: Colors.Green,
-        fontWeight: 'bold'
+        color: Colors.Green
     },
     disableLink: {
         pointerEvents: 'none'
@@ -70,7 +68,7 @@ const useStyles = makeStyles(theme => ({
         background : Colors.Main,
         marginTop: "1rem",
         textDecoration: "none",
-        color: Colors.Btn_Blue,
+        color: Colors.Btn_Blue_Dark,
         border:"#afb6b8 1px solid",
         "&:hover":{
             cursor: "pointer",
@@ -78,25 +76,14 @@ const useStyles = makeStyles(theme => ({
             color: Colors.Input_bkg,*/
         }   
     },
-    headerLabelApuestaChica: {
-        background: "#009439",
-        color: "#ebd700",
-        borderRight:"#afb6b8 1px solid",
-        borderBottom:"#afb6b8 1px solid",
-    },
-    headerLabelApuestaDiaria: {
-        background: "#ebd700",
-        color: "#009439",
-        borderRight:"#afb6b8 1px solid",
-        borderBottom:"#afb6b8 1px solid",
-    },
+    
     headerLabelSorteo: {      
-        borderRight :"#afb6b8 1px solid", 
         borderBottom:"#afb6b8 1px solid",
-        '& h6':{
-            fontWeight: 'bold'
-        }
-    }       
+    },      
+    headerLabelSorteoHour:{
+        borderBottom:"#afb6b8 1px solid",
+        borderRight:"#afb6b8 1px solid",
+    }
 
 }));
 const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo, estado, username, moneda, type, day, hour, ...props}) => {
@@ -106,7 +93,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
     }, [])
     return (
         <>
-         <Grid container spacing={1}
+         <Grid container spacing={0}
                 direction="row"
                 justify="center"
                 alignItems="flex-start"
@@ -128,25 +115,25 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                 className={classes.boxContainerNuevo}
                 >
             {type=== "DIARIA" ? <DiariaTitle/>:<ChicaTitle/>}    
-            <Grid item xs={3} className={classes.headerLabelSorteo}>
+            <Grid item xs={3} className={classes.headerLabelSorteoHour}>
                 <Typography variant="h6" gutterBottom className={"form__center-label"}>
                 {type=== "DIARIA" ?hour:"12 pm"}
                 </Typography>
             </Grid>
-            <Grid item xs={6} className={classes.headerLabelSorteo}>
+            <Grid item xs={5} className={classes.headerLabelSorteo}>
                 <Typography variant="h6" gutterBottom className={"form__center-label"}>
                     {day}
                 </Typography>
             </Grid>
-            <Grid item xs={3}
+            <Grid item xs={4}
                 container
                 justify="flex-end"
                 >
                 <Typography variant="body1" gutterBottom className={classes.textData}>
-                    {"Apuestas "}
+                    {"Ventas "}{moneda=== "LEMPIRAS" ? "L" : "$"}
                 </Typography>
             </Grid>
-            <Grid item xs={9}
+            <Grid item xs={8}
                 container
                 justify="flex-start"
                 className={classes.text}
@@ -155,18 +142,18 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                     className={total < 0 ? classes.textBalanceNegativo : 
                     (total !== 0 ? classes.textBalance : classes.textBalance)}
                 >
-                    {moneda=== "LEMPIRAS" ? " L " : " $ "} {total.toFixed(2)}
+                {'\u00A0'}{total.toFixed(2)}
                 </Typography>
             </Grid>
-            <Grid item xs={3}
+            <Grid item xs={4}
                 container
                 justify="flex-end"
                 >
                 <Typography variant="body1" gutterBottom className={classes.textData}>
-                    {"Comisiones "}
+                    {"Comision "}{moneda=== "LEMPIRAS" ? "L" : "$"}
                 </Typography>
             </Grid>
-            <Grid item xs={9}
+            <Grid item xs={8}
                 container
                 justify="flex-start"
                 className={classes.text}
@@ -175,18 +162,18 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                     className={comision < 0 ? classes.textBalanceNegativo : 
                     (comision !== 0 ? classes.textBalance : classes.textBalance)}
                     >
-                    {moneda=== "LEMPIRAS" ? " L " : " $ "}{comision.toFixed(2)}
+                    {'\u00A0'}{comision.toFixed(2)}
                 </Typography>
             </Grid>
-            <Grid item xs={3}
+            <Grid item xs={4}
                 container
                 justify="flex-end"
                 >
                 <Typography variant="body1" gutterBottom className={classes.textData}>
-                    {"Riesgo "}
+                    {"Total "}{moneda=== "LEMPIRAS" ? "L" : "$"} 
                 </Typography>
             </Grid>
-            <Grid item xs={9}
+            <Grid item xs={8}
                 container
                 justify="flex-start"
                 className={classes.text}
@@ -195,7 +182,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                     className={riesgo < 0 ? classes.textBalanceNegativo : 
                     (riesgo !== 0 ? classes.textBalance : classes.textBalance)}
                 >
-                     {moneda=== "LEMPIRAS" ? " L " : " $ "} {riesgo.toFixed(2)}
+                    {'\u00A0'}{riesgo.toFixed(2)}
                 </Typography>
             </Grid>
             <Grid item xs={12}

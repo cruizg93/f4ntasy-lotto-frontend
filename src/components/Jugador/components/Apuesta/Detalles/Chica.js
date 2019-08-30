@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 const ChicaTitle = (...props) =>{
         const classes = useStyles();
         return (
-            <Grid item xs={3} className={classes.headerLabel}>
+            <Grid item xs={4} className={classes.headerLabel}>
                 <Typography variant="h5" gutterBottom className={"form__center-label"}>
                     Chica
                 </Typography>
