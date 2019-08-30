@@ -72,43 +72,13 @@ const useStyles = makeStyles(theme => ({
             marginTop:"0px !important",
         }
     },
-    userUsernameMoneda:{
-        [theme.breakpoints.up('xs')]: {
-            borderRight:"#afb6b8 1px solid",
-            borderTop:"#afb6b8 1px solid",
-            borderBottom:"none",
-            "& h6":{
-                marginBottom:"0px"
-            }
-        },
-        [theme.breakpoints.up('sm')]: {
-            borderRight:"0px",
-            borderTop:"#afb6b8 1px solid",
-            borderBottom:"#afb6b8 1px solid",
-            "& h6":{
-                marginBottom:"none"
-            }
-        }
-    },
-    userName:{
-        [theme.breakpoints.up('xs')]: {
-            borderRight:"#afb6b8 1px solid",
-            borderBottom:"#afb6b8 1px solid",
-            borderTop:"none",
-            "& h6":{
-                marginTop:"0px !important"
-            },
-        },
-        [theme.breakpoints.up('sm')]: {
-            borderRight:"#afb6b8 1px solid",
-            borderTop:"#afb6b8 1px solid",
-            borderBottom:"#afb6b8 1px solid",
-            "& h6":{
-                marginTop:".5rem !important"
-            },
-        }
+    userInfo:{
+        textAlign:"center",
+        borderBottom: "#afb6b8 1px solid",
+        borderRight:"#afb6b8 1px solid",
+        borderTop:"#afb6b8 1px solid",
     }
-
+    
 }));
 
 const userNameReducer = (state, action) =>{
@@ -138,30 +108,28 @@ const JugadorDetalles = ({...props}) => {
                         justify="center"
                         className={classes.headerContainer}
                         >
-                    <Grid item xs={4} className={classes.pageTitle}>
+                    <Grid item xs={6} className={classes.pageTitle}>
                         <Typography variant="h6" className={"form__center-label"}>
                             Detalle Ventas
                         </Typography>
                     </Grid>
-                    <Grid container xs={8}>
-                        <Grid item xs={12} sm={4} className={classes.userUsernameMoneda}>
-                            <Typography variant="h6" className={"form__center-label"}
-                                style={ {
-                                    color: Colors.Btn_Blue_Dark,                                
-                                }}
-                            >
-                                {username}{" - "}{moneda === "LEMPIRAS" ? "L" : "$"}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={8} className={classes.userName}>
-                            <Typography variant="h6" gutterBottom className={"form__center-label"}
-                                style={ {
-                                    color: Colors.Btn_Blue_Dark,                                
-                                }}
-                            >
+                    <Grid item xs={6} className={classes.userInfo}>
+                        <Typography variant="h6" className={"form__center-label"}
+                            style={ {
+                                color: Colors.Btn_Blue_Dark,  
+                                display: "inline-block",
+                                whiteSpace:"nowrap"    
+                            }}>
+                            {username}{" - "}{moneda === "LEMPIRAS" ? "L" : "$"}
+                        </Typography>
+                        <Typography variant="h6" className={"form__center-label"}
+                            style={ {
+                                color: Colors.Btn_Blue_Dark,  
+                                display: "inline-block",
+                                whiteSpace:"nowrap"    
+                            }}>
                                 {" ["}{name}{"]"}
-                            </Typography>
-                        </Grid>
+                        </Typography>
                     </Grid>
                 </Grid>
                 <Grid container spacing={1}
