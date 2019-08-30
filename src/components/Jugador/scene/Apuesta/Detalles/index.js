@@ -4,6 +4,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import {adminService} from "../../../../../service/api/admin/admin.service";
 import JugadorDetallesEntry from '../../../components/Apuesta/Detalles/index';
 import {Colors} from '../../../../../utils/__colors'
+
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
@@ -61,11 +62,53 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: "1rem"
     }, 
     pageTitle:{
+        
         borderBottom: "2px solid red",
         borderRight:"#afb6b8 1px solid",
         borderLeft:"#afb6b8 1px solid",
-        borderTop:"#afb6b8 1px solid"
-    }  
+        borderTop:"#afb6b8 1px solid",
+        "& h6":{
+            minHeight:"100%",
+            marginTop:"0px !important",
+        }
+    },
+    userUsernameMoneda:{
+        [theme.breakpoints.up('xs')]: {
+            borderRight:"#afb6b8 1px solid",
+            borderTop:"#afb6b8 1px solid",
+            borderBottom:"none",
+            "& h6":{
+                marginBottom:"0px"
+            }
+        },
+        [theme.breakpoints.up('sm')]: {
+            borderRight:"0px",
+            borderTop:"#afb6b8 1px solid",
+            borderBottom:"#afb6b8 1px solid",
+            "& h6":{
+                marginBottom:"none"
+            }
+        }
+    },
+    userName:{
+        [theme.breakpoints.up('xs')]: {
+            borderRight:"#afb6b8 1px solid",
+            borderBottom:"#afb6b8 1px solid",
+            borderTop:"none",
+            "& h6":{
+                marginTop:"0px !important"
+            },
+        },
+        [theme.breakpoints.up('sm')]: {
+            borderRight:"#afb6b8 1px solid",
+            borderTop:"#afb6b8 1px solid",
+            borderBottom:"#afb6b8 1px solid",
+            "& h6":{
+                marginTop:".5rem !important"
+            },
+        }
+    }
+
 }));
 
 const userNameReducer = (state, action) =>{
@@ -93,28 +136,32 @@ const JugadorDetalles = ({...props}) => {
                 <Grid container spacing={1}
                         direction="row"
                         justify="center"
-                        alignItems="stretch"
                         className={classes.headerContainer}
                         >
-                    <Grid item xs={6} className={classes.pageTitle} >
-                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
-                            Apuestas Detalles
+                    <Grid item xs={4} className={classes.pageTitle}>
+                        <Typography variant="h6" className={"form__center-label"}>
+                            Detalle Ventas
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}
-                        style={{
-                            borderRight:"#afb6b8 1px solid",
-                            borderTop:"#afb6b8 1px solid",
-                            borderBottom:"#afb6b8 1px solid",
-                        }}
-                    >
-                        <Typography variant="h6" gutterBottom className={"form__center-label"}
-                            style={ {
-                                color: Colors.Btn_Blue_Dark,                                
-                            }}
-                        >
-                            {username}{" - "}{moneda === "LEMPIRAS" ? "L" : "$"}{" ["}{name}{"]"}
-                        </Typography>
+                    <Grid container xs={8}>
+                        <Grid item xs={12} sm={4} className={classes.userUsernameMoneda}>
+                            <Typography variant="h6" className={"form__center-label"}
+                                style={ {
+                                    color: Colors.Btn_Blue_Dark,                                
+                                }}
+                            >
+                                {username}{" - "}{moneda === "LEMPIRAS" ? "L" : "$"}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={8} className={classes.userName}>
+                            <Typography variant="h6" gutterBottom className={"form__center-label"}
+                                style={ {
+                                    color: Colors.Btn_Blue_Dark,                                
+                                }}
+                            >
+                                {" ["}{name}{"]"}
+                            </Typography>
+                        </Grid>
                     </Grid>
                 </Grid>
                 <Grid container spacing={1}
