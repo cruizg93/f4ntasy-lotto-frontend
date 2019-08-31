@@ -7,6 +7,7 @@ import {Colors} from '../../../../../utils/__colors'
 
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import PageTitle from '../../../../View/PageTitle';
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -63,17 +64,6 @@ const useStyles = makeStyles(theme => ({
         paddingTop: "1rem",
         paddingBottom: "1rem"
     }, 
-    pageTitle:{
-        
-        borderBottom: "2px solid red",
-        borderRight:"#afb6b8 1px solid",
-        borderLeft:"#afb6b8 1px solid",
-        borderTop:"#afb6b8 1px solid",
-        "& h6":{
-            minHeight:"100%",
-            marginTop:"0px !important",
-        }
-    },
     userInfo:{
         textAlign:"center",
         borderBottom: "#afb6b8 1px solid",
@@ -110,11 +100,7 @@ const JugadorDetalles = ({...props}) => {
                         justify="center"
                         className={classes.headerContainer}
                         >
-                    <Grid item xs={6} className={classes.pageTitle}>
-                        <Typography variant="h6" className={"form__center-label"}>
-                            Detalle Ventas
-                        </Typography>
-                    </Grid>
+                    <PageTitle titleLabel="Detalles Venta"/>
                     <Grid item xs={6} className={classes.userInfo}>
                         <Typography variant="h6" className={"form__center-label"}
                             style={ {

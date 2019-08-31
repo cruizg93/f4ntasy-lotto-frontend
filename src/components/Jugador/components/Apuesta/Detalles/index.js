@@ -6,8 +6,8 @@ import {Link} from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
 import {red, blue} from "@material-ui/core/colors/index";
-import ChicaTitle from './Chica';
-import DiariaTitle from './Diaria';
+import ChicaTitle from '../../../../View/Chica';
+import DiariaTitle from '../../../../View/Diaria';
 
 import {Colors} from "../../../../../utils/__colors";
 import {Currency} from '../../../../../utils/__currency';
