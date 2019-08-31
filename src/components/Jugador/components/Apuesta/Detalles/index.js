@@ -137,7 +137,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                 justify="flex-end"
                 >
                 <Typography variant="body1" gutterBottom className={classes.textData}>
-                    {"Ventas "}{apuestaCurrency.symbol}{'\u00A0'}
+                    {"Ventas"}{'\u00A0'}
                 </Typography>
             </Grid>
             <Grid item xs={8}
@@ -149,7 +149,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                     className={total < 0 ? classes.textBalanceNegativo : 
                     (total !== 0 ? classes.textBalance : classes.textBalance)}
                 >
-                {formatCurrency(apuestaCurrency,total)}
+                {apuestaCurrency.symbol}{'\u00A0'}{formatCurrency(apuestaCurrency,total)}
                 </Typography>
             </Grid>
             <Grid item xs={4}
@@ -157,7 +157,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                 justify="flex-end"
                 >
                 <Typography variant="body1" gutterBottom className={classes.textData}>
-                    {"Comision "}{apuestaCurrency.symbol}{'\u00A0'}
+                    {"Comision"}{'\u00A0'}
                 </Typography>
             </Grid>
             <Grid item xs={8}
@@ -169,7 +169,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                     className={comision < 0 ? classes.textBalanceNegativo : 
                     (comision !== 0 ? classes.textBalance : classes.textBalance)}
                     >
-                    {formatCurrency(apuestaCurrency,comision)}
+                    {apuestaCurrency.symbol}{'\u00A0'}{formatCurrency(apuestaCurrency,comision.toFixed(2))}
                 </Typography>
             </Grid>
             <Grid item xs={4}
@@ -177,7 +177,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                 justify="flex-end"
                 >
                 <Typography variant="body1" gutterBottom className={classes.textData}>
-                    {"Total "}{apuestaCurrency.symbol}{'\u00A0'}
+                    {"Total"}{'\u00A0'}
                 </Typography>
             </Grid>
             <Grid item xs={8}
@@ -189,7 +189,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                     className={riesgo < 0 ? classes.textBalanceNegativo : 
                     (riesgo !== 0 ? classes.textBalance : classes.textBalance)}
                 >
-                    {formatCurrency(apuestaCurrency,riesgo)}
+                    {apuestaCurrency.symbol}{'\u00A0'}{formatCurrency(apuestaCurrency,riesgo.toFixed(2))}
                 </Typography>
             </Grid>
             <Grid item xs={12}

@@ -6,6 +6,7 @@ import JugadorDetallesEntry from '../../../components/Apuesta/Detalles/index';
 import {Colors} from '../../../../../utils/__colors'
 
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -44,7 +45,8 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
     },
     headerContainer: {
-        background : Colors.Main
+        background : Colors.Main,
+        marginBottom:"0.5rem"
     },
     crearJugadorLabel:{
         borderBottom: `${Colors.Btn_Red} 2px solid`,
@@ -128,7 +130,8 @@ const JugadorDetalles = ({...props}) => {
                                 display: "inline-block",
                                 whiteSpace:"nowrap"    
                             }}>
-                                {" ["}{name}{"]"}
+                                <Box component="div" display={{sm:'none'}}>{'\u00A0'}{"["}{name.length>15?name.substring(0,14):name}{"]"}</Box>
+                                <Box component="div" display={{xs:'none', sm:'inline-block'}}>{'\u00A0'}{"["}{name}{"]"}</Box>
                         </Typography>
                     </Grid>
                 </Grid>
