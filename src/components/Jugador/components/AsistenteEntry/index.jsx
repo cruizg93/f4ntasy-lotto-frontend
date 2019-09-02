@@ -132,7 +132,7 @@ const AsistenteDataShow = ({match, id, username, name, ...props}) => {
                     <Grid item xs={12}>
                             <Divider/>
                     </Grid>
-                    <Grid item xs={6}
+                    <Grid item xs={8}
                             container
                             justify="flex-start"
                             direction="column"
@@ -160,7 +160,7 @@ const AsistenteDataShow = ({match, id, username, name, ...props}) => {
                     >
                         Editar
                     </Grid>
-                    <Grid item xs={2}
+                    <Grid item xs={1}
                               container
                               justify="center"
                               className={classes.svgContainer}

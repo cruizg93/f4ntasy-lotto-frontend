@@ -100,7 +100,7 @@ const JugadorDetalles = ({...props}) => {
                         justify="center"
                         className={classes.headerContainer}
                         >
-                    <PageTitle titleLabel="Detalles Venta"/>
+                    <PageTitle titleLabel="Detalles Venta" xsValue={6}/>
                     <Grid item xs={6} className={classes.userInfo}>
                         <Typography variant="h6" className={"form__center-label"}
                             style={ {

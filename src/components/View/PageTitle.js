@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
     title:{
-        
         borderBottom: "2px solid red",
         borderRight:"#afb6b8 1px solid",
         borderLeft:"#afb6b8 1px solid",
@@ -20,9 +19,9 @@ const useStyles = makeStyles(theme => ({
 
 function PageTitle(props){
     const classes = useStyles();
-    console.log(props.titleLabel);
+    const xsValue = props.xsValue===undefined?6:props.xsValue;
     return (
-        <Grid item xs={6} className={classes.title}>
+        <Grid item xs={xsValue} className={classes.title}>
             <Typography variant="h6" className={"form__center-label"}>
                 {props.titleLabel === undefined?"NEED VALUE: ERROR":props.titleLabel}
             </Typography>
