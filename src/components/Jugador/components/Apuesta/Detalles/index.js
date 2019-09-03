@@ -91,7 +91,6 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
     const classes = useStyles();
     const apuestaCurrency = (moneda==="LEMPIRAS" || moneda === "L")?Currency.Lempiras:Currency.Dollar;
     useEffect(() => {
-
     }, [])
     return (
         <>
@@ -114,6 +113,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                         }
                     }
                 }
+                style={MainStyles.boxContainer}
                 >
             <Grid container>
                 {type=== "DIARIA" ? <DiariaTitle />:<ChicaTitle />}    
