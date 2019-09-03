@@ -55,7 +55,7 @@
 .toolbar__logo a img{
     flex-shrink: 0;
     min-width: 100%;
-    max-width:10rem;
+    max-width:6.5rem;
     min-height:100%;
 }
 

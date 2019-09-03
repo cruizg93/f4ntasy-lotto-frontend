@@ -31,8 +31,6 @@ import { FaUserTimes} from 'react-icons/fa';
 import { FaRegEdit } from "react-icons/fa";
 import { FaAddressCard } from "react-icons/fa";
 
-import Tooltip from '@material-ui/core/Tooltip';
-
 const useStyles = makeStyles(theme => ({
     margin: {
         margin: theme.spacing(1),
@@ -402,26 +400,24 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                         }
                     }
                 >
-                    <Tooltip title={name}>
-                        <div style={{display:"flex",alignItems:"stretch",justifyContent: "center"}}>
-                            <Typography variant="body1" gutterBottom className={"form__center-label"} 
-                                style={ {
-                                    color: Colors.Btn_Blue_Dark,  
-                                    display: "inline-block",
-                                    whiteSpace:"nowrap"    
-                                }}>
-                                {username}{"-"}{apuestaCurrency.symbol}{'\u00A0'}
-                            </Typography>
-                            <Typography variant="body1" gutterBottom className={"form__center-label"} 
-                                style={ {
-                                    color: Colors.Btn_Blue_Dark,  
-                                    display: "inline-block",
-                                    whiteSpace:"nowrap"    
-                                }}>
-                                {"["}{name.length>15?name.substring(0,9):name}{"]"}
-                            </Typography>
-                        </div>
-                    </Tooltip>
+                    <div style={{display:"flex",alignItems:"stretch",justifyContent: "center"}}>
+                        <Typography variant="body1" gutterBottom className={"form__center-label"} 
+                            style={ {
+                                color: Colors.Btn_Blue_Dark,  
+                                display: "inline-block",
+                                whiteSpace:"nowrap"    
+                            }}>
+                            {username}{"-"}{apuestaCurrency.symbol}{'\u00A0'}
+                        </Typography>
+                        <Typography variant="body1" gutterBottom className={"form__center-label"} 
+                            style={ {
+                                color: Colors.Btn_Blue_Dark,  
+                                display: "inline-block",
+                                whiteSpace:"nowrap"    
+                            }}>
+                            {"["}{name.length>15?name.substring(0,9):name}{"]"}
+                        </Typography>
+                    </div>
                 </Grid>
                 <Grid item xs={2}
                     justify="center"
@@ -460,7 +456,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                     </Grid>
                     <Grid item xs={8}>
                         <Typography variant="body1"  className={classes.text}>
-                            {monedaSymbol}{FormatCurrency(apuestaCurrency,total)}
+                            {monedaSymbol}{'\u00A0'}{FormatCurrency(apuestaCurrency,total)}
                         </Typography>
                     </Grid>
                     <Grid item xs={4}
@@ -471,7 +467,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                     </Grid>
                     <Grid item xs={8}>
                         <Typography variant="body1"  className={classes.text}>
-                            {monedaSymbol}{FormatCurrency(apuestaCurrency,comision)}
+                            {monedaSymbol}{'\u00A0'}{FormatCurrency(apuestaCurrency,comision)}
                         </Typography>
                     </Grid>
                     <Grid item xs={4} justify="flex-end">
@@ -481,7 +477,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                     </Grid>
                     <Grid item xs={8}>
                         <Typography variant="body1"  className={classes.text}>
-                            {monedaSymbol} {FormatCurrency(apuestaCurrency,riesgo)} 
+                            {monedaSymbol}{'\u00A0'}{FormatCurrency(apuestaCurrency,riesgo)} 
                         </Typography>
                     </Grid>
                 </Grid>
@@ -505,7 +501,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                     <Grid item xs={12} >
                         <Typography variant="body1" gutterBottom className={balance < 0 ? classes.textNegative : (balance > 0 ? classes.textPositive : classes.text) }
                             style={{justifyContent:"center"}}>
-                            {monedaSymbol} {symbol}{FormatCurrency(apuestaCurrency,balance)} 
+                            {monedaSymbol}{'\u00A0'}{symbol}{FormatCurrency(apuestaCurrency,balance)} 
                         </Typography>
                     </Grid>
                 </Grid>    

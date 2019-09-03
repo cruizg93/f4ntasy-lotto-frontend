@@ -106,7 +106,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        padding: '0 !important',
+        padding: '0.5rem !important',
         borderTop:"#afb6b8 1px solid",
         borderRight:"#afb6b8 1px solid",
         color: Colors.Btn_Blue,
@@ -139,9 +139,7 @@ const AsistenteDataShow = ({match, id, username, name, ...props}) => {
     } 
 
     return (         
-        <Grid container
-        stlye={MainStyles.boxContainer}
-        >
+        <Grid container>
             <Grid item xs={8}
                     container
                     justify="flex-start"

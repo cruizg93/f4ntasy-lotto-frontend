@@ -1,7 +1,7 @@
 export const Colors = {
     Btn_Blue: '#2b85c2',
     Btn_Blue_Dark : '#0d5ed7',
-    Btn_Red: '#e74c3c',
+    Btn_Red: '#cc0000',
     Main: '#efeff4',
     Btn_Hover: '#b5b5b5',
     Input_bkg: '#f9f9f9',

@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
     title:{
-        borderBottom: "2px solid red",
+        borderBottom: "2px solid #cc0000",
         borderRight:"#afb6b8 1px solid",
         borderLeft:"#afb6b8 1px solid",
         borderTop:"#afb6b8 1px solid",
