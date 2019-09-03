@@ -4,7 +4,7 @@
     position: fixed;
     display: block;
     width: 100%;
-    background: #0e5dd7;/*#5692d7;*/
+    background:#cc0000;/* #0e5dd7;/*#5692d7;*/
     height: 56px;
     z-index: 50;
 }
@@ -39,7 +39,7 @@
 }
 
 .toolbar__logo {
-    /*margin-left: 1rem;*/
+    margin-left: 0.75rem;
 }
 
 .toolbar__logo a {

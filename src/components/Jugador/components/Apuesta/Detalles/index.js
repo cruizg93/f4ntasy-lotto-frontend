@@ -11,7 +11,8 @@ import DiariaTitle from '../../../../View/Diaria';
 
 import {Colors} from "../../../../../utils/__colors";
 import {Currency} from '../../../../../utils/__currency';
-import {formatCurrency} from '../../../../../utils/__currency';
+import {FormatCurrency} from '../../../../../utils/__currency';
+import {MainStyles} from '../../../../View/MainStyles';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -36,7 +37,8 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 'bold',       
     },
     textData:{
-        color: Colors.Black
+        color: Colors.Black,
+        marginRight: '.5rem',
     },
     textBalancePositivo:{
         color: Colors.Green
@@ -68,19 +70,6 @@ const useStyles = makeStyles(theme => ({
         boxShadow: 'none',       
         borderRadius: '0'
     },
-    boxContainerNuevo: {
-        background : Colors.Main,
-        marginTop: "1rem",
-        textDecoration: "none",
-        color: Colors.Btn_Blue_Dark,
-        border:"#afb6b8 1px solid",
-        "&:hover":{
-            cursor: "pointer",
-            /*background: Colors.Gray_Ligth_2,
-            color: Colors.Input_bkg,*/
-        }   
-    },
-    
     headerLabelSorteo: {      
         borderBottom:"#afb6b8 1px solid",
     },      
@@ -117,7 +106,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                         }
                     }
                 }
-                className={classes.boxContainerNuevo}
+                style={MainStyles.boxContainer}
                 >
             <Grid container>
                 {type=== "DIARIA" ? <DiariaTitle />:<ChicaTitle />}    
@@ -149,7 +138,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                     className={total < 0 ? classes.textBalanceNegativo : 
                     (total !== 0 ? classes.textBalance : classes.textBalance)}
                 >
-                {apuestaCurrency.symbol}{'\u00A0'}{formatCurrency(apuestaCurrency,total)}
+                {apuestaCurrency.symbol}{'\u00A0'}{FormatCurrency(apuestaCurrency,total)}
                 </Typography>
             </Grid>
             <Grid item xs={4}
@@ -169,7 +158,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                     className={comision < 0 ? classes.textBalanceNegativo : 
                     (comision !== 0 ? classes.textBalance : classes.textBalance)}
                     >
-                    {apuestaCurrency.symbol}{'\u00A0'}{formatCurrency(apuestaCurrency,comision.toFixed(2))}
+                    {apuestaCurrency.symbol}{'\u00A0'}{FormatCurrency(apuestaCurrency,comision.toFixed(2))}
                 </Typography>
             </Grid>
             <Grid item xs={4}
@@ -189,7 +178,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                     className={riesgo < 0 ? classes.textBalanceNegativo : 
                     (riesgo !== 0 ? classes.textBalance : classes.textBalance)}
                 >
-                    {apuestaCurrency.symbol}{'\u00A0'}{formatCurrency(apuestaCurrency,riesgo.toFixed(2))}
+                    {apuestaCurrency.symbol}{'\u00A0'}{FormatCurrency(apuestaCurrency,riesgo.toFixed(2))}
                 </Typography>
             </Grid>
             <Grid item xs={12}

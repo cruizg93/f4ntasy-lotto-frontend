@@ -11,7 +11,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
 import {Colors} from '../../utils/__colors';
-import {FaEdit} from 'react-icons/fa';
+import {MainStyles} from '../View/MainStyles';
+import {FaUserPlus} from 'react-icons/fa';
+import PageTitle from '../View/PageTitle';
 
 
 const useStyles = makeStyles(theme => ({
@@ -40,6 +42,10 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         marginTop: '.5rem'
     },
+    headerContainer: {
+        background : Colors.Main,
+        marginBottom:"0.5rem"
+    },
     container: {
         background: '#FFF',
         marginTop: '1rem',
@@ -55,7 +61,8 @@ const useStyles = makeStyles(theme => ({
     editIcon:{
         marginLeft: ".5rem",
         marginTop: ".5rem",
-        paddingTop: ".2rem"
+        paddingTop: ".2rem",
+        fontSize: "1.25rem"
     }
 
 }));
@@ -65,13 +72,9 @@ const CrearButton = withStyles({
         width: '100%',
         boxShadow: 'none',
         textTransform: 'none',
-        fontSize: 16,       
-        lineHeight: 1.5,
-        padding: "15px 0",
+        padding: "0",
         backgroundColor: Colors.Main,
         color: Colors.Btn_Blue_Dark,
-        marginTop: '1rem',
-        marginBottom: '1rem',
         border: 'none !important',
         borderRadius: '0',
         '&:hover': {
@@ -121,29 +124,35 @@ const Jugador = (props) => {
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000}/>
-            <Container maxWidth="sm" className={classes.container}>
-            <Grid item xs={12}>
-                        <CrearButton variant="outlined" color="primary" 
-                        component={Link}
-                        to={
-                            {
-                                pathname: `/usuario/nuevo`,                               
-                            }
-                        }                     
-                        >
-                            <Typography variant="body1" gutterBottom>
-                                CREAR NUEVO JUGADOR  <FaEdit className={classes.editIcon}/>
-                            </Typography>
+            <Grid container spacing={1}
+                    direction="row"
+                    justify="center"
+                    className={classes.headerContainer}
+                    >
+                <PageTitle titleLabel="Resumen Jugadores" xsValue={8}/>
+                <Grid item xs={4} style={MainStyles.fullBorderBoxNoLeft}>
+                    <CrearButton variant="outlined" color="primary" 
+                    component={Link}
+                    to={
+                        {
+                            pathname: `/usuario/nuevo`,                               
+                        }
+                    }                   
+                    >
+                        <Typography variant="body1" gutterBottom>
+                            CREAR<FaUserPlus className={classes.editIcon}/>
+                        </Typography>
 
-                        </CrearButton>
-                    </Grid>
-                <Grid container spacing={5}>
-                    {jugadorList.map((jugador, index) =>
-                        <JugadorDataShow key={index} {...jugador} {...props} handler={reload} toast={toast_notification}/>
-                    )}
-
+                    </CrearButton>
                 </Grid>
-            </Container>
+            </Grid>
+            <Grid container spacing={1}
+                direction="row"
+                justify="center">
+                {jugadorList.map((jugador, index) =>
+                    <JugadorDataShow key={index} {...jugador} {...props} handler={reload} toast={toast_notification}/>
+                )}
+            </Grid>
         </React.Fragment>
     );
 }

@@ -14,7 +14,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {adminService} from "../../../../service/api/admin/admin.service";
 import {Colors} from '../../../../utils/__colors';
-import {FaTrashAlt} from 'react-icons/fa';
+import {MainStyles} from '../../../View/MainStyles';
+import { FaUserTimes} from 'react-icons/fa';
+import { FaRegEdit } from "react-icons/fa";
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -59,16 +61,26 @@ const useStyles = makeStyles(theme => ({
     },  
     svgContainer: {
         display: 'flex',
+        borderTop:"#afb6b8 1px solid",
         alignItems: 'center',
-        color: Colors.Btn_Blue
+        justifyContent: 'center',
+        flexDirection:'column',
     },
     iconClose: {
-        margin: '0 auto',
-        display: 'block',
+        margin: "auto",
         color: Colors.Btn_Red,
+        fontSize: "1.75rem",
         '&:hover':{
             cursor: "pointer"
-        }  
+        }        
+    },
+    iconEdit: {
+        margin: "auto",
+        color: Colors.Green,
+        fontSize: "1.75rem",
+        '&:hover':{
+            cursor: "pointer"
+        }        
     },
     paper: {
         textDecoration: 'none',
@@ -81,7 +93,8 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',        
-        padding: '1rem 10px 1rem 10px !important',       
+        padding: '1rem 10px 1rem 10px !important',  
+        borderTop:"#afb6b8 1px solid",     
         borderRight:"#afb6b8 1px solid",
         color: Colors.Btn_Blue,
         '&:hover':{
@@ -94,7 +107,7 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'row',
         alignItems: 'center',
         padding: '0 !important',
-       
+        borderTop:"#afb6b8 1px solid",
         borderRight:"#afb6b8 1px solid",
         color: Colors.Btn_Blue,
     },
@@ -125,77 +138,69 @@ const AsistenteDataShow = ({match, id, username, name, ...props}) => {
         })
     } 
 
-    return (
-        <Grid item>  
-                            
-                <Grid container>
-                    <Grid item xs={12}>
-                            <Divider/>
-                    </Grid>
-                    <Grid item xs={8}
-                            container
-                            justify="flex-start"
-                            direction="column"
-                            className={classes.labelUser}
-                            >         
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-                            {username} 
-                        </Typography>   
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-                           {` [ ${name} ]`}{}  
-                        </Typography>                                                                  
-                    </Grid>
-                    <Grid item xs={3}
-                          container
-                          justify="center"
-                          className={classes.editarLink}
-                        component={Link} to={
-                            {
-                                pathname: `/asistente/editar/${id}`,
-                                state: {
-                                    id: id,
-                                }
+    return (         
+        <Grid container
+        stlye={MainStyles.boxContainer}
+        >
+            <Grid item xs={8}
+                    container
+                    justify="flex-start"
+                    direction="column"
+                    className={classes.labelUser}
+                    >         
+                <Typography variant="body1" gutterBottom className={classes.text}>
+                    {username} 
+                </Typography>   
+                <Typography variant="body1" gutterBottom className={classes.text}>
+                    {` [ ${name} ]`}{}  
+                </Typography>                                                                  
+            </Grid>
+            
+            <Grid item xs={2} className={classes.svgContainer}  style={{borderRight:"#afb6b8 1px solid"}}
+                    component={Link} to={
+                        {
+                            pathname: `/asistente/editar/${id}`,
+                            state: {
+                                id: id,
                             }
                         }
+                    }
+                >
+                    <FaRegEdit className={classes.iconEdit} onClick={handleClickOpen}/>
+                </Grid>
+            <Grid item xs={2}
+                justify="center"
+                className={classes.svgContainer}
                     >
-                        Editar
-                    </Grid>
-                    <Grid item xs={1}
-                              container
-                              justify="center"
-                              className={classes.svgContainer}
+                        <FaUserTimes className={classes.iconClose} onClick={handleClickOpen}/>
+                </Grid>
+            <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-eliminar-usuario"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle
+                        id="alert-dialog-eliminar-usuario">{`Deseas eliminar usuario ${username}`}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Una vez eliminado el usuario no podrá obtener los datos generados del mismo
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Cancelar
+                        </Button>
+                        <Button onClick={() => {
+                            handleClose();
+                            deletePlayer();
 
-                        >
-                            <FaTrashAlt className={classes.iconClose} onClick={handleClickOpen}/>
-                    </Grid>
-                    <Dialog
-                            open={open}
-                            onClose={handleClose}
-                            aria-labelledby="alert-dialog-eliminar-usuario"
-                            aria-describedby="alert-dialog-description"
-                        >
-                            <DialogTitle
-                                id="alert-dialog-eliminar-usuario">{`Deseas eliminar usuario ${username}`}</DialogTitle>
-                            <DialogContent>
-                                <DialogContentText id="alert-dialog-description">
-                                    Una vez eliminado el usuario no podrá obtener los datos generados del mismo
-                                </DialogContentText>
-                            </DialogContent>
-                            <DialogActions>
-                                <Button onClick={handleClose} color="primary">
-                                    Cancelar
-                                </Button>
-                                <Button onClick={() => {
-                                    handleClose();
-                                    deletePlayer();
-
-                                }} color="primary" autoFocus>
-                                    Aceptar
-                                </Button>
-                            </DialogActions>
-                        </Dialog>                    
-                </Grid>           
-        </Grid>
+                        }} color="primary" autoFocus>
+                            Aceptar
+                        </Button>
+                    </DialogActions>
+                </Dialog>                    
+        </Grid>   
     )
 }
 export default AsistenteDataShow;
