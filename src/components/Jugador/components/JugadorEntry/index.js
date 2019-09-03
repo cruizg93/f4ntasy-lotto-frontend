@@ -3,9 +3,10 @@ import {Link} from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import {Currency} from '../../../../utils/__currency';
-import {formatCurrency} from '../../../../utils/__currency';
+import {FormatCurrency} from '../../../../utils/__currency';
 
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
@@ -115,6 +116,17 @@ const useStyles = makeStyles(theme => ({
     },
     iconWarning: {
         margin: "auto",
+        color: Colors.Orange,
+        fontSize: "1.75rem",
+        '&:hover':{
+            cursor: "pointer"
+        }        
+    },
+    iconWarningDialog: {
+        marginLeft: "0",
+        marginTop: "0",
+        marginBottom: "0",
+        marginRight:"0.5rem",
         color: Colors.Orange,
         fontSize: "1.75rem",
         '&:hover':{
@@ -256,6 +268,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
     const [monedaSymbol, setMonedaSymbol] = useState('$');
 
     const [open, setOpen] = React.useState(false);
+    const [openinfo, setOpenInfo] = React.useState(false);
 
     const [expanded, setExpanded] = React.useState(false);   
     const [asignedAsistentes, setAsignedAsistentes]= React.useState([]);
@@ -266,13 +279,88 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
     const handler = props.handler;
     const toast = props.toast;
 
+    /* USER INFO FOR jugador data popup*/
+    const [userInfoloading, setUserInfoloading] = React.useState(false);
+    const [diariaTipo,setDiariaTipo] = React.useState('dm');
+    const [diariaCostoComisionTexto,setDiariaCostoComisionTexto] = React.useState('');
+    const [diariaCostoComisionValor,setDiariaCostoComisionValor] = React.useState(0);
+    const [diariaPremioTexto,setDiariaPremioTexto] = React.useState('');
+    const [diariaPremioValor,setDiariaPremioValor] = React.useState(0);
+
+    const [chicaTipo,setchicaTipo] = React.useState('cm');
+    const [chicaCostoTexto,setChicaCostoTexto] = React.useState('');
+    const [chicaCostoValor,setChicaCostoValor] = React.useState(0);
+    const [chicaComisionPercentageTexto,setChicaComisionPercentageTexto] = React.useState(0);
+    const [chicaComisionPercentageValor,setChicaComisionPercentageValor] = React.useState(0);
+    const [chicaPremioTexto,setChicaPremioTexto] = React.useState(0);
+    const [chicaPremioValor,setChicaPremioValor] = React.useState(0);
+
 
     function handleClickOpen() {
         setOpen(true);
     }
 
+    function handleClickInfoOpen(jugadorId) {
+        setUserInfoloading(true);
+        adminService.get_player_by_id(jugadorId).then((result) => {      
+            let costoMil = result.data.costoMil;
+            let premioMil = result.data.premioMil;
+
+            let comisionDirecto = result.data.comisionDirecto;
+            let premioDirecto = result.data.premioDirecto;
+            
+            /* DIARIA */
+
+            if (result.data.premioDirecto !== 0) {
+                setDiariaTipo("Directo L/$");
+                setDiariaCostoComisionTexto("Comision %"); 
+                setDiariaCostoComisionValor(result.data.comisionDirecto);
+                setDiariaPremioTexto("Premio");
+                setDiariaPremioValor(result.data.premioDirecto);
+            }else{
+                setDiariaTipo("X por Miles");
+                setDiariaCostoComisionTexto("Costo X Mil"); 
+                setDiariaCostoComisionValor(result.data.costoMil);
+                setDiariaPremioTexto("Premio X Mil");
+                setDiariaPremioValor(result.data.premioMil);
+            }
+            /* DIARIA FIN*/
+            /*CHICA */
+            if (result.data.costoChicaPedazos !== 0) {
+                setchicaTipo('X Pedazos')
+                setChicaComisionPercentageTexto("Comision %");
+                setChicaComisionPercentageValor(result.data.comisionChicaPedazos);
+                setChicaCostoTexto("Costo Pedazos");
+                setChicaCostoValor(result.data.costoChicaPedazos);
+                setChicaPremioTexto("Premio")
+                setChicaPremioValor(result.data.premioChicaPedazos)
+
+            } else if (result.data.comisionChicaDirecto !== 0 && result.data.premioChicaDirecto !== 0) {                
+                setchicaTipo("Directo L/$");
+                setChicaComisionPercentageTexto("Comision %");
+                setChicaComisionPercentageValor(result.data.comisionChicaDirecto);
+                setChicaPremioTexto("Premio");
+                setChicaPremioValor(result.data.premioChicaDirecto);
+            } else {
+                setchicaTipo("X por Miles");
+                setChicaCostoTexto("Costo X Mil");
+                setChicaCostoValor(result.data.costoChicaMiles);
+                setChicaPremioTexto("Premio X Mil");
+                setChicaPremioValor(result.data.premioChicaMiles);
+            }
+
+            /*CHICA FIN*/
+            setUserInfoloading(false);
+        })
+        setOpenInfo(true);
+    }
+
     function handleClose() {
         setOpen(false);
+    }
+
+    function handleInfoClose() {
+        setOpenInfo(false);
     }
 
     function deletePlayer() {
@@ -339,7 +427,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                     justify="center"
                     className={classes.svgContainer}
                     >
-                        <FaAddressCard className={classes.iconWarning} onClick={handleClickOpen}/>
+                        <FaAddressCard className={classes.iconWarning} onClick={()=>{handleClickInfoOpen(id)}}/>
                 </Grid>
                 <Grid item xs={2} className={classes.svgContainer} style={{borderLeft:"#afb6b8 1px solid", borderRight:"#afb6b8 1px solid"}}
                     component={Link} to={
@@ -372,7 +460,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                     </Grid>
                     <Grid item xs={8}>
                         <Typography variant="body1"  className={classes.text}>
-                            {monedaSymbol} {total.toFixed(2)}
+                            {monedaSymbol}{FormatCurrency(apuestaCurrency,total)}
                         </Typography>
                     </Grid>
                     <Grid item xs={4}
@@ -383,7 +471,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                     </Grid>
                     <Grid item xs={8}>
                         <Typography variant="body1"  className={classes.text}>
-                            {monedaSymbol} {comision.toFixed(2)}
+                            {monedaSymbol}{FormatCurrency(apuestaCurrency,comision)}
                         </Typography>
                     </Grid>
                     <Grid item xs={4} justify="flex-end">
@@ -393,7 +481,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                     </Grid>
                     <Grid item xs={8}>
                         <Typography variant="body1"  className={classes.text}>
-                            {monedaSymbol} {riesgo.toFixed(2)}
+                            {monedaSymbol} {FormatCurrency(apuestaCurrency,riesgo)} 
                         </Typography>
                     </Grid>
                 </Grid>
@@ -417,39 +505,145 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                     <Grid item xs={12} >
                         <Typography variant="body1" gutterBottom className={balance < 0 ? classes.textNegative : (balance > 0 ? classes.textPositive : classes.text) }
                             style={{justifyContent:"center"}}>
-                            {monedaSymbol} {symbol} {balance.toFixed(2)}
+                            {monedaSymbol} {symbol}{FormatCurrency(apuestaCurrency,balance)} 
                         </Typography>
                     </Grid>
                 </Grid>    
             </Grid>
-        
-        <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-eliminar-usuario"
-            aria-describedby="alert-dialog-description"
-        >
-            <DialogTitle
-                id="alert-dialog-eliminar-usuario">{`Deseas eliminar usuario ${username}`}</DialogTitle>
-            <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                    Una vez eliminado el usuario no podrá obtener los datos generados del mismo
-                </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={handleClose} color="primary">
-                    Cancelar
-                </Button>
-                <Button onClick={() => {
-                    handleClose();
-                    deletePlayer();
+        <Grid container>
+            <Grid item xs={12}>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-eliminar-usuario"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle
+                        id="alert-dialog-eliminar-usuario">{`Deseas eliminar usuario ${username}`}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Una vez eliminado el usuario no podrá obtener los datos generados del mismo
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Cancelar
+                        </Button>
+                        <Button onClick={() => {
+                            handleClose();
+                            deletePlayer();
 
-                }} color="primary" autoFocus>
-                    Aceptar
-                </Button>
-            </DialogActions>
-        </Dialog>
+                        }} color="primary" autoFocus>
+                            Aceptar
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </Grid>
+            <Grid item xs={12}>
+                <Dialog
+                    fullWidth={true}
+                    open={openinfo}
+                    onClose={handleInfoClose}
+                    aria-labelledby="alert-dialog-info-usuario"
+                    aria-describedby="alert-dialog-info-description"
+                >
+                    <DialogContent >
+                        <DialogContentText id="alert-dialog-info-description">
+                            <Grid container>
+                                <Grid item xs={11} style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+                                    <FaAddressCard className={classes.iconWarningDialog} /><span>{username}{"-"}{apuestaCurrency.symbol}{'\u00A0'}{"["}{name}{"]"}</span>
+                                </Grid>
+                                <Grid item xs={1}>
+                                    <Button onClick={handleInfoClose} color="primary" style={{justifyContent: "flex-start",color:"#000000"}}>X</Button>
+                                </Grid>
 
+                                <Grid item xs={12}><Divider/></Grid>
+                                <Grid item xs={2}>
+                                    <Typography variant="body1" gutterBottom style={{fontWeight:"bold"}}>
+                                        Diaria 
+                                    </Typography>
+                                </Grid>
+                                <Grid container xs={10}>
+                                    <Grid item xs={12}>
+                                        <Typography variant="body1" gutterBottom>
+                                            {" - "}{diariaTipo}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={7}>
+                                        <Typography variant="body1" gutterBottom>
+                                            {" - "} {diariaCostoComisionTexto}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={5}>
+                                        <Typography variant="body1" gutterBottom>
+                                            {" = "}{diariaCostoComisionValor}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={7}>
+                                        <Typography variant="body1" gutterBottom>
+                                            {" - "} {diariaPremioTexto}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={5}>
+                                        <Typography variant="body1" gutterBottom>
+                                            {" = "}{diariaPremioValor}
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+
+                                <Grid item xs={12} gutterBottom/>
+
+                                <Grid item xs={2}>
+                                    <Typography variant="body1" gutterBottom style={{fontWeight:"bold"}}>
+                                        Chica 
+                                    </Typography>
+                                </Grid>
+                                <Grid container xs={10}>
+                                    <Grid item xs={12}>
+                                        <Typography variant="body1" gutterBottom>
+                                            {" - "}{diariaTipo}
+                                        </Typography>
+                                    </Grid>
+                                    
+                                    <Grid item xs={7} style={chicaComisionPercentageValor>0?{display:"flex"}:{display:"none"}}>
+                                        <Typography variant="body1" gutterBottom>
+                                            {" - "} {chicaComisionPercentageTexto}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={5} style={chicaComisionPercentageValor>0?{display:"flex"}:{display:"none"}}>
+                                        <Typography variant="body1" gutterBottom>
+                                            {" = "}{chicaComisionPercentageValor}
+                                        </Typography>
+                                    </Grid>
+
+                                    <Grid item xs={7} style={chicaCostoValor>0?{display:"flex"}:{display:"none"}}>
+                                        <Typography variant="body1" gutterBottom>
+                                            {" - "} {chicaCostoTexto}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={5} style={chicaCostoValor>0?{display:"flex"}:{display:"none"}}>
+                                        <Typography variant="body1" gutterBottom>
+                                            {" = "}{chicaCostoValor}
+                                        </Typography>
+                                    </Grid>
+
+                                    <Grid item xs={7}>
+                                        <Typography variant="body1" gutterBottom>
+                                            {" - "} {chicaPremioTexto}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={5}>
+                                        <Typography variant="body1" gutterBottom>
+                                            {" = "}{chicaPremioValor}
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </DialogContentText>
+                    </DialogContent>
+                </Dialog>
+            </Grid>
+        </Grid>
         {asistentes && 
             <>   
                 <Grid item xs={12}><Divider/></Grid>                                                

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+
 import {Link} from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
@@ -33,6 +34,13 @@ const useStyles = makeStyles(theme => ({
         textDecoration: 'none',
         pointerEvents: 'none'
     },
+    valuesContainer:{
+        paddingTop:".5rem",
+        "& div p":{
+            paddingBottom:".5rem",
+        }
+    },
+
     text: {
         fontWeight: 'bold',       
     },
@@ -121,65 +129,64 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                     </Typography>
                 </Grid>
             </Grid>
-            <Grid item xs={4}
-                container
-                justify="flex-end"
-                >
-                <Typography variant="body1" gutterBottom className={classes.textData}>
-                    {"Ventas"}{'\u00A0'}
-                </Typography>
-            </Grid>
-            <Grid item xs={8}
-                container
-                justify="flex-start"
-                className={classes.text}
-            >
-                <Typography variant="body1" gutterBottom 
-                    className={total < 0 ? classes.textBalanceNegativo : 
-                    (total !== 0 ? classes.textBalance : classes.textBalance)}
-                >
-                {apuestaCurrency.symbol}{'\u00A0'}{FormatCurrency(apuestaCurrency,total)}
-                </Typography>
-            </Grid>
-            <Grid item xs={4}
-                container
-                justify="flex-end"
-                >
-                <Typography variant="body1" gutterBottom className={classes.textData}>
-                    {"Comision"}{'\u00A0'}
-                </Typography>
-            </Grid>
-            <Grid item xs={8}
-                container
-                justify="flex-start"
-                className={classes.text}
-            >
-                <Typography variant="body1" gutterBottom 
-                    className={comision < 0 ? classes.textBalanceNegativo : 
-                    (comision !== 0 ? classes.textBalance : classes.textBalance)}
+            <Grid container className={classes.valuesContainer}>
+                <Grid item xs={4}
+                    container
+                    justify="flex-end"
                     >
-                    {apuestaCurrency.symbol}{'\u00A0'}{FormatCurrency(apuestaCurrency,comision.toFixed(2))}
-                </Typography>
-            </Grid>
-            <Grid item xs={4}
-                container
-                justify="flex-end"
+                    <Typography variant="body1"  className={classes.textData}>
+                        {"Ventas"}{'\u00A0'}
+                    </Typography>
+                </Grid>
+                <Grid item xs={8}
                 >
-                <Typography variant="body1" gutterBottom className={classes.textData}>
-                    {"Total"}{'\u00A0'}
-                </Typography>
-            </Grid>
-            <Grid item xs={8}
-                container
-                justify="flex-start"
-                className={classes.text}
-            >
-                <Typography variant="body1" gutterBottom 
-                    className={riesgo < 0 ? classes.textBalanceNegativo : 
-                    (riesgo !== 0 ? classes.textBalance : classes.textBalance)}
+                    <Typography variant="body1"  
+                        className={total < 0 ? classes.textBalanceNegativo : 
+                        (total !== 0 ? classes.textBalance : classes.textBalance)}
+                    >
+                    {apuestaCurrency.symbol}{'\u00A0'}{FormatCurrency(apuestaCurrency,total)}
+                    </Typography>
+                </Grid>
+                <Grid item xs={4}
+                    container
+                    justify="flex-end"
+                    >
+                    <Typography variant="body1"  className={classes.textData}>
+                        {"Comision"}{'\u00A0'}
+                    </Typography>
+                </Grid>
+                <Grid item xs={8}
+                    container
+                    justify="flex-start"
+                    className={classes.text}
                 >
-                    {apuestaCurrency.symbol}{'\u00A0'}{FormatCurrency(apuestaCurrency,riesgo.toFixed(2))}
-                </Typography>
+                    <Typography variant="body1"  
+                        className={comision < 0 ? classes.textBalanceNegativo : 
+                        (comision !== 0 ? classes.textBalance : classes.textBalance)}
+                        >
+                        {apuestaCurrency.symbol}{'\u00A0'}{FormatCurrency(apuestaCurrency,comision.toFixed(2))}
+                    </Typography>
+                </Grid>
+                <Grid item xs={4}
+                    container
+                    justify="flex-end"
+                    >
+                    <Typography variant="body1"  className={classes.textData}>
+                        {"Total"}{'\u00A0'}
+                    </Typography>
+                </Grid>
+                <Grid item xs={8}
+                    container
+                    justify="flex-start"
+                    className={classes.text}
+                >
+                    <Typography variant="body1"  
+                        className={riesgo < 0 ? classes.textBalanceNegativo : 
+                        (riesgo !== 0 ? classes.textBalance : classes.textBalance)}
+                    >
+                        {apuestaCurrency.symbol}{'\u00A0'}{FormatCurrency(apuestaCurrency,riesgo.toFixed(2))}
+                    </Typography>
+                </Grid>
             </Grid>
             <Grid item xs={12}
                 container

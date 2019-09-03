@@ -8,6 +8,9 @@ import {Colors} from '../../../../../utils/__colors'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import PageTitle from '../../../../View/PageTitle';
+import {Currency} from '../../../../../utils/__currency';
+import {FormatCurrency} from '../../../../../utils/__currency';
+
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -39,6 +42,7 @@ const useStyles = makeStyles(theme => ({
         marginTop: '1rem',
         marginBottom: '1rem',
     },
+    
     btnContainer: {
         display: 'flex',
         justifyContent: 'center',
@@ -89,7 +93,7 @@ const JugadorDetalles = ({...props}) => {
             adminService.list_apuestas_details(username[0]).then((result) => {                
                 setApuestasList(Array.from(result.data.sorteos));
                 setName(result.data.name);
-                setMoneda(result.data.moneda);
+                setMoneda(result.data.moneda==="LEMPIRAS"?Currency.Lempiras:Currency.Dollar);
                /*  setUsername(props.location.state.username) */
             })
         }, [])
@@ -108,7 +112,7 @@ const JugadorDetalles = ({...props}) => {
                                 display: "inline-block",
                                 whiteSpace:"nowrap"    
                             }}>
-                            {username}{" - "}{moneda === "LEMPIRAS" ? "L" : "$"}
+                            {username}{" - "}{moneda}
                         </Typography>
                         <Typography variant="h6" className={"form__center-label"}
                             style={ {

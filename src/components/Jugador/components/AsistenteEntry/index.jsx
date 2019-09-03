@@ -148,10 +148,10 @@ const AsistenteDataShow = ({match, id, username, name, ...props}) => {
                     direction="column"
                     className={classes.labelUser}
                     >         
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1"  className={classes.text}>
                     {username} 
                 </Typography>   
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1"  className={classes.text}>
                     {` [ ${name} ]`}{}  
                 </Typography>                                                                  
             </Grid>
