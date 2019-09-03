@@ -93,7 +93,7 @@ const JugadorDetalles = ({...props}) => {
             adminService.list_apuestas_details(username[0]).then((result) => {                
                 setApuestasList(Array.from(result.data.sorteos));
                 setName(result.data.name);
-                setMoneda(result.data.moneda==="LEMPIRAS"?Currency.Lempiras:Currency.Dollar);
+                setMoneda((result.data.moneda==="LEMPIRAS"||result.data.moneda==="L")?Currency.Lempiras:Currency.Dollar);
                /*  setUsername(props.location.state.username) */
             })
         }, [])
@@ -112,7 +112,7 @@ const JugadorDetalles = ({...props}) => {
                                 display: "inline-block",
                                 whiteSpace:"nowrap"    
                             }}>
-                            {username}{" - "}{moneda}
+                            {username}{" - "}{moneda.symbol}
                         </Typography>
                         <Typography variant="h6" className={"form__center-label"}
                             style={ {
@@ -132,7 +132,7 @@ const JugadorDetalles = ({...props}) => {
                             {apuestasList.map((apuesta, index) =>
                                 <JugadorDetallesEntry key={index} {...apuesta} index={index}
                                                     username={props.location.state.username}
-                                                    moneda={moneda}
+                                                    moneda={moneda.symbol}
                                                     {...props}/>
                             )}
                     
