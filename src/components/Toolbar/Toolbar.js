@@ -10,7 +10,7 @@ import {Role} from "../../_helpers/role";
 
 import './Toolbar.css';
 import {history} from "../../_helpers/history";
-import LogoMini from './assets/Fantasy_LOTTO_Logo.png';
+import LogoMini from './assets/Apuntada Logo.png';
 
 class Toolbar extends Component {
     constructor(props) {
