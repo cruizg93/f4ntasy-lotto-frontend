@@ -57,7 +57,8 @@ const useStyles = makeStyles(theme => ({
     },
     text: {
         display: 'flex',
-        marginLeft: '1rem'
+        marginLeft: '1rem',
+        color: Colors.Btn_Blue_Dark
     },  
     svgContainer: {
         display: 'flex',
@@ -103,10 +104,10 @@ const useStyles = makeStyles(theme => ({
     },
     labelUser: {
         textDecoration: 'none',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         flexDirection: 'row',
         alignItems: 'center',
-        padding: '0.5rem !important',
+        padding: '0.35rem !important',
         borderTop:"#afb6b8 1px solid",
         borderRight:"#afb6b8 1px solid",
         color: Colors.Btn_Blue,
@@ -144,14 +145,12 @@ const AsistenteDataShow = ({match, id, username, name, ...props}) => {
                     container
                     justify="flex-start"
                     direction="column"
+                    gutterBottom
                     className={classes.labelUser}
                     >         
                 <Typography variant="body1"  className={classes.text}>
-                    {username} 
+                     {username} {' ['} {name} {']'}  
                 </Typography>   
-                <Typography variant="body1"  className={classes.text}>
-                    {` [ ${name} ]`}{}  
-                </Typography>                                                                  
             </Grid>
             
             <Grid item xs={2} className={classes.svgContainer}  style={{borderRight:"#afb6b8 1px solid"}}
