@@ -96,7 +96,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         flexDirection:'column',
     },
-    iconClose: {
+    iconDelete: {
         margin: "auto",
         color: Colors.Btn_Red,
         fontSize: "1.75rem",
@@ -120,12 +120,34 @@ const useStyles = makeStyles(theme => ({
             cursor: "pointer"
         }        
     },
+    iconEditDialog: {
+        marginLeft: "0",
+        marginTop: "0",
+        marginBottom: "0",
+        marginRight:"0.5rem",
+        color: Colors.Green,
+        fontSize: "1.75rem",
+        '&:hover':{
+            cursor: "pointer"
+        }        
+    },
     iconWarningDialog: {
         marginLeft: "0",
         marginTop: "0",
         marginBottom: "0",
         marginRight:"0.5rem",
         color: Colors.Orange,
+        fontSize: "1.75rem",
+        '&:hover':{
+            cursor: "pointer"
+        }        
+    },
+    iconDeletegDialog: {
+        marginLeft: "0",
+        marginTop: "0",
+        marginBottom: "0",
+        marginRight:"0.5rem",
+        color: Colors.Btn_Red,
         fontSize: "1.75rem",
         '&:hover':{
             cursor: "pointer"
@@ -245,6 +267,9 @@ const useStyles = makeStyles(theme => ({
             cursor: "pointer"
         }
     },
+    jugadorInfoValor:{
+        fontWeight:"bold"
+    }
 
 }));
 
@@ -266,11 +291,16 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
     const [monedaSymbol, setMonedaSymbol] = useState('$');
 
     const [open, setOpen] = React.useState(false);
+    const [openNoEliminar, setOpenNoEliminar] = React.useState(false);
     const [openinfo, setOpenInfo] = React.useState(false);
+    const [openNoEditar, setOpenNoEditar] = React.useState(false);
+    
 
     const [expanded, setExpanded] = React.useState(false);   
     const [asignedAsistentes, setAsignedAsistentes]= React.useState([]);
 
+    //JugadorEnable decide si el jugador puede ser eliminado o editado
+    const jugadorEnable = balance ==0 && total == 0;
     const symbol = balance < 0 ? " - " : (balance > 0 ? " + " : "")
     const apuestaCurrency = monedaType === "lempiras"?Currency.Lempiras:Currency.Dollar;
 
@@ -285,7 +315,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
     const [diariaPremioTexto,setDiariaPremioTexto] = React.useState('');
     const [diariaPremioValor,setDiariaPremioValor] = React.useState(0);
 
-    const [chicaTipo,setchicaTipo] = React.useState('cm');
+    const [chicaTipo,setChicaTipo] = React.useState('cm');
     const [chicaCostoTexto,setChicaCostoTexto] = React.useState('');
     const [chicaCostoValor,setChicaCostoValor] = React.useState(0);
     const [chicaComisionPercentageTexto,setChicaComisionPercentageTexto] = React.useState(0);
@@ -301,12 +331,6 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
     function handleClickInfoOpen(jugadorId) {
         setUserInfoloading(true);
         adminService.get_player_by_id(jugadorId).then((result) => {      
-            let costoMil = result.data.costoMil;
-            let premioMil = result.data.premioMil;
-
-            let comisionDirecto = result.data.comisionDirecto;
-            let premioDirecto = result.data.premioDirecto;
-            
             /* DIARIA */
 
             if (result.data.premioDirecto !== 0) {
@@ -325,22 +349,22 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
             /* DIARIA FIN*/
             /*CHICA */
             if (result.data.costoChicaPedazos !== 0) {
-                setchicaTipo('X Pedazos')
+                setChicaTipo('X Pedazos')
                 setChicaComisionPercentageTexto("Comision %");
                 setChicaComisionPercentageValor(result.data.comisionChicaPedazos);
-                setChicaCostoTexto("Costo Pedazos");
+                setChicaCostoTexto("Pedazos");
                 setChicaCostoValor(result.data.costoChicaPedazos);
                 setChicaPremioTexto("Premio")
                 setChicaPremioValor(result.data.premioChicaPedazos)
 
             } else if (result.data.comisionChicaDirecto !== 0 && result.data.premioChicaDirecto !== 0) {                
-                setchicaTipo("Directo L/$");
+                setChicaTipo("Directo L/$");
                 setChicaComisionPercentageTexto("Comision %");
                 setChicaComisionPercentageValor(result.data.comisionChicaDirecto);
                 setChicaPremioTexto("Premio");
                 setChicaPremioValor(result.data.premioChicaDirecto);
             } else {
-                setchicaTipo("X por Miles");
+                setChicaTipo("X por Miles");
                 setChicaCostoTexto("Costo X Mil");
                 setChicaCostoValor(result.data.costoChicaMiles);
                 setChicaPremioTexto("Premio X Mil");
@@ -353,12 +377,28 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
         setOpenInfo(true);
     }
 
+    function handleClickOpenNoEliminar() {
+        setOpenNoEliminar(true);
+    }
+
+    function handleClickOpenNoEditar() {
+        setOpenNoEditar(true);
+    }
+
     function handleClose() {
         setOpen(false);
     }
 
     function handleInfoClose() {
         setOpenInfo(false);
+    }
+
+    function handleCloseNoEliminar(){
+        setOpenNoEliminar(false);
+    }
+
+    function handleCloseNoEditar(){
+        setOpenNoEditar(false);
     }
 
     function deletePlayer() {
@@ -426,7 +466,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                         <FaAddressCard className={classes.iconWarning} onClick={()=>{handleClickInfoOpen(id)}}/>
                 </Grid>
                 <Grid item xs={2} className={classes.svgContainer} style={{borderLeft:"#afb6b8 1px solid", borderRight:"#afb6b8 1px solid"}}
-                    component={Link} to={
+                    component={jugadorEnable?Link:"div"} to={
                         {
                             pathname: `/jugador/editar/${id}`,
                             state: {
@@ -435,13 +475,13 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                         }
                     }
                 >
-                    <FaRegEdit className={classes.iconEdit} onClick={handleClickOpen}/>
+                    <FaRegEdit className={classes.iconEdit} onClick={handleClickOpenNoEditar}/>
                 </Grid>
                 <Grid item xs={2}
                             justify="center"
                             className={classes.svgContainer}
                     >
-                        <FaUserTimes className={classes.iconClose} onClick={handleClickOpen}/>
+                        <FaUserTimes className={classes.iconDelete} onClick={jugadorEnable?handleClickOpen:handleClickOpenNoEliminar}/>
                 </Grid>
                 <Grid item xs={12}>
                     <Divider/>
@@ -507,6 +547,37 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                 </Grid>    
             </Grid>
         <Grid container>
+            {/* NO SE PUEDE EDITAR DIALOG END*/}
+            <Grid item xs={12}>
+                <Dialog
+                    open={openNoEditar}
+                    onClose={handleCloseNoEditar}
+                    aria-labelledby="alert-dialog-no-editar-usuario"
+                    aria-describedby="alert-dialog-no-editar-usuario-description"
+                >
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-no-editar-usuario-description">
+                            <Grid container>
+                                <Grid item xs={12} style={{display:"flex",alignItems:"center",justifyContent:"center",color:Colors.Btn_Blue_Dark}}>
+                                        <FaAddressCard className={classes.iconEditDialog} /><span>{username}{"-"}{apuestaCurrency.symbol}{'\u00A0'}{"["}{name}{"]"}</span>
+                                </Grid>                                
+                                <Grid item xs={12} style={{marginBottom:"0.5rem"}}><Divider/></Grid>
+                                <Grid item xs={12}>
+                                    Este usuario tiene apuestas activas y no se puede editar en este momento.
+                                </Grid>
+                            </Grid>
+                            
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleCloseNoEditar} color="primary">
+                            OK
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </Grid>
+            {/* NO SE PUEDE EDITAR DIALOG END*/}
+            {/* DELETE DIALOG START*/}
             <Grid item xs={12}>
                 <Dialog
                     open={open}
@@ -514,27 +585,76 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                     aria-labelledby="alert-dialog-eliminar-usuario"
                     aria-describedby="alert-dialog-description"
                 >
-                    <DialogTitle
-                        id="alert-dialog-eliminar-usuario">{`Deseas eliminar usuario ${username}`}</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            Una vez eliminado el usuario no podrá obtener los datos generados del mismo
+                            <Grid container>
+                                <Grid item xs={12} style={{display:"flex",alignItems:"center",justifyContent:"center",color:Colors.Btn_Blue_Dark}}>
+                                        <FaUserTimes className={classes.iconDeletegDialog} /><span>{username}{"-"}{apuestaCurrency.symbol}{'\u00A0'}{"["}{name}{"]"}</span>
+                                </Grid>                                
+                                <Grid item xs={12} style={{marginBottom:"0.5rem"}}><Divider/></Grid>
+                                <Grid item xs={12} style={{marginBottom:"0.5rem"}}>
+                                    <Typography variant="h6">
+                                        {"Desea eliminar usuario?"}
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    Una vez eliminado el usuario no podrá obtener los datos generados del mismo
+                                </Grid>
+                            </Grid>
+                            
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose} color="primary">
-                            Cancelar
+                            CANCELAR
                         </Button>
                         <Button onClick={() => {
                             handleClose();
                             deletePlayer();
 
                         }} color="primary" autoFocus>
-                            Aceptar
+                            ACEPTAR
                         </Button>
                     </DialogActions>
                 </Dialog>
             </Grid>
+            {/* DELETE DIALOG END*/}
+            {/* NO SE PUEDE ELIMINAR DIALOG START*/}
+            <Grid item xs={12}>
+                <Dialog
+                    open={openNoEliminar}
+                    onClose={handleCloseNoEliminar}
+                    aria-labelledby="alert-dialog-no-eliminar-usuario"
+                    aria-describedby="alert-dialog-no-eliminar-description"
+                >
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-no-eliminar-description">
+                            <Grid container>
+                                <Grid item xs={12} style={{display:"flex",alignItems:"center",justifyContent:"center",color:Colors.Btn_Blue_Dark}}>
+                                        <FaUserTimes className={classes.iconDeletegDialog} /><span>{username}{"-"}{apuestaCurrency.symbol}{'\u00A0'}{"["}{name}{"]"}</span>
+                                </Grid>                                
+                                <Grid item xs={12} style={{marginBottom:"0.5rem"}}><Divider/></Grid>
+                                <Grid item xs={12} style={{marginBottom:"0.5rem"}}>
+                                    <Typography variant="h6">
+                                        {"Imposible Eliminar?"}
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    Este usuario no se puede eliminar en este momento, ya que tiene apuestas activas y/o balance.
+                                </Grid>
+                            </Grid>
+                            
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleCloseNoEliminar} color="primary">
+                            OK
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </Grid>
+            {/* NO SE PUEDE ELIMINAR DIALOG END*/}
+            {/* JUGADOR INFO DIALOG START*/}
             <Grid item xs={12}>
                 <Dialog
                     fullWidth={true}
@@ -546,14 +666,10 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                     <DialogContent >
                         <DialogContentText id="alert-dialog-info-description">
                             <Grid container>
-                                <Grid item xs={11} style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+                                <Grid item xs={12} style={{display:"flex",alignItems:"center",justifyContent:"center",color:Colors.Btn_Blue_Dark}}>
                                     <FaAddressCard className={classes.iconWarningDialog} /><span>{username}{"-"}{apuestaCurrency.symbol}{'\u00A0'}{"["}{name}{"]"}</span>
-                                </Grid>
-                                <Grid item xs={1}>
-                                    <Button onClick={handleInfoClose} color="primary" style={{justifyContent: "flex-start",color:"#000000"}}>X</Button>
-                                </Grid>
-
-                                <Grid item xs={12}><Divider/></Grid>
+                                </Grid>                                
+                                <Grid item xs={12} style={{marginBottom:"0.5rem"}}><Divider/></Grid>
                                 <Grid item xs={2}>
                                     <Typography variant="body1" gutterBottom style={{fontWeight:"bold"}}>
                                         Diaria 
@@ -571,8 +687,8 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={5}>
-                                        <Typography variant="body1" gutterBottom>
-                                            {" = "}{diariaCostoComisionValor}
+                                        <Typography variant="body1" gutterBottom className={classes.jugadorInfoValor}>
+                                            {"="}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency,diariaCostoComisionValor)}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={7}>
@@ -581,8 +697,8 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={5}>
-                                        <Typography variant="body1" gutterBottom>
-                                            {" = "}{diariaPremioValor}
+                                        <Typography variant="body1" gutterBottom className={classes.jugadorInfoValor}>
+                                            {"="}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency,diariaPremioValor)}
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -597,7 +713,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                                 <Grid container xs={10}>
                                     <Grid item xs={12}>
                                         <Typography variant="body1" gutterBottom>
-                                            {" - "}{diariaTipo}
+                                            {" - "}{chicaTipo}
                                         </Typography>
                                     </Grid>
                                     
@@ -606,9 +722,9 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                                             {" - "} {chicaComisionPercentageTexto}
                                         </Typography>
                                     </Grid>
-                                    <Grid item xs={5} style={chicaComisionPercentageValor>0?{display:"flex"}:{display:"none"}}>
-                                        <Typography variant="body1" gutterBottom>
-                                            {" = "}{chicaComisionPercentageValor}
+                                    <Grid item xs={5} style={chicaComisionPercentageValor>0?{display:"flex"}:{display:"none"}} >
+                                        <Typography variant="body1" gutterBottom className={classes.jugadorInfoValor}>
+                                            {"="}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency,chicaComisionPercentageValor)}
                                         </Typography>
                                     </Grid>
 
@@ -617,27 +733,32 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                                             {" - "} {chicaCostoTexto}
                                         </Typography>
                                     </Grid>
-                                    <Grid item xs={5} style={chicaCostoValor>0?{display:"flex"}:{display:"none"}}>
-                                        <Typography variant="body1" gutterBottom>
-                                            {" = "}{chicaCostoValor}
+                                    <Grid item xs={5} style={chicaCostoValor>0?{display:"flex"}:{display:"none"}} >
+                                        <Typography variant="body1" gutterBottom className={classes.jugadorInfoValor}>
+                                            {"="}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency,chicaCostoValor)}
                                         </Typography>
                                     </Grid>
 
                                     <Grid item xs={7}>
                                         <Typography variant="body1" gutterBottom>
-                                            {" - "} {chicaPremioTexto}
+                                            {" - "}{chicaPremioTexto}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={5}>
-                                        <Typography variant="body1" gutterBottom>
-                                            {" = "}{chicaPremioValor}
+                                        <Typography variant="body1" gutterBottom className={classes.jugadorInfoValor}>
+                                            {"="}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency,chicaPremioValor)}
                                         </Typography>
                                     </Grid>
                                 </Grid>
                             </Grid>
                         </DialogContentText>
+                        <DialogActions>
+                                    <Divider/>
+                                    <Button onClick={handleInfoClose} color="primary" style={{color:Colors.Btn_Blue_Dark}}>OK</Button>
+                        </DialogActions>                        
                     </DialogContent>
                 </Dialog>
+                {/* JUGADOR INFO DIALOG END*/}
             </Grid>
         </Grid>
         {asistentes && 
