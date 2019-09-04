@@ -651,7 +651,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                             aria-controls="panel1bh-content"
                             id="panel1bh-header"                                       
                         >
-                            <Typography variant="body1" gutterBottom className={classes.expansionPanelTextHeader} >
+                            <Typography variant="body1" className={classes.expansionPanelTextHeader} >
                                 {asignedAsistentes.length}{" Jugadores X"} 
                             </Typography>     
                         </StyleExpansionPanelSummary>

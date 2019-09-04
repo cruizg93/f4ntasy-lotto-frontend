@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
     },
     root: {
         display: 'flex',
+        flexGrow: 1,
     },
     formControl: {
         margin: theme.spacing(3),
@@ -31,15 +32,17 @@ const useStyles = makeStyles(theme => ({
     },
     headerContainer: {
         background : Colors.Main,
-        marginBottom:"1.25rem"
+        marginBottom:"0.5rem"
     },
     container: {
         background: '#FFF',
         marginTop: '1rem',
         marginBottom: '1rem',
+        zIndex:0,
     },
     btnContainer: {
         background : Colors.Main,
+        marginTop:"1rem",
     },
     button:{
         padding:"0px !important",
@@ -48,9 +51,9 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         fontWeight: 'bolder',
     },
-    button2:{
+    StyledJugadorButton:{
         padding:"0px !important",
-        fontSize:"3.5rem",
+        fontSize:"3rem",
         width:"100%",
         display: 'flex',
         fontWeight: 'bolder',
@@ -71,34 +74,39 @@ const NewUser = ({ ...props }) => {
 
     return (
         <React.Fragment>
-            <Container maxWidth="sm" className={classes.container}>
-                <Grid container spacing={0}
-                    direction="row"
-                    justify="center"
-                    alignItems="stretch"
-                    className={classes.headerContainer}
-                    >
-                    <PageTitle titleLabel="Tipo de Jugador" xsValue={12} />
-                </Grid>
-                <Grid container spacing={0}
-                    direction="row"
-                    justify="center"
-                    alignItems="stretch"
-                    className={classes.btnContainer}
-                    >
-                    <Grid item xs={6}  style={MainStyles.fullBorderBox}>
-                        <StyledButton component={Link} to="/usuario/nuevo/jugador" className={classes.button2} style={{color:Colors.Orange}}>
-                            P
-                        </StyledButton>
-                    </Grid>
-                    <Grid item xs={6}  style={MainStyles.fullBorderBox}>
-                        <StyledButton component={Link} to="/usuario/nuevo/asistente" className={classes.button2} style={{color:Colors.Green}}>
-                            X
-                        </StyledButton>
-                    </Grid>
+            
+            <Grid container spacing={1}
+                direction="row"
+                justify="center"
+                className={classes.headerContainer}
+                gutterBottom
+                >
+                <PageTitle titleLabel="Tipo de Jugador" xsValue={12} />
+            </Grid>
 
+            <Grid container spacing={1} 
+                direction="row"
+                justify="center">
+                <Grid container spacing={0} 
+                    direction="row"
+                    justify="center"
+                    alignItems="stretch"
+                    className={classes.btnContainer}>
+                    <Grid container>
+                        <Grid item xs={6}  style={MainStyles.fullBorderBox}>
+                            <StyledButton component={Link} to="/usuario/nuevo/jugador" className={classes.StyledJugadorButton} style={{color:Colors.Orange}}>
+                                P
+                            </StyledButton>
+                        </Grid>
+                        <Grid item xs={6}  style={MainStyles.fullBorderBox}>
+                            <StyledButton component={Link} to="/usuario/nuevo/asistente" className={classes.StyledJugadorButton} style={{color:Colors.Green}}>
+                                X
+                            </StyledButton>
+                        </Grid>
+
+                    </Grid>
                 </Grid>
-            </Container>
+            </Grid>
         </React.Fragment>
     )
 }

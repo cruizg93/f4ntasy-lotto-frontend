@@ -58,9 +58,11 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         alignItems: 'center',
     },
+    crearButtonContainer:{
+        display:"flex",
+    },
     editIcon:{
         marginLeft: ".5rem",
-        marginTop: ".5rem",
         paddingTop: ".2rem",
         fontSize: "1.25rem"
     }
@@ -130,7 +132,7 @@ const Jugador = (props) => {
                     className={classes.headerContainer}
                     >
                 <PageTitle titleLabel="Resumen Jugadores" xsValue={8}/>
-                <Grid item xs={4} style={MainStyles.fullBorderBoxNoLeft}>
+                <Grid item xs={4} style={MainStyles.fullBorderBoxNoLeft} className={classes.crearButtonContainer}>
                     <CrearButton variant="outlined" color="primary" 
                     component={Link}
                     to={
@@ -139,7 +141,7 @@ const Jugador = (props) => {
                         }
                     }                   
                     >
-                        <Typography variant="body1" gutterBottom>
+                        <Typography variant="h6">
                             CREAR<FaUserPlus className={classes.editIcon}/>
                         </Typography>
 
