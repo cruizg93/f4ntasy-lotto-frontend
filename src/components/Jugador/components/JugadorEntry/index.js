@@ -429,17 +429,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
             style={MainStyles.boxContainer}
             >
             <Grid container>
-                <Grid item xs={6} className={total===0.0?classes.labelUser:classes.labelUser}
-                    component={Link} to={
-                        {
-                        pathname: `/jugador/apuestas/detalles`,
-                            state: {
-                                id: id,
-                                username: username
-                            }
-                        }
-                    }
-                >
+                <Grid item xs={6} className={total===0.0?classes.labelUser:classes.labelUser}>
                     <div style={{display:"flex",alignItems:"stretch",justifyContent: "center"}}>
                         <Typography variant="body1" gutterBottom className={"form__center-label"} 
                             style={ {
@@ -468,7 +458,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                 <Grid item xs={2} className={classes.svgContainer} style={{borderLeft:"#afb6b8 1px solid", borderRight:"#afb6b8 1px solid"}}
                     component={jugadorEnable?Link:"div"} to={
                         {
-                            pathname: `/jugador/editar/${id}`,
+                            pathname: '/jugador/editar/${id}',
                             state: {
                                 id: id,
                             }
@@ -488,7 +478,17 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                 </Grid>   
             </Grid>
             <Grid container >
-                <Grid item container xs={7} alignItems="flex-start" className={classes.valuesContainer}>
+                <Grid item container xs={7} alignItems="flex-start" className={classes.valuesContainer}
+                    component={(total !=0 || comision != 0)?Link:"div"} to={
+                        {
+                        pathname: `/jugador/apuestas/detalles`,
+                            state: {
+                                id: id,
+                                username: username
+                            }
+                        }
+                    }
+                >
                     <Grid item xs={4} justify="flex-end">
                         <Typography variant="body1"  className={classes.textLabel}>
                             Ventas 
@@ -522,7 +522,7 @@ const JugadorDataShow = ({match, balance, comision, id, monedaType, riesgo, tota
                     </Grid>
                 </Grid>
 
-                <   Grid item container xs={5} justify="center" style={{borderLeft:"#afb6b8 1px solid"}}>
+                <Grid item container xs={5} justify="center" style={{borderLeft:"#afb6b8 1px solid"}}>
                     <Grid item xs={12} className={classes.balanceLink}
                         component={Link} to={
                             {

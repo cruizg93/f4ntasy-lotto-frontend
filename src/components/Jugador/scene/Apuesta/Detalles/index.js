@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useReducer} from 'react';
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 import {makeStyles} from '@material-ui/core/styles';
 import {adminService} from "../../../../../service/api/admin/admin.service";
 import JugadorDetallesEntry from '../../../components/Apuesta/Detalles/index';
@@ -99,44 +100,46 @@ const JugadorDetalles = ({...props}) => {
         }, [])
         return (
             <React.Fragment>
-                <Grid container spacing={1}
+                <Container maxWidth="sm">
+                    <Grid container spacing={1}
+                            direction="row"
+                            justify="center"
+                            className={classes.headerContainer}
+                            >
+                        <PageTitle titleLabel="Detalles Venta" xsValue={5}/>
+                        <Grid item xs={7} className={classes.userInfo}>
+                            <Typography variant="h6"
+                                style={ {
+                                    color: Colors.Btn_Blue_Dark,  
+                                    display: "inline-block",
+                                    whiteSpace:"nowrap"    
+                                }}>
+                                {username}{" - "}{moneda.symbol}
+                            </Typography>
+                            <Typography variant="h6"
+                                style={ {
+                                    color: Colors.Btn_Blue_Dark,  
+                                    display: "inline-block",
+                                    whiteSpace:"nowrap"    
+                                }}>
+                                    <Box component="div" display={{sm:'none'}}>{'\u00A0'}{"["}{name.length>15?name.substring(0,14):name}{"]"}</Box>
+                                    <Box component="div" display={{xs:'none', sm:'inline-block'}}>{'\u00A0'}{"["}{name}{"]"}</Box>
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={1}
                         direction="row"
                         justify="center"
-                        className={classes.headerContainer}
-                        >
-                    <PageTitle titleLabel="Detalles Venta" xsValue={5}/>
-                    <Grid item xs={7} className={classes.userInfo}>
-                        <Typography variant="h6"
-                            style={ {
-                                color: Colors.Btn_Blue_Dark,  
-                                display: "inline-block",
-                                whiteSpace:"nowrap"    
-                            }}>
-                            {username}{" - "}{moneda.symbol}
-                        </Typography>
-                        <Typography variant="h6"
-                            style={ {
-                                color: Colors.Btn_Blue_Dark,  
-                                display: "inline-block",
-                                whiteSpace:"nowrap"    
-                            }}>
-                                <Box component="div" display={{sm:'none'}}>{'\u00A0'}{"["}{name.length>15?name.substring(0,14):name}{"]"}</Box>
-                                <Box component="div" display={{xs:'none', sm:'inline-block'}}>{'\u00A0'}{"["}{name}{"]"}</Box>
-                        </Typography>
+                        alignItems="flex-start">
+                                {apuestasList.map((apuesta, index) =>
+                                    <JugadorDetallesEntry key={index} {...apuesta} index={index}
+                                                        username={props.location.state.username}
+                                                        moneda={moneda.symbol}
+                                                        {...props}/>
+                                )}
+                        
                     </Grid>
-                </Grid>
-                <Grid container spacing={1}
-                      direction="row"
-                      justify="center"
-                      alignItems="flex-start">
-                            {apuestasList.map((apuesta, index) =>
-                                <JugadorDetallesEntry key={index} {...apuesta} index={index}
-                                                    username={props.location.state.username}
-                                                    moneda={moneda.symbol}
-                                                    {...props}/>
-                            )}
-                    
-                </Grid>
+                </Container>
             </React.Fragment>
         )
     }

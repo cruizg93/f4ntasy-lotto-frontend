@@ -126,35 +126,38 @@ const Jugador = (props) => {
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000}/>
-            <Grid container spacing={1}
-                    direction="row"
-                    justify="center"
-                    className={classes.headerContainer}
-                    >
-                <PageTitle titleLabel="Resumen Jugadores" xsValue={8}/>
-                <Grid item xs={4} style={MainStyles.fullBorderBoxNoLeft} className={classes.crearButtonContainer}>
-                    <CrearButton variant="outlined" color="primary" 
-                    component={Link}
-                    to={
-                        {
-                            pathname: `/usuario/nuevo`,                               
-                        }
-                    }                   
-                    >
-                        <Typography variant="h6">
-                            CREAR<FaUserPlus className={classes.editIcon}/>
-                        </Typography>
+            <Container maxWidth="sm">
+                <Grid container spacing={1}
+                        direction="row"
+                        justify="center"
+                        className={classes.headerContainer}
+                        maxWidth="sm"
+                        >
+                    <PageTitle titleLabel="Resumen Jugadores" xsValue={8}/>
+                    <Grid item xs={4} style={MainStyles.fullBorderBoxNoLeft} className={classes.crearButtonContainer}>
+                        <CrearButton variant="outlined" color="primary" 
+                        component={Link}
+                        to={
+                            {
+                                pathname: `/usuario/nuevo`,                               
+                            }
+                        }                   
+                        >
+                            <Typography variant="h6">
+                                CREAR<FaUserPlus className={classes.editIcon}/>
+                            </Typography>
 
-                    </CrearButton>
+                        </CrearButton>
+                    </Grid>
                 </Grid>
-            </Grid>
-            <Grid container spacing={1}
-                direction="row"
-                justify="center">
-                {jugadorList.map((jugador, index) =>
-                    <JugadorDataShow key={index} {...jugador} {...props} handler={reload} toast={toast_notification}/>
-                )}
-            </Grid>
+                <Grid container spacing={1}
+                    direction="row"
+                    justify="center">
+                    {jugadorList.map((jugador, index) =>
+                        <JugadorDataShow key={index} {...jugador} {...props} handler={reload} toast={toast_notification}/>
+                    )}
+                </Grid>
+            </Container>
         </React.Fragment>
     );
 }
