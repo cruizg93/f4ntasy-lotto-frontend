@@ -65,6 +65,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
     },
     valuesContainer:{
+        textDecoration:"none",
         paddingTop:".5rem",
         "& div p":{
             paddingBottom:".5rem",
