@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles, withStyles} from "@material-ui/core/styles/index";
 import {red, blue} from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
-import ApuestaActivaRiesgoEntry from '../../../components/ApuestasActiva/Detalles/index';
+import ApuestaActivaRiesgoEntry from '../../../components/ApuestasActiva/Detalles/ApuestasActivaDetalles';
 import {printDocument6} from "../../../../../_helpers/print";
 
 

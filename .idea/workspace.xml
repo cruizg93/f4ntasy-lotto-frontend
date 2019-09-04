@@ -113,7 +113,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/Admin/components/ApuestasActiva/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Admin/components/ApuestasActiva/ApuestasActivasAdminData.js" />
         <option value="$PROJECT_DIR$/src/components/Admin/scences/ApuestasActivas/index.js" />
         <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/src/index.css" />
@@ -155,7 +155,7 @@
         <option value="$PROJECT_DIR$/src/components/Admin/scences/Historial/SemanaActual/index.js" />
         <option value="$PROJECT_DIR$/src/components/Jugador/scene/Apuesta/Detalles/Desglose/index.js" />
         <option value="$PROJECT_DIR$/src/components/Jugador/scene/Apuesta/Detalles/Single/index.js" />
-        <option value="$PROJECT_DIR$/src/components/Admin/components/ApuestasActiva/Detalles/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Admin/components/ApuestasActiva/Detalles/ApuestasActivaDetalles.js" />
         <option value="$PROJECT_DIR$/src/components/Admin/scences/ApuestasActivas/Detalles/index.js" />
         <option value="$PROJECT_DIR$/src/components/Admin/scences/Sistema/NumeroGanador/index.js" />
         <option value="$PROJECT_DIR$/src/service/api/admin/admin.service.js" />
@@ -727,7 +727,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Admin/components/ApuestasActiva/Detalles/index.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Admin/components/ApuestasActiva/Detalles/ApuestasActivaDetalles.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="57" column="39" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
@@ -741,14 +741,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Admin/components/ApuestasActiva/index.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Admin/components/ApuestasActiva/ApuestasActivasAdminData.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2618">
           <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/ApuestasActivas/Detalles/index.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Admin/scences/ApuestasActivas/Detalles/ApuestasActivaDetalles.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4202">
           <caret line="199" column="61" selection-start-line="199" selection-start-column="61" selection-end-line="199" selection-end-column="61" />

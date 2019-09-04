@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {adminService} from "../../../../service/api/admin/admin.service";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import ApuestasActivasAdminData from '../../components/ApuestasActiva/index'
+import ApuestasActivasAdminData from '../../components/ApuestasActiva/ApuestasActivasAdminData'
 import {makeStyles, withStyles} from '@material-ui/core/styles';
 import {Colors}  from "../../../../utils/__colors";
 import Button from "@material-ui/core/Button/index";

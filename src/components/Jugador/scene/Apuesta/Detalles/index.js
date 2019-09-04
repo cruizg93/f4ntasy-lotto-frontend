@@ -106,7 +106,7 @@ const JugadorDetalles = ({...props}) => {
                         >
                     <PageTitle titleLabel="Detalles Venta" xsValue={5}/>
                     <Grid item xs={7} className={classes.userInfo}>
-                        <Typography variant="h6" className={"form__center-label"}
+                        <Typography variant="h6"
                             style={ {
                                 color: Colors.Btn_Blue_Dark,  
                                 display: "inline-block",
@@ -114,7 +114,7 @@ const JugadorDetalles = ({...props}) => {
                             }}>
                             {username}{" - "}{moneda.symbol}
                         </Typography>
-                        <Typography variant="h6" className={"form__center-label"}
+                        <Typography variant="h6"
                             style={ {
                                 color: Colors.Btn_Blue_Dark,  
                                 display: "inline-block",
