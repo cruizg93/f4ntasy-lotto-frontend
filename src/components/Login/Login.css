@@ -4,40 +4,48 @@
   margin: auto;
   width: 100% !important;
   height: 100%;
-  background-image: url("assets/background.png");
+  /*background-image: url("assets/background.png");*/
 }
 .form {
   position: relative;
   z-index: 1;
   background: #FFFFFF;
-  max-width: 360px;
-  margin: 0 auto 100px;
-  padding: 45px;
+  max-width: 80%;
+  margin: 0 auto 10%;
+  padding: 5%;
   text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border: #afb6b8 1px solid;
+  /*box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);*/
 }
 .form input {
+  min-height: 33%;
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #f2f2f2;
   width: 100%;
   border: 0;
   margin: 0 0 15px;
-  padding: 15px;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  padding-left: 1em;
+  padding-right: 1em;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 12pt;
 }
 .form button {
+  min-height: 33px;
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: #4CAF50;
   width: 100%;
   border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
-
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  padding-left: 1em;
+  padding-right: 1em;
+  color:#ffffff;
+  font-size: 1.5em;
   cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {

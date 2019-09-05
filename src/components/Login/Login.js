@@ -28,6 +28,11 @@ class Login extends Component {
     };
     loginClickHandler = (e) => {
         e.preventDefault();
+        if(this.state.username == null || this.state.username.length == 0
+            || this.state.password == null || this.state.password.length == 0){  
+                return false;
+            }
+
         authenticationService.login(this.state.username, this.state.password)
                             .then(
                                 user => {
@@ -58,7 +63,7 @@ class Login extends Component {
                                onChange={this.loginOnChangeHandler}/>
                         <button ref={btn => {
                             this.btn = btn;
-                        }} onClick={this.loginClickHandler}>Acceder
+                        }} onClick={this.loginClickHandler}>INICIAR SESION
                         </button>
                     </form>
                 </div>
