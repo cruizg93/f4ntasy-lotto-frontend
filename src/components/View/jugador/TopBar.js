@@ -7,14 +7,12 @@ import { makeStyles } from '@material-ui/styles';
 import {MainStyles} from '../../View/MainStyles';
 import {Colors} from '../../../utils/__colors';
 import {FormatCurrency} from '../../../utils/__currency';
-import {Currency} from '../../../utils/__currency';
 
 import DiariaLogo from './../assets/Diaria Logo Jugador.png';
 import ChicaLogo from './../assets/Chica Logo Jugador.png';
 import { height } from '@material-ui/system';
 
-
-const TopBarStyles = makeStyles({
+const TopBarStyles = makeStyles(theme =>({
     barColumn: {
         float: "left",
         width: "33.33%",
@@ -69,26 +67,18 @@ const TopBarStyles = makeStyles({
             color: Colors.Btn_Blue_Dark
         }
     }
-});
+}));
 
 function TopBar(props){
+    const apuestaIcon = props.apuestaType==="DIARIA"?DiariaLogo:ChicaLogo;
     const classes = TopBarStyles();
-    const apuestaCurrency = (props.moneda==="LEMPIRAS" || props.moneda === "L")?Currency.Lempiras:Currency.Dollar;
-    var tipoApuestaIcon = null;
-
-    if(props.apuestaType == 'DIARIA'){
-        tipoApuestaIcon = DiariaLogo;
-    }else if(props.apuestaType == 'CHICA'){
-        tipoApuestaIcon = ChicaLogo;
-    }
-
     return (
         <Grid container
             display ="flex"
             justify="center"
             alignItems="center"
             className={classes.barRow}>
-            <Grid item xs={3} className={classes.imageContainer}><img src={tipoApuestaIcon} alt="apuestaLogo" /></Grid>
+            <Grid item xs={3} className={classes.imageContainer}><img src={apuestaIcon} alt="apuestaLogo" /></Grid>
             <Grid item xs={5} className={classes.fechaContaier}>
                 <Typography variant="body1" >
                     {props.fecha}
@@ -96,18 +86,17 @@ function TopBar(props){
             </Grid>
             <Grid item xs={4}>
                 <Typography variant="body1" className={classes.totalContaier}>
-                    <p>Total:{'\u00A0'}</p><p id="valorTotal">{apuestaCurrency.symbol}{FormatCurrency(apuestaCurrency,props.total.toFixed(2))}</p>
+                    <p>Total:{'\u00A0'}</p><p id="valorTotal">{props.apuestaCurrency.symbol}{FormatCurrency(props.apuestaCurrency,props.total.toFixed(2))}</p>
                 </Typography>    
             </Grid>
         </Grid>
     );
+    
 }
 
 TopBar.propTypes = {
-    apuestaType : PropTypes.string.isRequired,
-    fecha       : PropTypes.string.isRequired,
-    total       : PropTypes.number.isRequired,
-    moneda      : PropTypes.string.isRequired,
+    apuestaType:    PropTypes.string.isRequired
 }
 
 export default TopBar;
+
