@@ -11,6 +11,10 @@ import Button from "@material-ui/core/Button/index";
 import Typography from '@material-ui/core/Typography';
 import {Colors} from '../../../../../utils/__colors';
 import { FaShoppingCart } from 'react-icons/fa';
+import TopBar from '../../../../View/jugador/TopBar';
+import PageTitle from '../../../../View/jugador/PageTitle';
+import { setDate } from 'date-fns';
+
 //FaRegTrashAlt
 const LimpiarButton = withStyles({
     root: {
@@ -96,8 +100,12 @@ const useStyles = makeStyles(theme => ({
 const AdicionarNumeroApuesta = ({match, ...props}) => {
     const classes = useStyles();
     const [entry, setEntryData] = useState([]);
+    const [total, setTotal] = useState(0.00);
     const mounted = useState(true);
     const [name, setName] = useState('');
+    const [apuestaType, setApuestaType] = useState('');
+    const [hour, setHour] = useState('');
+    const [day, setDay] = useState('');
     useEffect(() => {        
         let reg = /^\d+$/;
         if (!reg.test(match.params.apuestaId)) {
@@ -110,6 +118,9 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
                 
             setName(result.data.name);
             setEntryData(Array.from(result.data.list))
+            setApuestaType(result.data.type);
+            setHour(result.data.hour);
+            setDay(result.data.day);
         })
     }, []);
 
@@ -144,6 +155,9 @@ const AdicionarNumeroApuesta = ({match, ...props}) => {
 
     return (
         <React.Fragment>
+            <Grid container >
+                <TopBar apuestaType={apuestaType} fecha={hour+" - "+day} total={total}/>
+            </Grid>
             <ToastContainer autoClose={8000}/>
             <Grid container spacing={1}
                   direction="row"

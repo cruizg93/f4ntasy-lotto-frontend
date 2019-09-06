@@ -1,8 +1,10 @@
 import {Colors} from "../../utils/__colors";
 
 export const MainStyles = {
+    borderValue:"#afb6b8 1px solid",
     fullBorderBox:{border:"#afb6b8 1px solid"},
     fullBorderBoxNoLeft:{borderRight:"#afb6b8 1px solid",borderTop:"#afb6b8 1px solid",borderBottom:"#afb6b8 1px solid", borderLeft:"0px !important"},
+    borderBoxTopBottom:{borderRight:"0 !important",borderTop:"#afb6b8 1px solid",borderBottom:"#afb6b8 1px solid", borderLeft:"0px !important"},
 
     boxContainer:{
         background : Colors.Main,
