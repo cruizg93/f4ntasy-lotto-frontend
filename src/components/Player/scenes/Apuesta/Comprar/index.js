@@ -9,7 +9,7 @@ import ShowNumber from '../../../../PAsistente/components/ShowNumero/index';
 import {playerService} from "../../../../../service/api/player/player.service";
 import {Colors} from "../../../../../utils/__colors";
 import { FaShoppingCart } from 'react-icons/fa';
-
+import ListaApuestas from '../../../scenes/Apuesta/ListaApuestas';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -131,7 +131,7 @@ const ComprarApuesta = ({...props}) => {
     const moneda = useState(props.location.state.moneda);
     const [id, setIdValue] = useState(props.location.state.id);
     const mounted = useState(true);
-    const apuestaType = props.location.state.apuestaName.includes("CHICA")
+    const apuestaType = props.location.state.apuestaName.includes("CHICA");
     const [time, setTime]=useState("");
 
     const [open, setOpen] = useState(false);   
@@ -274,14 +274,7 @@ const ComprarApuesta = ({...props}) => {
                 justify="center"
                 alignItems="flex-start"
             >
-                {elements.map((element, index) => {
-                        return element.current > 0 ?
-                            <ShowNumber key={index}
-                                        numero={element.numero}
-                                        valor={element.current}
-                                        {...props}/> : null
-                    }
-                )}
+                <ListaApuestas entryList={elements} removerApuesta={()=>{}}/> 
             </Grid>
             <Grid container>
                 <Grid item xs={3}

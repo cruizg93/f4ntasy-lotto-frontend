@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/styles';
-import {MainStyles} from '../../View/MainStyles';
+import {MainStyles} from '../MainStyles';
 import {Colors} from '../../../utils/__colors';
 import {FormatCurrency} from '../../../utils/__currency';
 
@@ -64,7 +64,7 @@ const TopBarStyles = makeStyles(theme =>({
             marginBottom:"0px",
         },
         " & #valorTotal":{
-            color: Colors.Jugador_Blue
+            color: Colors.Btn_Blue_Dark
         }
     }
 }));
@@ -86,7 +86,6 @@ function TopBar(props){
             </Grid>
             <Grid item xs={4}>
                 <Typography variant="body1" className={classes.totalContaier}>
-                    <p>Total:{'\u00A0'}</p><p id="valorTotal">{props.apuestaCurrency.symbol}{FormatCurrency(props.apuestaCurrency,props.total.toFixed(2))}</p>
                 </Typography>    
             </Grid>
         </Grid>
