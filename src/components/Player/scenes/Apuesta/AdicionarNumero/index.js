@@ -30,6 +30,7 @@ import {Currency, FormatCurrency} from '../../../../../utils/__currency';
 import { setDate } from 'date-fns';
 import {MainStyles} from '../../../../View/MainStyles'
 import {timeService} from "../../../../../service/api/time/time.service";
+import ResumenApuestas from "../Resumen/ResumenApuestas";
 
 const useStyles = theme =>({
     root: {
@@ -122,17 +123,7 @@ const useStyles = theme =>({
             fontSize:"0.5rem"
         }
     },
-    resumenCompraContainer:{
-        backgroundColor:Colors.Main,
-    },
-    resumenCompraText:{
-        textAlign:"left",
-        color:"#999999",
-    },
-    resumenCompraValue:{
-        color: Colors.Jugador_Blue,
-    }
-
+    
 });
 
 class AdicionarNumeroApuesta extends Component {
@@ -538,43 +529,8 @@ class AdicionarNumeroApuesta extends Component {
                     </Grid>
 
                 </Grid>
-
-                <Grid container className={this.classes.resumenCompraContainer}>
-                    <Grid itme xs={2}></Grid>
-                    <Grid item xs={4} className={this.classes.resumenCompraText}>
-                        <Typography variant="body1" gutterBottom >
-                            Costo:
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Typography variant="body1" gutterBottom className={this.classes.resumenCompraValue}>
-                            {this.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(this.apuestaCurrency,this.state.costoTotal)}
-                        </Typography>
-                    </Grid>
-                    <Grid itme xs={2}></Grid>
-                    <Grid item xs={4}>
-                        <Typography variant="body1" gutterBottom className={this.classes.resumenCompraText}>
-                            Comision:
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Typography variant="body1" gutterBottom className={this.classes.resumenCompraValue}>
-                            {this.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(this.apuestaCurrency,this.state.comisionTotal)}
-                        </Typography>
-                    </Grid>
-                    <Grid itme xs={2}></Grid>
-                    <Grid item xs={4}>
-                        <Typography variant="body1" gutterBottom className={this.classes.resumenCompraText}>
-                            Total:
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Typography variant="body1" gutterBottom className={this.classes.resumenCompraValue}>
-                            {this.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(this.apuestaCurrency,this.state.total)}
-                        </Typography>
-                    </Grid>
-                </Grid>
-                
+                <ResumenApuestas apuestaCurrency={this.apuestaCurrency} 
+                    costoTotal={this.state.costoTotal} comisionTotal={this.state.comisionTotal} total={this.state.total}/>
                 <Grid container spacing={0}
                       direction="row"
                       justify="center"
