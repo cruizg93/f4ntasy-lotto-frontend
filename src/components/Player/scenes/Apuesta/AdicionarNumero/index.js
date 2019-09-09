@@ -516,7 +516,8 @@ class AdicionarNumeroApuesta extends Component {
                       direction="row"
                       justify="center"
                       alignItems="center" style={{width:"100%"}}>
-                    <ListaApuestas entryList={this.state.entryList} removerApuesta={this.removerApuesta} displayApuestaListIndex={this.state.displayApuestaListIndex}/>
+                    <ListaApuestas entryList={this.state.entryList} removerApuesta={this.removerApuesta} fromApuestaActiva={false}
+                        displayApuestaListIndex={this.state.displayApuestaListIndex}/>
                 </Grid>
                 <Grid container spacing={0}
                     direction="row"

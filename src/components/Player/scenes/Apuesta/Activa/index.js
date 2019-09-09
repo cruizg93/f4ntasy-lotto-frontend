@@ -13,7 +13,13 @@ import Clear from '@material-ui/icons/Clear';
 import {printDocument6} from "../../../../../_helpers/print";
 import './Activa.css'
 import {Colors} from '../../../../../utils/__colors'
-
+import {Currency} from '../../../../../utils/__currency'
+import Fab from '@material-ui/core/Fab';
+import TopBar from '../../../../View/jugador/TopBar'
+import ListaApuestas from '../ListaApuestas';
+import ResumenApuestas from '../Resumen/ResumenApuestas';
+import { MdSettingsBackupRestore } from "react-icons/md";
+import { FaFileExcel } from "react-icons/fa";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -50,7 +56,45 @@ const useStyles = makeStyles(theme => ({
     },
     apuestasContainer:{
         marginBottom: '5rem'
-    }
+    },
+    buttonContainerApuestas:{
+        minWidth:"100%",
+        position: "fixed",
+        display:"flex",
+        zIndex: "25",  
+        bottom:"3px",
+        justifyContent:"flex-end",
+        alignItems:"flex-end",
+        marginTop:"0.5rem",
+        marginBottom:"0.5rem", 
+        paddingLeft:"1rem",
+        "& div":{
+            paddingRight:"1rem",
+            display:"flex",
+            justifyContent:"center",
+            alignItems:"center",
+        }
+    },
+    buttonDetalles:{
+        height:"1.5rem",
+        color: "#000000",
+        backgroundColor:Colors.Jugador_Yellow,
+        width:"100% !important",
+        padding:"0px !important",
+        "& span":{
+            fontSize:"0.75rem"
+        }
+    },
+    buttonLimpiar:{
+        height:"1rem",
+        color: "#ffffff",
+        backgroundColor:Colors.Jugador_Red,
+        width:"100% !important",
+        padding:"0px !important",
+        "& span":{
+            fontSize:"0.5rem"
+        }
+    },
 }));
 
 
@@ -166,6 +210,8 @@ const DetallesButton = withStyles({
 const ApuestaActiva = ({...props}) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
+    const [hour, setHour] = useState('');
+    const [day, setDay] = useState('');
     const [comision, setComision] = useState(0.0);
     const [riesgo, setRiesgo] = useState(0.0);
     const [total, setTotal] = useState(0.0);
@@ -173,7 +219,9 @@ const ApuestaActiva = ({...props}) => {
     const [disable, setDisable] = useState(true);
     const [apuestaType, setApuestaType] = useState('CHICA');
     const [monedaType, setMonedaType]=React.useState("$");
-
+    const apuestaCurrency =(props.location.state.moneda==="LEMPIRAS" || props.location.state.moneda === "L")
+                            ?Currency.Lempiras
+                            :Currency.Dollar;
     const apuestaId = props.match.params.apuestaId;
 
     const mounted = useState(true);
@@ -182,7 +230,8 @@ const ApuestaActiva = ({...props}) => {
     const [openEdit, setOpenEdit] = useState(false);   
     const [openCompraChange, setOpenCompraChange] = useState(false);   
 
-
+    const [openDeleteOneDialog,setOpenDeleteOneDialog] = useState(false);
+    const [tempApuestaIndex,setTempApuestaIndex] = useState(-1);
     function handleClickOpen() {
         setOpen(true);
     }
@@ -224,9 +273,11 @@ const ApuestaActiva = ({...props}) => {
             success_response();
             playerService.list_apuestas_activas_details(apuestaId).then((result) => {                
                 setTitle(result.data.title);
-                setComision(result.data.comision.toFixed(2));
-                setRiesgo(result.data.riesgo.toFixed(2));
-                setTotal(result.data.total.toFixed(2));
+                setHour(result.data.hour);
+                setDay(result.data.day);
+                setComision(parseFloat(result.data.comision));
+                setRiesgo(parseFloat(result.data.riesgo));
+                setTotal(parseFloat(result.data.total));
                 setList(Array.from(result.data.list));
             })
         });
@@ -267,15 +318,17 @@ const ApuestaActiva = ({...props}) => {
 
     useEffect(() => {        
        
-        setMonedaType(props.location.state.moneda)
+        setMonedaType(props.location.state.moneda);
         playerService.list_apuestas_activas_details(apuestaId).then((result) => {   
           
             setApuestaType(result.data.type)
             setTitle(result.data.title);
-            setComision(result.data.comision.toFixed(2));
-            setRiesgo(result.data.riesgo.toFixed(2));
-            setTotal(result.data.total.toFixed(2));
-            setList(Array.from(result.data.list));
+            setHour(result.data.hour);
+            setDay(result.data.day);
+            setComision(parseFloat(result.data.comision));
+            setRiesgo(parseFloat(result.data.riesgo));
+            setTotal(parseFloat(result.data.total));
+            setList(prev => Array.from(result.data.list));
         })
     },[]);
 
@@ -351,6 +404,11 @@ const ApuestaActiva = ({...props}) => {
                                 </Button>
                             </DialogActions>
             </Dialog> 
+            <TopBar apuestaType={apuestaType} 
+                    fecha={hour+" - "+day}
+                    total={total}
+                    apuestaCurrency= {apuestaCurrency}
+                    />
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
@@ -362,94 +420,53 @@ const ApuestaActiva = ({...props}) => {
                     <Divider/>
                 </Grid>
             </Grid>
-            <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
-                  alignItems="flex-start"
-                  id="container-apuesta-activa-data"
-                  className={classes.apuestasContainer}
-                  >
-                <Grid container spacing={1}
-                      direction="row"
-                      justify="center"
-                      alignItems="flex-start">
-                    {/*<Grid container spacing={1} id="apuestas-activas-data-entry">*/}
-                    {list.map((apuesta, index) =>
-                        <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}
-                                            disable={disable}
-                                            onEdit={updateFunction}
-                                            delete={deleteOneFunction}
-                                            mounted={mounted}
-                                            update={submitUpdateData}
-                        />
-                    )}
-                    {/*</Grid>*/}
+            <Grid container spacing={0}
+                    direction="row"
+                    justify="center"
+                    alignItems="center" style={{width:"100%"}}>
+                <ListaApuestas entryList={list} removerApuesta={(apuestaIndex)=>{setTempApuestaIndex(apuestaIndex);setOpenDeleteOneDialog(true)}} 
+                        displayApuestaListIndex={false} fromApuestaActiva={true}/>
+            </Grid>
 
-
-                </Grid>
-                <Grid container>
-                    <Grid item xs={3}
-                          container
-                          justify="flex-end"
-
-                    >
-                        <Typography variant="body1" gutterBottom className={''}>
-                            Apuestas |
-                        </Typography>
+            <ResumenApuestas apuestaCurrency={apuestaCurrency} 
+                    costoTotal={total} comisionTotal={comision} total={riesgo}/>
+                
+            <Grid container spacing={0}
+                    direction="row"
+                    justify="center"
+                    alignItems="center" > 
+                <Grid item xs={12} className={classes.buttonContainerApuestas}>
+                    <Grid item xs={4}>
+                        <Fab variant="extended" aria-label="removeAll" className={classes.buttonLimpiar} onClick={handleClickOpen}>
+                            <MdSettingsBackupRestore className={classes.extendedIcon} />
+                                Limpiar
+                        </Fab>
                     </Grid>
-                    <Grid item xs={9}
-                          container
-                          justify="flex-start"
-                          className={''}
-                    >
-                        <Typography variant="body1" gutterBottom className={classes.numbers}>
-                            {monedaType}{" "}{total}
-                        </Typography>
-
+                    <Grid item xs={2}>
                     </Grid>
-                    <Grid item xs={3}
-                          container
-                          justify="flex-end"
-                    >
-                        <Typography variant="body1" gutterBottom className={''}>
-                            Comisiones |
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={9}
-                          container
-                          justify="flex-start"
-                          className={''}
-                    >
-                        <Typography variant="body1" gutterBottom className={classes.numbers}>
-                            {monedaType}{" "}{comision}
-                        </Typography>
-
-                    </Grid>
-                    <Grid item xs={3}
-                          container
-                          justify="flex-end"
-                    >
-                        <Typography variant="body1" gutterBottom className={''}>
-                            Riesgo |
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={9}
-                          container
-                          justify="flex-start"
-                          className={''}
-                    >
-                        <Typography variant="body1" gutterBottom className={classes.numbers}>
-                        {monedaType}{" "}{riesgo}
-                        </Typography>
-
+                    <Grid item xs={6}>
+                        <Fab variant="extended" aria-label="buyAll" className={classes.buttonDetalles} 
+                            component={Link}
+                            to={{
+                                pathname: '/usuario/apuesta/detalles',
+                                state: {
+                                    title: {title},
+                                    id: props.match.params.apuestaId,
+                                    type : apuestaType,
+                                    moneda : monedaType,
+                                }
+                            }}
+                        >
+                            <FaFileExcel className={classes.extendedIcon}/>
+                            Detalles
+                        </Fab>
                     </Grid>
                 </Grid>
             </Grid>
-
             <Grid container spacing={1}
                   direction="row"
                   justify="center"
-                  className={classes.fixedElement}
+                  className={classes.fixedElement} style={{display:"none"}}
             >
                 <Grid item xs={2}>
                     <EditarButton variant="outlined" color="primary" onClick={handleDisableClick}>
@@ -495,7 +512,32 @@ const ApuestaActiva = ({...props}) => {
                 </Grid>
 
             </Grid>
-
+            <Dialog
+                open={openDeleteOneDialog}
+                onClose={()=> {setOpenDeleteOneDialog(false)}}
+                aria-labelledby="alert-dialog-delete-one"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle
+                    id="alert-dialog-delete-one">Desea eliminar la apuesta al número </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        {`Una vez eliminada la apuesta no podrá recuperarla`}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>      
+                    <Button onClick={()=>{setOpenDeleteOneDialog(false);}} color="primary">
+                                Cancel
+                    </Button>                           
+                    <Button onClick={() => {
+                        deleteOneFunction(tempApuestaIndex);
+                        setOpenDeleteOneDialog(false);
+                        submitUpdateData();
+                    }} color="primary" autoFocus>
+                        Aceptar
+                    </Button>
+                </DialogActions>
+            </Dialog>                            
         </React.Fragment>
     )
 };

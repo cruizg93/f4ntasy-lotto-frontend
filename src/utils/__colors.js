@@ -16,4 +16,5 @@ export const Colors = {
     Sky_Blue :"#deecfa",
     Jugador_Blue: "#6699cc",
     Jugador_Red: "#cc3333",
+    Jugador_Yellow:"#ffcc66",
 }

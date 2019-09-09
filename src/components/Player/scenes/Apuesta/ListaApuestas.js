@@ -55,7 +55,6 @@ function ListaApuestas(props) {
 
             <List className={classes.apuestaList}>
                 {props.entryList
-                    .filter(apuesta => parseInt(apuesta.current) > 0)
                     .map((element, index) =>
 
                     <ListItem key={index} className={classes.apuesta} alignItems="center">
@@ -65,11 +64,14 @@ function ListaApuestas(props) {
                                 <ListItemText className={classes.apuestaIndex} secondary={props.entryList.length-index}/>
                             </Grid>
                             <Grid item xs={8}>
-                                <ListItemText className={classes.apuestaValues}  primary={element.numero +" - "+element.current}  />
+                                <ListItemText className={classes.apuestaValues}  primary={element.numero +" - "+(element.current===undefined?element.valor:element.current)}  />
                             </Grid>
                             <Grid item xs={2}>
                             <ListItemIcon >
-                                <FaTrashAlt className={classes.apuestaDeleteIcon} onClick={() => props.removerApuesta(element.numero, element.current)}/>
+                                <FaTrashAlt className={classes.apuestaDeleteIcon} 
+                                        onClick={props.fromApuestaActiva
+                                                ?() => props.removerApuesta(index)
+                                                :() => props.removerApuesta(element.numero, element.current)}/>
                             </ListItemIcon>
                             </Grid>
                         </Grid>
