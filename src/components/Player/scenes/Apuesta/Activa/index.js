@@ -62,12 +62,13 @@ const useStyles = makeStyles(theme => ({
         position: "fixed",
         display:"flex",
         zIndex: "25",  
-        bottom:"3px",
+        bottom:"0px",
         justifyContent:"flex-end",
         alignItems:"flex-end",
-        marginTop:"0.5rem",
-        marginBottom:"0.5rem", 
+        paddingTop:"0.5rem",
+        paddingBottom:"0.5rem", 
         paddingLeft:"1rem",
+        backgroundColor:"#ffffff",
         "& div":{
             paddingRight:"1rem",
             display:"flex",
@@ -83,7 +84,11 @@ const useStyles = makeStyles(theme => ({
         padding:"0px !important",
         "& span":{
             fontSize:"0.75rem"
+        },
+        "&:hover": {
+            backgroundColor:Colors.Jugador_Yellow,
         }
+
     },
     buttonLimpiar:{
         height:"1rem",
@@ -93,6 +98,9 @@ const useStyles = makeStyles(theme => ({
         padding:"0px !important",
         "& span":{
             fontSize:"0.5rem"
+        },
+        "&:hover": {
+            backgroundColor:Colors.Jugador_Red,
         }
     },
 }));
@@ -409,21 +417,10 @@ const ApuestaActiva = ({...props}) => {
                     total={total}
                     apuestaCurrency= {apuestaCurrency}
                     />
-            <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
-                  alignItems="flex-start">
-                <Typography variant="h5" gutterBottom>
-                    {title}
-                </Typography>
-                <Grid item xs={12}>
-                    <Divider/>
-                </Grid>
-            </Grid>
             <Grid container spacing={0}
                     direction="row"
                     justify="center"
-                    alignItems="center" style={{width:"100%"}}>
+                    alignItems="center" style={{width:"100%", marginBottom:"1.25rem",}}>
                 <ListaApuestas entryList={list} removerApuesta={(apuestaIndex)=>{setTempApuestaIndex(apuestaIndex);setOpenDeleteOneDialog(true)}} 
                         displayApuestaListIndex={false} fromApuestaActiva={true}/>
             </Grid>

@@ -75,29 +75,29 @@ const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
     return (
         <>
          <Dialog
-                            open={open}
-                            onClose={handleClose}
-                            aria-labelledby="alert-dialog-crear-usuario"
-                            aria-describedby="alert-dialog-description"
-                        >
-                            <DialogTitle
-                                id="alert-dialog-crear-usuario">Desea eliminar la apuesta al número {numero}</DialogTitle>
-                            <DialogContent>
-                                <DialogContentText id="alert-dialog-description">
-                                    {`Una vez eliminada la apuesta no podrá recuperarla`}
-                                </DialogContentText>
-                            </DialogContent>
-                            <DialogActions>      
-                                <Button onClick={handleClose} color="primary">
-                                            Cancel
-                                </Button>                           
-                                <Button onClick={() => {
-                                    handleCloseAccept();  
-                                }} color="primary" autoFocus>
-                                    Aceptar
-                                </Button>
-                            </DialogActions>
-                        </Dialog>
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-crear-usuario"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle
+                    id="alert-dialog-crear-usuario">Desea eliminar la apuesta al número {numero}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        {`Una vez eliminada la apuesta no podrá recuperarla`}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>      
+                    <Button onClick={handleClose} color="primary">
+                                Cancel
+                    </Button>                           
+                    <Button onClick={() => {
+                        handleCloseAccept();  
+                    }} color="primary" autoFocus>
+                        Aceptar
+                    </Button>
+                </DialogActions>
+            </Dialog>
             <Grid item xs={4}
                   container
                   justify="flex-end"

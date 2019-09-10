@@ -15,21 +15,30 @@ import NumberFormat from 'react-number-format';
 const useStyles = makeStyles({
     apuestaList:{
         width:"100%",
+        padding:"0px",
+        maring:"0px",
     },
     apuesta:{
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
+        padding:"0px",
+        marginTop:"1.25rem",
     },
     apuestaIndex:{
         color:"#999999",
-        marginRight:"0.375rem",
         textAlign:"right",
         "& p":{
             fontSize:"0.75rem",
         }
     },
     apuestaValues:{
+        width:"12.25rem",
+        maxWidth:"12.25rem",
+        marginLeft:"1rem",
+        marginRight:"1rem",
+        marginTop:"0",
+        marginBottom:"0",
         border:"1px solid #cccccc",
         borderRadius:"17px",
         padding:"0.25rem",
@@ -40,8 +49,7 @@ const useStyles = makeStyles({
         }
     },
     apuestaDeleteIcon:{
-        fontSize:"0.875rem",
-        marginLeft:"0.375rem",
+        fontSize:"1rem",
         color:"#999999"
     }
 
@@ -57,25 +65,25 @@ function ListaApuestas(props) {
                 {props.entryList
                     .map((element, index) =>
 
-                    <ListItem key={index} className={classes.apuesta} alignItems="center">
-                        <Grid container display="flex" alignItems="center">
-                            <Grid item xs={2} style={{display:!isIndexDisplay?"flex":"none"}}></Grid>
-                            <Grid item xs={2} style={{display:isIndexDisplay?"flex":"none"}}>
-                                <ListItemText className={classes.apuestaIndex} secondary={props.entryList.length-index}/>
-                            </Grid>
-                            <Grid item xs={8}>
-                                <ListItemText className={classes.apuestaValues}  primary={element.numero +" - "+(element.current===undefined?element.valor:element.current)}  />
-                            </Grid>
-                            <Grid item xs={2}>
-                            <ListItemIcon >
-                                <FaTrashAlt className={classes.apuestaDeleteIcon} 
-                                        onClick={props.fromApuestaActiva
-                                                ?() => props.removerApuesta(index)
-                                                :() => props.removerApuesta(element.numero, element.current)}/>
-                            </ListItemIcon>
-                            </Grid>
-                        </Grid>
-                    </ListItem>
+                <ListItem key={index} className={classes.apuesta} alignItems="center">
+                
+                    <div style={{display:isIndexDisplay?"flex":"none"}}>
+                        <ListItemText className={classes.apuestaIndex} primary={props.entryList.length-index}/>
+                    </div>
+                    <ListItemText className={classes.apuestaValues}  
+                        primary={<Grid container>
+                                    <Grid item xs={5} style={{textAlign:"end"}}>{element.numero}</Grid>
+                                    <Grid item xs={2}>&mdash;</Grid>
+                                    <Grid item xs={5} style={{textAlign:"start"}}>{element.current===undefined?element.valor:element.current}</Grid>
+                                </Grid>
+                                }  />
+                    <ListItemIcon style={{minWidth:"auto"}}>
+                        <FaTrashAlt className={classes.apuestaDeleteIcon} 
+                                onClick={props.fromApuestaActiva
+                                        ?() => props.removerApuesta(index)
+                                        :() => props.removerApuesta(index, element.numero, element.current)}/>
+                    </ListItemIcon>
+                </ListItem>
                 )}
             </List>
     )

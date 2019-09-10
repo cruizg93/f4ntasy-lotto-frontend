@@ -1,8 +1,10 @@
 import React, {Component, useState, useEffect, useLayoutEffect} from 'react';
+import Container from '@material-ui/core/Container';
 import clsx from 'clsx';
 import {Link, Redirect} from 'react-router-dom';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import Grid from '@material-ui/core/Grid';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -31,6 +33,7 @@ import { setDate } from 'date-fns';
 import {MainStyles} from '../../../../View/MainStyles'
 import {timeService} from "../../../../../service/api/time/time.service";
 import ResumenApuestas from "../Resumen/ResumenApuestas";
+
 
 const useStyles = theme =>({
     root: {
@@ -62,13 +65,11 @@ const useStyles = theme =>({
             borderRight:"#3366cc 1px solid",
         }
     },
-    margin: {
-      
-    },
     extendedIcon: {
         
     },
     buttonContainerApuestas:{
+        backgroundColor:"#ffffff",
         minWidth:"100%",
         position: "fixed",
         display:"flex",
@@ -77,7 +78,6 @@ const useStyles = theme =>({
         justifyContent:"flex-end",
         alignItems:"flex-end",
         marginTop:"0.5rem",
-        marginBottom:"0.5rem", 
         paddingLeft:"1rem",
         "& div":{
             paddingRight:"1rem",
@@ -87,13 +87,20 @@ const useStyles = theme =>({
         }
     },
     buttonAgregarApuesta:{
+        borderRadius: "1000px",
+        textTransform: "none",
         height:"2rem",
         color: "#ffffff",
         backgroundColor:Colors.Orange,
-        fontSize:"2rem",
-        width:"100% !important"
+        fontSize:"1.5rem",
+        width:"100% !important",
+        "&:hover": {
+            backgroundColor:Colors.Orange,
+          }
     },
     buttonComprar:{
+        borderRadius: "1000px",
+        textTransform: "none",
         height:"1.5rem",
         color: "#ffffff",
         backgroundColor:Colors.Jugador_Blue,
@@ -101,9 +108,12 @@ const useStyles = theme =>({
         padding:"0px !important",
         "& span":{
             fontSize:"0.75rem"
-        }
+        },
+        
     },
     buttonFinalizarCompra:{
+        borderRadius: "1000px",
+        textTransform: "none",
         height:"1.5rem",
         color: "#ffffff",
         backgroundColor:Colors.Jugador_Blue,
@@ -111,20 +121,30 @@ const useStyles = theme =>({
         padding:"0px !important",
         "& span":{
             fontSize:"0.75rem"
-        }
+        },
+        "&:hover": {
+            backgroundColor:Colors.Jugador_Blue,
+          }
     },
     buttonLimpiar:{
-        height:"1rem",
+        borderRadius: "1000px",
+        textTransform: "none",
+        height:"1.25rem",
         color: "#ffffff",
         backgroundColor:Colors.Jugador_Red,
         width:"100% !important",
         padding:"0px !important",
         "& span":{
             fontSize:"0.5rem"
-        }
+        },
+        "&:hover": {
+            backgroundColor:Colors.Jugador_Red,
+          }
     },
     
 });
+
+
 
 class AdicionarNumeroApuesta extends Component {
 
@@ -153,6 +173,8 @@ class AdicionarNumeroApuesta extends Component {
         }
         this.apuestaCurrency=(this.props.moneda==="LEMPIRAS" || this.props.moneda === "L")?Currency.Lempiras:Currency.Dollar;
         this.match = props.match;
+
+        this.topBarRef = React.createRef();
         this.entryInputContainerRef = React.createRef();
         this.entryNumeroInputRef = React.createRef();
         this.entryUnidadesInputRef = React.createRef();     
@@ -195,10 +217,11 @@ class AdicionarNumeroApuesta extends Component {
                 })
             }  
         });
-        this.buttonContainerComprarRef.current.style.display = "none";       
+        this.buttonContainerComprarRef.current.style.display = "none";   
+        this.entryNumeroInputRef.current.focus(); 
+        
     }
    
-    
 
     handleComprar = (event) => {
         if (this.state.entryList.length == 0){
@@ -208,16 +231,11 @@ class AdicionarNumeroApuesta extends Component {
         this.buttonContainerApuestasRef.current.style.display = "none";
         this.entryInputContainerRef.current.style.display = "none";
         this.buttonContainerComprarRef.current.style.display = "flex";
-        //Merge valores iguales
         
-
-        //Ordernar la lista
-        this.setState(state => {
-            const entryList = state.entryList.sort((a, b) => (parseInt(a.numero) > parseInt(b.numero)) ? 1 : -1)
-            return {
-                entryList,
-            };
-        });
+        //Merge valores iguales
+        let newEntryList = this.state.entry.filter(item =>{return item.current>0});
+        this.setState((prevState, props) => {
+            return {entryList:newEntryList}} ); 
         
         //Esconder index de la lista
         this.setState((prevState, props) => {
@@ -268,7 +286,8 @@ class AdicionarNumeroApuesta extends Component {
         this.setState(state => {
             const entry = state.entry.map((item, j) => {
               if (j === parseInt(numero)) {
-                return {numero: numero, tope: current, max: current, current: current, noFirst: false}
+                let newCurrent = parseInt(item.current) + parseInt(current);
+                return {numero: numero, tope: newCurrent, max: newCurrent, current: newCurrent, noFirst: false}
               } else {
                 return item;
               }
@@ -279,7 +298,7 @@ class AdicionarNumeroApuesta extends Component {
         });
         this.entryNumeroInputRef.current.focus();
     }
-    removerApuesta = (numero,current) => {
+    removerApuesta = (index,numero,current) => {
         let costoApuesta = parseFloat(current) * parseFloat(this.state.costoXMil);
         let comisionApuesta = parseFloat(current) * parseFloat(this.state.comisionRate) / 100;
 
@@ -305,7 +324,7 @@ class AdicionarNumeroApuesta extends Component {
 
         // quitar apuesta de lista
         this.setState(state => {
-            const entryList = state.entryList.filter(apuesta => apuesta.numero !== numero);
+            const entryList = state.entryList.filter((apuesta,i,arr) => i !== index);
             return {
                 entryList,
             };
@@ -342,13 +361,9 @@ class AdicionarNumeroApuesta extends Component {
                 entry,
             };
         });
-
-        console.log(this.state.entry);
     }
 
     handleFinalizarCompra = (event) => { 
-        console.log(this.state.entryList);
-        console.log(this.state.entry);
         let id = this.match.params.apuestaId;
         playerService.update_number(this.state.entry, id).then((result) => {
             this.props.history.push("/");
@@ -360,7 +375,6 @@ class AdicionarNumeroApuesta extends Component {
     }
 
     handleClickOpenFinalizarCompraDialog = (event) => {
-        console.log(this.props.location.state.title);
         timeService.time().then((result)=>{          
             this.setState((prevState, props) => {
                 return {time:result.data.time}; });
@@ -408,15 +422,19 @@ class AdicionarNumeroApuesta extends Component {
 
         const ApuestaInput = withStyles({
             root:{
-                marginLeft:"0.5rem",
-                marginRight:"0.5rem",
                 height:"100%",
-                maxHeight:"40px",
+                height:"2.25rem",
                 borderRadius:"1000px",
-                border:"#3366cc 1px solid",
-                paddingRight:"0.25rem",
-                paddingLeft:"0.25rem",
-                caretColor: "#3366ff"
+                border:"#afb6b8 1px solid",
+                paddingRight:"0.75rem",
+                paddingLeft:"0.75rem",
+                caretColor: "#3366ff",    
+                '&:hover': {
+                    borderColor: '#3366cc',
+                },
+                '&$focused': {
+                    borderColor: '#3366cc',
+                }   
             },
             
         })(TextField);
@@ -452,35 +470,32 @@ class AdicionarNumeroApuesta extends Component {
         return (
             <React.Fragment>
                 <ToastContainer autoClose={8000}/>
-                <TopBar apuestaType={this.state.apuestaType} 
+                
+                <TopBar ref={this.topBarRef}
+                    apuestaType={this.state.apuestaType} 
                     fecha={this.state.hour+" - "+this.state.day}
                     total={this.state.total}
                     apuestaCurrency={ (this.props.moneda==="LEMPIRAS" || this.props.moneda === "L")?Currency.Lempiras:Currency.Dollar}
+                    
                     />
-                <Grid container
+                <Grid container spacing={0}
                 display ="flex"
                 justify="center"
                 alignItems="center"
-                style={{marginTop:"1rem"}}
                 ref={this.entryInputContainerRef}
+                style={{padding: "0 1.5rem"}}
                 >
-                    <Grid item xs={1}></Grid>
-                    <Grid item xs={5}>
-                        <FormControl fullWidth={true}>   
+                    <Grid item xs={6} style={{textAlign:"end"}}>
                         <ApuestaInput
                             autoFocus
                             inputRef = {this.entryNumeroInputRef}
                             type = "number"                        
                             placeholder="Numero:"
-                            className={this.classes.margin}
                             id="input-entry-numero"
+                            pattern="[0-9]*"
+                            style={{marginRight:"0.375rem",maxWidth:"9.5rem"}}
                             InputProps={{
                                 disableUnderline: true,   
-                                startAdornment: (
-                                    <InputAdornment position="start" className={this.classes.inputIcon}>
-                                        <TiSocialFlickrCircular size={25}/>
-                                    </InputAdornment>
-                                ),
                             }}
                             onInput={(e)=>{ 
                                 e.target.value = e.target.value.toString().slice(0,2);
@@ -489,28 +504,26 @@ class AdicionarNumeroApuesta extends Component {
                                 }
                             }}
                         />    
-                        </FormControl>
                     </Grid>
-                    <Grid item xs={5}>
-                        <FormControl fullWidth={true} margin="none">   
+                    <Grid item xs={6} style={{textAlign:"start"}}>
                         <ApuestaInput
                             inputRef = {this.entryUnidadesInputRef}
                             type="number"
                             placeholder="Cantidad:"
-                            className={this.classes.margin}
+                            pattern="[0-9]*"
+                            style={{marginLeft:"0.375rem",maxWidth:"9.5rem"}}
                             id="input-entry-unidad"
                             InputProps={{
                                 disableUnderline: true, 
-                                startAdornment: (
-                                    <InputAdornment position="start" className={this.classes.inputIcon}>
-                                        <MdSettingsInputSvideo size={25}/>
-                                    </InputAdornment>
-                            )   ,
+                            }}
+                            onInput={(e)=>{ 
+                                if(this.entryNumeroInputRef.current.value.toString().length < 2){
+                                    this.entryNumeroInputRef.current.focus();
+                                    this.entryUnidadesInputRef.current.value = "";
+                                }
                             }}
                         />    
-                        </FormControl>
                     </Grid>
-                    <Grid item xs={1}></Grid>
                 </Grid>
                 <Grid container spacing={0}
                       direction="row"
@@ -518,66 +531,63 @@ class AdicionarNumeroApuesta extends Component {
                       alignItems="center" style={{width:"100%"}}>
                     <ListaApuestas entryList={this.state.entryList} removerApuesta={this.removerApuesta} fromApuestaActiva={false}
                         displayApuestaListIndex={this.state.displayApuestaListIndex}/>
-                </Grid>
-                <Grid container spacing={0}
-                    direction="row"
-                    justify="center"
-                    alignItems="center">
                     <Grid item xs={12}>
-                        <Typography variant="body1" style={{textAlign:"center",color:"#999999",marginBottom:"1rem"}}>
+                        <Typography variant="body1" style={{textAlign:"center",color:"#999999",marginTop:"1.1875rem",marginBottom:"1.1875rem",lineHeight:"0.85"}}>
                             Total &mdash; {this.state.totalCurrent}
                         </Typography>  
                     </Grid>
-
                 </Grid>
                 <ResumenApuestas apuestaCurrency={this.apuestaCurrency} 
                     costoTotal={this.state.costoTotal} comisionTotal={this.state.comisionTotal} total={this.state.total}/>
-                <Grid container spacing={0}
-                      direction="row"
-                      justify="center"
-                      alignItems="center" 
-                      ref={this.buttonContainerApuestasRef} > 
-                    <Grid item xs={12} className={this.classes.buttonContainerApuestas}>
-                        <Grid item xs={4}>
-                            <Fab variant="extended" aria-label="removeAll" className={this.classes.buttonLimpiar} onClick={this.limpiarApuestas}>
-                                <MdSettingsBackupRestore className={this.classes.extendedIcon} />
+
+                <Container maxWidth="sm" >
+                    <Grid container spacing={0}
+                        direction="row"
+                        justify="center"
+                        alignItems="center" 
+                        ref={this.buttonContainerApuestasRef}> 
+                        <Grid item xs={12} className={this.classes.buttonContainerApuestas}>
+                            <Grid item xs={4}>
+                                <Button variant="contained"  className={this.classes.buttonLimpiar} onClick={this.limpiarApuestas}>
+                                    <MdSettingsBackupRestore className={this.classes.extendedIcon} />
                                     Limpiar
-                            </Fab>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <Fab variant="extended" aria-label="buyAll" className={this.classes.buttonComprar} onClick={this.handleComprar}>
-                                <FaShoppingCart className={this.classes.extendedIcon} />
-                                Comprar
-                            </Fab>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <Fab variant="extended" aria-label="addItem" className={this.classes.buttonAgregarApuesta} onClick={this.agregarApuesta}>
-                                <MdFileDownload className={this.classes.extendedIcon} />
-                            </Fab>
+                                </Button>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <Button variant="contained"  className={this.classes.buttonComprar} onClick={this.handleComprar}>
+                                    <FaShoppingCart className={this.classes.extendedIcon} />
+                                    Comprar
+                                </Button>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <Button variant="contained" className={this.classes.buttonAgregarApuesta} onClick={this.agregarApuesta}>
+                                    <MdFileDownload className={this.classes.extendedIcon} />
+                                </Button>
+                            </Grid>
                         </Grid>
                     </Grid>
-                </Grid>
-                <Grid container spacing={0}
-                      direction="row"
-                      justify="center"
-                      alignItems="center" 
-                      ref={this.buttonContainerComprarRef} > 
-                    <Grid item xs={12} className={this.classes.buttonContainerApuestas}>
-                        <Grid item xs={4}>
-                            <Fab variant="extended" aria-label="removeAll" className={this.classes.buttonLimpiar} onClick={this.limpiarApuestas}>
-                                <MdSettingsBackupRestore className={this.classes.extendedIcon} />
-                                    Limpiar
-                            </Fab>
-                        </Grid>
-                        <Grid item xs={2}>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Fab variant="extended" aria-label="buyAll" className={this.classes.buttonFinalizarCompra} onClick={this.handleClickOpenFinalizarCompraDialog}>
-                                Finalizar Compra
-                            </Fab>
+                    <Grid container spacing={0}
+                        direction="row"
+                        justify="center"
+                        alignItems="center" 
+                        ref={this.buttonContainerComprarRef} > 
+                        <Grid item xs={12} className={this.classes.buttonContainerApuestas}>
+                            <Grid item xs={4}>
+                                <Fab variant="extended" aria-label="removeAll" className={this.classes.buttonLimpiar} onClick={this.limpiarApuestas}>
+                                    <MdSettingsBackupRestore className={this.classes.extendedIcon} />
+                                        Limpiar
+                                </Fab>
+                            </Grid>
+                            <Grid item xs={2}>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Fab variant="extended" aria-label="buyAll" className={this.classes.buttonFinalizarCompra} onClick={this.handleClickOpenFinalizarCompraDialog}>
+                                    Finalizar Compra
+                                </Fab>
+                            </Grid>
                         </Grid>
                     </Grid>
-                </Grid>
+                </Container>
                 <Dialog open={this.state.openFinalizarCompraDialog} onClose={this.handleCloseFinalizarCompraDialog}
                     aria-labelledby="alert-dialog-finalizar-compra"
                     aria-describedby="alert-dialog-description"
