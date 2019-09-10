@@ -15,7 +15,7 @@ import NumberFormat from 'react-number-format';
 const useStyles = makeStyles({
     apuestaList:{
         width:"100%",
-        padding:"0px",
+        padding:"2rem 0px 0px 0px",
         maring:"0px",
     },
     apuesta:{

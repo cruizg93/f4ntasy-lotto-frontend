@@ -218,44 +218,9 @@ class AdicionarNumeroApuesta extends Component {
                 })
             }  
 
-
-            /*
-            *   IF user refresh page the data fetch from local storage 
-            */
-            console.log(this.state.name);
-            console.log(JSON.parse(localStorage.getItem("currentApuesta") ));
-            let currentApuesta = JSON.parse(localStorage.getItem("currentApuesta") );
-            if(this.state.name === currentApuesta.name){
-                this.setState((state, props) => ({oldEntryList:currentApuesta.oldEntryList}));
-                this.setState((state, props) => ({entryList:currentApuesta.entryList}));
-                this.setState((state, props) => ({entry:currentApuesta.entry}));
-                this.setState((state, props) => ({totalCurrent:currentApuesta.totalCurrent}));
-                this.setState((state, props) => ({comisionTotal:currentApuesta.comisionTotal}));
-                this.setState((state, props) => ({total:currentApuesta.total}));
-            }
-            localStorage.removeItem("currentApuesta");
         });
         this.buttonContainerComprarRef.current.style.display = "none";   
         this.entryNumeroInputRef.current.focus(); 
-
-        /*
-        *   IF user refresh page the data will be saved on storage and re-draw one the page render
-        */
-        window.onbeforeunload = function() {
-            var currentApuesta = {
-                'oldEntryList':this.state.oldEntryList,
-                'entryList':this.state.entryList,
-                'entry':this.state.list,
-                'name':this.state.name,
-                'totalCurrent':this.state.costoTotal,
-                'costo':this.state.costoTotal,
-                'comision':this.state.comisionTotal,
-                'total':this.state.total,
-            }
-            localStorage.setItem("currentApuesta",JSON.stringify(currentApuesta));
-            this.onUnload();
-            return "";
-        }.bind(this);
     }
 
     inpuntKeyPressedEvent = (event) =>{
@@ -427,8 +392,6 @@ class AdicionarNumeroApuesta extends Component {
                 entry,
             };
         });
-
-        localStorage.removeItem("currentApuesta");
     }
 
     handleFinalizarCompra = (event) => { 
@@ -437,7 +400,6 @@ class AdicionarNumeroApuesta extends Component {
             this.props.history.push("/");
             this.handleCloseFinalizarCompraDialog(event);
             
-            localStorage.removeItem("currentApuesta");
             return () => {
                 this.state.mounted.current = false;
             };        
@@ -547,7 +509,7 @@ class AdicionarNumeroApuesta extends Component {
                 justify="center"
                 alignItems="center"
                 ref={this.entryInputContainerRef}
-                style={{padding: "3rem 1.5rem 0 1.5rem"}}
+                style={{padding: "3.5rem 1.5rem 0 1.5rem"}}
                 >
                     <Grid item xs={6} style={{textAlign:"end"}}>
                         <ApuestaInput
