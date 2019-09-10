@@ -12,6 +12,7 @@ import DiariaLogo from './../assets/Diaria Logo Jugador.png';
 import ChicaLogo from './../assets/Chica Logo Jugador.png';
 import { height } from '@material-ui/system';
 
+
 const TopBarStyles = makeStyles(theme =>({
     barColumn: {
         float: "left",
@@ -25,28 +26,22 @@ const TopBarStyles = makeStyles(theme =>({
     
     },    
     barRow: {
-        borderTop: MainStyles.borderValue,
-        borderBottom: MainStyles.borderValue,
         position: "static",
         display: "flex",
         width: "100%",
         top: "3.5rem",
-        backgroundColor: Colors.Main,
+        backgroundColor: "#f4f4f4",
         zIndex: "25",
         paddingLeft:".5rem",
         paddingRight:".5rem",
+        marginBottom:"1rem",
         maxHeight:"48px !important",
-        height:"3rem"
+        height:"2rem"
     },
     imageContainer:{
-        display:"inherit",
-        justify:"inherit",
-        alignItems:"inherit",
         "& img":{
-            width:"100%",
-            display:"inherit",
-            justify:"inherit",
-            alignItems:"inherit",
+            maxWidth: "75px",
+            maxHeight: "100% !important",
         }
     },
     fechaContaier:{
@@ -77,7 +72,8 @@ function TopBar(props){
             display ="flex"
             justify="center"
             alignItems="center"
-            className={classes.barRow}>
+            className={classes.barRow}
+            ref={props.ref}>
             <Grid item xs={3} className={classes.imageContainer}><img src={apuestaIcon} alt="apuestaLogo" /></Grid>
             <Grid item xs={5} className={classes.fechaContaier}>
                 <Typography variant="body1" >
@@ -86,7 +82,7 @@ function TopBar(props){
             </Grid>
             <Grid item xs={4}>
                 <Typography variant="body1" className={classes.totalContaier}>
-                    <p>Total:{'\u00A0'}</p><p id="valorTotal">{props.apuestaCurrency.symbol}{FormatCurrency(props.apuestaCurrency,props.total.toFixed(2))}</p>
+                    <p id="valorTotal">{props.apuestaCurrency.symbol}{FormatCurrency(props.apuestaCurrency,props.total)}</p>
                 </Typography>    
             </Grid>
         </Grid>
