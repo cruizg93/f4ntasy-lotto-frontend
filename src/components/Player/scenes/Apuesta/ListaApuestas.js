@@ -26,6 +26,7 @@ const useStyles = makeStyles({
         marginTop:"1.25rem",
     },
     apuestaIndex:{
+        minWidth:"1rem",
         color:"#999999",
         textAlign:"right",
         "& p":{

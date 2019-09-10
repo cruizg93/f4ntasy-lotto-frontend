@@ -65,18 +65,18 @@ const TopBarStyles = makeStyles(theme =>({
 
 function TopBar(props){
     const apuestaIcon = props.apuestaType==="DIARIA"?DiariaLogo:ChicaLogo;
+    const fecha = (props.apuestaType==="DIARIA"?props.hour+" - ":"")+props.day;
     const classes = TopBarStyles();
     return (
         <Grid container
             display ="flex"
             justify="center"
             alignItems="center"
-            className={classes.barRow}
-            ref={props.ref}>
+            className={classes.barRow}>
             <Grid item xs={3} className={classes.imageContainer}><img src={apuestaIcon} alt="apuestaLogo" /></Grid>
             <Grid item xs={5} className={classes.fechaContaier}>
                 <Typography variant="body1" >
-                    {props.fecha}
+                    {fecha}
                 </Typography>    
             </Grid>
             <Grid item xs={4}>

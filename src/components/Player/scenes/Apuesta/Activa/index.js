@@ -413,7 +413,8 @@ const ApuestaActiva = ({...props}) => {
                             </DialogActions>
             </Dialog> 
             <TopBar apuestaType={apuestaType} 
-                    fecha={hour+" - "+day}
+                    hour={hour}
+                    day={day}
                     total={total}
                     apuestaCurrency= {apuestaCurrency}
                     />

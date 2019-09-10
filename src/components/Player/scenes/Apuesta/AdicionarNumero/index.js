@@ -153,6 +153,7 @@ class AdicionarNumeroApuesta extends Component {
         this.state = {
             entryNumero: null,
             entryUnidades: null,
+            oldEntryList:[], //needed to redraw user input list after handleComprar  event is triggered
             entryList: [],
             entry: [],
             apuestaType: '',
@@ -216,10 +217,45 @@ class AdicionarNumeroApuesta extends Component {
                     this.setState({costoXMil:costoXMil});
                 })
             }  
+
+
+            /*
+            *   IF user refresh page the data fetch from local storage 
+            */
+            console.log(this.state.name);
+            console.log(JSON.parse(localStorage.getItem("currentApuesta") ));
+            let currentApuesta = JSON.parse(localStorage.getItem("currentApuesta") );
+            if(this.state.name === currentApuesta.name){
+                this.setState((state, props) => ({oldEntryList:currentApuesta.oldEntryList}));
+                this.setState((state, props) => ({entryList:currentApuesta.entryList}));
+                this.setState((state, props) => ({entry:currentApuesta.entry}));
+                this.setState((state, props) => ({totalCurrent:currentApuesta.totalCurrent}));
+                this.setState((state, props) => ({comisionTotal:currentApuesta.comisionTotal}));
+                this.setState((state, props) => ({total:currentApuesta.total}));
+            }
+            localStorage.removeItem("currentApuesta");
         });
         this.buttonContainerComprarRef.current.style.display = "none";   
         this.entryNumeroInputRef.current.focus(); 
-        
+
+        /*
+        *   IF user refresh page the data will be saved on storage and re-draw one the page render
+        */
+        window.onbeforeunload = function() {
+            var currentApuesta = {
+                'oldEntryList':this.state.oldEntryList,
+                'entryList':this.state.entryList,
+                'entry':this.state.list,
+                'name':this.state.name,
+                'totalCurrent':this.state.costoTotal,
+                'costo':this.state.costoTotal,
+                'comision':this.state.comisionTotal,
+                'total':this.state.total,
+            }
+            localStorage.setItem("currentApuesta",JSON.stringify(currentApuesta));
+            this.onUnload();
+            return "";
+        }.bind(this);
     }
 
     inpuntKeyPressedEvent = (event) =>{
@@ -244,6 +280,9 @@ class AdicionarNumeroApuesta extends Component {
         this.entryInputContainerRef.current.style.display = "none";
         this.buttonContainerComprarRef.current.style.display = "flex";
         
+        //oldEntryList will be needed in case user want to display the values and the list order before this event was triggered.
+        this.setState((prevState, props) => {
+            return {oldEntryList:this.state.entryList}} ); 
         //Merge valores iguales
         let newEntryList = this.state.entry.filter(item =>{return item.current>0});
         this.setState((prevState, props) => {
@@ -252,7 +291,22 @@ class AdicionarNumeroApuesta extends Component {
         //Esconder index de la lista
         this.setState((prevState, props) => {
             return {displayApuestaListIndex:false}; });  
+    }
 
+    regresar = (event) =>{
+
+        this.buttonContainerApuestasRef.current.style.display = "flex";
+        this.entryInputContainerRef.current.style.display = "flex";
+        this.buttonContainerComprarRef.current.style.display = "none";
+        
+        //Merge valores iguales
+        let newEntryList = this.state.entry.filter(item =>{return item.current>0});
+        this.setState((prevState, props) => {
+            return {entryList:this.state.oldEntryList}} ); 
+        
+        //Esconder index de la lista
+        this.setState((prevState, props) => {
+            return {displayApuestaListIndex:true}; });  
     }
 
     agregarApuesta = (event) => {
@@ -373,6 +427,8 @@ class AdicionarNumeroApuesta extends Component {
                 entry,
             };
         });
+
+        localStorage.removeItem("currentApuesta");
     }
 
     handleFinalizarCompra = (event) => { 
@@ -380,6 +436,8 @@ class AdicionarNumeroApuesta extends Component {
         playerService.update_number(this.state.entry, id).then((result) => {
             this.props.history.push("/");
             this.handleCloseFinalizarCompraDialog(event);
+            
+            localStorage.removeItem("currentApuesta");
             return () => {
                 this.state.mounted.current = false;
             };        
@@ -411,14 +469,6 @@ class AdicionarNumeroApuesta extends Component {
             //     this.state.entry[id]['current'] = 0;
             // }
         }
-
-        const StyledButton = withStyles({
-            root: {
-                width: '100px',
-                height: '100%',
-                borderRadius: "1000px",
-            },
-        })(Button);
     
         function submitClickHandler() {
             playerService.update_number(this.state.entry, this.match.params.apuestaId).then((result) => {
@@ -486,7 +536,8 @@ class AdicionarNumeroApuesta extends Component {
                 
                 <TopBar ref={this.topBarRef}
                     apuestaType={this.state.apuestaType} 
-                    fecha={this.state.hour+" - "+this.state.day}
+                    hour={this.state.hour}
+                    day={this.state.day}
                     total={this.state.total}
                     apuestaCurrency={ (this.props.moneda==="LEMPIRAS" || this.props.moneda === "L")?Currency.Lempiras:Currency.Dollar}
                     
@@ -500,9 +551,8 @@ class AdicionarNumeroApuesta extends Component {
                 >
                     <Grid item xs={6} style={{textAlign:"end"}}>
                         <ApuestaInput
-                            autoFocus
                             inputRef = {this.entryNumeroInputRef}
-                            type = "number"                        
+                            type = "tel"                        
                             placeholder="Numero:"
                             id="input-entry-numero"
                             pattern="[0-9]*"
@@ -521,7 +571,7 @@ class AdicionarNumeroApuesta extends Component {
                     <Grid item xs={6} style={{textAlign:"start"}}>
                         <ApuestaInput
                             inputRef = {this.entryUnidadesInputRef}
-                            type="number"
+                            type="tel"
                             placeholder="Cantidad:"
                             pattern="[1-9]*"
                             style={{marginLeft:"0.375rem",maxWidth:"9.5rem"}}
@@ -587,9 +637,9 @@ class AdicionarNumeroApuesta extends Component {
                         ref={this.buttonContainerComprarRef} > 
                         <Grid item xs={12} className={this.classes.buttonContainerApuestas}>
                             <Grid item xs={4}>
-                                <Fab variant="extended" aria-label="removeAll" className={this.classes.buttonLimpiar} onClick={this.limpiarApuestas}>
+                                <Fab variant="extended" aria-label="removeAll" className={this.classes.buttonLimpiar} onClick={this.regresar}>
                                     <MdSettingsBackupRestore className={this.classes.extendedIcon} />
-                                        Limpiar
+                                        Regresar
                                 </Fab>
                             </Grid>
                             <Grid item xs={2}>
