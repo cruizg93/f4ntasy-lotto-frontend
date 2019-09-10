@@ -26,15 +26,14 @@ const TopBarStyles = makeStyles(theme =>({
     
     },    
     barRow: {
-        position: "static",
+        position: "fixed",
         display: "flex",
         width: "100%",
-        top: "3.5rem",
+        /*top: "3.5rem",*/
         backgroundColor: "#f4f4f4",
         zIndex: "25",
         paddingLeft:".5rem",
         paddingRight:".5rem",
-        marginBottom:"1rem",
         maxHeight:"48px !important",
         height:"2rem"
     },

@@ -139,13 +139,11 @@ class Dashboard extends Component {
                                 </Button>
                             </DialogActions>
                         </Dialog> 
-                        <HideOnScroll {...this.props}>
                             <Toolbar drawerClickHandler={this.drawerToggleClickHandler}
                             logoutClickHandler={this.logoutClickHandler}
                             admin={this.state.isAdmin}
                             asistente={this.state.isAsistente}
                             isPlayer={this.state.isPlayer}/>
-                        </HideOnScroll>
                          <SideDrawer show={this.state.sideDrawerOpen}
                             drawerClickHandler={this.drawerToggleClickHandler}
                             logoutClickHandler={this.logoutClickHandler}
@@ -155,13 +153,11 @@ class Dashboard extends Component {
                         {backdrop}
                                 
                         <main>
-                            <HideOnScroll {...this.props}>
                                 <Clock
                                         admin={this.state.isAdmin}
                                         asistente={this.state.isAsistente}
                                         isPlayer={this.state.isPlayer}
                                 />
-                            </HideOnScroll>
                             <Container maxWidth="sm" className={this.state.isAdmin?"container__box":"container__jugador"}>
                                 {this.props.childComponent}
                             </Container>

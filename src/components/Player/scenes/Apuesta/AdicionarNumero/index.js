@@ -434,6 +434,7 @@ class AdicionarNumeroApuesta extends Component {
 
         const ApuestaInput = withStyles({
             root:{
+                fontSize:"1.25rem",
                 height:"100%",
                 height:"2.25rem",
                 borderRadius:"1000px",
@@ -495,7 +496,7 @@ class AdicionarNumeroApuesta extends Component {
                 justify="center"
                 alignItems="center"
                 ref={this.entryInputContainerRef}
-                style={{padding: "0 1.5rem"}}
+                style={{padding: "3rem 1.5rem 0 1.5rem"}}
                 >
                     <Grid item xs={6} style={{textAlign:"end"}}>
                         <ApuestaInput
@@ -522,7 +523,7 @@ class AdicionarNumeroApuesta extends Component {
                             inputRef = {this.entryUnidadesInputRef}
                             type="number"
                             placeholder="Cantidad:"
-                            pattern="[0-9]*"
+                            pattern="[1-9]*"
                             style={{marginLeft:"0.375rem",maxWidth:"9.5rem"}}
                             id="input-entry-unidad"
                             InputProps={{

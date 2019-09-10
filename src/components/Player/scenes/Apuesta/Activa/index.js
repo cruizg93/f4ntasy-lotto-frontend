@@ -420,7 +420,7 @@ const ApuestaActiva = ({...props}) => {
             <Grid container spacing={0}
                     direction="row"
                     justify="center"
-                    alignItems="center" style={{width:"100%", marginBottom:"1.25rem",}}>
+                    alignItems="center" style={{width:"100%", marginBottom:"1.25rem",paddingTop:"2rem"}}>
                 <ListaApuestas entryList={list} removerApuesta={(apuestaIndex)=>{setTempApuestaIndex(apuestaIndex);setOpenDeleteOneDialog(true)}} 
                         displayApuestaListIndex={false} fromApuestaActiva={true}/>
             </Grid>
