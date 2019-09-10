@@ -221,6 +221,18 @@ class AdicionarNumeroApuesta extends Component {
         this.entryNumeroInputRef.current.focus(); 
         
     }
+
+    inpuntKeyPressedEvent = (event) =>{
+        if (event.key === "Enter") {
+            let numero = this.entryNumeroInputRef.current.value;
+            let unidades = this.entryUnidadesInputRef.current.value;
+            if( unidades.length == 0 || numero.length == 0){
+                return;
+            }else{
+                this.agregarApuesta(null);
+            }
+        }
+    }
    
 
     handleComprar = (event) => {
@@ -522,6 +534,7 @@ class AdicionarNumeroApuesta extends Component {
                                     this.entryUnidadesInputRef.current.value = "";
                                 }
                             }}
+                            onKeyPress={this.inpuntKeyPressedEvent}
                         />    
                     </Grid>
                 </Grid>
