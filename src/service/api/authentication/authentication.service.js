@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { baseUrl } from '../../../config/const';
 import { handleResponse } from '../../../_helpers/handle-response';
 
-const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
+var currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 
 function login(username, password) {
     let user = username[0].toUpperCase() + username.slice(1);
@@ -62,5 +62,8 @@ export default {
     currentUser: currentUserSubject.asObservable(),
     get currentUserValue() {
         return currentUserSubject.value
+    },
+    reloadCrrentUserValue() {
+        currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
     }
 };

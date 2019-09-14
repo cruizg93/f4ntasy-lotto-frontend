@@ -6,6 +6,7 @@ import {
 import { userService } from './user.service';
 import { history } from '../history';
 import { API } from '../../config/const';
+import authenticationService from '../../service/api/authentication/authentication.service';
 
 export const userActions = {
     login,
@@ -25,7 +26,10 @@ function login(action, history) {
                     }
                     localStorage.setItem('currentUser', JSON.stringify(response.data));
                     dispatch({ type: LOGIN_SUCCESS, payload: data });
-                    history.push('/');
+                    setTimeout(() => {
+                        authenticationService.reloadCrrentUserValue();
+                        history.push('/');
+                    }, 1000);
                     // NotificationManager.success('Account Created Successfully!');
                 } else {
 
