@@ -120,7 +120,7 @@ const BalanceAdmin = (props) => {
                   justify="center"
             >
 
-                <Grid item xs={6}>
+                <Grid item sm={6}>
                     <ImprimirButton variant="outlined" color="primary"
                                     disabled={(selectedDate1 - selectedDate) < 0}
                                     onClick={handleOnClick}

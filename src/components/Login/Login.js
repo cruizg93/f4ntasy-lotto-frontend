@@ -1,24 +1,21 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import { Grid, Button, Container } from '@material-ui/core';
+import { FaUserAlt, FaLock } from "react-icons/fa";
 
-import {authenticationService} from '../../service/api/authentication/authentication.service';
-
+import { userActions } from '../../store/actions';
+import authenticationService from '../../service/api/authentication/authentication.service';
 import './Login.css';
-import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 class Login extends Component {
     constructor(props) {
         super(props);
-        // redirect to home if already logged in
-        if (authenticationService.currentUserValue) {
-            this.props.history.push('/');
-        }
         this.state = {
             username: '',
             password: '',
-            // redirect: false
         };
-        this.loginClickHandler = this.loginClickHandler.bind(this);
     }
 
     error_reponse = () => {
@@ -26,50 +23,61 @@ class Login extends Component {
             position: toast.POSITION.TOP_RIGHT
         });
     };
-    loginClickHandler = (e) => {
-        e.preventDefault();
-        if(this.state.username == null || this.state.username.length == 0
-            || this.state.password == null || this.state.password.length == 0){  
-                return false;
-            }
 
-        authenticationService.login(this.state.username, this.state.password)
-                            .then(
-                                user => {
-                                    const { from } = this.props.location.state || { from: { pathname: "/" } };
-                                    this.props.history.push(from);
-                                },
-                                error => {
-                                    // setSubmitting(false);
-                                    // setStatus(error);
-                                }
-                            );     
+    loginClickHandler = e => {
+        if (this.state.username.length === 0 || this.state.password.length === 0) {
+            return;
+        }
+        const { dispatch } = this.props;
+        dispatch(userActions.login(this.state, this.props.history))
+        // authenticationService.login(this.state.username, this.state.password)
+        //     .then(
+        //         user => {
+        //             const { from } = this.props.location.state || { from: { pathname: "/" } };
+        //             this.props.history.push(from);
+        //         },
+        //         error => {
+        //         }
+        //     );
 
     };
 
-    loginOnChangeHandler = (e) => {
-        this.setState({[e.target.name]: e.target.value});
-
+    onChange = e => {
+        this.setState({
+            [e.target.id]: e.target.value
+        });
     };
 
     render() {
         return (
             <div className="login-page">
                 <ToastContainer autoClose={8000} />
-                <div className="form">
-                    <form className="login-form">
-                        <input type="text" placeholder="username" name="username" onChange={this.loginOnChangeHandler}/>
-                        <input type="password" placeholder="password" name="password"
-                               onChange={this.loginOnChangeHandler}/>
-                        <button ref={btn => {
-                            this.btn = btn;
-                        }} onClick={this.loginClickHandler}>INICIAR SESION
-                        </button>
-                    </form>
-                </div>
+                <Container maxWidth="sm">
+                    <Grid item sm={12} className="grid-username">
+                        <div className="input-group input-group-lg">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text"><FaUserAlt /></span>
+                            </div>
+                            <input type="text" id="username" className="form-control" onChange={this.onChange} value={this.state.username} placeholder="Usuaria" />
+                        </div>
+                    </Grid>
+                    <Grid item sm={12} className="grid-password">
+                        <div className="input-group input-group-lg" >
+                            <div className="input-group-prepend" >
+                                <span className="input-group-text" ><FaLock /></span>
+                            </div>
+                            <input type="password" id="password" className="form-control" onChange={this.onChange} value={this.state.password} placeholder="Contraseña" />
+                        </div>
+                    </Grid>
+                    <Grid item sm={12} className="grid-login">
+                        <Button variant="contained" className="login-button" onClick={this.loginClickHandler}>
+                            Iniciar Sesión
+                        </Button>
+                    </Grid>
+                </Container>
             </div>
         );
     }
 }
 
-export default Login;
+export default connect()(Login);

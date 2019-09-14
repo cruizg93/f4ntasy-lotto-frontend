@@ -118,14 +118,14 @@ const DetallesApuesta = ({...props}) => {
                           justify="center"
                           className={classes.containerData}
                     >
-                 <Grid item xs={3}
+                 <Grid item sm={3}
                     className={classes.apuestaContainer}
                     >                     
                     <Typography variant="h5" gutterBottom>
                         {apuestaType}
                     </Typography>
                  </Grid>
-                 <Grid item xs={8}>
+                 <Grid item sm={8}>
                     <Typography variant="h5" gutterBottom
                         style={{marginLeft: ".5rem"}}
                     >
@@ -133,14 +133,14 @@ const DetallesApuesta = ({...props}) => {
                     </Typography>                     
                  </Grid>
                  
-                 <Grid item xs={12}
+                 <Grid item sm={12}
                     container spacing={1}
                     direction="row"
                     justify="center"
                     alignItems="flex-start"
                     id="apuesta-activa-numeros-detalles"
                     >
-                        <Grid item xs={12}>
+                        <Grid item sm={12}>
                              <Divider/>
                         </Grid>
                         {list.map((apuestaDetail, index) =>
@@ -154,7 +154,7 @@ const DetallesApuesta = ({...props}) => {
                   direction="row"
                   justify="center"
                     >
-                    <Grid item xs={12}>
+                    <Grid item sm={12}>
                         <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                             <Typography variant="body1" gutterBottom>
                                 Imprimir

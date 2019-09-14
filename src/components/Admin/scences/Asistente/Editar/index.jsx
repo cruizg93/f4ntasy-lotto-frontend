@@ -238,12 +238,12 @@ const EditarAsistente= ({...props}) =>{
                     alignItems="flex-start"
                     className={classes.headerContainer}
                     >
-                    <Grid item xs={6} className={classes.editarAsistenteLabel}>
+                    <Grid item sm={6} className={classes.editarAsistenteLabel}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
                             Editar Jugador X
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item sm={6}>
                         
                     </Grid>
                 </Grid> 
@@ -254,12 +254,12 @@ const EditarAsistente= ({...props}) =>{
                       alignItems="flex-start"
                       className={classes.headerContainer}
                       >
-                    <Grid item xs={12}>
+                    <Grid item sm={12}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
                         {placeholderUser} {placeholderUserName} {"(asociado)"}
                         </Typography>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item sm={12}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
                         {jugadorUsername} {jugadorName} {jugadorMoneda} {"(principal)"}
                         </Typography>
@@ -271,7 +271,7 @@ const EditarAsistente= ({...props}) =>{
                       alignItems="center"
                       className={classes.headerContainer}
                       >
-                    <Grid item xs={12}>
+                    <Grid item sm={12}>
                         <TextField
                             id="user"
                             label="Nuevo Usuario"

@@ -241,7 +241,7 @@ const ApuestaActivaAsistente = ({...props}) => {
                 <Typography variant="h5" gutterBottom>
                     {title}
                 </Typography>
-                <Grid item xs={12}>
+                <Grid item sm={12}>
                     <Divider/>
                 </Grid>
             </Grid>
@@ -265,7 +265,7 @@ const ApuestaActivaAsistente = ({...props}) => {
                     )}
                 </Grid>
                 <Grid container>
-                    <Grid item xs={3}
+                    <Grid item sm={3}
                           container
                           justify="flex-end"
                     >
@@ -273,7 +273,7 @@ const ApuestaActivaAsistente = ({...props}) => {
                             Apuestas |
                         </Typography>
                     </Grid>
-                    <Grid item xs={9}
+                    <Grid item sm={9}
                           container
                           justify="flex-start"
                           className={''}
@@ -289,14 +289,14 @@ const ApuestaActivaAsistente = ({...props}) => {
                   justify="center"
                   className={classes.fixedElement}
             >
-                <Grid item xs={4}>
+                <Grid item sm={4}>
                     <EditarButton variant="outlined" color="primary" onClick={handleDisableClick}>
                         <Typography variant="body1" gutterBottom>
                             {disable ? "Editar" : "Fijar"}                            
                         </Typography>
                     </EditarButton>
                 </Grid>                
-                <Grid item xs={4}>
+                <Grid item sm={4}>
                     <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir

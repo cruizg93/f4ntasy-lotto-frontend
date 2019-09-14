@@ -6,8 +6,8 @@
     text-align: center;
     background: transparent;
     padding-bottom: .5rem;
-    font-size: 14pt;
-
+    font-size: 18pt;
+    padding-top: 0.2rem;
 }
 
 .clock__row {
@@ -15,7 +15,8 @@
     position: fixed;
     display: block;
     width: 100%;
-    top: 3.5rem;
+    height: 3.5rem;
+    top: 5.5rem;
     background-color: white;
     z-index: 25;   
 }

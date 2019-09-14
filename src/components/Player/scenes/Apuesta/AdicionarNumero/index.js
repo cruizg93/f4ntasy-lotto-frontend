@@ -511,7 +511,7 @@ class AdicionarNumeroApuesta extends Component {
                 ref={this.entryInputContainerRef}
                 style={{padding: "3.5rem 1.5rem 0 1.5rem"}}
                 >
-                    <Grid item xs={6} style={{textAlign:"end"}}>
+                    <Grid item sm={6} style={{textAlign:"end"}}>
                         <ApuestaInput
                             inputRef = {this.entryNumeroInputRef}
                             type = "tel"                        
@@ -530,7 +530,7 @@ class AdicionarNumeroApuesta extends Component {
                             }}
                         />    
                     </Grid>
-                    <Grid item xs={6} style={{textAlign:"start"}}>
+                    <Grid item sm={6} style={{textAlign:"start"}}>
                         <ApuestaInput
                             inputRef = {this.entryUnidadesInputRef}
                             type="tel"
@@ -557,7 +557,7 @@ class AdicionarNumeroApuesta extends Component {
                       alignItems="center" style={{width:"100%"}}>
                     <ListaApuestas entryList={this.state.entryList} removerApuesta={this.removerApuesta} fromApuestaActiva={false}
                         displayApuestaListIndex={this.state.displayApuestaListIndex}/>
-                    <Grid item xs={12}>
+                    <Grid item sm={12}>
                         <Typography variant="body1" style={{textAlign:"center",color:"#999999",marginTop:"1.1875rem",marginBottom:"1.1875rem",lineHeight:"0.85"}}>
                             Total &mdash; {this.state.totalCurrent}
                         </Typography>  
@@ -572,20 +572,20 @@ class AdicionarNumeroApuesta extends Component {
                         justify="center"
                         alignItems="center" 
                         ref={this.buttonContainerApuestasRef}> 
-                        <Grid item xs={12} className={this.classes.buttonContainerApuestas}>
-                            <Grid item xs={4}>
+                        <Grid item sm={12} className={this.classes.buttonContainerApuestas}>
+                            <Grid item sm={4}>
                                 <Button variant="contained"  className={this.classes.buttonLimpiar} onClick={this.limpiarApuestas}>
                                     <MdSettingsBackupRestore className={this.classes.extendedIcon} />
                                     Limpiar
                                 </Button>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item sm={4}>
                                 <Button variant="contained"  className={this.classes.buttonComprar} onClick={this.handleComprar}>
                                     <FaShoppingCart className={this.classes.extendedIcon} />
                                     Comprar
                                 </Button>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item sm={4}>
                                 <Button variant="contained" className={this.classes.buttonAgregarApuesta} onClick={this.agregarApuesta}>
                                     <MdFileDownload className={this.classes.extendedIcon} />
                                 </Button>
@@ -597,16 +597,16 @@ class AdicionarNumeroApuesta extends Component {
                         justify="center"
                         alignItems="center" 
                         ref={this.buttonContainerComprarRef} > 
-                        <Grid item xs={12} className={this.classes.buttonContainerApuestas}>
-                            <Grid item xs={4}>
+                        <Grid item sm={12} className={this.classes.buttonContainerApuestas}>
+                            <Grid item sm={4}>
                                 <Fab variant="extended" aria-label="removeAll" className={this.classes.buttonLimpiar} onClick={this.regresar}>
                                     <MdSettingsBackupRestore className={this.classes.extendedIcon} />
                                         Regresar
                                 </Fab>
                             </Grid>
-                            <Grid item xs={2}>
+                            <Grid item sm={2}>
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item sm={6}>
                                 <Fab variant="extended" aria-label="buyAll" className={this.classes.buttonFinalizarCompra} onClick={this.handleClickOpenFinalizarCompraDialog}>
                                     Finalizar Compra
                                 </Fab>

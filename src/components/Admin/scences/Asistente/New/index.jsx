@@ -283,12 +283,12 @@ const NewAsistente = ({ ...props }) => {
                     alignItems="flex-start"
                     className={classes.headerContainer}
                     >
-                    <Grid item xs={6} className={classes.crearAsistenteLabel}>
+                    <Grid item sm={6} className={classes.crearAsistenteLabel}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
                             Crear Jugador X
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item sm={6}>
                         
                     </Grid>
                 </Grid>
@@ -298,7 +298,7 @@ const NewAsistente = ({ ...props }) => {
                     alignItems="flex-start"
                     className={classes.headerContainer}
                     >                   
-                    <Grid item xs={6}>
+                    <Grid item sm={6}>
                         <NativeSelect
                             value={person}
                             className={classes.margin}
@@ -309,7 +309,7 @@ const NewAsistente = ({ ...props }) => {
                             {options}
                         </NativeSelect>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item sm={6}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
                             Listado de Jugadores P
                         </Typography>
@@ -320,7 +320,7 @@ const NewAsistente = ({ ...props }) => {
                     direction="row"
                     justify="center"
                     alignItems="center">
-                    <Grid item xs={12}
+                    <Grid item sm={12}
                      className={classes.boxContainerNuevo}
                     >
                         <TextField

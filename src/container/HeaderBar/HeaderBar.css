@@ -1,0 +1,13 @@
+.container__box{
+    margin-top: 7.25rem;
+    margin-bottom: 2.50rem;
+    max-width: 900px !important;
+}
+
+.container__jugador{
+    margin-top: 5.75rem;
+    margin-bottom: 2.50rem;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+

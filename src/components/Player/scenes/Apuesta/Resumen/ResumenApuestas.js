@@ -32,35 +32,35 @@ function ResumenApuestas(props) {
 
     return (
         <Grid container className={classes.resumenCompraContainer}>
-            <Grid itme xs={3}></Grid>
-            <Grid item xs={3} style={{margingBottom:"0.65rem"}}>
+            <Grid itme sm={3}></Grid>
+            <Grid item sm={3} style={{margingBottom:"0.65rem"}}>
                 <Typography variant="body1" className={classes.resumenCompraText} >
                     Costo:
                 </Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6}>
                 <Typography variant="body1"  className={classes.resumenCompraValue}>
                     {props.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(props.apuestaCurrency,props.costoTotal)}
                 </Typography>
             </Grid>
-            <Grid itme xs={3}></Grid>
-            <Grid item xs={3}>
+            <Grid itme sm={3}></Grid>
+            <Grid item sm={3}>
                 <Typography variant="body1"  className={classes.resumenCompraText}>
                     Comision:
                 </Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6}>
                 <Typography variant="body1"  className={classes.resumenCompraValue}>
                     {props.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(props.apuestaCurrency,props.comisionTotal)}
                 </Typography>
             </Grid>
-            <Grid itme xs={3}></Grid>
-            <Grid item xs={3}>
+            <Grid itme sm={3}></Grid>
+            <Grid item sm={3}>
                 <Typography variant="body1"  className={classes.resumenCompraText}>
                     Total:
                 </Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6}>
                 <Typography variant="body1"  className={classes.resumenCompraValue}>
                     {props.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(props.apuestaCurrency,props.total)}
                 </Typography>

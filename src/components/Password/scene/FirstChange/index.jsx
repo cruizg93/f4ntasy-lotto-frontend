@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './FirstChange.css';
 
 import { utilService } from '../../../../service/api/utils/util.service';
-import { authenticationService } from '../../../../service/api/authentication/authentication.service';
+import authenticationService from '../../../../service/api/authentication/authentication.service';
 import { history } from "../../../../_helpers/history";
 
 const FirstChangePassword = ({ ...props }) => {
@@ -14,7 +14,7 @@ const FirstChangePassword = ({ ...props }) => {
     useEffect(() => {
         setUsername(authenticationService.currentUserValue.username);
     })
-    function updatePassword() {        
+    function updatePassword() {
         if (password !== '') {
             utilService.firstConnection(password).then((result) => {
                 authenticationService.logout();

@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import {ToastContainer, toast} from 'react-toastify';
+import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
-import {makeStyles} from '@material-ui/core/styles';
-import {current, update} from '../../service/api/cambio/cambio';
+import { makeStyles } from '@material-ui/core/styles';
+import { current, update } from '../../service/api/cambio/cambio';
 import NumberFormat from 'react-number-format';
-import {Colors} from '../../utils/__colors';
+import { Colors } from '../../utils/__colors';
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -38,8 +38,8 @@ const useStyles = makeStyles(theme => ({
     container: {
         background: '#FFF',
         marginTop: '1rem',
-        marginBottom: '1rem',        
-    },   
+        marginBottom: '1rem',
+    },
     textField: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
@@ -49,34 +49,34 @@ const useStyles = makeStyles(theme => ({
         fontSize: "14pt"
     },
     headerContainer: {
-        background : Colors.Main,
+        background: Colors.Main,
         marginBottom: "1rem",
     },
     bodyContainer: {
-        background : Colors.Main,
+        background: Colors.Main,
         marginBottom: "1rem",
         border: `rgba(0, 0, 0, 0.12) 1px solid`,
     },
-    setCambioLabel:{
+    setCambioLabel: {
         borderBottom: `${Colors.Btn_Red} 2px solid`,
         paddingBottom: "1rem !important",
         marginTop: ".5rem",
     },
     fijarElement: {
-        color: Colors.Green,      
-        cursor: 'pointer',     
-        '&:hover': {            
+        color: Colors.Green,
+        cursor: 'pointer',
+        '&:hover': {
             background: Colors.Gray_Ligth
         }
     },
     fijarLabel: {
-        margin: "0",        
-    },  
+        margin: "0",
+    },
     headerTitle: {
         fontSize: "12pt",
         marginLeft: ".5rem"
     },
-    leftMargin:{
+    leftMargin: {
         marginLeft: ".5rem"
     }
 
@@ -117,40 +117,40 @@ export default function Cambio() {
 
     return (
         <React.Fragment>
-            <ToastContainer autoClose={8000}/>
+            <ToastContainer autoClose={8000} />
             <Container maxWidth="sm" className={classes.container}>
                 <Grid container spacing={1}
                     direction="row"
                     justify="center"
                     alignItems="flex-start"
                     className={classes.headerContainer}
-                    >
-                    <Grid item xs={8} className={classes.setCambioLabel}>
+                >
+                    <Grid item sm={8} className={classes.setCambioLabel}>
                         <Typography variant="h6" gutterBottom className={`${classes.headerTitle} form__left-label`}>
                             Fijar tipo de Cambio
                         </Typography>
                     </Grid>
-                    <Grid item xs={4}>
-                        
+                    <Grid item sm={4}>
+
                     </Grid>
                 </Grid>
-                <Grid container 
-                      direction="row"
-                      justify="center"
-                      alignItems="flex-start"
-                      className={classes.bodyContainer}
-                      >
-                    <Grid item xs={12}>
+                <Grid container
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start"
+                    className={classes.bodyContainer}
+                >
+                    <Grid item sm={12}>
                         <Typography variant="h6" gutterBottom className={`${classes.leftMargin} form__left-label`}>
                             Tipo de cambio en sistema
                         </Typography>
                         <Typography variant="h6" gutterBottom className={`${classes.leftMargin} form__left-label`}>
                             $1.00 = {currentValue} Lempiras
                         </Typography>
-                        <Divider/>
-                    </Grid>                    
-                    <Grid item xs={9} style={{
-                        borderRight:"#afb6b8 1px solid",
+                        <Divider />
+                    </Grid>
+                    <Grid item sm={9} style={{
+                        borderRight: "#afb6b8 1px solid",
                     }}>
                         <Grid container justify="center" spacing={spacing} className={classes.fijarLabel}>
                             <Typography variant="h6" gutterBottom>
@@ -167,16 +167,16 @@ export default function Cambio() {
 
                         </Grid>
                     </Grid>
-                    <Grid item xs={3} 
-                        container 
+                    <Grid item sm={3}
+                        container
                         justify="center"
-                        onClick={handleOnClickCambio} 
+                        onClick={handleOnClickCambio}
                         className={classes.fijarElement}>
-                            <Typography variant="h6" gutterBottom >
-                                Fijar
-                            </Typography>                           
+                        <Typography variant="h6" gutterBottom >
+                            Fijar
+                            </Typography>
                     </Grid>
-                </Grid>             
+                </Grid>
             </Container>
         </React.Fragment>
     );

@@ -121,7 +121,7 @@ const DetallesApuestaHistorial = ({...props}) => {
                   justify="center"
             >
 
-                <Grid item xs={6}>
+                <Grid item sm={6}>
                     <ImprimirButton variant="outlined" color="primary">
                         <Typography variant="body1" gutterBottom>
                             Imprimir

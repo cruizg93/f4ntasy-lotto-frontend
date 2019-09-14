@@ -1,10 +1,10 @@
-import {baseUrl} from '../../../config/const';
-import {authHeader} from "../../../_helpers/auth-header";
-import {authenticationService} from "../authentication/authentication.service";
+import { baseUrl } from '../../../config/const';
+import { authHeader } from "../../../_helpers/auth-header";
+import authenticationService from "../authentication/authentication.service";
 import axios from 'axios';
 
 export function list() {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/users`,
             requestOptions

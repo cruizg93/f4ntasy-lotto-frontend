@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import {red, blue} from "@material-ui/core/colors/index";
-import {adminService} from "../../../../service/api/admin/admin.service";
+import { red, blue } from "@material-ui/core/colors/index";
+import { adminService } from "../../../../service/api/admin/admin.service";
 import HistorialUsuarioDetallesEntry from '../HistorialUsuarioDetalles/HUDEntry/index';
 
 const useStyles = makeStyles(theme => ({
@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
-        
+
     },
     component: {
         textDecoration: 'none',
@@ -49,7 +49,7 @@ const HistorialUsuarioDetalles = (props) => {
     const [moneda, setMoneda] = useState(0);
     const [semana, setSemana] = useState(0);
     const [balance, setBalance] = useState(0.0);
-    const [daysEntry, setDaysEntry] =useState([])
+    const [daysEntry, setDaysEntry] = useState([])
 
 
     useEffect(() => {
@@ -58,14 +58,14 @@ const HistorialUsuarioDetalles = (props) => {
         setMoneda(props.location.state.type);
         setSemana(props.location.state.semana);
         adminService.get_historial_current_week_by_id_and_type(props.location.state.id, props.location.state.type)
-            .then((result)=>{
+            .then((result) => {
                 setDaysEntry(Array.from(result.data.uddList))
                 setBalance((result.data.balance).toFixed(2))
             })
     }, []);
     return (
         <Grid container>
-            <Grid item xs={12}
+            <Grid item sm={12}
             >
                 <Typography variant="h5" gutterBottom className={classes.textWithBorder}>
                     Detalles Balance - {username}
@@ -76,7 +76,7 @@ const HistorialUsuarioDetalles = (props) => {
                     - {balance}
                 </Typography>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item sm={12}>
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     {moneda === "dolar" ? "$" : "L"}
                 </Typography>
@@ -85,15 +85,15 @@ const HistorialUsuarioDetalles = (props) => {
                 </Typography>
             </Grid>
 
-             <Grid container spacing={3}
-                  direction="row"
-                  justify="center"
-                  alignItems="center">
+            <Grid container spacing={3}
+                direction="row"
+                justify="center"
+                alignItems="center">
 
                 {daysEntry.length > 0 ?
                     daysEntry.map((entry, index) =>
                         <HistorialUsuarioDetallesEntry key={index} {...entry} id={id} username={username}
-                                                       type={moneda} {...props}/>
+                            type={moneda} {...props} />
                     ) :
                     <Typography variant="body1" gutterBottom className={classes.textNoDisponible}>
                         No hay resultados disponibles para esta semana

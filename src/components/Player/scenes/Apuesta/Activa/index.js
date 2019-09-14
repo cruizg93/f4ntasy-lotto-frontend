@@ -433,16 +433,16 @@ const ApuestaActiva = ({...props}) => {
                     direction="row"
                     justify="center"
                     alignItems="center" > 
-                <Grid item xs={12} className={classes.buttonContainerApuestas}>
-                    <Grid item xs={4}>
+                <Grid item sm={12} className={classes.buttonContainerApuestas}>
+                    <Grid item sm={4}>
                         <Fab variant="extended" aria-label="removeAll" className={classes.buttonLimpiar} onClick={handleClickOpen}>
                             <MdSettingsBackupRestore className={classes.extendedIcon} />
                                 Limpiar
                         </Fab>
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item sm={2}>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item sm={6}>
                         <Fab variant="extended" aria-label="buyAll" className={classes.buttonDetalles} 
                             component={Link}
                             to={{
@@ -466,14 +466,14 @@ const ApuestaActiva = ({...props}) => {
                   justify="center"
                   className={classes.fixedElement} style={{display:"none"}}
             >
-                <Grid item xs={2}>
+                <Grid item sm={2}>
                     <EditarButton variant="outlined" color="primary" onClick={handleDisableClick}>
                         <Typography variant="body1" gutterBottom>
                             {disable ? "Editar" : "Fijar"}                            
                         </Typography>
                     </EditarButton>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item sm={2}>
                     <EliminarTodoButton variant="outlined" color="primary" 
                          onClick={handleClickOpen}
                         >
@@ -482,14 +482,14 @@ const ApuestaActiva = ({...props}) => {
                         </Typography>
                     </EliminarTodoButton>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item sm={2}>
                     <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir
                         </Typography>
                     </ImprimirButton>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item sm={2}>
                     <DetallesButton variant="outlined" color="primary"
                                     component={Link}
                                     to={{

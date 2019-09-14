@@ -168,7 +168,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                 <Typography variant="h5" gutterBottom>
                     {type}{" - "}{title}
                 </Typography>
-                <Grid item xs={12}>
+                <Grid item sm={12}>
                     <Divider/>
                 </Grid>
             </Grid>
@@ -188,7 +188,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                     )}
                 </Grid>
                 <Grid container>
-                    <Grid item xs={6}
+                    <Grid item sm={6}
                           container
                           justify="flex-end"
                     >
@@ -196,7 +196,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                             {"Apuestas "}{moneda=== "LEMPIRAS" ? " L " : " $ "} 
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}
+                    <Grid item sm={6}
                           container
                           justify="flex-start"                          
                     >
@@ -207,7 +207,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                                {" "}{total.toFixed(2)}
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}
+                    <Grid item sm={6}
                           container
                           justify="flex-end"
                     >
@@ -215,7 +215,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                         {"Comisiones "}{moneda=== "LEMPIRAS" ? " L " : " $ "}                           
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}
+                    <Grid item sm={6}
                           container
                           justify="flex-start"
                           className={''}
@@ -227,7 +227,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                                 {" "}{comision.toFixed(2)}
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}
+                    <Grid item sm={6}
                           container
                           justify="flex-end"
                     >
@@ -235,7 +235,7 @@ const ApuestaActivaJugadorDetalles = ({...props}) => {
                             {"Riesgo "} {moneda=== "LEMPIRAS" ? " L " : " $ "}
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}
+                    <Grid item sm={6}
                           container
                           justify="flex-start"                         
                     >

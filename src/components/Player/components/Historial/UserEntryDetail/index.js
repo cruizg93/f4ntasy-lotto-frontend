@@ -34,7 +34,7 @@ const UserEntryDetail = ({numero, valor, disable, ...props}) => {
     }, []);
     return (
         <>
-            <Grid item xs={6}
+            <Grid item sm={6}
                   container
                   justify="flex-end"
             >
@@ -42,7 +42,7 @@ const UserEntryDetail = ({numero, valor, disable, ...props}) => {
                     {numero}
                 </Typography>
             </Grid>
-            <Grid item xs={6}
+            <Grid item sm={6}
                   container
                   justify="flex-start"
             >

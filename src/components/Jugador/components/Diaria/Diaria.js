@@ -1,5 +1,5 @@
 import React from 'react';
-import {makeStyles, withStyles} from "@material-ui/core/styles/index";
+import { makeStyles, withStyles } from "@material-ui/core/styles/index";
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -7,8 +7,8 @@ import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import {green} from "@material-ui/core/colors/index";
-import {Colors} from '../../../../utils/__colors';
+import { green } from "@material-ui/core/colors/index";
+import { Colors } from '../../../../utils/__colors';
 import NumberFormat from 'react-number-format';
 import Divider from '@material-ui/core/Divider';
 
@@ -27,28 +27,28 @@ const useStyles = makeStyles(theme => ({
     card: {
         display: 'flex',
         marginTop: '.5rem',
-        background : Colors.Main,
-        boxShadow: 'none',       
+        background: Colors.Main,
+        boxShadow: 'none',
         borderRadius: '0'
     },
     inputData: {
-        background : Colors.Input_bkg,
+        background: Colors.Input_bkg,
     },
-    labelChica:{
+    labelChica: {
         marginTop: ".5rem"
     }
 
 }));
 
 export default function Diaria({
-                                   premio, costo, comision, premioLempiras,
-                                   onChangePremioMil,
-                                   onChangePremioLempirasMil,
-                                   onChangeCostoMil,
-                                   onChangeComisionMil,
-                                   diariaType,
-                                   onChangeDiariaType,...props
-                               }) {
+    premio, costo, comision, premioLempiras,
+    onChangePremioMil,
+    onChangePremioLempirasMil,
+    onChangeCostoMil,
+    onChangeComisionMil,
+    diariaType,
+    onChangeDiariaType, ...props
+}) {
 
 
     const classes = useStyles();
@@ -67,22 +67,22 @@ export default function Diaria({
             <Card className={classes.card}>
                 <CardContent>
                     <Grid container spacing={1}
-                          direction="row"
-                          justify="center"
-                          alignItems="flex-start"
-                          className={classes.boxContainerNuevo}
-                          >
-                        <Grid item xs={3}>
+                        direction="row"
+                        justify="center"
+                        alignItems="flex-start"
+                        className={classes.boxContainerNuevo}
+                    >
+                        <Grid item sm={3}>
                             <Typography variant="h6" gutterBottom className={"form__center-label"}>
                                 DIARIA
                             </Typography>
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item sm={6}>
                             <Typography variant="body1" gutterBottom className={classes.labelChica}>
-                            "x por miles"
+                                "x por miles"
                             </Typography>
                         </Grid>
-                        <Grid item xs={1}>
+                        <Grid item sm={1}>
                             <FormControlLabel
                                 value="d-miles"
                                 control={
@@ -91,7 +91,7 @@ export default function Diaria({
                                         onChange={onChangeDiariaType}
                                         value="dm"
                                         name="radio-button-diaria"
-                                        inputProps={{'aria-label': 'DM'}}
+                                        inputProps={{ 'aria-label': 'DM' }}
                                         disabled={activate}
                                     />}
                             />
@@ -101,10 +101,10 @@ export default function Diaria({
                             label="Costo x mil"
                             placeholder="Costo x mil"
                             margin="normal"
-                            value={diariaType!=='dm' ? '' : costo}
+                            value={diariaType !== 'dm' ? '' : costo}
                             variant="outlined"
                             fullWidth
-                            disabled={diariaType!=='dm' ||  activate }
+                            disabled={diariaType !== 'dm' || activate}
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -116,11 +116,11 @@ export default function Diaria({
                             id="diaria-miles-input-premio-miles"
                             label="Premio x mil"
                             placeholder="Premio x mil"
-                            value={diariaType!=='dm' ? '' : premio}
+                            value={diariaType !== 'dm' ? '' : premio}
                             margin="normal"
                             variant="outlined"
                             fullWidth
-                            disabled={diariaType!=='dm' ||  activate}
+                            disabled={diariaType !== 'dm' || activate}
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -131,26 +131,26 @@ export default function Diaria({
                     </Grid>
                 </CardContent>
             </Card>
-            <Grid item xs={12}>
+            <Grid item sm={12}>
                 <Divider />
             </Grid>
             <Card className={classes.card}>
                 <CardContent>
                     <Grid container spacing={1}
-                          direction="row"
-                          justify="center"
-                          alignItems="flex-start">
-                        <Grid item xs={3}>
+                        direction="row"
+                        justify="center"
+                        alignItems="flex-start">
+                        <Grid item sm={3}>
                             <Typography variant="h6" gutterBottom className={"form__center-label"}>
                                 DIARIA
                             </Typography>
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item sm={6}>
                             <Typography variant="body1" gutterBottom className={classes.labelChica}>
-                                "directo L/ $"                                
+                                "directo L/ $"
                             </Typography>
                         </Grid>
-                        <Grid item xs={1}>
+                        <Grid item sm={1}>
                             <FormControlLabel
                                 value="d-riecto"
                                 control={
@@ -159,7 +159,7 @@ export default function Diaria({
                                         onChange={onChangeDiariaType}
                                         value="dd"
                                         name="radio-button-diaria"
-                                        inputProps={{'aria-label': 'DD'}}
+                                        inputProps={{ 'aria-label': 'DD' }}
                                         disabled={activate}
 
                                     />}
@@ -171,12 +171,12 @@ export default function Diaria({
                             placeholder="Comisión %"
                             margin="normal"
                             variant="outlined"
-                            value={diariaType!=='dd' ? '' : comision}
+                            value={diariaType !== 'dd' ? '' : comision}
                             fullWidth
                             InputLabelProps={{
                                 shrink: true,
                             }}
-                            disabled={diariaType!=='dd' ||  activate}
+                            disabled={diariaType !== 'dd' || activate}
                             onChange={onChangeComisionMil}
                             className={classes.inputData}
                             customInput={TextField}
@@ -189,8 +189,8 @@ export default function Diaria({
                             margin="normal"
                             variant="outlined"
                             fullWidth
-                            disabled={diariaType!=='dd' ||  activate}
-                            value={diariaType!=='dd' ? '' : premioLempiras}
+                            disabled={diariaType !== 'dd' || activate}
+                            value={diariaType !== 'dd' ? '' : premioLempiras}
                             InputLabelProps={{
                                 shrink: true,
                             }}

@@ -1,4 +1,4 @@
-import { authenticationService } from '../service/api/authentication/authentication.service';
+import authenticationService from '../service/api/authentication/authentication.service';
 
 export function handleResponse(response) {
     return response.text().then(text => {

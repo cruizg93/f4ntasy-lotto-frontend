@@ -1,165 +1,107 @@
-import React, {useState, useEffect} from 'react';
-import {ToastContainer, toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Grid from '@material-ui/core/Grid'
-import Container from '@material-ui/core/Container';
-import './Jugador.css';
-import {adminService} from "../../service/api/admin/admin.service";
-import {makeStyles, withStyles} from "@material-ui/core/styles/index";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import { Grid, Container } from '@material-ui/core'
+
+import { adminService } from "../../service/api/admin/admin.service";
 import JugadorDataShow from './components/JugadorEntry/index';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
-import {Colors} from '../../utils/__colors';
-import {MainStyles} from '../View/MainStyles';
-import {FaUserPlus} from 'react-icons/fa';
+import { MainStyles } from '../View/MainStyles';
+import { FaUserPlus } from 'react-icons/fa';
 import PageTitle from '../View/PageTitle';
 
-
-const useStyles = makeStyles(theme => ({
-    margin: {
-        margin: theme.spacing(1),
-    },
-    root: {
-        display: 'flex',
-        flexGrow: 1,
-    },
-    formControl: {
-        margin: theme.spacing(3),
-    },
-    group: {
-        margin: theme.spacing(1, 0),
-    },
-    button: {
-        margin: theme.spacing(1),
-        border: 'none',
-        '&:hover': {
-            background: "#E3E4E9",
-            border: 'none',
-        },
-    },
-    card: {
-        display: 'flex',
-        marginTop: '.5rem'
-    },
-    headerContainer: {
-        background : Colors.Main,
-        marginBottom:"0.5rem"
-    },
-    container: {
-        background: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        zIndex: 0,
-    },
-    btnContainer: {
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    crearButtonContainer:{
-        display:"flex",
-    },
-    editIcon:{
-        marginLeft: ".5rem",
-        paddingTop: ".2rem",
-        fontSize: "1.25rem"
+import 'react-toastify/dist/ReactToastify.css';
+import './Jugador.css';
+class Jugador extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            jugadorList: [],
+            password: '',
+            totalsMoney: 0
+        };
     }
-
-}));
-
-const CrearButton = withStyles({
-    root: {
-        width: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        padding: "0",
-        backgroundColor: Colors.Main,
-        color: Colors.Btn_Blue_Dark,
-        border: 'none !important',
-        borderRadius: '0',
-        '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
-            color: Colors.Input_bkg
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-const Jugador = (props) => {
-    const classes = useStyles();
-    const [jugadorList, setJugadorList] = useState([]);
-
-    function reload(){
-        adminService.list_players_details().then((result) => {
-            toast_notification("success");
-            setJugadorList([]);
-            setJugadorList(Array.from(result.data))
-        })
-    }
-    useEffect(() => {
-        adminService.list_players_details().then((result) => {                                
-            setJugadorList(Array.from(result.data))
- 
-        })
-    }, []);
-
-    function toast_notification(type) {
-        if(type === "success"){
+    toast_notification = (type) => {
+        if (type === "success") {
             toast.success("Usuario eliminado !", {
                 position: toast.POSITION.TOP_RIGHT
             });
-        }else{
+        } else {
             toast.error("Existen apuestas activas asociadas al usuario", {
                 position: toast.POSITION.TOP_RIGHT
             });
-        }       
+        }
     }
-    return (
-        <React.Fragment>
-            <ToastContainer autoClose={8000}/>
-            <Container maxWidth="sm">
-                <Grid container spacing={1}
-                        direction="row"
-                        justify="center"
-                        className={classes.headerContainer}
-                        maxWidth="sm"
-                        >
-                    <PageTitle titleLabel="Resumen Jugadores" xsValue={8}/>
-                    <Grid item xs={4} style={MainStyles.fullBorderBoxNoLeft} className={classes.crearButtonContainer}>
-                        <CrearButton variant="outlined" color="primary" 
-                        component={Link}
-                        to={
-                            {
-                                pathname: `/usuario/nuevo`,                               
-                            }
-                        }                   
-                        >
-                            <Typography variant="h6">
-                                CREAR<FaUserPlus className={classes.editIcon}/>
-                            </Typography>
 
-                        </CrearButton>
+    update_totalsMoney() {
+        const totals = this.state.jugadorList.reduce((acc, row) => acc + row.total, 0)
+        this.setState({
+            ...this.state,
+            totalsMoney: totals
+        })
+    }
+
+    reload() {
+        adminService.list_players_details().then((result) => {
+
+            this.toast_notification("success");
+            this.setState({
+                jugadorList: Array.from(result.data)
+            });
+            this.update_totalsMoney()
+        })
+    }
+
+    componentDidMount() {
+        adminService.list_players_details().then((result) => {
+            console.log('jagadorList', Array.from(result.data))
+            this.setState({
+                jugadorList: Array.from(result.data)
+            });
+            this.update_totalsMoney()
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                <ToastContainer autoClose={8000} />
+                <Container maxWidth="sm" className="resumen_container">
+                    <Grid container
+                        direction="row"
+                        className="resumen_header"
+                    >
+                        <Typography variant="h5" className="resume_title">
+                            Resumen Vendedores
+                        </Typography>
+                        <Button color="primary" className="resume_create_btn"
+                            component={Link}
+                            to={
+                                {
+                                    pathname: `/usuario/nuevo`,
+                                }
+                            }
+                        >
+                            <FaUserPlus className="resumen_create_icon" />
+                        </Button>
                     </Grid>
-                </Grid>
-                <Grid container spacing={1}
-                    direction="row"
-                    justify="center">
-                    {jugadorList.map((jugador, index) =>
-                        <JugadorDataShow key={index} {...jugador} {...props} handler={reload} toast={toast_notification}/>
-                    )}
-                </Grid>
-            </Container>
-        </React.Fragment>
-    );
+                    <Grid className="resumen_total">
+                        <span className="resumen_total_text">Totales:</span>
+                        <span className="resumen_total_val">${'\u00A0'}{'\u00A0'}{this.state.totalsMoney}</span>
+                    </Grid>
+                    <Grid container spacing={1}
+                        direction="row"
+                    >
+                        {this.state.jugadorList.map((jugador, index) =>
+                            <JugadorDataShow key={index} {...jugador} {...this.props} handler={this.reload} toast={this.toast_notification} />
+                        )}
+                    </Grid>
+                </Container>
+            </div>
+        )
+    }
 }
 
-export default Jugador;
+export default connect()(Jugador);

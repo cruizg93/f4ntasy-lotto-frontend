@@ -209,7 +209,7 @@ const ApuestaActivaAdminDetalle = (props) => {
     return (
         <React.Fragment>
             <Grid container>
-                <Grid item xs={12}
+                <Grid item sm={12}
                       container
                       justify="center"
                       className={classes.textWithBorder}
@@ -227,7 +227,7 @@ const ApuestaActivaAdminDetalle = (props) => {
                       direction="row"
                       justify="center"
                       alignItems="flex-start">
-                    <Grid item xs={6}>
+                    <Grid item sm={6}>
                         <DolarButton variant="outlined" color="primary" className={classes.button}
                                      onClick={() => {
                                          get_in_dolar()
@@ -250,7 +250,7 @@ const ApuestaActivaAdminDetalle = (props) => {
                 >
 
 
-                    <Grid item xs={6}
+                    <Grid item sm={6}
                           container
                           justify="flex-end"
                     >
@@ -258,7 +258,7 @@ const ApuestaActivaAdminDetalle = (props) => {
                             Total Apuestas |
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}
+                    <Grid item sm={6}
                           container
                           justify="flex-start"
                           className={classes.text}
@@ -268,7 +268,7 @@ const ApuestaActivaAdminDetalle = (props) => {
                         </Typography>
 
                     </Grid>
-                    <Grid item xs={6}
+                    <Grid item sm={6}
                           container
                           justify="flex-end"
                     >
@@ -276,7 +276,7 @@ const ApuestaActivaAdminDetalle = (props) => {
                             Total Comisiones |
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}
+                    <Grid item sm={6}
                           container
                           justify="flex-start"
                           className={classes.text}
@@ -286,7 +286,7 @@ const ApuestaActivaAdminDetalle = (props) => {
                         </Typography>
 
                     </Grid>
-                    <Grid item xs={6}
+                    <Grid item sm={6}
                           container
                           justify="flex-end"
                     >
@@ -294,7 +294,7 @@ const ApuestaActivaAdminDetalle = (props) => {
                             Entrada neta |
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}
+                    <Grid item sm={6}
                           container
                           justify="flex-start"
                           className={classes.text}
@@ -304,12 +304,12 @@ const ApuestaActivaAdminDetalle = (props) => {
                         </Typography>
 
                     </Grid>
-                    <Grid item xs={12}
+                    <Grid item sm={12}
                           container
                           justify="center"
                           className={classes.textWithBorder}
                     >
-                        <Grid item xs={12}
+                        <Grid item sm={12}
                               container
                               justify="center"
 
@@ -344,7 +344,7 @@ const ApuestaActivaAdminDetalle = (props) => {
                   justify="center"
             >
 
-                <Grid item xs={6}>
+                <Grid item sm={6}>
                     <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir

@@ -73,9 +73,9 @@ function ListaApuestas(props) {
                     </div>
                     <ListItemText className={classes.apuestaValues}  
                         primary={<Grid container>
-                                    <Grid item xs={5} style={{textAlign:"end"}}>{element.numero}</Grid>
-                                    <Grid item xs={2}>&mdash;</Grid>
-                                    <Grid item xs={5} style={{textAlign:"start"}}>{element.current===undefined?element.valor:element.current}</Grid>
+                                    <Grid item sm={5} style={{textAlign:"end"}}>{element.numero}</Grid>
+                                    <Grid item sm={2}>&mdash;</Grid>
+                                    <Grid item sm={5} style={{textAlign:"start"}}>{element.current===undefined?element.valor:element.current}</Grid>
                                 </Grid>
                                 }  />
                     <ListItemIcon style={{minWidth:"auto"}}>

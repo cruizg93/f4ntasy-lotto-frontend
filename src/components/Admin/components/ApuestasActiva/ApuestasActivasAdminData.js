@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,10 +10,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import {red, blue} from "@material-ui/core/colors/index";
-import {Colors} from "../../../../utils/__colors";
-import {FaInfoCircle} from 'react-icons/fa';
-import {adminService} from "../../../../service/api/admin/admin.service";
+import { red, blue } from "@material-ui/core/colors/index";
+import { Colors } from "../../../../utils/__colors";
+import { FaInfoCircle } from 'react-icons/fa';
+import { adminService } from "../../../../service/api/admin/admin.service";
 import Button from "@material-ui/core/Button/index";
 import TextField from '@material-ui/core/TextField';
 import NumberFormat from 'react-number-format';
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         background: Colors.Main,
         borderRadius: "0",
-       
+
     },
     component: {
         textDecoration: 'none',
@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
         pointerEvents: 'none'
     },
     text: {
-        fontWeight: 'bold',     
+        fontWeight: 'bold',
     },
     close: {
         color: red[400]
@@ -61,60 +61,60 @@ const useStyles = makeStyles(theme => ({
         marginLeft: '.5rem',
         fontWeight: 'bold',
     },
-    textSorteoAbierto:{
-        color: Colors.Green,        
+    textSorteoAbierto: {
+        color: Colors.Green,
     },
-    typeContainer:{
-        textDecoration: "none",             
+    typeContainer: {
+        textDecoration: "none",
         justifyContent: 'center',
         flexDirection: 'row',
-        alignItems: 'center',        
+        alignItems: 'center',
         margin: '1rem',
-        borderRight:"#afb6b8 1px solid",
+        borderRight: "#afb6b8 1px solid",
     },
-    titleContainer:{
-        textDecoration: "none",             
+    titleContainer: {
+        textDecoration: "none",
         justifyContent: 'center',
         flexDirection: 'row',
-        alignItems: 'center',        
-        margin: '1rem',        
+        alignItems: 'center',
+        margin: '1rem',
     },
-    infoContainer:{
-        textDecoration: "none",             
+    infoContainer: {
+        textDecoration: "none",
         justifyContent: 'center',
         flexDirection: 'row',
-        alignItems: 'center',        
-        margin: '1rem', 
+        alignItems: 'center',
+        margin: '1rem',
         color: Colors.Black,
-        '&:hover':{            
+        '&:hover': {
             color: Colors.Gray_Ligth_2
-        } 
+        }
     },
-    infoLabel:{
+    infoLabel: {
         display: 'flex',
         margin: '.5rem',
         height: "2rem",
         width: "2rem",
-        '&:hover':{
-            cursor: "pointer"            
-        }           
-    },    
-    sorteoTextContainer:{
-        borderRight:"#afb6b8 1px solid",
-        textDecoration: "none",             
+        '&:hover': {
+            cursor: "pointer"
+        }
+    },
+    sorteoTextContainer: {
+        borderRight: "#afb6b8 1px solid",
+        textDecoration: "none",
         justifyContent: 'center',
         flexDirection: 'row',
-        alignItems: 'center',        
+        alignItems: 'center',
         paddingRight: ".5rem"
     },
     numeroGanadorContainer: {
         color: Colors.Btn_Blue,
         marginTop: '.5rem',
-        '&:hover':{
+        '&:hover': {
             cursor: 'pointer',
         }
     },
-    circle:{
+    circle: {
         padding: 10,
         margin: 5,
         display: "flex",
@@ -125,24 +125,24 @@ const useStyles = makeStyles(theme => ({
         height: 35,
         justifyContent: 'center',
         flexDirection: 'row',
-        alignItems: 'center', 
+        alignItems: 'center',
     }
 
 }));
 
 const ApuestasActivasAdminData = ({
-                                      match: {url}, total, title, premio, neta, id,
-                                      estado, comision, balance, type, ...props
-                                  }) => {
+    match: { url }, total, title, premio, neta, id,
+    estado, comision, balance, type, ...props
+}) => {
     const classes = useStyles();
-    const [moneda, setMoneda] =  React.useState(" $ ");
-    const [open, setOpen] = useState(false);   
+    const [moneda, setMoneda] = React.useState(" $ ");
+    const [open, setOpen] = useState(false);
     const [numero, setNumero] = useState('');
     const toast = props.toast;
 
-    React.useEffect(()=>{
-        setMoneda(props.moneda === "lempira" ? " L " : " $ " )
-    },[])
+    React.useEffect(() => {
+        setMoneda(props.moneda === "lempira" ? " L " : " $ ")
+    }, [])
 
     function handleClickOpen() {
         setOpen(true);
@@ -157,7 +157,7 @@ const ApuestasActivasAdminData = ({
 
     const bloquearApuesta = (e) => {
         e.preventDefault()
-        adminService.cerrar_apuesta(id).then((result)=>{
+        adminService.cerrar_apuesta(id).then((result) => {
             update(props.moneda);
         })
     }
@@ -170,106 +170,106 @@ const ApuestasActivasAdminData = ({
         }
     }
 
-    const fijarNumeroGanador = () =>{
-        if (numero !== '' && numero !== -1 && numero >= 0 && numero < 100) {           
-            adminService.fix_numero_ganador(numero, id).then((result) => {               
+    const fijarNumeroGanador = () => {
+        if (numero !== '' && numero !== -1 && numero >= 0 && numero < 100) {
+            adminService.fix_numero_ganador(numero, id).then((result) => {
                 update(props.moneda);
             })
             toast("success");
-        }else{
+        } else {
             toast("fail");
             setNumero('');
-        } 
+        }
     }
     return (
-        <Grid item xs={12} className={estado !== 'BLOQUEADA' ? classes.component : classes.componentDisable}>
+        <Grid item sm={12} className={estado !== 'BLOQUEADA' ? classes.component : classes.componentDisable}>
             <Paper key={props.index} className={classes.paper}>
                 <Grid container>
-                    <Grid item xs={2} className={classes.typeContainer}>
+                    <Grid item sm={2} className={classes.typeContainer}>
                         <Typography variant="body1" gutterBottom className={classes.textLabel}>
-                            {type} 
+                            {type}
                         </Typography>
-                    </Grid> 
-                    <Grid item xs={6} className={classes.titleContainer}>
-                        <Typography variant="body1" gutterBottom className={classes.textLabel}>
-                            {title} 
-                        </Typography>
-                    </Grid> 
-                    <Grid item xs={1} 
-                    container
-                    justify="center"
-                    alignItems="center"                    
-                    className={classes.infoContainer}
-                    component={Link}
-                            to={
-                                {
-                                    pathname: `${url}/${id}`,
-                                    state: {
-                                        title: {title},
-                                        total: total,
-                                        comision: comision,
-                                        neta: neta,
-                                    }
-                                }
-                            }                          
-                    >
-                        <FaInfoCircle className={classes.infoLabel}                    
-                        
-                        />
-                    </Grid>   
-                    <Grid item xs={12}>
-                        <Divider/>
                     </Grid>
-                </Grid>               
+                    <Grid item sm={6} className={classes.titleContainer}>
+                        <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                            {title}
+                        </Typography>
+                    </Grid>
+                    <Grid item sm={1}
+                        container
+                        justify="center"
+                        alignItems="center"
+                        className={classes.infoContainer}
+                        component={Link}
+                        to={
+                            {
+                                pathname: `${url}/${id}`,
+                                state: {
+                                    title: { title },
+                                    total: total,
+                                    comision: comision,
+                                    neta: neta,
+                                }
+                            }
+                        }
+                    >
+                        <FaInfoCircle className={classes.infoLabel}
+
+                        />
+                    </Grid>
+                    <Grid item sm={12}>
+                        <Divider />
+                    </Grid>
+                </Grid>
                 <Grid container>
-                    <Grid item xs={6}
-                          container
-                          justify="flex-end"
+                    <Grid item sm={6}
+                        container
+                        justify="flex-end"
                     >
                         <Typography variant="body1" gutterBottom className={classes.text}>
                             Total Apuestas | {moneda}
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}
-                          container
-                          justify="flex-start"
-                          className={classes.text}
+                    <Grid item sm={6}
+                        container
+                        justify="flex-start"
+                        className={classes.text}
                     >
                         <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
                             {total.toFixed(2)}
                         </Typography>
 
                     </Grid>
-                    <Grid item xs={6}
-                          container
-                          justify="flex-end"
+                    <Grid item sm={6}
+                        container
+                        justify="flex-end"
                     >
                         <Typography variant="body1" gutterBottom className={classes.text}>
                             Total Comisiones | {moneda}
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}
-                          container
-                          justify="flex-start"
-                          className={classes.text}
+                    <Grid item sm={6}
+                        container
+                        justify="flex-start"
+                        className={classes.text}
                     >
                         <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
                             {comision.toFixed(2)}
                         </Typography>
 
                     </Grid>
-                    <Grid item xs={6}
-                          container
-                          justify="flex-end"
+                    <Grid item sm={6}
+                        container
+                        justify="flex-end"
                     >
                         <Typography variant="body1" gutterBottom className={classes.text}>
                             Entrada neta | {moneda}
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}
-                          container
-                          justify="flex-start"
-                          className={classes.text}
+                    <Grid item sm={6}
+                        container
+                        justify="flex-start"
+                        className={classes.text}
                     >
                         <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
                             {neta.toFixed(2)}
@@ -277,36 +277,36 @@ const ApuestasActivasAdminData = ({
 
                     </Grid>
                     {estado !== 'ABIERTA' && <>
-                        <Grid item xs={6}
-                              container
-                              justify="flex-end"
+                        <Grid item sm={6}
+                            container
+                            justify="flex-end"
                         >
                             <Typography variant="body1" gutterBottom className={classes.text}>
                                 Premios | {moneda}
                             </Typography>
                         </Grid>
-                        <Grid item xs={6}
-                              container
-                              justify="flex-start"
-                              className={classes.text}
+                        <Grid item sm={6}
+                            container
+                            justify="flex-start"
+                            className={classes.text}
                         >
                             <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
                                 {premio.toFixed(2)}
                             </Typography>
 
                         </Grid>
-                        <Grid item xs={6}
-                              container
-                              justify="flex-end"
+                        <Grid item sm={6}
+                            container
+                            justify="flex-end"
                         >
                             <Typography variant="body1" gutterBottom className={classes.text}>
                                 Ganancia/Perdida | {moneda}
                             </Typography>
                         </Grid>
-                        <Grid item xs={6}
-                              container
-                              justify="flex-start"
-                              className={classes.text}
+                        <Grid item sm={6}
+                            container
+                            justify="flex-start"
+                            className={classes.text}
                         >
                             <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
                                 {balance.toFixed(2)}
@@ -316,26 +316,26 @@ const ApuestasActivasAdminData = ({
 
 
                     </>}
-                    <Grid item xs={12}>
-                        <Divider/>
+                    <Grid item sm={12}>
+                        <Divider />
                     </Grid>
-                    
-                    <Grid item xs={6}
-                          container
-                          justify="center"
-                          className={classes.text}
+
+                    <Grid item sm={6}
+                        container
+                        justify="center"
+                        className={classes.text}
                     >
                         <Typography variant="h5" gutterBottom
-                                    className={`${estado === 'ABIERTA' ? classes.textSorteoAbierto : classes.close} ${classes.sorteoTextContainer}`}>
+                            className={`${estado === 'ABIERTA' ? classes.textSorteoAbierto : classes.close} ${classes.sorteoTextContainer}`}>
                             {estado === 'ABIERTA' ? "Sorteo Abierto" : "Sorteo Cerrado"}
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}
-                          container
-                          justify="center"
-                          className={classes.text}
+                    <Grid item sm={6}
+                        container
+                        justify="center"
+                        className={classes.text}
                     >
-                        {estado === 'ABIERTA' ? 
+                        {estado === 'ABIERTA' ?
                             <Typography variant="body1" gutterBottom className={classes.numeroGanadorContainer}
                                 onClick={bloquearApuesta}
                             >
@@ -343,7 +343,7 @@ const ApuestasActivasAdminData = ({
                             </Typography>
                             : null
                         }
-                         {estado === 'CERRADA' ? 
+                        {estado === 'CERRADA' ?
                             <Typography variant="body1" gutterBottom className={classes.numeroGanadorContainer}
                                 onClick={handleClickOpen}
                             >
@@ -351,13 +351,13 @@ const ApuestasActivasAdminData = ({
                             </Typography>
                             : null
                         }
-                        {estado === 'BLOQUEADA' ? 
+                        {estado === 'BLOQUEADA' ?
                             <Typography variant="body1" gutterBottom className={classes.circle}>
                                 {props.numeroGanador}
                             </Typography>
                             : null
                         }
-                        
+
                     </Grid>
                 </Grid>
             </Paper>
@@ -371,25 +371,25 @@ const ApuestasActivasAdminData = ({
                     id="alert-dialog-add-numero-ganador">{`ADICIONAR NUMERO GANADOR`}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        {type} - {title}                        
+                        {type} - {title}
                     </DialogContentText>
                     <NumberFormat
-                            id="numero-ganador-input"
-                            // hintText="Costo x mil"
-                            label="Numero ganador"
-                            placeholder="Numero ganador(0-99)"
-                            margin="normal"
-                            variant="outlined"
-                            fullWidth
-                            value={numero}   
-                            allowNegative={false}  
-                            format="##"                       
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            customInput={TextField}
-                            onChange={(e) => handleChangeNumeroGanador(e)}                           
-                        />
+                        id="numero-ganador-input"
+                        // hintText="Costo x mil"
+                        label="Numero ganador"
+                        placeholder="Numero ganador(0-99)"
+                        margin="normal"
+                        variant="outlined"
+                        fullWidth
+                        value={numero}
+                        allowNegative={false}
+                        format="##"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        customInput={TextField}
+                        onChange={(e) => handleChangeNumeroGanador(e)}
+                    />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">

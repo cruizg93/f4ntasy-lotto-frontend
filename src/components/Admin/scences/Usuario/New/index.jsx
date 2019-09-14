@@ -93,12 +93,12 @@ const NewUser = ({ ...props }) => {
                     alignItems="stretch"
                     className={classes.btnContainer}>
                     <Grid container>
-                        <Grid item xs={6}  style={MainStyles.fullBorderBox}>
+                        <Grid item sm={6}  style={MainStyles.fullBorderBox}>
                             <StyledButton component={Link} to="/usuario/nuevo/jugador" className={classes.StyledJugadorButton} style={{color:Colors.Orange}}>
                                 P
                             </StyledButton>
                         </Grid>
-                        <Grid item xs={6}  style={MainStyles.fullBorderBox}>
+                        <Grid item sm={6}  style={MainStyles.fullBorderBox}>
                             <StyledButton component={Link} to="/usuario/nuevo/asistente" className={classes.StyledJugadorButton} style={{color:Colors.Green}}>
                                 X
                             </StyledButton>

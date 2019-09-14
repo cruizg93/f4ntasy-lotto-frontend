@@ -1,9 +1,9 @@
-import {baseUrl} from '../../../config/const';
-import {authHeader} from "../../../_helpers/auth-header";
-import {authenticationService} from "../authentication/authentication.service";
+import { baseUrl } from '../../../config/const';
+import { authHeader } from "../../../_helpers/auth-header";
+import authenticationService from "../authentication/authentication.service";
 
 export function list_numeros() {
-    const requestOptions = {method: 'GET', headers: authHeader()};
+    const requestOptions = { method: 'GET', headers: authHeader() };
     return new Promise((resolve, reject) => {
         fetch(`${baseUrl}/admin/numeros/fijados`, requestOptions)
             .then((response) => response.json())

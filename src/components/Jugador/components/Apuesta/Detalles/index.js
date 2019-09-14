@@ -117,19 +117,19 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                 >
             <Grid container>
                 {type=== "DIARIA" ? <DiariaTitle />:<ChicaTitle />}    
-                <Grid item xs={3} className={classes.headerLabelSorteoHour}>
+                <Grid item sm={3} className={classes.headerLabelSorteoHour}>
                     <Typography variant="h6" gutterBottom className={"form__center-label"}>
                     {type=== "DIARIA" ?hour:"12 pm"}
                     </Typography>
                 </Grid>
-                <Grid item xs={5} className={classes.headerLabelSorteo}>
+                <Grid item sm={5} className={classes.headerLabelSorteo}>
                     <Typography variant="h6" gutterBottom className={"form__center-label"}>
                         {day}
                     </Typography>
                 </Grid>
             </Grid>
             <Grid container className={classes.valuesContainer}>
-                <Grid item xs={4}
+                <Grid item sm={4}
                     container
                     justify="flex-end"
                     >
@@ -137,7 +137,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                         {"Ventas"}{'\u00A0'}
                     </Typography>
                 </Grid>
-                <Grid item xs={8}
+                <Grid item sm={8}
                 >
                     <Typography variant="body1"  
                         className={total < 0 ? classes.textBalanceNegativo : 
@@ -146,7 +146,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                     {apuestaCurrency.symbol}{'\u00A0'}{FormatCurrency(apuestaCurrency,total)}
                     </Typography>
                 </Grid>
-                <Grid item xs={4}
+                <Grid item sm={4}
                     container
                     justify="flex-end"
                     >
@@ -154,7 +154,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                         {"Comision"}{'\u00A0'}
                     </Typography>
                 </Grid>
-                <Grid item xs={8}
+                <Grid item sm={8}
                     container
                     justify="flex-start"
                     className={classes.text}
@@ -166,7 +166,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                         {apuestaCurrency.symbol}{'\u00A0'}{FormatCurrency(apuestaCurrency,comision.toFixed(2))}
                     </Typography>
                 </Grid>
-                <Grid item xs={4}
+                <Grid item sm={4}
                     container
                     justify="flex-end"
                     >
@@ -174,7 +174,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                         {"Total"}{'\u00A0'}
                     </Typography>
                 </Grid>
-                <Grid item xs={8}
+                <Grid item sm={8}
                     container
                     justify="flex-start"
                     className={classes.text}
@@ -187,7 +187,7 @@ const JugadorDetallesEntry = ({match: {url}, id, nombre, total, comision, riesgo
                     </Typography>
                 </Grid>
             </Grid>
-            <Grid item xs={12}
+            <Grid item sm={12}
                 container
                 justify="center"
                 className={classes.statusLabel}

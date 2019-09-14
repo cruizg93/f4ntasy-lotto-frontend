@@ -107,7 +107,7 @@ const JugadorDetalles = ({...props}) => {
                             className={classes.headerContainer}
                             >
                         <PageTitle titleLabel="Detalles Venta" xsValue={5}/>
-                        <Grid item xs={7} className={classes.userInfo}>
+                        <Grid item sm={7} className={classes.userInfo}>
                             <Typography variant="h6"
                                 style={ {
                                     color: Colors.Btn_Blue_Dark,  
