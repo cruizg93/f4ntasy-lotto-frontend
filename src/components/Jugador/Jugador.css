@@ -2,29 +2,29 @@
  padding: 0 !important; 
 }
 .resumen_header{
-  height: 5.8rem;
+  height: 4.5rem;
   background: #ccffff;
   text-align: center !important;
 }
 .resume_title{
   color: #003333;
-  font-size: 1.8rem !important;
+  font-size: 5.5vw !important;
   flex: 1;
   vertical-align: middle;
-  line-height: 5.8rem !important;
+  line-height: 4.5rem !important;
 }
 .resume_create_btn{
-  padding-right: 36px !important;
-  font-size: 2.8em !important;
+  padding-right: 30px !important;
+  font-size: 2.2em !important;
 }
 .resumen_create{
   color: #006666;
 }
 
 .resumen_total{
-  line-height: 3rem;
-  border-bottom: solid 4px #69c;
-  font-size: 1.7rem;
+  line-height: 2.5rem;
+  border-bottom: solid 3px #69c;
+  font-size: 1.5rem;
   display: flex;
 }
 
@@ -38,4 +38,16 @@
 .resumen_total_val{
   color: #6699cc;
   flex: 1;
+}
+
+@media (min-width: 480px){
+  .resume_title{
+    font-size: 4.7vw !important;
+  }
+}
+
+@media (min-width: 600px){
+  .resume_title{
+    font-size: 25pt !important;
+  }
 }

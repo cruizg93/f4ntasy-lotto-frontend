@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button';
 
 import DrawerToggleButton from './DrawerToggleButton';
 import { MenuLinks } from '../MenuLinks/MenuLinks';
-import { Role as UserRoles } from '../../_helpers/role'
 
 import './Toolbar.css';
 import LogoMini from './assets/Apuntada con Lapiz_PNG.png';

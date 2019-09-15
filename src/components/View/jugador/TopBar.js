@@ -8,9 +8,8 @@ import { MainStyles } from '../../View/MainStyles';
 import { Colors } from '../../../utils/__colors';
 import { FormatCurrency } from '../../../utils/__currency';
 
-import DiariaLogo from './../assets/Diaria Logo Jugador.png';
-import ChicaLogo from './../assets/Chica Logo Jugador.png';
-import { height } from '@material-ui/system';
+import DiariaLogo from './../assets/Diaria_PNG.png';
+import ChicaLogo from './../assets/Chica_PNG.png';
 
 
 const TopBarStyles = makeStyles(theme => ({

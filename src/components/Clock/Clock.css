@@ -1,24 +1,23 @@
-.clock__column {
-    float: left;
-    width: 33.33%;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    background: transparent;
-    padding-bottom: .5rem;
-    font-size: 18pt;
-    padding-top: 0.2rem;
-}
-
 .clock__row {
     border-bottom: 2px solid #747474;
     position: fixed;
-    display: block;
+    display: flex;
     width: 100%;
     height: 3.5rem;
-    top: 5.5rem;
+    top: 4.8rem;
     background-color: white;
-    z-index: 25;   
+    z-index: 25;
+    font-size: 1vw;
+    padding-left: 4vw;   
+}
+
+.clock__column {
+    float: left;
+    width: 33.33%;
+    text-align: center;
+    background: transparent;
+    font-size: 5.5em;
+    line-height: 3.5rem;
 }
 
 /* Clear floats after the columns */
@@ -27,4 +26,10 @@
     display: table;
     clear: both;
 
+}
+
+@media (min-width: 600px) {
+    .clock__column {
+        font-size: 22pt;
+    }
 }

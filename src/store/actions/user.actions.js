@@ -29,7 +29,7 @@ function login(action, history) {
                     setTimeout(() => {
                         authenticationService.reloadCrrentUserValue();
                         history.push('/');
-                    }, 1000);
+                    }, 300);
                     // NotificationManager.success('Account Created Successfully!');
                 } else {
 

@@ -44,7 +44,7 @@ const AsistenteDataShow = ({ match, id, username, name, ...props }) => {
     return (
         <div className="container_expand">
             <div className="labelUser" style={{ flex: 7, textAlign: 'left' }}>
-                <span className="form_center-label" style={{ paddingLeft: '1.4rem' }}>
+                <span className="form_center-label expand_labelText" >
                     {username} {' ['} {name} {']'}
                 </span>
             </div>
@@ -58,10 +58,10 @@ const AsistenteDataShow = ({ match, id, username, name, ...props }) => {
                     }
                 }
             >
-                <TiPen style={{ color: "#009933", marginTop: 20 }} onClick={handleClickOpen} />
+                <TiPen style={{ color: "#009933" }} onClick={handleClickOpen} />
             </div>
             <div className="grid_goTranhcan" >
-                <GoTrashcan style={{ color: "#ff3333", marginTop: 20 }} onClick={handleClickOpen} />
+                <GoTrashcan style={{ color: "#ff3333" }} onClick={handleClickOpen} />
             </div>
             <Dialog
                 open={open}

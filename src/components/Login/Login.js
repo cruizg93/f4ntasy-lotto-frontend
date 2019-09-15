@@ -58,7 +58,7 @@ class Login extends Component {
                             <div className="input-group-prepend">
                                 <span className="input-group-text"><FaUserAlt /></span>
                             </div>
-                            <input type="text" id="username" className="form-control" onChange={this.onChange} value={this.state.username} placeholder="Usuaria" />
+                            <input type="text" id="username" className="form-control" onChange={this.onChange} value={this.state.username} placeholder="Usuario" />
                         </div>
                     </Grid>
                     <Grid item sm={12} className="grid-password">

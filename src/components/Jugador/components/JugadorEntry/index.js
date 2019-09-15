@@ -225,8 +225,6 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        /*padding: '5px 10px 5px 10px',*/
-        /*margin: '0.15rem',*/
         borderRight: "#afb6b8 1px solid",
         color: Colors.Btn_Blue,
     },
@@ -236,7 +234,6 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        /*padding: '1rem 10px 1rem 10px',        */
         borderRight: "#afb6b8 1px solid",
         color: Colors.Btn_Blue,
     },
@@ -245,7 +242,6 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        /*padding: '1rem 10px 1rem 10px',        */
         borderRight: "#afb6b8 1px solid",
         color: Colors.Btn_Blue,
         '&:hover': {
@@ -278,7 +274,7 @@ const useStyles = makeStyles(theme => ({
 
 const StyleExpansionPanelSummary = withStyles(() => ({
     root: {
-        minHeight: "54px !important"
+        minHeight: "40px !important"
     },
     expanded: {
         margin: "0px !important",
@@ -426,7 +422,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
     }, [asistentes, monedaType])
     return (
         <Grid container direction="row" className="container_entry">
-            <Grid container style={{ lineHeight: '4rem' }}>
+            <Grid container style={{ lineHeight: '2.8rem' }}>
                 <Grid className={total === 0.0 ? "labelUser" : "labelUser"}>
                     <Typography className="form_center-label">
                         {username}{"-"}{apuestaCurrency.symbol}{'\u00A0'}{"["}{name.length > 15 ? name.substring(0, 9) : name}{"]"}
