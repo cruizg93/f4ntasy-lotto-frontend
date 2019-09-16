@@ -1,7 +1,7 @@
-import {baseUrl} from '../../../config/const';
-import {authHeader} from "../../../_helpers/auth-header";
+import { baseUrl } from '../../../config/const';
+import { authHeader } from "../../../_helpers/auth-header";
 import axios from 'axios';
-import {authenticationService} from "../authentication/authentication.service";
+import authenticationService from "../authentication/authentication.service";
 
 export const playerService = {
     list_number,
@@ -23,7 +23,7 @@ export const playerService = {
 };
 
 function list_number() {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/user/apuestas/numeros`,
             requestOptions
@@ -39,7 +39,7 @@ function list_number() {
 
 function list_number_by_apuesta_id(id) {
     const currentUser = authenticationService.currentUserValue;
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     let send = {
         username: currentUser.username
     };
@@ -59,7 +59,7 @@ function list_number_by_apuesta_id(id) {
 
 function list_of_numbers_by_apuesta_id(id) {
     const currentUser = authenticationService.currentUserValue;
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     let send = {
         username: currentUser.username
     };
@@ -78,7 +78,7 @@ function list_of_numbers_by_apuesta_id(id) {
 
 function comision_directo(type) {
     const currentUser = authenticationService.currentUserValue;
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     let send = {
         username: currentUser.username,
         type: type
@@ -98,7 +98,7 @@ function comision_directo(type) {
 
 function detalles_by_apuesta_id(id) {
     const currentUser = authenticationService.currentUserValue;
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     let send = {
         username: currentUser.username
     };
@@ -117,7 +117,7 @@ function detalles_by_apuesta_id(id) {
 
 
 function list_apuestas_hoy() {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/user/apuestas/hoy`,
             requestOptions
@@ -133,10 +133,10 @@ function list_apuestas_hoy() {
 
 function get_balance() {
     const currentUser = authenticationService.currentUserValue;
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     let send = {
         username: currentUser.username
-    };    
+    };
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/user/balance`,
             send, requestOptions
@@ -151,7 +151,7 @@ function get_balance() {
 }
 
 function list_apuestas_hoy_by_username() {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     const currentUser = authenticationService.currentUserValue;
 
     return new Promise((resolve, reject) => {
@@ -168,7 +168,7 @@ function list_apuestas_hoy_by_username() {
 }
 
 function list_apuestas_asistente_hoy_by_username() {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     const currentUser = authenticationService.currentUserValue;
     let send = {
         username: currentUser.username

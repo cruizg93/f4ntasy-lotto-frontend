@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {ToastContainer, toast} from 'react-toastify';
+import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {makeStyles} from '@material-ui/core/styles';
-import {withStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
@@ -11,14 +11,14 @@ import Container from '@material-ui/core/Container';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
-import {green} from '@material-ui/core/colors';
+import { green } from '@material-ui/core/colors';
 
 
 import Divider from '@material-ui/core/Divider';
 import Diaria from "../Diaria/Diaria";
 import Chica from "../Chica/Chica";
-import {adminService} from "../../../../service/api/admin/admin.service";
-import {Colors} from "../../../../utils/__colors";
+import { adminService } from "../../../../service/api/admin/admin.service";
+import { Colors } from "../../../../utils/__colors";
 import AlertDialog from "../../../AlertDialog/index";
 
 import './Editar.css';
@@ -39,7 +39,7 @@ const EditarFijarButton = withStyles({
         width: '100%',
         boxShadow: 'none',
         textTransform: 'none',
-        fontSize: 16,       
+        fontSize: 16,
         lineHeight: 1.5,
         padding: "15px 0",
         backgroundColor: Colors.Main,
@@ -103,26 +103,26 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
     },
     headerContainer: {
-        background : Colors.Main,
+        background: Colors.Main,
         marginBottom: "1rem"
     },
-    editarJugadorLabel:{
+    editarJugadorLabel: {
         borderBottom: `${Colors.Btn_Red} 2px solid`,
         paddingBottom: "1rem !important",
         marginTop: ".5rem",
     },
     boxContainerNuevo: {
-        background : Colors.Main,
+        background: Colors.Main,
         marginTop: "1rem",
     },
     inputData: {
-        background : Colors.Input_bkg,
+        background: Colors.Input_bkg,
     },
-    editLabel:{
-        color : Colors.Btn_Red
+    editLabel: {
+        color: Colors.Btn_Red
     },
-    fijarLabel:{
-        color : Colors.Green
+    fijarLabel: {
+        color: Colors.Green
     }
 
 }));
@@ -132,15 +132,15 @@ const EditarJugador = (props) => {
     const [disable, setDisable] = useState(true);
 
     const editarFijarHandler = (e) => {
-        if(!disable && editable){
+        if (!disable && editable) {
             onClickHandlerEditar();
         }
-        if(editable)
+        if (editable)
             setDisable(!disable);
     }
 
     const [selectedValueMoneda, setSelectedValueMoneda] = React.useState('l');
-    
+
     const [placeholderUser, setPlaceholderUser] = React.useState("P000");
 
     const [diariaPremioMil, setDiariaPremioMil] = React.useState('');
@@ -204,10 +204,10 @@ const EditarJugador = (props) => {
     }
 
     useEffect(() => {
-        adminService.get_player_by_id(props.match.params.jugadorId).then((result) => {      
-           
+        adminService.get_player_by_id(props.match.params.jugadorId).then((result) => {
+
             setEditable(result.data.editable);
-            if(result.data.moneda.monedaName==='DOLAR'){
+            if (result.data.moneda.monedaName === 'DOLAR') {
                 setSelectedValueMoneda('d');
             }
             if (result.data.costoChicaPedazos !== 0
@@ -219,7 +219,7 @@ const EditarJugador = (props) => {
 
             } else if (result.data.comisionChicaDirecto !== 0
                 && result.data.premioChicaDirecto !== 0
-            ) {                
+            ) {
                 setSelectedChicaType('cd');
                 setChicaPremioDirectoMil(result.data.premioChicaDirecto);
                 setChicaComision(result.data.comisionChicaDirecto);
@@ -241,7 +241,7 @@ const EditarJugador = (props) => {
 
         })
 
-    }, [])    
+    }, [])
 
     function handleChange(event) {
         setSelectedValueMoneda(event.target.value);
@@ -303,8 +303,8 @@ const EditarJugador = (props) => {
             cparam1: cparam1,
             cparam2: cparam2,
             cparam3: cparam3,
-        };   
-        
+        };
+
 
         adminService.edit_player(data)
             .then(function (response) {
@@ -318,13 +318,13 @@ const EditarJugador = (props) => {
                 duplicado();
 
             });
- 
+
     }
 
     return (
         <React.Fragment>
-            <ToastContainer autoClose={8000}/>
-            <Container maxWidth="sm" className={classes.container}>  
+            <ToastContainer autoClose={8000} />
+            <Container maxWidth="xs" className={classes.container}>
                 {!editable ?
                     <AlertDialog msg={"El jugador tiene apuestas activas"} />
                     : null
@@ -334,25 +334,25 @@ const EditarJugador = (props) => {
                     justify="center"
                     alignItems="flex-start"
                     className={classes.headerContainer}
-                    >
+                >
                     <Grid item xs={8} className={classes.editarJugadorLabel}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
                             Editar Jugador P
                         </Typography>
                     </Grid>
                     <Grid item xs={4}>
-                        
+
                     </Grid>
-                </Grid>             
+                </Grid>
                 <Grid container spacing={1}
-                      direction="row"
-                      justify="center"
-                      alignItems="flex-start"
-                      className={classes.headerContainer}
-                      >
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start"
+                    className={classes.headerContainer}
+                >
                     <Grid item xs={6}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
-                        {placeholderUser} / {inputUserName}
+                            {placeholderUser} / {inputUserName}
                         </Typography>
                     </Grid>
                     <Grid item xs={6}>
@@ -364,12 +364,12 @@ const EditarJugador = (props) => {
                                     onChange={handleChange}
                                     value="l"
                                     name="radio-button-moneda"
-                                    inputProps={{'aria-label': 'L'}}
+                                    inputProps={{ 'aria-label': 'L' }}
                                     disabled={disable}
                                 />}
                             label="Lempiras"
                             labelPlacement="bottom"
-                            
+
                         />
                         <FormControlLabel
                             value="dolar"
@@ -379,7 +379,7 @@ const EditarJugador = (props) => {
                                     onChange={handleChange}
                                     value="d"
                                     name="radio-button-moneda"
-                                    inputProps={{'aria-label': 'D'}}
+                                    inputProps={{ 'aria-label': 'D' }}
                                     disabled={disable}
                                 />}
                             label="Dolares"
@@ -388,11 +388,11 @@ const EditarJugador = (props) => {
                     </Grid>
                 </Grid>
 
-                <Divider/>
+                <Divider />
                 <Grid container spacing={1}
-                      direction="row"
-                      justify="center"
-                      alignItems="center">
+                    direction="row"
+                    justify="center"
+                    alignItems="center">
                     <Grid item xs={12}
                         className={classes.boxContainerNuevo}
                     >
@@ -419,7 +419,7 @@ const EditarJugador = (props) => {
                             label="Contraseña"
                             placeholder="Si no edita este campo la contraseña no se cambia"
                             margin="normal"
-                            variant="outlined"                            
+                            variant="outlined"
                             fullWidth
                             required
                             value={inputPassword}
@@ -451,24 +451,24 @@ const EditarJugador = (props) => {
 
                 </Grid>
 
-                <Divider/>
+                <Divider />
 
 
                 <Diaria premio={diariaPremioMil}
-                        onChangePremioMil={handleChangeDiariaPremioMil}
-                        premioLempiras={diariaPremioLempirasMil}
-                        onChangePremioLempirasMil={handleChangeDiariaPremioLempirasMil}
-                        costo={diariaCostoMil}
-                        onChangeCostoMil={handleChangeDiariaCostoMil}
-                        comision={diariaComision}
-                        onChangeComisionMil={handleChangeDiariaComision}
-                        diariaType={selectedDiariaType}
-                        onChangeDiariaType={handleChangeDiariaType}
-                        activate={disable}
+                    onChangePremioMil={handleChangeDiariaPremioMil}
+                    premioLempiras={diariaPremioLempirasMil}
+                    onChangePremioLempirasMil={handleChangeDiariaPremioLempirasMil}
+                    costo={diariaCostoMil}
+                    onChangeCostoMil={handleChangeDiariaCostoMil}
+                    comision={diariaComision}
+                    onChangeComisionMil={handleChangeDiariaComision}
+                    diariaType={selectedDiariaType}
+                    onChangeDiariaType={handleChangeDiariaType}
+                    activate={disable}
                 />
 
 
-                <Divider/>
+                <Divider />
 
 
                 <Chica
@@ -494,17 +494,17 @@ const EditarJugador = (props) => {
                 />
 
                 <Grid container spacing={1}
-                                direction="row"
-                                justify="center"
-                                alignItems="flex-start"
-                                
-                                >
-                        <EditarFijarButton variant="outlined" color="primary" 
-                            className={disable ? classes.editLabel : classes.fijarLabel }
-                            onClick={editarFijarHandler}
-                        >
-                            {disable ? "Editar" : "Fijar"}                                                    
-                        </EditarFijarButton>
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start"
+
+                >
+                    <EditarFijarButton variant="outlined" color="primary"
+                        className={disable ? classes.editLabel : classes.fijarLabel}
+                        onClick={editarFijarHandler}
+                    >
+                        {disable ? "Editar" : "Fijar"}
+                    </EditarFijarButton>
                 </Grid>
             </Container>
         </React.Fragment>

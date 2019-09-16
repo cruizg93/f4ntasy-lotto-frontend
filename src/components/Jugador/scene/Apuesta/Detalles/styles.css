@@ -1,0 +1,9 @@
+.userInfo{
+  font-size: 16pt;
+  color: #006666;
+  border-top : solid 1px #afb6b8;
+  padding-bottom: 5px !important;
+}
+.userInfo span{
+  padding-left: 4vw;
+}

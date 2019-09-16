@@ -1,0 +1,11 @@
+.admin_header {
+  height: 4.5rem;
+  background: #dfedfa;
+  font-size: 17pt;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #003333;
+}

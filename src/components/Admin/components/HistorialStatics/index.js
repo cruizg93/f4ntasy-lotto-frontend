@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
-import {red, blue} from "@material-ui/core/colors/index";
-import {withStyles} from "@material-ui/core/styles/index";
+import { red, blue } from "@material-ui/core/colors/index";
+import { withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 
 const useStyles = makeStyles(theme => ({
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
-        
+
     },
     component: {
         textDecoration: 'none',
@@ -92,7 +92,7 @@ const LempiraButton = withStyles({
         },
     },
 })(Button);
-const HistorialStatic = ({title, totalSemanal, comisionSemanal, netaSemanal, totalPremioSemanal, balanceSemanal, semana, ...props}) => {
+const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, totalPremioSemanal, balanceSemanal, semana, ...props }) => {
     const classes = useStyles();
 
     useEffect(() => {
@@ -101,14 +101,14 @@ const HistorialStatic = ({title, totalSemanal, comisionSemanal, netaSemanal, tot
     return (
         <Grid container>
             <Grid item xs={12}
-                  container
-                  justify="center"
-                  alignItems="center"
-                  className={classes.text}
+                container
+                justify="center"
+                alignItems="center"
+                className={classes.text}
             >
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     Resumen de todos los sorteos ya terminados, de todos los jugadores, y de la
-                    {semana==='current' ? " SEMANA EN CURSO" : " SEMANA EN ANTERIOR"}
+                    {semana === 'current' ? " SEMANA EN CURSO" : " SEMANA EN ANTERIOR"}
 
                 </Typography>
                 <Typography variant="body1" gutterBottom className={classes.text}>
@@ -116,102 +116,102 @@ const HistorialStatic = ({title, totalSemanal, comisionSemanal, netaSemanal, tot
                 </Typography>
             </Grid>
             <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
-                  alignItems="flex-start">
+                direction="row"
+                justify="center"
+                alignItems="flex-start">
                 <Grid item xs={6}>
                     <DolarButton variant="outlined" color="primary" className={classes.button}
-                                 onClick={props.clickDolar}
+                        onClick={props.clickDolar}
                     >
                         ver en $
                     </DolarButton>
                     <LempiraButton variant="outlined" color="primary" className={classes.button}
-                                   onClick={props.clickLempira}
+                        onClick={props.clickLempira}
                     >
                         ver en L
                     </LempiraButton>
                 </Grid>
             </Grid>
             <Grid item xs={6}
-                  container
-                  justify="flex-end"
+                container
+                justify="flex-end"
             >
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     Total Apuestas |
                 </Typography>
             </Grid>
             <Grid item xs={6}
-                  container
-                  justify="flex-start"
-                  className={classes.text}
+                container
+                justify="flex-start"
+                className={classes.text}
             >
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     {totalSemanal}
                 </Typography>
             </Grid>
             <Grid item xs={6}
-                  container
-                  justify="flex-end"
+                container
+                justify="flex-end"
             >
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     Total Comisiones |
                 </Typography>
             </Grid>
             <Grid item xs={6}
-                  container
-                  justify="flex-start"
-                  className={classes.text}
+                container
+                justify="flex-start"
+                className={classes.text}
             >
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     {comisionSemanal}
                 </Typography>
             </Grid>
             <Grid item xs={6}
-                  container
-                  justify="flex-end"
+                container
+                justify="flex-end"
             >
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     Entrada Neta |
                 </Typography>
             </Grid>
             <Grid item xs={6}
-                  container
-                  justify="flex-start"
-                  className={classes.text}
+                container
+                justify="flex-start"
+                className={classes.text}
             >
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     {netaSemanal}
                 </Typography>
             </Grid>
             <Grid item xs={6}
-                  container
-                  justify="flex-end"
+                container
+                justify="flex-end"
             >
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     Total Premios |
                 </Typography>
             </Grid>
             <Grid item xs={6}
-                  container
-                  justify="flex-start"
-                  className={classes.text}
+                container
+                justify="flex-start"
+                className={classes.text}
             >
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     {totalPremioSemanal}
                 </Typography>
             </Grid>
             <Grid item xs={6}
-                  container
-                  justify="flex-end"
+                container
+                justify="flex-end"
             >
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     Ganancia/Perdida |
                 </Typography>
             </Grid>
             <Grid item xs={6}
-                  container
-                  justify="flex-start"
-                  className={classes.text}
+                container
+                justify="flex-start"
+                className={classes.text}
             >
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     {balanceSemanal}

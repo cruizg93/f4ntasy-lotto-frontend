@@ -1,27 +1,17 @@
-import {BehaviorSubject} from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
-import {baseUrl} from '../../../config/const';
-import {handleResponse} from '../../../_helpers/handle-response';
+import { baseUrl } from '../../../config/const';
+import { handleResponse } from '../../../_helpers/handle-response';
 
-const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
-
-export const authenticationService = {
-    login,
-    logout,
-    type_user,
-    currentUser: currentUserSubject.asObservable(),
-    get currentUserValue() {
-        return currentUserSubject.value
-    }
-};
+var currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 
 function login(username, password) {
-    let user=username[0].toUpperCase()+username.slice(1);
-    username=user;      
+    let user = username[0].toUpperCase() + username.slice(1);
+    username = user;
     const requestOptions = {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({username, password})
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
     };
 
     return fetch(`${baseUrl}/api/auth/signin`, requestOptions)
@@ -64,3 +54,16 @@ function type_user() {
         return role;
     }
 }
+
+export default {
+    login,
+    logout,
+    type_user,
+    currentUser: currentUserSubject.asObservable(),
+    get currentUserValue() {
+        return currentUserSubject.value
+    },
+    reloadCrrentUserValue() {
+        currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
+    }
+};

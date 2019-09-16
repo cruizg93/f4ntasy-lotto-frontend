@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {adminService} from "../../../service/api/admin/admin.service";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { adminService } from "../../../service/api/admin/admin.service";
 import './Cambio.css';
 
 class Cambio extends Component {
@@ -14,14 +14,14 @@ class Cambio extends Component {
 
     updateCambio() {
         adminService.get_current_cambio().then((result) => {
-            this.setState({balance: result})
+            this.setState({ balance: result })
 
         })
     }
 
     componentWillMount() {
         adminService.get_current_cambio().then((result) => {
-            this.setState({cambio: result.data})
+            this.setState({ cambio: result.data })
 
         })
     }
@@ -45,13 +45,11 @@ class Cambio extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <div className={"clock__column"}>      
-                    <Link to="/sistema/cambio" className={"column__cambio"}>
-                        {"L @ "}{this.state.cambio}
-                    </Link>                                            
-                </div>               
-            </React.Fragment>
+            <div className={"clock__column"}>
+                <Link to="/sistema/cambio" className={"column__cambio"}>
+                    {"L @ "}{this.state.cambio}
+                </Link>
+            </div>
         )
     }
 }

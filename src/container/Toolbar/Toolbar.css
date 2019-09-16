@@ -4,30 +4,27 @@
     position: fixed;
     display: block;
     width: 100%;
-    background:#cc0000;/* #0e5dd7;/*#5692d7;*/
-    height: 56px;
+    background:#ff9933;
+    height: 62px;
     z-index: 50;
-}
-.green_bkg{
-    background: #99cc66;
-}
-
-.yellow_bkg{
-    background: #fbd534;
 }
 .toolbar__user-username {
     display: flex;
-    height: 40px;
-    width: 70px;
+    height: 43px;
+    width: 20vw;
     justify-content: center;
     flex-direction: column;
     text-align: center;
     background: transparent;
     border: 2px solid #FFF;
+    border-radius: 5px;
     color: white;
-    margin: 0 1rem;
-    font-size: 14pt;
+    margin: 0 0.9rem;
+    font-size: 5vw;
+    font-family: 'Arial';
+    
 }
+
 .toolbar__user-username:hover{
     cursor: pointer;
 }
@@ -39,7 +36,7 @@
 }
 
 .toolbar__logo {
-    margin-left: 0.75rem;
+    padding: 1vw 1vw 1vw 3vw;
 }
 
 .toolbar__logo a {
@@ -50,13 +47,15 @@
     justify-content: center;
     align-items:center;
     overflow:hidden;
+    width: 40vw;
 }
 
 .toolbar__logo a img{
     flex-shrink: 0;
     min-width: 100%;
-    max-width:9.1rem;
+    max-width:14rem;
     min-height:100%;
+    width: 100%;
 }
 
 .toolbar__navigation-items ul {
@@ -85,6 +84,16 @@
 
 }
 
+@media (min-width: 600px) {
+    .toolbar__user-username {
+        font-size: 27px;
+        width: 90px;
+    }
+    .toolbar__logo a {
+        width: 200px;
+    }
+}
+
 @media (max-width: 768px) {
     .toolbar__navigation-items {
         display: none;
@@ -101,6 +110,6 @@
         margin-left: 0;
     }
     .toolbar__logo a img{
-        max-width:13rem;
+        max-width:14rem;
     }
 }

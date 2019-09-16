@@ -1,9 +1,9 @@
-import {baseUrl} from '../../../config/const';
-import {authHeader} from "../../../_helpers/auth-header";
+import { baseUrl } from '../../../config/const';
+import { authHeader } from "../../../_helpers/auth-header";
 import axios from 'axios';
-import {authenticationService} from "../authentication/authentication.service";
+import authenticationService from "../authentication/authentication.service";
 
-export const utilService ={
+export const utilService = {
     firstConnection: first_connection,
     isFirstConnection,
     connectionFirst
@@ -12,9 +12,9 @@ export const utilService ={
 
 function first_connection(passcode) {
     const currentUser = authenticationService.currentUserValue;
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     let send = {
-        username: currentUser.username, 
+        username: currentUser.username,
         password: passcode
     };
     return new Promise((resolve, reject) => {
@@ -32,16 +32,16 @@ function first_connection(passcode) {
 
 function isFirstConnection() {
     const currentUser = authenticationService.currentUserValue;
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     let send = {
-        username: currentUser.username         
+        username: currentUser.username
     };
 
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/utils/connection/first`,
             send, requestOptions
         )
-            .then((responseJson) => {                
+            .then((responseJson) => {
                 resolve(responseJson);
             })
             .catch((error) => {
@@ -50,8 +50,8 @@ function isFirstConnection() {
     });
 }
 
-function connectionFirst(){
-    this.isFirstConnection().then((result)=>{
+function connectionFirst() {
+    this.isFirstConnection().then((result) => {
         return result;
     })
 }

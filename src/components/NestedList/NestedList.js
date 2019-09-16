@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {makeStyles} from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -15,8 +15,8 @@ import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
 
 import Historial from './Historial';
 import Sistema from './Sistema';
-import {authenticationService} from "../../service/api/authentication/authentication.service";
-import {history} from "../../_helpers/history";
+import { authenticationService } from "../../service/api/authentication/authentication.service";
+// import {history} from "../../_helpers/history";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 export default function NestedList(props) {
     const classes = useStyles();
     const [isAdmin, setAdminValue] = React.useState(props.admin);
-    const [isAsistente, setAsistenteValue] = React.useState(!props.admin && props.asistente);  
+    const [isAsistente, setAsistenteValue] = React.useState(!props.admin && props.asistente);
 
     return (
         <List
@@ -49,94 +49,94 @@ export default function NestedList(props) {
             className={classes.root}
         >
             {isAdmin &&
-            <ListItem button component={Link} to={'/jugadores'} onClick={props.click}>
-                <ListItemIcon>
-                    <SupervisedUserCircle/>
-                </ListItemIcon>
-                <ListItemText primary="Jugadores"/>
-            </ListItem>
+                <ListItem button component={Link} to={'/jugadores'} onClick={props.click}>
+                    <ListItemIcon>
+                        <SupervisedUserCircle />
+                    </ListItemIcon>
+                    <ListItemText primary="Jugadores" />
+                </ListItem>
             }
 
             {isAdmin &&
-            <ListItem button component={Link} to="/apuestas/activas" onClick={props.click}>
-                <ListItemIcon>
-                    <Style/>
-                </ListItemIcon>
-                <ListItemText primary="Apuestas Activas"/>
-            </ListItem>
+                <ListItem button component={Link} to="/apuestas/activas" onClick={props.click}>
+                    <ListItemIcon>
+                        <Style />
+                    </ListItemIcon>
+                    <ListItemText primary="Apuestas Activas" />
+                </ListItem>
             }
 
-            {isAdmin && <Sistema classes={classes.nested} click={props.click}/>}
-            {isAdmin && <Historial classes={classes.nested} click={props.click}/>}
+            {isAdmin && <Sistema classes={classes.nested} click={props.click} />}
+            {isAdmin && <Historial classes={classes.nested} click={props.click} />}
 
             {(!isAdmin && !isAsistente) &&
-            <ListItem button component={Link} to={'/usuario/apuestas'} onClick={props.click}>
-                <ListItemIcon>
-                     <ArrowRightAlt/>
-                </ListItemIcon>
-                <ListItemText primary="Entrar Apuestas"/>
-            </ListItem>
+                <ListItem button component={Link} to={'/usuario/apuestas'} onClick={props.click}>
+                    <ListItemIcon>
+                        <ArrowRightAlt />
+                    </ListItemIcon>
+                    <ListItemText primary="Entrar Apuestas" />
+                </ListItem>
             }
             {(!isAdmin && !isAsistente) &&
-            <ListItem button component={Link} to={'/usuario/apuestas/hoy/activas'} onClick={props.click}>
-                <ListItemIcon>
-                    <Style/>
-                </ListItemIcon>
-                <ListItemText primary="Apuestas Activas"/>
-            </ListItem>
+                <ListItem button component={Link} to={'/usuario/apuestas/hoy/activas'} onClick={props.click}>
+                    <ListItemIcon>
+                        <Style />
+                    </ListItemIcon>
+                    <ListItemText primary="Apuestas Activas" />
+                </ListItem>
             }
 
             {(!isAdmin && !isAsistente) &&
-            <ListItem button component={Link} to={'/usuario/historial'} onClick={props.click}>
-                <ListItemIcon>
-                     <History/>
-                </ListItemIcon>
-                <ListItemText primary="Historial"/>
-            </ListItem>
+                <ListItem button component={Link} to={'/usuario/historial'} onClick={props.click}>
+                    <ListItemIcon>
+                        <History />
+                    </ListItemIcon>
+                    <ListItemText primary="Historial" />
+                </ListItem>
             }
 
             {isAsistente &&
-            <ListItem button component={Link} to={'/asistente/apuestas'} onClick={props.click}>
-                <ListItemIcon>
-                     <ArrowRightAlt/>
-                </ListItemIcon>
-                <ListItemText primary="Entrar Apuestas"/>
-            </ListItem>
+                <ListItem button component={Link} to={'/asistente/apuestas'} onClick={props.click}>
+                    <ListItemIcon>
+                        <ArrowRightAlt />
+                    </ListItemIcon>
+                    <ListItemText primary="Entrar Apuestas" />
+                </ListItem>
             }
             {isAsistente &&
-            <ListItem button component={Link} to={'/asistente/apuestas/hoy/activas'} onClick={props.click}>
-                <ListItemIcon>
-                    <Style/>
-                </ListItemIcon>
-                <ListItemText primary="Apuestas Activas"/>
-            </ListItem>
+                <ListItem button component={Link} to={'/asistente/apuestas/hoy/activas'} onClick={props.click}>
+                    <ListItemIcon>
+                        <Style />
+                    </ListItemIcon>
+                    <ListItemText primary="Apuestas Activas" />
+                </ListItem>
             }
 
             {isAsistente &&
-            <ListItem button component={Link} to={'/asistente/historial'} onClick={props.click}>
-                <ListItemIcon>
-                     <History/>
-                </ListItemIcon>
-                <ListItemText primary="Historial"/>
-            </ListItem>
+                <ListItem button component={Link} to={'/asistente/historial'} onClick={props.click}>
+                    <ListItemIcon>
+                        <History />
+                    </ListItemIcon>
+                    <ListItemText primary="Historial" />
+                </ListItem>
             }
 
 
             {!isAdmin &&
-            <ListItem button component={Link} to="/usuario/password/cambiar"
-                      onClick={props.click}>
-                <ListItemIcon>
-                    <Create/>
-                </ListItemIcon>
-                <ListItemText primary="Cambiar Contraseña"/>
-            </ListItem>
+                <ListItem button component={Link} to="/usuario/password/cambiar"
+                    onClick={props.click}>
+                    <ListItemIcon>
+                        <Create />
+                    </ListItemIcon>
+                    <ListItemText primary="Cambiar Contraseña" />
+                </ListItem>
             }
 
             <ListItem button onClick={props.logout}>
                 <ListItemIcon>
-                    <SupervisedUserCircle/>
+                    <SupervisedUserCircle />
                 </ListItemIcon>
-                <ListItemText primary="Salir"/>
+                <ListItemText primary="Salir" />
             </ListItem>
         </List>
     );

@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import List from '@material-ui/core/List';
 import NumerosActivosUserEntry from './NumerosActivosUserEntry/index';
-import {authenticationService} from "../../../../service/api/authentication/authentication.service";
+import authenticationService from "../../../../service/api/authentication/authentication.service";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -15,7 +15,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import NumberFormat from 'react-number-format';
-import {adminService} from "../../../../service/api/admin/admin.service";
+import { adminService } from "../../../../service/api/admin/admin.service";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const NumerosGanadoresEntry = ({id, title, numero, pairJBS, ...props}) => {
+const NumerosGanadoresEntry = ({ id, title, numero, pairJBS, ...props }) => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
     const [currentRole, setCurrentRole] = useState('Player');
@@ -86,9 +86,9 @@ const NumerosGanadoresEntry = ({id, title, numero, pairJBS, ...props}) => {
         if (newNumber !== '' && newNumber !== 1
             && newNumber >= 0 && newNumber < 100
         ) {
-          /*   adminService.update_numero_ganador(newNumber,oldNumber, id).then((result) => {
-            }) */
-            
+            /*   adminService.update_numero_ganador(newNumber,oldNumber, id).then((result) => {
+              }) */
+
             adminService.fix_numero_ganador(newNumber, id).then((result) => {
             })
         }
@@ -103,17 +103,17 @@ const NumerosGanadoresEntry = ({id, title, numero, pairJBS, ...props}) => {
     return (
         <div className={classes.root}>
             <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')}
-                            TransitionProps={{unmountOnExit: true}}
+                TransitionProps={{ unmountOnExit: true }}
             >
                 <ExpansionPanelSummary
-                    expandIcon={<ExpandMoreIcon/>}
+                    expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1bh-content"
                     id="panel1bh-header"
                 >
                     {currentRole === "Master" ?
                         <>
                             <Typography onClick={handleClickOpen}
-                                        className={classes.heading}>{numero ? numero : "-01"}</Typography>
+                                className={classes.heading}>{numero ? numero : "-01"}</Typography>
 
                             <div>
                                 <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -140,7 +140,7 @@ const NumerosGanadoresEntry = ({id, title, numero, pairJBS, ...props}) => {
                                             updateValue();
                                             handle()
                                         }}
-                                                color="primary">
+                                            color="primary">
                                             Cambiar
                                         </Button>
                                     </DialogActions>
@@ -157,7 +157,7 @@ const NumerosGanadoresEntry = ({id, title, numero, pairJBS, ...props}) => {
                     {pairJBS.length !== 0 ?
                         <List className={classes.root}>
                             {pairJBS.map((player, index) =>
-                                <NumerosActivosUserEntry key={index} {...player} {...props}/>
+                                <NumerosActivosUserEntry key={index} {...player} {...props} />
                             )
                             }
 

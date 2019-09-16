@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import {ToastContainer, toast} from 'react-toastify';
+import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {makeStyles} from '@material-ui/core/styles';
-import {withStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
@@ -13,7 +13,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
 import './Nuevo.css';
 import './components/Diaria/Diaria'
-import {green} from '@material-ui/core/colors';
+import { green } from '@material-ui/core/colors';
 
 import Diaria from "./components/Diaria/Diaria";
 import Chica from "./components/Chica/Chica";
@@ -24,8 +24,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import {adminService} from "../../service/api/admin/admin.service";
-import {Colors} from '../../utils/__colors';
+import { adminService } from "../../service/api/admin/admin.service";
+import { Colors } from '../../utils/__colors';
 
 const GreenRadio = withStyles({
     root: {
@@ -42,7 +42,7 @@ const CrearButton = withStyles({
         width: '100%',
         boxShadow: 'none',
         textTransform: 'none',
-        fontSize: 16,       
+        fontSize: 16,
         lineHeight: 1.5,
         padding: "15px 0",
         backgroundColor: Colors.Main,
@@ -104,29 +104,29 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
     },
     headerContainer: {
-        background : Colors.Main,
+        background: Colors.Main,
     },
-    crearJugadorLabel:{
+    crearJugadorLabel: {
         borderBottom: `${Colors.Btn_Red} 2px solid`,
         paddingBottom: "1rem !important",
         marginTop: ".5rem",
     },
     boxContainerNuevo: {
-        background : Colors.Main,
+        background: Colors.Main,
         marginTop: "1rem",
     },
     boxContainerDiaria: {
-        background : Colors.Main,
+        background: Colors.Main,
         marginTop: "1rem",
         paddingTop: "1rem",
         paddingBottom: "1rem"
     },
     inputData: {
-        background : Colors.Input_bkg,
+        background: Colors.Input_bkg,
     }
 }));
 
-export default function Nuevo({...props}) {
+export default function Nuevo({ ...props }) {
 
     const classes = useStyles();
     const [selectedValueMoneda, setSelectedValueMoneda] = React.useState('');
@@ -169,7 +169,7 @@ export default function Nuevo({...props}) {
     //Input
     const [inputUserName, setInputUserName] = useState(''); // '' is the initial state value
     const [inputPassword, setInputPassword] = useState('123456789'); // '' is the initial state value
-    const [open, setOpen] = useState(false);   
+    const [open, setOpen] = useState(false);
     const mounted = useState(true);
 
     function handleClickOpen() {
@@ -181,7 +181,7 @@ export default function Nuevo({...props}) {
         props.history.push("/");
         return () => {
             mounted.current = false;
-        };        
+        };
     }
     function success_response() {
         toast.success("Usuario guardado !", {
@@ -202,7 +202,7 @@ export default function Nuevo({...props}) {
     }
 
     function update_jugador() {
-        adminService.count().then((response) => {            
+        adminService.count().then((response) => {
             let number = response.data;
             let length = Math.log(number) * Math.LOG10E + 1 | 0;
             let pword = 'P';
@@ -254,7 +254,7 @@ export default function Nuevo({...props}) {
         if (inputPassword === '' || inputUserName === '' || selectedValueMoneda === '' || selectedDiariaType === '' || selectedChicaType === '') {
             submit = false;
         }
-        
+
         let dparam1 = diariaCostoMil;
         let dparam2 = diariaPremioMil;
         if (selectedDiariaType === 'dd') {
@@ -264,7 +264,7 @@ export default function Nuevo({...props}) {
         if (dparam1 === '' || dparam1 === 0 || dparam2 === '' || dparam2 === 0) {
             submit = false;
         }
-        
+
         let cparam1 = 0;
         let cparam2 = 0;
         let cparam3 = 0;
@@ -286,7 +286,7 @@ export default function Nuevo({...props}) {
         if ((cparam1 === 0 && cparam2 === 0) || (selectedChicaType === 'cp' && cparam3 === 0)) {
             submit = false;
         }
-       
+
         if (!submit) {
             error_reponse();
             return;
@@ -305,89 +305,89 @@ export default function Nuevo({...props}) {
             cparam2: cparam2,
             cparam3: cparam3,
         };
-       
-         adminService.new_player(data)
-            .then(function (response) {  
-                handleClickOpen();                              
+
+        adminService.new_player(data)
+            .then(function (response) {
+                handleClickOpen();
                 clean();
             })
-            .catch(function (error) {               
+            .catch(function (error) {
                 error_reponse();
-            });        
+            });
     }
 
     return (
         <div>
             <React.Fragment>
-                <ToastContainer autoClose={8000}/>
+                <ToastContainer autoClose={8000} />
                 <Dialog
-                            open={open}
-                            onClose={handleClose}
-                            aria-labelledby="alert-dialog-crear-usuario"
-                            aria-describedby="alert-dialog-description"
-                        >
-                            <DialogTitle
-                                id="alert-dialog-crear-usuario">Su Jugador a sido creado exitosamente</DialogTitle>
-                            <DialogContent>
-                                <DialogContentText id="alert-dialog-description">
-                                    {`Usuario: ${placeholderUser} contraseña: ${inputPassword}`}
-                                </DialogContentText>
-                            </DialogContent>
-                            <DialogActions>                                
-                                <Button onClick={() => {
-                                    handleClose();  
-                                }} color="primary" autoFocus>
-                                    Aceptar
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-crear-usuario"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle
+                        id="alert-dialog-crear-usuario">Su Jugador a sido creado exitosamente</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            {`Usuario: ${placeholderUser} contraseña: ${inputPassword}`}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => {
+                            handleClose();
+                        }} color="primary" autoFocus>
+                            Aceptar
                                 </Button>
-                            </DialogActions>
-                        </Dialog> 
-                <Container maxWidth="sm" className={classes.container}>                 
+                    </DialogActions>
+                </Dialog>
+                <Container maxWidth="xs" className={classes.container}>
                     <Grid container spacing={1}
-                                direction="row"
-                                justify="center"
-                                alignItems="flex-start"
-                                className={classes.headerContainer}
-                                >
-                            <Grid item xs={6} className={classes.crearJugadorLabel}>
-                                <Typography variant="h6" gutterBottom className={"form__center-label"}>
-                                    Crear Jugador P
+                        direction="row"
+                        justify="center"
+                        alignItems="flex-start"
+                        className={classes.headerContainer}
+                    >
+                        <Grid item xs={6} className={classes.crearJugadorLabel}>
+                            <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                                Crear Jugador P
                                 </Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <FormControlLabel
-                                    value="lempiras"
-                                    control={
-                                        <GreenRadio
-                                            checked={selectedValueMoneda === 'l'}
-                                            onChange={handleChange}
-                                            value="l"
-                                            name="radio-button-moneda"
-                                            inputProps={{'aria-label': 'L'}}
-                                        />}
-                                    label="Lempiras"
-                                    labelPlacement="bottom"
-                                />
-                                <FormControlLabel
-                                    value="dolar"
-                                    control={
-                                        <GreenRadio
-                                            checked={selectedValueMoneda === 'd'}
-                                            onChange={handleChange}
-                                            value="d"
-                                            name="radio-button-moneda"
-                                            inputProps={{'aria-label': 'D'}}
-                                        />}
-                                    label="Dolares"
-                                    labelPlacement="bottom"
-                                />
-                            </Grid>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <FormControlLabel
+                                value="lempiras"
+                                control={
+                                    <GreenRadio
+                                        checked={selectedValueMoneda === 'l'}
+                                        onChange={handleChange}
+                                        value="l"
+                                        name="radio-button-moneda"
+                                        inputProps={{ 'aria-label': 'L' }}
+                                    />}
+                                label="Lempiras"
+                                labelPlacement="bottom"
+                            />
+                            <FormControlLabel
+                                value="dolar"
+                                control={
+                                    <GreenRadio
+                                        checked={selectedValueMoneda === 'd'}
+                                        onChange={handleChange}
+                                        value="d"
+                                        name="radio-button-moneda"
+                                        inputProps={{ 'aria-label': 'D' }}
+                                    />}
+                                label="Dolares"
+                                labelPlacement="bottom"
+                            />
+                        </Grid>
                     </Grid>
-                    
+
                     <Grid container spacing={1}
-                          direction="row"
-                          justify="center"
-                          alignItems="center">
-                        <Grid item xs={12} 
+                        direction="row"
+                        justify="center"
+                        alignItems="center">
+                        <Grid item xs={12}
                             className={classes.boxContainerNuevo}
                         >
                             <TextField
@@ -412,7 +412,7 @@ export default function Nuevo({...props}) {
                                 label="Contraseña"
                                 placeholder="Nueva Contraseña"
                                 margin="normal"
-                                variant="outlined"                                
+                                variant="outlined"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -439,40 +439,40 @@ export default function Nuevo({...props}) {
                                     shrink: true,
                                 }}
                                 onInput={e => setInputUserName(e.target.value)}
-                                className={classes.inputData}                            
+                                className={classes.inputData}
                             />
                         </Grid>
 
-                    </Grid>                   
-                       
+                    </Grid>
+
                     <Grid container spacing={1}
-                                direction="row"
-                                justify="center"
-                                alignItems="flex-start"
-                                className={classes.boxContainerDiaria}
-                                >
-                                    
-                    
+                        direction="row"
+                        justify="center"
+                        alignItems="flex-start"
+                        className={classes.boxContainerDiaria}
+                    >
+
+
                         <Diaria premio={diariaPremioMil}
-                                onChangePremioMil={handleChangeDiariaPremioMil}
-                                premioLempiras={diariaPremioLempirasMil}
-                                onChangePremioLempirasMil={handleChangeDiariaPremioLempirasMil}
-                                costo={diariaCostoMil}
-                                onChangeCostoMil={handleChangeDiariaCostoMil}
-                                comision={diariaComision}
-                                onChangeComisionMil={handleChangeDiariaComision}
-                                diariaType={selectedDiariaType}
-                                onChangeDiariaType={handleChangeDiariaType}
-                         /> 
-                    </Grid>               
-                                   
+                            onChangePremioMil={handleChangeDiariaPremioMil}
+                            premioLempiras={diariaPremioLempirasMil}
+                            onChangePremioLempirasMil={handleChangeDiariaPremioLempirasMil}
+                            costo={diariaCostoMil}
+                            onChangeCostoMil={handleChangeDiariaCostoMil}
+                            comision={diariaComision}
+                            onChangeComisionMil={handleChangeDiariaComision}
+                            diariaType={selectedDiariaType}
+                            onChangeDiariaType={handleChangeDiariaType}
+                        />
+                    </Grid>
+
                     <Grid container spacing={1}
-                                direction="row"
-                                justify="center"
-                                alignItems="flex-start"
-                                className={classes.boxContainerDiaria}
-                                >
-                         <Chica
+                        direction="row"
+                        justify="center"
+                        alignItems="flex-start"
+                        className={classes.boxContainerDiaria}
+                    >
+                        <Chica
                             premioMil={chicaPremioMil}
                             onChangePremioMil={handleChangeChicaPremioMil}
                             premioDirecto={chicaPremioDirectoMil}
@@ -491,17 +491,17 @@ export default function Nuevo({...props}) {
                             chicaType={selectedChicaType}
                             onChangeChicaType={handleChangeChicaType}
 
-                         />
+                        />
                     </Grid>
-                   
+
                     <Grid container spacing={1}
-                                direction="row"
-                                justify="center"
-                                alignItems="flex-start"
-                                
-                                >
+                        direction="row"
+                        justify="center"
+                        alignItems="flex-start"
+
+                    >
                         <CrearButton variant="outlined" color="primary" onClick={onClickHandlerCreate}>
-                            Crear                           
+                            Crear
                         </CrearButton>
                     </Grid>
                 </Container>

@@ -1,7 +1,7 @@
-import {baseUrl} from '../../../config/const';
-import {authHeader} from "../../../_helpers/auth-header";
+import { baseUrl } from '../../../config/const';
+import { authHeader } from "../../../_helpers/auth-header";
 import axios from 'axios';
-import {authenticationService} from "../authentication/authentication.service";
+import authenticationService from "../authentication/authentication.service";
 
 export const adminService = {
     count,
@@ -40,7 +40,7 @@ export const adminService = {
 
 
 function temporal_service(id) {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/temporal/${id}`,
             requestOptions
@@ -55,7 +55,7 @@ function temporal_service(id) {
 }
 
 function temporal_reset_balance_service() {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/temporal/reset/balance`,
             requestOptions
@@ -70,7 +70,7 @@ function temporal_reset_balance_service() {
 }
 
 function temporal_insert_service() {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/temporal/crear/apuesta`,
             requestOptions
@@ -84,7 +84,7 @@ function temporal_insert_service() {
     });
 }
 function temporal_insert_chica_service() {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/temporal/crear/apuesta/chica`,
             requestOptions
@@ -100,7 +100,7 @@ function temporal_insert_chica_service() {
 
 
 function count() {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/jugadores/count`,
             requestOptions
@@ -159,7 +159,7 @@ function edit_player(data) {
 }
 
 function list_players() {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/jugadores`,
             requestOptions
@@ -174,7 +174,7 @@ function list_players() {
 }
 
 function list_players_details() {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/jugadores/list`,
             requestOptions
@@ -189,7 +189,7 @@ function list_players_details() {
 }
 
 function get_player_by_id(id) {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/jugador/${id}`,
             requestOptions
@@ -204,7 +204,7 @@ function get_player_by_id(id) {
 }
 
 function get_asistente_by_id(id) {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/asistente/${id}`,
             requestOptions
@@ -393,7 +393,7 @@ function details_apuesta_activa_by_apuesta_id(username, id) {
 
 
 function delete_player_by_id(id) {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/jugadores/delete/${id}`,
             requestOptions
@@ -409,7 +409,7 @@ function delete_player_by_id(id) {
 
 
 function get_apuestas_activas(moneda) {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/sorteos/activos/${moneda}`,
             requestOptions
@@ -553,7 +553,7 @@ function get_historial_semana_anterior_by_type(type) {
 }
 
 function get_historial_numeros_ganadores() {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/historial/numeros/ganadores`,
             requestOptions
@@ -568,7 +568,7 @@ function get_historial_numeros_ganadores() {
 }
 
 function get_numeros_ganadores() {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/numeros/ganadores`,
             requestOptions
@@ -664,7 +664,7 @@ function update_numero_ganador(numero, numeroOld, id) {
 ///moneda/cambio/current
 
 function get_current_cambio() {
-    const requestOptions = {headers: authHeader()};
+    const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/admin/moneda/cambio/current`,
             requestOptions
@@ -686,8 +686,8 @@ function cerrar_apuesta(id) {
             'Accept': 'application/json',
             "Authorization": `Bearer ${currentUser.accessToken}`
         },
-    };   
-    const send={
+    };
+    const send = {
         idData: id
     }
     return new Promise((resolve, reject) => {
