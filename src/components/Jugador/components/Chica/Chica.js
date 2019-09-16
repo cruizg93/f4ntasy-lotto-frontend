@@ -69,17 +69,17 @@ export default function Chica({
                           direction="row"
                           justify="center"
                           alignItems="flex-start">
-                        <Grid item sm={3}>
+                        <Grid item xs={3}>
                             <Typography variant="h6" gutterBottom className={"form__center-label"}>
                                 CHICA
                             </Typography>
                         </Grid>
-                        <Grid item sm={6}>
+                        <Grid item xs={6}>
                             <Typography variant="body1" gutterBottom className={classes.labelChica}>
                                 "x por miles"
                             </Typography>
                         </Grid>
-                        <Grid item sm={1}>
+                        <Grid item xs={1}>
                             <FormControlLabel
                                 value="miles"
                                 control={
@@ -130,7 +130,7 @@ export default function Chica({
                     </Grid>
                 </CardContent>
             </Card>
-            <Grid item sm={12}>
+            <Grid item xs={12}>
                 <Divider />
             </Grid>
             <Card className={classes.card}>
@@ -139,17 +139,17 @@ export default function Chica({
                           direction="row"
                           justify="center"
                           alignItems="flex-start">
-                        <Grid item sm={3}>
+                        <Grid item xs={3}>
                             <Typography variant="h6" gutterBottom className={"form__center-label"}>
                                 CHICA
                             </Typography>
                         </Grid>
-                        <Grid item sm={6}>
+                        <Grid item xs={6}>
                             <Typography variant="body1" gutterBottom className={classes.labelChica}>
                                 "directo L/ $"
                             </Typography>
                         </Grid>
-                        <Grid item sm={1}>
+                        <Grid item xs={1}>
                             <FormControlLabel
                                 value="directo"
                                 control={
@@ -201,7 +201,7 @@ export default function Chica({
                     </Grid>
                 </CardContent>
             </Card>
-            <Grid item sm={12}>
+            <Grid item xs={12}>
                 <Divider />
             </Grid>
             <Card className={classes.card}>
@@ -210,17 +210,17 @@ export default function Chica({
                           direction="row"
                           justify="center"
                           alignItems="flex-start">
-                        <Grid item sm={3}>
+                        <Grid item xs={3}>
                             <Typography variant="h6" gutterBottom className={"form__center-label"}>
                                 CHICA
                             </Typography>
                         </Grid>
-                        <Grid item sm={6}>
+                        <Grid item xs={6}>
                             <Typography variant="body1" gutterBottom className={classes.labelChica}>
                                 "x pedazos"
                             </Typography>
                         </Grid>
-                        <Grid item sm={1}>
+                        <Grid item xs={1}>
                             <FormControlLabel
                                 value="pedazo"
                                 control={

@@ -52,8 +52,8 @@ class Login extends Component {
         return (
             <div className="login-page">
                 <ToastContainer autoClose={8000} />
-                <Container maxWidth="sm">
-                    <Grid item sm={12} className="grid-username">
+                <Container maxWidth="xs">
+                    <Grid item xs={12} className="grid-username">
                         <div className="input-group input-group-lg">
                             <div className="input-group-prepend">
                                 <span className="input-group-text"><FaUserAlt /></span>
@@ -61,7 +61,7 @@ class Login extends Component {
                             <input type="text" id="username" className="form-control" onChange={this.onChange} value={this.state.username} placeholder="Usuario" />
                         </div>
                     </Grid>
-                    <Grid item sm={12} className="grid-password">
+                    <Grid item xs={12} className="grid-password">
                         <div className="input-group input-group-lg" >
                             <div className="input-group-prepend" >
                                 <span className="input-group-text" ><FaLock /></span>
@@ -69,7 +69,7 @@ class Login extends Component {
                             <input type="password" id="password" className="form-control" onChange={this.onChange} value={this.state.password} placeholder="Contraseña" />
                         </div>
                     </Grid>
-                    <Grid item sm={12} className="grid-login">
+                    <Grid item xs={12} className="grid-login">
                         <Button variant="contained" className="login-button" onClick={this.loginClickHandler}>
                             Iniciar Sesión
                         </Button>

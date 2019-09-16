@@ -135,7 +135,7 @@ const DetallesPlayer = ({...props}) => {
                 <Typography variant="h5" gutterBottom>
                     {title} {" @ "} {numeroValue}
                 </Typography>
-                <Grid item sm={12}>
+                <Grid item xs={12}>
                     <Divider/>
                 </Grid>
 
@@ -147,7 +147,7 @@ const DetallesPlayer = ({...props}) => {
                 )}
             </Grid>
             <Grid container>
-                <Grid item sm={6}
+                <Grid item xs={6}
                       container
                       justify="flex-end"
                 >
@@ -155,7 +155,7 @@ const DetallesPlayer = ({...props}) => {
                         Total apuestas |
                     </Typography>
                 </Grid>
-                <Grid item sm={6}
+                <Grid item xs={6}
                       container
                       justify="flex-start"
                       className={classes.textSimple}
@@ -165,7 +165,7 @@ const DetallesPlayer = ({...props}) => {
                     </Typography>
 
                 </Grid>
-                <Grid item sm={6}
+                <Grid item xs={6}
                       container
                       justify="flex-end"
                 >
@@ -173,7 +173,7 @@ const DetallesPlayer = ({...props}) => {
                         Comisiones |
                     </Typography>
                 </Grid>
-                <Grid item sm={6}
+                <Grid item xs={6}
                       container
                       justify="flex-start"
                       className={classes.textSimple}
@@ -183,7 +183,7 @@ const DetallesPlayer = ({...props}) => {
                     </Typography>
 
                 </Grid>
-                <Grid item sm={6}
+                <Grid item xs={6}
                       container
                       justify="flex-end"
                 >
@@ -191,7 +191,7 @@ const DetallesPlayer = ({...props}) => {
                         Premio |
                     </Typography>
                 </Grid>
-                <Grid item sm={6}
+                <Grid item xs={6}
                       container
                       justify="flex-start"
                       className={classes.textSimple}
@@ -201,7 +201,7 @@ const DetallesPlayer = ({...props}) => {
                     </Typography>
 
                 </Grid>
-                <Grid item sm={6}
+                <Grid item xs={6}
                       container
                       justify="flex-end"
                 >
@@ -209,7 +209,7 @@ const DetallesPlayer = ({...props}) => {
                         Ganancia/Perdida |
                     </Typography>
                 </Grid>
-                <Grid item sm={6}
+                <Grid item xs={6}
                       container
                       justify="flex-start"
                       className={classes.textSimple}
@@ -224,14 +224,14 @@ const DetallesPlayer = ({...props}) => {
                   direction="row"
                   justify="center"
             >
-                <Grid item sm={6}>
+                <Grid item xs={6}>
                     <ImprimirButton variant="outlined" color="primary">
                         <Typography variant="body1" gutterBottom>
                             Imprimir
                         </Typography>
                     </ImprimirButton>
                 </Grid>
-                <Grid item sm={6}>
+                <Grid item xs={6}>
                     <DetallesButton variant="outlined" color="primary"
                                     component={Link}
                                     to={{

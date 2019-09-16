@@ -68,7 +68,7 @@ class Jugador extends Component {
         return (
             <div>
                 <ToastContainer autoClose={8000} />
-                <Container maxWidth="sm" className="resumen_container">
+                <Container maxWidth="xs" className="resumen_container">
                     <Grid container
                         direction="row"
                         className="resumen_header"
@@ -91,9 +91,7 @@ class Jugador extends Component {
                         <span className="resumen_total_text">Totales:</span>
                         <span className="resumen_total_val">${'\u00A0'}{'\u00A0'}{this.state.totalsMoney}</span>
                     </Grid>
-                    <Grid container spacing={1}
-                        direction="row"
-                    >
+                    <Grid container maxWidth="xs" direction="row">
                         {this.state.jugadorList.map((jugador, index) =>
                             <JugadorDataShow key={index} {...jugador} {...this.props} handler={this.reload} toast={this.toast_notification} />
                         )}

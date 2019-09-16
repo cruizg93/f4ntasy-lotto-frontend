@@ -112,7 +112,7 @@ export default function PlayerPassword() {
                   justify="center"
                   alignItems="center"
             >
-                <Grid item sm={10}>
+                <Grid item xs={10}>
                     <TextField
                         id="player-input-nueva-contrasenna"
                         label="Nueva contraseña"
@@ -128,7 +128,7 @@ export default function PlayerPassword() {
                         }}
                     />
                 </Grid>
-                <Grid item sm={2}>
+                <Grid item xs={2}>
                     <ShowButton variant="outlined" color="primary" onClick={handleClickShowPassword}>
 
                         {values.showPassword ? <Visibility/> : <VisibilityOff/>}

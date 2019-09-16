@@ -5,22 +5,22 @@
     display: block;
     width: 100%;
     background:#ff9933;
-    height: 5rem;
+    height: 62px;
     z-index: 50;
 }
 .toolbar__user-username {
     display: flex;
-    height: 13vw;
+    height: 43px;
     width: 20vw;
     justify-content: center;
     flex-direction: column;
     text-align: center;
     background: transparent;
-    border: 3px solid #FFF;
+    border: 2px solid #FFF;
     border-radius: 5px;
     color: white;
     margin: 0 0.9rem;
-    font-size: 6vw;
+    font-size: 5vw;
     font-family: 'Arial';
     
 }
@@ -37,7 +37,6 @@
 
 .toolbar__logo {
     padding: 1vw 1vw 1vw 3vw;
-    width: 50vw;
 }
 
 .toolbar__logo a {
@@ -48,6 +47,7 @@
     justify-content: center;
     align-items:center;
     overflow:hidden;
+    width: 40vw;
 }
 
 .toolbar__logo a img{
@@ -86,8 +86,11 @@
 
 @media (min-width: 600px) {
     .toolbar__user-username {
-        height: 65px;
-        font-size: 33px;
+        font-size: 27px;
+        width: 90px;
+    }
+    .toolbar__logo a {
+        width: 200px;
     }
 }
 

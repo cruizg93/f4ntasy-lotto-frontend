@@ -169,7 +169,7 @@ const HistorialSemanaActualAdmin = (props) => {
                                  clickDolar={get_in_dolar} clickLempira={get_in_lempira} semana={"current"}
                 />
                 <Grid container>
-                    <Grid item sm={12}
+                    <Grid item xs={12}
                           container
                           justify="center"
                           className={classes.textWithBorderTop}
@@ -180,7 +180,7 @@ const HistorialSemanaActualAdmin = (props) => {
 
                     </Grid>
 
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-end"
                     >
@@ -188,7 +188,7 @@ const HistorialSemanaActualAdmin = (props) => {
                             Total Apuestas |
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-start"
                           className={classes.text}
@@ -198,7 +198,7 @@ const HistorialSemanaActualAdmin = (props) => {
                         </Typography>
 
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-end"
                     >
@@ -206,7 +206,7 @@ const HistorialSemanaActualAdmin = (props) => {
                             Total Comisiones |
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-start"
                           className={classes.text}
@@ -216,7 +216,7 @@ const HistorialSemanaActualAdmin = (props) => {
                         </Typography>
 
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-end"
                     >
@@ -224,7 +224,7 @@ const HistorialSemanaActualAdmin = (props) => {
                             Entrada neta |
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-start"
                           className={classes.text}
@@ -234,12 +234,12 @@ const HistorialSemanaActualAdmin = (props) => {
                         </Typography>
 
                     </Grid>
-                    <Grid item sm={12}
+                    <Grid item xs={12}
                           container
                           justify="center"
                           className={classes.textWithBorder}
                     >
-                        <Grid item sm={12}
+                        <Grid item xs={12}
                               container
                               justify="center"
 
@@ -277,7 +277,7 @@ const HistorialSemanaActualAdmin = (props) => {
                   justify="center"
             >
 
-                <Grid item sm={6}>
+                <Grid item xs={6}>
                     <ImprimirButton variant="outlined" color="primary"
                                     disabled={usuariosList.length === 0}
                                     onClick={handleOnPrint}

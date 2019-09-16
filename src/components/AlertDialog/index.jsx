@@ -29,7 +29,7 @@ const AlertDialog = ({ ...props }) => {
             alignItems="flex-start"
             className={classes.headerContainer}
         >
-            <Grid item sm={8} className={classes.editarJugadorLabel}>
+            <Grid item xs={8} className={classes.editarJugadorLabel}>
                 <Typography variant="body1" gutterBottom className={"form__center-label"}>
                     {props.msg}
                 </Typography>

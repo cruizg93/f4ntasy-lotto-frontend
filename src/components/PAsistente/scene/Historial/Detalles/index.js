@@ -110,7 +110,7 @@ const DetallesPAsistente = ({...props}) => {
                 <Typography variant="h5" gutterBottom>
                     {title} {" @ "} {numeroValue}
                 </Typography>
-                <Grid item sm={12}>
+                <Grid item xs={12}>
                     <Divider/>
                 </Grid>
             </Grid>
@@ -132,7 +132,7 @@ const DetallesPAsistente = ({...props}) => {
                     )}
                 </Grid>
                 <Grid container>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-end"
                     >
@@ -140,7 +140,7 @@ const DetallesPAsistente = ({...props}) => {
                             Total apuestas |
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-start"
                           className={classes.textSimple}
@@ -157,7 +157,7 @@ const DetallesPAsistente = ({...props}) => {
                   direction="row"
                   justify="center"
             >
-                <Grid item sm={6}>
+                <Grid item xs={6}>
                     <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir

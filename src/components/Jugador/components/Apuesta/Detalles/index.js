@@ -52,27 +52,27 @@ const JugadorDetallesEntry = ({ match: { url }, id, nombre, total, comision, rie
                 <Grid item >
                     <Grid container direction="column">
                         <Grid container>
-                            <Grid item sm={3} className="headerLabelSorteoHour">
+                            <Grid item xs={3} className="headerLabelSorteoHour">
                                 <Typography variant="h6" className="form__center-label">
                                     {type === "DIARIA" ? hour : "12 pm"}
                                 </Typography>
                             </Grid>
-                            <Grid item sm={5} className="headerLabelSorteo">
+                            <Grid item xs={5} className="headerLabelSorteo">
                                 <Typography variant="h6" gutterBottom className="form__center-label">
                                     {day}
                                 </Typography>
                             </Grid>
                         </Grid>
                         <Grid container className="valuesContainer">
-                            <Grid item sm={2} className="img_open_close">
+                            <Grid item xs={2} className="img_open_close">
                                 {estado === 'ABIERTA' ? <img src={imgRed} alt="ABIERTA" /> : <img src={imgGreen} alt="Cerrado" />}
                             </Grid>
-                            <Grid item sm={4}>
+                            <Grid item xs={4}>
                                 <Typography className="textData">
                                     {"Total"}{'\u00A0'}
                                 </Typography>
                             </Grid>
-                            <Grid item sm={6} className="text">
+                            <Grid item xs={6} className="text">
                                 <Typography variant="body1" >
                                     {apuestaCurrency.symbol}{'\u00A0'}{FormatCurrency(apuestaCurrency, riesgo.toFixed(2))}
                                 </Typography>

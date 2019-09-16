@@ -44,12 +44,12 @@ const NumeroGanador = (props) => {
                     alignItems="flex-start"
                     className={classes.headerContainer}
                     >
-                    <Grid item sm={9} className={classes.setNumeroGanadorLabel}>
+                    <Grid item xs={9} className={classes.setNumeroGanadorLabel}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
                             Fijar numero ganador
                         </Typography>
                     </Grid>
-                    <Grid item sm={3}>
+                    <Grid item xs={3}>
                         
                     </Grid>
             </Grid>

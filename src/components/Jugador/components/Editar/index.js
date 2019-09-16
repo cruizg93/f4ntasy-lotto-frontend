@@ -324,7 +324,7 @@ const EditarJugador = (props) => {
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000} />
-            <Container maxWidth="sm" className={classes.container}>
+            <Container maxWidth="xs" className={classes.container}>
                 {!editable ?
                     <AlertDialog msg={"El jugador tiene apuestas activas"} />
                     : null
@@ -335,12 +335,12 @@ const EditarJugador = (props) => {
                     alignItems="flex-start"
                     className={classes.headerContainer}
                 >
-                    <Grid item sm={8} className={classes.editarJugadorLabel}>
+                    <Grid item xs={8} className={classes.editarJugadorLabel}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
                             Editar Jugador P
                         </Typography>
                     </Grid>
-                    <Grid item sm={4}>
+                    <Grid item xs={4}>
 
                     </Grid>
                 </Grid>
@@ -350,12 +350,12 @@ const EditarJugador = (props) => {
                     alignItems="flex-start"
                     className={classes.headerContainer}
                 >
-                    <Grid item sm={6}>
+                    <Grid item xs={6}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
                             {placeholderUser} / {inputUserName}
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}>
+                    <Grid item xs={6}>
                         <FormControlLabel
                             value="lempiras"
                             control={
@@ -393,7 +393,7 @@ const EditarJugador = (props) => {
                     direction="row"
                     justify="center"
                     alignItems="center">
-                    <Grid item sm={12}
+                    <Grid item xs={12}
                         className={classes.boxContainerNuevo}
                     >
                         <TextField

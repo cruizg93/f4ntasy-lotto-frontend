@@ -127,12 +127,12 @@ const ApuestasActivasAdmin = (props) => {
                     alignItems="flex-start"
                     className={classes.headerContainer}
                     >
-                    <Grid item sm={6}  className={classes.label}>
+                    <Grid item xs={6}  className={classes.label}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
                             {"Apuestas Activas"}
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}>
+                    <Grid item xs={6}>
                         <Dolar variant="outlined" color="primary" onClick={handleDolar}>
                             <Typography variant="body1" gutterBottom className={classes.root}>
                                 $

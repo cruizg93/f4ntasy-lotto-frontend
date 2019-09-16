@@ -78,13 +78,13 @@ function TopBar(props) {
             justify="center"
             alignItems="center"
             className={classes.barRow}>
-            <Grid item sm={3} className={classes.imageContainer}><img src={apuestaIcon} alt="apuestaLogo" /></Grid>
-            <Grid item sm={5} className={classes.fechaContaier}>
+            <Grid item xs={3} className={classes.imageContainer}><img src={apuestaIcon} alt="apuestaLogo" /></Grid>
+            <Grid item xs={5} className={classes.fechaContaier}>
                 <Typography variant="body1" >
                     {props.fecha}
                 </Typography>
             </Grid>
-            <Grid item sm={4}>
+            <Grid item xs={4}>
                 <Typography variant="body1" className={classes.totalContaier}>
                 </Typography>
             </Grid>

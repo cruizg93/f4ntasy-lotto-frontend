@@ -51,7 +51,7 @@ const CrearButton = withStyles({
         width: '100%',
         boxShadow: 'none',
         textTransform: 'none',
-        fontSize: 16,       
+        fontSize: 16,
         lineHeight: 1.5,
         padding: "15px 0",
         backgroundColor: Colors.Main,
@@ -98,7 +98,7 @@ const useStyles = makeStyles(theme => ({
         },
     },
     headerContainer: {
-        background : Colors.Main,
+        background: Colors.Main,
         marginBottom: "1rem",
     },
     card: {
@@ -116,17 +116,17 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         alignItems: 'center',
     },
-    crearAsistenteLabel:{
+    crearAsistenteLabel: {
         borderBottom: `${Colors.Btn_Red} 2px solid`,
         paddingBottom: "1rem !important",
         marginTop: ".5rem",
     },
     boxContainerNuevo: {
-        background : Colors.Main,
+        background: Colors.Main,
         marginTop: "1rem",
     },
     inputData: {
-        background : Colors.Input_bkg,
+        background: Colors.Input_bkg,
     }
 
 }));
@@ -137,17 +137,17 @@ const NewAsistente = ({ ...props }) => {
     const [inputPassword, setInputPassword] = useState('123456789'); // '' is the initial state value
     const [person, setPerson] = React.useState('');
     const [options, setOptions] = React.useState('<option value=""/>');
-    const [open, setOpen] = useState(false);   
+    const [open, setOpen] = useState(false);
 
     const mounted = useState(true);
 
     function handleClickOpen() {
         if (inputPassword === '' || inputUserName === '' || placeholderUser.includes("P000x0")) {
             error_reponse();
-        }else{
+        } else {
             setOpen(true);
         }
-        
+
     }
 
     function handleClose() {
@@ -160,7 +160,7 @@ const NewAsistente = ({ ...props }) => {
         props.history.push("/");
         return () => {
             mounted.current = false;
-        };        
+        };
     }
 
     function onClickHandlerCreate() {
@@ -194,14 +194,14 @@ const NewAsistente = ({ ...props }) => {
                     <option key={index} value={c.id} label={c.username}> {c.username}</option>
                 );
                 setPerson(response.data[0].id ? response.data[0].id : person);
-               
-                if(response.data[0].id && response.data[0].id !== null){
+
+                if (response.data[0].id && response.data[0].id !== null) {
                     let userId = response.data[0].id;
                     let username = response.data[0].username;
                     adminService.count_player_asistente(userId).then((result) => {
                         setPlaceholderUser(username + "x" + (result.data + 1));
                     });
-                }               
+                }
                 setOptions(users);
             },
                 (error) => {
@@ -236,60 +236,60 @@ const NewAsistente = ({ ...props }) => {
         let index = event.target.selectedIndex;
         let optionElement = event.target.childNodes[index];
         let option = optionElement.getAttribute('label');
-        let placeValue=option.split("-");
-        if(event.target.value !== ''){
+        let placeValue = option.split("-");
+        if (event.target.value !== '') {
             adminService.count_player_asistente(event.target.value).then((result) => {
                 console.log(placeValue)
                 setPlaceholderUser(placeValue[0].trim() + "x" + (result.data + 1));
             });
-        }else{
+        } else {
             setPlaceholderUser("P000x0");
         }
-        
+
         setPerson(event.target.value);
     };
 
     return (
         <React.Fragment>
-            <ToastContainer autoClose={8000}/>
-            <Container maxWidth="sm" className={classes.container}>
-            <Dialog
-                            open={open}
-                            onClose={handleClose}
-                            aria-labelledby="alert-dialog-crear-usuario"
-                            aria-describedby="alert-dialog-description"
-                        >
-                            <DialogTitle
-                                id="alert-dialog-crear-usuario">Su Asistente a sido creado exitosamente</DialogTitle>
-                            <DialogContent>
-                                <DialogContentText id="alert-dialog-description">
-                                    {`Usuario: ${placeholderUser} contraseña: ${inputPassword}`}
-                                </DialogContentText>
-                            </DialogContent>
-                            <DialogActions>   
-                                <Button onClick={handleClose} color="primary">
-                                            Cancel
-                                </Button>                             
-                                <Button onClick={() => {
-                                    handleAceptarClose();  
-                                }} color="primary" autoFocus>
-                                    Aceptar
+            <ToastContainer autoClose={8000} />
+            <Container maxWidth="xs" className={classes.container}>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-crear-usuario"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle
+                        id="alert-dialog-crear-usuario">Su Asistente a sido creado exitosamente</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            {`Usuario: ${placeholderUser} contraseña: ${inputPassword}`}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Cancel
                                 </Button>
-                            </DialogActions>
-                        </Dialog> 
+                        <Button onClick={() => {
+                            handleAceptarClose();
+                        }} color="primary" autoFocus>
+                            Aceptar
+                                </Button>
+                    </DialogActions>
+                </Dialog>
                 <Grid container spacing={1}
                     direction="row"
                     justify="center"
                     alignItems="flex-start"
                     className={classes.headerContainer}
-                    >
-                    <Grid item sm={6} className={classes.crearAsistenteLabel}>
+                >
+                    <Grid item xs={6} className={classes.crearAsistenteLabel}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
                             Crear Jugador X
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}>
-                        
+                    <Grid item xs={6}>
+
                     </Grid>
                 </Grid>
                 <Grid container spacing={1}
@@ -297,8 +297,8 @@ const NewAsistente = ({ ...props }) => {
                     justify="center"
                     alignItems="flex-start"
                     className={classes.headerContainer}
-                    >                   
-                    <Grid item sm={6}>
+                >
+                    <Grid item xs={6}>
                         <NativeSelect
                             value={person}
                             className={classes.margin}
@@ -309,7 +309,7 @@ const NewAsistente = ({ ...props }) => {
                             {options}
                         </NativeSelect>
                     </Grid>
-                    <Grid item sm={6}>
+                    <Grid item xs={6}>
                         <Typography variant="h6" gutterBottom className={"form__center-label"}>
                             Listado de Jugadores P
                         </Typography>
@@ -320,8 +320,8 @@ const NewAsistente = ({ ...props }) => {
                     direction="row"
                     justify="center"
                     alignItems="center">
-                    <Grid item sm={12}
-                     className={classes.boxContainerNuevo}
+                    <Grid item xs={12}
+                        className={classes.boxContainerNuevo}
                     >
                         <TextField
                             id="user"
@@ -345,7 +345,7 @@ const NewAsistente = ({ ...props }) => {
                             label="Contraseña"
                             placeholder="Nueva Contraseña"
                             margin="normal"
-                            variant="outlined"                            
+                            variant="outlined"
                             InputProps={{
                                 readOnly: true,
                             }}
@@ -377,13 +377,13 @@ const NewAsistente = ({ ...props }) => {
                     </Grid>
                 </Grid>
                 <Grid container spacing={1}
-                                direction="row"
-                                justify="center"
-                                alignItems="flex-start"
-                                
-                                >
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start"
+
+                >
                     <CrearButton variant="outlined" color="primary" onClick={handleClickOpen}>
-                        Crear                        
+                        Crear
                     </CrearButton>
                 </Grid>
             </Container>

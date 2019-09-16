@@ -46,7 +46,7 @@ const HistorialData = ({match: {url}, id, title, total, numero, comision, premio
     const classes = useStyles();
 
     return (
-        <Grid item sm={12} component={Link}
+        <Grid item xs={12} component={Link}
               to={
                   {
                       pathname: `${url}/${id}`,
@@ -69,7 +69,7 @@ const HistorialData = ({match: {url}, id, title, total, numero, comision, premio
                 </Typography>
                 <Divider/>
                 <Grid container>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-end"
                     >
@@ -77,7 +77,7 @@ const HistorialData = ({match: {url}, id, title, total, numero, comision, premio
                             Total apuestas |
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-start"
                           className={classes.text}
@@ -87,7 +87,7 @@ const HistorialData = ({match: {url}, id, title, total, numero, comision, premio
                         </Typography>
 
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-end"
                     >
@@ -95,7 +95,7 @@ const HistorialData = ({match: {url}, id, title, total, numero, comision, premio
                             Comisiones |
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-start"
                           className={classes.text}
@@ -105,7 +105,7 @@ const HistorialData = ({match: {url}, id, title, total, numero, comision, premio
                         </Typography>
 
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-end"
                     >
@@ -113,7 +113,7 @@ const HistorialData = ({match: {url}, id, title, total, numero, comision, premio
                             Premio |
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-start"
                           className={classes.text}
@@ -123,7 +123,7 @@ const HistorialData = ({match: {url}, id, title, total, numero, comision, premio
                         </Typography>
 
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-end"
                     >
@@ -131,7 +131,7 @@ const HistorialData = ({match: {url}, id, title, total, numero, comision, premio
                             Ganancia/Perdida |
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-start"
                           className={classes.text}

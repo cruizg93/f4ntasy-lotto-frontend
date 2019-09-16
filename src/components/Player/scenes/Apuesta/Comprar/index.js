@@ -277,7 +277,7 @@ const ComprarApuesta = ({...props}) => {
                 <ListaApuestas entryList={elements} removerApuesta={()=>{}}/> 
             </Grid>
             <Grid container>
-                <Grid item sm={3}
+                <Grid item xs={3}
                       container
                       justify="flex-end"
                 >
@@ -285,7 +285,7 @@ const ComprarApuesta = ({...props}) => {
                         Apuestas 
                     </Typography>
                 </Grid>
-                <Grid item sm={8}
+                <Grid item xs={8}
                       container
                       justify="flex-start"
                       className={classes.text}
@@ -295,7 +295,7 @@ const ComprarApuesta = ({...props}) => {
                     </Typography>
 
                 </Grid>
-                <Grid item sm={3}
+                <Grid item xs={3}
                       container
                       justify="flex-end"
                 >
@@ -303,7 +303,7 @@ const ComprarApuesta = ({...props}) => {
                         Comision 
                     </Typography>
                 </Grid>
-                <Grid item sm={8}
+                <Grid item xs={8}
                       container
                       justify="flex-start"
                       className={classes.text}
@@ -312,7 +312,7 @@ const ComprarApuesta = ({...props}) => {
                         <ComisionValue/>
                     </Typography>
                 </Grid>
-                <Grid item sm={3}
+                <Grid item xs={3}
                       container
                       justify="flex-end"
                 >
@@ -320,7 +320,7 @@ const ComprarApuesta = ({...props}) => {
                         Riesgo 
                     </Typography>
                 </Grid>
-                <Grid item sm={8}
+                <Grid item xs={8}
                       container
                       justify="flex-start"
                       className={classes.text}

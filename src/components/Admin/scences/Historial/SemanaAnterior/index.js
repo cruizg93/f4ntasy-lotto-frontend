@@ -163,7 +163,7 @@ const HistorialSemanaAnteriorAdmin = (props) => {
                   justify="center"
             >
 
-                <Grid item sm={6}>
+                <Grid item xs={6}>
                     <ImprimirButton variant="outlined" color="primary"
                                     disabled={usuariosList.length === 0}>
                         <Typography variant="body1" gutterBottom>

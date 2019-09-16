@@ -90,7 +90,7 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
     },[])
     return (
         <React.Fragment>
-            <Grid item sm={12} component={Link}
+            <Grid item xs={12} component={Link}
                     to={
                         {
                             pathname: pathnameUrl,
@@ -105,22 +105,22 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
                     
                     <Paper key={props.index} className={classes.paper}>
                         <Grid container>
-                            <Grid item sm={3} className={classes.typeContainer}>
+                            <Grid item xs={3} className={classes.typeContainer}>
                                 <Typography variant="body1" gutterBottom className={classes.textLabel}>
                                     {props.type} 
                                 </Typography>
                             </Grid> 
-                            <Grid item sm={6} className={classes.titleContainer}>
+                            <Grid item xs={6} className={classes.titleContainer}>
                                 <Typography variant="body1" gutterBottom className={classes.textLabel}>
                                     {nombre} 
                                 </Typography>
                             </Grid>                      
-                            <Grid item sm={12}>
+                            <Grid item xs={12}>
                                 <Divider/>
                             </Grid>
                         </Grid> 
                         <Grid container>
-                            <Grid item sm={6}
+                            <Grid item xs={6}
                             container
                             justify="flex-end"
                             >
@@ -128,7 +128,7 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
                                     Apuestas | 
                                 </Typography>
                             </Grid>
-                            <Grid item sm={6}
+                            <Grid item xs={6}
                             container
                             justify="flex-start"
                             className={classes.text}
@@ -137,7 +137,7 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
                                     {monedaType}{" "}{total.toFixed(2)}
                                 </Typography>
                             </Grid>
-                            <Grid item sm={6}
+                            <Grid item xs={6}
                                 container
                                 justify="flex-end"
                             >
@@ -145,7 +145,7 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
                                     Comisiones | 
                                 </Typography>
                             </Grid>
-                            <Grid item sm={6}
+                            <Grid item xs={6}
                                 container
                                 justify="flex-start"
                                 className={classes.text}
@@ -154,7 +154,7 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
                                     {monedaType}{" "}{comision.toFixed(2)}
                                 </Typography>
                             </Grid>
-                            <Grid item sm={6}
+                            <Grid item xs={6}
                                 container
                                 justify="flex-end"
                             >
@@ -162,7 +162,7 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
                                     Riesgo | 
                                 </Typography>
                             </Grid>
-                            <Grid item sm={6}
+                            <Grid item xs={6}
                                 container
                                 justify="flex-start"
                                 className={classes.text}
@@ -171,10 +171,10 @@ const ApuestaData = ({match: {url}, id, nombre, total, comision, riesgo, estado,
                                     {monedaType}{" "}{riesgo.toFixed(2)}
                                 </Typography>
                             </Grid>
-                            <Grid item sm={12}>
+                            <Grid item xs={12}>
                                 <Divider/>
                             </Grid>
-                            <Grid item sm={12}
+                            <Grid item xs={12}
                                 container
                                 justify="center"
                                 className={classes.text}

@@ -6,79 +6,82 @@
   flex: 6;
   text-align: center;
   color: #066;
-  padding-left: 10px;
+  padding-left: 5px;
 }
 
 .form_center-label {
   vertical-align: middle !important;
-  line-height: 3rem !important;
-  font-size: 1.2rem !important;
+  line-height: 43px !important;
+  font-size: 1.1rem !important;
 }
 
 .grid_lolosStar{
   flex: 2;
-  font-size: 1.8rem !important;
+  font-size: 1.5rem !important;
   text-align: center;
   margin-top: -1px;
 }
 .grid_tiPen {
   flex: 2;
-  font-size: 1.8rem !important;
+  font-size: 1.5rem !important;
   text-align: center;
   margin-top: -1px;
 }
 .grid_goTranhcan {
   flex: 2;
-  font-size: 1.8rem !important;
+  font-size: 1.4rem !important;
   text-align: center;
-  padding-right: 7vw;
+  padding-right: 5vw;
   margin-top: -1px;
 }
-
+.totalContainer{
+  border-bottom: solid 1px #dbdcdd;
+  height: 117px;
+  font-size: 20px;
+}
 .valuesContainer {
-  flex: 7;
+  flex: 1.6;
   text-decoration: none !important;
+  padding-left: 20px;
 }
 
 .balanceLink {
   display: flex;
   align-items: center;
   flex-direction: column;
-  flex: 4;
+  flex: 1;
   border-left: #afb6b8 1px solid;
   justify-content: center;
-  font-size: 0.8rem !important;
+  /* font-size: 0.8rem !important; */
 }
 
 .text_container {
-  font-size: 1.3rem;
   align-content: center;
-  padding: 21px 0;
+  height: 117px;
 }
 
-.text_label {
+.text_container .text_label {
   flex: 1;
-  padding-left: 20px !important;
   color: #999999 !important;
 }
 
-.text_symbol {
+.text_container .text_symbol {
   text-align: right;
   color: #6699cc !important;
 }
 
-.text_value {
+.text_container .text_value {
   padding-left: 10px;
-  padding-right: 5vw;
   text-align: right;
-  color: #6699cc !important;
+  color: #4f83c8 !important;
+  display: flex;
 }
 
 .expansionPanelTextHeader {
-  margin-left: 9vw !important;
+  margin-left: 23vw !important;
   margin-top: -10px !important;
   color: #999;
-  font-size: 1.3rem !important;
+  font-size: 19px !important;
 }
 
 .expansion_icon {
@@ -88,7 +91,5 @@
 
 @media (max-width: 479px){
   .text_value {
-    padding-right: 4vw;
-    padding-left: 5px;
   }
 }

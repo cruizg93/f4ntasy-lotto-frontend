@@ -118,19 +118,19 @@ export default function Cambio() {
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000} />
-            <Container maxWidth="sm" className={classes.container}>
+            <Container maxWidth="xs" className={classes.container}>
                 <Grid container spacing={1}
                     direction="row"
                     justify="center"
                     alignItems="flex-start"
                     className={classes.headerContainer}
                 >
-                    <Grid item sm={8} className={classes.setCambioLabel}>
+                    <Grid item xs={8} className={classes.setCambioLabel}>
                         <Typography variant="h6" gutterBottom className={`${classes.headerTitle} form__left-label`}>
                             Fijar tipo de Cambio
                         </Typography>
                     </Grid>
-                    <Grid item sm={4}>
+                    <Grid item xs={4}>
 
                     </Grid>
                 </Grid>
@@ -140,7 +140,7 @@ export default function Cambio() {
                     alignItems="flex-start"
                     className={classes.bodyContainer}
                 >
-                    <Grid item sm={12}>
+                    <Grid item xs={12}>
                         <Typography variant="h6" gutterBottom className={`${classes.leftMargin} form__left-label`}>
                             Tipo de cambio en sistema
                         </Typography>
@@ -149,7 +149,7 @@ export default function Cambio() {
                         </Typography>
                         <Divider />
                     </Grid>
-                    <Grid item sm={9} style={{
+                    <Grid item xs={9} style={{
                         borderRight: "#afb6b8 1px solid",
                     }}>
                         <Grid container justify="center" spacing={spacing} className={classes.fijarLabel}>
@@ -167,7 +167,7 @@ export default function Cambio() {
 
                         </Grid>
                     </Grid>
-                    <Grid item sm={3}
+                    <Grid item xs={3}
                         container
                         justify="center"
                         onClick={handleOnClickCambio}

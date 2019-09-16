@@ -65,7 +65,7 @@ const HistorialUsuarioDetalles = (props) => {
     }, []);
     return (
         <Grid container>
-            <Grid item sm={12}
+            <Grid item xs={12}
             >
                 <Typography variant="h5" gutterBottom className={classes.textWithBorder}>
                     Detalles Balance - {username}
@@ -76,7 +76,7 @@ const HistorialUsuarioDetalles = (props) => {
                     - {balance}
                 </Typography>
             </Grid>
-            <Grid item sm={12}>
+            <Grid item xs={12}>
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     {moneda === "dolar" ? "$" : "L"}
                 </Typography>

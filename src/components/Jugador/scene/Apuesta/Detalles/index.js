@@ -36,7 +36,7 @@ const JugadorDetalles = ({ ...props }) => {
     return (
         <React.Fragment>
             <AdminTitle titleLabel='Resumen Venta Individual' />
-            <Container maxWidth="sm" style={{ padding: '0px' }}>
+            <Container maxWidth="xs" style={{ padding: '0px' }}>
                 <Grid item={11} className="userInfo" >
                     <span>
                         {username}{" - "}{moneda.symbol}

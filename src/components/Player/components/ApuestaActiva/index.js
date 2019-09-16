@@ -98,7 +98,7 @@ const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
                     </Button>
                 </DialogActions>
             </Dialog>
-            <Grid item sm={4}
+            <Grid item xs={4}
                   container
                   justify="flex-end"
             >
@@ -106,7 +106,7 @@ const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
                     {numero}
                 </Typography>
             </Grid>
-            <Grid item sm={3}
+            <Grid item xs={3}
                   container
                   justify="flex-start"
             >
@@ -122,7 +122,7 @@ const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
                     onBlur={props.onEdit}
                 />
             </Grid>
-            <Grid item sm={4}
+            <Grid item xs={4}
                   container
                   justify="flex-start"
             >

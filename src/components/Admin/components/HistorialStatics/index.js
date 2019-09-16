@@ -100,7 +100,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
     }, []);
     return (
         <Grid container>
-            <Grid item sm={12}
+            <Grid item xs={12}
                 container
                 justify="center"
                 alignItems="center"
@@ -119,7 +119,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                 direction="row"
                 justify="center"
                 alignItems="flex-start">
-                <Grid item sm={6}>
+                <Grid item xs={6}>
                     <DolarButton variant="outlined" color="primary" className={classes.button}
                         onClick={props.clickDolar}
                     >
@@ -132,7 +132,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                     </LempiraButton>
                 </Grid>
             </Grid>
-            <Grid item sm={6}
+            <Grid item xs={6}
                 container
                 justify="flex-end"
             >
@@ -140,7 +140,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                     Total Apuestas |
                 </Typography>
             </Grid>
-            <Grid item sm={6}
+            <Grid item xs={6}
                 container
                 justify="flex-start"
                 className={classes.text}
@@ -149,7 +149,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                     {totalSemanal}
                 </Typography>
             </Grid>
-            <Grid item sm={6}
+            <Grid item xs={6}
                 container
                 justify="flex-end"
             >
@@ -157,7 +157,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                     Total Comisiones |
                 </Typography>
             </Grid>
-            <Grid item sm={6}
+            <Grid item xs={6}
                 container
                 justify="flex-start"
                 className={classes.text}
@@ -166,7 +166,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                     {comisionSemanal}
                 </Typography>
             </Grid>
-            <Grid item sm={6}
+            <Grid item xs={6}
                 container
                 justify="flex-end"
             >
@@ -174,7 +174,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                     Entrada Neta |
                 </Typography>
             </Grid>
-            <Grid item sm={6}
+            <Grid item xs={6}
                 container
                 justify="flex-start"
                 className={classes.text}
@@ -183,7 +183,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                     {netaSemanal}
                 </Typography>
             </Grid>
-            <Grid item sm={6}
+            <Grid item xs={6}
                 container
                 justify="flex-end"
             >
@@ -191,7 +191,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                     Total Premios |
                 </Typography>
             </Grid>
-            <Grid item sm={6}
+            <Grid item xs={6}
                 container
                 justify="flex-start"
                 className={classes.text}
@@ -200,7 +200,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                     {totalPremioSemanal}
                 </Typography>
             </Grid>
-            <Grid item sm={6}
+            <Grid item xs={6}
                 container
                 justify="flex-end"
             >
@@ -208,7 +208,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                     Ganancia/Perdida |
                 </Typography>
             </Grid>
-            <Grid item sm={6}
+            <Grid item xs={6}
                 container
                 justify="flex-start"
                 className={classes.text}
