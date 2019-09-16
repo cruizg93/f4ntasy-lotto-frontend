@@ -299,6 +299,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
     const [asignedAsistentes, setAsignedAsistentes] = React.useState([]);
 
     //JugadorEnable decide si el jugador puede ser eliminado o editado
+
     const jugadorEnable = balance == 0 && total == 0;
     const symbol = balance < 0 ? " - " : (balance > 0 ? " + " : "")
     const apuestaCurrency = monedaType === "lempiras" ? Currency.Lempiras : Currency.Dollar;
@@ -434,7 +435,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                 <Grid className="grid_tiPen"
                     component={jugadorEnable ? Link : "div"} to={
                         {
-                            pathname: '/jugador/editar/${id}',
+                            pathname: `/jugador/editar/${id}`,
                             state: {
                                 id: id,
                             }
