@@ -46,7 +46,7 @@ const HistorialSemanaActualUserEntry = ({ id, nombre, balance, moneda, type, ...
     }, []);
     return (
         <Grid container>
-            <Grid item sm={5} component={Link}
+            <Grid item xs={5} component={Link}
                 to={
                     {
                         pathname: `/historial/semana/actual/usuario/${id}`,
@@ -63,7 +63,7 @@ const HistorialSemanaActualUserEntry = ({ id, nombre, balance, moneda, type, ...
                     # {nombre} - {moneda === "dolar" ? "$" : "L"}
                 </Typography>
             </Grid>
-            <Grid item sm={7}>
+            <Grid item xs={7}>
                 <Typography variant="body1" gutterBottom className={classes.text}>
                     {type === "dolar" ? "$" : "L"}
                 </Typography>

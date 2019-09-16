@@ -47,7 +47,7 @@ const ApuestaActivaRiesgoEntry = ({numero, dineroApostado, posibleRiesgo, totalR
 
     }, []);
     return (
-        <Grid item sm={12}
+        <Grid item xs={12}
               container
               justify="center"
 

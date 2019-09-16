@@ -25,12 +25,12 @@ const HeaderDescription = ({ ...props }) => {
                 alignItems="flex-start"
                 className={classes.headerContainer}
             >
-                <Grid item sm={6} className={classes.label}>
+                <Grid item xs={6} className={classes.label}>
                     <Typography variant="h6" gutterBottom className={"form__center-label"}>
                         {props.name}
                     </Typography>
                 </Grid>
-                <Grid item sm={6}>
+                <Grid item xs={6}>
 
                 </Grid>
             </Grid>

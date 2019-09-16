@@ -182,20 +182,20 @@ const ApuestasActivasAdminData = ({
         }
     }
     return (
-        <Grid item sm={12} className={estado !== 'BLOQUEADA' ? classes.component : classes.componentDisable}>
+        <Grid item xs={12} className={estado !== 'BLOQUEADA' ? classes.component : classes.componentDisable}>
             <Paper key={props.index} className={classes.paper}>
                 <Grid container>
-                    <Grid item sm={2} className={classes.typeContainer}>
+                    <Grid item xs={2} className={classes.typeContainer}>
                         <Typography variant="body1" gutterBottom className={classes.textLabel}>
                             {type}
                         </Typography>
                     </Grid>
-                    <Grid item sm={6} className={classes.titleContainer}>
+                    <Grid item xs={6} className={classes.titleContainer}>
                         <Typography variant="body1" gutterBottom className={classes.textLabel}>
                             {title}
                         </Typography>
                     </Grid>
-                    <Grid item sm={1}
+                    <Grid item xs={1}
                         container
                         justify="center"
                         alignItems="center"
@@ -217,12 +217,12 @@ const ApuestasActivasAdminData = ({
 
                         />
                     </Grid>
-                    <Grid item sm={12}>
+                    <Grid item xs={12}>
                         <Divider />
                     </Grid>
                 </Grid>
                 <Grid container>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                         container
                         justify="flex-end"
                     >
@@ -230,7 +230,7 @@ const ApuestasActivasAdminData = ({
                             Total Apuestas | {moneda}
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                         container
                         justify="flex-start"
                         className={classes.text}
@@ -240,7 +240,7 @@ const ApuestasActivasAdminData = ({
                         </Typography>
 
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                         container
                         justify="flex-end"
                     >
@@ -248,7 +248,7 @@ const ApuestasActivasAdminData = ({
                             Total Comisiones | {moneda}
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                         container
                         justify="flex-start"
                         className={classes.text}
@@ -258,7 +258,7 @@ const ApuestasActivasAdminData = ({
                         </Typography>
 
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                         container
                         justify="flex-end"
                     >
@@ -266,7 +266,7 @@ const ApuestasActivasAdminData = ({
                             Entrada neta | {moneda}
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                         container
                         justify="flex-start"
                         className={classes.text}
@@ -277,7 +277,7 @@ const ApuestasActivasAdminData = ({
 
                     </Grid>
                     {estado !== 'ABIERTA' && <>
-                        <Grid item sm={6}
+                        <Grid item xs={6}
                             container
                             justify="flex-end"
                         >
@@ -285,7 +285,7 @@ const ApuestasActivasAdminData = ({
                                 Premios | {moneda}
                             </Typography>
                         </Grid>
-                        <Grid item sm={6}
+                        <Grid item xs={6}
                             container
                             justify="flex-start"
                             className={classes.text}
@@ -295,7 +295,7 @@ const ApuestasActivasAdminData = ({
                             </Typography>
 
                         </Grid>
-                        <Grid item sm={6}
+                        <Grid item xs={6}
                             container
                             justify="flex-end"
                         >
@@ -303,7 +303,7 @@ const ApuestasActivasAdminData = ({
                                 Ganancia/Perdida | {moneda}
                             </Typography>
                         </Grid>
-                        <Grid item sm={6}
+                        <Grid item xs={6}
                             container
                             justify="flex-start"
                             className={classes.text}
@@ -316,11 +316,11 @@ const ApuestasActivasAdminData = ({
 
 
                     </>}
-                    <Grid item sm={12}>
+                    <Grid item xs={12}>
                         <Divider />
                     </Grid>
 
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                         container
                         justify="center"
                         className={classes.text}
@@ -330,7 +330,7 @@ const ApuestasActivasAdminData = ({
                             {estado === 'ABIERTA' ? "Sorteo Abierto" : "Sorteo Cerrado"}
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                         container
                         justify="center"
                         className={classes.text}

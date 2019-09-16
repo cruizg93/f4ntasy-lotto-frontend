@@ -74,14 +74,14 @@ const ShowDetallesApuesta = ({title, apuestas, total, ...props}) => {
             >
                 {props.apuestaTitle &&
                 <>
-                    <Grid item sm={3}
+                    <Grid item xs={3}
                         className={classes.apuestaContainer}
                         >                     
                         <Typography variant="h5" gutterBottom>
                             
                         </Typography>
                     </Grid>
-                    <Grid item sm={8}>
+                    <Grid item xs={8}>
                         <Typography variant="h5" gutterBottom
                             style={{marginLeft: ".5rem"}}
                         >
@@ -90,7 +90,7 @@ const ShowDetallesApuesta = ({title, apuestas, total, ...props}) => {
                     </Grid>
                  </>
                 }
-                <Grid item sm={12}
+                <Grid item xs={12}
                       container
                       justify="center"
                 >
@@ -98,7 +98,7 @@ const ShowDetallesApuesta = ({title, apuestas, total, ...props}) => {
                         {" "}{titleData}
                     </Typography>
                 </Grid>
-                <Grid item sm={12}
+                <Grid item xs={12}
                       container
                       justify="center"
                 >
@@ -107,7 +107,7 @@ const ShowDetallesApuesta = ({title, apuestas, total, ...props}) => {
 
                     )}
                 </Grid>
-                <Grid item sm={6}
+                <Grid item xs={6}
                       container
                       justify="flex-end"
                       
@@ -116,7 +116,7 @@ const ShowDetallesApuesta = ({title, apuestas, total, ...props}) => {
                         Total | {moneda}
                     </Typography>
                 </Grid>
-                <Grid item sm={6}
+                <Grid item xs={6}
                       container
                       justify="flex-start"
                       
@@ -125,7 +125,7 @@ const ShowDetallesApuesta = ({title, apuestas, total, ...props}) => {
                         {"  "}{total.toFixed(2)}
                     </Typography>
                 </Grid>
-                <Grid item sm={12}>
+                <Grid item xs={12}>
                     <Divider/>
                 </Grid>
             </Grid>

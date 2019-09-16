@@ -166,30 +166,30 @@ const NumeroGanadorEntry = ({ match: { url }, sorteId, title, numero, status, ty
         setCambiar(!cambiar);
     }
     return (
-        <Grid item sm={12}>
+        <Grid item xs={12}>
             <Paper key={props.index} className={classes.paper}>
                 <Grid container>
-                    <Grid item sm={3} className={classes.typeContainer}>
+                    <Grid item xs={3} className={classes.typeContainer}>
                         <Typography variant="body1" gutterBottom className={classes.textLabel}>
                             {apuestaType}
                         </Typography>
                     </Grid>
-                    <Grid item sm={6} className={classes.titleContainerShort}>
+                    <Grid item xs={6} className={classes.titleContainerShort}>
                         <Typography variant="body1" gutterBottom className={classes.textLabel}>
                             {titleApuesta}
                         </Typography>
                     </Grid>
 
-                    <Grid item sm={3} className={classes.hourContainer}>
+                    <Grid item xs={3} className={classes.hourContainer}>
                         <Typography variant="body1" gutterBottom className={classes.textLabel}>
                             {apuestaHour}
                         </Typography>
                     </Grid>
-                    <Grid item sm={12}>
+                    <Grid item xs={12}>
                         <Divider />
                     </Grid>
                     {status === 'abierta' ?
-                        <Grid item sm={12} className={`${classes.titleContainer} form__center-label`}>
+                        <Grid item xs={12} className={`${classes.titleContainer} form__center-label`}>
                             <Typography variant="h6" gutterBottom className={classes.textSorteoAbierto}>
                                 {"Sorteo Abierto"}
                             </Typography>
@@ -198,13 +198,13 @@ const NumeroGanadorEntry = ({ match: { url }, sorteId, title, numero, status, ty
                     }
                     {status !== 'abierta' ?
                         <>
-                            <Grid item sm={9}
+                            <Grid item xs={9}
                                 className={classes.sorteoStatusContainer}
                             >
                                 <Grid item
                                     container
                                     justify="center"
-                                    sm={12}>
+                                    xs={12}>
                                     <Typography variant="body1" gutterBottom className={classes.textRed}>
                                         Sorteo Cerrado
                                 </Typography>
@@ -212,7 +212,7 @@ const NumeroGanadorEntry = ({ match: { url }, sorteId, title, numero, status, ty
                                 <Grid item
                                     container
                                     justify="center"
-                                    sm={12}>
+                                    xs={12}>
                                     {!cambiar ?
                                         <NumberFormat
                                             id={`admin-numero-ganador-insert`}
@@ -229,7 +229,7 @@ const NumeroGanadorEntry = ({ match: { url }, sorteId, title, numero, status, ty
                                     }
                                 </Grid>
                             </Grid>
-                            <Grid item sm={2} className={`${classes.fijarContainer} form__center-label`}>
+                            <Grid item xs={2} className={`${classes.fijarContainer} form__center-label`}>
                                 {!cambiar ?
                                     <Typography variant="body1" gutterBottom
                                         className={classes.editarLabel}

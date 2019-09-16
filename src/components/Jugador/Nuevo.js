@@ -341,19 +341,19 @@ export default function Nuevo({ ...props }) {
                                 </Button>
                     </DialogActions>
                 </Dialog>
-                <Container maxWidth="sm" className={classes.container}>
+                <Container maxWidth="xs" className={classes.container}>
                     <Grid container spacing={1}
                         direction="row"
                         justify="center"
                         alignItems="flex-start"
                         className={classes.headerContainer}
                     >
-                        <Grid item sm={6} className={classes.crearJugadorLabel}>
+                        <Grid item xs={6} className={classes.crearJugadorLabel}>
                             <Typography variant="h6" gutterBottom className={"form__center-label"}>
                                 Crear Jugador P
                                 </Typography>
                         </Grid>
-                        <Grid item sm={6}>
+                        <Grid item xs={6}>
                             <FormControlLabel
                                 value="lempiras"
                                 control={
@@ -387,7 +387,7 @@ export default function Nuevo({ ...props }) {
                         direction="row"
                         justify="center"
                         alignItems="center">
-                        <Grid item sm={12}
+                        <Grid item xs={12}
                             className={classes.boxContainerNuevo}
                         >
                             <TextField

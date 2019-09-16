@@ -24,7 +24,8 @@
 }
 
 .app-main-container{
-  margin-top: 8rem;
+  margin-top: 100px;
+  background: #f4f4f4;
 }
 
 @keyframes App-logo-spin {

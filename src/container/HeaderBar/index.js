@@ -64,7 +64,7 @@ class HeaderBar extends Component {
             backdrop = <Backdrop click={this.backdropClickHandler} />
         }
         return (
-            <>
+            <div>
                 <Toolbar drawerClickHandler={this.drawerToggleClickHandler}
                     logoutClickHandler={this.logoutClickHandler}
                     admin={this.state.isAdmin}
@@ -82,8 +82,7 @@ class HeaderBar extends Component {
                     asistente={this.state.isAsistente}
                     isPlayer={this.state.isPlayer}
                 />
-
-            </>
+            </div>
         );
     }
 }

@@ -21,7 +21,7 @@ function PageTitle(props) {
     const classes = useStyles();
     const xsValue = props.xsValue === undefined ? 6 : props.xsValue;
     return (
-        <Grid item sm={xsValue} className={classes.title}>
+        <Grid item xs={xsValue} className={classes.title}>
             <Typography variant="h6" className={"form__center-label"}>
                 {props.titleLabel === undefined ? "NEED VALUE: ERROR" : props.titleLabel}
             </Typography>

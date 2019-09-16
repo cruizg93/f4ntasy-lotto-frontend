@@ -22,7 +22,7 @@ const PageTitleStyles = makeStyles(theme => ({
 function PageTitle(props) {
     const classes = PageTitleStyles();
     return (
-        <Grid item sm={12} className={classes.titleStyleDiv}>
+        <Grid item xs={12} className={classes.titleStyleDiv}>
             <Typography variant="h6">
                 {props.titleLabel}
             </Typography>

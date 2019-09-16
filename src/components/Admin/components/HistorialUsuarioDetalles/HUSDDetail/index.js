@@ -43,7 +43,7 @@ const HUSDDetailEntry = ({id, title, total, comision, premio,
                          }) => {
     const classes = useStyles();
     return (
-        <Grid item sm={12}
+        <Grid item xs={12}
         >
             <Paper key={props.index} className={classes.paper}>
                 <Typography variant="h5" gutterBottom>
@@ -51,7 +51,7 @@ const HUSDDetailEntry = ({id, title, total, comision, premio,
                 </Typography>
                 <Divider/>
                 <Grid container>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-end"
                     >
@@ -59,7 +59,7 @@ const HUSDDetailEntry = ({id, title, total, comision, premio,
                             Total Apuestas |
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-start"
                           className={classes.text}
@@ -69,7 +69,7 @@ const HUSDDetailEntry = ({id, title, total, comision, premio,
                         </Typography>
 
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-end"
                     >
@@ -77,7 +77,7 @@ const HUSDDetailEntry = ({id, title, total, comision, premio,
                             Total Comisiones |
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-start"
                           className={classes.text}
@@ -87,7 +87,7 @@ const HUSDDetailEntry = ({id, title, total, comision, premio,
                         </Typography>
 
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-end"
                     >
@@ -95,7 +95,7 @@ const HUSDDetailEntry = ({id, title, total, comision, premio,
                             Premio |
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-start"
                           className={classes.text}
@@ -107,7 +107,7 @@ const HUSDDetailEntry = ({id, title, total, comision, premio,
                     </Grid>
 
 
-                    <Grid item sm={12}
+                    <Grid item xs={12}
                           container
                           justify="center"
                           className={classes.text}

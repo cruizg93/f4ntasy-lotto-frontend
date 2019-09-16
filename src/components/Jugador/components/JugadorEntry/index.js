@@ -422,14 +422,14 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
     }, [asistentes, monedaType])
     return (
         <Grid container direction="row" className="container_entry">
-            <Grid container style={{ lineHeight: '2.8rem' }}>
-                <Grid className={total === 0.0 ? "labelUser" : "labelUser"}>
+            <Grid container style={{ lineHeight: '43px' }}>
+                <Grid className="labelUser">
                     <Typography className="form_center-label">
                         {username}{"-"}{apuestaCurrency.symbol}{'\u00A0'}{"["}{name.length > 15 ? name.substring(0, 9) : name}{"]"}
                     </Typography>
                 </Grid>
                 <Grid className="grid_lolosStar">
-                    <IoIosStar style={{ color: "#ff9900" }} onClick={() => { handleClickInfoOpen(id) }} />
+                    <IoIosStar style={{ color: "#ff8b12" }} onClick={() => { handleClickInfoOpen(id) }} />
                 </Grid>
                 <Grid className="grid_tiPen"
                     component={jugadorEnable ? Link : "div"} to={
@@ -446,12 +446,12 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                 <Grid className="grid_goTranhcan" >
                     <GoTrashcan style={{ color: "#ff3333" }} onClick={jugadorEnable ? handleClickOpen : handleClickOpenNoEliminar} />
                 </Grid>
-                <Grid item sm={12}>
+                <Grid item xs={12}>
                     <Divider />
                 </Grid>
             </Grid>
-            <Grid container style={{ border: 'solid 1px #dbdcdd' }}>
-                <Grid item container sm={7} alignItems="flex-start" className="valuesContainer"
+            <Grid container className="totalContainer" >
+                <Grid item container alignItems="flex-start" className="valuesContainer"
                     component={(total !== 0 || comision !== 0) ? Link : "div"} to={
                         {
                             pathname: `/jugador/apuestas/detalles`,
@@ -463,24 +463,26 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                     }
                 >
                     <Grid container className="text_container" >
-                        <Grid item sm={5} className="text_label">
-                            Ventas:<br />
-                            Comisión:<br />
-                            Total:
+                        <Grid item xs={5} className="text_label">
+                            <div>Ventas:</div>
+                            <div>Comisión:</div>
+                            <div>Total:</div>
                         </Grid>
-                        <Grid item sm={2} className="text_symbol">
-                            {monedaSymbol}{'\u00A0'}<br />
-                            {monedaSymbol}{'\u00A0'}<br />
-                            {monedaSymbol}{'\u00A0'}
+                        <Grid item xs={1} className="text_symbol">
+                            <span>{monedaSymbol}{'\u00A0'}<br /></span>
+                            <span>{monedaSymbol}{'\u00A0'}<br /></span>
+                            <span>{monedaSymbol}{'\u00A0'}<br /></span>
                         </Grid>
-                        <Grid item sm={5} className="text_value">
-                            {FormatCurrency(apuestaCurrency, total)}<br />
-                            {FormatCurrency(apuestaCurrency, comision)}<br />
-                            {FormatCurrency(apuestaCurrency, riesgo)}
+                        <Grid item xs={6} className="text_value">
+                            <div className="left">
+                                <span>{FormatCurrency(apuestaCurrency, total)}<br /></span>
+                                <span>{FormatCurrency(apuestaCurrency, comision)}<br /></span>
+                                <span>{FormatCurrency(apuestaCurrency, riesgo)}</span>
+                            </div>
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item sm={5} className="balanceLink" >
+                <Grid item className="balanceLink" >
                     <Grid component={(balance !== 0) ? Link : "div"} to={
                         {
                             pathname: `/jugador/balance/${id}`,
@@ -489,21 +491,21 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                             },
                         }
                     }>
-                        <Typography style={{ color: "#999999", fontSize: '1.7em', padding: 10 }}>
+                        <span style={{ color: "#999999", padding: 10 }}>
                             Balance
-                        </Typography>
+                        </span>
                     </Grid>
                     <Grid >
-                        <Typography className={balance < 0 ? classes.textNegative : (balance > 0 ? classes.textPositive : classes.text)}
-                            style={{ padding: 10, color: '#6699cc', fontSize: '1.6em' }}>
+                        <span className={balance < 0 ? classes.textNegative : (balance > 0 ? classes.textPositive : classes.text)}
+                            style={{ padding: 10, color: '#6699cc' }}>
                             {monedaSymbol}{'\u00A0'}{symbol}{FormatCurrency(apuestaCurrency, balance)}
-                        </Typography>
+                        </span>
                     </Grid>
                 </Grid>
             </Grid>
             <Grid container>
                 {/* NO SE PUEDE EDITAR DIALOG END*/}
-                <Grid item sm={12}>
+                <Grid item xs={12}>
                     <Dialog
                         open={openNoEditar}
                         onClose={handleCloseNoEditar}
@@ -513,11 +515,11 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                         <DialogContent>
                             <DialogContentText id="alert-dialog-no-editar-usuario-description">
                                 <Grid container>
-                                    <Grid item sm={12} style={{ display: "flex", alignItems: "center", justifyContent: "center", color: Colors.Btn_Blue_Dark }}>
+                                    <Grid item xs={12} style={{ display: "flex", alignItems: "center", justifyContent: "center", color: Colors.Btn_Blue_Dark }}>
                                         <FaAddressCard className={classes.iconEditDialog} /><span>{username}{"-"}{apuestaCurrency.symbol}{'\u00A0'}{"["}{name}{"]"}</span>
                                     </Grid>
-                                    <Grid item sm={12} style={{ marginBottom: "0.5rem" }}><Divider /></Grid>
-                                    <Grid item sm={12}>
+                                    <Grid item xs={12} style={{ marginBottom: "0.5rem" }}><Divider /></Grid>
+                                    <Grid item xs={12}>
                                         Este usuario tiene apuestas activas y no se puede editar en este momento.
                                 </Grid>
                                 </Grid>
@@ -533,7 +535,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                 </Grid>
                 {/* NO SE PUEDE EDITAR DIALOG END*/}
                 {/* DELETE DIALOG START*/}
-                <Grid item sm={12}>
+                <Grid item xs={12}>
                     <Dialog
                         open={open}
                         onClose={handleClose}
@@ -543,16 +545,16 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                         <DialogContent>
                             <DialogContentText id="alert-dialog-description">
                                 <Grid container>
-                                    <Grid item sm={12} style={{ display: "flex", alignItems: "center", justifyContent: "center", color: Colors.Btn_Blue_Dark }}>
+                                    <Grid item xs={12} style={{ display: "flex", alignItems: "center", justifyContent: "center", color: Colors.Btn_Blue_Dark }}>
                                         <FaUserTimes className={classes.iconDeletegDialog} /><span>{username}{"-"}{apuestaCurrency.symbol}{'\u00A0'}{"["}{name}{"]"}</span>
                                     </Grid>
-                                    <Grid item sm={12} style={{ marginBottom: "0.5rem" }}><Divider /></Grid>
-                                    <Grid item sm={12} style={{ marginBottom: "0.5rem" }}>
+                                    <Grid item xs={12} style={{ marginBottom: "0.5rem" }}><Divider /></Grid>
+                                    <Grid item xs={12} style={{ marginBottom: "0.5rem" }}>
                                         <Typography variant="h6">
                                             {"Desea eliminar usuario?"}
                                         </Typography>
                                     </Grid>
-                                    <Grid item sm={12}>
+                                    <Grid item xs={12}>
                                         Una vez eliminado el usuario no podrá obtener los datos generados del mismo
                                 </Grid>
                                 </Grid>
@@ -575,7 +577,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                 </Grid>
                 {/* DELETE DIALOG END*/}
                 {/* NO SE PUEDE ELIMINAR DIALOG START*/}
-                <Grid item sm={12}>
+                <Grid item xs={12}>
                     <Dialog
                         open={openNoEliminar}
                         onClose={handleCloseNoEliminar}
@@ -585,16 +587,16 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                         <DialogContent>
                             <DialogContentText id="alert-dialog-no-eliminar-description">
                                 <Grid container>
-                                    <Grid item sm={12} style={{ display: "flex", alignItems: "center", justifyContent: "center", color: Colors.Btn_Blue_Dark }}>
+                                    <Grid item xs={12} style={{ display: "flex", alignItems: "center", justifyContent: "center", color: Colors.Btn_Blue_Dark }}>
                                         <FaUserTimes className={classes.iconDeletegDialog} /><span>{username}{"-"}{apuestaCurrency.symbol}{'\u00A0'}{"["}{name}{"]"}</span>
                                     </Grid>
-                                    <Grid item sm={12} style={{ marginBottom: "0.5rem" }}><Divider /></Grid>
-                                    <Grid item sm={12} style={{ marginBottom: "0.5rem" }}>
+                                    <Grid item xs={12} style={{ marginBottom: "0.5rem" }}><Divider /></Grid>
+                                    <Grid item xs={12} style={{ marginBottom: "0.5rem" }}>
                                         <Typography variant="h6">
                                             {"Imposible Eliminar?"}
                                         </Typography>
                                     </Grid>
-                                    <Grid item sm={12}>
+                                    <Grid item xs={12}>
                                         Este usuario no se puede eliminar en este momento, ya que tiene apuestas activas y/o balance.
                                 </Grid>
                                 </Grid>
@@ -610,7 +612,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                 </Grid>
                 {/* NO SE PUEDE ELIMINAR DIALOG END*/}
                 {/* JUGADOR INFO DIALOG START*/}
-                <Grid item sm={12}>
+                <Grid item xs={12}>
                     <Dialog
                         fullWidth={true}
                         open={openinfo}
@@ -621,85 +623,85 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                         <DialogContent >
                             <DialogContentText id="alert-dialog-info-description">
                                 <Grid container>
-                                    <Grid item sm={12} style={{ display: "flex", alignItems: "center", justifyContent: "center", color: Colors.Btn_Blue_Dark }}>
+                                    <Grid item xs={12} style={{ display: "flex", alignItems: "center", justifyContent: "center", color: Colors.Btn_Blue_Dark }}>
                                         <FaAddressCard className={classes.iconWarningDialog} /><span>{username}{"-"}{apuestaCurrency.symbol}{'\u00A0'}{"["}{name}{"]"}</span>
                                     </Grid>
-                                    <Grid item sm={12} style={{ marginBottom: "0.5rem" }}><Divider /></Grid>
-                                    <Grid item sm={2}>
+                                    <Grid item xs={12} style={{ marginBottom: "0.5rem" }}><Divider /></Grid>
+                                    <Grid item xs={2}>
                                         <Typography variant="body1" gutterBottom style={{ fontWeight: "bold" }}>
                                             Diaria
                                     </Typography>
                                     </Grid>
-                                    <Grid container item sm={10}>
-                                        <Grid item sm={12}>
+                                    <Grid container item xs={10}>
+                                        <Grid item xs={12}>
                                             <Typography variant="body1" gutterBottom>
                                                 {" - "}{diariaTipo}
                                             </Typography>
                                         </Grid>
-                                        <Grid item sm={7}>
+                                        <Grid item xs={7}>
                                             <Typography variant="body1" gutterBottom>
                                                 {" - "} {diariaCostoComisionTexto}
                                             </Typography>
                                         </Grid>
-                                        <Grid item sm={5}>
+                                        <Grid item xs={5}>
                                             <Typography variant="body1" gutterBottom className={classes.jugadorInfoValor}>
                                                 {"="}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency, diariaCostoComisionValor)}
                                             </Typography>
                                         </Grid>
-                                        <Grid item sm={7}>
+                                        <Grid item xs={7}>
                                             <Typography variant="body1" gutterBottom>
                                                 {" - "} {diariaPremioTexto}
                                             </Typography>
                                         </Grid>
-                                        <Grid item sm={5}>
+                                        <Grid item xs={5}>
                                             <Typography variant="body1" gutterBottom className={classes.jugadorInfoValor}>
                                                 {"="}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency, diariaPremioValor)}
                                             </Typography>
                                         </Grid>
                                     </Grid>
 
-                                    <Grid item sm={12} gutterBottom />
+                                    <Grid item xs={12} gutterBottom />
 
-                                    <Grid item sm={2}>
+                                    <Grid item xs={2}>
                                         <Typography variant="body1" gutterBottom style={{ fontWeight: "bold" }}>
                                             Chica
                                     </Typography>
                                     </Grid>
-                                    <Grid container item sm={10}>
-                                        <Grid item sm={12}>
+                                    <Grid container item xs={10}>
+                                        <Grid item xs={12}>
                                             <Typography variant="body1" gutterBottom>
                                                 {" - "}{chicaTipo}
                                             </Typography>
                                         </Grid>
 
-                                        <Grid item sm={7} style={chicaComisionPercentageValor > 0 ? { display: "flex" } : { display: "none" }}>
+                                        <Grid item xs={7} style={chicaComisionPercentageValor > 0 ? { display: "flex" } : { display: "none" }}>
                                             <Typography variant="body1" gutterBottom>
                                                 {" - "} {chicaComisionPercentageTexto}
                                             </Typography>
                                         </Grid>
-                                        <Grid item sm={5} style={chicaComisionPercentageValor > 0 ? { display: "flex" } : { display: "none" }} >
+                                        <Grid item xs={5} style={chicaComisionPercentageValor > 0 ? { display: "flex" } : { display: "none" }} >
                                             <Typography variant="body1" gutterBottom className={classes.jugadorInfoValor}>
                                                 {"="}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency, chicaComisionPercentageValor)}
                                             </Typography>
                                         </Grid>
 
-                                        <Grid item sm={7} style={chicaCostoValor > 0 ? { display: "flex" } : { display: "none" }}>
+                                        <Grid item xs={7} style={chicaCostoValor > 0 ? { display: "flex" } : { display: "none" }}>
                                             <Typography variant="body1" gutterBottom>
                                                 {" - "} {chicaCostoTexto}
                                             </Typography>
                                         </Grid>
-                                        <Grid item sm={5} style={chicaCostoValor > 0 ? { display: "flex" } : { display: "none" }} >
+                                        <Grid item xs={5} style={chicaCostoValor > 0 ? { display: "flex" } : { display: "none" }} >
                                             <Typography variant="body1" gutterBottom className={classes.jugadorInfoValor}>
                                                 {"="}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency, chicaCostoValor)}
                                             </Typography>
                                         </Grid>
 
-                                        <Grid item sm={7}>
+                                        <Grid item xs={7}>
                                             <Typography variant="body1" gutterBottom>
                                                 {" - "}{chicaPremioTexto}
                                             </Typography>
                                         </Grid>
-                                        <Grid item sm={5}>
+                                        <Grid item xs={5}>
                                             <Typography variant="body1" gutterBottom className={classes.jugadorInfoValor}>
                                                 {"="}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency, chicaPremioValor)}
                                             </Typography>
@@ -716,13 +718,14 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                     {/* JUGADOR INFO DIALOG END*/}
                 </Grid>
             </Grid>
-            {asistentes &&
+            {
+                asistentes &&
                 <>
                     <Grid item ><Divider /></Grid>
                     <Grid item style={{ flex: 1 }} >
                         <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChangeExpand('panel1')}
                             TransitionProps={{ unmountOnExit: true }} className={classes.expansionPanel}>
-                            <StyleExpansionPanelSummary
+                            <StyleExpansionPanelSummary style={{ height: 30 }}
                                 expandIcon={expanded ? <Remove className="expansion_icon" /> : <Add className="expansion_icon" />}
                                 aria-controls="panel1bh-content"
                             >

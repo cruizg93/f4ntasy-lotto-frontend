@@ -79,7 +79,7 @@ const SingleApuestaDetails=({numero, valor, ...props})=>{
     return (
         <React.Fragment>
             
-             <Grid item sm={4}
+             <Grid item xs={4}
                   container
                   justify="flex-end"
                    spacing={1}
@@ -91,7 +91,7 @@ const SingleApuestaDetails=({numero, valor, ...props})=>{
                     
                 </Grid>
             </Grid>
-            <Grid item sm={6}
+            <Grid item xs={6}
                   container
                   justify="flex-start"
                   spacing={1}
@@ -104,7 +104,7 @@ const SingleApuestaDetails=({numero, valor, ...props})=>{
                 </Typography>
             </Grid>
            
-            <Grid item sm={2}
+            <Grid item xs={2}
                   container
                   justify="center"
                   spacing={1}

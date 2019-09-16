@@ -46,7 +46,7 @@ const HistorialDataPAsistente = ({match: {url}, id, title, total, numero, comisi
     const classes = useStyles();
 
     return (
-        <Grid item sm={12} component={Link}
+        <Grid item xs={12} component={Link}
               to={
                   {
                       pathname: `${url}/${id}`,
@@ -66,7 +66,7 @@ const HistorialDataPAsistente = ({match: {url}, id, title, total, numero, comisi
                 </Typography>
                 <Divider/>
                 <Grid container>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-end"
                     >
@@ -74,7 +74,7 @@ const HistorialDataPAsistente = ({match: {url}, id, title, total, numero, comisi
                             Total apuestas |
                         </Typography>
                     </Grid>
-                    <Grid item sm={6}
+                    <Grid item xs={6}
                           container
                           justify="flex-start"
                           className={classes.text}

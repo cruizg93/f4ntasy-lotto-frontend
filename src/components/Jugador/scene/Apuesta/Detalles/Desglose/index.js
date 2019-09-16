@@ -123,21 +123,21 @@ const DesgloseApuestaJugador = ({...props}) => {
                 className={classes.containerData}
 
             >
-                <Grid item sm={3}
+                <Grid item xs={3}
                     className={classes.apuestaContainer}
                     >                     
                     <Typography variant="h5" gutterBottom>
                         {type}
                     </Typography>
                  </Grid>
-                 <Grid item sm={8}>
+                 <Grid item xs={8}>
                     <Typography variant="h5" gutterBottom
                         style={{marginLeft: ".5rem"}}
                     >
                         {title}
                     </Typography>                     
                  </Grid>
-                 <Grid item sm={12}>
+                 <Grid item xs={12}>
                     <Divider/>
                  </Grid>
                 {list.map((apuestaDetail, index) =>
@@ -152,7 +152,7 @@ const DesgloseApuestaJugador = ({...props}) => {
                   justify="center"
             >
 
-                <Grid item sm={12}>
+                <Grid item xs={12}>
                     <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir
