@@ -176,7 +176,7 @@ function list_players() {
 function list_players_details() {
     const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
-        axios.get(`${baseUrl}/admin/jugador/list`,
+        axios.get(`${baseUrl}/admin/jugadores/list`,
             requestOptions
         )
             .then((responseJson) => {
@@ -302,8 +302,8 @@ function list_apuestas_details(username) {
         username: username
     };
     return new Promise((resolve, reject) => {
-        axios.post(`${baseUrl}/admin/jugador/apuestas/hoy/list`,
-            send, requestOptions
+        axios.get(`${baseUrl}/sorteos/activosResumen/judadores/${username}`,
+            requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);
@@ -411,7 +411,7 @@ function delete_player_by_id(id) {
 function get_apuestas_activas(moneda) {
     const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
-        axios.get(`${baseUrl}/admin/apuestas/activas/${moneda}`,
+        axios.get(`${baseUrl}/sorteos/activos/${moneda}`,
             requestOptions
         )
             .then((responseJson) => {
