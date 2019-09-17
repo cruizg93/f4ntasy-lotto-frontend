@@ -424,7 +424,7 @@ function get_apuestas_activas(moneda) {
 }
 
 
-function get_apuesta_activa_by_type_and_id(type, id) {
+function get_apuesta_activa_by_type_and_id(currency, id) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
         headers: {
@@ -433,12 +433,9 @@ function get_apuesta_activa_by_type_and_id(type, id) {
             "Authorization": `Bearer ${currentUser.accessToken}`
         },
     };
-    let send = {
-        type: type
-    };
     return new Promise((resolve, reject) => {
-        axios.post(`${baseUrl}/admin/apuestas/activas/${id}`,
-            send, requestOptions
+        axios.get(`${baseUrl}/sorteos/activos/detalles/${id}/${currency}`,
+            requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);
