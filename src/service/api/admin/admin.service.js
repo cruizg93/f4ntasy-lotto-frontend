@@ -327,8 +327,8 @@ function list_apuestas_activas_details_by_user_id(username, id) {
         username: username
     };
     return new Promise((resolve, reject) => {
-        axios.post(`${baseUrl}/admin/jugador/apuestas/${id}`,
-            send, requestOptions
+        axios.get(`${baseUrl}/sorteos/activos/${id}/apuestas/${username}`,
+            requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);
