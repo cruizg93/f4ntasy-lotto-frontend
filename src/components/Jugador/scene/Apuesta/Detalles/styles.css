@@ -1,0 +1,55 @@
+.container_individual{
+  padding: 0px !important;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+}
+.container_individual .userInfo{
+  font-size: 22px;
+  color: #006666;
+  border-top : solid 1px #afb6b8;
+  /* padding-bottom: px !important; */
+}
+.container_individual .userInfo span{
+  padding-left: 6vw;
+}
+
+.container_individual .body{
+  border-bottom: solid 16px #dfedfa;
+}
+
+.container_summary{
+  height: 95px !important;
+  border-bottom: solid 1px #afb6b8;
+}
+
+.container_summary .summaryTotal{
+  width: 81%;
+  font-size: 18px;
+  padding-left: 23px;
+}
+
+.container_summary .summaryTotal{
+  width: 81%;
+  font-size: 18px;
+  padding-left: 23px;
+  margin-top: 5px;
+}
+
+.container_summary .summaryTotal .textContainer{
+  height: 95px !important;
+}
+
+.container_summary .userInfo{
+  font-size: 30px !important;
+  color: #828282 !important;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 95px;
+}
+
+.text_conclusion{
+  font-size: 7px !important;
+  padding: 10px 0px 0px 20px !important;
+}
+
+
+

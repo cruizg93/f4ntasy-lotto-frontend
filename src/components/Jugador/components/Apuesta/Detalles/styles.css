@@ -1,0 +1,49 @@
+.container_jugadorDetailesEntry{
+  border-top: solid 1px #afb6b8;
+  height: 80px !important;
+}
+
+.container_jugadorDetailesEntry .logo_icon{
+  text-align: center !important;
+  line-height: 80px;
+}
+.container_jugadorDetailesEntry .logo_icon img{
+  width: 90px !important;
+  vertical-align: middle;
+}
+
+.headerLabelSorteoHour{
+  display: flex !important;
+  color: #6F6864;
+  font-size: 20px;
+  height: 33px !important;
+  margin-top: 9px !important;
+  margin-left: -20px !important;
+}
+.headerLabelSorteoHour .time{
+  flex: 1.5;
+  text-align: right;
+}
+.headerLabelSorteoHour .line{
+  flex: 0.3;
+}
+.headerLabelSorteoHour .day{
+  flex: 4;
+}
+.valuesContainer .img_open_close img{
+  width: 20px;
+}
+
+.valuesContainer .textData{
+  color:#999999;
+}
+.valuesContainer .total_amount{
+  color:#4f83c8;
+}
+
+@media (max-width: 410px){
+  .container_jugadorDetailesEntry .logo_icon img{
+    width: 80px !important;
+    vertical-align: middle;
+  }
+}

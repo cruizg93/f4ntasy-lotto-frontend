@@ -1,0 +1,16 @@
+.admin_header {
+  height: 65px;
+  background: #dfedfa;
+  font-size: 22px !important;
+  color: #003333;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  
+}
+
+

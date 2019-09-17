@@ -1,16 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import {ToastContainer, toast} from 'react-toastify';
+import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
-import {makeStyles} from '@material-ui/core/styles';
-import {current, update} from '../../service/api/cambio/cambio';
+import { makeStyles } from '@material-ui/core/styles';
+import { current, update } from '../../service/api/cambio/cambio';
 import NumberFormat from 'react-number-format';
-import Button from "@material-ui/core/Button/index";
-import {withStyles} from "@material-ui/core/styles/index";
-import SwapHoriz from '@material-ui/icons/SwapHoriz';
+import { Colors } from '../../utils/__colors';
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -33,7 +31,6 @@ const useStyles = makeStyles(theme => ({
             border: 'none',
         },
     },
-
     card: {
         display: 'flex',
         marginTop: '.5rem'
@@ -43,45 +40,47 @@ const useStyles = makeStyles(theme => ({
         marginTop: '1rem',
         marginBottom: '1rem',
     },
-    btnContainer: {
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
     textField: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
         width: 100,
-        marginBottom: '.5rem'
+        marginBottom: '.5rem',
+        marginTop: ".2rem",
+        fontSize: "14pt"
     },
+    headerContainer: {
+        background: Colors.Main,
+        marginBottom: "1rem",
+    },
+    bodyContainer: {
+        background: Colors.Main,
+        marginBottom: "1rem",
+        border: `rgba(0, 0, 0, 0.12) 1px solid`,
+    },
+    setCambioLabel: {
+        borderBottom: `${Colors.Btn_Red} 2px solid`,
+        paddingBottom: "1rem !important",
+        marginTop: ".5rem",
+    },
+    fijarElement: {
+        color: Colors.Green,
+        cursor: 'pointer',
+        '&:hover': {
+            background: Colors.Gray_Ligth
+        }
+    },
+    fijarLabel: {
+        margin: "0",
+    },
+    headerTitle: {
+        fontSize: "12pt",
+        marginLeft: ".5rem"
+    },
+    leftMargin: {
+        marginLeft: ".5rem"
+    }
 
 }));
-const CrearButton = withStyles({
-    root: {
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#29992a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 
 export default function Cambio() {
     const classes = useStyles();
@@ -94,9 +93,7 @@ export default function Cambio() {
         setNewCurrent(event.target.value);
     };
     useEffect(() => {
-        let jsonData = JSON.parse(sessionStorage.getItem('userData'));
-        let tokenStr = jsonData['accessToken'];
-        current(tokenStr).then((result) => {
+        current().then((result) => {
             setCurrent(result);
         })
     }, []);
@@ -105,9 +102,7 @@ export default function Cambio() {
         let data = {
             cambio: cambio
         };
-        let jsonData = JSON.parse(sessionStorage.getItem('userData'));
-        let tokenStr = jsonData['accessToken'];
-        update(data, tokenStr).then((result) => {
+        update(data).then((result) => {
             setCurrent(result.cambio);
             setNewCurrent('');
             success_response();
@@ -122,35 +117,45 @@ export default function Cambio() {
 
     return (
         <React.Fragment>
-            <ToastContainer autoClose={8000}/>
-            <Container maxWidth="sm" className={classes.container}>
+            <ToastContainer autoClose={8000} />
+            <Container maxWidth="xs" className={classes.container}>
                 <Grid container spacing={1}
-                      direction="row"
-                      justify="center"
-                      alignItems="flex-start">
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start"
+                    className={classes.headerContainer}
+                >
+                    <Grid item xs={8} className={classes.setCambioLabel}>
+                        <Typography variant="h6" gutterBottom className={`${classes.headerTitle} form__left-label`}>
+                            Fijar tipo de Cambio
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+
+                    </Grid>
+                </Grid>
+                <Grid container
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start"
+                    className={classes.bodyContainer}
+                >
                     <Grid item xs={12}>
-                        <Typography variant="body1" gutterBottom className={"form__center-label"}>
+                        <Typography variant="h6" gutterBottom className={`${classes.leftMargin} form__left-label`}>
                             Tipo de cambio en sistema
                         </Typography>
-                        <Typography variant="body1" gutterBottom className={"form__center-label"}>
+                        <Typography variant="h6" gutterBottom className={`${classes.leftMargin} form__left-label`}>
                             $1.00 = {currentValue} Lempiras
                         </Typography>
-                        <Divider/>
+                        <Divider />
                     </Grid>
-
-                    <Grid item xs={12}>
-                        <Typography variant="body1" gutterBottom className={"form__center-label"}>
-                            Nuevo tipo de cambio
-                        </Typography>
-
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Grid container justify="center" spacing={spacing}>
-
-                            <Typography variant="body1" gutterBottom>
+                    <Grid item xs={9} style={{
+                        borderRight: "#afb6b8 1px solid",
+                    }}>
+                        <Grid container justify="center" spacing={spacing} className={classes.fijarLabel}>
+                            <Typography variant="h6" gutterBottom>
                                 $1.00 =
                             </Typography>
-
                             <NumberFormat
                                 id="cambio-update"
                                 label="Lempiras"
@@ -162,17 +167,15 @@ export default function Cambio() {
 
                         </Grid>
                     </Grid>
-
-                </Grid>
-                <Grid
-                    className={classes.btnContainer}
-                >
-                    <CrearButton variant="outlined" color="primary" onClick={handleOnClickCambio}>
-                        Fijar
-                        {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
-
-                        <SwapHoriz className={classes.rightIcon}/>
-                    </CrearButton>
+                    <Grid item xs={3}
+                        container
+                        justify="center"
+                        onClick={handleOnClickCambio}
+                        className={classes.fijarElement}>
+                        <Typography variant="h6" gutterBottom >
+                            Fijar
+                            </Typography>
+                    </Grid>
                 </Grid>
             </Container>
         </React.Fragment>
