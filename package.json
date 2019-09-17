@@ -44,7 +44,6 @@
   },
   "scripts": {
     "start": "node server.js",
-    "postinstall": "npm run build",
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
