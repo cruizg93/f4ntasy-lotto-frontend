@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {playerService} from "../../../service/api/player/player.service";
+import React, { Component } from 'react';
+import { playerService } from "../../../service/api/player/player.service";
 import './Balance.css';
 
 class Balance extends Component {
@@ -14,14 +14,14 @@ class Balance extends Component {
 
     updateBalance() {
         playerService.get_balance().then((result) => {
-            this.setState({balance: result.data, symbol : (result.data < 0 ? " - ": (result.data > 0 ? " + " : ""))})
+            this.setState({ balance: result.data, symbol: (result.data < 0 ? " - " : (result.data > 0 ? " + " : "")) })
         })
     }
 
     componentDidMount() {
         this.balanceId = setInterval(
             () => this.updateBalance(),
-            60000
+            100000
         )
     }
 
@@ -32,9 +32,9 @@ class Balance extends Component {
     render() {
         return (
             <React.Fragment >
-                <div className={this.state.balance < 0 ? 'clock__column red__balance' : this.state.balance > 0 ? "clock__column green__balance" : "clock__column"}>                    
-                    {this.state.balance}                 
-                </div>                           
+                <div className={this.state.balance < 0 ? 'clock__column red__balance' : this.state.balance > 0 ? "clock__column green__balance" : "clock__column"}>
+                    {this.state.balance}
+                </div>
             </React.Fragment>
         )
     }

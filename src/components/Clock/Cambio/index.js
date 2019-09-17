@@ -29,7 +29,7 @@ class Cambio extends Component {
     componentDidMount() {
         this.cambioId = setInterval(
             () => this.updateCambio(),
-            5000
+            100000
         )
     }
 

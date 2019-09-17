@@ -93,7 +93,7 @@ class Jugador extends Component {
                     </Grid>
                     <Grid container maxWidth="xs" direction="row">
                         {this.state.jugadorList.map((jugador, index) =>
-                            <JugadorDataShow key={index} {...jugador} {...this.props} handler={this.reload} toast={this.toast_notification} />
+                            <JugadorDataShow key={index} {...jugador} {...this.props} handler={this.reload.bind(this)} toast={this.toast_notification} />
                         )}
                     </Grid>
                 </Container>

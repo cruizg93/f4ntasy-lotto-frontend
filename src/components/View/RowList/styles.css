@@ -1,0 +1,20 @@
+.container_rowList .text_container {
+  align-content: center;
+}
+
+.container_rowList  .text_container .text_label {
+  flex: 1;
+  color: #999999 !important;
+}
+
+.container_rowList  .text_container .text_symbol {
+  text-align: right;
+  color: #6699cc !important;
+}
+
+.container_rowList .text_container .text_value {
+  padding-left: 10px;
+  text-align: right;
+  color: #4f83c8 !important;
+  display: flex;
+}

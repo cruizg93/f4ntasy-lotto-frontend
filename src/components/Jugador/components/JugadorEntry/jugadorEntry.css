@@ -55,7 +55,7 @@
   /* font-size: 0.8rem !important; */
 }
 
-.text_container {
+.totalContainer .text_container {
   align-content: center;
   height: 117px;
 }
@@ -89,7 +89,9 @@
   color: #033;
 }
 
-@media (max-width: 479px){
-  .text_value {
-  }
+
+@media (max-width: 410px){
+  .totalContainer .text_container {
+    letter-spacing: -1px;
+}
 }
