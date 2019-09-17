@@ -40,7 +40,9 @@ const JugadorDetalles = ({ ...props }) => {
     }, [])
     return (
         <React.Fragment>
-            <AdminTitle titleLabel='Resumen Venta Individual' />
+            <Container maxWidth="xs" style={{ padding: 0 }}>
+                <AdminTitle titleLabel='Resumen Venta Individual' />
+            </Container>
             <Container maxWidth="xs" className="container_individual">
                 <Grid item xs={12} className="userInfo" >
                     <span>
@@ -57,19 +59,21 @@ const JugadorDetalles = ({ ...props }) => {
                     )}
                 </Grid>
             </Container>
-            <Grid container maxWidth="xs" className="container_summary">
-                <Grid item xs={10} className="summaryTotal" >
-                    <RowList col_1={col} symbol={moneda.symbol} col_2={values} style={{ height: 95 }}></RowList>
+            <Container maxWidth="xs" style={{ padding: 0 }}>
+                <Grid container maxWidth="xs" className="container_summary">
+                    <Grid item xs={10} className="summaryTotal" >
+                        <RowList col_1={col} symbol={moneda.symbol} col_2={values} style={{ height: 95 }}></RowList>
+                    </Grid>
+                    <Grid item xs={2} className="userInfo">
+                        <IoIosContact />
+                    </Grid>
                 </Grid>
-                <Grid item xs={2} className="userInfo">
-                    <IoIosContact />
-                </Grid>
-            </Grid>
-            <Grid>
-                <Typography className="text_conclusion">
-                    *Totales de todos los sorteos en conjunto, para ver detalles oprima el total en el sorteo correspondiente.
+                <Grid container maxWidth="xs">
+                    <Typography className="text_conclusion">
+                        *Totales de todos los sorteos en conjunto, para ver detalles oprima el total en el sorteo correspondiente.
                 </Typography>
-            </Grid>
+                </Grid>
+            </Container>
         </React.Fragment>
     )
 }

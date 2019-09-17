@@ -17,14 +17,55 @@ import ChicaLogo from '../../../../View/assets/Chica_PNG.png';
 import imgRed from '../../../../View/assets/RED_PNG.png';
 import imgPurple from '../../../../View/assets/Purple_PNG.png';
 import imgGreen from '../../../../View/assets/Green_PNG.png';
+import ConfirmDialog from '../../../../View/Dialog/ConfirmDialog';
 
 import './styles.css';
 
 // const JugadorDetallesEntry = ({ match: { url }, id, nombre, total, comision, riesgo, estado, username, moneda, type, day, hour, ...props }) => {
 class JugadorDetallesEntry extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            open: false,
+            redOpen: false,
+            icon: '',
+            title: '',
+            context: ''
+        }
+    }
+    handleClickOpen() {
+        let icon = '', title = '', context = ''
+        if (this.props.estado === 'ABIERTA') {  //open
+            icon = 'help'
+            title = 'Bloquear?'
+            context = 'Si bloquea este sorteo ningún vendedor podrá accesarlo para hacer mas compras.'
+        } else if (this.props.estado === 'BLOQUEADA') { //block
+            icon = 'help'
+            title = 'Desbloquear?'
+            context = 'Si desbloquea este sorteo todos los vendedores tendrán acceso a el.'
+        } else if (this.props.estado === 'BLOQUEADA') { //block
+        }
+        this.setState({
+            ...this.state,
+            open: true,
+            title: title,
+            context: context,
+            icon: icon
+        })
 
+    }
+
+    handleClose(value) {
+        this.setState({
+            ...this.state,
+            open: false,
+            redOpen: false
+        })
+        if (value === true) {
+
+        }
+    }
     render() {
-
         const apuestaCurrency = (this.props.moneda === "LEMPIRAS" || this.props.moneda === "L") ? Currency.Lempiras : Currency.Dollar;
         return (
             <>
@@ -42,7 +83,7 @@ class JugadorDetallesEntry extends React.Component {
                             <span className="day">{this.props.day}</span>
                         </Grid>
                         <Grid container className="valuesContainer">
-                            <Grid item xs={2} className="img_open_close">
+                            <Grid item xs={2} className="img_open_close" onClick={() => this.handleClickOpen()}>
                                 {
                                     this.props.estado === 'ABIERTA' ? <
                                         img src={imgGreen} alt="ABIERTA" />
@@ -60,7 +101,7 @@ class JugadorDetallesEntry extends React.Component {
                                 component={this.props.total === 0 ? 'div' : Link}
                                 to={
                                     {
-                                        pathname: `${this.props.url}/${this.props.id}`,
+                                        pathname: `${this.props.match.url}/${this.props.id}`,
                                         state: {
                                             title: this.props.nombre,
                                             username: this.props.username,
@@ -79,6 +120,15 @@ class JugadorDetallesEntry extends React.Component {
                             </Grid>
                         </Grid>
                     </Grid>
+                </Grid>
+                <Grid xs={12}>
+                    <ConfirmDialog
+                        open={this.state.open}
+                        handleClose={this.handleClose.bind(this)}
+                        title={this.state.title}
+                        context={this.state.context}
+                        icon={this.state.icon}>
+                    </ConfirmDialog>
                 </Grid>
             </>
         )
