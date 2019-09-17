@@ -18,7 +18,6 @@ const userNameReducer = (state, action) => {
 
 const JugadorDetalles = ({ ...props }) => {
 
-
     const [apuestasList, setApuestasList] = useState([]);
     const [name, setName] = useState('');
     const [moneda, setMoneda] = useState("L");
@@ -55,6 +54,7 @@ const JugadorDetalles = ({ ...props }) => {
                         <JugadorDetallesEntry key={index} {...apuesta} index={index}
                             username={props.location.state.username}
                             moneda={moneda.symbol}
+                            name={name.length > 15 ? name.substring(0, 14) : name}
                             {...props} />
                     )}
                 </Grid>

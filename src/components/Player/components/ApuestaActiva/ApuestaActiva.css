@@ -1,3 +1,31 @@
+.spuestaActive{
+    color: #9C9C9C;
+    font-size: 22px;
+    padding-bottom: 10px;
+}
+
+.spuestaActive .number{
+    width: 65px;
+    height: 42px;
+    border-radius: 20px;
+    border: solid 1px #C6C5C5;
+    text-align: center;
+    background: white;
+    color: #9C9C9C;
+}
+.spuestaActive .value{
+    margin-right: 50px;
+    width: 130px;
+    height: 42px;
+    border-radius: 20px;
+    margin-left: 31px;
+    padding: 9px;
+    border: solid 1px #9C9C9C;
+    padding-left: 25px;
+    background: white;
+    color: #9C9C9C;
+}
+
 .entrada-datos{
     margin: 3px !important;
 }
