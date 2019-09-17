@@ -1,10 +1,10 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from "@material-ui/core/styles/index";
+import {makeStyles} from "@material-ui/core/styles/index";
 import NumberFormat from 'react-number-format';
-import { red } from "@material-ui/core/colors/index";
-import { FaTrashAlt } from 'react-icons/fa';
+import {red} from "@material-ui/core/colors/index";
+import {FaTrashAlt} from 'react-icons/fa';
 import Button from '@material-ui/core/Button';
 
 import './ApuestaActiva.css';
@@ -36,39 +36,45 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(1, 1),
         color: red[400]
     },
-    deleteIcon: {
+    deleteIcon:{
         background: Colors.Btn_Red,
         color: Colors.Input_bkg,
         width: "1.5rem",
         height: "1.5rem",
         padding: ".2rem",
-        '&:hover': {
+        '&:hover':{
             cursor: "pointer"
         }
     }
 
 }));
-const ApuestaActivaEntry = ({ numero, valor, disable, ...props }) => {
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
-    const eventId = props.index;
+const ApuestaActivaEntry = ({numero, valor, disable, ...props}) => {
+    const classes = useStyles();   
+    const [open, setOpen] = React.useState(false);  
+    const eventId= props.index; 
     const update = props.update;
 
-    function handleClickOpen(e) {
+    
+
+    function handleClickOpen(e) {       
         setOpen(true);
     }
 
     function handleClose() {
         setOpen(false);
-    }
+    } 
     function handleCloseAccept() {
         props.delete(eventId);
         setOpen(false);
         update();
-    }
+        /* props.history.push("/");
+        return () => {
+            props.mounted.current = false;
+        };    */     
+    } 
     return (
-        <Grid container maxWidth='xs' className="spuestaActive">
-            <Dialog
+        <>
+         <Dialog
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-crear-usuario"
@@ -81,47 +87,50 @@ const ApuestaActivaEntry = ({ numero, valor, disable, ...props }) => {
                         {`Una vez eliminada la apuesta no podrá recuperarla`}
                     </DialogContentText>
                 </DialogContent>
-                <DialogActions>
+                <DialogActions>      
                     <Button onClick={handleClose} color="primary">
-                        Cancel
-                    </Button>
+                                Cancel
+                    </Button>                           
                     <Button onClick={() => {
-                        handleCloseAccept();
+                        handleCloseAccept();  
                     }} color="primary" autoFocus>
                         Aceptar
                     </Button>
                 </DialogActions>
             </Dialog>
-            <Grid item xs={4} container justify="flex-end">
-                <NumberFormat id={`text-${props.index}`}
-                    variant="body1" gutterBottom className={classes.text}
-                    placeholder="Número"
-                    className="number"
-                    value={numero}
-                />
+            <Grid item xs={4}
+                  container
+                  justify="flex-end"
+            >
+                <Typography id={`text-${props.index}`} variant="body1" gutterBottom className={classes.text}>
+                    {numero}
+                </Typography>
             </Grid>
-            <Grid item xs={3} justify="flex-start">
+            <Grid item xs={3}
+                  container
+                  justify="flex-start"
+            >
                 <NumberFormat
                     id={`user-apuesta-data-${props.index}`}
-                    placeholder="valor"
+                    placeholder="Número"
                     margin="normal"
                     variant="outlined"
-                    className={valor > 0 ? "value" : "negative"}
+                    style={{marginRight: 50, width: 150}}
+                    className={valor > 0 ? classes.root : classes.negative}
                     value={valor}
-                    thousandSeparator={true}
                     disabled={disable}
                     onBlur={props.onEdit}
                 />
             </Grid>
-            {/* <Grid item xs={4}
-                container
-                justify="flex-start"
+            <Grid item xs={4}
+                  container
+                  justify="flex-start"
             >
-                <FaTrashAlt id={`delete-apuesta-activa-valor-${props.index}`} className={`${classes.deleteIcon} form__center-label`}
+                <FaTrashAlt id={`delete-apuesta-activa-valor-${props.index}`} className={`${classes.deleteIcon} form__center-label` }
                     onClick={handleClickOpen}
                 />
-            </Grid> */}
-        </Grid>
+            </Grid>
+        </>
     )
 };
 

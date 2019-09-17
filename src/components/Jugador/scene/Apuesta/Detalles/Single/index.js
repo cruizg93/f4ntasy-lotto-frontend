@@ -4,8 +4,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import { Paper, List } from '@material-ui/core';
-import NumberFormat from 'react-number-format';
 import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import ApuestaActivaEntry from '../../../../../Player/components/ApuestaActiva/index';
@@ -17,11 +15,7 @@ import { printDocument6 } from "../../../../../../_helpers/print";
 import { Colors } from "../../../../../../utils/__colors";
 
 import AdminTitle from '../../../../../Admin/components/AdminTitle';
-import DiariaLogo from '../../../../../View/assets/Diaria_PNG.png';
-import ChicaLogo from '../../../../../View/assets/Chica_PNG.png';
-import RowList from '../../../../../View/RowList'
 
-import './styles.css'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -33,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     text: {
         fontWeight: 'bold',
         width: '60px',
-        border: '1px #d2d2d2 solid',
+        border: '1px #000 solid',
         padding: '5px',
         textAlign: 'center'
     },
@@ -136,18 +130,15 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
     const [riesgo, setRiesgo] = useState(0.0);
     const [total, setTotal] = useState(0.0);
     const [list, setList] = useState([]);
-    const [sum, setSum] = useState(0.0);
     const [disable, setDisable] = useState(true);
     const [moneda, setMoneda] = useState("");
     const [type, setType] = useState("DIARIA");
+
+    console.log("props_1", props)
     function handleOnPrint() {
         const input = document.getElementById("user-apuesta-activa-entries");
         printDocument6(input, title + '-detalles-apuestas-activas-user');
     }
-    const height = 300;
-    const col = ['Costo:', 'Comisión:', 'Total:'];
-    const symbol = moneda === "LEMPIRAS" ? " L " : " $ ";
-    const values = [total.toFixed(2), comision.toFixed(2), riesgo.toFixed(2)]
 
     function updateFunction(e) {
         let id = e.target.id;
@@ -167,9 +158,7 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
                 setList(Array.from(result.data.list));
                 setMoneda(props.location.state.moneda)
                 setType(props.location.state.type)
-                setSum(result.data.list.reduce((s, row) => s + row.valor, 0))
             })
-
     }, []);
 
     return (
@@ -177,59 +166,120 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
             <Container maxWidth="xs" style={{ padding: 0 }}>
                 <ToastContainer autoClose={8000} />
                 <AdminTitle titleLabel='Detalle Venta Individual' />
-                <Grid item xs={12}><Divider /></Grid>
             </Container>
-            <Container maxWidth="xs" className="container_detalle_individual">
-                <Grid container item xs={12} className="userInfo" >
-                    <Grid item xs={4} className="icon">
-                        {
-                            type === 'DIARIA' ? <img src={DiariaLogo} alt="DiariaLogo" /> : <img src={ChicaLogo} alt="ChicaLogo" />
-                        }
-                    </Grid>
-                    <Grid container item xs={8} direction="column" className="right_text">
-                        <Typography variant="h5" gutterBottom className="date_time">
-                            {props.location.state.hour}{" - "}{props.location.state.day}
-                        </Typography>
-                        <Typography variant="h5" gutterBottom className="user_name">
-                            {props.location.state.username}{" - "}{moneda}{'['}{props.location.state.name}{']'}
-                        </Typography>
-                    </Grid>
+            <Container maxWidth="xs" className="container_individual">
+                <Grid item xs={12} className="userInfo" >
+
                 </Grid>
+                <Grid container className="body">
+
+                </Grid>
+            </Container>
+            <Grid container spacing={1}
+                direction="row"
+                justify="center"
+                alignItems="flex-start">
+                <Typography variant="h5" gutterBottom>
+                    {type}{" - "}{title}
+                </Typography>
                 <Grid item xs={12}>
                     <Divider />
                 </Grid>
-                <Grid container spacing={1} direction="row" justify="center" alignItems="flex-start">
-                    <Paper className="" style={{ maxHeight: height, overflow: 'auto', width: '100%' }}>
-                        <List>
-                            {list.map((apuesta, index) =>
-                                <ApuestaActivaEntry key={index} {...apuesta} index={index} sum={sum} {...props}
-                                    disable={disable}
-                                    onEdit={updateFunction}
-                                />
-                            )}
-                        </List>
-                        <List>
-                            <Typography style={{ textAlign: 'center', fontSize: 22, color: '#9C9C9C' }}>
-                                Total - {sum ? sum : 0}
-                            </Typography>
-                        </List>
-                    </Paper>
+            </Grid>
+            <Grid container
+                id="user-apuesta-activa-entries"
+                className={classes.apuestasContainer}
+            >
+                <Grid container spacing={1}
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start">
+                    {list.map((apuesta, index) =>
+                        <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}
+                            disable={disable}
+                            onEdit={updateFunction}
+                        />
+                    )}
                 </Grid>
-                <Grid item xs={12} className="summaryTotal" >
-                    <RowList col_1={col} symbol={symbol} col_2={values} style={{ height: 95 }} ></RowList>
+                <Grid container>
+                    <Grid item xs={6}
+                        container
+                        justify="flex-end"
+                    >
+                        <Typography variant="body1" gutterBottom className={''}>
+                            {"Apuestas "}{moneda === "LEMPIRAS" ? " L " : " $ "}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                        container
+                        justify="flex-start"
+                    >
+                        <Typography variant="body1" gutterBottom
+                            className={total < 0 ? classes.textBalanceNegativo :
+                                (total !== 0 ? classes.textBalancePositivo : classes.textBalance)}
+                        >
+                            {" "}{total.toFixed(2)}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                        container
+                        justify="flex-end"
+                    >
+                        <Typography variant="body1" gutterBottom className={''}>
+                            {"Comisiones "}{moneda === "LEMPIRAS" ? " L " : " $ "}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                        container
+                        justify="flex-start"
+                        className={''}
+                    >
+                        <Typography variant="body1" gutterBottom
+                            className={comision < 0 ? classes.textBalanceNegativo :
+                                (comision !== 0 ? classes.textBalancePositivo : classes.textBalance)}
+                        >
+                            {" "}{comision.toFixed(2)}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                        container
+                        justify="flex-end"
+                    >
+                        <Typography variant="body1" gutterBottom className={''}>
+                            {"Riesgo "} {moneda === "LEMPIRAS" ? " L " : " $ "}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}
+                        container
+                        justify="flex-start"
+                    >
+                        <Typography variant="body1" gutterBottom
+                            className={riesgo < 0 ? classes.textBalanceNegativo :
+                                (riesgo !== 0 ? classes.textBalancePositivo : classes.textBalance)}
+                        >
+                            {" "}{riesgo.toFixed(2)}
+                        </Typography>
+                    </Grid>
                 </Grid>
-            </Container>
+            </Grid>
             <Grid container spacing={1}
                 direction="row"
                 justify="center"
                 alignItems="center"
                 className={classes.fixedElement}
             >
+                <Typography variant="body1" gutterBottom className={classes.textApuestaDescription}>
+                    {title}
+                </Typography>
+
+
                 <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                     <Typography variant="body1" gutterBottom className={classes.root}>
                         Imprimir
                     </Typography>
                 </ImprimirButton>
+
+
                 <DetallesButton variant="outlined" color="primary"
                     component={Link}
                     to={{
