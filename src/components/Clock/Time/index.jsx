@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {timeService} from "../../../service/api/time/time.service";
+import React, { Component } from 'react';
+import { timeService } from "../../../service/api/time/time.service";
 
 class Time extends Component {
 
@@ -12,22 +12,22 @@ class Time extends Component {
     }
 
     updateTime() {
-        timeService.time().then((result)=>{
-            this.setState({time: result.data.time, date : result.data.formatDate})            
+        timeService.time().then((result) => {
+            this.setState({ time: result.data.time, date: result.data.formatDate })
         })
 
     }
 
     componentWillMount() {
-        timeService.time().then((result)=>{
-            this.setState({time: result.data.time, date : result.data.formatDate})                  
+        timeService.time().then((result) => {
+            this.setState({ time: result.data.time, date: result.data.formatDate })
         })
     }
 
-    componentDidMount() {      
+    componentDidMount() {
         this.timeId = setInterval(
             () => this.updateTime(),
-            30000
+            100000
         )
     }
 
@@ -38,8 +38,8 @@ class Time extends Component {
 
     render() {
         return (
-            <React.Fragment>               
-               <div className={'clock__column'}>
+            <React.Fragment>
+                <div className={'clock__column'}>
                     {this.state.date}
                 </div>
                 <div className={'clock__column'}>

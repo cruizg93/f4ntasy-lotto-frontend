@@ -16,7 +16,7 @@ class Time extends Component {
     componentDidMount() {
         this.timeId = setInterval(
             () => this.updateTime(),
-            30000
+            100000
         )
     }
 

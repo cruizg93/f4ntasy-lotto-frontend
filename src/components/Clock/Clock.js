@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Cambio from './Cambio/index';
 import Balance from './Balance/index';
 import Time from './Time/index';
@@ -23,7 +23,7 @@ class Clock extends Component {
     }
 
 
-    options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+    options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     monthNames = [
         "Enero", "Febrero", "Marzo",
         "Abril", "Mayo", "Junio", "Julio",
@@ -41,7 +41,7 @@ class Clock extends Component {
     componentDidMount() {
         this.timerID = setInterval(
             () => this.tick(),
-            1000
+            100000
         );
     }
 
@@ -54,14 +54,14 @@ class Clock extends Component {
 
         return (
             <div className={'clock__row'}>
-                    <Time/>
-                
-                    {(!this.state.isAdmin && !this.state.isAsistente) &&
-                    <Balance/>
-                    }
-                    {this.state.isAdmin &&
-                    <Cambio/>
-                    }
+                <Time />
+
+                {(!this.state.isAdmin && !this.state.isAsistente) &&
+                    <Balance />
+                }
+                {this.state.isAdmin &&
+                    <Cambio />
+                }
             </div>
         )
     }

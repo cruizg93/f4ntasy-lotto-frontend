@@ -55,7 +55,7 @@
   /* font-size: 0.8rem !important; */
 }
 
-.text_container {
+.totalContainer .text_container {
   align-content: center;
   height: 117px;
 }
