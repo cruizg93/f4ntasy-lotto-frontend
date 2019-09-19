@@ -14,14 +14,18 @@ class Balance extends Component {
 
     updateBalance() {
         playerService.get_balance().then((result) => {
-            this.setState({ balance: result.data, symbol: (result.data < 0 ? " - " : (result.data > 0 ? " + " : "")) })
+            this.setState({ balance: result.data.balance, 
+                symbol: (result.data.balance < 0 ? "-" : (result.data.balance > 0 ? " +" : "")) ,
+                currency:result.data.currency            
+            })
         })
     }
 
     componentDidMount() {
+        this.updateBalance();
         this.balanceId = setInterval(
             () => this.updateBalance(),
-            100000
+            300000
         )
     }
 
@@ -33,7 +37,7 @@ class Balance extends Component {
         return (
             <React.Fragment >
                 <div className={this.state.balance < 0 ? 'clock__column red__balance' : this.state.balance > 0 ? "clock__column green__balance" : "clock__column"}>
-                    {this.state.balance}
+                    {this.state.currency}{this.state.symbol}{this.state.balance}
                 </div>
             </React.Fragment>
         )

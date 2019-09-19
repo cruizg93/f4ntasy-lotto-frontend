@@ -76,6 +76,7 @@ class Dashboard extends Component {
             this.setState({ noFirst: result.data });
         })
         let role = authenticationService.type_user();
+        console.log("*****"+role);
         this.setState({
             isAdmin: (role === 'Admin' || role === 'Master'),
             isAsistente: role === 'Asistente',
@@ -156,7 +157,7 @@ class Dashboard extends Component {
                         <Clock
                             admin={this.state.isAdmin}
                             asistente={this.state.isAsistente}
-                            isPlayer={this.state.isPlayer}
+                            player={this.state.isPlayer}
                         />
                         <Container maxWidth="xs" className={this.state.isAdmin ? "container__box" : "container__jugador"}>
                             {this.props.childComponent}

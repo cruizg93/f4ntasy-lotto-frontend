@@ -13,6 +13,7 @@ class Clock extends Component {
             time: new Date(),
             isAdmin: false,
             isAsistente: false,
+            isPlayer: false,
         };
     }
 
@@ -35,6 +36,7 @@ class Clock extends Component {
         this.setState({
             isAdmin: this.props.admin,
             isAsistente: this.props.asistente,
+            isPlayer: this.props.player,
         })
     }
 
