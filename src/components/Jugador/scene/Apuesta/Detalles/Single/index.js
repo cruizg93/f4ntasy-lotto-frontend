@@ -151,7 +151,6 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
     const symbol = moneda === "LEMPIRAS" ? " L " : " $ ";
     const values = [total.toFixed(2), comision.toFixed(2), riesgo.toFixed(2)]
     const height = window.innerHeight - 300;
-    // const spaceHeight = window.innerHeight - 
     function updateFunction(e) {
         let id = e.target.id;
         id = id.split('-')[3];
@@ -177,12 +176,10 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
 
     return (
         <React.Fragment>
-            <Container maxWidth="xs" style={{ padding: 0 }}>
+            <Container maxWidth="xs" style={{ padding: 0 }} className="container_detalle_individual_title">
                 <ToastContainer autoClose={8000} />
                 <AdminTitle titleLabel='Detalle Venta Individual' />
                 <Grid item xs={12}><Divider /></Grid>
-            </Container>
-            <Container maxWidth="xs" className="container_detalle_individual">
                 <Grid container item xs={12} className="userInfo" >
                     <Grid item xs={4} className="icon">
                         {
@@ -198,6 +195,8 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
                         </Typography>
                     </Grid>
                 </Grid>
+            </Container>
+            <Container maxWidth="xs" className="container_detalle_individual" style={{ height: height + 24, background: '#ffffff' }}>
                 <Grid container spacing={1} direction="row" justify="center" alignItems="flex-start">
                     <Paper className="venta_individual_scroll" style={{ maxHeight: height, overflow: 'auto', width: '98%' }}>
                         <List>
@@ -208,9 +207,9 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
                                 />
                             )}
                         </List>
-                        <List>
+                        <List style={{ marginTop: -23, paddingBottom: 18, marginLeft: -60 }}>
                             <Typography style={{ textAlign: 'center', fontSize: 18, color: '#9C9C9C' }}>
-                                Total - {sum ? sum : 0}
+                                Total &#8213; {sum ? sum : 0}
                             </Typography>
                         </List>
                         <Grid item xs={12} className="summaryTotal" >
@@ -218,36 +217,33 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
                         </Grid>
                     </Paper>
                 </Grid>
-            </Container>
-            <Grid item xs={12} >
-                <Divider />
-            </Grid>
-            <Grid container spacing={1}
-                direction="row"
-                justify="center"
-                alignItems="center"
-                className={classes.fixedElement}
-            >
-                <Fab className="localPrintshop" variant="extended" onClick={handleOnPrint} >
-                    <LocalPrintshop className="iconP" />
-                    <span className="textP">Imprimir</span>
-                </Fab>
-                <Fab className="detalls" variant="extended" onClick={handleOnPrint}
-                    component={Link}
-                    to={{
-                        pathname: `/jugador/apuestas/detalles/${props.location.state.id}/desglose`,
-                        state: {
-                            title: title,
-                            username: props.location.state.username,
-                            id: props.location.state.id,
-                            type: type
-                        }
-                    }}
+                <Grid container spacing={1}
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                    className={classes.fixedElement}
                 >
-                    <span className="textD">Detalles</span>
-                    <FaFileExcel className="iconD" />
-                </Fab>
-            </Grid>
+                    <Fab className="localPrintshop" variant="extended" onClick={handleOnPrint} >
+                        <LocalPrintshop className="iconP" />
+                        <span className="textP">Imprimir</span>
+                    </Fab>
+                    <Fab className="detalls" variant="extended" onClick={handleOnPrint}
+                        component={Link}
+                        to={{
+                            pathname: `/jugador/apuestas/detalles/${props.location.state.id}/desglose`,
+                            state: {
+                                title: title,
+                                username: props.location.state.username,
+                                id: props.location.state.id,
+                                type: type
+                            }
+                        }}
+                    >
+                        <span className="textD">Detalles</span>
+                        <FaFileExcel className="iconD" />
+                    </Fab>
+                </Grid>
+            </Container>
         </React.Fragment>
     )
 };
