@@ -200,7 +200,7 @@ function update_number(data, id) {
         data: data
     };
     return new Promise((resolve, reject) => {
-        axios.post(`${baseUrl}/user/apuestas/${id}/numeros/update`,
+        axios.post(`${baseUrl}/sorteos/activos/${id}/apuestas`,
             send, requestOptions
         )
             .then((responseJson) => {

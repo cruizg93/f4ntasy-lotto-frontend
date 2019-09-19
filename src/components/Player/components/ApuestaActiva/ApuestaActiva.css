@@ -1,3 +1,47 @@
+.spuestaActive{
+    color: #9C9C9C;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.spuestaActive .number{
+    width: 60px;
+    height: 40px;
+    border-radius:15px;
+    border: solid 1px #C6C5C5;
+    text-align: center;
+    background: white;
+    color: #9C9C9C;
+}
+.spuestaActive .value{
+    margin-right: 25px;
+    width: 115px;
+    height: 42px;
+    border-radius: 15px;
+    margin-left: 10px;
+    padding: 5px;
+    border: solid 1px #C6C5C5;
+    padding-left: 15px;
+    background: white;
+    color: #9C9C9C;
+}
+
 .entrada-datos{
     margin: 3px !important;
+}
+.venta_individual_number{
+    margin-left: 90px !important;
+    text-align: right;
+    /* padding-left: 60px; */
+}
+.venta_individual_value{
+
+}
+.venta_individual_btn{
+    line-height: 40px;
+    text-align: left;
+    font-size: 16px !important;
+}
+.venta_individual_btn:hover{
+    cursor: pointer;
 }

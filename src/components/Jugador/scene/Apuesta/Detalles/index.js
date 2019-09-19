@@ -18,14 +18,13 @@ const userNameReducer = (state, action) => {
 
 const JugadorDetalles = ({ ...props }) => {
 
-
     const [apuestasList, setApuestasList] = useState([]);
     const [name, setName] = useState('');
     const [moneda, setMoneda] = useState("L");
     const username = useReducer(userNameReducer, props.location.state.username);
 
     const [values, setValues] = useState([]);
-    const col = ['Ventas:', 'Comisión:', 'Total:'];
+    const col = ['Ventas:', 'Comisión:', 'Totales:'];
     useEffect(() => {
         adminService.list_apuestas_details(username[0]).then((result) => {
             setApuestasList(Array.from(result.data.sorteos));
@@ -55,6 +54,7 @@ const JugadorDetalles = ({ ...props }) => {
                         <JugadorDetallesEntry key={index} {...apuesta} index={index}
                             username={props.location.state.username}
                             moneda={moneda.symbol}
+                            name={name.length > 15 ? name.substring(0, 14) : name}
                             {...props} />
                     )}
                 </Grid>

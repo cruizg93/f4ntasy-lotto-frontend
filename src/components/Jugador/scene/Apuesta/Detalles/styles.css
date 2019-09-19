@@ -1,12 +1,11 @@
 .container_individual{
+  margin-top: 151px;
   padding: 0px !important;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
 }
 .container_individual .userInfo{
-  font-size: 22px;
+  font-size: 19px;
   color: #006666;
-  border-top : solid 1px #afb6b8;
-  /* padding-bottom: px !important; */
 }
 .container_individual .userInfo span{
   padding-left: 6vw;
@@ -18,7 +17,7 @@
 
 .container_summary{
   height: 95px !important;
-  border-bottom: solid 1px #afb6b8;
+  border-bottom: solid 1px #dbdcdd;
 }
 
 .container_summary .summaryTotal{
@@ -29,7 +28,7 @@
 
 .container_summary .summaryTotal{
   width: 81%;
-  font-size: 18px;
+  font-size: 17px;
   padding-left: 23px;
   margin-top: 5px;
 }
@@ -43,11 +42,12 @@
   color: #828282 !important;
   text-align: center;
   vertical-align: middle;
-  line-height: 95px;
+  line-height: 80px;
 }
 
 .text_conclusion{
   font-size: 7px !important;
+  letter-spacing: -0.05em !important;
   padding: 10px 0px 0px 20px !important;
 }
 

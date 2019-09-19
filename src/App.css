@@ -1,3 +1,9 @@
+.app-main{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  border-left: solid 1px #9A9A9A;
+  border-right: solid 1px #9A9A9A;
+}
 .App {
   text-align: center;
 }

@@ -1,0 +1,100 @@
+.container_detalle_individual{
+  padding: 0px !important;
+  margin-top: 45px;
+  max-width: 444px;;
+}
+.container_detalle_individual .userInfo{
+  position: fixed;
+  border-bottom-width: 0px !important;
+  width: 92%;
+  height: 62px;
+  margin-left: 15px
+}
+.container_detalle_individual .userInfo .icon{
+  line-height: 65px !important;
+  vertical-align: middle !important;
+}
+.container_detalle_individual .userInfo img{
+  width: 75px;
+}
+.container_detalle_individual .right_text{
+  justify-content: center !important;
+}
+.container_detalle_individual .venta_individual_scroll{
+  margin-top: 61px;
+  box-shadow: none;
+}
+.container_detalle_individual .date_time{
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: -30px;
+  color: #9C9C9C;
+  margin-bottom: 0px;
+}
+.container_detalle_individual .user_name{
+  font-size: 16px;
+  font-weight: 500;
+  color: #066;
+  text-align: right;
+  margin-bottom: 0px;
+  margin-top: 2px;
+}
+
+.container_detalle_individual .summaryTotal .text_container{
+  width: 64% !important;
+  margin: 0 auto !important;
+  font-size: 16px !important;
+
+}
+.container_detalle_individual .summaryTotal .text_container .text_label{
+  margin-left: 20px;
+
+}
+.container_detalle_individual .summaryTotal{
+  height: 95;
+  background: #f4f4f4;
+}
+.localPrintshop{
+  background: #663399 !important;
+  height: 37px !important;
+  width:153px !important;
+  color: white !important;
+  padding-left: 10px !important;
+  margin-left: 12px !important;
+  margin-right: 14px !important;
+}
+.localPrintshop .iconP{
+  font-size: 30px;
+}
+.localPrintshop .textP::first-letter {
+  text-transform: uppercase;
+}
+.localPrintshop .textP{
+  text-transform: lowercase;
+  font-size: 17px;
+  padding-left: 9px;
+}
+.detalls{
+  background: #F5D657 !important;
+  height: 37px !important; 
+  width:153px !important;
+  color: #183721 !important;
+}
+.detalls .iconD{
+  font-size: 30px;
+}
+.detalls .textD::first-letter {
+  text-transform: uppercase;
+}
+.detalls .textD{
+  text-transform: lowercase;
+  font-size: 17px;
+  text-align: center;
+  padding-right: 9px;
+}
+
+@media (min-width: 410px) {
+    .container_detalle_individual .userInfo{
+      width: 399px !important;
+    }
+}
