@@ -9,6 +9,7 @@
   max-width: 444px;
   background: #dfedfa;
   text-align: center !important;
+  z-index: 50;
 }
 .resume_title{
   color: #003333;
