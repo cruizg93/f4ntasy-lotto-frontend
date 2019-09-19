@@ -1,37 +1,38 @@
 .container_detalle_individual{
   padding: 0px !important;
-  margin-top: 45px;
+  margin-top: 110px;
   max-width: 444px;;
 }
-.container_detalle_individual .userInfo{
+.container_detalle_individual_title .userInfo{
   position: fixed;
+  top: 151px;
   border-bottom-width: 0px !important;
   width: 92%;
   height: 62px;
   margin-left: 15px
 }
-.container_detalle_individual .userInfo .icon{
+.container_detalle_individual_title .userInfo .icon{
   line-height: 65px !important;
   vertical-align: middle !important;
 }
-.container_detalle_individual .userInfo img{
+.container_detalle_individual_title .userInfo img{
   width: 75px;
 }
-.container_detalle_individual .right_text{
+.container_detalle_individual_title .right_text{
   justify-content: center !important;
 }
 .container_detalle_individual .venta_individual_scroll{
-  margin-top: 61px;
+  margin-top: 10px;
   box-shadow: none;
 }
-.container_detalle_individual .date_time{
+.container_detalle_individual_title .date_time{
   font-size: 14px;
   font-weight: 600;
   margin-left: -30px;
   color: #9C9C9C;
   margin-bottom: 0px;
 }
-.container_detalle_individual .user_name{
+.container_detalle_individual_title .user_name{
   font-size: 16px;
   font-weight: 500;
   color: #066;
@@ -51,7 +52,7 @@
 
 }
 .container_detalle_individual .summaryTotal{
-  height: 95;
+  height: 78px;
   background: #f4f4f4;
 }
 .localPrintshop{
@@ -94,7 +95,7 @@
 }
 
 @media (min-width: 410px) {
-    .container_detalle_individual .userInfo{
+    .container_detalle_individual_title .userInfo{
       width: 399px !important;
     }
 }
