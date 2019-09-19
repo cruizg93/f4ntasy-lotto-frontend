@@ -10,7 +10,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { red, blue } from "@material-ui/core/colors/index";
+import { red, blue, purple } from "@material-ui/core/colors/index";
 import { Colors } from "../../../../utils/__colors";
 import { FaInfoCircle } from 'react-icons/fa';
 import { adminService } from "../../../../service/api/admin/admin.service";
@@ -45,6 +45,9 @@ const useStyles = makeStyles(theme => ({
     },
     close: {
         color: red[400]
+    },
+    bloqueada:{
+        color: purple[500]
     },
     open: {
         color: blue[300]
@@ -155,10 +158,24 @@ const ApuestasActivasAdminData = ({
 
     const update = props.update;
 
-    const bloquearApuesta = (e) => {
+    const forceClose = (e) => {
         e.preventDefault()
-        adminService.cerrar_apuesta(id).then((result) => {
-            update(props.moneda);
+        adminService.forceClose(id).then((result) => {
+            window.location.reload();
+        })
+    }
+
+    const bloquearSorteo = (e) => {
+        e.preventDefault()
+        adminService.bloquearSorteo(id).then((result) => {
+            window.location.reload();
+        })
+    }
+
+    const desbloquearSorteo = (e) => {
+        e.preventDefault()
+        adminService.desbloquearSorteo(id).then((result) => {
+            window.location.reload();
         })
     }
 
@@ -182,7 +199,7 @@ const ApuestasActivasAdminData = ({
         }
     }
     return (
-        <Grid item xs={12} className={estado !== 'BLOQUEADA' ? classes.component : classes.componentDisable}>
+        <Grid item xs={12} className={estado !== 'CERRADA' ? classes.component : classes.componentDisable}>
             <Paper key={props.index} className={classes.paper}>
                 <Grid container>
                     <Grid item xs={2} className={classes.typeContainer}>
@@ -276,7 +293,7 @@ const ApuestasActivasAdminData = ({
                         </Typography>
 
                     </Grid>
-                    {estado !== 'ABIERTA' && <>
+                    {estado !== 'ABIERTA' && estado !== 'BLOQUEADA' && <>
                         <Grid item xs={6}
                             container
                             justify="flex-end"
@@ -326,8 +343,8 @@ const ApuestasActivasAdminData = ({
                         className={classes.text}
                     >
                         <Typography variant="h5" gutterBottom
-                            className={`${estado === 'ABIERTA' ? classes.textSorteoAbierto : classes.close} ${classes.sorteoTextContainer}`}>
-                            {estado === 'ABIERTA' ? "Sorteo Abierto" : "Sorteo Cerrado"}
+                            className={`${estado === 'ABIERTA' ? classes.textSorteoAbierto: estado ==='CERRADA'?classes.close:classes.bloqueada} ${classes.sorteoTextContainer}`}>
+                            {estado === 'ABIERTA' ? "Sorteo Abierto" : estado ==='CERRADA'?"Sorteo Cerrado":"Sorteo Bloqueado"}
                         </Typography>
                     </Grid>
                     <Grid item xs={6}
@@ -336,11 +353,14 @@ const ApuestasActivasAdminData = ({
                         className={classes.text}
                     >
                         {estado === 'ABIERTA' ?
+                            <><Typography variant="body1" gutterBottom className={classes.numeroGanadorContainer}
+                            onClick={forceClose}>{"Cerrar"}</Typography>
+                            {"\u00A0"}{"\u00A0"}{"\u00A0"}{"-"}{"\u00A0"}{"\u00A0"}{"\u00A0"}
                             <Typography variant="body1" gutterBottom className={classes.numeroGanadorContainer}
-                                onClick={bloquearApuesta}
+                                onClick={bloquearSorteo}
                             >
                                 {"Bloquear"}
-                            </Typography>
+                            </Typography></>
                             : null
                         }
                         {estado === 'CERRADA' ?
@@ -352,8 +372,10 @@ const ApuestasActivasAdminData = ({
                             : null
                         }
                         {estado === 'BLOQUEADA' ?
-                            <Typography variant="body1" gutterBottom className={classes.circle}>
-                                {props.numeroGanador}
+                            <Typography variant="body1" gutterBottom className={classes.numeroGanadorContainer}
+                            onClick={desbloquearSorteo}
+                            >
+                                {"Desbloquear"}
                             </Typography>
                             : null
                         }

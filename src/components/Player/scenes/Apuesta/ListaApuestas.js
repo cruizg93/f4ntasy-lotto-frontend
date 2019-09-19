@@ -81,8 +81,8 @@ function ListaApuestas(props) {
                     <ListItemIcon style={{minWidth:"auto"}}>
                         <FaTrashAlt className={classes.apuestaDeleteIcon} 
                                 onClick={props.fromApuestaActiva
-                                        ?() => props.removerApuesta(index)
-                                        :() => props.removerApuesta(index, element.numero, element.current)}/>
+                                        ?() => props.removerApuesta(element.numero)
+                                        :() => props.removerApuesta(element.numero, element.numero, element.current)}/>
                     </ListItemIcon>
                 </ListItem>
                 )}

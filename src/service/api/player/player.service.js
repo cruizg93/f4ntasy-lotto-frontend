@@ -19,7 +19,9 @@ export const playerService = {
     get_historial_apuestas_user_details_by_id,
     delete_apuesta_number,
     list_apuestas_asistente_hoy_by_username,
-    list_of_numbers_by_apuesta_id
+    list_of_numbers_by_apuesta_id,
+    deleteByNumber,
+    deleteAllApuestasBySorteoId
 };
 
 function list_number() {
@@ -360,6 +362,56 @@ function delete_apuesta_number(id, numeroValue, userIdValue) {
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/user/sorteos/activos/${id}/delete/number`,
             send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function deleteByNumber(id, username, numeroValue) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    if(username == null){
+        username = currentUser.username;
+    }
+    return new Promise((resolve, reject) => {
+        axios.delete(`${baseUrl}/sorteos/activos/${id}/apuestas/${username}/${numeroValue}`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function deleteAllApuestasBySorteoId(id, username) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    if(username == null){
+        username = currentUser.username;
+    }
+    return new Promise((resolve, reject) => {
+        axios.delete(`${baseUrl}/sorteos/activos/${id}/apuestas/${username}`,
+            requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);

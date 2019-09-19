@@ -34,7 +34,9 @@ export const adminService = {
     temporal_reset_balance_service,
     temporal_insert_service,
     temporal_insert_chica_service,
-    cerrar_apuesta,
+    bloquearSorteo,
+    desbloquearSorteo,
+    forceClose,
     details_apuesta_activa_by_apuesta_id
 };
 
@@ -675,7 +677,7 @@ function get_current_cambio() {
     })
 }
 
-function cerrar_apuesta(id) {
+function bloquearSorteo(id) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
         headers: {
@@ -688,7 +690,57 @@ function cerrar_apuesta(id) {
         idData: id
     }
     return new Promise((resolve, reject) => {
-        axios.put(`${baseUrl}/admin/apuesta/bloquear/${id}`,
+        axios.post(`${baseUrl}/sorteos/bloquear/${id}`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function desbloquearSorteo(id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    const send = {
+        idData: id
+    }
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/sorteos/desbloquear/${id}`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function forceClose(id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    const send = {
+        idData: id
+    }
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/sorteos/forceCloseStatus/${id}`,
             send, requestOptions
         )
             .then((responseJson) => {

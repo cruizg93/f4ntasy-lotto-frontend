@@ -291,16 +291,40 @@ const ApuestaActiva = ({...props}) => {
         });
     }
 
-    function deleteOneFunction(entryId) {       
-        list[entryId]['valor'] = 0.0;   
-        submitUpdateData();      
+    function deleteOneFunction(numero) {       
+        /*list[entryId]['valor'] = 0.0;   
+        submitUpdateData();      */
+        playerService.deleteByNumber(apuestaId,null,numero).then((result) =>{
+            playerService.list_apuestas_activas_details(apuestaId).then((result) => {                
+                setTitle(result.data.title);
+                setHour(result.data.hour);
+                setDay(result.data.day);
+                setComision(parseFloat(result.data.comision));
+                setRiesgo(parseFloat(result.data.riesgo));
+                setTotal(parseFloat(result.data.total));
+                setList(Array.from(result.data.list));
+            })
+        })
+        
     }
 
     function eliminarCompleto(){
-        list.forEach((elem, idx) => {
+        /*list.forEach((elem, idx) => {
             elem['valor']= 0.0;            
         })
-        submitUpdateData();
+        submitUpdateData();*/
+        playerService.deleteAllApuestasBySorteoId(apuestaId,null).then((result) =>{
+            playerService.list_apuestas_activas_details(apuestaId).then((result) => {                
+                setTitle(result.data.title);
+                setHour(result.data.hour);
+                setDay(result.data.day);
+                setComision(parseFloat(result.data.comision));
+                setRiesgo(parseFloat(result.data.riesgo));
+                setTotal(parseFloat(result.data.total));
+                setList(Array.from(result.data.list));
+            })
+            window.location.reload();
+        })
     }
 
     function success_response() {
@@ -437,7 +461,7 @@ const ApuestaActiva = ({...props}) => {
                     <Grid item xs={4}>
                         <Fab variant="extended" aria-label="removeAll" className={classes.buttonLimpiar} onClick={handleClickOpen}>
                             <MdSettingsBackupRestore className={classes.extendedIcon} />
-                                Limpiar
+                                Limpiar X
                         </Fab>
                     </Grid>
                     <Grid item xs={2}>
