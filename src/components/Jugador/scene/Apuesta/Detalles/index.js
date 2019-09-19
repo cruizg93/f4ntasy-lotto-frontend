@@ -34,7 +34,6 @@ const JugadorDetalles = ({ ...props }) => {
             let comision = result.data.sorteos.reduce((sum, row) => sum + row.comision, 0);
             let riesgo = result.data.sorteos.reduce((sum, row) => sum + row.riesgo, 0);
             setValues([total, comision, riesgo])
-            console.log("values", values)
         })
     }, [])
     return (

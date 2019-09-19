@@ -1,13 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-
 import { Link } from 'react-router-dom';
-import ChicaTitle from '../Logo/Chica';
-import DiariaTitle from '../Logo/Diaria';
-
-import { Colors } from "../../../../../utils/__colors";
 import { Currency } from '../../../../../utils/__currency';
 import { FormatCurrency } from '../../../../../utils/__currency';
 import { MainStyles } from '../../../../View/MainStyles';

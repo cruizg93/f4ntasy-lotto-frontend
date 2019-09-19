@@ -1,103 +1,72 @@
-import React, {useState, useEffect} from 'react';
-import {ToastContainer, toast} from 'react-toastify';
+import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import Container from '@material-ui/core/Container';
 import 'react-toastify/dist/ReactToastify.css';
-import {adminService} from "../../../../service/api/admin/admin.service";
+import { adminService } from "../../../../service/api/admin/admin.service";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import ApuestasActivasAdminData from '../../components/ApuestasActiva/ApuestasActivasAdminData'
-import {makeStyles, withStyles} from '@material-ui/core/styles';
-import {Colors}  from "../../../../utils/__colors";
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { Colors } from "../../../../utils/__colors";
 import Button from "@material-ui/core/Button/index";
+import AdminTitle from '../../components/AdminTitle';
+import ApuestasDetallesEntry from '../../components/ApuestasActiva';
+import RowList from '../../../View/RowList'
+import { IoIosContacts } from "react-icons/io";
 
+import Dollar_ON from '../../../View/assets/Dollar_ON.png';
+import Dollar_OFF from '../../../View/assets/Dollar_OFF.png';
+import Lempiras_ON from '../../../View/assets/Lempiras_ON.png';
+import Lempiras_OFF from '../../../View/assets/Lempiras_OFF.png';
 
-const Dolar = withStyles({
-    root: {
-        width: '100px',
-        height: '70px',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,        
-        color: Colors.Green,
-        border: 'none',
-        '&:hover': {
-            backgroundColor: Colors.Btn_Hover,
-            border: 'none',
-        },
-        '&:active': {
-            boxShadow: 'none',           
-            border: 'none',
-            backgroundColor: Colors.Btn_Hover,
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
+import './styles.css'
 
-const Lempira = withStyles({
-    root: {
-        width: '100px',
-        height: '70px',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,        
-        color: Colors.Lempira,
-        border: 'none',
-        '&:hover': {
-            backgroundColor: Colors.Btn_Hover,
-            border: 'none',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: Colors.Btn_Hover,            
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-
-const useStyles = makeStyles(theme => ({   
+const useStyles = makeStyles(theme => ({
     headerContainer: {
-        background : Colors.Main,
+        background: Colors.Main,
         marginBottom: "1rem"
     },
-    label:{
+    label: {
         borderBottom: `${Colors.Btn_Red} 2px solid`,
         paddingBottom: "1rem !important",
         marginTop: ".5rem",
-    },    
+    },
 }));
 
 const ApuestasActivasAdmin = (props) => {
     const [apuestasActivas, setApuestasActivasList] = useState([]);
     const [moneda, setMoneda] = useState("dolar");
-    const classes=useStyles();
+    const [values, setValues] = useState([]);
+    const classes = useStyles();
+    const col = ['Ventas:', 'Comisión:', 'Totales:'];
     useEffect(() => {
         adminService.get_apuestas_activas("dolar").then((result) => {
+            console.log("result", result.data)
             setApuestasActivasList(Array.from(result.data));
+            let total = result.data.reduce((sum, row) => sum + row.total, 0);
+            let comision = result.data.reduce((sum, row) => sum + row.comision, 0);
+            let riesgo = result.data.reduce((sum, row) => sum + row.neta, 0);
+            setValues([total, comision, riesgo])
         })
     }, [])
 
-    const changeMonedaType = (type) =>{
+    const changeMonedaType = (type) => {
 
-        if(type === 'dolar')
+        if (type === 'dolar')
             setMoneda("dolar")
         else
-            setMoneda("lempira") 
-        updateApuestasActivas(type)             
+            setMoneda("lempira")
+        updateApuestasActivas(type)
     }
 
-    const handleDolar = () =>{
-        changeMonedaType("dolar")
+    const handleDolar = () => {
+        if (moneda !== "dolar")
+            changeMonedaType("dolar")
     }
 
-    const handleLempira = () =>{
-        changeMonedaType("lempira")
+    const handleLempira = () => {
+        if (moneda !== "lempira")
+            changeMonedaType("lempira")
     }
 
     const updateApuestasActivas = (monedaType) => {
@@ -108,54 +77,55 @@ const ApuestasActivasAdmin = (props) => {
     }
 
     function toast_notification(type) {
-        if(type === "success"){
+        if (type === "success") {
             toast.success("Numero adcionado", {
                 position: toast.POSITION.TOP_RIGHT
             });
-        }else{
+        } else {
             toast.error("Numero incorrecto", {
                 position: toast.POSITION.TOP_RIGHT
             });
-        }       
+        }
     }
     return (
         <React.Fragment>
-            <ToastContainer autoClose={8000}/>
-             <Grid container spacing={1}
-                    direction="row"
-                    justify="center"
-                    alignItems="flex-start"
-                    className={classes.headerContainer}
-                    >
-                    <Grid item xs={6}  className={classes.label}>
-                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
-                            {"Apuestas Activas"}
-                        </Typography>
+            <ToastContainer autoClose={8000} />
+            <Container maxWidth="xs" style={{ padding: 0 }}>
+                <AdminTitle titleLabel='Resumen Ventas Generales' />
+            </Container>
+            <Container maxWidth="xs" className="container_ventas_generales">
+                <Grid item xs={12} className="btn_group_moneda" >
+                    <Button style={{ paddingTop: 9 }} onClick={handleDolar}>
+                        {moneda === "dolar" ? <img src={Dollar_ON} alt="Dollar_ON" /> : <img src={Dollar_OFF} alt="Dollar_OFF" />}
+                    </Button>
+                    <Button style={{ paddingRight: 25, paddingTop: 9 }} onClick={handleLempira}>
+                        {moneda !== "dolar" ? <img src={Lempiras_ON} alt="Dollar_ON" /> : <img src={Lempiras_OFF} alt="Lempiras_OFF" />}
+                    </Button>
+                </Grid>
+                <Grid container className="body">
+                    {apuestasActivas.map((apuesta, index) =>
+                        <ApuestasDetallesEntry key={index} {...apuesta} index={index} {...props} moneda={moneda}
+                            update={updateApuestasActivas}
+                            toast={toast_notification}
+                        />
+                    )}
+                </Grid>
+            </Container>
+            <Container maxWidth="xs" style={{ padding: 0 }}>
+                <Grid container maxWidth="xs" className="container_summary">
+                    <Grid item xs={10} className="summaryTotal" >
+                        <RowList col_1={col} symbol={moneda.symbol} col_2={values} style={{ height: 95 }}></RowList>
                     </Grid>
-                    <Grid item xs={6}>
-                        <Dolar variant="outlined" color="primary" onClick={handleDolar}>
-                            <Typography variant="body1" gutterBottom className={classes.root}>
-                                $
-                            </Typography>
-                        </Dolar>
-                         <Lempira variant="outlined" color="primary" onClick={handleLempira}>
-                             <Typography variant="body1" gutterBottom >
-                                 L
-                             </Typography>                    
-                        </Lempira>
+                    <Grid item xs={2} className="userInfo">
+                        <IoIosContacts />
                     </Grid>
-                </Grid> 
-            <Grid container spacing={3}
-                  direction="row"
-                  justify="center"
-                  alignItems="flex-start">
-                {apuestasActivas.map((apuesta, index)=>
-                    <ApuestasActivasAdminData key={index} {...apuesta} index={index} {...props} moneda={moneda} 
-                        update={updateApuestasActivas}
-                        toast={toast_notification}
-                    />
-                )}
-            </Grid>
+                </Grid>
+                <Grid container maxWidth="xs">
+                    <Typography className="text_conclusion">
+                        *Totales de todos los sorteos en conjunto, para ver detalles oprima el total en el sorteo correspondiente.
+                </Typography>
+                </Grid>
+            </Container>
         </React.Fragment>
     )
 }
