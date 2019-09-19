@@ -595,7 +595,7 @@ function fix_numero_ganador(numero, id) {
         numero: numero,
     };
     return new Promise((resolve, reject) => {
-        axios.post(`${baseUrl}/admin/numero/ganador/${id}`,
+        axios.post(`${baseUrl}/sorteos/activos/${id}/numero-ganador`,
             send, requestOptions
         )
             .then((responseJson) => {

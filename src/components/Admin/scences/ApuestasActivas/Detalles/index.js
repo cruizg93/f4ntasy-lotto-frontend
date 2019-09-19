@@ -158,7 +158,7 @@ const ApuestaActivaAdminDetalle = (props) => {
     function update(result) {
         setNumeroMaxRiesgo(result.data.maxRiesgo.numero);
         setDineroApostadoMaxRiesgo(result.data.maxRiesgo.dineroApostado);
-        setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
+        setPosiblePremioMaxRiesgo((result.data.maxRiesgo.posiblePremio).toFixed(2));
         setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
         setRiesgoList(Array.from(result.data.tuplaRiesgos));
         setTotal((result.data.total).toFixed(2));
@@ -322,7 +322,7 @@ const ApuestaActivaAdminDetalle = (props) => {
                         <Typography variant="body1" gutterBottom className={classes.text}>
 
                             # {numeroMaxRiesgo} - {moneda === "dolar" ? "$" : "L"} {dineroApostadoMaxRiesgo.toFixed(2)} = {moneda === "dolar" ? "$" : "L"}
-                            {totalRiesgoMaxRiesgo.toFixed(2)} @ {posiblePremioMaxRiesgo}
+                            {posiblePremioMaxRiesgo} @ {totalRiesgoMaxRiesgo.toFixed(2)}
                         </Typography>
 
                     </Grid>
@@ -331,7 +331,7 @@ const ApuestaActivaAdminDetalle = (props) => {
                           justify="center"
                           alignItems="center">
                         {riesgoList.map((numero, index) =>
-                            <ApuestaActivaRiesgoEntry key={index} moneda={moneda} {...numero} total={total} {...props}/>
+                            <ApuestaActivaRiesgoEntry key={index} moneda={moneda} {...numero}  {...props}/>
                         )}
                     </Grid>
                 </Grid>

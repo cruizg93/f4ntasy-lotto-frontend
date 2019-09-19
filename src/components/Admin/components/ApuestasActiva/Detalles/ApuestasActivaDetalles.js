@@ -40,9 +40,9 @@ const useStyles = makeStyles(theme => ({
     }
 
 }));
-const ApuestaActivaRiesgoEntry = ({numero, dineroApostado, posibleRiesgo, totalRiesgo, moneda, total, ...props}) => {
+const ApuestaActivaRiesgoEntry = ({numero, dineroApostado, posibleRiesgo, totalRiesgo, moneda, ...props}) => {
     const classes = useStyles();
-
+    
     useEffect(() => {
 
     }, []);
@@ -55,7 +55,7 @@ const ApuestaActivaRiesgoEntry = ({numero, dineroApostado, posibleRiesgo, totalR
             <Typography variant="body1" gutterBottom className={classes.text}>
                 # {numero} - {moneda === "dolar" ? "$" : "L"} {dineroApostado.toFixed(2)} =
                 {moneda === "dolar" ? "$" : "L"}
-                {totalRiesgo.toFixed(2)} @ {(totalRiesgo / total).toFixed(2)}
+                {props.posiblePremio.toFixed(2)} @ {totalRiesgo.toFixed(2)}
             </Typography>
 
         </Grid>
