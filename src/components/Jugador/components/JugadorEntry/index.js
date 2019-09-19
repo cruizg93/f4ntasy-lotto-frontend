@@ -212,9 +212,6 @@ const useStyles = makeStyles(theme => ({
     expansionPanel: {
         boxShadow: 'none',
         background: Colors.Main,
-        "& p": {
-            height: "25px"
-        }
     },
     expansionPanelBody: {
         display: 'block',
@@ -274,7 +271,7 @@ const useStyles = makeStyles(theme => ({
 
 const StyleExpansionPanelSummary = withStyles(() => ({
     root: {
-        minHeight: "40px !important"
+        minHeight: "38px !important"
     },
     expanded: {
         margin: "0px !important",
@@ -423,7 +420,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
     }, [asistentes, monedaType])
     return (
         <Grid container direction="row" className="container_entry">
-            <Grid container style={{ lineHeight: '43px' }}>
+            <Grid container style={{ lineHeight: '39px' }}>
                 <Grid className="labelUser">
                     <Typography className="form_center-label">
                         {username}{"-"}{apuestaCurrency.symbol}{'\u00A0'}{"["}{name.length > 15 ? name.substring(0, 9) : name}{"]"}
@@ -470,9 +467,9 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                             <div>Total:</div>
                         </Grid>
                         <Grid item xs={1} className="text_symbol">
-                            <span>{monedaSymbol}{'\u00A0'}<br /></span>
-                            <span>{monedaSymbol}{'\u00A0'}<br /></span>
-                            <span>{monedaSymbol}{'\u00A0'}<br /></span>
+                            <span>{monedaSymbol}<br /></span>
+                            <span>{monedaSymbol}<br /></span>
+                            <span>{monedaSymbol}<br /></span>
                         </Grid>
                         <Grid item xs={6} className="text_value">
                             <div className="left">
@@ -492,7 +489,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                             },
                         }
                     }>
-                        <span style={{ color: "#999999", padding: 10 }}>
+                        <span style={{ color: "#999999", padding: 11 }}>
                             Balance
                         </span>
                     </Grid>
@@ -726,7 +723,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                     <Grid item style={{ flex: 1 }} >
                         <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChangeExpand('panel1')}
                             TransitionProps={{ unmountOnExit: true }} className={classes.expansionPanel}>
-                            <StyleExpansionPanelSummary style={{ height: 30 }}
+                            <StyleExpansionPanelSummary style={{ height: 20 }}
                                 expandIcon={expanded ? <Remove className="expansion_icon" /> : <Add className="expansion_icon" />}
                                 aria-controls="panel1bh-content"
                             >
@@ -743,7 +740,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                     </Grid>
                 </>
             }
-            {expanded && <div style={{ width: '100%', height: 5 }} />}
+            {expanded && <div style={{ width: '100%', height: 2 }} />}
         </Grid>
     )
 }

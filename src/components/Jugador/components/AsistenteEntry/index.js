@@ -42,7 +42,7 @@ const AsistenteDataShow = ({ match, id, username, name, ...props }) => {
     }
 
     return (
-        <Grid container style={{ lineHeight: '43px' }} className="container_expand">
+        <Grid container style={{ lineHeight: '39px' }} className="container_expand">
             <Grid className="labelUser" style={{ flex: 8, textAlign: 'left' }}>
                 <Typography className="form_center-label expand_labelText" >
                     {username} {' ['} {name} {']'}

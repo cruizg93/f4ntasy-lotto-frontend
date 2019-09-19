@@ -1,11 +1,11 @@
 .container_jugadorDetailesEntry{
-  border-top: solid 1px #afb6b8;
-  height: 80px !important;
+  border-top: solid 1px #dbdcdd;
+  height: 72px !important;
 }
 
 .container_jugadorDetailesEntry .logo_icon{
   text-align: center !important;
-  line-height: 80px;
+  line-height: 72px;
 }
 .container_jugadorDetailesEntry .logo_icon img{
   width: 90px !important;
@@ -17,7 +17,7 @@
   color: #6F6864;
   font-size: 20px;
   height: 33px !important;
-  margin-top: 9px !important;
+  margin-top: 1px !important;
   margin-left: -20px !important;
 }
 .headerLabelSorteoHour .time{

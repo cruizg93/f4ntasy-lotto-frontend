@@ -1,5 +1,5 @@
 .admin_header {
-  height: 65px;
+  height: 58px;
   background: #dfedfa;
   font-size: 22px !important;
   color: #003333;
@@ -8,9 +8,11 @@
   justify-content: center;
   display: flex;
   align-items: center;
-  max-width: 600px;
+  max-width: 444px !important;
   margin: 0 auto;
-  
+  position: fixed;
+  top: 93px;
+  width: 100%;
 }
 
 
