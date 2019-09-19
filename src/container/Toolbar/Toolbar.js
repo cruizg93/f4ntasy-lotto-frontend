@@ -53,7 +53,6 @@ class Toolbar extends Component {
 }
 
 const mapStateToProps = ({ user }) => {
-    console.log("currentuser", user)
     const { currentUser, role } = user;
     return { currentUser, role }
 };

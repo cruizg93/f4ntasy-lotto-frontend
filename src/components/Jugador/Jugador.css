@@ -10,6 +10,11 @@
   background: #dfedfa;
   text-align: center !important;
   z-index: 50;
+  width:100% !important;
+  border-left: solid 1px #9A9A9A;
+  border-right: solid 1px #9A9A9A;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .resume_title{
   color: #003333;
@@ -33,7 +38,7 @@
   border-bottom: solid 3px #69c;
   font-size: 1.1rem;
   display: flex;
-  margin-top: 46px;
+  margin-top: 56px;
 }
 
 .resumen_total_text{
