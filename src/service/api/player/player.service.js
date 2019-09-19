@@ -209,6 +209,9 @@ function update_number(data, id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if(error.response.status == 409 || error.response.status == "409"){
+                    alert(error.response.data);
+                }
                 reject(error);
             })
     });
@@ -392,6 +395,9 @@ function deleteByNumber(id, username, numeroValue) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if(error.response.status == 409 || error.response.status == "409"){
+                    alert(error.response.data);
+                }
                 reject(error);
             })
     });
@@ -417,6 +423,9 @@ function deleteAllApuestasBySorteoId(id, username) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if(error.response.status == 409 || error.response.status == "409"){
+                    alert(error.response.data);
+                }
                 reject(error);
             })
     });
