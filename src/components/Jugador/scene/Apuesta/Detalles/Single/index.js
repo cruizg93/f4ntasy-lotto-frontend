@@ -5,6 +5,9 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { Paper, List } from '@material-ui/core';
+import { LocalPrintshop } from "@material-ui/icons";
+import Fab from '@material-ui/core/Fab';
+import { FaFileExcel } from "react-icons/fa";
 import NumberFormat from 'react-number-format';
 import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
@@ -52,7 +55,7 @@ const useStyles = makeStyles(theme => ({
         height: '76px',
         bottom: '0',
         left: '0',
-        backgroundColor: Colors.Main
+        backgroundColor: '#ffffff'
     },
     textBalancePositivo: {
         color: Colors.Green,
@@ -144,11 +147,11 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
         const input = document.getElementById("user-apuesta-activa-entries");
         printDocument6(input, title + '-detalles-apuestas-activas-user');
     }
-    const height = 300;
     const col = ['Costo:', 'Comisión:', 'Total:'];
     const symbol = moneda === "LEMPIRAS" ? " L " : " $ ";
     const values = [total.toFixed(2), comision.toFixed(2), riesgo.toFixed(2)]
-
+    const height = window.innerHeight - 300;
+    // const spaceHeight = window.innerHeight - 
     function updateFunction(e) {
         let id = e.target.id;
         id = id.split('-')[3];
@@ -195,11 +198,8 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
                         </Typography>
                     </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                    <Divider />
-                </Grid>
                 <Grid container spacing={1} direction="row" justify="center" alignItems="flex-start">
-                    <Paper className="" style={{ maxHeight: height, overflow: 'auto', width: '100%' }}>
+                    <Paper className="venta_individual_scroll" style={{ maxHeight: height, overflow: 'auto', width: '98%' }}>
                         <List>
                             {list.map((apuesta, index) =>
                                 <ApuestaActivaEntry key={index} {...apuesta} index={index} sum={sum} {...props}
@@ -209,28 +209,30 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
                             )}
                         </List>
                         <List>
-                            <Typography style={{ textAlign: 'center', fontSize: 22, color: '#9C9C9C' }}>
+                            <Typography style={{ textAlign: 'center', fontSize: 18, color: '#9C9C9C' }}>
                                 Total - {sum ? sum : 0}
                             </Typography>
                         </List>
+                        <Grid item xs={12} className="summaryTotal" >
+                            <RowList col_1={col} symbol={symbol} col_2={values}  ></RowList>
+                        </Grid>
                     </Paper>
                 </Grid>
-                <Grid item xs={12} className="summaryTotal" >
-                    <RowList col_1={col} symbol={symbol} col_2={values} style={{ height: 95 }} ></RowList>
-                </Grid>
             </Container>
+            <Grid item xs={12} >
+                <Divider />
+            </Grid>
             <Grid container spacing={1}
                 direction="row"
                 justify="center"
                 alignItems="center"
                 className={classes.fixedElement}
             >
-                <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
-                    <Typography variant="body1" gutterBottom className={classes.root}>
-                        Imprimir
-                    </Typography>
-                </ImprimirButton>
-                <DetallesButton variant="outlined" color="primary"
+                <Fab className="localPrintshop" variant="extended" onClick={handleOnPrint} >
+                    <LocalPrintshop className="iconP" />
+                    <span className="textP">Imprimir</span>
+                </Fab>
+                <Fab className="detalls" variant="extended" onClick={handleOnPrint}
                     component={Link}
                     to={{
                         pathname: `/jugador/apuestas/detalles/${props.location.state.id}/desglose`,
@@ -242,11 +244,9 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
                         }
                     }}
                 >
-                    <Typography variant="body1" gutterBottom className={classes.root}>
-                        Detalles
-                    </Typography>
-                    <Clear className={classes.rightIcon} />
-                </DetallesButton>
+                    <span className="textD">Detalles</span>
+                    <FaFileExcel className="iconD" />
+                </Fab>
             </Grid>
         </React.Fragment>
     )

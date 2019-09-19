@@ -11,38 +11,38 @@
 
 .form_center-label {
   vertical-align: middle !important;
-  line-height: 43px !important;
-  font-size: 1.1rem !important;
+  line-height: 39px !important;
+  font-size: 1.05rem !important;
 }
 
 .grid_lolosStar{
   flex: 2;
-  font-size: 1.5rem !important;
+  font-size: 1.4rem !important;
   text-align: center;
   margin-top: -1px;
 }
 .grid_tiPen {
   flex: 2;
-  font-size: 1.5rem !important;
+  font-size: 1.4rem !important;
   text-align: center;
   margin-top: -1px;
 }
 .grid_goTranhcan {
   flex: 2;
-  font-size: 1.4rem !important;
+  font-size: 1.3rem !important;
   text-align: center;
   padding-right: 5vw;
   margin-top: -1px;
 }
 .totalContainer{
   border-bottom: solid 1px #dbdcdd;
-  height: 117px;
-  font-size: 20px;
+  height: 107px;
+  font-size: 17px;
 }
 .valuesContainer {
-  flex: 1.6;
+  flex: 1.55;
   text-decoration: none !important;
-  padding-left: 20px;
+  padding-left: 18px;
 }
 
 .balanceLink {
@@ -57,41 +57,53 @@
 
 .totalContainer .text_container {
   align-content: center;
-  height: 117px;
+  height: 107px;
 }
 
 .text_container .text_label {
-  flex: 1;
+  flex: 0.85;
   color: #999999 !important;
 }
 
 .text_container .text_symbol {
-  text-align: right;
+  text-align: center;
   color: #6699cc !important;
 }
 
 .text_container .text_value {
-  padding-left: 10px;
+  padding-left: 4px;
   text-align: right;
   color: #4f83c8 !important;
   display: flex;
 }
 
 .expansionPanelTextHeader {
-  margin-left: 23vw !important;
-  margin-top: -10px !important;
+  margin-left: 20vw !important;
   color: #999;
-  font-size: 19px !important;
+  font-size: 17px !important;
 }
 
 .expansion_icon {
   font-size: 1.7rem !important;
   color: #033;
+  margin-right: -10px;
 }
 
 
 @media (max-width: 410px){
   .totalContainer .text_container {
-    letter-spacing: -1px;
+    letter-spacing: 0px;
+  }
+  .expansionPanelTextHeader {
+    margin-left: 10vw !important;
+  }
 }
+
+@media (min-width: 600px){
+  .totalContainer .text_container {
+    letter-spacing: 0px;
+  }
+  .expansionPanelTextHeader {
+    margin-left: 10vw !important;
+  }
 }

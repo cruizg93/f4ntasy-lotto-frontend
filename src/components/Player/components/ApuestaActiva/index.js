@@ -92,15 +92,16 @@ const ApuestaActivaEntry = ({ numero, valor, disable, ...props }) => {
                     </Button>
                 </DialogActions>
             </Dialog>
-            <Grid item xs={4} container justify="flex-end">
+            <Grid item className="venta_individual_number">
                 <NumberFormat id={`text-${props.index}`}
                     variant="body1" gutterBottom className={classes.text}
                     placeholder="Número"
                     className="number"
+                    disabled={true}
                     value={numero}
                 />
             </Grid>
-            <Grid item xs={3} justify="flex-start">
+            <Grid item className="venta_individual_value" >
                 <NumberFormat
                     id={`user-apuesta-data-${props.index}`}
                     placeholder="valor"
@@ -113,14 +114,9 @@ const ApuestaActivaEntry = ({ numero, valor, disable, ...props }) => {
                     onBlur={props.onEdit}
                 />
             </Grid>
-            {/* <Grid item xs={4}
-                container
-                justify="flex-start"
-            >
-                <FaTrashAlt id={`delete-apuesta-activa-valor-${props.index}`} className={`${classes.deleteIcon} form__center-label`}
-                    onClick={handleClickOpen}
-                />
-            </Grid> */}
+            <Grid item className="venta_individual_btn">
+                <FaTrashAlt className="deleteIcon" onClick={handleClickOpen} />
+            </Grid>
         </Grid>
     )
 };

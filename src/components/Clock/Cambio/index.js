@@ -45,7 +45,7 @@ class Cambio extends Component {
 
     render() {
         return (
-            <div className={"clock__column"}>
+            <div className={"clock__column"} style={{ textAlign: 'right', marginTop: '-8px' }}>
                 <Link to="/sistema/cambio" className={"column__cambio"}>
                     {"L @ "}{this.state.cambio}
                 </Link>

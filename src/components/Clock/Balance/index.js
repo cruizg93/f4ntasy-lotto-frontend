@@ -32,7 +32,7 @@ class Balance extends Component {
     render() {
         return (
             <React.Fragment >
-                <div className={this.state.balance < 0 ? 'clock__column red__balance' : this.state.balance > 0 ? "clock__column green__balance" : "clock__column"}>
+                <div style={{ textAlign: 'right', marginTop: '-8px' }} className={this.state.balance < 0 ? 'clock__column red__balance' : this.state.balance > 0 ? "clock__column green__balance" : "clock__column"}>
                     {this.state.balance}
                 </div>
             </React.Fragment>

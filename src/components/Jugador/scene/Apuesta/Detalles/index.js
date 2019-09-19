@@ -24,7 +24,7 @@ const JugadorDetalles = ({ ...props }) => {
     const username = useReducer(userNameReducer, props.location.state.username);
 
     const [values, setValues] = useState([]);
-    const col = ['Ventas:', 'Comisión:', 'Total:'];
+    const col = ['Ventas:', 'Comisión:', 'Totales:'];
     useEffect(() => {
         adminService.list_apuestas_details(username[0]).then((result) => {
             setApuestasList(Array.from(result.data.sorteos));
