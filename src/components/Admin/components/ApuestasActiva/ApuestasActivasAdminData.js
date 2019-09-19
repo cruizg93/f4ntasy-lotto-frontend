@@ -199,7 +199,7 @@ const ApuestasActivasAdminData = ({
         }
     }
     return (
-        <Grid item xs={12} className={estado !== 'CERRADA' ? classes.component : classes.componentDisable}>
+        <Grid item xs={12} className={classes.component}>
             <Paper key={props.index} className={classes.paper}>
                 <Grid container>
                     <Grid item xs={2} className={classes.typeContainer}>
