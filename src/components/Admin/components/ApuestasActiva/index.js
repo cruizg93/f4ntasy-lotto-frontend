@@ -103,10 +103,12 @@ class ApuestasDetallesEntry extends React.Component {
                   {
                     pathname: `${this.props.match.url}/${this.props.id}`,
                     state: {
-                      title: { title },
                       total: this.props.total,
                       comision: this.props.comision,
                       neta: this.props.neta,
+                      time: this.props.type === "DIARIA" ? hour : "12 pm",
+                      type: this.props.type,
+                      day: vip + ', ' + day + ' ' + month
                     }
                   }
                 }
