@@ -1,0 +1,77 @@
+.detalle_ventas_generales{
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+.detalle_ventas_generales .container_time{
+  margin-top: 60px;
+  height: 60px;
+  padding: 0;
+  display: flex;
+  border-bottom: solid 1px #d7d3d3;
+}
+.detalle_ventas_generales .title_info{
+  flex: 2;
+  display: flex;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 60px;
+}
+.detalle_ventas_generales .title_info .icon{
+  flex: 1;
+  margin-left: 10px;
+}
+.detalle_ventas_generales .title_info img{
+  width: 76px;
+}
+.detalle_ventas_generales .title_info .text{
+  flex:2;
+  font-size: 14px;
+  color: #686768;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 600;
+  text-align: center;
+}
+.detalle_ventas_generales .btn_group_moneda{
+  flex: 1;
+  margin-left: -15px;
+}
+.detalle_ventas_generales .btn_group_moneda{
+  text-align: right;
+  display: flex;
+}
+.detalle_ventas_generales .btn_group_moneda button{
+  border: none;
+}
+.detalle_ventas_generales .btn_group_moneda img{
+  width: 40px;
+}
+.detalle_ventas_generales .container_total{
+  width: 85%;
+  padding-left: 20px;
+}
+.detalle_ventas_generales{
+
+}
+.detalle_ventas_generales{
+
+}
+.detalle_ventas_generales{
+
+}
+.detalle_ventas_generales{
+
+}
+.detalle_ventas_generales{
+
+}
+.detalle_ventas_generales{
+
+}
+.detalle_ventas_generales{
+
+}
+.detalle_ventas_generales{
+
+}
+.detalle_ventas_generales{
+
+}

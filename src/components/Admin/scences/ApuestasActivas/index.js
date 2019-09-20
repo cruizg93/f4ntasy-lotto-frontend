@@ -41,7 +41,6 @@ const ApuestasActivasAdmin = (props) => {
     const col = ['Ventas:', 'Comisión:', 'Totales:'];
     useEffect(() => {
         adminService.get_apuestas_activas("dolar").then((result) => {
-            console.log("result", result.data)
             setApuestasActivasList(Array.from(result.data));
             let total = result.data.reduce((sum, row) => sum + row.total, 0);
             let comision = result.data.reduce((sum, row) => sum + row.comision, 0);
@@ -87,6 +86,7 @@ const ApuestasActivasAdmin = (props) => {
             });
         }
     }
+    console.log("propsss=", props)
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000} />
@@ -116,14 +116,6 @@ const ApuestasActivasAdmin = (props) => {
                     <Grid item xs={10} className="summaryTotal" >
                         <RowList col_1={col} symbol={moneda.symbol} col_2={values} style={{ height: 95 }}></RowList>
                     </Grid>
-                    <Grid item xs={2} className="userInfo">
-                        <IoIosContacts />
-                    </Grid>
-                </Grid>
-                <Grid container maxWidth="xs">
-                    <Typography className="text_conclusion">
-                        *Totales de todos los sorteos en conjunto, para ver detalles oprima el total en el sorteo correspondiente.
-                </Typography>
                 </Grid>
             </Container>
         </React.Fragment>
