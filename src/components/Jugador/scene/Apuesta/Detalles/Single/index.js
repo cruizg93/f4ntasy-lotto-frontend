@@ -52,10 +52,14 @@ const useStyles = makeStyles(theme => ({
     fixedElement: {
         position: 'fixed',
         width: '100%',
-        height: '76px',
+        height: '67px',
         bottom: '0',
-        left: '0',
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
+        textAlign: 'center',
+        borderLeft: 'solid 1px #9A9A9A',
+        borderRight: 'solid 1px #9A9A9A',
+        left: '50%',
+        transform: 'translateX(-50%)',
     },
     textBalancePositivo: {
         color: Colors.Green,
@@ -76,62 +80,6 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-
-const ImprimirButton = withStyles({
-    root: {
-        width: '100px',
-        height: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        color: Colors.Btn_Red,
-        marginBottom: '1.5rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        border: 'none',
-        '&:hover': {
-            backgroundColor: Colors.Btn_Hover,
-            border: 'none',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            border: 'none',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-
-const DetallesButton = withStyles({
-    root: {
-        width: '100px',
-        height: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        color: Colors.Btn_Blue,
-        marginBottom: '1.5rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        border: 'none',
-        '&:hover': {
-            backgroundColor: Colors.Btn_Hover,
-            border: 'none',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: Colors.Btn_Hover,
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 const ApuestaActivaJugadorDetalles = ({ ...props }) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
@@ -180,25 +128,27 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
                 <ToastContainer autoClose={8000} />
                 <AdminTitle titleLabel='Detalle Venta Individual' />
                 <Grid item xs={12}><Divider /></Grid>
-                <Grid container item xs={12} className="userInfo" >
-                    <Grid item xs={4} className="icon">
-                        {
-                            type === 'DIARIA' ? <img src={DiariaLogo} alt="DiariaLogo" /> : <img src={ChicaLogo} alt="ChicaLogo" />
-                        }
+                <div style={{ background: '#f4f4f4', width: '100%', zIndex: 50 }}>
+                    <Grid container item xs={12} className="userInfo" >
+                        <Grid item xs={4} className="icon">
+                            {
+                                type === 'DIARIA' ? <img src={DiariaLogo} alt="DiariaLogo" /> : <img src={ChicaLogo} alt="ChicaLogo" />
+                            }
+                        </Grid>
+                        <Grid container item xs={8} direction="column" className="right_text">
+                            <Typography variant="h5" gutterBottom className="date_time">
+                                {props.location.state.hour}{" - "}{props.location.state.day}
+                            </Typography>
+                            <Typography variant="h5" gutterBottom className="user_name">
+                                {props.location.state.username}{" - "}{moneda}{'['}{props.location.state.name}{']'}
+                            </Typography>
+                        </Grid>
                     </Grid>
-                    <Grid container item xs={8} direction="column" className="right_text">
-                        <Typography variant="h5" gutterBottom className="date_time">
-                            {props.location.state.hour}{" - "}{props.location.state.day}
-                        </Typography>
-                        <Typography variant="h5" gutterBottom className="user_name">
-                            {props.location.state.username}{" - "}{moneda}{'['}{props.location.state.name}{']'}
-                        </Typography>
-                    </Grid>
-                </Grid>
+                </div>
             </Container>
-            <Container maxWidth="xs" className="container_detalle_individual" style={{ height: height + 24, background: '#ffffff' }}>
+            <Container maxWidth="xs" className="container_detalle_individual" style={{ background: '#ffffff' }}>
                 <Grid container spacing={1} direction="row" justify="center" alignItems="flex-start">
-                    <Paper className="venta_individual_scroll" style={{ maxHeight: height, overflow: 'auto', width: '98%' }}>
+                    <Paper className="venta_individual_scroll" style={{ width: '98%' }}>
                         <List>
                             {list.map((apuesta, index) =>
                                 <ApuestaActivaEntry key={index} {...apuesta} index={index} sum={sum} {...props}
@@ -215,13 +165,14 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
                         <Grid item xs={12} className="summaryTotal" >
                             <RowList col_1={col} symbol={symbol} col_2={values}  ></RowList>
                         </Grid>
+                        <Grid style={{ height: 80 }}></Grid>
                     </Paper>
                 </Grid>
                 <Grid container spacing={1}
                     direction="row"
                     justify="center"
                     alignItems="center"
-                    className={classes.fixedElement}
+                    class={classes.fixedElement}
                 >
                     <Fab className="localPrintshop" variant="extended" onClick={handleOnPrint} >
                         <LocalPrintshop className="iconP" />

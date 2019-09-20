@@ -9,8 +9,9 @@ import Button from "@material-ui/core/Button/index";
 import ApuestaActivaRiesgoEntry from '../../../components/ApuestasActiva/Detalles/ApuestasActivaDetalles';
 import { printDocument6 } from "../../../../../_helpers/print";
 import AdminTitle from '../../../components/AdminTitle';
-import RowList from '../../../../View/RowList'
-
+import RowList from './RowList'
+import { LocalPrintshop } from "@material-ui/icons";
+import Fab from '@material-ui/core/Fab';
 import Dollar_ON from '../../../../View/assets/Dollar_ON.png';
 import Dollar_OFF from '../../../../View/assets/Dollar_OFF.png';
 import Lempiras_ON from '../../../../View/assets/Lempiras_ON.png';
@@ -60,86 +61,6 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const ImprimirButton = withStyles({
-    root: {
-        width: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#2b85c2',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-const DolarButton = withStyles({
-    root: {
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        margin: '.5rem',
-        lineHeight: 1.5,
-        backgroundColor: '#2fff21',
-        borderColor: 'none',
-        color: '#000',
-        '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-
-const LempiraButton = withStyles({
-    root: {
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        margin: '.5rem',
-        border: '1px solid',
-        lineHeight: 1.5,
-        backgroundColor: '#ffe634',
-        borderColor: 'none',
-        color: '#FFF',
-        '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 const ApuestaActivaAdminDetalle = (props) => {
     const classes = useStyles();
     const [riesgoList, setRiesgoList] = useState([]);
@@ -242,113 +163,16 @@ const ApuestaActivaAdminDetalle = (props) => {
                     </Grid>
                 </Container>
                 <div className="container_total">
-                    <RowList col_1={col} symbol={moneda !== "dolar" ? '$' : 'L'} col_2={[total, comision, neta]} paddingLeft={1} style={{ height: 95 }}></RowList>
+                    <RowList col_1={col} symbol={moneda === "dolar" ? '$' : 'L'} col_2={[total, comision, neta]} ></RowList>
                 </div>
-                <Grid container spacing={1}
-                    direction="row"
-                    justify="center"
-                    id="resumen-apuesta-activa-data-admin"
-                >
-                    <Grid item xs={6}
-                        container
-                        justify="flex-end"
-                    >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-                            Total Apuestas |
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6}
-                        container
-                        justify="flex-start"
-                        className={classes.text}
-                    >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-                            {total}
-                        </Typography>
-
-                    </Grid>
-                    <Grid item xs={6}
-                        container
-                        justify="flex-end"
-                    >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-                            Total Comisiones |
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6}
-                        container
-                        justify="flex-start"
-                        className={classes.text}
-                    >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-                            {comision}
-                        </Typography>
-
-                    </Grid>
-                    <Grid item xs={6}
-                        container
-                        justify="flex-end"
-                    >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-                            Entrada neta |
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6}
-                        container
-                        justify="flex-start"
-                        className={classes.text}
-                    >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-                            {neta}
-                        </Typography>
-
-                    </Grid>
-                    <Grid item xs={12}
-                        container
-                        justify="center"
-                        className={classes.textWithBorder}
-                    >
-                        <Grid item xs={12}
-                            container
-                            justify="center"
-
-                        >
-                            <Typography variant="body1" gutterBottom className={classes.textBlock}>
-                                Riesgo Máximo de la casa:
-                            </Typography>
-                        </Grid>
-
-                        <Typography variant="body1" gutterBottom className={classes.text}>
-
-                            # {numeroMaxRiesgo} - {moneda === "dolar" ? "$" : "L"} {dineroApostadoMaxRiesgo.toFixed(2)} = {moneda === "dolar" ? "$" : "L"}
-                            {totalRiesgoMaxRiesgo.toFixed(2)} @ {posiblePremioMaxRiesgo}
-                        </Typography>
-
-                    </Grid>
-                    <Grid container spacing={3}
-                        direction="row"
-                        justify="center"
-                        alignItems="center">
-                        {riesgoList.map((numero, index) =>
-                            <ApuestaActivaRiesgoEntry key={index} moneda={moneda} {...numero} total={total} {...props} />
-                        )}
-                    </Grid>
+                <Grid container>
+                    <ApuestaActivaRiesgoEntry moneda={moneda} riesgoList={riesgoList} numeroMaxRiesgo={numeroMaxRiesgo} neta={neta} />
                 </Grid>
-
-            </Grid>
-
-
-            <Grid container spacing={1}
-                direction="row"
-                justify="center"
-            >
-
-                <Grid item xs={6}>
-                    <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
-                        <Typography variant="body1" gutterBottom>
-                            Imprimir
-                        </Typography>
-                    </ImprimirButton>
+                <Grid container justify="center" alignItems="center" className="container_print">
+                    <Fab className="localPrintshop_Detalle_Ventas_Generales" variant="extended" onClick={handleOnPrint} >
+                        <LocalPrintshop className="iconP" />
+                        <span className="textP">Imprimir</span>
+                    </Fab>
                 </Grid>
             </Grid>
         </React.Fragment>
