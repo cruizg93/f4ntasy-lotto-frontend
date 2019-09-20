@@ -67,17 +67,16 @@ class JugadorDetallesEntry extends React.Component {
                     direction="row"
                     justify="center"
                 >
-                    <Grid item xs={4} className="logo_icon">
+                    <Grid item xs={4} className="logo_icon" onClick={() => this.handleClickOpen()}>
                         {this.props.type === "DIARIA" ? <img src={DiariaLogo} alt="DiariaLogo" /> : <img src={ChicaLogo} alt="ChicaLogo" />}
                     </Grid>
                     <Grid container item xs={8} direction="column">
                         <Grid item justify="flex-start" className="headerLabelSorteoHour">
-                            <span className="time">{this.props.type === "DIARIA" ? this.props.hour : "12 pm"}</span>
-                            <span className="line">{'\u00A0'}-{'\u00A0'}</span>
-                            <span className="day">{this.props.day}</span>
+                            <span className="time">{this.props.type === "DIARIA" ? this.props.hour : "12 pm"}{'\u00A0'}-{'\u00A0'}</span>
+                            <span className="day">{this.props.day.toLowerCase()}</span>
                         </Grid>
                         <Grid container className="valuesContainer">
-                            <Grid item xs={2} className="img_open_close" onClick={() => this.handleClickOpen()}>
+                            <Grid item xs={2} className="img_open_close" >
                                 {
                                     this.props.estado === 'ABIERTA' ? <
                                         img src={imgGreen} alt="ABIERTA" />
@@ -86,9 +85,9 @@ class JugadorDetallesEntry extends React.Component {
                                             : <img src={imgPurple} alt="BLOQUEADA " />
                                 }
                             </Grid>
-                            <Grid item xs={2}>
-                                <Typography className="textData">
-                                    {"Total:"}{'\u00A0'}
+                            <Grid item xs={3} className="textData">
+                                <Typography >
+                                    {"Total: "}{'\u00A0'}
                                 </Typography>
                             </Grid>
                             <Grid item xs={7} className="total_amount"
