@@ -1,5 +1,5 @@
 .admin_header {
-  height: 58px;
+  height: 60px;
   background: #dfedfa;
   font-size: 22px !important;
   color: #003333;
@@ -18,6 +18,17 @@
   border-right: solid 1px #9A9A9A;
   left: 50%;
   transform: translateX(-50%);
+  padding: 0 !important; 
+}
+
+.admin_header .header_title{
+  padding-left: 6% !important;
+}
+
+.admin_header .header_icon{
+  color: #828282;
+  font-size: 29px !important;
+  margin-left: -5px;
 }
 
 

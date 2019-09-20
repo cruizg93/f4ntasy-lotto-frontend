@@ -4,26 +4,21 @@
   font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
 }
 .container_individual .userInfo{
+  height: 38px;
   font-size: 19px;
   color: #006666;
-}
-.container_individual .userInfo span{
-  padding-left: 6vw;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 38px;
 }
 
 .container_individual .body{
-  border-bottom: solid 16px #dfedfa;
+  border-bottom: solid 6px #7197c7;
 }
 
 .container_summary{
   height: 95px !important;
   border-bottom: solid 1px #dbdcdd;
-}
-
-.container_summary .summaryTotal{
-  width: 81%;
-  font-size: 18px;
-  padding-left: 23px;
 }
 
 .container_summary .summaryTotal{

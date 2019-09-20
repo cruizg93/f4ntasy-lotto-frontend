@@ -63,14 +63,6 @@ const JugadorDetalles = ({ ...props }) => {
                     <Grid item xs={10} className="summaryTotal" >
                         <RowList col_1={col} symbol={moneda.symbol} col_2={values} style={{ height: 95 }}></RowList>
                     </Grid>
-                    <Grid item xs={2} className="userInfo">
-                        <IoIosContact />
-                    </Grid>
-                </Grid>
-                <Grid container maxWidth="xs">
-                    <Typography className="text_conclusion">
-                        *Totales de todos los sorteos en conjunto, para ver detalles oprima el total en el sorteo correspondiente.
-                </Typography>
                 </Grid>
             </Container>
         </React.Fragment>
