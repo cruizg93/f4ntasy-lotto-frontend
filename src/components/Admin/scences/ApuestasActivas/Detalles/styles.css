@@ -2,11 +2,17 @@
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 .detalle_ventas_generales .container_time{
+  position: fixed;
   margin-top: 60px;
   height: 60px;
   padding: 0;
   display: flex;
   border-bottom: solid 1px #d7d3d3;
+  background: #f4f4f4;
+  border-left: solid 1px #9A9A9A;
+  border-right: solid 1px #9A9A9A;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .detalle_ventas_generales .title_info{
   flex: 2;
@@ -45,33 +51,39 @@
   width: 40px;
 }
 .detalle_ventas_generales .container_total{
-  width: 85%;
+  margin-top: 120px;
+  width: 100%;
   padding-left: 20px;
+  height: 107px;
+  display: flex;
+  vertical-align: middle;
+  border-bottom: solid 1px #d7d3d3;
 }
-.detalle_ventas_generales{
-
+.detalle_ventas_generales .table_ventas{
+  width: 100%;
 }
-.detalle_ventas_generales{
 
+.detalle_ventas_generales .container_print{
+  height: 102px;
+  background: white;
 }
-.detalle_ventas_generales{
-
+.detalle_ventas_generales .localPrintshop_Detalle_Ventas_Generales{
+  background: #663399 !important;
+  height: 37px !important;
+  width:153px !important;
+  color: white !important;
+  padding-left: 10px !important;
+  margin-left: 12px !important;
+  margin-right: 14px !important;
 }
-.detalle_ventas_generales{
-
+.detalle_ventas_generales .localPrintshop_Detalle_Ventas_Generales .iconP{
+  font-size: 30px;
 }
-.detalle_ventas_generales{
-
+.detalle_ventas_generales .localPrintshop_Detalle_Ventas_Generales .textP::first-letter {
+  text-transform: uppercase;
 }
-.detalle_ventas_generales{
-
-}
-.detalle_ventas_generales{
-
-}
-.detalle_ventas_generales{
-
-}
-.detalle_ventas_generales{
-
+.detalle_ventas_generales .localPrintshop_Detalle_Ventas_Generales .textP{
+  text-transform: lowercase;
+  font-size: 17px;
+  padding-left: 9px;
 }
