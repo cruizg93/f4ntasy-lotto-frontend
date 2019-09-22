@@ -1,0 +1,29 @@
+.admin_header_center {
+  height: 60px;
+  background: #dfedfa;
+  font-size: 22px !important;
+  color: #003333;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  max-width: 444px !important;
+  margin: 0 auto;
+  position: fixed;
+  top: 93px;
+  width: 100%;
+  z-index: 50;
+  border-left: solid 1px #9A9A9A;
+  border-right: solid 1px #9A9A9A;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 !important; 
+}
+
+.admin_header_center .header_title{
+  text-align: center;
+}
+
+
+

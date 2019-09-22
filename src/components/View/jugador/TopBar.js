@@ -33,8 +33,9 @@ const TopBarStyles = makeStyles(theme => ({
         zIndex: "25",
         paddingLeft: ".5rem",
         paddingRight: ".5rem",
-        maxHeight: "48px !important",
-        height: "2rem"
+        maxHeight: "52px !important",
+        height: "52px",
+        borderBottom: 'solid 1px lightgray'
     },
     imageContainer: {
         "& img": {
@@ -44,7 +45,12 @@ const TopBarStyles = makeStyles(theme => ({
     },
     fechaContaier: {
         width: "100%",
-        textAlign: "center",
+        textAlign: "left",
+    },
+    innerText: {
+        width: '80%',
+        margin: '0 auto',
+        fontSize: '12px'
     },
     totalContaier: {
         width: "100%",
@@ -64,7 +70,7 @@ const TopBarStyles = makeStyles(theme => ({
 
 function TopBar(props) {
     const apuestaIcon = props.apuestaType === "DIARIA" ? DiariaLogo : ChicaLogo;
-    const fecha = (props.apuestaType === "DIARIA" ? props.hour + " - " : "") + props.day;
+    const hour = (props.apuestaType === "DIARIA" ? props.hour : "12 pm")
     const classes = TopBarStyles();
     return (
         <Grid container
@@ -74,9 +80,14 @@ function TopBar(props) {
             className={classes.barRow}>
             <Grid item xs={3} className={classes.imageContainer}><img src={apuestaIcon} alt="apuestaLogo" /></Grid>
             <Grid item xs={5} className={classes.fechaContaier}>
-                <Typography variant="body1" >
-                    {fecha}
-                </Typography>
+                <Grid className={classes.innerText}>
+                    <Typography style={{ fontSize: 16 }} >
+                        {hour}
+                    </Typography>
+                    <Typography style={{ fontSize: 16 }}>
+                        {props.day}
+                    </Typography>
+                </Grid>
             </Grid>
             <Grid item xs={4}>
                 <Typography variant="body1" className={classes.totalContaier}>

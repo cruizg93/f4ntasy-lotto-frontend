@@ -15,7 +15,7 @@ class AdminTitle extends React.Component {
         </Grid>
         <Grid item xs={2} className="header_icon">
           {
-            iconName === 'IoIosContacts' ? <IoIosContacts /> : <IoIosContact />
+            iconName === 'IoIosContacts' ? <IoIosContacts /> : null
           }
         </Grid>
       </Container>

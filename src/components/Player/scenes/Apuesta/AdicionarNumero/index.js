@@ -34,6 +34,11 @@ import { MainStyles } from '../../../../View/MainStyles'
 import { timeService } from "../../../../../service/api/time/time.service";
 import ResumenApuestas from "../Resumen/ResumenApuestas";
 
+import ConfirmDialog from '../../../../View/Dialog/ConfirmDialog';
+import ConfirmDialogR from '../../../../View/Dialog/ConfirmDialog_R';
+import InformationDialog from '../../../../View/Dialog/InformationDialog';
+import './styles.css'
+import { whileStatement } from '@babel/types';
 
 const useStyles = theme => ({
     root: {
@@ -74,40 +79,43 @@ const useStyles = theme => ({
         position: "fixed",
         display: "flex",
         zIndex: "25",
-        bottom: "3px",
+        bottom: "0px",
+        height: '76px',
+        lineHeight: '76px',
         justifyContent: "flex-end",
         alignItems: "flex-end",
         marginTop: "0.5rem",
         paddingLeft: "1rem",
         "& div": {
             paddingRight: "1rem",
-            display: "flex",
             justifyContent: "center",
             alignItems: "center",
         }
     },
     buttonAgregarApuesta: {
-        borderRadius: "1000px",
+        borderRadius: "15px",
         textTransform: "none",
-        height: "2rem",
+        height: "37px",
+        width: '137px',
         color: "#ffffff",
         backgroundColor: Colors.Orange,
-        fontSize: "1.5rem",
+        fontSize: "1.6rem",
         width: "100% !important",
         "&:hover": {
             backgroundColor: Colors.Orange,
         }
     },
     buttonComprar: {
-        borderRadius: "1000px",
+        borderRadius: "15px",
         textTransform: "none",
-        height: "1.5rem",
+        height: "37px",
+        width: '137px',
         color: "#ffffff",
         backgroundColor: Colors.Jugador_Blue,
         width: "100% !important",
         padding: "0px !important",
         "& span": {
-            fontSize: "0.75rem"
+            fontSize: "1rem"
         },
 
     },
@@ -120,22 +128,23 @@ const useStyles = theme => ({
         width: "100% !important",
         padding: "0px !important",
         "& span": {
-            fontSize: "0.75rem"
+            fontSize: "1rem"
         },
         "&:hover": {
             backgroundColor: Colors.Jugador_Blue,
         }
     },
     buttonLimpiar: {
-        borderRadius: "1000px",
+        borderRadius: "13px",
         textTransform: "none",
-        height: "1.25rem",
+        height: "37px",
+        width: '137px',
         color: "#ffffff",
         backgroundColor: Colors.Jugador_Red,
         width: "100% !important",
         padding: "0px !important",
         "& span": {
-            fontSize: "0.5rem"
+            fontSize: "1rem"
         },
         "&:hover": {
             backgroundColor: Colors.Jugador_Red,
@@ -171,6 +180,9 @@ class AdicionarNumeroApuesta extends Component {
             isAgregarApuestaButtonEnable: true,
             displayApuestaListIndex: true,
             openFinalizarCompraDialog: false,
+            openRemoveAll: false,
+            openComprar: false,
+            openComprarInfo: false
         }
         this.apuestaCurrency = (this.props.moneda === "LEMPIRAS" || this.props.moneda === "L") ? Currency.Lempiras : Currency.Dollar;
         this.match = props.match;
@@ -235,48 +247,38 @@ class AdicionarNumeroApuesta extends Component {
         }
     }
 
-
     handleComprar = (event) => {
-        if (this.state.entryList.length == 0) {
+        if (this.state.entryList.length === 0) {
             return;
         }
 
-        this.buttonContainerApuestasRef.current.style.display = "none";
-        this.entryInputContainerRef.current.style.display = "none";
-        this.buttonContainerComprarRef.current.style.display = "flex";
+        // //oldEntryList will be needed in case user want to display the values and the list order before this event was triggered.
+        // this.setState((prevState, props) => {
+        //     return { oldEntryList: this.state.entryList }
+        // });
+        // //Merge valores iguales
+        // let newEntryList = this.state.entry.filter(item => { return item.current > 0 });
+        // this.setState((prevState, props) => {
+        //     return { entryList: newEntryList }
+        // });
 
-        //oldEntryList will be needed in case user want to display the values and the list order before this event was triggered.
-        this.setState((prevState, props) => {
-            return { oldEntryList: this.state.entryList }
-        });
-        //Merge valores iguales
-        let newEntryList = this.state.entry.filter(item => { return item.current > 0 });
-        this.setState((prevState, props) => {
-            return { entryList: newEntryList }
-        });
-
-        //Esconder index de la lista
-        this.setState((prevState, props) => {
-            return { displayApuestaListIndex: false };
-        });
+        // //Esconder index de la lista
+        // this.setState((prevState, props) => {
+        //     return { displayApuestaListIndex: false };
+        // });
     }
 
     regresar = (event) => {
-
-        this.buttonContainerApuestasRef.current.style.display = "flex";
-        this.entryInputContainerRef.current.style.display = "flex";
-        this.buttonContainerComprarRef.current.style.display = "none";
-
         //Merge valores iguales
-        let newEntryList = this.state.entry.filter(item => { return item.current > 0 });
-        this.setState((prevState, props) => {
-            return { entryList: this.state.oldEntryList }
-        });
+        // let newEntryList = this.state.entry.filter(item => { return item.current > 0 });
+        // this.setState((prevState, props) => {
+        //     return { entryList: this.state.oldEntryList }
+        // });
 
-        //Esconder index de la lista
-        this.setState((prevState, props) => {
-            return { displayApuestaListIndex: true };
-        });
+        // //Esconder index de la lista
+        // this.setState((prevState, props) => {
+        //     return { displayApuestaListIndex: true };
+        // });
     }
 
     agregarApuesta = (event) => {
@@ -423,6 +425,67 @@ class AdicionarNumeroApuesta extends Component {
         })
     }
 
+    handleClickOpenRemoveAll = () => {
+        this.setState({
+            ...this.state,
+            openRemoveAll: true
+        })
+    }
+
+    handleCloseRemoveAll(value) {
+        this.setState({
+            ...this.state,
+            openRemoveAll: false
+        })
+        if (value) {
+            this.limpiarApuestas()
+        }
+    }
+
+    handleClickOpenComprar = () => {
+        if (this.state.entryList.length === 0) {
+            return;
+        }
+        this.setState({
+            ...this.state,
+            openComprar: true
+        })
+    }
+
+    handleCloseComprar(value) {
+        this.setState({
+            ...this.state,
+            openRemoveAll: false,
+            openComprar: false
+        })
+        if (value) {
+            this.handleClickOpenComprarInfo();
+        }
+    }
+
+    handleClickOpenComprarInfo = () => {
+        this.setState({
+            ...this.state,
+            openComprarInfo: true
+        })
+    }
+
+    handleCloseComprarInfo() {
+        this.setState({
+            ...this.state,
+            openRemoveAll: false,
+            openComprar: false,
+            openComprarInfo: false
+        })
+        let id = this.match.params.apuestaId;
+        playerService.update_number(this.state.entry, id).then((result) => {
+            this.props.history.push("/");
+            return () => {
+                this.state.mounted.current = false;
+            };
+        })
+    }
+
     handleClickOpenFinalizarCompraDialog = (event) => {
         timeService.time().then((result) => {
             this.setState((prevState, props) => {
@@ -443,13 +506,6 @@ class AdicionarNumeroApuesta extends Component {
         this.classes = this.props.classes;
 
         function updateFunction(e) {
-            // let id = e.target.id;
-            // id = id.split('-')[3];
-            // if (e.target.value !== '') {
-            //     this.setState.entry[id]['current'] = parseFloat(e.target.value);
-            // } else if (this.state.entry[id]['current'] !== 0) {
-            //     this.state.entry[id]['current'] = 0;
-            // }
         }
 
         function submitClickHandler() {
@@ -484,36 +540,10 @@ class AdicionarNumeroApuesta extends Component {
 
         })(TextField);
 
-        //FaRegTrashAlt
-        const LimpiarButton = withStyles({
-            root: {
-                width: '100px',
-                boxShadow: 'none',
-                textTransform: 'none',
-                fontSize: 16,
-                padding: '6px 12px',
-                lineHeight: 1.5,
-                color: Colors.Btn_Red,
-                marginBottom: '1.5rem',
-                marginRight: '.5rem',
-                marginLeft: '.5rem',
-                border: 'none',
-                '&:hover': {
-                    backgroundColor: Colors.Btn_Hover,
-                    border: 'none',
-                },
-                '&:active': {
-                    boxShadow: 'none',
-                    border: 'none',
-                },
-                '&:focus': {
-                    boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-                },
-            },
-        })(Button);
+        const height = window.innerHeight - 168;
 
         return (
-            <React.Fragment>
+            <div style={{ background: 'white', minHeight: height, paddingBottom: 77 }}>
                 <ToastContainer autoClose={8000} />
 
                 <TopBar ref={this.topBarRef}
@@ -522,70 +552,76 @@ class AdicionarNumeroApuesta extends Component {
                     day={this.state.day}
                     total={this.state.total}
                     apuestaCurrency={(this.props.moneda === "LEMPIRAS" || this.props.moneda === "L") ? Currency.Lempiras : Currency.Dollar}
-
                 />
-                <Grid container spacing={0}
-                    display="flex"
-                    justify="center"
-                    alignItems="center"
-                    ref={this.entryInputContainerRef}
-                    style={{ padding: "3.5rem 1.5rem 0 1.5rem" }}
-                >
-                    <Grid item xs={6} style={{ textAlign: "end" }}>
-                        <ApuestaInput
-                            inputRef={this.entryNumeroInputRef}
-                            type="tel"
-                            placeholder="Numero:"
-                            id="input-entry-numero"
-                            pattern="[0-9]*"
-                            style={{ marginRight: "0.375rem", maxWidth: "9.5rem" }}
-                            InputProps={{
-                                disableUnderline: true,
-                            }}
-                            onInput={(e) => {
-                                e.target.value = e.target.value.toString().slice(0, 2);
-                                if (e.target.value.length == 2) {
-                                    this.entryUnidadesInputRef.current.focus();
-                                }
-                            }}
-                        />
+                <Container style={{ background: 'white' }}>
+                    <Grid container spacing={0}
+                        display="flex"
+                        justify="center"
+                        alignItems="center"
+                        ref={this.entryInputContainerRef}
+                        style={{ padding: "5rem 1.5rem 0 1.5rem" }}
+                    >
+                        <Grid item xs={6} style={{ textAlign: "end" }}>
+                            <ApuestaInput
+                                inputRef={this.entryNumeroInputRef}
+                                type="tel"
+                                placeholder="Numero:"
+                                id="input-entry-numero"
+                                pattern="[0-9]*"
+                                style={{ marginRight: "0.375rem", maxWidth: "9.5rem" }}
+                                InputProps={{
+                                    disableUnderline: true,
+                                }}
+                                onInput={(e) => {
+                                    e.target.value = e.target.value.toString().slice(0, 2);
+                                    if (e.target.value.length === 2) {
+                                        this.entryUnidadesInputRef.current.focus();
+                                    }
+                                }}
+                                className="numbers"
+                                autoFocus
+                            />
+                        </Grid>
+                        <Grid item xs={6} style={{ textAlign: "start" }}>
+                            <ApuestaInput
+                                inputRef={this.entryUnidadesInputRef}
+                                type="tel"
+                                placeholder="Cantidad:"
+                                pattern="[1-9]*"
+                                style={{ marginLeft: "0.375rem", maxWidth: "9.5rem" }}
+                                id="input-entry-unidad"
+                                InputProps={{
+                                    disableUnderline: true,
+                                }}
+                                onInput={(e) => {
+                                    if (this.entryNumeroInputRef.current.value.toString().length < 2) {
+                                        this.entryNumeroInputRef.current.focus();
+                                        this.entryUnidadesInputRef.current.value = "";
+                                    }
+                                }}
+                                onKeyPress={this.inpuntKeyPressedEvent}
+                                className="numbers"
+                            />
+                        </Grid>
                     </Grid>
-                    <Grid item xs={6} style={{ textAlign: "start" }}>
-                        <ApuestaInput
-                            inputRef={this.entryUnidadesInputRef}
-                            type="tel"
-                            placeholder="Cantidad:"
-                            pattern="[1-9]*"
-                            style={{ marginLeft: "0.375rem", maxWidth: "9.5rem" }}
-                            id="input-entry-unidad"
-                            InputProps={{
-                                disableUnderline: true,
-                            }}
-                            onInput={(e) => {
-                                if (this.entryNumeroInputRef.current.value.toString().length < 2) {
-                                    this.entryNumeroInputRef.current.focus();
-                                    this.entryUnidadesInputRef.current.value = "";
-                                }
-                            }}
-                            onKeyPress={this.inpuntKeyPressedEvent}
-                        />
+                    <Grid container spacing={0}
+                        direction="row"
+                        justify="center"
+                        alignItems="center" style={{ width: "100%" }}>
+                        <ListaApuestas entryList={this.state.entryList} removerApuesta={this.removerApuesta} fromApuestaActiva={false}
+                            displayApuestaListIndex={this.state.displayApuestaListIndex} />
+                        <Grid item xs={12}>
+                            <Typography variant="body1" style={{ textAlign: "center", color: "#999999", marginTop: "1.1875rem", marginBottom: "1.1875rem", lineHeight: "0.85" }}>
+                                Total &mdash; {this.state.totalCurrent}
+                            </Typography>
+                        </Grid>
                     </Grid>
-                </Grid>
-                <Grid container spacing={0}
-                    direction="row"
-                    justify="center"
-                    alignItems="center" style={{ width: "100%" }}>
-                    <ListaApuestas entryList={this.state.entryList} removerApuesta={this.removerApuesta} fromApuestaActiva={false}
-                        displayApuestaListIndex={this.state.displayApuestaListIndex} />
-                    <Grid item xs={12}>
-                        <Typography variant="body1" style={{ textAlign: "center", color: "#999999", marginTop: "1.1875rem", marginBottom: "1.1875rem", lineHeight: "0.85" }}>
-                            Total &mdash; {this.state.totalCurrent}
-                        </Typography>
-                    </Grid>
-                </Grid>
-                <ResumenApuestas apuestaCurrency={this.apuestaCurrency}
-                    costoTotal={this.state.costoTotal} comisionTotal={this.state.comisionTotal} total={this.state.total} />
+                </Container>
 
+                <ResumenApuestas apuestaCurrency={this.apuestaCurrency}
+                    costoTotal={this.state.costoTotal} comisionTotal={this.state.comisionTotal} total={this.state.total}
+                    style={{ height: 85 }}
+                />
                 <Container maxWidth="xs" >
                     <Grid container spacing={0}
                         direction="row"
@@ -594,14 +630,14 @@ class AdicionarNumeroApuesta extends Component {
                         ref={this.buttonContainerApuestasRef}>
                         <Grid item xs={12} className={this.classes.buttonContainerApuestas}>
                             <Grid item xs={4}>
-                                <Button variant="contained" className={this.classes.buttonLimpiar} onClick={this.limpiarApuestas}>
-                                    <MdSettingsBackupRestore className={this.classes.extendedIcon} />
+                                <Button variant="contained" className={this.classes.buttonLimpiar} onClick={() => this.handleClickOpenRemoveAll()}>
+                                    {/* <MdSettingsBackupRestore className={this.classes.extendedIcon} /> */}
                                     Limpiar
                                 </Button>
                             </Grid>
                             <Grid item xs={4}>
-                                <Button variant="contained" className={this.classes.buttonComprar} onClick={this.handleComprar}>
-                                    <FaShoppingCart className={this.classes.extendedIcon} />
+                                <Button variant="contained" className={this.classes.buttonComprar} onClick={() => this.handleClickOpenComprar()}>
+                                    {/* <FaShoppingCart className={this.classes.extendedIcon} /> */}
                                     Comprar
                                 </Button>
                             </Grid>
@@ -654,7 +690,29 @@ class AdicionarNumeroApuesta extends Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
-            </React.Fragment>
+                <ConfirmDialog
+                    open={this.state.openRemoveAll}
+                    handleClose={this.handleCloseRemoveAll.bind(this)}
+                    title="Limipiar pantalla?"
+                    context="Toda la información digitada se perderá"
+                    icon='help'>
+                </ConfirmDialog>
+                <ConfirmDialogR
+                    open={this.state.openComprar}
+                    handleClose={this.handleCloseComprar.bind(this)}
+                    title="Finalizar compra."
+                    context="Su compra sera procesada en este momento."
+                    icon='help'>
+                </ConfirmDialogR>
+                <InformationDialog
+                    open={this.state.openComprarInfo}
+                    handleClose={this.handleCloseComprarInfo.bind(this)}
+                    title="Finalizar compra."
+                    context="Su compra sera procesada en este momento."
+                    icon='help'>
+                </InformationDialog>
+                <div className='clearfix'></div>
+            </div>
         )
     }
 }

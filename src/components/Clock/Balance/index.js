@@ -14,7 +14,7 @@ class Balance extends Component {
 
     updateBalance() {
         playerService.get_balance().then((result) => {
-            this.setState({ balance: result.data, symbol: (result.data < 0 ? " - " : (result.data > 0 ? " + " : "")) })
+            this.setState({ balance: result.data.balance, symbol: (result.data.balance < 0 ? " - " : (result.data.balance > 0 ? " + " : "")) })
         })
     }
 

@@ -86,7 +86,6 @@ const ApuestasActivasAdmin = (props) => {
             });
         }
     }
-    console.log("propsss=", props)
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000} />

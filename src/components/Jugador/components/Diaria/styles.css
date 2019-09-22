@@ -1,0 +1,38 @@
+.container_diaria{
+  
+}
+.container_diaria .select_title{
+ height: 60px;
+}
+.container_diaria .select_title .title_image{
+ vertical-align: middle;
+ line-height: 60px;
+ margin-left: 25px;
+}
+.container_diaria .select_title img{
+ width: 90px;
+}
+.container_diaria .select_title .title_text{
+  line-height: 60px;
+  text-align: center;
+  color: #183721;
+  font-size: 18px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+.container_diaria .select_title .title_radio svg{
+  font-size: 37px;
+}
+.container_diaria .container_input_area{
+  background: white;
+}
+.container_diaria .container_input_area .row_input .input{
+  width: 170px;
+}
+.container_diaria .container_input_area .row_input .text{
+  line-height: 40px;
+  margin-left: 20px;
+  color: gray;
+}
+.container_diaria{
+
+}
