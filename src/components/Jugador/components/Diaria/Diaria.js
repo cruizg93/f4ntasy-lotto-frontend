@@ -1,23 +1,24 @@
 import React from 'react';
 import { makeStyles, withStyles } from "@material-ui/core/styles/index";
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import { green } from "@material-ui/core/colors/index";
 import { Colors } from '../../../../utils/__colors';
-import NumberFormat from 'react-number-format';
-import Divider from '@material-ui/core/Divider';
+import DiariaLogo from '../../../View/assets/Diaria_PNG.png';
+import { Container } from '@material-ui/core';
+import CustomText from '../../../View/CustomText';
 
+import { MdSettings } from "react-icons/md";
+import { TiPencil } from "react-icons/ti";
+
+import '../../../../common.css'
+import './styles.css'
 
 const GreenRadio = withStyles({
     root: {
-        color: green[400],
+        color: '#4F84C8',
         '&$checked': {
-            color: green[600],
+            color: '#4F84C8',
         },
     },
     checked: {},
@@ -26,7 +27,6 @@ const GreenRadio = withStyles({
 const useStyles = makeStyles(theme => ({
     card: {
         display: 'flex',
-        marginTop: '.5rem',
         background: Colors.Main,
         boxShadow: 'none',
         borderRadius: '0'
@@ -35,7 +35,6 @@ const useStyles = makeStyles(theme => ({
         background: Colors.Input_bkg,
     },
     labelChica: {
-        marginTop: ".5rem"
     }
 
 }));
@@ -63,146 +62,106 @@ export default function Diaria({
     }
 
     return (
-        <>
-            <Card className={classes.card}>
-                <CardContent>
-                    <Grid container spacing={1}
-                        direction="row"
-                        justify="center"
-                        alignItems="flex-start"
-                        className={classes.boxContainerNuevo}
-                    >
-                        <Grid item xs={3}>
-                            <Typography variant="h6" gutterBottom className={"form__center-label"}>
-                                DIARIA
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Typography variant="body1" gutterBottom className={classes.labelChica}>
-                                "x por miles"
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={1}>
-                            <FormControlLabel
-                                value="d-miles"
-                                control={
-                                    <GreenRadio
-                                        checked={diariaType === 'dm'}
-                                        onChange={onChangeDiariaType}
-                                        value="dm"
-                                        name="radio-button-diaria"
-                                        inputProps={{ 'aria-label': 'DM' }}
-                                        disabled={activate}
-                                    />}
-                            />
-                        </Grid>
-                        <NumberFormat
-                            id="diaria-miles-input-costo-miles"
-                            label="Costo x mil"
-                            placeholder="Costo x mil"
-                            margin="normal"
-                            value={diariaType !== 'dm' ? '' : costo}
-                            variant="outlined"
-                            fullWidth
-                            disabled={diariaType !== 'dm' || activate}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            onChange={onChangeCostoMil}
-                            className={classes.inputData}
-                            customInput={TextField}
-                        />
-                        <NumberFormat
-                            id="diaria-miles-input-premio-miles"
-                            label="Premio x mil"
-                            placeholder="Premio x mil"
-                            value={diariaType !== 'dm' ? '' : premio}
-                            margin="normal"
-                            variant="outlined"
-                            fullWidth
-                            disabled={diariaType !== 'dm' || activate}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            onChange={onChangePremioMil}
-                            className={classes.inputData}
-                            customInput={TextField}
-                        />
-                    </Grid>
-                </CardContent>
-            </Card>
-            <Grid item xs={12}>
-                <Divider />
+        <Container maxWidth="xs" className="pl-0 pr-0 container_diaria">
+            <Grid container direction="row" className="select_title">
+                <Grid item xs={3} className="title_image">
+                    <img src={DiariaLogo} alt="ABIERTA" />
+                </Grid>
+                <Grid item xs={6} className="title_text">
+                    <span>Venta x miles</span>
+                </Grid>
+                <Grid item xs={1} className="title_radio">
+                    <FormControlLabel
+                        value="d-miles"
+                        control={
+                            <GreenRadio
+                                checked={diariaType === 'dm'}
+                                onChange={onChangeDiariaType}
+                                value="dm"
+                                name="radio-button-diaria"
+                                inputProps={{ 'aria-label': 'DM' }}
+                                disabled={activate}
+                            />}
+                    />
+                </Grid>
             </Grid>
-            <Card className={classes.card}>
-                <CardContent>
-                    <Grid container spacing={1}
-                        direction="row"
-                        justify="center"
-                        alignItems="flex-start">
-                        <Grid item xs={3}>
-                            <Typography variant="h6" gutterBottom className={"form__center-label"}>
-                                DIARIA
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Typography variant="body1" gutterBottom className={classes.labelChica}>
-                                "directo L/ $"
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={1}>
-                            <FormControlLabel
-                                value="d-riecto"
-                                control={
-                                    <GreenRadio
-                                        checked={diariaType === 'dd'}
-                                        onChange={onChangeDiariaType}
-                                        value="dd"
-                                        name="radio-button-diaria"
-                                        inputProps={{ 'aria-label': 'DD' }}
-                                        disabled={activate}
+            <Container maxWidth="xs" className="container_input_area">
+                <Grid container direction="row" className="row_input pl-45 pt-15">
+                    <Grid item className="input">
+                        <CustomText
+                            onChange={onChangeCostoMil}
+                            value={diariaType !== 'dm' ? '' : costo}
+                            disabled={diariaType !== 'dm' || activate}
+                            icon={TiPencil}></CustomText>
+                    </Grid>
+                    <Grid item className="text">
+                        <span>Costo x mil</span>
+                    </Grid>
+                </Grid>
+                <Grid container direction="row" className="row_input pl-45 pt-15 pb-15">
+                    <Grid item className="input">
+                        <CustomText
+                            value={1000}
+                            disabled={diariaType !== 'dm' || activate}
+                            onChange={onChangePremioMil}
+                        ></CustomText>
+                    </Grid>
+                    <Grid item className="text">
+                        <span>Premio</span>
+                    </Grid>
+                </Grid>
+            </Container>
+            <Grid container direction="row" className="select_title">
+                <Grid item xs={3} className="title_image">
+                    <img src={DiariaLogo} alt="ABIERTA" />
+                </Grid>
+                <Grid item xs={6} className="title_text">
+                    <span>Venta directo $-L</span>
+                </Grid>
+                <Grid item xs={1} className="title_radio">
+                    <FormControlLabel
+                        value="d-riecto"
+                        control={
+                            <GreenRadio
+                                checked={diariaType === 'dd'}
+                                onChange={onChangeDiariaType}
+                                value="dd"
+                                name="radio-button-diaria"
+                                inputProps={{ 'aria-label': 'DD' }}
+                                disabled={activate}
 
-                                    />}
-                            />
-                        </Grid>
-                        <NumberFormat
-                            id="diaria-directo-input-comision-porciento"
-                            label="Comisión %"
-                            placeholder="Comisión %"
-                            margin="normal"
-                            variant="outlined"
-                            value={diariaType !== 'dd' ? '' : comision}
-                            fullWidth
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            disabled={diariaType !== 'dd' || activate}
+                            />}
+                    />
+                </Grid>
+            </Grid>
+            <Container maxWidth="xs" className="container_input_area">
+                <Grid container direction="row" className="row_input pl-45 pt-15">
+                    <Grid item className="input">
+                        <CustomText
                             onChange={onChangeComisionMil}
-                            className={classes.inputData}
-                            customInput={TextField}
-
-                        />
-                        <NumberFormat
-                            id="diaria-directo-input-premio"
-                            label="Premio"
-                            placeholder="Premio"
-                            margin="normal"
-                            variant="outlined"
-                            fullWidth
+                            value={diariaType !== 'dd' ? '' : comision}
+                            disabled={diariaType !== 'dd' || activate}
+                            icon={TiPencil}></CustomText>
+                    </Grid>
+                    <Grid item className="text">
+                        <span>comisión %</span>
+                    </Grid>
+                </Grid>
+                <Grid container direction="row" className="row_input pl-45 pt-15 pb-15">
+                    <Grid item className="input">
+                        <CustomText
                             disabled={diariaType !== 'dd' || activate}
                             value={diariaType !== 'dd' ? '' : premioLempiras}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            // value={select ? '': premioL}
                             onChange={onChangePremioLempirasMil}
-                            className={classes.inputData}
-                            customInput={TextField}
-
-                        />
+                            icon={TiPencil}
+                        ></CustomText>
                     </Grid>
-                </CardContent>
-            </Card>
-        </>
+                    <Grid item className="text">
+                        <span>Premio</span>
+                    </Grid>
+                </Grid>
+            </Container>
+
+        </Container>
     )
 }

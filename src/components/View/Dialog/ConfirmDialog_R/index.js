@@ -13,7 +13,7 @@ import { GoVerified } from "react-icons/go";
 import { IoIosHelpCircleOutline, IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 
-class InformationDialog extends React.Component {
+class ConfirmDialogR extends React.Component {
   constructor(props) {
     super(props);
     this.handleCancel = this.handleCancel.bind(this);
@@ -56,7 +56,8 @@ class InformationDialog extends React.Component {
               </DialogContentText>
             </DialogContent>
             <DialogActions style={{ display: 'flex', margin: '0 auto', width: '78%' }}>
-              <Button onClick={() => this.handleCancel()} style={{ fontSize: '18px', color: '#5891DC' }}>OK</Button>
+              <Button onClick={() => this.handleCancel(false)} style={{ fontSize: '18px', color: '#5891DC' }}>Cancelar</Button>
+              <Button onClick={() => this.handleCancel(true)} style={{ fontSize: '18px', color: '#5891DC' }} autoFocus>Aceptar</Button>
             </DialogActions>
           </Dialog>
         </Grid>
@@ -65,4 +66,4 @@ class InformationDialog extends React.Component {
   }
 }
 
-export default InformationDialog;
+export default ConfirmDialogR;

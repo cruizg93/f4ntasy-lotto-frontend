@@ -1,93 +1,96 @@
-import React, { Component } from 'react';
+import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import EntrarNumero from '../../components/EntrarNumero';
 import Grid from '@material-ui/core/Grid';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import IconButton from '@material-ui/core/IconButton';
 import { FaTrashAlt } from "react-icons/fa";
-import {makeStyles} from "@material-ui/core/styles/index";
-import {Circle} from 'react-shapes';
-import NumberFormat from 'react-number-format';
+import ConfirmDialog from '../../../View/Dialog/ConfirmDialog';
 
-const useStyles = makeStyles({
-    apuestaList:{
-        width:"100%",
-        padding:"2rem 0px 0px 0px",
-        maring:"0px",
-    },
-    apuesta:{
-        display:"flex",
-        justifyContent:"center",
-        alignItems:"center",
-        padding:"0px",
-        marginTop:"1.25rem",
-    },
-    apuestaIndex:{
-        minWidth:"1rem",
-        color:"#999999",
-        textAlign:"right",
-        "& p":{
-            fontSize:"0.75rem",
+import './styles.css'
+
+class ListaApuestas extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            openRemove: false,
+            index: 0,
+            isIndexDisplay: props.displayApuestaListIndex === undefined ? true : props.displayApuestaListIndex
         }
-    },
-    apuestaValues:{
-        width:"12.25rem",
-        maxWidth:"12.25rem",
-        marginLeft:"1rem",
-        marginRight:"1rem",
-        marginTop:"0",
-        marginBottom:"0",
-        border:"1px solid #cccccc",
-        borderRadius:"17px",
-        padding:"0.25rem",
-        textAlign:"center",
-        "& span":{
-            color:"#999999",
-            fontSize:"1.25rem",
-        }
-    },
-    apuestaDeleteIcon:{
-        fontSize:"1rem",
-        color:"#999999"
     }
 
-});
+    handleClickOpen = (index) => {
+        this.setState({
+            ...this.state,
+            index: index,
+            openRemove: true
+        })
+    }
 
+    handleClose = (value) => {
+        this.setState({
+            ...this.state,
+            openRemove: false
+        })
+        if (value) {
+            if (this.props.fromApuestaActiva)
+                this.props.removerApuesta(this.state.index)
+            else
+                this.props.removerApuesta(this.state.index, this.props.entryList[this.state.index].numero, this.props.entryList[this.state.index].current)
+        }
+    }
 
-function ListaApuestas(props) {
-    const classes = useStyles(); 
-    const isIndexDisplay = props.displayApuestaListIndex === undefined?true:props.displayApuestaListIndex;   
-    return (
+    componentDidUpdate() {
+        var ele = document.querySelector('.slide:first-child')
+        if (ele) {
+            setTimeout(() => {
+                ele.classList.remove('slide')
+            }, 10);
+            setTimeout(() => {
+                ele.classList.add('slide')
+            }, 30);
+        }
+    }
 
-            <List className={classes.apuestaList}>
-                {props.entryList
-                    .map((element, index) =>
-
-                <ListItem key={index} className={classes.apuesta} alignItems="center">
-                
-                    <div style={{display:isIndexDisplay?"flex":"none"}}>
-                        <ListItemText className={classes.apuestaIndex} primary={props.entryList.length-index}/>
-                    </div>
-                    <ListItemText className={classes.apuestaValues}  
-                        primary={<Grid container>
-                                    <Grid item xs={5} style={{textAlign:"end"}}>{element.numero}</Grid>
-                                    <Grid item xs={2}>&mdash;</Grid>
-                                    <Grid item xs={5} style={{textAlign:"start"}}>{element.current===undefined?element.valor:element.current}</Grid>
-                                </Grid>
-                                }  />
-                    <ListItemIcon style={{minWidth:"auto"}}>
-                        <FaTrashAlt className={classes.apuestaDeleteIcon} 
-                                onClick={props.fromApuestaActiva
-                                        ?() => props.removerApuesta(index)
-                                        :() => props.removerApuesta(index, element.numero, element.current)}/>
-                    </ListItemIcon>
-                </ListItem>
-                )}
-            </List>
-    )
+    render() {
+        const title = "Eliminar?"
+        const context = "Esta seguro que quiere eliminar estas compras?"
+        return (
+            <div style={{ width: '80%' }}>
+                <List className="apuestaList">
+                    {this.props.entryList
+                        .map((element, index) =>
+                            <ListItem key={index} className="apuesta slide" alignItems="center">
+                                <div style={{ display: this.state.isIndexDisplay ? "flex" : "none" }}>
+                                    <ListItemText className="apuestaIndex" primary={this.props.entryList.length - index} />
+                                </div>
+                                <ListItemText className="apuestaNumber"
+                                    primary={<Grid container>
+                                        <Grid item style={{ textAlign: "center", width: '100%' }}>{element.numero}</Grid>
+                                    </Grid>
+                                    } />
+                                <ListItemText className="apuestaValues"
+                                    primary={<Grid container>
+                                        <Grid item style={{ textAlign: "center", width: '100%' }}>{element.current === undefined ? element.valor : element.current}</Grid>
+                                    </Grid>
+                                    } />
+                                <ListItemIcon style={{ minWidth: "auto" }}>
+                                    <FaTrashAlt className="apuestaDeleteIcon"
+                                        onClick={() => this.handleClickOpen(index)} />
+                                </ListItemIcon>
+                            </ListItem>
+                        )}
+                </List>
+                <ConfirmDialog
+                    open={this.state.openRemove}
+                    handleClose={this.handleClose}
+                    title={title}
+                    context={context}
+                    icon='help'>
+                </ConfirmDialog>
+            </div>
+        )
+    }
 
 }
 

@@ -1,0 +1,13 @@
+.numbers:focus-within{
+  border-color: blue;
+}
+
+.clearfix{
+  clear: both;
+}
+.clearfix::after{
+  clear: both;
+}
+.clearfix::before{
+  clear: both;
+}

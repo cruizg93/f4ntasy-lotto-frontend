@@ -24,8 +24,9 @@ class Toolbar extends Component {
     };
 
     render() {
+        let color = this.props.role === 'Player' ? '#A3CA72' : '#ff9933'
         return (
-            <header className="toolbar">
+            <header className="toolbar" style={{ background: color }}>
                 <nav className="toolbar__navigation">
                     <div className="toolbar__logo">
                         <NavLink to="/" exact strict >

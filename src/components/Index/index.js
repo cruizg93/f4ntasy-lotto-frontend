@@ -9,6 +9,7 @@ const Index = ({ ...props }) => {
     const [admin, setAdmin] = useState(false);
     const [asistente, setAsistente] = useState(false);
     const [player, setPlayer] = useState(false);
+
     useEffect(() => {
         setAdmin(authenticationService.type_user() === 'Admin' || authenticationService.type_user() === 'Master');
         setAsistente(authenticationService.type_user() === 'Asistente')

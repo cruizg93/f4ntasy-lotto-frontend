@@ -3,17 +3,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
-
-import TextField from '@material-ui/core/TextField';
+import Fab from '@material-ui/core/Fab';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import Radio from '@material-ui/core/Radio';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
 import './Nuevo.css';
 import './components/Diaria/Diaria'
-import { green } from '@material-ui/core/colors';
 
 import Diaria from "./components/Diaria/Diaria";
 import Chica from "./components/Chica/Chica";
@@ -24,48 +19,23 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import CustomText from '../View/CustomText';
+
 import { adminService } from "../../service/api/admin/admin.service";
 import { Colors } from '../../utils/__colors';
 
-const GreenRadio = withStyles({
-    root: {
-        color: green[400],
-        '&$checked': {
-            color: green[600],
-        },
-    },
-    checked: {},
-})(props => <Radio color="default" {...props} />);
+import Dollar_ON from '../View/assets/Dollar_ON.png';
+import Dollar_OFF from '../View/assets/Dollar_OFF.png';
+import Lempiras_ON from '../View/assets/Lempiras_ON.png';
+import Lempiras_OFF from '../View/assets/Lempiras_OFF.png';
+import AdminTitle from '../Admin/components/AdminTitle_Center';
 
-const CrearButton = withStyles({
-    root: {
-        width: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        lineHeight: 1.5,
-        padding: "15px 0",
-        backgroundColor: Colors.Main,
-        color: Colors.Btn_Blue_Dark,
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        border: 'none !important',
-        borderRadius: '0',
-        '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
-            color: Colors.Input_bkg
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
+import { MdSettings } from "react-icons/md";
+import { TiPencil } from "react-icons/ti";
+
+import '../../common.css'
+import { Divider } from '@material-ui/core';
+
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -80,50 +50,6 @@ const useStyles = makeStyles(theme => ({
     group: {
         margin: theme.spacing(1, 0),
     },
-    button: {
-        margin: theme.spacing(1),
-        border: 'none',
-        '&:hover': {
-            background: "#E3E4E9",
-            border: 'none',
-        },
-    },
-    card: {
-        display: 'flex',
-        marginTop: '.5rem'
-    },
-    container: {
-        background: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-    },
-    btnContainer: {
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    headerContainer: {
-        background: Colors.Main,
-    },
-    crearJugadorLabel: {
-        borderBottom: `${Colors.Btn_Red} 2px solid`,
-        paddingBottom: "1rem !important",
-        marginTop: ".5rem",
-    },
-    boxContainerNuevo: {
-        background: Colors.Main,
-        marginTop: "1rem",
-    },
-    boxContainerDiaria: {
-        background: Colors.Main,
-        marginTop: "1rem",
-        paddingTop: "1rem",
-        paddingBottom: "1rem"
-    },
-    inputData: {
-        background: Colors.Input_bkg,
-    }
 }));
 
 export default function Nuevo({ ...props }) {
@@ -139,7 +65,7 @@ export default function Nuevo({ ...props }) {
     const handleChangeDiariaCostoMil = event => setDiariaCostoMil(event.target.value);
     const handleChangeDiariaComision = event => setDiariaComision(event.target.value);
     const handleChangeDiariaPremioLempirasMil = event => setDiariaPremioLempirasMil(event.target.value);
-
+    const [moneda, setMoneda] = useState("dolar");
     const [selectedDiariaType, setSelectedDiariaType] = React.useState('');
 
     const handleChangeDiariaType = event => setSelectedDiariaType(event.target.value);
@@ -244,8 +170,8 @@ export default function Nuevo({ ...props }) {
     }, []);
 
 
-    function handleChange(event) {
-        setSelectedValueMoneda(event.target.value);
+    function handleChange(val) {
+        setSelectedValueMoneda(val);
     }
 
     function onClickHandlerCreate() {
@@ -320,6 +246,10 @@ export default function Nuevo({ ...props }) {
         <div>
             <React.Fragment>
                 <ToastContainer autoClose={8000} />
+                <Container maxWidth="xs" style={{ padding: 0 }}>
+                    <AdminTitle titleLabel='Crear Vendedor P' />
+                </Container>
+
                 <Dialog
                     open={open}
                     onClose={handleClose}
@@ -341,118 +271,42 @@ export default function Nuevo({ ...props }) {
                                 </Button>
                     </DialogActions>
                 </Dialog>
-                <Container maxWidth="xs" className={classes.container}>
-                    <Grid container spacing={1}
+                <Container maxWidth="xs" className="container_crear_p">
+                    <Container maxWidth="xs" style={{ display: 'flex', height: 60, paddingLeft: 40 }}>
+                        <Grid item xs={8} className="title_info" >
+                            <div className="text">
+                                *Escoger moneda para transacciones
+                            </div>
+                        </Grid>
+                        <Grid item xs={4} className="btn_group_moneda" >
+                            <Button style={{ paddingTop: 9 }} onClick={() => handleChange('l')}>
+                                {selectedValueMoneda === 'l' ? <img src={Dollar_ON} alt="Dollar_ON" /> : <img src={Dollar_OFF} alt="Dollar_OFF" />}
+                            </Button>
+                            <Button style={{ marginLeft: -3, paddingTop: 9 }} onClick={() => handleChange('d')}>
+                                {selectedValueMoneda === 'd' ? <img src={Lempiras_ON} alt="Dollar_ON" /> : <img src={Lempiras_OFF} alt="Lempiras_OFF" />}
+                            </Button>
+                        </Grid>
+                    </Container>
+                    <Container maxWidth="xs" className="container_usersetting">
+                        <Container className="username">
+                            <Grid item className="pt-15 pb-15">
+                                <CustomText readOnly value={placeholderUser} icon={MdSettings}></CustomText>
+                            </Grid>
+                            <Grid item >
+                                <CustomText readOnly value={inputPassword} icon={TiPencil} onInput={e => setInputPassword(e.target.value)}></CustomText>
+                            </Grid>
+                            <Grid item className="pt-15 pb-15">
+                                <CustomText placeholder='Nombre' onInput={e => setInputUserName(e.target.value)}></CustomText>
+                            </Grid>
+                        </Container>
+                    </Container>
+
+                    <Grid container
                         direction="row"
                         justify="center"
                         alignItems="flex-start"
-                        className={classes.headerContainer}
+                        className="{classes.boxContainerDiaria}"
                     >
-                        <Grid item xs={6} className={classes.crearJugadorLabel}>
-                            <Typography variant="h6" gutterBottom className={"form__center-label"}>
-                                Crear Jugador P
-                                </Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <FormControlLabel
-                                value="lempiras"
-                                control={
-                                    <GreenRadio
-                                        checked={selectedValueMoneda === 'l'}
-                                        onChange={handleChange}
-                                        value="l"
-                                        name="radio-button-moneda"
-                                        inputProps={{ 'aria-label': 'L' }}
-                                    />}
-                                label="Lempiras"
-                                labelPlacement="bottom"
-                            />
-                            <FormControlLabel
-                                value="dolar"
-                                control={
-                                    <GreenRadio
-                                        checked={selectedValueMoneda === 'd'}
-                                        onChange={handleChange}
-                                        value="d"
-                                        name="radio-button-moneda"
-                                        inputProps={{ 'aria-label': 'D' }}
-                                    />}
-                                label="Dolares"
-                                labelPlacement="bottom"
-                            />
-                        </Grid>
-                    </Grid>
-
-                    <Grid container spacing={1}
-                        direction="row"
-                        justify="center"
-                        alignItems="center">
-                        <Grid item xs={12}
-                            className={classes.boxContainerNuevo}
-                        >
-                            <TextField
-                                id="user"
-                                label="Nuevo Usuario"
-                                margin="normal"
-                                InputProps={{
-                                    readOnly: true,
-                                }}
-                                variant="outlined"
-                                fullWidth
-                                required
-                                value={placeholderUser}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                className={classes.inputData}
-                            />
-
-                            <TextField
-                                id="password"
-                                label="Contraseña"
-                                placeholder="Nueva Contraseña"
-                                margin="normal"
-                                variant="outlined"
-                                InputProps={{
-                                    readOnly: true,
-                                }}
-                                fullWidth
-                                required
-                                value={inputPassword}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                onInput={e => setInputPassword(e.target.value)}
-                                className={classes.inputData}
-                            />
-
-                            <TextField
-                                id="username"
-                                label="Nombre"
-                                placeholder="Nombre"
-                                margin="normal"
-                                variant="outlined"
-                                fullWidth
-                                required
-                                value={inputUserName}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                onInput={e => setInputUserName(e.target.value)}
-                                className={classes.inputData}
-                            />
-                        </Grid>
-
-                    </Grid>
-
-                    <Grid container spacing={1}
-                        direction="row"
-                        justify="center"
-                        alignItems="flex-start"
-                        className={classes.boxContainerDiaria}
-                    >
-
-
                         <Diaria premio={diariaPremioMil}
                             onChangePremioMil={handleChangeDiariaPremioMil}
                             premioLempiras={diariaPremioLempirasMil}
@@ -466,7 +320,7 @@ export default function Nuevo({ ...props }) {
                         />
                     </Grid>
 
-                    <Grid container spacing={1}
+                    <Grid container
                         direction="row"
                         justify="center"
                         alignItems="flex-start"
@@ -493,16 +347,16 @@ export default function Nuevo({ ...props }) {
 
                         />
                     </Grid>
-
-                    <Grid container spacing={1}
+                    <Divider xs={12} style={{ background: '#f4f4f4' }} />
+                    <Grid container
                         direction="row"
                         justify="center"
-                        alignItems="flex-start"
-
+                        alignItems="center"
+                        style={{ background: 'white', height: 76, position: 'fixed', bottom: 0 }}
                     >
-                        <CrearButton variant="outlined" color="primary" onClick={onClickHandlerCreate}>
-                            Crear
-                        </CrearButton>
+                        <Fab className="btn_crear" variant="extended" onClick={onClickHandlerCreate} >
+                            <span className="textP">Crear</span>
+                        </Fab>
                     </Grid>
                 </Container>
             </React.Fragment>

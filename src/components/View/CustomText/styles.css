@@ -1,0 +1,49 @@
+.container_custominput{
+  display: flex;
+  padding: 3px 10px;
+  border-radius: 18px;
+  background: white;
+  border: solid 1px lightgray;
+}
+.container_custominput:focus-within {
+  border-color: blue;
+}
+.container_custominput .icon-container{
+  position: relative;
+  color: gray;
+  caret-color: blue;
+  width: 40px;
+  height: 31px;
+  background: white;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.container_custominput .icon-container:after{
+  content: ' ';
+  width: 1px;
+  height: 26px;
+  background: lightgrey;
+  display: block;
+  position: absolute;
+  top: 4px;
+  right: 0px;
+  left: 40px;
+}
+.container_custominput .text-container{
+  display: block;
+  flex: 1;
+  padding-left: 5px;
+}
+.container_custominput .text-container input{
+  border: none;
+  width: 100%;
+  line-height: 30px;
+  padding-left: 5px;
+  caret-color: blue;
+}
+.container_custominput .text-container input:disabled{
+  background: white;
+  border: none;
+}
+
