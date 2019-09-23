@@ -137,7 +137,6 @@ const ApuestaActivaAdminDetalle = (props) => {
         const input = document.getElementById("resumen-apuesta-activa-data-admin");
         printDocument6(input, title + '-resumen-apuesta-activa-admin');
     }
-    console.log("props", props)
     return (
         <React.Fragment>
             <Container maxWidth="xs" style={{ padding: 0 }}>

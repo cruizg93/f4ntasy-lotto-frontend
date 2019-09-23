@@ -1,18 +1,22 @@
-import React, {useState, useEffect} from 'react';
-import {ToastContainer, toast} from 'react-toastify';
+import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import {makeStyles} from '@material-ui/core/styles';
-import {red, blue} from "@material-ui/core/colors/index";
+import { makeStyles } from '@material-ui/core/styles';
+import { red, blue } from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
-import {withStyles} from "@material-ui/core/styles/index";
-import {playerService} from "../../../../../service/api/player/player.service";
+import { withStyles } from "@material-ui/core/styles/index";
+import { playerService } from "../../../../../service/api/player/player.service";
 import ShowDetallesApuesta from '../../../components/Detalles/index';
-import {printDocument6} from "../../../../../_helpers/print";
+import { printDocument6 } from "../../../../../_helpers/print";
 import HeaderDescription from "../../../../HeaderDescription/index";
-import {Colors} from "../../../../../utils/__colors";
+import { Colors } from "../../../../../utils/__colors";
+
+import DetailTitle from '../../../../Admin/components/DetailTitle'
+import TopBar from '../../../../View/jugador/TopBar';
+import { Currency, FormatCurrency } from '../../../../../utils/__currency';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -45,11 +49,11 @@ const useStyles = makeStyles(theme => ({
     disableLink: {
         pointerEvents: 'none'
     },
-    containerData:{
+    containerData: {
         background: Colors.Main,
     },
-    apuestaContainer:{
-        borderRight:"#afb6b8 1px solid",
+    apuestaContainer: {
+        borderRight: "#afb6b8 1px solid",
     }
 
 }));
@@ -59,7 +63,7 @@ const ImprimirButton = withStyles({
         width: '100%',
         boxShadow: 'none',
         textTransform: 'none',
-        fontSize: 16,       
+        fontSize: 16,
         lineHeight: 1.5,
         padding: "15px 0",
         backgroundColor: Colors.Main,
@@ -83,24 +87,25 @@ const ImprimirButton = withStyles({
         },
     },
 })(Button);
-const DetallesApuesta = ({...props}) => {
+const DetallesApuesta = ({ ...props }) => {
+    console.log("props", props)
     const classes = useStyles();
-    const [title, setTitle] = useState('');   
+    const [title, setTitle] = useState('');
     const [list, setList] = useState([]);
-    const [apuestaType, setApuestaType]= useState("Diaria");
+    const [apuestaType, setApuestaType] = useState("Diaria");
     const [moneda, setMoneda] = useState(" $ ");
-    useEffect(() => { 
+    useEffect(() => {
         playerService.detalles_by_apuesta_id(props.location.state.id).then((result) => {
             setList(Array.from(result.data));
         })
-        setTitle(props.location.state.title.title);        
+        setTitle(props.location.state.title.title);
         setApuestaType(props.location.state.type);
         setMoneda(props.location.state.moneda);
     }, []);
 
     function handleOnPrint() {
         const input = document.getElementById("apuesta-activa-numeros-detalles");
-        printDocument6(input, title+'-activa-detalles');
+        printDocument6(input, title + '-activa-detalles');
     }
 
     const update = () => {
@@ -111,49 +116,57 @@ const DetallesApuesta = ({...props}) => {
     }
     return (
         <React.Fragment>
-            <HeaderDescription name={"Detalle Apuestas X"}/>
+            <DetailTitle titleLabel="Detalle" />
+            <TopBar
+                apuestaType={apuestaType}
+                hour={props.location.state.hour}
+                day={props.location.state.day}
+                total={props.location.state.total}
+                apuestaCurrency={(props.location.state.moneda === "LEMPIRAS" || props.location.state.moneda === "L") ? Currency.Lempiras : Currency.Dollar}
+                top={152}
+            />
             <Grid container
-                          spacing={1}
-                          direction="row"
-                          justify="center"
-                          className={classes.containerData}
-                    >
-                 <Grid item xs={3}
+                spacing={1}
+                direction="row"
+                justify="center"
+                className={classes.containerData}
+            >
+                <Grid item xs={3}
                     className={classes.apuestaContainer}
-                    >                     
+                >
                     <Typography variant="h5" gutterBottom>
                         {apuestaType}
                     </Typography>
-                 </Grid>
-                 <Grid item xs={8}>
+                </Grid>
+                <Grid item xs={8}>
                     <Typography variant="h5" gutterBottom
-                        style={{marginLeft: ".5rem"}}
+                        style={{ marginLeft: ".5rem" }}
                     >
                         {title}
-                    </Typography>                     
-                 </Grid>
-                 
-                 <Grid item xs={12}
+                    </Typography>
+                </Grid>
+
+                <Grid item xs={12}
                     container spacing={1}
                     direction="row"
                     justify="center"
                     alignItems="flex-start"
                     id="apuesta-activa-numeros-detalles"
-                    >
-                        <Grid item xs={12}>
-                             <Divider/>
-                        </Grid>
-                        {list.map((apuestaDetail, index) =>
-                            <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} moneda={moneda} 
-                                update={update}
+                >
+                    <Grid item xs={12}>
+                        <Divider />
+                    </Grid>
+                    {list.map((apuestaDetail, index) =>
+                        <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} moneda={moneda}
+                            update={update}
                             {...props}
-                            />
-                        )}
+                        />
+                    )}
                 </Grid>
                 <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
-                    >
+                    direction="row"
+                    justify="center"
+                >
                     <Grid item xs={12}>
                         <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                             <Typography variant="body1" gutterBottom>
@@ -163,7 +176,7 @@ const DetallesApuesta = ({...props}) => {
                     </Grid>
                 </Grid>
             </Grid>
-            
+
         </React.Fragment>
     )
 

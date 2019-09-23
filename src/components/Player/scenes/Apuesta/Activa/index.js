@@ -1,19 +1,20 @@
-import React, {useState, useEffect} from 'react';
-import {ToastContainer, toast} from 'react-toastify';
+import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import Container from '@material-ui/core/Container';
 import 'react-toastify/dist/ReactToastify.css';
-import {playerService} from "../../../../../service/api/player/player.service";
+import { playerService } from "../../../../../service/api/player/player.service";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import ApuestaActivaEntry from '../../../components/ApuestaActiva/index';
-import {makeStyles, withStyles} from "@material-ui/core/styles/index";
+import { makeStyles, withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
-import {printDocument6} from "../../../../../_helpers/print";
+import { printDocument6 } from "../../../../../_helpers/print";
 import './Activa.css'
-import {Colors} from '../../../../../utils/__colors'
-import {Currency} from '../../../../../utils/__currency'
+import { Colors } from '../../../../../utils/__colors'
+import { Currency } from '../../../../../utils/__currency'
 import Fab from '@material-ui/core/Fab';
 import TopBar from '../../../../View/jugador/TopBar'
 import ListaApuestas from '../ListaApuestas';
@@ -25,6 +26,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import AdminTitle from '../../../../Admin/components/AdminTitle_Center'
+
+import ConfirmDialog from '../../../../View/Dialog/ConfirmDialog';
+import ConfirmDialogR from '../../../../View/Dialog/ConfirmDialog_R';
+import InformationDialog from '../../../../View/Dialog/InformationDialog';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -46,61 +52,63 @@ const useStyles = makeStyles(theme => ({
     numbers: {
         paddingLeft: '.5rem'
     },
-    fixedElement:{
+    fixedElement: {
         position: 'fixed',
-        width: '100%',        
+        width: '100%',
         height: '76px',
         bottom: '0',
         left: '0',
-        backgroundColor: Colors.Main      
+        backgroundColor: Colors.Main
     },
-    apuestasContainer:{
+    apuestasContainer: {
         marginBottom: '5rem'
     },
-    buttonContainerApuestas:{
-        minWidth:"100%",
+    buttonContainerApuestas: {
+        backgroundColor: "#ffffff",
+        minWidth: "100%",
         position: "fixed",
-        display:"flex",
-        zIndex: "25",  
-        bottom:"0px",
-        justifyContent:"flex-end",
-        alignItems:"flex-end",
-        paddingTop:"0.5rem",
-        paddingBottom:"0.5rem", 
-        paddingLeft:"1rem",
-        backgroundColor:"#ffffff",
-        "& div":{
-            paddingRight:"1rem",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-        }
+        display: "flex",
+        zIndex: "25",
+        bottom: "0px",
+        height: '63px',
+        lineHeight: '63px',
+        justifyContent: "center",
+        alignItems: "center",
+        paddingLeft: "25px",
+        "& div": {
+            paddingRight: "1rem",
+            justifyContent: "center",
+            alignItems: "center",
+        },
+        borderTop: 'solid 1px #9A9A9A',
+        borderBottom: 'solid 1px #d7d3d3',
+        borderLeft: 'solid 1px #9A9A9A',
+        borderRight: 'solid 1px #9A9A9A',
+        left: '50 %',
+        transform: 'translateX(-50 %)'
     },
-    buttonDetalles:{
-        height:"1.5rem",
+    buttonDetalles: {
+        borderRadius: "15px",
+        textTransform: "none",
+        height: "37px",
+        width: '153px',
         color: "#000000",
-        backgroundColor:Colors.Jugador_Yellow,
-        width:"100% !important",
-        padding:"0px !important",
-        "& span":{
-            fontSize:"0.75rem"
-        },
+        backgroundColor: Colors.Orange,
+        fontSize: "1.2rem",
         "&:hover": {
-            backgroundColor:Colors.Jugador_Yellow,
+            backgroundColor: Colors.Orange,
         }
-
     },
-    buttonLimpiar:{
-        height:"1rem",
+    buttonLimpiar: {
+        borderRadius: "15px",
+        textTransform: "none",
+        height: "37px",
+        width: '153px',
         color: "#ffffff",
-        backgroundColor:Colors.Jugador_Red,
-        width:"100% !important",
-        padding:"0px !important",
-        "& span":{
-            fontSize:"0.5rem"
-        },
+        backgroundColor: 'red',
+        fontSize: "1.2rem",
         "&:hover": {
-            backgroundColor:Colors.Jugador_Red,
+            backgroundColor: 'red',
         }
     },
 }));
@@ -114,8 +122,8 @@ const EditarButton = withStyles({
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,        
-        color: Colors.Green,        
+        lineHeight: 1.5,
+        color: Colors.Green,
         marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
@@ -125,7 +133,7 @@ const EditarButton = withStyles({
             border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',           
+            boxShadow: 'none',
             border: 'none',
         },
         '&:focus': {
@@ -141,8 +149,8 @@ const EliminarTodoButton = withStyles({
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,        
-        color: Colors.Btn_Red,        
+        lineHeight: 1.5,
+        color: Colors.Btn_Red,
         marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
@@ -152,7 +160,7 @@ const EliminarTodoButton = withStyles({
             border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',           
+            boxShadow: 'none',
             border: 'none',
         },
         '&:focus': {
@@ -168,8 +176,8 @@ const ImprimirButton = withStyles({
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,        
-        color: Colors.Btn_Blue,        
+        lineHeight: 1.5,
+        color: Colors.Btn_Blue,
         marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
@@ -179,7 +187,7 @@ const ImprimirButton = withStyles({
             border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',           
+            boxShadow: 'none',
             border: 'none',
         },
         '&:focus': {
@@ -196,8 +204,8 @@ const DetallesButton = withStyles({
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,        
-        color: Colors.Orange,       
+        lineHeight: 1.5,
+        color: Colors.Orange,
         marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
@@ -208,14 +216,14 @@ const DetallesButton = withStyles({
         },
         '&:active': {
             boxShadow: 'none',
-            backgroundColor: Colors.Btn_Hover,            
+            backgroundColor: Colors.Btn_Hover,
         },
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
         },
     },
 })(Button);
-const ApuestaActiva = ({...props}) => {
+const ApuestaActiva = ({ ...props }) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
     const [hour, setHour] = useState('');
@@ -226,31 +234,36 @@ const ApuestaActiva = ({...props}) => {
     const [list, setList] = useState([]);
     const [disable, setDisable] = useState(true);
     const [apuestaType, setApuestaType] = useState('CHICA');
-    const [monedaType, setMonedaType]=React.useState("$");
-    const apuestaCurrency =(props.location.state.moneda==="LEMPIRAS" || props.location.state.moneda === "L")
-                            ?Currency.Lempiras
-                            :Currency.Dollar;
+    const [monedaType, setMonedaType] = React.useState("$");
+    const [sumValor, setSumValor] = React.useState(0);
+    const apuestaCurrency = (props.location.state.moneda === "LEMPIRAS" || props.location.state.moneda === "L")
+        ? Currency.Lempiras
+        : Currency.Dollar;
     const apuestaId = props.match.params.apuestaId;
 
     const mounted = useState(true);
 
-    const [open, setOpen] = useState(false);   
-    const [openEdit, setOpenEdit] = useState(false);   
-    const [openCompraChange, setOpenCompraChange] = useState(false);   
+    const [open, setOpen] = useState(false);
+    const [openEdit, setOpenEdit] = useState(false);
+    const [openCompraChange, setOpenCompraChange] = useState(false);
 
-    const [openDeleteOneDialog,setOpenDeleteOneDialog] = useState(false);
-    const [tempApuestaIndex,setTempApuestaIndex] = useState(-1);
+    const [openDeleteOneDialog, setOpenDeleteOneDialog] = useState(false);
+    const [tempApuestaIndex, setTempApuestaIndex] = useState(-1);
     function handleClickOpen() {
         setOpen(true);
     }
 
-    function handleClose() {
-        setOpen(false);      
+    function handleClose(value) {
+        if (value) {
+            handleCloseAccept()
+        } else {
+            setOpen(false);
+        }
     }
 
     function handleCloseAccept() {
         eliminarCompleto()
-        setOpen(false);      
+        setOpen(false);
     }
 
     function handleClickOpenEdit() {
@@ -258,13 +271,13 @@ const ApuestaActiva = ({...props}) => {
     }
 
     function handleCloseEdit() {
-        setOpenEdit(false);      
+        setOpenEdit(false);
     }
 
     function handleDisableClick() {
-        if(!disable){
+        if (!disable) {
             setOpenCompraChange(true);
-        }       
+        }
         setDisable(!disable);
     }
 
@@ -279,7 +292,7 @@ const ApuestaActiva = ({...props}) => {
     function submitUpdateData() {
         playerService.update_number_apuesta_activas(list, apuestaId).then((result) => {
             success_response();
-            playerService.list_apuestas_activas_details(apuestaId).then((result) => {                
+            playerService.list_apuestas_activas_details(apuestaId).then((result) => {
                 setTitle(result.data.title);
                 setHour(result.data.hour);
                 setDay(result.data.day);
@@ -291,15 +304,17 @@ const ApuestaActiva = ({...props}) => {
         });
     }
 
-    function deleteOneFunction(entryId) {       
-        list[entryId]['valor'] = 0.0;   
-        submitUpdateData();      
+    function deleteOneFunction(entryId) {
+        console.log('entrer', entryId)
+        list[entryId]['valor'] = 0.0;
+        submitUpdateData();
     }
 
-    function eliminarCompleto(){
+    function eliminarCompleto() {
         list.forEach((elem, idx) => {
-            elem['valor']= 0.0;            
+            elem['valor'] = 0.0;
         })
+        setSumValor(0)
         submitUpdateData();
     }
 
@@ -309,26 +324,26 @@ const ApuestaActiva = ({...props}) => {
         });
     }
 
-    function handleOnPrint() {        
+    function handleOnPrint() {
         const input = document.getElementById("container-apuesta-activa-data");
-        printDocument6(input, title+'-activa');
+        printDocument6(input, title + '-activa');
     }
 
-    function handleCloseCompraChangeAccept(){
+    function handleCloseCompraChangeAccept() {
         setOpenCompraChange(false);
         submitUpdateData();
         handleClickOpenEdit();
     }
 
-    function handleCloseCompraChange(){
+    function handleCloseCompraChange() {
         setOpenCompraChange(false);
     }
 
-    useEffect(() => {        
-       
+    useEffect(() => {
+
         setMonedaType(props.location.state.moneda);
-        playerService.list_apuestas_activas_details(apuestaId).then((result) => {   
-          
+        playerService.list_apuestas_activas_details(apuestaId).then((result) => {
+
             setApuestaType(result.data.type)
             setTitle(result.data.title);
             setHour(result.data.hour);
@@ -337,146 +352,118 @@ const ApuestaActiva = ({...props}) => {
             setRiesgo(parseFloat(result.data.riesgo));
             setTotal(parseFloat(result.data.total));
             setList(prev => Array.from(result.data.list));
+            setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
         })
-    },[]);
+    }, []);
+    const height = window.innerHeight - 130;
 
     return (
-        <React.Fragment>
-            <ToastContainer autoClose={8000}/>
+        <div style={{ background: 'white', minHeight: height, paddingBottom: 70 }}>
+            <ToastContainer autoClose={8000} />
+            <ConfirmDialog
+                open={open}
+                handleClose={handleClose}
+                title="Limipiar pantalla?"
+                context="Toda la información digitada se perderá"
+                icon='help'>
+            </ConfirmDialog>
             <Dialog
-                            open={openCompraChange}
-                            onClose={handleCloseCompraChange}
-                            aria-labelledby="alert-dialog-confirm-edit"
-                            aria-describedby="alert-dialog-description-confirm-edit"
-                        >
-                            <DialogTitle
-                                id="alert-dialog-confirm-edit">Cambio a la compra</DialogTitle>
-                            <DialogContent>
-                                <DialogContentText id="alert-dialog-description-confirm-edit">
-                                    {`Está seguro que quiere hacer el cambio a la compra?`}
-                                </DialogContentText>
-                            </DialogContent>
-                            <DialogActions>  
-                                <Button onClick={handleCloseCompraChange} color="primary">
-                                    Cancelar
-                                </Button>                              
-                                <Button onClick={() => {
-                                    handleCloseCompraChangeAccept();  
-                                }} color="primary" autoFocus>
-                                    Aceptar
+                open={openEdit}
+                onClose={handleCloseEdit}
+                aria-labelledby="alert-dialog-update-data"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle
+                    id="alert-dialog-update-data">Apuesta</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        {`Su cambio a la compra a sido exitoso`}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => {
+                        handleCloseEdit();
+                    }} color="primary" autoFocus>
+                        Aceptar
                                 </Button>
-                            </DialogActions>
-            </Dialog> 
-            <Dialog
-                            open={open}
-                            onClose={handleClose}
-                            aria-labelledby="alert-dialog-crear-usuario"
-                            aria-describedby="alert-dialog-description"
-                        >
-                            <DialogTitle
-                                id="alert-dialog-crear-usuario">Eliminar números</DialogTitle>
-                            <DialogContent>
-                                <DialogContentText id="alert-dialog-description">
-                                    {`Desea eliminar todos los números?`}
-                                </DialogContentText>
-                            </DialogContent>
-                            <DialogActions>  
-                                <Button onClick={handleClose} color="primary">
-                                    Cancelar
-                                </Button>                              
-                                <Button onClick={() => {
-                                    handleCloseAccept();  
-                                }} color="primary" autoFocus>
-                                    Aceptar
-                                </Button>
-                            </DialogActions>
-            </Dialog> 
-            <Dialog
-                            open={openEdit}
-                            onClose={handleCloseEdit}
-                            aria-labelledby="alert-dialog-update-data"
-                            aria-describedby="alert-dialog-description"
-                        >
-                            <DialogTitle
-                                id="alert-dialog-update-data">Apuesta</DialogTitle>
-                            <DialogContent>
-                                <DialogContentText id="alert-dialog-description">
-                                    {`Su cambio a la compra a sido exitoso`}
-                                </DialogContentText>
-                            </DialogContent>
-                            <DialogActions>                                
-                                <Button onClick={() => {
-                                    handleCloseEdit();  
-                                }} color="primary" autoFocus>
-                                    Aceptar
-                                </Button>
-                            </DialogActions>
-            </Dialog> 
-            <TopBar apuestaType={apuestaType} 
-                    hour={hour}
-                    day={day}
-                    total={total}
-                    apuestaCurrency= {apuestaCurrency}
-                    />
+                </DialogActions>
+            </Dialog>
+            <AdminTitle titleLabel="Ventas Activas" />
+            <TopBar apuestaType={apuestaType}
+                hour={hour}
+                day={day}
+                total={total}
+                apuestaCurrency={apuestaCurrency}
+                top={153}
+            />
             <Grid container spacing={0}
-                    direction="row"
-                    justify="center"
-                    alignItems="center" style={{width:"100%", marginBottom:"1.25rem",paddingTop:"2rem"}}>
-                <ListaApuestas entryList={list} removerApuesta={(apuestaIndex)=>{setTempApuestaIndex(apuestaIndex);setOpenDeleteOneDialog(true)}} 
-                        displayApuestaListIndex={false} fromApuestaActiva={true}/>
+                direction="row"
+                justify="center"
+                alignItems="center" style={{ width: "100%", marginBottom: "1.25rem", marginTop: 113, paddingTop: 4, background: 'white' }}>
+                <ListaApuestas entryList={list} removerApuesta={(apuestaIndex) => {
+                    setTempApuestaIndex(apuestaIndex); deleteOneFunction(apuestaIndex);
+                }}
+                    displayApuestaListIndex={false} fromApuestaActiva={true} />
+                <Grid item xs={12}>
+                    <Typography variant="body1" style={{ textAlign: "center", color: "#999999", marginBottom: "1.1875rem", fontSize: '18px', marginLeft: -68 }}>
+                        Total &mdash; {sumValor}
+                    </Typography>
+                </Grid>
             </Grid>
 
-            <ResumenApuestas apuestaCurrency={apuestaCurrency} 
-                    costoTotal={total} comisionTotal={comision} total={riesgo}/>
-                
+            <ResumenApuestas apuestaCurrency={apuestaCurrency}
+                costoTotal={total} comisionTotal={comision} total={riesgo}
+                style={{ height: 85 }} />
+
             <Grid container spacing={0}
-                    direction="row"
-                    justify="center"
-                    alignItems="center" > 
+                direction="row"
+                justify="center"
+                alignItems="center" >
                 <Grid item xs={12} className={classes.buttonContainerApuestas}>
-                    <Grid item xs={4}>
+                    <Grid item xs={6}>
                         <Fab variant="extended" aria-label="removeAll" className={classes.buttonLimpiar} onClick={handleClickOpen}>
-                            <MdSettingsBackupRestore className={classes.extendedIcon} />
-                                Limpiar
+                            {/* <MdSettingsBackupRestore className={classes.extendedIcon} /> */}
+                            Limpiar
                         </Fab>
                     </Grid>
-                    <Grid item xs={2}>
-                    </Grid>
                     <Grid item xs={6}>
-                        <Fab variant="extended" aria-label="buyAll" className={classes.buttonDetalles} 
+                        <Fab variant="extended" aria-label="buyAll" className={classes.buttonDetalles}
                             component={Link}
                             to={{
                                 pathname: '/usuario/apuesta/detalles',
                                 state: {
-                                    title: {title},
+                                    title: { title },
                                     id: props.match.params.apuestaId,
-                                    type : apuestaType,
-                                    moneda : monedaType,
+                                    type: apuestaType,
+                                    moneda: monedaType,
+                                    hour: hour,
+                                    day: day,
+                                    total: total
                                 }
                             }}
                         >
-                            <FaFileExcel className={classes.extendedIcon}/>
+                            {/* <FaFileExcel className={classes.extendedIcon} /> */}
                             Detalles
                         </Fab>
                     </Grid>
                 </Grid>
             </Grid>
             <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
-                  className={classes.fixedElement} style={{display:"none"}}
+                direction="row"
+                justify="center"
+                className={classes.fixedElement} style={{ display: "none" }}
             >
                 <Grid item xs={2}>
                     <EditarButton variant="outlined" color="primary" onClick={handleDisableClick}>
                         <Typography variant="body1" gutterBottom>
-                            {disable ? "Editar" : "Fijar"}                            
+                            {disable ? "Editar" : "Fijar"}
                         </Typography>
                     </EditarButton>
                 </Grid>
                 <Grid item xs={2}>
-                    <EliminarTodoButton variant="outlined" color="primary" 
-                         onClick={handleClickOpen}
-                        >
+                    <EliminarTodoButton variant="outlined" color="primary"
+                        onClick={handleClickOpen}
+                    >
                         <Typography variant="body1" gutterBottom>
                             Eliminar completo
                         </Typography>
@@ -491,52 +478,26 @@ const ApuestaActiva = ({...props}) => {
                 </Grid>
                 <Grid item xs={2}>
                     <DetallesButton variant="outlined" color="primary"
-                                    component={Link}
-                                    to={{
-                                        pathname: '/usuario/apuesta/detalles',
-                                        state: {
-                                            title: {title},
-                                            id: props.match.params.apuestaId,
-                                            type : apuestaType,
-                                            moneda : monedaType,
-                                        }
-                                    }}
+                        component={Link}
+                        to={{
+                            pathname: '/usuario/apuesta/detalles',
+                            state: {
+                                title: { title },
+                                id: props.match.params.apuestaId,
+                                type: apuestaType,
+                                moneda: monedaType,
+                            }
+                        }}
                     >
                         <Typography variant="body1" gutterBottom>
                             Detalles
                         </Typography>
-                        <Clear className={classes.rightIcon}/>
+                        <Clear className={classes.rightIcon} />
                     </DetallesButton>
                 </Grid>
 
             </Grid>
-            <Dialog
-                open={openDeleteOneDialog}
-                onClose={()=> {setOpenDeleteOneDialog(false)}}
-                aria-labelledby="alert-dialog-delete-one"
-                aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle
-                    id="alert-dialog-delete-one">Desea eliminar la apuesta al número </DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        {`Una vez eliminada la apuesta no podrá recuperarla`}
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>      
-                    <Button onClick={()=>{setOpenDeleteOneDialog(false);}} color="primary">
-                                Cancel
-                    </Button>                           
-                    <Button onClick={() => {
-                        deleteOneFunction(tempApuestaIndex);
-                        setOpenDeleteOneDialog(false);
-                        submitUpdateData();
-                    }} color="primary" autoFocus>
-                        Aceptar
-                    </Button>
-                </DialogActions>
-            </Dialog>                            
-        </React.Fragment>
+        </div>
     )
 };
 

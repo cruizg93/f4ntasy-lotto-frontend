@@ -24,7 +24,6 @@ class ConfirmDialogR extends React.Component {
 
   render() {
     const icon = this.props.icon;
-    console.log("icon", icon)
     return (
       <div className="container_rowList">
         <Grid container className="text_container" >

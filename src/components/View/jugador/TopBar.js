@@ -64,13 +64,11 @@ const TopBarStyles = makeStyles(theme => ({
         display: "flex",
         justifyContent: "center",
         alignItems: "inherit",
+        color: Colors.Jugador_Blue,
         "& p": {
             marginTop: "0px",
             marginBottom: "0px",
         },
-        " & #valorTotal": {
-            color: Colors.Jugador_Blue
-        }
     }
 }));
 
@@ -78,12 +76,13 @@ function TopBar(props) {
     const apuestaIcon = props.apuestaType === "DIARIA" ? DiariaLogo : ChicaLogo;
     const hour = (props.apuestaType === "DIARIA" ? props.hour : "12 pm")
     const classes = TopBarStyles();
+    const addTop = props.top ? props.top : 91;
     return (
         <Grid container
             display="flex"
             justify="center"
             alignItems="center"
-            className={classes.barRow} >
+            className={classes.barRow} style={{ top: addTop }}>
             <Grid item xs={3} className={classes.imageContainer}><img src={apuestaIcon} alt="apuestaLogo" /></Grid>
             <Grid item xs={5} className={classes.fechaContaier}>
                 <Grid className={classes.innerText}>
@@ -97,7 +96,7 @@ function TopBar(props) {
             </Grid>
             <Grid item xs={4}>
                 <Typography variant="body1" className={classes.totalContaier}>
-                    <p id="valorTotal">{props.apuestaCurrency.symbol}{FormatCurrency(props.apuestaCurrency, props.total)}</p>
+                    {props.apuestaCurrency.symbol}{FormatCurrency(props.apuestaCurrency, props.total)}
                 </Typography>
             </Grid>
         </Grid>

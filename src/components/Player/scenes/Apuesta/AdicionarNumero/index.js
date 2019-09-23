@@ -39,7 +39,6 @@ import ConfirmDialogR from '../../../../View/Dialog/ConfirmDialog_R';
 import InformationDialog from '../../../../View/Dialog/InformationDialog';
 import './styles.css'
 
-import AdminTitle from '../../../../Admin/components/AdminTitle_Center'
 import { whileStatement } from '@babel/types';
 
 const useStyles = theme => ({
@@ -190,7 +189,6 @@ class AdicionarNumeroApuesta extends Component {
         this.apuestaCurrency = (this.props.moneda === "LEMPIRAS" || this.props.moneda === "L") ? Currency.Lempiras : Currency.Dollar;
         this.match = props.match;
 
-        this.topBarRef = React.createRef();
         this.entryInputContainerRef = React.createRef();
         this.entryNumeroInputRef = React.createRef();
         this.entryUnidadesInputRef = React.createRef();
@@ -555,8 +553,7 @@ class AdicionarNumeroApuesta extends Component {
         return (
             <div style={{ background: 'white', minHeight: height, paddingBottom: 77 }}>
                 <ToastContainer autoClose={8000} />
-                {/* <AdminTitle titleLabel="Ventas Activas" /> */}
-                <TopBar ref={this.topBarRef}
+                <TopBar
                     apuestaType={this.state.apuestaType}
                     hour={this.state.hour}
                     day={this.state.day}
@@ -643,13 +640,11 @@ class AdicionarNumeroApuesta extends Component {
                         <Grid item xs={12} className={this.classes.buttonContainerApuestas}>
                             <Grid item xs={4}>
                                 <Button variant="contained" className={this.classes.buttonLimpiar} onClick={() => this.handleClickOpenRemoveAll()}>
-                                    {/* <MdSettingsBackupRestore className={this.classes.extendedIcon} /> */}
                                     Limpiar
                                 </Button>
                             </Grid>
                             <Grid item xs={4}>
                                 <Button variant="contained" className={this.classes.buttonComprar} onClick={() => this.handleClickOpenComprar()}>
-                                    {/* <FaShoppingCart className={this.classes.extendedIcon} /> */}
                                     Comprar
                                 </Button>
                             </Grid>

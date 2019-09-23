@@ -56,7 +56,6 @@ class Jugador extends Component {
 
     componentDidMount() {
         adminService.list_players_details().then((result) => {
-            console.log('jagadorList', Array.from(result.data))
             this.setState({
                 jugadorList: Array.from(result.data)
             });

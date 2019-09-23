@@ -17,7 +17,6 @@ class ListaApuestas extends React.Component {
             index: 0,
             isIndexDisplay: props.displayApuestaListIndex === undefined ? true : props.displayApuestaListIndex
         }
-        console.log("sdfsdfs", props)
     }
 
     handleClickOpen = (index) => {
@@ -42,10 +41,8 @@ class ListaApuestas extends React.Component {
     }
 
     componentDidUpdate() {
-        var ele = document.querySelector('.slide:first-child')
-        console.log('sfsf', this.props.isAgregar)
+        var ele = document.querySelector('.slideSelect:first-child')
         if (ele) {
-            console.log('sfsf', this.props.isAgregar)
             if (this.props.isAgregar) {
                 setTimeout(() => {
                     ele.classList.remove('slide')
@@ -65,7 +62,7 @@ class ListaApuestas extends React.Component {
                 <List className="apuestaList">
                     {this.props.entryList
                         .map((element, index) =>
-                            <ListItem key={index} className="apuesta slide" alignItems="center">
+                            <ListItem key={index} className="apuesta slideSelect" alignItems="center">
                                 <div style={{ display: this.state.isIndexDisplay ? "flex" : "none" }}>
                                     <ListItemText className="apuestaIndex" primary={this.props.entryList.length - index} />
                                 </div>
