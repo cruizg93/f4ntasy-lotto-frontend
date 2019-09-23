@@ -17,6 +17,7 @@ class ListaApuestas extends React.Component {
             index: 0,
             isIndexDisplay: props.displayApuestaListIndex === undefined ? true : props.displayApuestaListIndex
         }
+        console.log("sdfsdfs", props)
     }
 
     handleClickOpen = (index) => {
@@ -42,13 +43,17 @@ class ListaApuestas extends React.Component {
 
     componentDidUpdate() {
         var ele = document.querySelector('.slide:first-child')
+        console.log('sfsf', this.props.isAgregar)
         if (ele) {
-            setTimeout(() => {
-                ele.classList.remove('slide')
-            }, 10);
-            setTimeout(() => {
-                ele.classList.add('slide')
-            }, 30);
+            console.log('sfsf', this.props.isAgregar)
+            if (this.props.isAgregar) {
+                setTimeout(() => {
+                    ele.classList.remove('slide')
+                }, 10);
+                setTimeout(() => {
+                    ele.classList.add('slide')
+                }, 30);
+            }
         }
     }
 
@@ -71,7 +76,7 @@ class ListaApuestas extends React.Component {
                                     } />
                                 <ListItemText className="apuestaValues"
                                     primary={<Grid container>
-                                        <Grid item style={{ textAlign: "center", width: '100%' }}>{element.current === undefined ? element.valor : element.current}</Grid>
+                                        <Grid item style={{ textAlign: "left", width: '100%', paddingLeft: 15 }}>{element.current === undefined ? element.valor : element.current}</Grid>
                                     </Grid>
                                     } />
                                 <ListItemIcon style={{ minWidth: "auto" }}>

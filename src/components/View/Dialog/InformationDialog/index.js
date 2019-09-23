@@ -40,9 +40,9 @@ class InformationDialog extends React.Component {
               <div className="dialogTitle">
                 <div style={{ textAlign: 'center' }}>
                   {
-                    icon === 'help' ?
-                      <IoIosHelpCircleOutline size={60} style={{ color: "#ff3333", paddingTop: '15px' }} /> :
-                      <IoIosCheckmarkCircleOutline size={45} style={{ color: "#009933" }} />
+                    icon === 'info' ?
+                      <GoVerified size={60} style={{ color: "#009933", paddingTop: '15px', paddingBottom: 13 }} /> :
+                      <IoIosCheckmarkCircleOutline size={60} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 13 }} />
                   }
                 </div>
                 <div style={{ fontSize: '25px' }}>
@@ -51,7 +51,7 @@ class InformationDialog extends React.Component {
               </div>
             </DialogTitle>
             <DialogContent>
-              <DialogContentText id="alert-dialog-description" style={{ fontSize: '18px', height: '120px' }}>
+              <DialogContentText id="alert-dialog-description" style={{ fontSize: '18px', height: '75px' }}>
                 {this.props.context}
               </DialogContentText>
             </DialogContent>
