@@ -74,10 +74,13 @@ const useStyles = theme => ({
     extendedIcon: {
 
     },
+    ResumenApuestas: {
+        height: 85,
+    },
     buttonContainerApuestas: {
         backgroundColor: "#ffffff",
         minWidth: "100%",
-        position: "fixed",
+        position: "absolute",
         display: "flex",
         zIndex: "25",
         bottom: "0px",
@@ -548,10 +551,8 @@ class AdicionarNumeroApuesta extends Component {
 
         })(TextField);
 
-        const height = window.innerHeight - 220;
-
         return (
-            <div style={{ background: 'white', minHeight: height, paddingBottom: 77 }}>
+            <div style={{ background: 'white' }}>
                 <ToastContainer autoClose={8000} />
                 <TopBar
                     apuestaType={this.state.apuestaType}
@@ -626,11 +627,12 @@ class AdicionarNumeroApuesta extends Component {
                         </Grid>
                     </Grid>
                 </Container>
-
-                <ResumenApuestas apuestaCurrency={this.apuestaCurrency}
-                    costoTotal={this.state.costoTotal} comisionTotal={this.state.comisionTotal} total={this.state.total}
-                    style={{ height: 85 }}
-                />
+                <div className={this.classes.ResumenApuestas}>
+                    <ResumenApuestas apuestaCurrency={this.apuestaCurrency}
+                        costoTotal={this.state.costoTotal} comisionTotal={this.state.comisionTotal} total={this.state.total}
+                        paddingBottom={76}
+                    />
+                </div>
                 <Container maxWidth="xs" >
                     <Grid container spacing={0}
                         direction="row"

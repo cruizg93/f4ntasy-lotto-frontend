@@ -1,3 +1,7 @@
+.app-container{
+  height: calc(100vh);
+  overflow-y: scroll;
+}
 .app-main{
   padding-left: 0px !important;
   padding-right: 0px !important;
