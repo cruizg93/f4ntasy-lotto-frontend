@@ -29,9 +29,9 @@ const useStyles = makeStyles({
 
 function ResumenApuestas(props) {
     const classes = useStyles();
-
+    const paddingBottom = props.paddingBottom ? props.paddingBottom : 0;
     return (
-        <Grid container className={classes.resumenCompraContainer}>
+        <Grid container className={classes.resumenCompraContainer} style={{ paddingBottom: paddingBottom }}>
             <Grid item xs={3}></Grid>
             <Grid item xs={3} style={{ margingBottom: "0.65rem" }}>
                 <Typography variant="body1" className={classes.resumenCompraText} >
