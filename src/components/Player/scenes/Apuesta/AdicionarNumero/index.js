@@ -555,7 +555,7 @@ class AdicionarNumeroApuesta extends Component {
         return (
             <div style={{ background: 'white', minHeight: height, paddingBottom: 77 }}>
                 <ToastContainer autoClose={8000} />
-                <AdminTitle titleLabel="Ventas Activas" />
+                {/* <AdminTitle titleLabel="Ventas Activas" /> */}
                 <TopBar ref={this.topBarRef}
                     apuestaType={this.state.apuestaType}
                     hour={this.state.hour}
@@ -563,7 +563,7 @@ class AdicionarNumeroApuesta extends Component {
                     total={this.state.total}
                     apuestaCurrency={(this.props.moneda === "LEMPIRAS" || this.props.moneda === "L") ? Currency.Lempiras : Currency.Dollar}
                 />
-                <Container style={{ background: 'white', marginTop: 206 }}>
+                <Container style={{ background: 'white', marginTop: 143 }}>
                     <Grid container spacing={0}
                         display="flex"
                         justify="center"

@@ -28,7 +28,7 @@ const TopBarStyles = makeStyles(theme => ({
         position: "fixed",
         display: "flex",
         width: "100%",
-        top: "153px",
+        top: "91px",
         backgroundColor: "#f4f4f4",
         zIndex: "25",
         paddingLeft: ".5rem",
