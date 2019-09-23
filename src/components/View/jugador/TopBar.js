@@ -28,14 +28,20 @@ const TopBarStyles = makeStyles(theme => ({
         position: "fixed",
         display: "flex",
         width: "100%",
-        /*top: "3.5rem",*/
+        top: "153px",
         backgroundColor: "#f4f4f4",
         zIndex: "25",
         paddingLeft: ".5rem",
         paddingRight: ".5rem",
         maxHeight: "52px !important",
         height: "52px",
-        borderBottom: 'solid 1px lightgray'
+        borderBottom: 'solid 1px lightgray',
+        borderLeft: 'solid 1px #9A9A9A',
+        borderRight: 'solid 1px #9A9A9A',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        borderTop: '2px solid #747474',
+        maxWidth: 444
     },
     imageContainer: {
         "& img": {
@@ -77,7 +83,7 @@ function TopBar(props) {
             display="flex"
             justify="center"
             alignItems="center"
-            className={classes.barRow}>
+            className={classes.barRow} >
             <Grid item xs={3} className={classes.imageContainer}><img src={apuestaIcon} alt="apuestaLogo" /></Grid>
             <Grid item xs={5} className={classes.fechaContaier}>
                 <Grid className={classes.innerText}>

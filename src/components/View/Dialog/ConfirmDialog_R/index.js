@@ -38,11 +38,11 @@ class ConfirmDialogR extends React.Component {
           >
             <DialogTitle id="confirmation-dialog-title">
               <div className="dialogTitle">
-                <div style={{ textAlign: 'center' }}>
+                <div style={{ textAlign: 'center', paddingBottom: 13 }}>
                   {
                     icon === 'help' ?
-                      <IoIosHelpCircleOutline size={60} style={{ color: "#ff3333", paddingTop: '15px' }} /> :
-                      <IoIosCheckmarkCircleOutline size={45} style={{ color: "#009933" }} />
+                      <IoIosHelpCircleOutline size={60} style={{ color: "#ff3333", paddingTop: 15 }} /> :
+                      <IoIosCheckmarkCircleOutline size={60} style={{ color: "#009933", paddingTop: 15 }} />
                   }
                 </div>
                 <div style={{ fontSize: '25px' }}>
@@ -51,13 +51,13 @@ class ConfirmDialogR extends React.Component {
               </div>
             </DialogTitle>
             <DialogContent>
-              <DialogContentText id="alert-dialog-description" style={{ fontSize: '18px', height: '120px' }}>
+              <DialogContentText id="alert-dialog-description" style={{ fontSize: '18px', height: 70 }}>
                 {this.props.context}
               </DialogContentText>
             </DialogContent>
-            <DialogActions style={{ display: 'flex', margin: '0 auto', width: '78%' }}>
-              <Button onClick={() => this.handleCancel(false)} style={{ fontSize: '18px', color: '#5891DC' }}>Cancelar</Button>
-              <Button onClick={() => this.handleCancel(true)} style={{ fontSize: '18px', color: '#5891DC' }} autoFocus>Aceptar</Button>
+            <DialogActions style={{ margin: '0 auto', width: '100%' }}>
+              <Button onClick={() => this.handleCancel(false)} style={{ fontSize: '18px', color: '#5891DC', marginRight: 10 }}>Cancelar</Button>
+              <Button onClick={() => this.handleCancel(true)} style={{ fontSize: '18px', color: '#5891DC', marginRight: 10 }} autoFocus>Aceptar</Button>
             </DialogActions>
           </Dialog>
         </Grid>
