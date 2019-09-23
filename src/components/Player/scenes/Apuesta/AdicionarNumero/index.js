@@ -550,7 +550,7 @@ class AdicionarNumeroApuesta extends Component {
 
         })(TextField);
 
-        const height = window.innerHeight - 168;
+        const height = window.innerHeight - 220;
 
         return (
             <div style={{ background: 'white', minHeight: height, paddingBottom: 77 }}>
