@@ -51,6 +51,7 @@ const useStyles = makeStyles(theme => ({
     },
     containerData: {
         background: Colors.Main,
+        marginTop: 203
     },
     apuestaContainer: {
         borderRight: "#afb6b8 1px solid",
@@ -131,31 +132,7 @@ const DetallesApuesta = ({ ...props }) => {
                 justify="center"
                 className={classes.containerData}
             >
-                <Grid item xs={3}
-                    className={classes.apuestaContainer}
-                >
-                    <Typography variant="h5" gutterBottom>
-                        {apuestaType}
-                    </Typography>
-                </Grid>
-                <Grid item xs={8}>
-                    <Typography variant="h5" gutterBottom
-                        style={{ marginLeft: ".5rem" }}
-                    >
-                        {title}
-                    </Typography>
-                </Grid>
-
-                <Grid item xs={12}
-                    container spacing={1}
-                    direction="row"
-                    justify="center"
-                    alignItems="flex-start"
-                    id="apuesta-activa-numeros-detalles"
-                >
-                    <Grid item xs={12}>
-                        <Divider />
-                    </Grid>
+                <Grid item xs={12}>
                     {list.map((apuestaDetail, index) =>
                         <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} moneda={moneda}
                             update={update}
@@ -163,17 +140,12 @@ const DetallesApuesta = ({ ...props }) => {
                         />
                     )}
                 </Grid>
-                <Grid container spacing={1}
-                    direction="row"
-                    justify="center"
-                >
-                    <Grid item xs={12}>
-                        <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
-                            <Typography variant="body1" gutterBottom>
-                                Imprimir
+                <Grid item xs={12}>
+                    <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
+                        <Typography variant="body1" gutterBottom>
+                            Imprimir
                             </Typography>
-                        </ImprimirButton>
-                    </Grid>
+                    </ImprimirButton>
                 </Grid>
             </Grid>
 

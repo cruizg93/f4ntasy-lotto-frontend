@@ -11,10 +11,10 @@ class DetailTitle extends React.Component {
     let iconName = (this.props.iconName && this.props.iconName === 'IoIosContacts') ? 'IoIosContacts' : '';
     return (
       <Container maxWidth="xs" className="detail_header">
-        <Grid item xs={6} className="header_title">
+        <Grid item xs={7} className="header_title">
           <span>{this.props.titleLabel === undefined ? "NEED VALUE: ERROR" : this.props.titleLabel}</span>
         </Grid>
-        <Grid item xs={6} className="header_icon">
+        <Grid item xs={5} className="header_icon">
           <FaFileExcel />
         </Grid>
       </Container>
