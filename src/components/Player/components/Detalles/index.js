@@ -27,7 +27,10 @@ const useStyles = makeStyles(theme => ({
         pointerEvents: 'none'
     },
     text: {
-        fontWeight: 'bold'
+        fontSize: 18,
+        color: '#929292',
+        marginTop: 20,
+        marginBottom: 4,
     },
     close: {
         color: red[400]
@@ -53,10 +56,11 @@ const ShowDetallesApuesta = ({ title, apuestas, total, ...props }) => {
     const [apuestasData, setApuestasData] = useState([]);
     const [totalData, setTotalData] = useState(0.0);
     const [moneda, setMoneda] = useState();
-
+    const [sum, setSum] = useState(0);
     useEffect(() => {
         setTitleData(title);
         setApuestasData(Array.from(apuestas));
+        setSum(apuestas.reduce((s, row) => s + row.valor, 0));
         setTotalData(total);
         if (props.moneda)
             setMoneda((props.moneda === "LEMPIRAS" || props.moneda === " L ") ? "L" : " $ ");
@@ -78,7 +82,7 @@ const ShowDetallesApuesta = ({ title, apuestas, total, ...props }) => {
                     </Grid>
                 } */}
                 <Grid item xs={12} container justify="center">
-                    <Typography variant="body1" gutterBottom className={classes.text}>
+                    <Typography className={classes.text}>
                         {" "}{titleData}
                     </Typography>
                 </Grid>
@@ -87,15 +91,21 @@ const ShowDetallesApuesta = ({ title, apuestas, total, ...props }) => {
                         <SingleApuestaDetails key={index} {...apuesta} {...props} moneda={moneda} />
                     )}
                 </Grid>
-                <Grid item xs={6} container justify="flex-end">
-                    <Typography variant="body1" gutterBottom className={classes.text}>
-                        Total | {moneda}
-                    </Typography>
+                <Grid item xs={12} style={{ marginTop: -15 }}>
+                    <span style={{ fontSize: 20, color: '#929292', marginLeft: 100 }}>
+                        {"total:"}
+                    </span>
+                    <span style={{ fontSize: 20, color: '#929292', marginLeft: 32 }}>
+                        {sum}
+                    </span>
                 </Grid>
-                <Grid item xs={6} container justify="flex-start">
-                    <Typography id={`text-${props.index}`} variant="body1" gutterBottom className={classes.negative}>
-                        {"  "}{total.toFixed(2)}
-                    </Typography>
+                <Grid item xs={12} style={{ marginTop: -10 }}>
+                    <span style={{ fontSize: 20, color: '#929292', marginLeft: 100 }}>
+                        {"costo:"}
+                    </span>
+                    <span style={{ fontSize: 20, color: '#4F83C8', marginLeft: 18 }}>
+                        {moneda}{'\u00AD'}{'\u00AD'}{total.toFixed(2)}
+                    </span>
                 </Grid>
                 <Grid item xs={12}>
                     <Divider />

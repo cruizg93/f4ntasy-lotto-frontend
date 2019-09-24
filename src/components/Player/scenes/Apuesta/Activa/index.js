@@ -65,20 +65,19 @@ const useStyles = makeStyles(theme => ({
     },
     buttonContainerApuestas: {
         backgroundColor: "#ffffff",
-        minWidth: "100%",
-        position: "absolute",
+        maxWidth: 444,
+        position: "fixed",
         zIndex: "25",
-        bottom: "0px",
+        bottom: 8,
         height: '63px',
         lineHeight: '63px',
         justifyContent: "center",
         textAlign: "center",
         borderTop: 'solid 1px #9A9A9A',
-        borderBottom: 'solid 1px #d7d3d3',
         borderLeft: 'solid 1px #9A9A9A',
         borderRight: 'solid 1px #9A9A9A',
-        left: '50 %',
-        transform: 'translateX(-50 %)'
+        left: '50%',
+        transform: 'translateX(-50%)'
     },
     buttonDetalles: {
         borderRadius: "15px",
@@ -240,7 +239,7 @@ const ApuestaActiva = ({ ...props }) => {
     }, []);
 
     return (
-        <div style={{ background: 'white', marginBottom: 70 }}>
+        <div style={{ background: 'white', paddingTop: 112, paddingBottom: 68 }}>
             <ToastContainer autoClose={8000} />
             <ConfirmDialog
                 open={open}
@@ -281,15 +280,18 @@ const ApuestaActiva = ({ ...props }) => {
             <Grid container spacing={0}
                 direction="row"
                 justify="center"
-                alignItems="center" style={{ width: "100%", marginBottom: "1.25rem", marginTop: 113, paddingTop: 4, background: 'white' }}>
+                alignItems="center" style={{ width: "100%", paddingTop: 4 }}>
                 <ListaApuestas entryList={list} removerApuesta={(apuestaIndex) => {
                     setTempApuestaIndex(apuestaIndex); deleteOneFunction(apuestaIndex);
                 }}
                     displayApuestaListIndex={false} fromApuestaActiva={true} />
-                <Grid item xs={12}>
-                    <Typography variant="body1" style={{ textAlign: "center", color: "#999999", marginBottom: "1.1875rem", fontSize: '18px', marginLeft: -68 }}>
-                        Total &mdash; {sumValor}
-                    </Typography>
+                <Grid item xs={12} style={{ paddingBottom: 10 }}>
+                    <span style={{ textAlign: "center", color: "#999999", fontSize: '18px', marginLeft: 94 }}>
+                        Total:
+                    </span>
+                    <span style={{ textAlign: "center", color: "#999999", fontSize: '18px', marginLeft: 44 }}>
+                        {sumValor}
+                    </span>
                 </Grid>
             </Grid>
 
