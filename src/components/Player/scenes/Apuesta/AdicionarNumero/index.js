@@ -561,7 +561,7 @@ class AdicionarNumeroApuesta extends Component {
                     total={this.state.total}
                     apuestaCurrency={(this.props.moneda === "LEMPIRAS" || this.props.moneda === "L") ? Currency.Lempiras : Currency.Dollar}
                 />
-                <Container style={{ background: 'white', marginTop: 143 }}>
+                <Container style={{ background: 'white', marginTop: 52 }}>
                     <Grid container spacing={0}
                         display="flex"
                         justify="center"
