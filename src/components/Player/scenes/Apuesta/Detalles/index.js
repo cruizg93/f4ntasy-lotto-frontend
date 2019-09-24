@@ -15,7 +15,7 @@ import HeaderDescription from "../../../../HeaderDescription/index";
 import { Colors } from "../../../../../utils/__colors";
 
 import DetailTitle from '../../../../Admin/components/DetailTitle'
-import TopBar from '../../../../View/jugador/TopBar';
+import TopBar from '../../../../View/jugador/TopBarDetails';
 import { Currency, FormatCurrency } from '../../../../../utils/__currency';
 
 const useStyles = makeStyles(theme => ({
@@ -48,10 +48,6 @@ const useStyles = makeStyles(theme => ({
     },
     disableLink: {
         pointerEvents: 'none'
-    },
-    containerData: {
-        background: Colors.Main,
-        marginTop: 203
     },
     apuestaContainer: {
         borderRight: "#afb6b8 1px solid",
@@ -116,20 +112,18 @@ const DetallesApuesta = ({ ...props }) => {
         })
     }
     return (
-        <React.Fragment>
+        <div style={{ background: 'white', paddingTop: 112, paddingBottom: 68 }}>
             <DetailTitle titleLabel="Detalle" />
             <TopBar
                 apuestaType={apuestaType}
                 hour={props.location.state.hour}
                 day={props.location.state.day}
-                total={props.location.state.total}
-                apuestaCurrency={(props.location.state.moneda === "LEMPIRAS" || props.location.state.moneda === "L") ? Currency.Lempiras : Currency.Dollar}
                 top={152}
             />
             <Grid container
                 direction="row"
                 justify="center"
-                className={classes.containerData}
+                style={{ background: 'white' }}
             >
                 <Grid item xs={12}>
                     {list.map((apuestaDetail, index) =>
@@ -148,7 +142,7 @@ const DetallesApuesta = ({ ...props }) => {
                 </Grid>
             </Grid>
 
-        </React.Fragment>
+        </div>
     )
 
 };
