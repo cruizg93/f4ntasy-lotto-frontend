@@ -30,16 +30,6 @@ class Login extends Component {
         }
         const { dispatch } = this.props;
         dispatch(userActions.login(this.state, this.props.history))
-        // authenticationService.login(this.state.username, this.state.password)
-        //     .then(
-        //         user => {
-        //             const { from } = this.props.location.state || { from: { pathname: "/" } };
-        //             this.props.history.push(from);
-        //         },
-        //         error => {
-        //         }
-        //     );
-
     };
 
     onChange = e => {

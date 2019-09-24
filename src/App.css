@@ -1,7 +1,7 @@
 .app-container{
   height: 100vh;
-  overflow-y: scroll;
   scrollbar-width: none;
+  background: #f4f4f4;
 }
 .app-main{
   padding-left: 0px !important;

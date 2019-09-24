@@ -13,6 +13,8 @@ import ShowDetallesApuesta from '../../../components/Detalles/index';
 import { printDocument6 } from "../../../../../_helpers/print";
 import HeaderDescription from "../../../../HeaderDescription/index";
 import { Colors } from "../../../../../utils/__colors";
+import { LocalPrintshop } from "@material-ui/icons";
+import Fab from '@material-ui/core/Fab';
 
 import DetailTitle from '../../../../Admin/components/DetailTitle'
 import TopBar from '../../../../View/jugador/TopBarDetails';
@@ -134,6 +136,10 @@ const DetallesApuesta = ({ ...props }) => {
                     )}
                 </Grid>
                 <Grid item xs={12}>
+                    <Fab className="localPrintshop" variant="extended" onClick={handleOnPrint} >
+                        <LocalPrintshop className="iconP" />
+                        <span className="textP">Imprimir</span>
+                    </Fab>
                     <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
                         <Typography variant="body1" gutterBottom>
                             Imprimir

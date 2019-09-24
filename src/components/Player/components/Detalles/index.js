@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
         pointerEvents: 'none'
     },
     containerData: {
-        background: Colors.Main,
+        // background: Colors.Main,
     },
     apuestaContainer: {
         borderRight: "#afb6b8 1px solid",
