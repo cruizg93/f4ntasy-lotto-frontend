@@ -127,7 +127,6 @@ const DetallesApuesta = ({ ...props }) => {
                 top={152}
             />
             <Grid container
-                spacing={1}
                 direction="row"
                 justify="center"
                 className={classes.containerData}

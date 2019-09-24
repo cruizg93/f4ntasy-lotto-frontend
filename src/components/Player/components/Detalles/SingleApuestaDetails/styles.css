@@ -1,15 +1,35 @@
 .singleApuestaDetails{
   width: 100%;
+  display: flex;
+  color: #929292;
+  font-size: 23px;
+  padding-bottom: 14px;
 }
 .singleApuestaDetails .textNumber{
-
+  width: 60px;
+  height: 40px;
+  border: solid 1px lightgray;
+  border-radius: 14px;
+  margin-left: 85px;
+  line-height: 40px;
 }
 .singleApuestaDetails .textNumber p{
-
+  margin-left: 16px;
 }
 .singleApuestaDetails .textValue{
-
+  width: 118px;
+  height: 40px;
+  border: solid 1px lightgray;
+  border-radius: 14px;
+  border-radius: 14px;
+  margin-left: 15px;
+  line-height: 40px;
 }
 .singleApuestaDetails .textValue p{
-
+  margin-left: 16px;
+}
+.singleApuestaDetails .removeIcon{
+  margin-left: 16px;
+  font-size: 16px;
+  line-height: 40px;
 }
