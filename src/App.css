@@ -1,5 +1,5 @@
 .app-container{
-  height: calc(100vh);
+  height: 100vh;
   overflow-y: scroll;
 }
 .app-main{

@@ -25,6 +25,7 @@
 .detail_header .header_title{
   text-align: end;
   padding-right: 5px;
+  margin-left: -10px;
 }
 
 .detail_header .header_icon{

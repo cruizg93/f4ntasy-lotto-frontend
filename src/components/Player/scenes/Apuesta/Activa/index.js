@@ -66,20 +66,13 @@ const useStyles = makeStyles(theme => ({
     buttonContainerApuestas: {
         backgroundColor: "#ffffff",
         minWidth: "100%",
-        position: "fixed",
-        display: "flex",
+        position: "absolute",
         zIndex: "25",
         bottom: "0px",
         height: '63px',
         lineHeight: '63px',
         justifyContent: "center",
-        alignItems: "center",
-        paddingLeft: "25px",
-        "& div": {
-            paddingRight: "1rem",
-            justifyContent: "center",
-            alignItems: "center",
-        },
+        textAlign: "center",
         borderTop: 'solid 1px #9A9A9A',
         borderBottom: 'solid 1px #d7d3d3',
         borderLeft: 'solid 1px #9A9A9A',
@@ -113,116 +106,6 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-
-const EditarButton = withStyles({
-    root: {
-        width: '100px',
-        height: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        color: Colors.Green,
-        marginBottom: '1.5rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        border: 'none',
-        '&:hover': {
-            backgroundColor: Colors.Btn_Hover,
-            border: 'none',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            border: 'none',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-const EliminarTodoButton = withStyles({
-    root: {
-        width: '100px',
-        height: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        color: Colors.Btn_Red,
-        marginBottom: '1.5rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        border: 'none',
-        '&:hover': {
-            backgroundColor: Colors.Btn_Hover,
-            border: 'none',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            border: 'none',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-const ImprimirButton = withStyles({
-    root: {
-        width: '100px',
-        height: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        color: Colors.Btn_Blue,
-        marginBottom: '1.5rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        border: 'none',
-        '&:hover': {
-            backgroundColor: Colors.Btn_Hover,
-            border: 'none',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            border: 'none',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-
-const DetallesButton = withStyles({
-    root: {
-        width: '100px',
-        height: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        color: Colors.Orange,
-        marginBottom: '1.5rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        border: 'none',
-        '&:hover': {
-            backgroundColor: Colors.Btn_Hover,
-            border: 'none',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: Colors.Btn_Hover,
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 const ApuestaActiva = ({ ...props }) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
@@ -355,10 +238,9 @@ const ApuestaActiva = ({ ...props }) => {
             setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
         })
     }, []);
-    const height = window.innerHeight - 130;
 
     return (
-        <div style={{ background: 'white', minHeight: height, paddingBottom: 70 }}>
+        <div style={{ background: 'white', marginBottom: 70 }}>
             <ToastContainer autoClose={8000} />
             <ConfirmDialog
                 open={open}
@@ -418,66 +300,14 @@ const ApuestaActiva = ({ ...props }) => {
             <Grid container spacing={0}
                 direction="row"
                 justify="center"
-                alignItems="center" >
-                <Grid item xs={12} className={classes.buttonContainerApuestas}>
-                    <Grid item xs={6}>
-                        <Fab variant="extended" aria-label="removeAll" className={classes.buttonLimpiar} onClick={handleClickOpen}>
-                            {/* <MdSettingsBackupRestore className={classes.extendedIcon} /> */}
-                            Limpiar
+                alignItems="center" className={classes.buttonContainerApuestas} >
+                <Grid item xs={6}>
+                    <Fab variant="extended" aria-label="removeAll" className={classes.buttonLimpiar} onClick={handleClickOpen}>
+                        Limpiar
                         </Fab>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Fab variant="extended" aria-label="buyAll" className={classes.buttonDetalles}
-                            component={Link}
-                            to={{
-                                pathname: '/usuario/apuesta/detalles',
-                                state: {
-                                    title: { title },
-                                    id: props.match.params.apuestaId,
-                                    type: apuestaType,
-                                    moneda: monedaType,
-                                    hour: hour,
-                                    day: day,
-                                    total: total
-                                }
-                            }}
-                        >
-                            {/* <FaFileExcel className={classes.extendedIcon} /> */}
-                            Detalles
-                        </Fab>
-                    </Grid>
                 </Grid>
-            </Grid>
-            <Grid container spacing={1}
-                direction="row"
-                justify="center"
-                className={classes.fixedElement} style={{ display: "none" }}
-            >
-                <Grid item xs={2}>
-                    <EditarButton variant="outlined" color="primary" onClick={handleDisableClick}>
-                        <Typography variant="body1" gutterBottom>
-                            {disable ? "Editar" : "Fijar"}
-                        </Typography>
-                    </EditarButton>
-                </Grid>
-                <Grid item xs={2}>
-                    <EliminarTodoButton variant="outlined" color="primary"
-                        onClick={handleClickOpen}
-                    >
-                        <Typography variant="body1" gutterBottom>
-                            Eliminar completo
-                        </Typography>
-                    </EliminarTodoButton>
-                </Grid>
-                <Grid item xs={2}>
-                    <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
-                        <Typography variant="body1" gutterBottom>
-                            Imprimir
-                        </Typography>
-                    </ImprimirButton>
-                </Grid>
-                <Grid item xs={2}>
-                    <DetallesButton variant="outlined" color="primary"
+                <Grid item xs={6}>
+                    <Fab variant="extended" aria-label="buyAll" className={classes.buttonDetalles}
                         component={Link}
                         to={{
                             pathname: '/usuario/apuesta/detalles',
@@ -486,16 +316,15 @@ const ApuestaActiva = ({ ...props }) => {
                                 id: props.match.params.apuestaId,
                                 type: apuestaType,
                                 moneda: monedaType,
+                                hour: hour,
+                                day: day,
+                                total: total
                             }
                         }}
                     >
-                        <Typography variant="body1" gutterBottom>
-                            Detalles
-                        </Typography>
-                        <Clear className={classes.rightIcon} />
-                    </DetallesButton>
+                        Detalles X
+                    </Fab>
                 </Grid>
-
             </Grid>
         </div>
     )
