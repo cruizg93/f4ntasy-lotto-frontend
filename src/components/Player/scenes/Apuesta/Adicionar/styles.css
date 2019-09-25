@@ -1,3 +1,11 @@
 .player_resumen_ventas_generales{
   padding-top: 60px;
 }
+.player_resumen_ventas_generales .container_summary{
+  border-bottom: none !important;
+}
+.player_resumen_ventas_generales .empty_border{
+  height: 38px;
+  width: 100%;
+  border-top: solid 1px #dbdcdd;
+}
