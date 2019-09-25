@@ -30,9 +30,10 @@ const useStyles = makeStyles({
 function ResumenApuestas(props) {
     const classes = useStyles();
     const paddingBottom = props.paddingBottom ? props.paddingBottom : 0;
+    const marginL = props.marginL ? props.marginL : 0;
     return (
         <Grid container className={classes.resumenCompraContainer} style={{ marginBottom: paddingBottom }}>
-            <Grid item xs={3}></Grid>
+            <Grid item xs={3} style={{ marginLeft: marginL }}></Grid>
             <Grid item xs={3} style={{ margingBottom: "0.65rem" }}>
                 <Typography variant="body1" className={classes.resumenCompraText} >
                     Costo:
@@ -43,7 +44,7 @@ function ResumenApuestas(props) {
                     {props.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(props.apuestaCurrency, props.costoTotal)}
                 </Typography>
             </Grid>
-            <Grid item xs={3}></Grid>
+            <Grid item xs={3} style={{ marginLeft: marginL }}></Grid>
             <Grid item xs={3}>
                 <Typography variant="body1" className={classes.resumenCompraText}>
                     Comision:
@@ -54,7 +55,7 @@ function ResumenApuestas(props) {
                     {props.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(props.apuestaCurrency, props.comisionTotal)}
                 </Typography>
             </Grid>
-            <Grid item xs={3}></Grid>
+            <Grid item xs={3} style={{ marginLeft: marginL }}></Grid>
             <Grid item xs={3}>
                 <Typography variant="body1" className={classes.resumenCompraText}>
                     Total:
