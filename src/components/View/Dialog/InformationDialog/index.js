@@ -50,7 +50,7 @@ class InformationDialog extends React.Component {
               </div>
             </DialogTitle>
             <DialogContent>
-              <DialogContentText id="alert-dialog-description" style={{ fontSize: '18px', height: '75px' }}>
+              <DialogContentText id="alert-dialog-description" style={{ fontSize: '18px', height: '90px' }}>
                 {this.props.context}
               </DialogContentText>
             </DialogContent>

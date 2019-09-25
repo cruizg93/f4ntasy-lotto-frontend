@@ -96,7 +96,7 @@ function TopBar(props) {
             </Grid>
             <Grid item xs={4}>
                 <Typography variant="body1" className={classes.totalContaier}>
-                    {props.apuestaCurrency.symbol}{FormatCurrency(props.apuestaCurrency, props.total)}
+                    {props.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(props.apuestaCurrency, props.total)}
                 </Typography>
             </Grid>
         </Grid>

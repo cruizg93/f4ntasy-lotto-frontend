@@ -126,7 +126,8 @@ class AdicionarNumeroApuesta extends Component {
             openComprar: false,
             openComprarInfo: false,
             isAgregar: false,
-            showAddBtn: false
+            showAddBtn: false,
+            numVal: ''
         }
         this.apuestaCurrency = (this.props.moneda === "LEMPIRAS" || this.props.moneda === "L") ? Currency.Lempiras : Currency.Dollar;
         this.match = props.match;
@@ -508,7 +509,7 @@ class AdicionarNumeroApuesta extends Component {
             });
         }
 
-        const ApuestaInput = withStyles({
+        const ApuestaInput1 = withStyles({
             root: {
                 fontSize: "1.25rem",
                 height: "100%",
@@ -547,7 +548,7 @@ class AdicionarNumeroApuesta extends Component {
                         style={{ padding: "20px 1.5rem 0 1.5rem" }}
                     >
                         <Grid item xs={6} style={{ textAlign: "end" }}>
-                            <ApuestaInput
+                            <ApuestaInput1
                                 inputRef={this.entryNumeroInputRef}
                                 type="tel"
                                 placeholder="Numero:"
@@ -560,10 +561,12 @@ class AdicionarNumeroApuesta extends Component {
                                 }}
                                 onInput={(e) => {
                                     const onlyNums = e.target.value.replace(/[^0-9]/g, '');
+                                    e.target.value = onlyNums;
                                     e.target.value = e.target.value.toString().slice(0, 2);
                                     if (e.target.value.length === 2) {
                                         this.entryUnidadesInputRef.current.focus();
                                     }
+
                                 }}
                                 className="numbers"
                                 onFocus={this.handleNumeroInputFocus}
@@ -571,7 +574,7 @@ class AdicionarNumeroApuesta extends Component {
                             />
                         </Grid>
                         <Grid item xs={6} style={{ textAlign: "start" }}>
-                            <ApuestaInput
+                            <ApuestaInput1
                                 inputRef={this.entryUnidadesInputRef}
                                 type="tel"
                                 placeholder="Cantidad:"
@@ -582,6 +585,11 @@ class AdicionarNumeroApuesta extends Component {
                                     disableUnderline: true,
                                 }}
                                 onInput={(e) => {
+                                    const onlyNums = e.target.value.replace(/[^0-9]/g, '');
+                                    e.target.value = onlyNums;
+                                    if (onlyNums.length > 7) {
+                                        e.target.value = e.target.value.toString().slice(0, 7);
+                                    }
                                     if (this.entryNumeroInputRef.current.value.toString().length < 2) {
                                         this.entryNumeroInputRef.current.focus();
                                         this.entryUnidadesInputRef.current.value = "";
@@ -597,11 +605,11 @@ class AdicionarNumeroApuesta extends Component {
                     <Grid container spacing={0}
                         direction="row"
                         justify="center"
-                        alignItems="center" style={{ width: "100%" }}>
+                        alignItems="center" style={{ width: "100%", marginLeft: -29 }}>
                         <ListaApuestas entryList={this.state.entryList} removerApuesta={this.removerApuesta} fromApuestaActiva={false}
                             displayApuestaListIndex={this.state.displayApuestaListIndex} isAgregar={this.state.isAgregar} />
                         <Grid item xs={12}>
-                            <Typography variant="body1" style={{ textAlign: "center", color: "#999999", marginTop: "1.1875rem", marginBottom: "1.1875rem", lineHeight: "0.85" }}>
+                            <Typography variant="body1" className="sum_text">
                                 Total &mdash; {this.state.totalCurrent}
                             </Typography>
                         </Grid>
@@ -610,7 +618,7 @@ class AdicionarNumeroApuesta extends Component {
                 <div className={this.classes.ResumenApuestas}>
                     <ResumenApuestas apuestaCurrency={this.apuestaCurrency}
                         costoTotal={this.state.costoTotal} comisionTotal={this.state.comisionTotal} total={this.state.total}
-                        paddingBottom={76}
+                        paddingBottom={100} marginL={-40}
                     />
                 </div>
                 <Container maxWidth="xs" >
@@ -655,8 +663,8 @@ class AdicionarNumeroApuesta extends Component {
                 <InformationDialog
                     open={this.state.openComprarInfo}
                     handleClose={this.handleCloseComprarInfo.bind(this)}
-                    title="Finalizar compra."
-                    context="Su compra sera procesada en este momento."
+                    title="Compra exitosa."
+                    context="Su compra fue exitosa, puede ver los detalles en la pantalla de compras activas."
                     icon='info'>
                 </InformationDialog>
                 <div className='clearfix'></div>

@@ -1,9 +1,11 @@
 .login-page {
   /* width: 360px; */
-  padding: 1% 0 0;
+  padding: 0;
   margin: auto;
   width: 100% !important;
   height: 100%;
+  position: fixed;
+  top: 18.5vh;
   /*background-image: url("assets/background.png");*/
 }
 
