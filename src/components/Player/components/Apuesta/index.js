@@ -16,77 +16,6 @@ import imgRed from '../../../View/assets/RED_PNG.png';
 import imgPurple from '../../../View/assets/Purple_PNG.png';
 import imgGreen from '../../../View/assets/Green_PNG.png';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        padding: theme.spacing(3, 2),
-    },
-    paper: {
-        textDecoration: 'none',
-        justifyContent: 'center',
-        flexDirection: 'row',
-        alignItems: 'center',
-        background: Colors.Main,
-        borderRadius: "0",
-
-    },
-    component: {
-        textDecoration: 'none',
-    },
-    componentDisable: {
-        textDecoration: 'none',
-        pointerEvents: 'none'
-    },
-    text: {
-        fontWeight: 'bold'
-    },
-    textLabel: {
-        display: 'flex',
-        margin: '.5rem'
-    },
-    close: {
-        color: red[400]
-    },
-    open: {
-        color: blue[300]
-    },
-    disableLink: {
-        pointerEvents: 'none'
-    },
-    typeContainer: {
-        textDecoration: "none",
-        justifyContent: 'center',
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: "1rem 10px 10px .5rem",
-        borderRight: "#afb6b8 1px solid",
-    },
-    titleContainer: {
-        textDecoration: "none",
-        justifyContent: 'center',
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: "1rem 0 10px .5rem",
-    },
-    textValueLabel: {
-        display: 'flex',
-        marginLeft: '.5rem',
-        fontWeight: 'bold',
-    },
-    sorteoTextContainer: {
-        textDecoration: "none",
-        justifyContent: 'center',
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingRight: ".5rem",
-        fontWeight: 'bold'
-    },
-    textSorteoAbierto: {
-        color: Colors.Green,
-    },
-
-}));
-
-// const ApuestaData = ({ match: { url }, id, nombre, total, comision, riesgo, estado, moneda, ...props }) => {
 class ApuestaData extends React.Component {
     constructor(props) {
         super(props)
@@ -102,7 +31,6 @@ class ApuestaData extends React.Component {
         let day = this.props.apuesta.day.toLowerCase()
         const moneySymbol = this.props.apuesta.moneda.toLowerCase() === 'dolar' ? '$' : 'L';
 
-        console.log("props", this.props)
         return (
             <>
                 <Grid container spacing={0} className="container_jugadorDetailesEntry"
@@ -110,7 +38,7 @@ class ApuestaData extends React.Component {
                     justify="center"
                 >
                     <Grid item xs={4} className="logo_icon"
-                        component={this.props.apuesta.total === 0 ? 'div' : Link}
+                        component={Link}
                         to={
                             {
                                 pathname: `/usuario/apuestas/${this.props.apuesta.id}`,
@@ -125,10 +53,9 @@ class ApuestaData extends React.Component {
                     <Grid container item xs={8} direction="column">
                         <Grid item justify="flex-start" className="headerLabelSorteoHour">
                             <span className="time">{this.props.apuesta.type === "DIARIA" ? hour : "12 pm"}{'\u00A0'}-{'\u00A0'}{'\u00A0'}</span>
-                            {/* <span className="line">{'\u00A0'}-{'\u00A0'}{'\u00A0'}</span> */}
                             <span className="day">{day}</span>
                         </Grid>
-                        <Grid container className="valuesContainer">
+                        <Grid container className="valuesContainer" style={{ paddingLeft: 6 }}>
                             <Grid item xs={2} className="img_open_close">
                                 {
                                     this.props.apuesta.estado === 'ABIERTA' ? <
@@ -153,7 +80,7 @@ class ApuestaData extends React.Component {
                                     }
                                 }
                             >
-                                <Typography variant="body1" style={{ marginLeft: 7 }} >
+                                <Typography style={{ marginLeft: 7, fontSize: '1.05rem' }} >
                                     {moneySymbol}{'\u00A0'}{FormatCurrencySymbol(moneySymbol, this.props.apuesta.total.toFixed(2))}
                                 </Typography>
                             </Grid>

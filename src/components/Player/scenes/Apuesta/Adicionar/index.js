@@ -44,6 +44,9 @@ class AdicionarApuesta extends React.Component {
                     direction="row"
                     justify="center"
                 >
+                    <Grid item xs={12} className="empty_border">
+
+                    </Grid>
                     {this.state.entry.map((apuesta, index) =>
                         <ApuestaData key={index} apuesta={apuesta} index={index} {...this.props} />
                     )}
