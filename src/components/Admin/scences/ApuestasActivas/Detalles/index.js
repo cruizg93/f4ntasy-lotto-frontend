@@ -135,6 +135,7 @@ const ApuestaActivaAdminDetalle = (props) => {
 
     function handleOnPrint() {
         const input = document.getElementById("resumen-apuesta-activa-data-admin");
+        console.log('input', input)
         printDocument6(input, title + '-resumen-apuesta-activa-admin');
     }
     return (
@@ -161,18 +162,20 @@ const ApuestaActivaAdminDetalle = (props) => {
                         </Button>
                     </Grid>
                 </Container>
-                <div className="container_total">
-                    <RowList col_1={col} symbol={moneda === "dolar" ? '$' : 'L'} col_2={[total, comision, neta]} ></RowList>
+                <div id="resumen-apuesta-activa-data-admin">
+                    <div className="container_total">
+                        <RowList key={0} col_1={col} symbol={moneda === "dolar" ? '$' : 'L'} col_2={[total, comision, neta]} ></RowList>
+                    </div>
+                    <Grid container>
+                        <ApuestaActivaRiesgoEntry moneda={moneda} riesgoList={riesgoList} numeroMaxRiesgo={numeroMaxRiesgo} neta={neta} />
+                    </Grid>
+                    <Grid container justify="center" alignItems="center" className="container_print">
+                        <Fab className="localPrintshop_Detalle_Ventas_Generales" variant="extended" onClick={handleOnPrint} >
+                            <LocalPrintshop className="iconP" />
+                            <span className="textP">Imprimir</span>
+                        </Fab>
+                    </Grid>
                 </div>
-                <Grid container>
-                    <ApuestaActivaRiesgoEntry moneda={moneda} riesgoList={riesgoList} numeroMaxRiesgo={numeroMaxRiesgo} neta={neta} />
-                </Grid>
-                <Grid container justify="center" alignItems="center" className="container_print">
-                    <Fab className="localPrintshop_Detalle_Ventas_Generales" variant="extended" onClick={handleOnPrint} >
-                        <LocalPrintshop className="iconP" />
-                        <span className="textP">Imprimir</span>
-                    </Fab>
-                </Grid>
             </Grid>
         </React.Fragment>
     )

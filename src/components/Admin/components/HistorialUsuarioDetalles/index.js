@@ -67,20 +67,20 @@ const HistorialUsuarioDetalles = (props) => {
         <Grid container>
             <Grid item xs={12}
             >
-                <Typography variant="h5" gutterBottom className={classes.textWithBorder}>
+                <Typography variant="h5" className={classes.textWithBorder}>
                     Detalles Balance - {username}
                 </Typography>
-                <Typography variant="body1" gutterBottom className={classes.textWithBorder}>
+                <Typography variant="body1" className={classes.textWithBorder}>
                     {semana === 'current' ? "Semana en curso" : "Semana anterior"}
                     {moneda === "dolar" ? "$" : "L"}
                     - {balance}
                 </Typography>
             </Grid>
             <Grid item xs={12}>
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     {moneda === "dolar" ? "$" : "L"}
                 </Typography>
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     {balance}
                 </Typography>
             </Grid>
@@ -95,7 +95,7 @@ const HistorialUsuarioDetalles = (props) => {
                         <HistorialUsuarioDetallesEntry key={index} {...entry} id={id} username={username}
                             type={moneda} {...props} />
                     ) :
-                    <Typography variant="body1" gutterBottom className={classes.textNoDisponible}>
+                    <Typography variant="body1" className={classes.textNoDisponible}>
                         No hay resultados disponibles para esta semana
                     </Typography>
                 }

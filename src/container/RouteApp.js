@@ -64,6 +64,17 @@ class RouterApp extends React.Component {
     }
   }
 
+  setBackground = (path) => {
+    const grayColor = '#f4f4f4'
+    const whiteColor = '#ffffff'
+    if (!path) return grayColor
+    if (path.indexOf('/usuario/apuesta/detalles') === 0) return whiteColor;
+    if (path.indexOf('/usuario/apuestas/hoy/activas/') === 0) return whiteColor;
+    if (path.indexOf('/jugador/apuestas/detalles/') === 0) return whiteColor;
+    if (path.indexOf('/usuario/apuesta/detalles') === 0) return whiteColor;
+    return grayColor;
+  }
+
   render() {
     const { loginState } = this.props;
     if (window.location.pathname !== '/login') {
@@ -71,9 +82,10 @@ class RouterApp extends React.Component {
         return (<Redirect to={'/login'} />);
       }
     }
+    const background = this.setBackground(this.props.location.path)
     return (
       <>
-        <div className="app-container">
+        <div className="app-container" style={{ background: background }}>
           {
             loginState &&
             <HeaderBar />

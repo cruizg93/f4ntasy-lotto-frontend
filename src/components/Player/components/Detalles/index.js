@@ -76,7 +76,7 @@ const ShowDetallesApuesta = ({ title, apuestas, total, ...props }) => {
             >
                 {/* {props.apuestaTitle &&
                     <Grid item xs={8} className="apuestaTitle">
-                        <Typography variant="h5" gutterBottom >
+                        <Typography variant="h5"   >
                             {props.apuestaTitle}{' - '}{}
                         </Typography>
                     </Grid>
@@ -100,10 +100,10 @@ const ShowDetallesApuesta = ({ title, apuestas, total, ...props }) => {
                     </span>
                 </Grid>
                 <Grid item xs={12} style={{ marginTop: -10 }}>
-                    <span style={{ fontSize: 20, color: '#929292', marginLeft: 100 }}>
+                    <span style={{ fontSize: 20, color: '#929292', marginLeft: 94 }}>
                         {"costo:"}
                     </span>
-                    <span style={{ fontSize: 20, color: '#4F83C8', marginLeft: 18 }}>
+                    <span style={{ fontSize: 20, color: '#4F83C8', marginLeft: 24 }}>
                         {moneda}{'\u00AD'}{'\u00AD'}{total.toFixed(2)}
                     </span>
                 </Grid>

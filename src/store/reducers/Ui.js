@@ -7,7 +7,8 @@ import {
     SHOW_MESSAGE,
     TOGGLE_COLLAPSED_NAV,
     FIXED_DRAWER,
-    WINDOW_WIDTH
+    WINDOW_WIDTH,
+    BACKGROUND_COLOR
 } from '../actions/types';
 
 const INIT_STATE = {
@@ -21,12 +22,20 @@ const INIT_STATE = {
         type: 'success'
     },
     showMessage: false,
+    background: 'white'
 };
 
 
 export default (state = INIT_STATE, action) => {
 
     switch (action.type) {
+
+        case BACKGROUND_COLOR: {
+            return {
+                ...state,
+                background: action.payload
+            };
+        }
 
         case TOGGLE_COLLAPSED_NAV: {
             return {

@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import {ToastContainer, toast} from 'react-toastify';
+import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import {makeStyles} from '@material-ui/core/styles';
-import {red, blue} from "@material-ui/core/colors/index";
+import { makeStyles } from '@material-ui/core/styles';
+import { red, blue } from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
-import {withStyles} from "@material-ui/core/styles/index";
-import {playerService} from "../../../../../service/api/player/player.service";
+import { withStyles } from "@material-ui/core/styles/index";
+import { playerService } from "../../../../../service/api/player/player.service";
 import ShowDetallesApuesta from '../../../../components/Detalles/index';
 
 const useStyles = makeStyles(theme => ({
@@ -74,7 +74,7 @@ const ImprimirButton = withStyles({
     },
 })(Button);
 
-const DetallesApuestaHistorial = ({...props}) => {
+const DetallesApuestaHistorial = ({ ...props }) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
     const [id, setIdValue] = useState(0);
@@ -98,13 +98,13 @@ const DetallesApuestaHistorial = ({...props}) => {
                 justify="center"
                 alignItems="flex-start"
             >
-                <Typography variant="h5" gutterBottom>
+                <Typography variant="h5"  >
                     {title} {" @ "} {numero}
                 </Typography>
 
 
             </Grid>
-            <Divider/>
+            <Divider />
             <Grid
                 container spacing={1}
                 direction="row"
@@ -117,13 +117,13 @@ const DetallesApuestaHistorial = ({...props}) => {
                 )}
             </Grid>
             <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
+                direction="row"
+                justify="center"
             >
 
                 <Grid item xs={6}>
                     <ImprimirButton variant="outlined" color="primary">
-                        <Typography variant="body1" gutterBottom>
+                        <Typography variant="body1"  >
                             Imprimir
                         </Typography>
                     </ImprimirButton>

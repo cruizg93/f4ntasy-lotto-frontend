@@ -126,7 +126,7 @@ export default function Cambio() {
                     className={classes.headerContainer}
                 >
                     <Grid item xs={8} className={classes.setCambioLabel}>
-                        <Typography variant="h6" gutterBottom className={`${classes.headerTitle} form__left-label`}>
+                        <Typography variant="h6" className={`${classes.headerTitle} form__left-label`}>
                             Fijar tipo de Cambio
                         </Typography>
                     </Grid>
@@ -141,10 +141,10 @@ export default function Cambio() {
                     className={classes.bodyContainer}
                 >
                     <Grid item xs={12}>
-                        <Typography variant="h6" gutterBottom className={`${classes.leftMargin} form__left-label`}>
+                        <Typography variant="h6" className={`${classes.leftMargin} form__left-label`}>
                             Tipo de cambio en sistema
                         </Typography>
-                        <Typography variant="h6" gutterBottom className={`${classes.leftMargin} form__left-label`}>
+                        <Typography variant="h6" className={`${classes.leftMargin} form__left-label`}>
                             $1.00 = {currentValue} Lempiras
                         </Typography>
                         <Divider />
@@ -153,7 +153,7 @@ export default function Cambio() {
                         borderRight: "#afb6b8 1px solid",
                     }}>
                         <Grid container justify="center" spacing={spacing} className={classes.fijarLabel}>
-                            <Typography variant="h6" gutterBottom>
+                            <Typography variant="h6"  >
                                 $1.00 =
                             </Typography>
                             <NumberFormat
@@ -172,7 +172,7 @@ export default function Cambio() {
                         justify="center"
                         onClick={handleOnClickCambio}
                         className={classes.fijarElement}>
-                        <Typography variant="h6" gutterBottom >
+                        <Typography variant="h6"   >
                             Fijar
                             </Typography>
                     </Grid>

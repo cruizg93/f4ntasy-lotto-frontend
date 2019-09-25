@@ -11,3 +11,10 @@
 .clearfix::before{
   clear: both;
 }
+
+.slideAddBtn{
+  position: fixed;
+  bottom: 300px;
+  right: 20px;
+  z-index: 100;
+}

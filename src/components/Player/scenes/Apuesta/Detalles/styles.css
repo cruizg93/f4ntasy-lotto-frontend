@@ -1,0 +1,41 @@
+.ventas_activas_detalles{
+  background: white;
+  padding-top: 112px;
+  padding-bottom: 68px;
+}
+
+.ventas_activas_detalles .fixedFooter{
+  height: 63px !important;
+  position: fixed;
+  bottom: 3px;
+  width: 100vw;
+  text-align: center;
+  line-height: 63px;
+  z-index: 50;
+  background: #f4f4f4;
+}
+
+.ventas_activas_detalles .fixedFooter .localPrintshop{
+  background: #663399 !important;
+  height: 37px !important;
+  width:153px !important;
+  color: white !important;
+  padding-left: 10px !important;
+  margin-left: 12px !important;
+  margin-right: 14px !important;
+  border-radius: 20px;
+}
+
+.ventas_activas_detalles .fixedFooter .localPrintshop .iconP{
+  font-size: 30px;
+}
+
+.ventas_activas_detalles .fixedFooter .localPrintshop .textP{
+  text-transform: lowercase;
+  font-size: 17px;
+  padding-left: 9px;
+}
+
+.ventas_activas_detalles .fixedFooter .localPrintshop .textP::first-letter{
+  text-transform: uppercase;
+}

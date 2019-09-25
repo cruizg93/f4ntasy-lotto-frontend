@@ -1,17 +1,17 @@
-import React, {useState, useEffect} from 'react';
-import {ToastContainer, toast} from 'react-toastify';
+import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {playerService} from "../../../../../service/api/player/player.service";
+import { playerService } from "../../../../../service/api/player/player.service";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import ApuestaActivaEntry from '../../../components/ApuestaActiva/index';
-import {makeStyles, withStyles} from "@material-ui/core/styles/index";
+import { makeStyles, withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
-import {printDocument6} from "../../../../../_helpers/print";
-import {Colors} from "../../../../../utils/__colors";
+import { printDocument6 } from "../../../../../_helpers/print";
+import { Colors } from "../../../../../utils/__colors";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -33,15 +33,15 @@ const useStyles = makeStyles(theme => ({
     numbers: {
         paddingLeft: '.5rem'
     },
-    fixedElement:{
+    fixedElement: {
         position: 'fixed',
-        width: '100%',        
+        width: '100%',
         height: '76px',
         bottom: '0',
         left: '0',
-        backgroundColor: Colors.Main      
+        backgroundColor: Colors.Main
     },
-    apuestasContainer:{
+    apuestasContainer: {
         marginBottom: '5rem'
     }
 
@@ -56,8 +56,8 @@ const EditarButton = withStyles({
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,        
-        color: Colors.Green,        
+        lineHeight: 1.5,
+        color: Colors.Green,
         marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
@@ -67,7 +67,7 @@ const EditarButton = withStyles({
             border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',           
+            boxShadow: 'none',
             border: 'none',
         },
         '&:focus': {
@@ -83,8 +83,8 @@ const EliminarTodoButton = withStyles({
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,        
-        color: Colors.Btn_Red,        
+        lineHeight: 1.5,
+        color: Colors.Btn_Red,
         marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
@@ -94,7 +94,7 @@ const EliminarTodoButton = withStyles({
             border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',           
+            boxShadow: 'none',
             border: 'none',
         },
         '&:focus': {
@@ -110,8 +110,8 @@ const ImprimirButton = withStyles({
         textTransform: 'none',
         fontSize: 16,
         padding: '6px 12px',
-        lineHeight: 1.5,        
-        color: Colors.Btn_Blue,        
+        lineHeight: 1.5,
+        color: Colors.Btn_Blue,
         marginBottom: '1.5rem',
         marginRight: '.5rem',
         marginLeft: '.5rem',
@@ -121,7 +121,7 @@ const ImprimirButton = withStyles({
             border: 'none',
         },
         '&:active': {
-            boxShadow: 'none',           
+            boxShadow: 'none',
             border: 'none',
         },
         '&:focus': {
@@ -159,7 +159,7 @@ const FijarButton = withStyles({
     },
 })(Button);
 
-const ApuestaActivaAsistente = ({...props}) => {
+const ApuestaActivaAsistente = ({ ...props }) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
     const [comision, setComision] = useState(0.0);
@@ -170,7 +170,7 @@ const ApuestaActivaAsistente = ({...props}) => {
     const mounted = useState(true);
     function handleDisableClick() {
         setDisable(!disable);
-        if(!disable)
+        if (!disable)
             submitUpdateData()
     }
 
@@ -191,7 +191,7 @@ const ApuestaActivaAsistente = ({...props}) => {
                 setRiesgo(result.data.riesgo);
                 let total = 0;
                 result.data.list.forEach(function (item, index) {
-                    total = total + item['valor'];           
+                    total = total + item['valor'];
                 });
                 setTotal(total);
                 setList(Array.from(result.data.list));
@@ -202,7 +202,7 @@ const ApuestaActivaAsistente = ({...props}) => {
     }
     function handleOnPrint() {
         const input = document.getElementById("container-apuesta-activa-data-asistente");
-        printDocument6(input, title+'-activa-asistente');
+        printDocument6(input, title + '-activa-asistente');
     }
 
     function success_response() {
@@ -211,99 +211,99 @@ const ApuestaActivaAsistente = ({...props}) => {
         });
     }
 
-    useEffect(() => {        
+    useEffect(() => {
         playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
             setTitle(result.data.title);
             setComision(result.data.comision);
             setRiesgo(result.data.riesgo);
-           /*  setTotal(result.data.total); */
+            /*  setTotal(result.data.total); */
             setList(Array.from(result.data.list));
             let total = 0;
             result.data.list.forEach(function (item, index) {
-                total = total + item['valor'];           
+                total = total + item['valor'];
             });
             setTotal(total);
         })
-    }, []);    
+    }, []);
 
     function handledeleteOneFunction(entryId) {
-       list[entryId]['valor'] = 0.0;   
-        submitUpdateData();   
+        list[entryId]['valor'] = 0.0;
+        submitUpdateData();
     }
 
     return (
         <React.Fragment>
-            <ToastContainer autoClose={8000}/>
+            <ToastContainer autoClose={8000} />
             <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
-                  alignItems="flex-start">
-                <Typography variant="h5" gutterBottom>
+                direction="row"
+                justify="center"
+                alignItems="flex-start">
+                <Typography variant="h5"  >
                     {title}
                 </Typography>
                 <Grid item xs={12}>
-                    <Divider/>
+                    <Divider />
                 </Grid>
             </Grid>
             <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
-                  alignItems="flex-start"
-                  id="container-apuesta-activa-data-asistente">
+                direction="row"
+                justify="center"
+                alignItems="flex-start"
+                id="container-apuesta-activa-data-asistente">
 
                 <Grid container spacing={1}
-                      direction="row"
-                      justify="center"
-                      alignItems="flex-start">
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start">
                     {list.map((apuesta, index) =>
                         <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}
-                                            disable={disable}
-                                            onEdit={updateFunction}
-                                            delete={handledeleteOneFunction}
-                                            mounted={mounted}
+                            disable={disable}
+                            onEdit={updateFunction}
+                            delete={handledeleteOneFunction}
+                            mounted={mounted}
                         />
                     )}
                 </Grid>
                 <Grid container>
                     <Grid item xs={3}
-                          container
-                          justify="flex-end"
+                        container
+                        justify="flex-end"
                     >
-                        <Typography variant="body1" gutterBottom className={''}>
+                        <Typography variant="body1" className={''}>
                             Apuestas |
                         </Typography>
                     </Grid>
                     <Grid item xs={9}
-                          container
-                          justify="flex-start"
-                          className={''}
+                        container
+                        justify="flex-start"
+                        className={''}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.numbers}>
+                        <Typography variant="body1" className={classes.numbers}>
                             {total}
                         </Typography>
                     </Grid>
                 </Grid>
-            </Grid>            
+            </Grid>
             <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
-                  className={classes.fixedElement}
+                direction="row"
+                justify="center"
+                className={classes.fixedElement}
             >
                 <Grid item xs={4}>
                     <EditarButton variant="outlined" color="primary" onClick={handleDisableClick}>
-                        <Typography variant="body1" gutterBottom>
-                            {disable ? "Editar" : "Fijar"}                            
+                        <Typography variant="body1"  >
+                            {disable ? "Editar" : "Fijar"}
                         </Typography>
                     </EditarButton>
-                </Grid>                
+                </Grid>
                 <Grid item xs={4}>
                     <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
-                        <Typography variant="body1" gutterBottom>
+                        <Typography variant="body1"  >
                             Imprimir
                         </Typography>
                     </ImprimirButton>
                 </Grid>
-                
+
 
             </Grid>
 

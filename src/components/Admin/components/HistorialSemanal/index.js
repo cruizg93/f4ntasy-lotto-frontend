@@ -59,15 +59,15 @@ const HistorialSemanaActualUserEntry = ({ id, nombre, balance, moneda, type, ...
                     }
                 }
             >
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     # {nombre} - {moneda === "dolar" ? "$" : "L"}
                 </Typography>
             </Grid>
             <Grid item xs={7}>
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     {type === "dolar" ? "$" : "L"}
                 </Typography>
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     {balance}
                 </Typography>
             </Grid>

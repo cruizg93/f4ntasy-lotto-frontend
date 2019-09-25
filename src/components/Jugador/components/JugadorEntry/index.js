@@ -626,81 +626,81 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                                     </Grid>
                                     <Grid item xs={12} style={{ marginBottom: "0.5rem" }}><Divider /></Grid>
                                     <Grid item xs={2}>
-                                        <Typography variant="body1" gutterBottom style={{ fontWeight: "bold" }}>
+                                        <Typography variant="body1" style={{ fontWeight: "bold" }}>
                                             Diaria
                                     </Typography>
                                     </Grid>
                                     <Grid container item xs={10}>
                                         <Grid item xs={12}>
-                                            <Typography variant="body1" gutterBottom>
+                                            <Typography variant="body1"  >
                                                 {" - "}{diariaTipo}
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={7}>
-                                            <Typography variant="body1" gutterBottom>
+                                            <Typography variant="body1"  >
                                                 {" - "} {diariaCostoComisionTexto}
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={5}>
-                                            <Typography variant="body1" gutterBottom className={classes.jugadorInfoValor}>
+                                            <Typography variant="body1" className={classes.jugadorInfoValor}>
                                                 {"="}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency, diariaCostoComisionValor)}
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={7}>
-                                            <Typography variant="body1" gutterBottom>
+                                            <Typography variant="body1"  >
                                                 {" - "} {diariaPremioTexto}
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={5}>
-                                            <Typography variant="body1" gutterBottom className={classes.jugadorInfoValor}>
+                                            <Typography variant="body1" className={classes.jugadorInfoValor}>
                                                 {"="}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency, diariaPremioValor)}
                                             </Typography>
                                         </Grid>
                                     </Grid>
 
-                                    <Grid item xs={12} gutterBottom />
+                                    <Grid item xs={12} />
 
                                     <Grid item xs={2}>
-                                        <Typography variant="body1" gutterBottom style={{ fontWeight: "bold" }}>
+                                        <Typography variant="body1" style={{ fontWeight: "bold" }}>
                                             Chica
                                     </Typography>
                                     </Grid>
                                     <Grid container item xs={10}>
                                         <Grid item xs={12}>
-                                            <Typography variant="body1" gutterBottom>
+                                            <Typography variant="body1"  >
                                                 {" - "}{chicaTipo}
                                             </Typography>
                                         </Grid>
 
                                         <Grid item xs={7} style={chicaComisionPercentageValor > 0 ? { display: "flex" } : { display: "none" }}>
-                                            <Typography variant="body1" gutterBottom>
+                                            <Typography variant="body1"  >
                                                 {" - "} {chicaComisionPercentageTexto}
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={5} style={chicaComisionPercentageValor > 0 ? { display: "flex" } : { display: "none" }} >
-                                            <Typography variant="body1" gutterBottom className={classes.jugadorInfoValor}>
+                                            <Typography variant="body1" className={classes.jugadorInfoValor}>
                                                 {"="}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency, chicaComisionPercentageValor)}
                                             </Typography>
                                         </Grid>
 
                                         <Grid item xs={7} style={chicaCostoValor > 0 ? { display: "flex" } : { display: "none" }}>
-                                            <Typography variant="body1" gutterBottom>
+                                            <Typography variant="body1"  >
                                                 {" - "} {chicaCostoTexto}
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={5} style={chicaCostoValor > 0 ? { display: "flex" } : { display: "none" }} >
-                                            <Typography variant="body1" gutterBottom className={classes.jugadorInfoValor}>
+                                            <Typography variant="body1" className={classes.jugadorInfoValor}>
                                                 {"="}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency, chicaCostoValor)}
                                             </Typography>
                                         </Grid>
 
                                         <Grid item xs={7}>
-                                            <Typography variant="body1" gutterBottom>
+                                            <Typography variant="body1"  >
                                                 {" - "}{chicaPremioTexto}
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={5}>
-                                            <Typography variant="body1" gutterBottom className={classes.jugadorInfoValor}>
+                                            <Typography variant="body1" className={classes.jugadorInfoValor}>
                                                 {"="}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency, chicaPremioValor)}
                                             </Typography>
                                         </Grid>

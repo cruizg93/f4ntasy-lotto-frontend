@@ -26,7 +26,7 @@ const HeaderDescription = ({ ...props }) => {
                 className={classes.headerContainer}
             >
                 <Grid item xs={6} className={classes.label}>
-                    <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                    <Typography variant="h6" className={"form__center-label"}>
                         {props.name}
                     </Typography>
                 </Grid>

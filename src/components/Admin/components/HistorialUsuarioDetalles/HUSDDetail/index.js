@@ -1,10 +1,10 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
-import {red, blue} from "@material-ui/core/colors/index";
+import { red, blue } from "@material-ui/core/colors/index";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
-       
+
     },
     component: {
         textDecoration: 'none',
@@ -38,69 +38,69 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const HUSDDetailEntry = ({id, title, total, comision, premio,
-                             ...props
-                         }) => {
+const HUSDDetailEntry = ({ id, title, total, comision, premio,
+    ...props
+}) => {
     const classes = useStyles();
     return (
         <Grid item xs={12}
         >
             <Paper key={props.index} className={classes.paper}>
-                <Typography variant="h5" gutterBottom>
+                <Typography variant="h5"  >
                     {title}
                 </Typography>
-                <Divider/>
+                <Divider />
                 <Grid container>
                     <Grid item xs={6}
-                          container
-                          justify="flex-end"
+                        container
+                        justify="flex-end"
                     >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
+                        <Typography variant="body1" className={classes.text}>
                             Total Apuestas |
                         </Typography>
                     </Grid>
                     <Grid item xs={6}
-                          container
-                          justify="flex-start"
-                          className={classes.text}
+                        container
+                        justify="flex-start"
+                        className={classes.text}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
+                        <Typography variant="body1" className={classes.text}>
                             {total}
                         </Typography>
 
                     </Grid>
                     <Grid item xs={6}
-                          container
-                          justify="flex-end"
+                        container
+                        justify="flex-end"
                     >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
+                        <Typography variant="body1" className={classes.text}>
                             Total Comisiones |
                         </Typography>
                     </Grid>
                     <Grid item xs={6}
-                          container
-                          justify="flex-start"
-                          className={classes.text}
+                        container
+                        justify="flex-start"
+                        className={classes.text}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
+                        <Typography variant="body1" className={classes.text}>
                             {comision}
                         </Typography>
 
                     </Grid>
                     <Grid item xs={6}
-                          container
-                          justify="flex-end"
+                        container
+                        justify="flex-end"
                     >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
+                        <Typography variant="body1" className={classes.text}>
                             Premio |
                         </Typography>
                     </Grid>
                     <Grid item xs={6}
-                          container
-                          justify="flex-start"
-                          className={classes.text}
+                        container
+                        justify="flex-start"
+                        className={classes.text}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
+                        <Typography variant="body1" className={classes.text}>
                             {premio}
                         </Typography>
 
@@ -108,12 +108,12 @@ const HUSDDetailEntry = ({id, title, total, comision, premio,
 
 
                     <Grid item xs={12}
-                          container
-                          justify="center"
-                          className={classes.text}
+                        container
+                        justify="center"
+                        className={classes.text}
                     >
-                        <Typography variant="h5" gutterBottom
-                                    className={classes.close}>
+                        <Typography variant="h5"
+                            className={classes.close}>
                             Terminado
                         </Typography>
 

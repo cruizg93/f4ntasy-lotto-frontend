@@ -85,10 +85,10 @@ const useStyles = makeStyles(theme => ({
         height: "37px",
         width: '153px',
         color: "#000000",
-        backgroundColor: Colors.Orange,
+        backgroundColor: '#f5d657',
         fontSize: "1.2rem",
         "&:hover": {
-            backgroundColor: Colors.Orange,
+            backgroundColor: '#f5d657',
         }
     },
     buttonLimpiar: {
@@ -97,10 +97,10 @@ const useStyles = makeStyles(theme => ({
         height: "37px",
         width: '153px',
         color: "#ffffff",
-        backgroundColor: 'red',
+        backgroundColor: '#cc3333',
         fontSize: "1.2rem",
         "&:hover": {
-            backgroundColor: 'red',
+            backgroundColor: '#cc3333',
         }
     },
 }));

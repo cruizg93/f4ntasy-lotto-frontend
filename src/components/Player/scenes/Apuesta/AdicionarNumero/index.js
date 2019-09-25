@@ -187,7 +187,8 @@ class AdicionarNumeroApuesta extends Component {
             openRemoveAll: false,
             openComprar: false,
             openComprarInfo: false,
-            isAgregar: false
+            isAgregar: false,
+            showAddBtn: false
         }
         this.apuestaCurrency = (this.props.moneda === "LEMPIRAS" || this.props.moneda === "L") ? Currency.Lempiras : Currency.Dollar;
         this.match = props.match;
@@ -199,6 +200,9 @@ class AdicionarNumeroApuesta extends Component {
         this.buttonContainerApuestasRef = React.createRef();
         this.agregarApuestaButtonRef = React.createRef();
         this.buttonContainerComprarRef = React.createRef();
+        this.isNumerofocus = true;
+        this.isUnidadesfocus = false;
+        this.isFirstMount = true;
     }
 
     componentDidMount() {
@@ -236,7 +240,68 @@ class AdicionarNumeroApuesta extends Component {
 
         });
         this.buttonContainerComprarRef.current.style.display = "none";
-        this.entryNumeroInputRef.current.focus();
+        // this.entryNumeroInputRef.current.focus();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.isNumerofocus) {
+            this.entryNumeroInputRef.current.focus();
+        }
+        if (this.isUnidadesfocus) {
+            this.entryUnidadesInputRef.current.focus();
+        }
+
+    }
+
+    handleNumeroInputFocus = (event) => {
+        if (event.target.id === 'input-entry-numero' && this.isNumerofocus === false) {
+            this.isNumerofocus = true
+            this.isUnidadesfocus = false
+        }
+        if (event.target.id === 'input-entry-unidad' && this.isUnidadesfocus === false) {
+            this.isNumerofocus = false;
+            this.isUnidadesfocus = true;
+        }
+        setTimeout(() => {
+            this.showAddButton()
+        }, 50);
+    }
+
+    handleNumeroInputBlur = (event) => {
+        if (event.target.id === 'input-entry-numero' && this.isNumerofocus === true) {
+            this.isNumerofocus = false
+        }
+        if (event.target.id === 'input-entry-unidad' && this.isUnidadesfocus === true) {
+            this.isUnidadesfocus = false
+        }
+        setTimeout(() => {
+            this.hideAddButton()
+        }, 50);
+    }
+
+    showAddButton() {
+        console.log("---isNumerofocus", this.isNumerofocus)
+        console.log("---isUnidadesfocus", this.isUnidadesfocus)
+        if (!this.state.showAddBtn) {
+            setTimeout(() => {
+                this.setState({
+                    ...this.state,
+                    showAddBtn: true,
+                });
+            }, 50);
+        }
+    }
+
+    hideAddButton() {
+        console.log("isNumerofocus", this.isNumerofocus)
+        console.log("isUnidadesfocus", this.isUnidadesfocus)
+        if (!(this.isNumerofocus || this.isUnidadesfocus)) {
+            setTimeout(() => {
+                this.setState((state) => {
+                    return { showAddBtn: false };
+                });
+            }, 100);
+        }
     }
 
     inpuntKeyPressedEvent = (event) => {
@@ -255,34 +320,9 @@ class AdicionarNumeroApuesta extends Component {
         if (this.state.entryList.length === 0) {
             return;
         }
-
-        // //oldEntryList will be needed in case user want to display the values and the list order before this event was triggered.
-        // this.setState((prevState, props) => {
-        //     return { oldEntryList: this.state.entryList }
-        // });
-        // //Merge valores iguales
-        // let newEntryList = this.state.entry.filter(item => { return item.current > 0 });
-        // this.setState((prevState, props) => {
-        //     return { entryList: newEntryList }
-        // });
-
-        // //Esconder index de la lista
-        // this.setState((prevState, props) => {
-        //     return { displayApuestaListIndex: false };
-        // });
     }
 
     regresar = (event) => {
-        //Merge valores iguales
-        // let newEntryList = this.state.entry.filter(item => { return item.current > 0 });
-        // this.setState((prevState, props) => {
-        //     return { entryList: this.state.oldEntryList }
-        // });
-
-        // //Esconder index de la lista
-        // this.setState((prevState, props) => {
-        //     return { displayApuestaListIndex: true };
-        // });
     }
 
     agregarApuesta = (event) => {
@@ -515,7 +555,8 @@ class AdicionarNumeroApuesta extends Component {
 
     render() {
         this.classes = this.props.classes;
-
+        const display = this.state.showAddBtn ? 'block' : 'none'
+        console.log("showAddBtn", this.state.showAddBtn)
         function updateFunction(e) {
         }
 
@@ -589,7 +630,8 @@ class AdicionarNumeroApuesta extends Component {
                                     }
                                 }}
                                 className="numbers"
-                                autoFocus
+                                onFocus={this.handleNumeroInputFocus}
+                                onBlur={this.handleNumeroInputBlur}
                             />
                         </Grid>
                         <Grid item xs={6} style={{ textAlign: "start" }}>
@@ -611,6 +653,8 @@ class AdicionarNumeroApuesta extends Component {
                                 }}
                                 onKeyPress={this.inpuntKeyPressedEvent}
                                 className="numbers"
+                                onFocus={this.handleNumeroInputFocus}
+                                onBlur={this.handleNumeroInputBlur}
                             />
                         </Grid>
                     </Grid>
@@ -679,26 +723,11 @@ class AdicionarNumeroApuesta extends Component {
                         </Grid>
                     </Grid>
                 </Container>
-                <Dialog open={this.state.openFinalizarCompraDialog} onClose={this.handleCloseFinalizarCompraDialog}
-                    aria-labelledby="alert-dialog-finalizar-compra"
-                    aria-describedby="alert-dialog-description"
-                >
-                    <DialogTitle
-                        id="alert-dialog-finalizar-compra">Compra de numeros</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            {`Compra para el sorteo ${this.props.location.state.title.nombre} a las ${this.state.time}`}
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={this.handleCloseFinalizarCompraDialog} color="primary">
-                            Cancel
-                        </Button>
-                        <Button onClick={this.handleFinalizarCompra} color="primary" autoFocus>
-                            Aceptar
-                        </Button>
-                    </DialogActions>
-                </Dialog>
+                <div className="slideAddBtn" style={{ display: display }}>
+                    <Button variant="contained" className={this.classes.buttonAgregarApuesta} onClick={this.agregarApuesta}>
+                        <MdFileDownload className={this.classes.extendedIcon} />
+                    </Button>
+                </div>
                 <ConfirmDialog
                     open={this.state.openRemoveAll}
                     handleClose={this.handleCloseRemoveAll.bind(this)}

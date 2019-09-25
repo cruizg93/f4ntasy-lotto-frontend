@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -33,118 +33,118 @@ export const MenuLinks = (props) => {
             {isAdmin && <Button component={Link} to="/apuestas/activas" color="inherit">Apuestas Activas</Button>}
 
             {isAdmin &&
-            <Button
-                style={{
-                    color: "#FFF",
-                }}
-                aria-controls="menu-sistema-elements"
-                aria-haspopup="true"
-                onClick={handleClick}>
-                Sistema
+                <Button
+                    style={{
+                        color: "#FFF",
+                    }}
+                    aria-controls="menu-sistema-elements"
+                    aria-haspopup="true"
+                    onClick={handleClick}>
+                    Sistema
             </Button>
             }
 
             {isAdmin &&
-            <Menu
-                id="menu-sistema-elements"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-            >
-                <MenuItem onClick={handleClose} component={Link} to="/usuario/nuevo">Crear Jugador</MenuItem>
-                <MenuItem onClick={handleClose}
-                          component={Link}
-                          to="/sistema/numero/ganador">
-                    Número Ganador
-                </MenuItem>
-                <MenuItem onClick={handleClose}
-                          component={Link}
-                          to={"/sistema/cambio"}
+                <Menu
+                    id="menu-sistema-elements"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
                 >
-                    Tipo de Cambio</MenuItem>
-                <MenuItem onClick={handleClose}
-                          component={Link}
-                          to="/sistema/password/update"
-                >Contraseña</MenuItem>
-                <MenuItem onClick={handleClose}>Fijar Topes</MenuItem>
-            </Menu>
+                    <MenuItem onClick={handleClose} component={Link} to="/usuario/nuevo">Crear Jugador</MenuItem>
+                    <MenuItem onClick={handleClose}
+                        component={Link}
+                        to="/sistema/numero/ganador">
+                        Número Ganador
+                </MenuItem>
+                    <MenuItem onClick={handleClose}
+                        component={Link}
+                        to={"/sistema/cambio"}
+                    >
+                        Tipo de Cambio</MenuItem>
+                    <MenuItem onClick={handleClose}
+                        component={Link}
+                        to="/sistema/password/update"
+                    >Contraseña</MenuItem>
+                    <MenuItem onClick={handleClose}>Fijar Topes</MenuItem>
+                </Menu>
             }
 
             {isAdmin &&
-            <Button
-                style={{
-                    color: "#FFF",
-                    '&:hover': {
-                        color: '#fbd534',
-                    }
-                }}
-                aria-controls="historial-menu"
-                aria-haspopup="true"
-                onClick={handleClickHistorial}>
-                Historial
+                <Button
+                    style={{
+                        color: "#FFF",
+                        '&:hover': {
+                            color: '#fbd534',
+                        }
+                    }}
+                    aria-controls="historial-menu"
+                    aria-haspopup="true"
+                    onClick={handleClickHistorial}>
+                    Historial
             </Button>
             }
 
             {isAdmin &&
-            <Menu
-                id="historial-menu"
-                anchorEl={anchorE2}
-                keepMounted
-                open={Boolean(anchorE2)}
-                onClose={handleCloseHistorial}
-            >
-                <MenuItem onClick={handleClose} component={Link}
-                          to="/historial/semana/actual">
-                    Semana en Curso
+                <Menu
+                    id="historial-menu"
+                    anchorEl={anchorE2}
+                    keepMounted
+                    open={Boolean(anchorE2)}
+                    onClose={handleCloseHistorial}
+                >
+                    <MenuItem onClick={handleClose} component={Link}
+                        to="/historial/semana/actual">
+                        Semana en Curso
                 </MenuItem>
-                <MenuItem onClick={handleClose} component={Link}
-                          to="/historial/semana/anterior">
-                    Semana Pasada
+                    <MenuItem onClick={handleClose} component={Link}
+                        to="/historial/semana/anterior">
+                        Semana Pasada
                 </MenuItem>
-                <MenuItem onClick={handleClose} component={Link}
-                          to="/historial/numeros/ganadores">
-                    Números Ganadores
+                    <MenuItem onClick={handleClose} component={Link}
+                        to="/historial/numeros/ganadores">
+                        Números Ganadores
                 </MenuItem>
-                <MenuItem onClick={handleClose} component={Link}
-                          to="/historial/balance">
-                    Perdidas y Ganancias
+                    <MenuItem onClick={handleClose} component={Link}
+                        to="/historial/balance">
+                        Perdidas y Ganancias
                 </MenuItem>
-            </Menu>
+                </Menu>
             }
 
 
             {!isAdmin && <>
                 {!isAsistente && <Button component={Link}
-                                         to="/usuario/apuestas"
-                                         color="inherit">Entrar Apuestas</Button>
+                    to="/usuario/apuestas"
+                    color="inherit">Sorteos</Button>
                 }
-                {!isAsistente && <Button component={Link}
+                {/* {!isAsistente && <Button component={Link}
                                          to="/usuario/apuestas/hoy/activas"
                                          color="inherit">Apuestas Activas</Button>
-                }
+                } */}
                 {!isAsistente && <Button component={Link}
-                                         to="/usuario/historial"
-                                         color="inherit">Historial</Button>
+                    to="/usuario/historial"
+                    color="inherit">Historial</Button>
                 }
             </>
             }
             {isAsistente && <Button component={Link}
-                                    to="/asistente/apuestas"
-                                    color="inherit">Entrar Apuestas</Button>
+                to="/asistente/apuestas"
+                color="inherit">Sorteos</Button>
             }
+            {/* {isAsistente && <Button component={Link}
+                to="/asistente/apuestas/hoy/activas"
+                color="inherit">Apuestas Activas</Button>
+            } */}
             {isAsistente && <Button component={Link}
-                                    to="/asistente/apuestas/hoy/activas"
-                                    color="inherit">Apuestas Activas</Button>
-            }
-            {isAsistente && <Button component={Link}
-                                    to="/asistente/historial"
-                                    color="inherit">Historial</Button>
+                to="/asistente/historial"
+                color="inherit">Historial</Button>
             }
 
             {!isAdmin && <Button component={Link}
-                                 to="/usuario/password/cambiar"
-                                 color="inherit">Cambiar Contraseña</Button>
+                to="/usuario/password/cambiar"
+                color="inherit">Cambiar Contraseña</Button>
             }
 
 

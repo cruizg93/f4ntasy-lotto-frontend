@@ -137,10 +137,10 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
                             }
                         </Grid>
                         <Grid container item xs={8} direction="column" className="right_text">
-                            <Typography variant="h5" gutterBottom className="date_time">
+                            <Typography variant="h5" className="date_time">
                                 {props.location.state.hour}{" - "}{props.location.state.day}
                             </Typography>
-                            <Typography variant="h5" gutterBottom className="user_name">
+                            <Typography variant="h5" className="user_name">
                                 {props.location.state.username}{" - "}{moneda}{'['}{props.location.state.name}{']'}
                             </Typography>
                         </Grid>

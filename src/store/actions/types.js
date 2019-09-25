@@ -15,6 +15,8 @@ export const GET_TIME_SUCCESS = 'GET_TIME_SUCCESS';
 export const GET_TIME_FAILURE = 'GET_TIME_FAILURE';
 
 // Ui 
+export const BACKGROUND_COLOR = 'background_color';
+
 export const ON_INIT_BEGIN = 'on_init_begin';
 export const ON_INIT_END = 'on_init_end';
 export const SHOW_MESSAGE = 'show_message';

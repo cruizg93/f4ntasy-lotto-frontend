@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import NumerosGanadoresEntry from '../../../components/NumerosGanadoresEntry/index';
-import {adminService} from "../../../../../service/api/admin/admin.service";
-import {makeStyles} from "@material-ui/core/styles/index";
-import {blue} from "@material-ui/core/colors/index";
+import { adminService } from "../../../../../service/api/admin/admin.service";
+import { makeStyles } from "@material-ui/core/styles/index";
+import { blue } from "@material-ui/core/colors/index";
 import Typography from '@material-ui/core/Typography';
 
 
@@ -78,9 +78,9 @@ const NumerosGanadores = (props) => {
 
             {numerosGanadoresList.length > 0 ?
                 numerosGanadoresList.map((numero, index) =>
-                    <NumerosGanadoresEntry key={index} {...numero} handle={handleUpdate} {...props}/>
+                    <NumerosGanadoresEntry key={index} {...numero} handle={handleUpdate} {...props} />
                 ) :
-                <Typography variant="body1" gutterBottom className={classes.textNoDisponible}>
+                <Typography variant="body1" className={classes.textNoDisponible}>
                     No hay resultados disponibles para esta semana
                 </Typography>
             }

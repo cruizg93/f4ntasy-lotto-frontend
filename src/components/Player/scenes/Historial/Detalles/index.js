@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import {ToastContainer, toast} from 'react-toastify';
+import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {playerService} from "../../../../../service/api/player/player.service";
+import { playerService } from "../../../../../service/api/player/player.service";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import UserEntryDetail from '../../../components/Historial/UserEntryDetail/index';
-import {makeStyles, withStyles} from "@material-ui/core/styles/index";
+import { makeStyles, withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
 
@@ -97,7 +97,7 @@ const DetallesButton = withStyles({
         },
     },
 })(Button);
-const DetallesPlayer = ({...props}) => {
+const DetallesPlayer = ({ ...props }) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
     const [comision, setComision] = useState(0.0);
@@ -114,7 +114,7 @@ const DetallesPlayer = ({...props}) => {
 
 
     useEffect(() => {
-        playerService.get_historial_apuestas_details_by_id(props.location.state.id).then((result)=>{
+        playerService.get_historial_apuestas_details_by_id(props.location.state.id).then((result) => {
             setList(result.data);
         })
         setTitle(props.location.state.title);
@@ -129,124 +129,124 @@ const DetallesPlayer = ({...props}) => {
     return (
         <React.Fragment>
             <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
-                  alignItems="flex-start">
-                <Typography variant="h5" gutterBottom>
+                direction="row"
+                justify="center"
+                alignItems="flex-start">
+                <Typography variant="h5"  >
                     {title} {" @ "} {numeroValue}
                 </Typography>
                 <Grid item xs={12}>
-                    <Divider/>
+                    <Divider />
                 </Grid>
 
 
                 {list.map((apuesta, index) =>
                     <UserEntryDetail key={index} {...apuesta} index={index} {...props}
-                                        disable={disable}
+                        disable={disable}
                     />
                 )}
             </Grid>
             <Grid container>
                 <Grid item xs={6}
-                      container
-                      justify="flex-end"
+                    container
+                    justify="flex-end"
                 >
-                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                    <Typography variant="body1" className={classes.textSimple}>
                         Total apuestas |
                     </Typography>
                 </Grid>
                 <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.textSimple}
+                    container
+                    justify="flex-start"
+                    className={classes.textSimple}
                 >
-                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                    <Typography variant="body1" className={classes.textSimple}>
                         {total}
                     </Typography>
 
                 </Grid>
                 <Grid item xs={6}
-                      container
-                      justify="flex-end"
+                    container
+                    justify="flex-end"
                 >
-                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                    <Typography variant="body1" className={classes.textSimple}>
                         Comisiones |
                     </Typography>
                 </Grid>
                 <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.textSimple}
+                    container
+                    justify="flex-start"
+                    className={classes.textSimple}
                 >
-                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                    <Typography variant="body1" className={classes.textSimple}>
                         {comision}
                     </Typography>
 
                 </Grid>
                 <Grid item xs={6}
-                      container
-                      justify="flex-end"
+                    container
+                    justify="flex-end"
                 >
-                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                    <Typography variant="body1" className={classes.textSimple}>
                         Premio |
                     </Typography>
                 </Grid>
                 <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.textSimple}
+                    container
+                    justify="flex-start"
+                    className={classes.textSimple}
                 >
-                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                    <Typography variant="body1" className={classes.textSimple}>
                         {premio}
                     </Typography>
 
                 </Grid>
                 <Grid item xs={6}
-                      container
-                      justify="flex-end"
+                    container
+                    justify="flex-end"
                 >
-                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                    <Typography variant="body1" className={classes.textSimple}>
                         Ganancia/Perdida |
                     </Typography>
                 </Grid>
                 <Grid item xs={6}
-                      container
-                      justify="flex-start"
-                      className={classes.textSimple}
+                    container
+                    justify="flex-start"
+                    className={classes.textSimple}
                 >
-                    <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                    <Typography variant="body1" className={classes.textSimple}>
                         {balance}
                     </Typography>
 
                 </Grid>
             </Grid>
             <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
+                direction="row"
+                justify="center"
             >
                 <Grid item xs={6}>
                     <ImprimirButton variant="outlined" color="primary">
-                        <Typography variant="body1" gutterBottom>
+                        <Typography variant="body1"  >
                             Imprimir
                         </Typography>
                     </ImprimirButton>
                 </Grid>
                 <Grid item xs={6}>
                     <DetallesButton variant="outlined" color="primary"
-                                    component={Link}
-                                    to={{
-                                        pathname: `/usuario/historial/${props.match.params.apuestaId}/desgloce`,
-                                        state: {
-                                            title: title,
-                                            id: props.match.params.apuestaId,
-                                            numero: numeroValue
-                                        }
-                                    }}
+                        component={Link}
+                        to={{
+                            pathname: `/usuario/historial/${props.match.params.apuestaId}/desgloce`,
+                            state: {
+                                title: title,
+                                id: props.match.params.apuestaId,
+                                numero: numeroValue
+                            }
+                        }}
                     >
-                        <Typography variant="body1" gutterBottom>
+                        <Typography variant="body1"  >
                             Detalles
                         </Typography>
-                        <Clear className={classes.rightIcon}/>
+                        <Clear className={classes.rightIcon} />
                     </DetallesButton>
                 </Grid>
 

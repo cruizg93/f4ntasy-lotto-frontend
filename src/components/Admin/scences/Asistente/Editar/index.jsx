@@ -239,7 +239,7 @@ const EditarAsistente = ({ ...props }) => {
                     className={classes.headerContainer}
                 >
                     <Grid item xs={6} className={classes.editarAsistenteLabel}>
-                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                        <Typography variant="h6" className={"form__center-label"}>
                             Editar Jugador X
                         </Typography>
                     </Grid>
@@ -255,12 +255,12 @@ const EditarAsistente = ({ ...props }) => {
                     className={classes.headerContainer}
                 >
                     <Grid item xs={12}>
-                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                        <Typography variant="h6" className={"form__center-label"}>
                             {placeholderUser} {placeholderUserName} {"(asociado)"}
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                        <Typography variant="h6" className={"form__center-label"}>
                             {jugadorUsername} {jugadorName} {jugadorMoneda} {"(principal)"}
                         </Typography>
                     </Grid>

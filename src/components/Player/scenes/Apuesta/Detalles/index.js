@@ -20,75 +20,9 @@ import DetailTitle from '../../../../Admin/components/DetailTitle'
 import TopBar from '../../../../View/jugador/TopBarDetails';
 import { Currency, FormatCurrency } from '../../../../../utils/__currency';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        padding: theme.spacing(3, 2),
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-        '&:hover': {
-            backgroundColor: '#e5e5e5',
-        },
-    },
-    component: {
-        textDecoration: 'none',
-    },
-    componentDisable: {
-        textDecoration: 'none',
-        pointerEvents: 'none'
-    },
-    text: {
-        fontWeight: 'bold'
-    },
-    close: {
-        color: red[400]
-    },
-    open: {
-        color: blue[300]
-    },
-    disableLink: {
-        pointerEvents: 'none'
-    },
-    apuestaContainer: {
-        borderRight: "#afb6b8 1px solid",
-    }
+import './styles.css'
 
-}));
-
-const ImprimirButton = withStyles({
-    root: {
-        width: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        lineHeight: 1.5,
-        padding: "15px 0",
-        backgroundColor: Colors.Main,
-        color: Colors.Btn_Blue_Dark,
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        border: 'none !important',
-        borderRadius: '0',
-        '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
-            color: Colors.Input_bkg
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 const DetallesApuesta = ({ ...props }) => {
-    console.log("props", props)
-    const classes = useStyles();
     const [title, setTitle] = useState('');
     const [list, setList] = useState([]);
     const [apuestaType, setApuestaType] = useState("Diaria");
@@ -114,7 +48,7 @@ const DetallesApuesta = ({ ...props }) => {
         })
     }
     return (
-        <div style={{ background: 'white', paddingTop: 112, paddingBottom: 68 }}>
+        <div className="ventas_activas_detalles" >
             <DetailTitle titleLabel="Detalle" />
             <TopBar
                 apuestaType={apuestaType}
@@ -125,7 +59,6 @@ const DetallesApuesta = ({ ...props }) => {
             <Grid container
                 direction="row"
                 justify="center"
-                style={{ background: 'white' }}
             >
                 <Grid item xs={12}>
                     {list.map((apuestaDetail, index) =>
@@ -135,17 +68,12 @@ const DetallesApuesta = ({ ...props }) => {
                         />
                     )}
                 </Grid>
-                <Grid item xs={12}>
-                    <Fab className="localPrintshop" variant="extended" onClick={handleOnPrint} >
+                <div className="fixedFooter">
+                    <Fab className="localPrintshop" onClick={handleOnPrint} >
                         <LocalPrintshop className="iconP" />
                         <span className="textP">Imprimir</span>
                     </Fab>
-                    <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
-                        <Typography variant="body1" gutterBottom>
-                            Imprimir
-                            </Typography>
-                    </ImprimirButton>
-                </Grid>
+                </div>
             </Grid>
 
         </div>

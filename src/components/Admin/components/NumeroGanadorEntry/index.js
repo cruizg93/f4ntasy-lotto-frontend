@@ -170,18 +170,18 @@ const NumeroGanadorEntry = ({ match: { url }, sorteId, title, numero, status, ty
             <Paper key={props.index} className={classes.paper}>
                 <Grid container>
                     <Grid item xs={3} className={classes.typeContainer}>
-                        <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                        <Typography variant="body1" className={classes.textLabel}>
                             {apuestaType}
                         </Typography>
                     </Grid>
                     <Grid item xs={6} className={classes.titleContainerShort}>
-                        <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                        <Typography variant="body1" className={classes.textLabel}>
                             {titleApuesta}
                         </Typography>
                     </Grid>
 
                     <Grid item xs={3} className={classes.hourContainer}>
-                        <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                        <Typography variant="body1" className={classes.textLabel}>
                             {apuestaHour}
                         </Typography>
                     </Grid>
@@ -190,7 +190,7 @@ const NumeroGanadorEntry = ({ match: { url }, sorteId, title, numero, status, ty
                     </Grid>
                     {status === 'abierta' ?
                         <Grid item xs={12} className={`${classes.titleContainer} form__center-label`}>
-                            <Typography variant="h6" gutterBottom className={classes.textSorteoAbierto}>
+                            <Typography variant="h6" className={classes.textSorteoAbierto}>
                                 {"Sorteo Abierto"}
                             </Typography>
                         </Grid>
@@ -205,7 +205,7 @@ const NumeroGanadorEntry = ({ match: { url }, sorteId, title, numero, status, ty
                                     container
                                     justify="center"
                                     xs={12}>
-                                    <Typography variant="body1" gutterBottom className={classes.textRed}>
+                                    <Typography variant="body1" className={classes.textRed}>
                                         Sorteo Cerrado
                                 </Typography>
                                 </Grid>
@@ -223,7 +223,7 @@ const NumeroGanadorEntry = ({ match: { url }, sorteId, title, numero, status, ty
                                             onChange={onNumberChange}
                                         />
                                         :
-                                        <Typography variant="body1" gutterBottom className={classes.text}>
+                                        <Typography variant="body1" className={classes.text}>
                                             Número ganador {numeroApuesta}
                                         </Typography>
                                     }
@@ -231,14 +231,14 @@ const NumeroGanadorEntry = ({ match: { url }, sorteId, title, numero, status, ty
                             </Grid>
                             <Grid item xs={2} className={`${classes.fijarContainer} form__center-label`}>
                                 {!cambiar ?
-                                    <Typography variant="body1" gutterBottom
+                                    <Typography variant="body1"
                                         className={classes.editarLabel}
                                         onClick={clickButton}
                                     >
                                         {"Fijar"}
                                     </Typography>
                                     :
-                                    <Typography variant="body1" gutterBottom
+                                    <Typography variant="body1"
                                         className={classes.fijarLabel}
                                         onClick={cambiarHandle}
                                     >

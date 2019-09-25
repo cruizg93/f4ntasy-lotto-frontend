@@ -1,16 +1,16 @@
-import React, {useState, useEffect} from 'react';
-import {ToastContainer, toast} from 'react-toastify';
+import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {playerService} from "../../../../../service/api/player/player.service";
+import { playerService } from "../../../../../service/api/player/player.service";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import AsistenteEntryDetail from '../../../components/Historial/AsistenteEntryDetail/index';
-import {makeStyles, withStyles} from "@material-ui/core/styles/index";
+import { makeStyles, withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
-import {printDocument6} from "../../../../../_helpers/print";
+import { printDocument6 } from "../../../../../_helpers/print";
 
 
 const useStyles = makeStyles(theme => ({
@@ -70,7 +70,7 @@ const ImprimirButton = withStyles({
 })(Button);
 
 
-const DetallesPAsistente = ({...props}) => {
+const DetallesPAsistente = ({ ...props }) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
     const [comision, setComision] = useState(0.0);
@@ -104,48 +104,48 @@ const DetallesPAsistente = ({...props}) => {
     return (
         <React.Fragment>
             <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
-                  alignItems="flex-start">
-                <Typography variant="h5" gutterBottom>
+                direction="row"
+                justify="center"
+                alignItems="flex-start">
+                <Typography variant="h5"  >
                     {title} {" @ "} {numeroValue}
                 </Typography>
                 <Grid item xs={12}>
-                    <Divider/>
+                    <Divider />
                 </Grid>
             </Grid>
             <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
-                  id="container-apuesta-historial-data-asistente"
+                direction="row"
+                justify="center"
+                id="container-apuesta-historial-data-asistente"
             >
 
                 <Grid container spacing={1}
-                      direction="row"
-                      justify="center"
-                      alignItems="flex-start">
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start">
 
                     {list.map((apuesta, index) =>
                         <AsistenteEntryDetail key={index} {...apuesta} index={index} {...props}
-                                              disable={disable}
+                            disable={disable}
                         />
                     )}
                 </Grid>
                 <Grid container>
                     <Grid item xs={6}
-                          container
-                          justify="flex-end"
+                        container
+                        justify="flex-end"
                     >
-                        <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                        <Typography variant="body1" className={classes.textSimple}>
                             Total apuestas |
                         </Typography>
                     </Grid>
                     <Grid item xs={6}
-                          container
-                          justify="flex-start"
-                          className={classes.textSimple}
+                        container
+                        justify="flex-start"
+                        className={classes.textSimple}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.textSimple}>
+                        <Typography variant="body1" className={classes.textSimple}>
                             {total}
                         </Typography>
                     </Grid>
@@ -154,12 +154,12 @@ const DetallesPAsistente = ({...props}) => {
 
 
             <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
+                direction="row"
+                justify="center"
             >
                 <Grid item xs={6}>
                     <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
-                        <Typography variant="body1" gutterBottom>
+                        <Typography variant="body1"  >
                             Imprimir
                         </Typography>
                     </ImprimirButton>

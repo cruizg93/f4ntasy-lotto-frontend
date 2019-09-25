@@ -1,7 +1,7 @@
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import domtoimage from 'dom-to-image';
-import {saveAs} from 'file-saver';
+import { saveAs } from 'file-saver';
 
 window.html2canvas = html2canvas;
 
@@ -14,14 +14,14 @@ export function printDocument(input) {
             // pdf.output('dataurlnewwindow');
             pdf.save("download.pdf");
         })
-    ;
+        ;
 }
 
 export function printDocument2(input) {
     html2canvas(input).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF();
-        pdf.addImage(imgData, 'PNG', 0, 0,);
+        pdf.addImage(imgData, 'PNG', 0, 0);
         pdf.save("download.pdf");
     });
 }
@@ -30,14 +30,14 @@ export function printDocument2(input) {
 export function printDocument3(elems) {
     let pdf = new jsPDF("portrait", "mm", "a4");
 
-// Fix Graphics Output by scaling PDF and html2canvas output to 2
+    // Fix Graphics Output by scaling PDF and html2canvas output to 2
     pdf.scaleFactor = 2;
 
-// Create a new promise with the loop body
-//     let addPages = new Promise((resolve, reject) => {
+    // Create a new promise with the loop body
+    //     let addPages = new Promise((resolve, reject) => {
     elems.forEach((elem, idx) => {
         // Scaling fix set scale to 2
-        html2canvas(elem, {scale: "2"})
+        html2canvas(elem, { scale: "2" })
             .then(canvas => {
                 if (idx < elems.length - 1) {
                     pdf.addImage(canvas.toDataURL("image/png"), 0, 0, 210, 297);
@@ -128,6 +128,7 @@ export function printDocument6(elems, title) {
         .then(function (blob) {
             // pdf.addImage(blob, 'PNG', 0, 0);
             // pdf.save("download.pdf");
+            console.log('hererererer')
             saveAs(blob, title + '-apuesta.png');
         });
 }

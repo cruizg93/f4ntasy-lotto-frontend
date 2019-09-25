@@ -1,8 +1,13 @@
 .app-container{
   height: 100vh;
-  scrollbar-width: none;
   background: #f4f4f4;
+  -ms-overflow-style: none; 
+  overflow: -moz-scrollbars-none;
 }
+.app-container::-webkit-scrollbar { 
+    display: none;
+}
+
 .app-main{
   padding-left: 0px !important;
   padding-right: 0px !important;
@@ -37,6 +42,8 @@
 .app-main-container{
   padding-top: 93px;
   background: #f4f4f4;
+  scrollbar-width: none; 
+
 }
 
 @keyframes App-logo-spin {
