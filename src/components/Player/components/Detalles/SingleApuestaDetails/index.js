@@ -40,7 +40,7 @@ const SingleApuestaDetails = ({ numero, valor, ...props }) => {
 
     return (
         <div className="singleApuestaDetails">
-            <div item id={`text-${props.index}`} className='textNumber'>
+            <div id={`text-${props.index}`} className='textNumber'>
                 <p>{numero.toString().padStart(2, "0")}</p>
             </div>
             <div className='textValue'>

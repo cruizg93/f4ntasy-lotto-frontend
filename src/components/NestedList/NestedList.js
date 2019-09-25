@@ -74,17 +74,17 @@ export default function NestedList(props) {
                     <ListItemIcon>
                         <ArrowRightAlt />
                     </ListItemIcon>
-                    <ListItemText primary="Entrar Apuestas" />
+                    <ListItemText primary="Sorteos" />
                 </ListItem>
             }
-            {(!isAdmin && !isAsistente) &&
+            {/* {(!isAdmin && !isAsistente) &&
                 <ListItem button component={Link} to={'/usuario/apuestas/hoy/activas'} onClick={props.click}>
                     <ListItemIcon>
                         <Style />
                     </ListItemIcon>
                     <ListItemText primary="Apuestas Activas" />
                 </ListItem>
-            }
+            } */}
 
             {(!isAdmin && !isAsistente) &&
                 <ListItem button component={Link} to={'/usuario/historial'} onClick={props.click}>
@@ -100,17 +100,17 @@ export default function NestedList(props) {
                     <ListItemIcon>
                         <ArrowRightAlt />
                     </ListItemIcon>
-                    <ListItemText primary="Entrar Apuestas" />
+                    <ListItemText primary="Sorteos" />
                 </ListItem>
             }
-            {isAsistente &&
+            {/* {isAsistente &&
                 <ListItem button component={Link} to={'/asistente/apuestas/hoy/activas'} onClick={props.click}>
                     <ListItemIcon>
                         <Style />
                     </ListItemIcon>
                     <ListItemText primary="Apuestas Activas" />
                 </ListItem>
-            }
+            } */}
 
             {isAsistente &&
                 <ListItem button component={Link} to={'/asistente/historial'} onClick={props.click}>

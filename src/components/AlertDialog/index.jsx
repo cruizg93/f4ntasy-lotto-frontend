@@ -30,7 +30,7 @@ const AlertDialog = ({ ...props }) => {
             className={classes.headerContainer}
         >
             <Grid item xs={8} className={classes.editarJugadorLabel}>
-                <Typography variant="body1" gutterBottom className={"form__center-label"}>
+                <Typography variant="body1" className={"form__center-label"}>
                     {props.msg}
                 </Typography>
             </Grid>

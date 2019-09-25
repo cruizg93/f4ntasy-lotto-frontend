@@ -186,12 +186,12 @@ const ApuestasActivasAdminData = ({
             <Paper key={props.index} className={classes.paper}>
                 <Grid container>
                     <Grid item xs={2} className={classes.typeContainer}>
-                        <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                        <Typography variant="body1" className={classes.textLabel}>
                             {type}
                         </Typography>
                     </Grid>
                     <Grid item xs={6} className={classes.titleContainer}>
-                        <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                        <Typography variant="body1" className={classes.textLabel}>
                             {title}
                         </Typography>
                     </Grid>
@@ -226,7 +226,7 @@ const ApuestasActivasAdminData = ({
                         container
                         justify="flex-end"
                     >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
+                        <Typography variant="body1" className={classes.text}>
                             Total Apuestas | {moneda}
                         </Typography>
                     </Grid>
@@ -235,7 +235,7 @@ const ApuestasActivasAdminData = ({
                         justify="flex-start"
                         className={classes.text}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
+                        <Typography variant="body1" className={classes.textValueLabel}>
                             {total.toFixed(2)}
                         </Typography>
 
@@ -244,7 +244,7 @@ const ApuestasActivasAdminData = ({
                         container
                         justify="flex-end"
                     >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
+                        <Typography variant="body1" className={classes.text}>
                             Total Comisiones | {moneda}
                         </Typography>
                     </Grid>
@@ -253,7 +253,7 @@ const ApuestasActivasAdminData = ({
                         justify="flex-start"
                         className={classes.text}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
+                        <Typography variant="body1" className={classes.textValueLabel}>
                             {comision.toFixed(2)}
                         </Typography>
 
@@ -262,7 +262,7 @@ const ApuestasActivasAdminData = ({
                         container
                         justify="flex-end"
                     >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
+                        <Typography variant="body1" className={classes.text}>
                             Entrada neta | {moneda}
                         </Typography>
                     </Grid>
@@ -271,7 +271,7 @@ const ApuestasActivasAdminData = ({
                         justify="flex-start"
                         className={classes.text}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
+                        <Typography variant="body1" className={classes.textValueLabel}>
                             {neta.toFixed(2)}
                         </Typography>
 
@@ -281,7 +281,7 @@ const ApuestasActivasAdminData = ({
                             container
                             justify="flex-end"
                         >
-                            <Typography variant="body1" gutterBottom className={classes.text}>
+                            <Typography variant="body1" className={classes.text}>
                                 Premios | {moneda}
                             </Typography>
                         </Grid>
@@ -290,7 +290,7 @@ const ApuestasActivasAdminData = ({
                             justify="flex-start"
                             className={classes.text}
                         >
-                            <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
+                            <Typography variant="body1" className={classes.textValueLabel}>
                                 {premio.toFixed(2)}
                             </Typography>
 
@@ -299,7 +299,7 @@ const ApuestasActivasAdminData = ({
                             container
                             justify="flex-end"
                         >
-                            <Typography variant="body1" gutterBottom className={classes.text}>
+                            <Typography variant="body1" className={classes.text}>
                                 Ganancia/Perdida | {moneda}
                             </Typography>
                         </Grid>
@@ -308,7 +308,7 @@ const ApuestasActivasAdminData = ({
                             justify="flex-start"
                             className={classes.text}
                         >
-                            <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
+                            <Typography variant="body1" className={classes.textValueLabel}>
                                 {balance.toFixed(2)}
                             </Typography>
 
@@ -325,7 +325,7 @@ const ApuestasActivasAdminData = ({
                         justify="center"
                         className={classes.text}
                     >
-                        <Typography variant="h5" gutterBottom
+                        <Typography variant="h5"
                             className={`${estado === 'ABIERTA' ? classes.textSorteoAbierto : classes.close} ${classes.sorteoTextContainer}`}>
                             {estado === 'ABIERTA' ? "Sorteo Abierto" : "Sorteo Cerrado"}
                         </Typography>
@@ -336,7 +336,7 @@ const ApuestasActivasAdminData = ({
                         className={classes.text}
                     >
                         {estado === 'ABIERTA' ?
-                            <Typography variant="body1" gutterBottom className={classes.numeroGanadorContainer}
+                            <Typography variant="body1" className={classes.numeroGanadorContainer}
                                 onClick={bloquearApuesta}
                             >
                                 {"Bloquear"}
@@ -344,7 +344,7 @@ const ApuestasActivasAdminData = ({
                             : null
                         }
                         {estado === 'CERRADA' ?
-                            <Typography variant="body1" gutterBottom className={classes.numeroGanadorContainer}
+                            <Typography variant="body1" className={classes.numeroGanadorContainer}
                                 onClick={handleClickOpen}
                             >
                                 {"Asignar numero ganador"}
@@ -352,7 +352,7 @@ const ApuestasActivasAdminData = ({
                             : null
                         }
                         {estado === 'BLOQUEADA' ?
-                            <Typography variant="body1" gutterBottom className={classes.circle}>
+                            <Typography variant="body1" className={classes.circle}>
                                 {props.numeroGanador}
                             </Typography>
                             : null

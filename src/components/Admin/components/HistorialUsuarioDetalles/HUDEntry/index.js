@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
-import {red, blue} from "@material-ui/core/colors/index";
+import { Link } from 'react-router-dom';
+import { red, blue } from "@material-ui/core/colors/index";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
-        
+
     },
     component: {
         textDecoration: 'none',
@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const HistorialUsuarioDetallesEntry = ({id, username, moneda, title, balance, date,...props}) => {
+const HistorialUsuarioDetallesEntry = ({ id, username, moneda, title, balance, date, ...props }) => {
     const classes = useStyles();
 
     useEffect(() => {
@@ -47,27 +47,27 @@ const HistorialUsuarioDetallesEntry = ({id, username, moneda, title, balance, da
     return (
         <Grid container>
             <Grid item xs={5} component={Link}
-                  to={
-                      {
-                          pathname: `/historial/semana/actual/usuario/${id}/desglose`,
-                          state: {
-                              id: id,
-                              username: username,
-                              date: date,
-                              moneda: moneda
-                          }
-                      }
-                  }
+                to={
+                    {
+                        pathname: `/historial/semana/actual/usuario/${id}/desglose`,
+                        state: {
+                            id: id,
+                            username: username,
+                            date: date,
+                            moneda: moneda
+                        }
+                    }
+                }
             >
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     {title}
                 </Typography>
             </Grid>
             <Grid item xs={7}>
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     {moneda === "dolar" ? "$" : "L"}
                 </Typography>
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     {balance}
                 </Typography>
             </Grid>

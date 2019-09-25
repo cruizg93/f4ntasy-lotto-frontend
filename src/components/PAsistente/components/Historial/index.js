@@ -1,11 +1,11 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
-import {red, blue} from "@material-ui/core/colors/index";
+import { red, blue } from "@material-ui/core/colors/index";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -42,44 +42,44 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const HistorialDataPAsistente = ({match: {url}, id, title, total, numero, comision, premio, balance, ...props}) => {
+const HistorialDataPAsistente = ({ match: { url }, id, title, total, numero, comision, premio, balance, ...props }) => {
     const classes = useStyles();
 
     return (
         <Grid item xs={12} component={Link}
-              to={
-                  {
-                      pathname: `${url}/${id}`,
-                      state: {
-                          id: id,
-                          title: title,
-                          total: total,
-                          numero: numero,
-                      }
-                  }
-              }
-              className={classes.component}
+            to={
+                {
+                    pathname: `${url}/${id}`,
+                    state: {
+                        id: id,
+                        title: title,
+                        total: total,
+                        numero: numero,
+                    }
+                }
+            }
+            className={classes.component}
         >
             <Paper key={props.index} className={classes.paper}>
-                <Typography variant="h5" gutterBottom>
+                <Typography variant="h5"  >
                     {title} {" @ "} {numero}
                 </Typography>
-                <Divider/>
+                <Divider />
                 <Grid container>
                     <Grid item xs={6}
-                          container
-                          justify="flex-end"
+                        container
+                        justify="flex-end"
                     >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
+                        <Typography variant="body1" className={classes.text}>
                             Total apuestas |
                         </Typography>
                     </Grid>
                     <Grid item xs={6}
-                          container
-                          justify="flex-start"
-                          className={classes.text}
+                        container
+                        justify="flex-start"
+                        className={classes.text}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
+                        <Typography variant="body1" className={classes.text}>
                             {total}
                         </Typography>
 

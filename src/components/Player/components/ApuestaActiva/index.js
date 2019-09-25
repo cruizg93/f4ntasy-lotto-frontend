@@ -94,7 +94,7 @@ const ApuestaActivaEntry = ({ numero, valor, disable, ...props }) => {
             </Dialog>
             <Grid item className="venta_individual_number">
                 <NumberFormat id={`text-${props.index}`}
-                    variant="body1" gutterBottom className={classes.text}
+                    variant="body1" className={classes.text}
                     placeholder="Número"
                     className="number"
                     disabled={true}

@@ -1,17 +1,17 @@
-import React, {useState, useEffect} from 'react';
-import {ToastContainer, toast} from 'react-toastify';
+import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import {makeStyles} from '@material-ui/core/styles';
-import {red, blue} from "@material-ui/core/colors/index";
+import { makeStyles } from '@material-ui/core/styles';
+import { red, blue } from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
-import {withStyles} from "@material-ui/core/styles/index";
+import { withStyles } from "@material-ui/core/styles/index";
 import ShowDetallesApuesta from '../../../../../Player/components/Detalles/index';
-import {adminService} from "../../../../../../service/api/admin/admin.service";
-import {printDocument6} from "../../../../../../_helpers/print";
-import {Colors} from "../../../../../../utils/__colors";
+import { adminService } from "../../../../../../service/api/admin/admin.service";
+import { printDocument6 } from "../../../../../../_helpers/print";
+import { Colors } from "../../../../../../utils/__colors";
 import HeaderDescription from "../../../../../HeaderDescription/index";
 
 
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
-        
+
     },
     component: {
         textDecoration: 'none',
@@ -44,11 +44,11 @@ const useStyles = makeStyles(theme => ({
     disableLink: {
         pointerEvents: 'none'
     },
-    containerData:{
+    containerData: {
         background: Colors.Main,
     },
-    apuestaContainer:{
-        borderRight:"#afb6b8 1px solid",
+    apuestaContainer: {
+        borderRight: "#afb6b8 1px solid",
     }
 }));
 
@@ -57,7 +57,7 @@ const ImprimirButton = withStyles({
         width: '100%',
         boxShadow: 'none',
         textTransform: 'none',
-        fontSize: 16,       
+        fontSize: 16,
         lineHeight: 1.5,
         padding: "15px 0",
         backgroundColor: Colors.Main,
@@ -82,38 +82,38 @@ const ImprimirButton = withStyles({
     },
 })(Button);
 
-const DesgloseApuestaJugador = ({...props}) => {
+const DesgloseApuestaJugador = ({ ...props }) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
     const [id, setIdValue] = useState(0);
     const [list, setList] = useState([]);
     const [type, setType] = useState("DIARIA")
-    
+
     useEffect(() => {
         adminService.details_apuesta_activa_by_apuesta_id(props.location.state.username,
-            props.location.state.id).then((result) => {                            
-            setList(Array.from(result.data));
-        })
+            props.location.state.id).then((result) => {
+                setList(Array.from(result.data));
+            })
         setTitle(props.location.state.title);
         setIdValue(props.location.state.id);
-        setType(props.location.state.type);    
+        setType(props.location.state.type);
     }, []);
 
     function handleOnPrint() {
         const input = document.getElementById("destalles-apuesta-usuario-desglose");
-        printDocument6(input, title+'-activa-asistente');
+        printDocument6(input, title + '-activa-asistente');
     }
     return (
         <React.Fragment>
-            <HeaderDescription name={"Detalle Apuestas X"}/>
+            <HeaderDescription name={"Detalle Apuestas X"} />
             <Grid container
-                          spacing={1}
-                          direction="row"
-                          justify="center"
-                          className={classes.containerData}
-                    >                          
-            </Grid>           
-            <Divider/>
+                spacing={1}
+                direction="row"
+                justify="center"
+                className={classes.containerData}
+            >
+            </Grid>
+            <Divider />
             <Grid
                 container spacing={1}
                 direction="row"
@@ -125,36 +125,36 @@ const DesgloseApuestaJugador = ({...props}) => {
             >
                 <Grid item xs={3}
                     className={classes.apuestaContainer}
-                    >                     
-                    <Typography variant="h5" gutterBottom>
+                >
+                    <Typography variant="h5"  >
                         {type}
                     </Typography>
-                 </Grid>
-                 <Grid item xs={8}>
-                    <Typography variant="h5" gutterBottom
-                        style={{marginLeft: ".5rem"}}
+                </Grid>
+                <Grid item xs={8}>
+                    <Typography variant="h5"
+                        style={{ marginLeft: ".5rem" }}
                     >
                         {title}
-                    </Typography>                     
-                 </Grid>
-                 <Grid item xs={12}>
-                    <Divider/>
-                 </Grid>
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <Divider />
+                </Grid>
                 {list.map((apuestaDetail, index) =>
                     <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} {...props}
-                    
-                    
+
+
                     />
                 )}
             </Grid>
             <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
+                direction="row"
+                justify="center"
             >
 
                 <Grid item xs={12}>
                     <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
-                        <Typography variant="body1" gutterBottom>
+                        <Typography variant="body1"  >
                             Imprimir
                         </Typography>
                     </ImprimirButton>

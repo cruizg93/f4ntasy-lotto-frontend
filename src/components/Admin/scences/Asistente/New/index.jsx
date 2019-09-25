@@ -284,7 +284,7 @@ const NewAsistente = ({ ...props }) => {
                     className={classes.headerContainer}
                 >
                     <Grid item xs={6} className={classes.crearAsistenteLabel}>
-                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                        <Typography variant="h6" className={"form__center-label"}>
                             Crear Jugador X
                         </Typography>
                     </Grid>
@@ -310,7 +310,7 @@ const NewAsistente = ({ ...props }) => {
                         </NativeSelect>
                     </Grid>
                     <Grid item xs={6}>
-                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                        <Typography variant="h6" className={"form__center-label"}>
                             Listado de Jugadores P
                         </Typography>
                     </Grid>

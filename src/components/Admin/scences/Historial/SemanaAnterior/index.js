@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
-import {adminService} from "../../../../../service/api/admin/admin.service";
+import { adminService } from "../../../../../service/api/admin/admin.service";
 import Typography from '@material-ui/core/Typography';
 
-import {makeStyles, withStyles} from "@material-ui/core/styles/index";
-import {red, blue} from "@material-ui/core/colors/index";
+import { makeStyles, withStyles } from "@material-ui/core/styles/index";
+import { red, blue } from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
 import HistorialStatic from '../../../components/HistorialStatics/index';
 import HistorialSemanaActualUserEntry from '../../../components/HistorialSemanal/index';
@@ -140,33 +140,33 @@ const HistorialSemanaAnteriorAdmin = (props) => {
     return (
         <React.Fragment>
             <HistorialStatic title={title} totalSemanal={totalSemanal} comisionSemanal={comisionSemanal}
-            netaSemanal={netaSemanal} totalPremioSemanal={totalPremioSemanal} balanceSemanal={balanceSemanal}
-            clickDolar={get_in_dolar} clickLempira={get_in_lempira} semana={"last"}
+                netaSemanal={netaSemanal} totalPremioSemanal={totalPremioSemanal} balanceSemanal={balanceSemanal}
+                clickDolar={get_in_dolar} clickLempira={get_in_lempira} semana={"last"}
             />
 
             <Grid container spacing={3}
-                  direction="row"
-                  justify="center"
-                  alignItems="center">
+                direction="row"
+                justify="center"
+                alignItems="center">
 
                 {usuariosList.length > 0 ?
                     usuariosList.map((usuario, index) =>
-                        <HistorialSemanaActualUserEntry key={index} {...usuario} type={moneda} {...props}/>
+                        <HistorialSemanaActualUserEntry key={index} {...usuario} type={moneda} {...props} />
                     ) :
-                    <Typography variant="body1" gutterBottom className={classes.textNoDisponible}>
+                    <Typography variant="body1" className={classes.textNoDisponible}>
                         No hay resultados disponibles para esta semana
                     </Typography>
                 }
             </Grid>
             <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
+                direction="row"
+                justify="center"
             >
 
                 <Grid item xs={6}>
                     <ImprimirButton variant="outlined" color="primary"
-                                    disabled={usuariosList.length === 0}>
-                        <Typography variant="body1" gutterBottom>
+                        disabled={usuariosList.length === 0}>
+                        <Typography variant="body1"  >
                             Imprimir
                         </Typography>
                     </ImprimirButton>

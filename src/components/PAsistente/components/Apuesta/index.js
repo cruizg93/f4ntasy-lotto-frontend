@@ -95,12 +95,12 @@ const ApuestaData = ({ match: { url }, id, nombre, total, comision, riesgo, esta
             <Paper key={props.index} className={classes.paper}>
                 <Grid container>
                     <Grid item xs={3} className={classes.typeContainer}>
-                        <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                        <Typography variant="body1" className={classes.textLabel}>
                             {props.type}
                         </Typography>
                     </Grid>
                     <Grid item xs={6} className={classes.titleContainer}>
-                        <Typography variant="body1" gutterBottom className={classes.textLabel}>
+                        <Typography variant="body1" className={classes.textLabel}>
                             {nombre}
                         </Typography>
                     </Grid>
@@ -113,7 +113,7 @@ const ApuestaData = ({ match: { url }, id, nombre, total, comision, riesgo, esta
                         container
                         justify="flex-end"
                     >
-                        <Typography variant="body1" gutterBottom className={classes.text}>
+                        <Typography variant="body1" className={classes.text}>
                             Apuestas |
                         </Typography>
                     </Grid>
@@ -122,7 +122,7 @@ const ApuestaData = ({ match: { url }, id, nombre, total, comision, riesgo, esta
                         justify="flex-start"
                         className={classes.text}
                     >
-                        <Typography variant="body1" gutterBottom className={classes.textValueLabel}>
+                        <Typography variant="body1" className={classes.textValueLabel}>
                             {total.toFixed(2)}
                         </Typography>
                     </Grid>
@@ -134,7 +134,7 @@ const ApuestaData = ({ match: { url }, id, nombre, total, comision, riesgo, esta
                         justify="center"
                         className={classes.text}
                     >
-                        <Typography variant="h5" gutterBottom
+                        <Typography variant="h5"
                             className={`${estado === 'ABIERTA' ? classes.textSorteoAbierto : classes.close} ${classes.sorteoTextContainer}`}>
                             {estado === 'ABIERTA' ? "Sorteo Abierto" : "Sorteo Cerrado"}
                         </Typography>

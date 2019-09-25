@@ -7,7 +7,15 @@ import {
     ON_INIT_BEGIN,
     ON_INIT_END,
     WINDOW_WIDTH,
+    BACKGROUND_COLOR,
 } from './types';
+
+export const setBackgroundColor = (color) => {
+    return {
+        type: BACKGROUND_COLOR,
+        payload: color
+    };
+};
 
 export const onInitBegin = () => {
     return {

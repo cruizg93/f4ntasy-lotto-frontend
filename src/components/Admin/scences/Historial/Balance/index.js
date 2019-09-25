@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import 'date-fns';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
 import es from 'date-fns/locale/es';
 import {
@@ -10,9 +10,9 @@ import {
     KeyboardDatePicker,
 
 } from '@material-ui/pickers';
-import {withStyles} from "@material-ui/core/styles/index";
+import { withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
-import {adminService} from "../../../../../service/api/admin/admin.service";
+import { adminService } from "../../../../../service/api/admin/admin.service";
 
 
 const localeMap = {
@@ -66,7 +66,7 @@ const BalanceAdmin = (props) => {
     const classes = useStyles();
 
     function handleDateChange(date) {
-        setSelectedDate(date);       
+        setSelectedDate(date);
     }
 
     function handleDateChange1(date) {
@@ -83,8 +83,8 @@ const BalanceAdmin = (props) => {
     return (
         <React.Fragment>
             <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
+                direction="row"
+                justify="center"
             >
                 <MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[locale]}>
                     <Grid container className={classes.grid} justify="space-around">
@@ -116,16 +116,16 @@ const BalanceAdmin = (props) => {
                 </MuiPickersUtilsProvider>
             </Grid>
             <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
+                direction="row"
+                justify="center"
             >
 
                 <Grid item xs={6}>
                     <ImprimirButton variant="outlined" color="primary"
-                                    disabled={(selectedDate1 - selectedDate) < 0}
-                                    onClick={handleOnClick}
+                        disabled={(selectedDate1 - selectedDate) < 0}
+                        onClick={handleOnClick}
                     >
-                        <Typography variant="body1" gutterBottom>
+                        <Typography variant="body1"  >
                             Buscar
                         </Typography>
                     </ImprimirButton>
@@ -134,23 +134,23 @@ const BalanceAdmin = (props) => {
             </Grid>
             {disable ?
                 <Grid container spacing={1}
-                      direction="row"
-                      justify="center"
+                    direction="row"
+                    justify="center"
                 >
                     <Grid container
-                          direction="row"
-                          justify="center">
+                        direction="row"
+                        justify="center">
 
-                        <Typography variant="h4" gutterBottom>
+                        <Typography variant="h4"  >
                             Perdidas/Ganancias
                         </Typography>
 
                     </Grid>
                     <Grid container
-                          direction="row"
-                          justify="center">
+                        direction="row"
+                        justify="center">
 
-                        <Typography variant="h5" gutterBottom>
+                        <Typography variant="h5"  >
                             {value}
                         </Typography>
 

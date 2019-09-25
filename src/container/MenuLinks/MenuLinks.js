@@ -117,12 +117,12 @@ export const MenuLinks = (props) => {
             {!isAdmin && <>
                 {!isAsistente && <Button component={Link}
                     to="/usuario/apuestas"
-                    color="inherit">Entrar Apuestas</Button>
+                    color="inherit">Sorteos</Button>
                 }
-                {!isAsistente && <Button component={Link}
+                {/* {!isAsistente && <Button component={Link}
                     to="/usuario/apuestas/hoy/activas"
                     color="inherit">Apuestas Activas</Button>
-                }
+                } */}
                 {!isAsistente && <Button component={Link}
                     to="/usuario/historial"
                     color="inherit">Historial</Button>
@@ -131,12 +131,12 @@ export const MenuLinks = (props) => {
             }
             {isAsistente && <Button component={Link}
                 to="/asistente/apuestas"
-                color="inherit">Entrar Apuestas</Button>
+                color="inherit">Sorteos</Button>
             }
-            {isAsistente && <Button component={Link}
+            {/* {isAsistente && <Button component={Link}
                 to="/asistente/apuestas/hoy/activas"
                 color="inherit">Apuestas Activas</Button>
-            }
+            } */}
             {isAsistente && <Button component={Link}
                 to="/asistente/historial"
                 color="inherit">Historial</Button>

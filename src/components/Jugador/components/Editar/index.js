@@ -336,7 +336,7 @@ const EditarJugador = (props) => {
                     className={classes.headerContainer}
                 >
                     <Grid item xs={8} className={classes.editarJugadorLabel}>
-                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                        <Typography variant="h6" className={"form__center-label"}>
                             Editar Jugador P
                         </Typography>
                     </Grid>
@@ -351,7 +351,7 @@ const EditarJugador = (props) => {
                     className={classes.headerContainer}
                 >
                     <Grid item xs={6}>
-                        <Typography variant="h6" gutterBottom className={"form__center-label"}>
+                        <Typography variant="h6" className={"form__center-label"}>
                             {placeholderUser} / {inputUserName}
                         </Typography>
                     </Grid>

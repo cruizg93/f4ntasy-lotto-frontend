@@ -106,12 +106,12 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                 alignItems="center"
                 className={classes.text}
             >
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     Resumen de todos los sorteos ya terminados, de todos los jugadores, y de la
                     {semana === 'current' ? " SEMANA EN CURSO" : " SEMANA EN ANTERIOR"}
 
                 </Typography>
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     {title}
                 </Typography>
             </Grid>
@@ -136,7 +136,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                 container
                 justify="flex-end"
             >
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     Total Apuestas |
                 </Typography>
             </Grid>
@@ -145,7 +145,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                 justify="flex-start"
                 className={classes.text}
             >
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     {totalSemanal}
                 </Typography>
             </Grid>
@@ -153,7 +153,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                 container
                 justify="flex-end"
             >
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     Total Comisiones |
                 </Typography>
             </Grid>
@@ -162,7 +162,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                 justify="flex-start"
                 className={classes.text}
             >
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     {comisionSemanal}
                 </Typography>
             </Grid>
@@ -170,7 +170,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                 container
                 justify="flex-end"
             >
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     Entrada Neta |
                 </Typography>
             </Grid>
@@ -179,7 +179,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                 justify="flex-start"
                 className={classes.text}
             >
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     {netaSemanal}
                 </Typography>
             </Grid>
@@ -187,7 +187,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                 container
                 justify="flex-end"
             >
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     Total Premios |
                 </Typography>
             </Grid>
@@ -196,7 +196,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                 justify="flex-start"
                 className={classes.text}
             >
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     {totalPremioSemanal}
                 </Typography>
             </Grid>
@@ -204,7 +204,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                 container
                 justify="flex-end"
             >
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     Ganancia/Perdida |
                 </Typography>
             </Grid>
@@ -213,7 +213,7 @@ const HistorialStatic = ({ title, totalSemanal, comisionSemanal, netaSemanal, to
                 justify="flex-start"
                 className={classes.text}
             >
-                <Typography variant="body1" gutterBottom className={classes.text}>
+                <Typography variant="body1" className={classes.text}>
                     {balanceSemanal}
                 </Typography>
             </Grid>

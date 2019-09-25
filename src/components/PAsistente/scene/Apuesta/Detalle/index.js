@@ -212,7 +212,7 @@ const DetalleAsistente = ({ list, ...props }) => {
                 justify="center"
                 alignItems="flex-start"
             >
-                <Typography variant="h5" gutterBottom>
+                <Typography variant="h5"  >
                     {title}
                 </Typography>
 
@@ -237,7 +237,7 @@ const DetalleAsistente = ({ list, ...props }) => {
                 direction="row"
                 justify="center"
             >
-                <Typography variant="body1" gutterBottom>
+                <Typography variant="body1"  >
                     Apuesta | {total.toFixed(2)}
                 </Typography>
             </Grid>
@@ -247,16 +247,16 @@ const DetalleAsistente = ({ list, ...props }) => {
                 alignItems="center"
                 className={classes.fixedElement}
             >
-                <Typography variant="body1" gutterBottom className={classes.textApuestaDescription}>
+                <Typography variant="body1" className={classes.textApuestaDescription}>
                     {title}
                 </Typography>
                 <EditarButton variant="outlined" color="primary" onClick={props.history.goBack}>
-                    <Typography variant="body1" gutterBottom>
+                    <Typography variant="body1"  >
                         Editar
                     </Typography>
                 </EditarButton>
                 <TotalButton variant="outlined" color="primary" onClick={handleClickOpen}>
-                    <Typography variant="body1" gutterBottom >
+                    <Typography variant="body1"   >
                         Comprar <FaShoppingCart />
                     </Typography>
                 </TotalButton>
