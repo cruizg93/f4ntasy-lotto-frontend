@@ -80,10 +80,10 @@ const useStyles = theme => ({
     buttonContainerApuestas: {
         backgroundColor: "#ffffff",
         minWidth: "100%",
-        position: "absolute",
+        position: "fixed",
         display: "flex",
         zIndex: "25",
-        bottom: "0px",
+        bottom: "4px",
         height: '76px',
         lineHeight: '76px',
         justifyContent: "flex-end",
@@ -200,7 +200,7 @@ class AdicionarNumeroApuesta extends Component {
         this.buttonContainerApuestasRef = React.createRef();
         this.agregarApuestaButtonRef = React.createRef();
         this.buttonContainerComprarRef = React.createRef();
-        this.isNumerofocus = true;
+        this.isNumerofocus = false;
         this.isUnidadesfocus = false;
         this.isFirstMount = true;
     }
@@ -280,8 +280,8 @@ class AdicionarNumeroApuesta extends Component {
     }
 
     showAddButton() {
-        console.log("---isNumerofocus", this.isNumerofocus)
-        console.log("---isUnidadesfocus", this.isUnidadesfocus)
+        // console.log("---isNumerofocus", this.isNumerofocus)
+        // console.log("---isUnidadesfocus", this.isUnidadesfocus)
         if (!this.state.showAddBtn) {
             setTimeout(() => {
                 this.setState({
@@ -293,8 +293,8 @@ class AdicionarNumeroApuesta extends Component {
     }
 
     hideAddButton() {
-        console.log("isNumerofocus", this.isNumerofocus)
-        console.log("isUnidadesfocus", this.isUnidadesfocus)
+        // console.log("isNumerofocus", this.isNumerofocus)
+        // console.log("isUnidadesfocus", this.isUnidadesfocus)
         if (!(this.isNumerofocus || this.isUnidadesfocus)) {
             setTimeout(() => {
                 this.setState((state) => {
@@ -556,7 +556,7 @@ class AdicionarNumeroApuesta extends Component {
     render() {
         this.classes = this.props.classes;
         const display = this.state.showAddBtn ? 'block' : 'none'
-        console.log("showAddBtn", this.state.showAddBtn)
+        // console.log("showAddBtn", this.state.showAddBtn)
         function updateFunction(e) {
         }
 
