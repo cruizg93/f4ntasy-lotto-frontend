@@ -71,9 +71,6 @@ const useStyles = theme => ({
             borderRight: "#3366cc 1px solid",
         }
     },
-    extendedIcon: {
-
-    },
     ResumenApuestas: {
         height: 85,
     },
@@ -96,65 +93,6 @@ const useStyles = theme => ({
             alignItems: "center",
         }
     },
-    buttonAgregarApuesta: {
-        borderRadius: "15px",
-        textTransform: "none",
-        height: "37px",
-        width: '137px',
-        color: "#ffffff",
-        backgroundColor: Colors.Orange,
-        fontSize: "1.6rem",
-        width: "100% !important",
-        "&:hover": {
-            backgroundColor: Colors.Orange,
-        }
-    },
-    buttonComprar: {
-        borderRadius: "15px",
-        textTransform: "none",
-        height: "37px",
-        width: '137px',
-        color: "#ffffff",
-        backgroundColor: Colors.Jugador_Blue,
-        width: "100% !important",
-        padding: "0px !important",
-        "& span": {
-            fontSize: "1rem"
-        },
-
-    },
-    buttonFinalizarCompra: {
-        borderRadius: "1000px",
-        textTransform: "none",
-        height: "1.5rem",
-        color: "#ffffff",
-        backgroundColor: Colors.Jugador_Blue,
-        width: "100% !important",
-        padding: "0px !important",
-        "& span": {
-            fontSize: "1rem"
-        },
-        "&:hover": {
-            backgroundColor: Colors.Jugador_Blue,
-        }
-    },
-    buttonLimpiar: {
-        borderRadius: "13px",
-        textTransform: "none",
-        height: "37px",
-        width: '137px',
-        color: "#ffffff",
-        backgroundColor: Colors.Jugador_Red,
-        width: "100% !important",
-        padding: "0px !important",
-        "& span": {
-            fontSize: "1rem"
-        },
-        "&:hover": {
-            backgroundColor: Colors.Jugador_Red,
-        }
-    },
-
 });
 
 
@@ -199,7 +137,6 @@ class AdicionarNumeroApuesta extends Component {
 
         this.buttonContainerApuestasRef = React.createRef();
         this.agregarApuestaButtonRef = React.createRef();
-        this.buttonContainerComprarRef = React.createRef();
         this.isNumerofocus = false;
         this.isUnidadesfocus = false;
         this.isFirstMount = true;
@@ -239,7 +176,6 @@ class AdicionarNumeroApuesta extends Component {
             }
 
         });
-        this.buttonContainerComprarRef.current.style.display = "none";
         // this.entryNumeroInputRef.current.focus();
     }
 
@@ -555,7 +491,7 @@ class AdicionarNumeroApuesta extends Component {
 
     render() {
         this.classes = this.props.classes;
-        const display = this.state.showAddBtn ? 'block' : 'none'
+        const trans = this.state.showAddBtn ? 'translate(0px)' : 'translate(100px)'
         // console.log("showAddBtn", this.state.showAddBtn)
         function updateFunction(e) {
         }
@@ -593,7 +529,7 @@ class AdicionarNumeroApuesta extends Component {
         })(TextField);
 
         return (
-            <div style={{ background: 'white' }}>
+            <div className="usuario_apuestas_id">
                 <ToastContainer autoClose={8000} />
                 <TopBar
                     apuestaType={this.state.apuestaType}
@@ -684,48 +620,22 @@ class AdicionarNumeroApuesta extends Component {
                         alignItems="center"
                         ref={this.buttonContainerApuestasRef}>
                         <Grid item xs={12} className={this.classes.buttonContainerApuestas}>
-                            <Grid item xs={4}>
-                                <Button variant="contained" className={this.classes.buttonLimpiar} onClick={() => this.handleClickOpenRemoveAll()}>
+                            <Grid item xs={6}>
+                                <Button variant="contained" className="buttonLimpiar" onClick={() => this.handleClickOpenRemoveAll()}>
                                     Limpiar
                                 </Button>
                             </Grid>
-                            <Grid item xs={4}>
-                                <Button variant="contained" className={this.classes.buttonComprar} onClick={() => this.handleClickOpenComprar()}>
+                            <Grid item xs={6}>
+                                <Button variant="contained" className="buttonComprar" onClick={() => this.handleClickOpenComprar()}>
                                     Comprar
                                 </Button>
-                            </Grid>
-                            <Grid item xs={4}>
-                                <Button variant="contained" className={this.classes.buttonAgregarApuesta} onClick={this.agregarApuesta}>
-                                    <MdFileDownload className={this.classes.extendedIcon} />
-                                </Button>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={0}
-                        direction="row"
-                        justify="center"
-                        alignItems="center"
-                        ref={this.buttonContainerComprarRef} >
-                        <Grid item xs={12} className={this.classes.buttonContainerApuestas}>
-                            <Grid item xs={4}>
-                                <Fab variant="extended" aria-label="removeAll" className={this.classes.buttonLimpiar} onClick={this.regresar}>
-                                    <MdSettingsBackupRestore className={this.classes.extendedIcon} />
-                                    Regresar
-                                </Fab>
-                            </Grid>
-                            <Grid item xs={2}>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Fab variant="extended" aria-label="buyAll" className={this.classes.buttonFinalizarCompra} onClick={this.handleClickOpenFinalizarCompraDialog}>
-                                    Finalizar Compra
-                                </Fab>
                             </Grid>
                         </Grid>
                     </Grid>
                 </Container>
-                <div className="slideAddBtn" style={{ display: display }}>
-                    <Button variant="contained" className={this.classes.buttonAgregarApuesta} onClick={this.agregarApuesta}>
-                        <MdFileDownload className={this.classes.extendedIcon} />
+                <div className="slideAddBtn" style={{ transform: trans }}>
+                    <Button variant="contained" className="buttonAgregarApuesta" onClick={this.agregarApuesta}>
+                        <MdFileDownload className="extendedIcon" />
                     </Button>
                 </div>
                 <ConfirmDialog
