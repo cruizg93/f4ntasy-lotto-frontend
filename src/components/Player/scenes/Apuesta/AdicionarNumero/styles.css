@@ -11,10 +11,62 @@
 .clearfix::before{
   clear: both;
 }
-
-.slideAddBtn{
-  position: fixed;
-  bottom: 300px;
-  right: 20px;
-  z-index: 100;
+.usuario_apuestas_id{
+  background: white;
 }
+
+.usuario_apuestas_id .slideAddBtn{
+  position: fixed;
+  bottom: 346px;
+  right: 2px;
+  z-index: 100;
+  transition: all 0.5s ease-out;
+}
+
+.usuario_apuestas_id .slideAddBtn .buttonAgregarApuesta{
+  border-radius: 50px 0px 0px 50px;
+  text-transform: none;
+  color: #ffffff;
+  background: #E7A03B;
+  font-size: 20px;
+  width: 85px;
+  height: 45px;
+}
+.usuario_apuestas_id .slideAddBtn .buttonAgregarApuesta .extendedIcon{
+  font-size: 32px;
+  margin-left: -25px;
+  margin-top: 1px;
+}
+
+
+.usuario_apuestas_id .buttonComprar {
+  border-radius: 15px;
+  text-transform: none;
+  height: 37px;
+  width: 153px !important;
+  color: #ffffff;
+  background: #5891DC;
+  width: 153px !important;
+  padding: 0px !important;
+  font-size: 19px;
+}
+.usuario_apuestas_id .buttonComprar:hover{
+  background: #5891DC;
+}
+
+.usuario_apuestas_id .buttonLimpiar{
+  border-radius: 13px;
+  text-transform: none;
+  height: 37px;
+  width: 153px !important;
+  color: #ffffff;
+  background: #CB3C34;
+  padding: 0px !important;
+  font-size: 19px;
+  margin-left: 10px;
+}
+.usuario_apuestas_id .buttonLimpiar:hover{
+  background: #CB3C34;
+}
+
+
