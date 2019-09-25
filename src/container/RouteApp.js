@@ -71,7 +71,7 @@ class RouterApp extends React.Component {
     if (path.indexOf('/usuario/apuesta/detalles') === 0) return whiteColor;
     if (path.indexOf('/usuario/apuestas/hoy/activas/') === 0) return whiteColor;
     if (path.indexOf('/jugador/apuestas/detalles/') === 0) return whiteColor;
-    if (path.indexOf('/usuario/apuesta/detalles') === 0) return whiteColor;
+    if (path.indexOf('/usuario/apuestas/') === 0) return whiteColor;
     return grayColor;
   }
 
@@ -82,7 +82,7 @@ class RouterApp extends React.Component {
         return (<Redirect to={'/login'} />);
       }
     }
-    const background = this.setBackground(this.props.location.path)
+    const background = this.setBackground(this.props.location.pathname)
     return (
       <>
         <div className="app-container" style={{ background: background }}>

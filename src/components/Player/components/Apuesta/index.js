@@ -124,8 +124,8 @@ class ApuestaData extends React.Component {
                     </Grid>
                     <Grid container item xs={8} direction="column">
                         <Grid item justify="flex-start" className="headerLabelSorteoHour">
-                            <span className="time">{this.props.apuesta.type === "DIARIA" ? hour : "12 pm"}</span>
-                            <span className="line">{'\u00A0'}-{'\u00A0'}{'\u00A0'}</span>
+                            <span className="time">{this.props.apuesta.type === "DIARIA" ? hour : "12 pm"}{'\u00A0'}-{'\u00A0'}{'\u00A0'}</span>
+                            {/* <span className="line">{'\u00A0'}-{'\u00A0'}{'\u00A0'}</span> */}
                             <span className="day">{day}</span>
                         </Grid>
                         <Grid container className="valuesContainer">
@@ -164,121 +164,5 @@ class ApuestaData extends React.Component {
         )
     }
 };
-// const classes = useStyles();
-//     const [pathnameUrl, setPathnameURL] = React.useState(`${url}/${id}`)
-//     const [monedaType, setMonedaType] = React.useState(moneda === "LEMPIRAS" ? " L " : " $ ")
-
-//     console.log("url", url)
-//     React.useLayoutEffect(() => {
-//         if (props.main) {
-//             setPathnameURL(`${url}usuario/apuestas/${id}`)
-//         }
-//     }, [])
-//     return (
-//         <React.Fragment>
-//             <Grid item xs={12} component={Link}
-//                 to={
-//                     {
-//                         pathname: pathnameUrl,
-//                         state: {
-//                             title: { nombre },
-//                             moneda: monedaType,
-//                         }
-//                     }
-//                 }
-//                 className={estado === 'ABIERTA' ? classes.component : classes.componentDisable}>
-
-
-//                 <Paper key={props.index} className={classes.paper}>
-//                     <Grid container>
-//                         <Grid item xs={3} className={classes.typeContainer}>
-//                             <Typography variant="body1" className={classes.textLabel}>
-//                                 {props.type}
-//                             </Typography>
-//                         </Grid>
-//                         <Grid item xs={6} className={classes.titleContainer}>
-//                             <Typography variant="body1" className={classes.textLabel}>
-//                                 {nombre}
-//                             </Typography>
-//                         </Grid>
-//                         <Grid item xs={12}>
-//                             <Divider />
-//                         </Grid>
-//                     </Grid>
-//                     <Grid container>
-//                         <Grid item xs={6}
-//                             container
-//                             justify="flex-end"
-//                         >
-//                             <Typography variant="body1" className={classes.text}>
-//                                 Apuestas |
-//                                 </Typography>
-//                         </Grid>
-//                         <Grid item xs={6}
-//                             container
-//                             justify="flex-start"
-//                             className={classes.text}
-//                         >
-//                             <Typography variant="body1" className={classes.textValueLabel}>
-//                                 {monedaType}{" "}{total.toFixed(2)}
-//                             </Typography>
-//                         </Grid>
-//                         <Grid item xs={6}
-//                             container
-//                             justify="flex-end"
-//                         >
-//                             <Typography variant="body1" className={classes.text}>
-//                                 Comisiones |
-//                                 </Typography>
-//                         </Grid>
-//                         <Grid item xs={6}
-//                             container
-//                             justify="flex-start"
-//                             className={classes.text}
-//                         >
-//                             <Typography variant="body1" className={classes.textValueLabel}>
-//                                 {monedaType}{" "}{comision.toFixed(2)}
-//                             </Typography>
-//                         </Grid>
-//                         <Grid item xs={6}
-//                             container
-//                             justify="flex-end"
-//                         >
-//                             <Typography variant="body1" className={classes.text}>
-//                                 Riesgo |
-//                                 </Typography>
-//                         </Grid>
-//                         <Grid item xs={6}
-//                             container
-//                             justify="flex-start"
-//                             className={classes.text}
-//                         >
-//                             <Typography variant="body1" className={classes.textValueLabel}>
-//                                 {monedaType}{" "}{riesgo.toFixed(2)}
-//                             </Typography>
-//                         </Grid>
-//                         <Grid item xs={12}>
-//                             <Divider />
-//                         </Grid>
-//                         <Grid item xs={12}
-//                             container
-//                             justify="center"
-//                             className={classes.text}
-//                         >
-//                             <Typography variant="h5"
-//                                 className={`${estado === 'ABIERTA' ? classes.textSorteoAbierto : classes.close} ${classes.sorteoTextContainer}`}>
-//                                 {estado === 'ABIERTA' ? "Sorteo Abierto" : "Sorteo Cerrado"}
-//                             </Typography>
-//                         </Grid>
-//                     </Grid>
-//                 </Paper>
-//             </Grid>
-
-
-//         </React.Fragment>
-
-
-//     )
-// };
 
 export default ApuestaData;

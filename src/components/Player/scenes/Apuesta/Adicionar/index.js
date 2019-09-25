@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 import { playerService } from "../../../../../service/api/player/player.service";
 import ApuestaData from '../../../components/Apuesta/index';
 
@@ -46,6 +47,9 @@ class AdicionarApuesta extends React.Component {
                     {this.state.entry.map((apuesta, index) =>
                         <ApuestaData key={index} apuesta={apuesta} index={index} {...this.props} />
                     )}
+                </Grid>
+                <Grid item xs={12}>
+                    <Divider />
                 </Grid>
                 <Container maxWidth="xs" style={{ padding: 0 }}>
                     <Grid container maxWidth="xs" className="container_summary">
