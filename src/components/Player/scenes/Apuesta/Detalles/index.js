@@ -34,6 +34,8 @@ const DetallesApuesta = ({ ...props }) => {
         setTitle(props.location.state.title.title);
         setApuestaType(props.location.state.type);
         setMoneda(props.location.state.moneda);
+
+        window.scrollTo(0, 0)
     }, []);
 
     function handleOnPrint() {

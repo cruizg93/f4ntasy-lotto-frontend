@@ -1,0 +1,44 @@
+.day_text_valor{
+  /* display: flex; */
+}
+.day_text_valor .expansionPanel{
+  background: #f4f4f4;
+}
+.day_text_valor .expansionPanel div:first-child{
+  /* height: 60px !important; */
+}
+.day_text_valor .expansionPanel:first-child .numeroText{
+  color: #183721;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  flex: 1;
+  border-right: solid 1px lightgray;
+  line-height: 60px;
+}
+.day_text_valor .expansionPanel:first-child .valorText:first-child{
+  width: 30px;
+  text-align: right;
+}
+.day_text_valor .expansionPanel:first-child .valorText{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  flex: 1.2;
+  line-height: 60px;
+  padding-left: 9px;
+  display: flex;
+}
+.day_text_valor .expansionPanel .valorText .right{
+  text-align: right;
+  width: 20px;
+}
+.day_text_valor .expansionPanel .valorText .left{
+
+}
+.day_text_valor .expansionPanel .MuiExpansionPanelSummary-content{
+  margin: 0 !important;
+}
+
+.day_text_valor .expansionPanel .expansion_icon_remove{
+  margin-left: -9px;
+  color: #033;
+}

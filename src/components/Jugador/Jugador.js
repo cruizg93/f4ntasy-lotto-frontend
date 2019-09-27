@@ -8,9 +8,7 @@ import { adminService } from "../../service/api/admin/admin.service";
 import JugadorDataShow from './components/JugadorEntry/index';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { MainStyles } from '../View/MainStyles';
 import { FaUserPlus } from 'react-icons/fa';
-import PageTitle from '../View/PageTitle';
 
 import 'react-toastify/dist/ReactToastify.css';
 import './Jugador.css';

@@ -101,64 +101,6 @@ const EditarFijarButton = withStyles({
     },
 })(Button);
 
-const EditarButton = withStyles({
-    root: {
-        width: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#ff190a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        '&:hover': {
-            backgroundColor: '#fb0f2f',
-            borderColor: 'none',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: 'none',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-
-const FijarButton = withStyles({
-    root: {
-        width: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#29992a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        '&:hover': {
-            backgroundColor: '#52d94f',
-            borderColor: '#62cc68',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-
 const EditarAsistente = ({ ...props }) => {
     const classes = useStyles();
     const [placeholderUser, setPlaceholderUser] = React.useState("P000");
@@ -173,9 +115,9 @@ const EditarAsistente = ({ ...props }) => {
     const [jugadorMoneda, setJugadorMoneda] = useState('L');
 
 
-    function handleDisableClick() {
-        setDisable(!disable);
-    }
+    // function handleDisableClick() {
+    //     setDisable(!disable);
+    // }
 
     const editarFijarHandler = (e) => {
         if (!disable) {

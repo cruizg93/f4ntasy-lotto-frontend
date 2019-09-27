@@ -177,6 +177,7 @@ class AdicionarNumeroApuesta extends Component {
             }
 
         });
+        window.scrollTo(0, 0);
         // this.entryNumeroInputRef.current.focus();
     }
 

@@ -8,7 +8,7 @@ import DiariaLogo from '../../../View/assets/Diaria_PNG.png';
 import { Container } from '@material-ui/core';
 import CustomText from '../../../View/CustomText';
 
-import { MdSettings } from "react-icons/md";
+// import { MdSettings } from "react-icons/md";
 import { TiPencil } from "react-icons/ti";
 
 import '../../../../common.css'
@@ -50,16 +50,16 @@ export default function Diaria({
 }) {
 
 
-    const classes = useStyles();
+    // const classes = useStyles();
     // const [selectedValue, setSelectedValue] = React.useState('dm');
     const [select, setSelectState] = React.useState(true);
 
     const activate = props.activate ? props.activate : false;
 
-    function handleChange(event) {
-        // setSelectedValue(event.target.value);
-        setSelectState(!select);
-    }
+    // function handleChange(event) {
+    //     // setSelectedValue(event.target.value);
+    //     setSelectState(!select);
+    // }
 
     return (
         <Container maxWidth="xs" className="pl-0 pr-0 container_diaria">

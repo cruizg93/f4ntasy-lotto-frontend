@@ -7,12 +7,12 @@ import { history } from "../../../../_helpers/history";
 
 const FirstChangePassword = ({ ...props }) => {
     const [password, setPassword] = useState('');
-    const [username, setUsername] = useState('');
+    // const [username, setUsername] = useState('');
     function handlePasswordChange(event) {
         setPassword(event.target.value);
     }
     useEffect(() => {
-        setUsername(authenticationService.currentUserValue.username);
+        // setUsername(authenticationService.currentUserValue.username);
     })
     function updatePassword() {
         if (password !== '') {

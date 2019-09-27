@@ -156,7 +156,7 @@ function list_apuestas_hoy_by_username() {
 
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/sorteos/activos/jugadores/${currentUser.username}`,
-             requestOptions
+            requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);

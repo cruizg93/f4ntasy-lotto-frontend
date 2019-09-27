@@ -51,7 +51,7 @@ class ApuestaData extends React.Component {
                         {this.props.apuesta.type === "DIARIA" ? <img src={DiariaLogo} alt="DiariaLogo" /> : <img src={ChicaLogo} alt="ChicaLogo" />}
                     </Grid>
                     <Grid container item xs={8} direction="column">
-                        <Grid item justify="flex-start" className="headerLabelSorteoHour">
+                        <Grid item className="headerLabelSorteoHour">
                             <span className="time">{this.props.apuesta.type === "DIARIA" ? hour : "12 pm"}{'\u00A0'}-{'\u00A0'}{'\u00A0'}</span>
                             <span className="day">{day}</span>
                         </Grid>
