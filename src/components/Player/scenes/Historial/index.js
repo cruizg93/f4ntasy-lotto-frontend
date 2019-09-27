@@ -11,15 +11,95 @@ import { FormatCurrencySymbol } from '../../../../utils/__currency';
 import AdminTitle from '../../../Admin/components/AdminTitle_Center';
 import './styles.css'
 
-function createData1(numero, numeroText, valor) {
-    return { numero, numeroText, valor };
+const rows3 = {
+    costo: 2640,
+    comision: 580,
+    total: 2060,
+    premio: 0,
+    listWin: [
+        {
+            type: 'DIARIA',
+            hour: '11 am',
+            winNum: 48,
+            list: [
+                {
+                    numero: 54,
+                    valor: 68
+                },
+                {
+                    numero: 55,
+                    valor: 68
+                }
+            ]
+        },
+        {
+            type: 'CHICA',
+            hour: '',
+            winNum: 94
+        },
+        {
+            type: 'DIARIA',
+            hour: '3 am',
+            winNum: 59
+        },
+        {
+            type: 'DIARIA',
+            hour: '9 am',
+            winNum: 19
+        }
+    ]
+
+}
+
+const rows4 = {
+    costo: 640,
+    comision: 80,
+    total: 60,
+    premio: 0,
+    listWin: [
+        {
+            type: 'DIARIA',
+            hour: '11 am',
+            winNum: 8,
+            list: [
+                {
+                    numero: 4,
+                    valor: 8
+                },
+                {
+                    numero: 5,
+                    valor: 8
+                }
+            ]
+        },
+        {
+            type: 'CHICA',
+            hour: '',
+            winNum: 4
+        },
+        {
+            type: 'DIARIA',
+            hour: '3 am',
+            winNum: 9
+        },
+        {
+            type: 'DIARIA',
+            hour: '9 am',
+            winNum: 1
+        }
+    ]
+
+}
+
+function createData1(numero, numeroText, valor, details) {
+    return { numero, numeroText, valor, details };
 }
 
 const rows2 = [
-    createData1(0, 'lun, 22 abr', 123456789),
-    createData1(1, 'mar, 23 abr', -123456789),
+    createData1(0, 'lun, 22 abr', 123456789, rows3),
+    createData1(1, 'mar, 23 abr', -123456789, rows4),
     createData1(2, 'mie, 24 abr', 0),
-    createData1(3, 'jue, 25 abr', -2060),
+    createData1(3, 'jue, 25 abr', -2060, rows3),
     createData1(4, 'vie, 26 abr', 0),
     createData1(5, 'sab, 27 abr', 0),
     createData1(6, 'dom, 28 abr', 0),
@@ -65,11 +145,11 @@ const HistorialPlayer = (props) => {
     const [current, setCurrent] = useState(-1);
 
     useEffect(() => {
-        playerService.list_historial_apuestas().then((result) => {
-            setWeekList(result.data)
-            setWeekList(['1-8', '9-15', '16-21'])
-            console.log(weekList)
-        })
+        // playerService.list_historial_apuestas().then((result) => {
+        // setWeekList(result.data)
+        setWeekList(['1-8', '9-15', '16-21'])
+        console.log(weekList)
+        // })
     }, []);
 
     const handleChangeSelect = event => {

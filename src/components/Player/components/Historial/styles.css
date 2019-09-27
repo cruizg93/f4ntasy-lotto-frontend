@@ -42,3 +42,25 @@
   margin-left: -9px;
   color: #033;
 }
+
+.day_text_valor .expansionPanel .expansionPanelBody{
+  padding: 0 !important;
+  border-top: solid 2px #4f83c8;
+  border-bottom: solid 2px #4f83c8;
+  display: block;
+}
+.day_text_valor .expansionPanel .expansionPanelBody .summary{
+  margin-left: -9%;
+  align-self: center;
+}
+.day_text_valor .expansionPanel .expansionPanelBody .summary .premio{
+  color: #229144;
+  padding-top: 10px;
+  display: flex;
+}
+.day_text_valor .expansionPanel .expansionPanelBody .summary .premio .sign{
+  width: 80px;
+}
+.day_text_valor .expansionPanel .expansionPanelBody .summary .premio .value{
+  
+}
