@@ -19,49 +19,51 @@ class AdicionarApuesta extends React.Component {
         }
     }
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     componentWillMount() {
         playerService.list_apuestas_hoy_by_username().then((result) => {
             let total = result.data.reduce((sum, row) => sum + row.total, 0);
             let comision = result.data.reduce((sum, row) => sum + row.comision, 0);
             let riesgo = result.data.reduce((sum, row) => sum + row.riesgo, 0);
-            let moneda = (result.data.size > 0 && result.data[0].moneda != "LEMPIRA") ? 'L' : '$'
+            let moneda = ((result.data.length > 0) && (result.data[0].moneda.indexOf("LEMPIRA") === 0)) ? 'L' : '$'
             this.setState({
                 entry: result.data,
                 values: [total, comision, riesgo],
                 moneda: moneda
             })
-            console.log("entry", result.data)
+            console.log("moneda", result.data[0].moneda)
+            console.log("moneda", result.data[0].moneda.toString().indexOf("LEMPIRA"))
         })
     }
     render() {
         const col = ['Ventas:', 'Comisión:', 'Totales:'];
         return (
-            <div className="player_resumen_ventas_generales">
-                <Container maxWidth="xs" style={{ padding: 0 }}>
-                    <AdminTitle titleLabel='Sorteos' />
-                </Container>
-                <Grid container
-                    direction="row"
-                    justify="center"
-                >
-                    <Grid item xs={12} className="empty_border">
+            <>
+                <AdminTitle titleLabel='Sorteos' />
+                <div className="player_resumen_ventas_generales">
+                    <Grid container style={{ maxWidth: 444 }}>
+                        <Grid item xs={12} className="empty_border">
 
-                    </Grid>
-                    {this.state.entry.map((apuesta, index) =>
-                        <ApuestaData key={index} apuesta={apuesta} index={index} {...this.props} />
-                    )}
-                </Grid>
-                <Grid item xs={12}>
-                    <Divider />
-                </Grid>
-                <Container maxWidth="xs" style={{ padding: 0 }}>
-                    <Grid container maxWidth="xs" className="container_summary">
-                        <Grid item xs={10} className="summaryTotal" >
-                            <RowList col_1={col} symbol={this.state.moneda} col_2={this.state.values} style={{ height: 95 }}></RowList>
                         </Grid>
+                        {this.state.entry.map((apuesta, index) =>
+                            <ApuestaData key={index} apuesta={apuesta} index={index} {...this.props} />
+                        )}
                     </Grid>
-                </Container>
-            </div>
+                    <Grid item xs={12}>
+                        <Divider />
+                    </Grid>
+                    <Container maxWidth="xs" style={{ padding: 0 }}>
+                        <Grid container maxwidth="xs" className="container_summary">
+                            <Grid item xs={10} className="summaryTotal" >
+                                <RowList col_1={col} symbol={this.state.moneda} col_2={this.state.values} style={{ height: 95 }}></RowList>
+                            </Grid>
+                        </Grid>
+                    </Container>
+                </div>
+            </>
         )
     }
 };

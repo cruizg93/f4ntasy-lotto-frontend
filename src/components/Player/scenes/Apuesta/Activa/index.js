@@ -236,6 +236,7 @@ const ApuestaActiva = ({ ...props }) => {
             setList(prev => Array.from(result.data.list));
             setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
         })
+        window.scrollTo(0, 0)
     }, []);
 
     return (

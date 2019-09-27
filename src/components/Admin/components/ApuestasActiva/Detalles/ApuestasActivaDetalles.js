@@ -74,15 +74,15 @@ class ApuestaActivaRiesgoEntry extends React.Component {
                                                 this.props.numeroMaxRiesgo === numero.numero ?
                                                     <tr className="highlighted">
                                                         <td className="numero">{numero.numero.toString().padStart(2, "0")}</td>
-                                                        <td>{symbol}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(this.props.moneda, numero.posiblePremio.toFixed(2))}</td>
                                                         <td>{symbol}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(this.props.moneda, numero.dineroApostado.toFixed(2))}</td>
+                                                        <td>{symbol}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(this.props.moneda, numero.posiblePremio.toFixed(2))}</td>
                                                         <td style={{ textAlign: 'center' }}>{FormatCurrencySymbol(this.props.moneda, numero.totalRiesgo.toFixed(2))}</td>
                                                     </tr>
                                                     :
                                                     <tr>
                                                         <td className="numero">{numero.numero.toString().padStart(2, "0")}</td>
-                                                        <td>{symbol}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(this.props.moneda, numero.posiblePremio.toFixed(2))}</td>
                                                         <td>{symbol}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(this.props.moneda, numero.dineroApostado.toFixed(2))}</td>
+                                                        <td>{symbol}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(this.props.moneda, numero.posiblePremio.toFixed(2))}</td>
                                                         <td style={{ textAlign: 'center' }}>{FormatCurrencySymbol(this.props.moneda, numero.totalRiesgo.toFixed(2))}</td>
                                                     </tr>
                                             }

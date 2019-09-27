@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -7,145 +7,73 @@ import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
 import { red, blue } from "@material-ui/core/colors/index";
 
-const useStyles = makeStyles(theme => ({
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import { Add, Remove } from '@material-ui/icons'
+import { FormatCurrencySymbol } from '../../../../utils/__currency';
+import './styles.css'
+
+
+const useStyles = makeStyles({
     root: {
-        padding: theme.spacing(3, 2),
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-        '&:hover': {
-            backgroundColor: '#e5e5e5',
-        },
-    },
-    component: {
-        textDecoration: 'none',
-    },
-    componentDisable: {
-        textDecoration: 'none',
-        pointerEvents: 'none'
-    },
-    text: {
-        fontWeight: 'bold'
-    },
-    close: {
-        color: red[400]
-    },
-    open: {
-        color: blue[300]
-    },
-    disableLink: {
-        pointerEvents: 'none'
-    }
 
-}));
+    },
+    disabled: {
+        backgroundColor: '#f4f4f4'
+    },
+});
 
-
-const HistorialData = ({ match: { url }, id, title, total, numero, comision, premio, balance, ...props }) => {
+const HistorialData = ({ match: { url }, ...props }) => {
     const classes = useStyles();
 
+    const [expanded, setExpanded] = React.useState(false);
+
+    const handleChangeExpand = panel => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
+    };
+
+    const color = props.apuesta.valor > 0 ? '#009144' :
+        props.apuesta.valor < 0 ? '#ED1C24' : '#4E84C8';
+    const sign = props.apuesta.valor > 0 ? '+' :
+        props.apuesta.valor < 0 ? '-' : '\u00A0';
+    const disable = props.apuesta.valor === 0 ? true : false;
     return (
-        <Grid item xs={12} component={Link}
-            to={
-                {
-                    pathname: `${url}/${id}`,
-                    state: {
-                        id: id,
-                        title: title,
-                        total: total,
-                        numero: numero,
-                        comision: comision,
-                        premio: premio,
-                        balance: balance
-                    }
-                }
-            }
-            className={classes.component}
-        >
-            <Paper key={props.index} className={classes.paper}>
-                <Typography variant="h5"  >
-                    {title} {" @ "} {numero}
-                </Typography>
-                <Divider />
-                <Grid container>
-                    <Grid item xs={6}
-                        container
-                        justify="flex-end"
+        <Grid container maxwidth='xs' className="day_text_valor">
+            <Grid item xs={12} >
+                <ExpansionPanel onChange={handleChangeExpand('panel1')}
+                    disabled={disable} classes={{ disabled: classes.disabled }}
+                    TransitionProps={{ unmountOnExit: true }} className="expansionPanel">
+                    <ExpansionPanelSummary
+                        expandIcon={expanded ? <Remove className="expansion_icon_remove" /> : <Add className="expansion_icon" />}
+                        aria-controls="panel1bh-content"
                     >
-                        <Typography variant="body1" className={classes.text}>
-                            Total apuestas |
+                        <Grid item className="numeroText">
+                            {props.apuesta.numeroText}
+                        </Grid>
+                        <Grid item className="valorText" style={{ color: color }}>
+                            <div className="right">
+                                <span>{sign}{props.money}</span>
+                            </div>
+                            <div className="left">
+                                <span>
+                                    {'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.money, Math.abs(props.apuesta.valor).toFixed(2))}
+                                </span>
+                            </div>
+                        </Grid>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails className="{classes.expansionPanelBody}">
+                        <Typography>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                            sit amet blandit leo lobortis eget.
                         </Typography>
-                    </Grid>
-                    <Grid item xs={6}
-                        container
-                        justify="flex-start"
-                        className={classes.text}
-                    >
-                        <Typography variant="body1" className={classes.text}>
-                            {total}
-                        </Typography>
-
-                    </Grid>
-                    <Grid item xs={6}
-                        container
-                        justify="flex-end"
-                    >
-                        <Typography variant="body1" className={classes.text}>
-                            Comisiones |
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6}
-                        container
-                        justify="flex-start"
-                        className={classes.text}
-                    >
-                        <Typography variant="body1" className={classes.text}>
-                            {comision}
-                        </Typography>
-
-                    </Grid>
-                    <Grid item xs={6}
-                        container
-                        justify="flex-end"
-                    >
-                        <Typography variant="body1" className={classes.text}>
-                            Premio |
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6}
-                        container
-                        justify="flex-start"
-                        className={classes.text}
-                    >
-                        <Typography variant="body1" className={classes.text}>
-                            {premio}
-                        </Typography>
-
-                    </Grid>
-                    <Grid item xs={6}
-                        container
-                        justify="flex-end"
-                    >
-                        <Typography variant="body1" className={classes.text}>
-                            Ganancia/Perdida |
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6}
-                        container
-                        justify="flex-start"
-                        className={classes.text}
-                    >
-                        <Typography variant="body1" className={classes.text}>
-                            {balance}
-                        </Typography>
-
-                    </Grid>
-                </Grid>
-            </Paper>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+            </Grid>
         </Grid>
 
     )
 };
 
 export default HistorialData;
+
