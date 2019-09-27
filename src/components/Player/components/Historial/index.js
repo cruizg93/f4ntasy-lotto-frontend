@@ -12,17 +12,18 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import { Add, Remove } from '@material-ui/icons'
 import { FormatCurrencySymbol } from '../../../../utils/__currency';
+import RowList from '../../../View/RowList'
+import ExpanionPanelDay from './ExpansionPanelDay';
 import './styles.css'
 
 
-const useStyles = makeStyles({
-    root: {
-
-    },
+const useStyles = makeStyles(theme => ({
     disabled: {
-        backgroundColor: '#f4f4f4'
+        background: '#f4f4f4',
+        opacity: '1 !important'
     },
-});
+}));
+
 
 const HistorialData = ({ match: { url }, ...props }) => {
     const classes = useStyles();
@@ -38,15 +39,18 @@ const HistorialData = ({ match: { url }, ...props }) => {
     const sign = props.apuesta.valor > 0 ? '+' :
         props.apuesta.valor < 0 ? '-' : '\u00A0';
     const disable = props.apuesta.valor === 0 ? true : false;
+
+
     return (
         <Grid container maxwidth='xs' className="day_text_valor">
             <Grid item xs={12} >
                 <ExpansionPanel onChange={handleChangeExpand('panel1')}
-                    disabled={disable} classes={{ disabled: classes.disabled }}
+                    disabled={disable}
                     TransitionProps={{ unmountOnExit: true }} className="expansionPanel">
                     <ExpansionPanelSummary
                         expandIcon={expanded ? <Remove className="expansion_icon_remove" /> : <Add className="expansion_icon" />}
                         aria-controls="panel1bh-content"
+                        classes={{ disabled: classes.disabled }}
                     >
                         <Grid item className="numeroText">
                             {props.apuesta.numeroText}
@@ -62,11 +66,38 @@ const HistorialData = ({ match: { url }, ...props }) => {
                             </div>
                         </Grid>
                     </ExpansionPanelSummary>
-                    <ExpansionPanelDetails className="{classes.expansionPanelBody}">
-                        <Typography>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                            sit amet blandit leo lobortis eget.
-                        </Typography>
+                    <ExpansionPanelDetails className="expansionPanelBody">
+                        {
+                            props.apuesta.details ?
+                                <>
+                                    {
+                                        props.apuesta.details.listWin.map((row, index) =>
+                                            <Grid item xs={12} key={index}>
+                                                <ExpanionPanelDay winner={row}></ExpanionPanelDay>
+                                            </Grid>
+                                        )
+                                    }
+                                    <Grid item xs={12} style={{ height: 126, justifyContent: 'center', display: 'flex' }}>
+                                        <Grid item xs={6} className="summary">
+                                            <RowList col_1={['Costo:', 'Comisión:', 'Total:']} symbol={props.money}
+                                                col_2={[props.apuesta.details.costo, props.apuesta.details.comision, props.apuesta.details.total]}
+                                                style={{ height: 90 }}></RowList>
+                                            <Grid item className="premio">
+                                                <div className="sign">
+                                                    <span>Premio</span>
+                                                </div>
+                                                <div className="value">
+                                                    <span>
+                                                        {props.money}{'\u00A0'}{'\u00A0'}{'\u00A0'}{props.apuesta.details.premio.toFixed(2)}
+                                                    </span>
+                                                </div>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </>
+                                : null
+                        }
+
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
             </Grid>
