@@ -15,9 +15,11 @@ class ListHistoryDetail extends React.Component {
         if (this.props.list) {
             total = this.props.list.reduce((sum, row) => sum + row.valor, 0)
         }
-        console.log("list", this.props.list)
+        const width = this.props.width ? this.props.width : '67%';
+        const marginLeft = this.props.marginLeft ? this.props.marginLeft : 39;
+        const paddingTop = this.props.paddingTop ? this.props.paddingTop : 5;
         return (
-            <div style={{ width: '60%', marginLeft: 60, paddingTop: 5 }}>
+            <div style={{ width: width, marginLeft: marginLeft, paddingTop: paddingTop }}>
                 {
                     this.props.list ?
                         <>
@@ -27,7 +29,7 @@ class ListHistoryDetail extends React.Component {
                                         <ListItem key={index} className="history_apuesta" alignItems="center">
                                             <ListItemText className="history_apuestaNumber"
                                                 primary={<Grid container>
-                                                    <Grid item style={{ textAlign: "center", width: '100%' }}>{element.numero}</Grid>
+                                                    <Grid item style={{ textAlign: "center", width: '100%' }}>{element.numero.toString().padStart(2, "0")}</Grid>
                                                 </Grid>
                                                 } />
                                             <ListItemText className="history_apuestaValues"
@@ -39,7 +41,7 @@ class ListHistoryDetail extends React.Component {
                                     )}
                             </List>
                             <div className="history_total">
-                                Total {'\u00A0'}{'\u00A0'}&mdash;{'\u00A0'}{'\u00A0'}{total}
+                                Total {'\u00A0'}&mdash;{'\u00A0'}{total}
                             </div>
                         </>
                         : null

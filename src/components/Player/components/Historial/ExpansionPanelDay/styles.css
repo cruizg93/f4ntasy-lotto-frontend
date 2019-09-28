@@ -39,8 +39,8 @@
 .time_text_valor .expansionPanel_day .winNum .circle{
   border-radius: 50%;
   border: solid 2px #008000;
-  width: 53px;
-  height: 53px;
+  width: 47px;
+  height: 47px;
   background: #f9f055;
   display: flex;
   justify-content: center;
@@ -49,11 +49,25 @@
 }
 .time_text_valor .expansionPanel_day .winNum .circle .inlineText{
   align-self: center;
-  font-size: 30px;
+  font-size: 28px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.time_text_valor .expansionPanel_day .expansionPanelBody{
+.time_text_valor .expansionPanel_day .expansionPanelBodyLast{
   background: white;
   border: none !important;
+}
+
+.time_text_valor .expansionPanel_day .expansionPanelBodyLast{
+  display: block;  
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 10px;
+}
+
+.time_text_valor .expansionPanel_day .header_icon{
+  color: #183721;
+  font-size: 29px !important;
+  margin-left: 25px;
+  text-align: left;
 }
