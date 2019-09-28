@@ -24,12 +24,14 @@ class ConfirmDialog extends React.Component {
 
   render() {
     const icon = this.props.icon;
+    const titleFontSize = this.props.titleFontSize ? this.props.titleFontSize : '25px';
+    const contentFontSize = this.props.contentFontSize ? this.props.contentFontSize : '18px';
     return (
       <div className="container_rowList">
         <Grid container className="text_container" >
           <Dialog
-            maxWidth="xs"
-            minWidth="xs"
+            maxwidth="xs"
+            minwidth="xs"
             open={this.props.open}
             onClose={this.props.handleClose}
             aria-labelledby="confirmation-dialog-title"
@@ -44,13 +46,13 @@ class ConfirmDialog extends React.Component {
                       <IoIosCheckmarkCircleOutline size={45} style={{ color: "#009933" }} />
                   }
                 </div>
-                <div style={{ fontSize: '25px' }}>
+                <div style={{ fontSize: titleFontSize }}>
                   {this.props.title}
                 </div>
               </div>
             </DialogTitle>
             <DialogContent>
-              <DialogContentText id="alert-dialog-description" style={{ fontSize: '18px', height: '80px' }}>
+              <DialogContentText id="alert-dialog-description" style={{ fontSize: contentFontSize, height: '80px' }}>
                 {this.props.context}
               </DialogContentText>
             </DialogContent>

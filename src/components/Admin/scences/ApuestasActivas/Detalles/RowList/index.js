@@ -12,8 +12,8 @@ class RowList extends React.Component {
     const apuestaCurrency = this.props.symbol === "$" ? Currency.Lempiras : Currency.Dollar;
     let left = (this.props.paddingLeft && this.props.paddingLeft !== 0) ? this.props.paddingLeft : 10;
     return (
-      <Grid container maxWidth="xs" className="container_rowList_1">
-        <Grid container maxWidth="xs" className="text_container" >
+      <Grid container maxwidth="xs" className="container_rowList_1">
+        <Grid container maxwidth="xs" className="text_container" >
           <Grid item xs={5} className="text_label">
             {
               this.props.col_1.map((entry) => <span>{entry}{'\u00A0'}<br /></span>)

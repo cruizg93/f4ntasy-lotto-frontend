@@ -6,7 +6,7 @@ class AdminTitle extends React.Component {
 
   render() {
     return (
-      <Container maxWidth="xs" className="admin_header_center">
+      <Container maxidth="xs" className="admin_header_center">
         <Grid item xs={10} className="header_title">
           <span>{this.props.titleLabel === undefined ? "NEED VALUE: ERROR" : this.props.titleLabel}</span>
         </Grid>

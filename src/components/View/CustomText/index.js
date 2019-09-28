@@ -37,6 +37,9 @@ class CustomText extends React.Component {
             placeholder={this.props.placeholder}
             disabled={this.props.disabled}
             onChange={this.props.onChange}
+            type={this.props.type}
+            style={{ fontSize: this.props.fontSize }}
+          // autoComplete="off"
           />
         </div>
       </div>

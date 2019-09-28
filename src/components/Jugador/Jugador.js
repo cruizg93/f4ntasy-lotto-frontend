@@ -88,7 +88,7 @@ class Jugador extends Component {
                         <span className="resumen_total_text">Totales:</span>
                         <span className="resumen_total_val">${'\u00A0'}{'\u00A0'}{this.state.totalsMoney}</span>
                     </Grid>
-                    <Grid container maxWidth="xs" direction="row">
+                    <Grid container maxwidth="xs" direction="row">
                         {this.state.jugadorList.map((jugador, index) =>
                             <JugadorDataShow key={index} {...jugador} {...this.props} handler={this.reload.bind(this)} toast={this.toast_notification} />
                         )}

@@ -173,14 +173,14 @@ const rows2 = [
     createData1(6, 'dom, 28 abr', -3000, rows4),
 ];
 
-function createData(compras, comisiones, sub_total, premios, bonos, perdidas_Ganancias, money, days) {
-    return { compras, comisiones, sub_total, premios, bonos, perdidas_Ganancias, money, days };
+function createData(compras, comisiones, sub_total, premios, bonos, money, days) {
+    return { compras, comisiones, sub_total, premios, bonos, money, days };
 }
 
 const rows1 = [
-    createData(123456789, 0, 34, 0, 0, '(+verde o -rojo)', '$', rows2),
-    createData(23456789, 0, 0, 33, 0, '(+verde o -rojo)', '$', rows2),
-    createData(3456789, 0, 22, 0, 0, '(+verde o -rojo)', '$', rows2),
+    createData(123456789, 0, 34, 0, 0, '$', rows2),
+    createData(23456789, 0, 0, 33, 0, '$', rows2),
+    createData(3456789, 0, 22, 0, 0, '$', rows2),
 ];
 
 
@@ -269,7 +269,6 @@ const HistorialPlayer = (props) => {
                                     <p>Sub-total</p>
                                     <p>Premios</p>
                                     <p>Bonos</p>
-                                    <p>Perdidas / Ganancias</p>
                                 </Grid>
                                 <Grid item xs={6} className="right_text">
                                     <p>{week[current - 1].money}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week[current - 1].money, week[current - 1].compras.toFixed(2))}</p>
@@ -277,7 +276,6 @@ const HistorialPlayer = (props) => {
                                     <p>{week[current - 1].money}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week[current - 1].money, week[current - 1].sub_total.toFixed(2))}</p>
                                     <p>{week[current - 1].money}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week[current - 1].money, week[current - 1].premios.toFixed(2))}</p>
                                     <p>{week[current - 1].money}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week[current - 1].money, week[current - 1].bonos.toFixed(2))}</p>
-                                    <p>{week[current - 1].money}{'\u00A0'}{'\u00A0'}{week[current - 1].perdidas_Ganancias}</p>
                                 </Grid>
                             </Grid>
                             : null
