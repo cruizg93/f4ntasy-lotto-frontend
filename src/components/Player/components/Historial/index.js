@@ -73,7 +73,7 @@ const HistorialData = ({ match: { url }, ...props }) => {
                                     {
                                         props.apuesta.details.listWin.map((row, index) =>
                                             <Grid item xs={12} key={index}>
-                                                <ExpanionPanelDay winner={row}></ExpanionPanelDay>
+                                                <ExpanionPanelDay winner={row} day={props.apuesta.numeroText} money={props.money}></ExpanionPanelDay>
                                             </Grid>
                                         )
                                     }
