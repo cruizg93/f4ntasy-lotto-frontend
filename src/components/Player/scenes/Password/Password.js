@@ -1,13 +1,19 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button/index";
-import {withStyles} from "@material-ui/core/styles/index";
+import { withStyles } from "@material-ui/core/styles/index";
 import SaveIcon from '@material-ui/icons/Save';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import {update_password_user} from "../../../../service/api/password/password";
+import { MdSettings } from "react-icons/md";
+import { update_password_user } from "../../../../service/api/password/password";
+import AdminTitle from '../../../Admin/components/AdminTitle_Center';
+import CustomText from '../../../View/CustomText';
+import ConfirmDialog from '../../../View/Dialog/ConfirmDialog';
+
+import './styles.css'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -28,122 +34,80 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const CrearButton = withStyles({
-    root: {
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#29992a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 
-
-const ShowButton = withStyles({
-    root: {
-        height: '3.5rem',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: 'transparent',
-        color: '#afafaf',
-        marginTop: '1.5rem',
-        marginBottom: '1rem',
-        border: 'none',
-        '&:hover': {
-            backgroundColor: '#e5e5e5',
-            borderColor: '#e5e5e5'
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: 'transparent',
-            borderColor: 'transparent',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-export default function PlayerPassword() {
+export default function PlayerPassword(props) {
     const classes = useStyles();
+    const [open, setOpen] = useState(false);
     const [password, setPassword] = useState('');
     const [values, setValues] = React.useState({
         password: '',
         showPassword: false,
     });
     const handleChange = prop => event => {
-        setValues({...values, [prop]: event.target.value});
+        setValues({ ...values, [prop]: event.target.value });
     };
 
     const handleClickShowPassword = () => {
-        setValues({...values, showPassword: !values.showPassword});
+        setValues({ ...values, showPassword: !values.showPassword });
     };
 
     const handleClickUpdatePassword = () => {
         update_password_user(values.password)
             .then((result) => {
+                if (result.data.response.indexOf('Password update') === 0) {
+                }
+                props.history.push("/");
             })
+    }
+
+    const handleClickOpen = () => {
+        setOpen(true)
+    }
+
+    const handleClose = (value) => {
+        setOpen(false)
+        if (value === true) {
+            handleClickUpdatePassword()
+        }
     }
 
     return (
         <React.Fragment>
-
-
-            <Grid container spacing={1}
-                  direction="row"
-                  justify="center"
-                  alignItems="center"
-            >
-                <Grid item xs={10}>
-                    <TextField
-                        id="player-input-nueva-contrasenna"
-                        label="Nueva contraseña"
-                        margin="normal"
-                        value={values.password}
-                        onChange={handleChange('password')}
-                        variant="outlined"
-                        fullWidth
-                        required
-                        type={values.showPassword ? 'text' : 'password'}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
+            <AdminTitle titleLabel="Cambiar Contraseña" />
+            <Grid container className="cambiar_contrasena">
+                <Grid container className="password_grup">
+                    <Grid item xs={10} className="password_input">
+                        <CustomText
+                            value={values.password}
+                            icon={MdSettings}
+                            type={values.showPassword ? 'text' : 'password'}
+                            onChange={handleChange('password')}
+                            fontSize={'1.1rem'}
+                        >
+                        </CustomText>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <Button className="show_btn" onClick={handleClickShowPassword}>
+                            {values.showPassword ? <Visibility style={{ color: '#235559' }} /> : <VisibilityOff />}
+                        </Button>
+                    </Grid>
                 </Grid>
-                <Grid item xs={2}>
-                    <ShowButton variant="outlined" color="primary" onClick={handleClickShowPassword}>
-
-                        {values.showPassword ? <Visibility/> : <VisibilityOff/>}
-                    </ShowButton>
-                </Grid>
-                <Grid
-                    className={classes.btnContainer}
-                >
-                    <CrearButton variant="outlined" color="primary" onClick={handleClickUpdatePassword}>
+                <Grid >
+                    <Button className="cambiar_btn" onClick={handleClickOpen}>
                         Cambiar
-
-                        <SaveIcon className={classes.rightIcon}/>
-                    </CrearButton>
+                    </Button>
                 </Grid>
             </Grid>
+            <ConfirmDialog
+                open={open}
+                handleClose={handleClose}
+                title={'Cambiar Contraseña?'}
+                context={'Seguro quiere cambiar la contraseña de este usuario?'}
+                icon={'help'}
+                titleFontSize={'22px'}
+                contentFontSize={'16px'}
+            >
+            </ConfirmDialog>
         </React.Fragment>
     )
 }

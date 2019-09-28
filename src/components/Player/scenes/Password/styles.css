@@ -1,0 +1,60 @@
+.cambiar_contrasena{
+  padding-top: 60px;
+  background-color: white;
+  justify-content: center;
+}
+
+.cambiar_contrasena .password_grup{
+  padding-top: 60px;
+  background-color: white;
+  width: 80%;
+}
+
+.cambiar_contrasena .password_grup .password_input{
+  align-self: center;
+}
+
+.cambiar_contrasena .password_grup .show_btn{
+  background-color: transparent;
+  height: 3.5rem;
+  box-shadow: none;
+  text-transform: none;
+  margin: 6px 6px;
+  color: #afafaf;
+  border: none;
+}
+.cambiar_contrasena .password_grup .show_btn:active {
+  box-shadow: none;
+}
+.cambiar_contrasena .password_grup .show_btn:focus {
+  box-shadow: 0 0 0 0.1rem rgba(0,123,255,.5);
+}
+
+.cambiar_contrasena .cambiar_btn{
+  box-shadow: none;
+  text-transform: none;
+  font-size: 16px;
+  padding: 6px 12px;
+  line-height: 1.5rem;
+  background-color: #658FD6;
+  color: #FFF;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  width: 10rem;
+  border-radius: 20px;
+}
+
+.cambiar_contrasena .cambiar_btn:hover{
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.cambiar_contrasena .cambiar_btn:active{
+  box-shadow: none;
+  background-color: #0062cc;
+  border-color: #005cbf;
+}
+
+.cambiar_contrasena .cambiar_btn:focus{
+  boxShadow: 0 0 0 0.2rem rgba(0,123,255,.5);
+}

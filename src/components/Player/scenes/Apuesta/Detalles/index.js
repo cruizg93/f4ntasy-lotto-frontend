@@ -62,7 +62,7 @@ const DetallesApuesta = ({ ...props }) => {
                 direction="row"
                 justify="center"
             >
-                <Grid item xs={12}>
+                <Grid item xs={12} id="apuesta-activa-numeros-detalles">
                     {list.map((apuestaDetail, index) =>
                         <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} moneda={moneda}
                             update={update}

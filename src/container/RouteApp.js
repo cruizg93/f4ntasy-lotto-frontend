@@ -72,6 +72,7 @@ class RouterApp extends React.Component {
     if (path.indexOf('/usuario/apuestas/hoy/activas/') === 0) return whiteColor;
     if (path.indexOf('/jugador/apuestas/detalles/') === 0) return whiteColor;
     if (path.indexOf('/usuario/apuestas/') === 0) return whiteColor;
+    if (path.indexOf('/usuario/password/cambiar') === 0) return whiteColor;
     return grayColor;
   }
 
