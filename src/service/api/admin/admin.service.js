@@ -35,7 +35,11 @@ export const adminService = {
     temporal_insert_service,
     temporal_insert_chica_service,
     cerrar_apuesta,
-    details_apuesta_activa_by_apuesta_id
+    details_apuesta_activa_by_apuesta_id,
+    open_apuesta,
+    admin_password_confirm,
+    cerrar_bloquear,
+    cerrar_desbloquear
 };
 
 
@@ -675,6 +679,7 @@ function get_current_cambio() {
     })
 }
 
+// /admin/apuesta / bloquear / ${ id }
 function cerrar_apuesta(id) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
@@ -685,10 +690,110 @@ function cerrar_apuesta(id) {
         },
     };
     const send = {
-        idData: id
+        id: id
     }
     return new Promise((resolve, reject) => {
         axios.put(`${baseUrl}/admin/apuesta/bloquear/${id}`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function open_apuesta(numero, id, adminPassword) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    const send = {
+        numero: numero,
+    }
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/sorteos/activos/${id}/numero-ganador`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function admin_password_confirm(id, adminPassword) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    const send = {
+        password: adminPassword
+    }
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/admin/validateAdminPassword`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function cerrar_bloquear(id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    const send = {
+        id: id
+    }
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/sorteos/bloquear/${id}`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function cerrar_desbloquear(id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    const send = {
+        id: id
+    }
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/sorteos/desbloquear/${id}`,
             send, requestOptions
         )
             .then((responseJson) => {

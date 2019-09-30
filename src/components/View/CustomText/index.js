@@ -39,7 +39,7 @@ class CustomText extends React.Component {
             onChange={this.props.onChange}
             type={this.props.type}
             style={{ fontSize: this.props.fontSize }}
-          // autoComplete="off"
+            autoComplete="off"
           />
         </div>
       </div>

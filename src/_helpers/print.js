@@ -128,7 +128,6 @@ export function printDocument6(elems, title) {
         .then(function (blob) {
             // pdf.addImage(blob, 'PNG', 0, 0);
             // pdf.save("download.pdf");
-            console.log('hererererer')
             saveAs(blob, title + '-apuesta.png');
         });
 }

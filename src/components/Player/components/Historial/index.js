@@ -53,7 +53,7 @@ const HistorialData = ({ match: { url }, ...props }) => {
                         classes={{ disabled: classes.disabled }}
                     >
                         <Grid item className="numeroText">
-                            {props.apuesta.numeroText}
+                            {props.apuesta.sorteoTime}
                         </Grid>
                         <Grid item className="valorText" style={{ color: color }}>
                             <div className="right">
@@ -61,26 +61,26 @@ const HistorialData = ({ match: { url }, ...props }) => {
                             </div>
                             <div className="left">
                                 <span>
-                                    {'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.money, Math.abs(props.apuesta.valor).toFixed(2))}
+                                    {'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.money, Math.abs(props.apuesta.balance).toFixed(2))}
                                 </span>
                             </div>
                         </Grid>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className="expansionPanelBody">
                         {
-                            props.apuesta.details ?
+                            props.apuesta.sorteos ?
                                 <>
                                     {
-                                        props.apuesta.details.listWin.map((row, index) =>
+                                        props.apuesta.sorteos.map((row, index) =>
                                             <Grid item xs={12} key={index}>
-                                                <ExpanionPanelDay winner={row} day={props.apuesta.numeroText} money={props.money}></ExpanionPanelDay>
+                                                <ExpanionPanelDay winner={row} day={props.apuesta.sorteoTime} money={props.money}></ExpanionPanelDay>
                                             </Grid>
                                         )
                                     }
                                     <Grid item xs={12} style={{ height: 126, justifyContent: 'center', display: 'flex' }}>
                                         <Grid item xs={6} className="summary">
                                             <RowList col_1={['Costo:', 'Comisión:', 'Total:']} symbol={props.money}
-                                                col_2={[props.apuesta.details.costo, props.apuesta.details.comision, props.apuesta.details.total]}
+                                                col_2={[props.apuesta.summary.ventas, props.apuesta.summary.comisiones, props.apuesta.summary.subTotal]}
                                                 style={{ height: 90 }}></RowList>
                                             <Grid item className="premio">
                                                 <div className="sign">
@@ -88,7 +88,7 @@ const HistorialData = ({ match: { url }, ...props }) => {
                                                 </div>
                                                 <div className="value">
                                                     <span>
-                                                        {props.money}{'\u00A0'}{'\u00A0'}{'\u00A0'}{props.apuesta.details.premio.toFixed(2)}
+                                                        {props.money}{'\u00A0'}{'\u00A0'}{'\u00A0'}{props.apuesta.summary.premios.toFixed(2)}
                                                     </span>
                                                 </div>
                                             </Grid>

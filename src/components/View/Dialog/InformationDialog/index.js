@@ -10,6 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { FaLock, FaBan } from "react-icons/fa";
 import { GoVerified } from "react-icons/go";
+import { IoIosWarning } from "react-icons/io";
 import { IoIosHelpCircleOutline, IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 
@@ -24,6 +25,10 @@ class InformationDialog extends React.Component {
 
   render() {
     const icon = this.props.icon;
+    const iconSize = this.props.iconSize ? this.props.iconSize : 60;
+    const titleFontSize = this.props.titleFontSize ? this.props.titleFontSize : '25px';
+    const contentFontSize = this.props.contentFontSize ? this.props.contentFontSize : '25px';
+    const contentHeight = this.props.contentHeight ? this.props.contentHeight : '90px'
     return (
       <div className="container_rowList">
         <Grid container className="text_container" >
@@ -40,17 +45,19 @@ class InformationDialog extends React.Component {
                 <div style={{ textAlign: 'center' }}>
                   {
                     icon === 'info' ?
-                      <GoVerified size={60} style={{ color: "#009933", paddingTop: '15px', paddingBottom: 13 }} /> :
-                      <IoIosCheckmarkCircleOutline size={60} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 13 }} />
+                      <GoVerified size={iconSize} style={{ color: "#009933", paddingTop: '15px', paddingBottom: 13 }} /> :
+                      icon === 'ioIosWarning' ?
+                        <IoIosWarning size={iconSize} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 13 }} /> :
+                        <IoIosCheckmarkCircleOutline size={iconSize} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 13 }} />
                   }
                 </div>
-                <div style={{ fontSize: '25px' }}>
+                <div style={{ fontSize: titleFontSize }}>
                   {this.props.title}
                 </div>
               </div>
             </DialogTitle>
             <DialogContent>
-              <DialogContentText id="alert-dialog-description" style={{ fontSize: '18px', height: '90px' }}>
+              <DialogContentText id="alert-dialog-description" style={{ fontSize: contentFontSize, height: contentHeight }}>
                 {this.props.context}
               </DialogContentText>
             </DialogContent>

@@ -34,8 +34,6 @@ class AdicionarApuesta extends React.Component {
                 values: [total, comision, riesgo],
                 moneda: moneda
             })
-            console.log("moneda", result.data[0].moneda)
-            console.log("moneda", result.data[0].moneda.toString().indexOf("LEMPIRA"))
         })
     }
     render() {

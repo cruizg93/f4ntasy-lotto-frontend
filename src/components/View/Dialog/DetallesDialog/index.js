@@ -24,11 +24,9 @@ class DetallesDialog extends React.Component {
   }
   render() {
     const icon = this.props.icon;
-    console.log("props", this.props.currentUser.username)
-    console.log("day", this.props.day)
 
     return (
-      this.props.dataset.winner ?
+      this.props.winList ?
         <Dialog
           open={this.props.open}
           onClose={this.props.handleClose}
@@ -54,7 +52,7 @@ class DetallesDialog extends React.Component {
               </div>
               <div className="winNum">
                 <div className="circle">
-                  <div className="inlineText">{this.props.dataset.winner.winNum}</div>
+                  <div className="inlineText">{this.props.winNum ? this.props.winNum.toString().padStart(2, '0') : '00'}</div>
                 </div>
               </div>
             </div>
@@ -65,7 +63,7 @@ class DetallesDialog extends React.Component {
               {'Propias'}{'\u00A0'}{this.props.currentUser.username}{'\u00A0'}{'-'}{'\u00A0'}{this.props.money}{'[nombre]'}
             </div>
             <div className="bet_info">
-              <ListHistoryDetail list={this.props.dataset.winner.list}
+              <ListHistoryDetail list={this.props.winList.apuestas}
                 width={'78%'} marginLeft={22} paddingTop={12}
               >
               </ListHistoryDetail>
