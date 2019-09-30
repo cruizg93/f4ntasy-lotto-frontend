@@ -64,11 +64,11 @@ class InputDialog extends React.Component {
   };
 
   componentWillReceiveProps() {
-    this.state = {
+    this.setState({
       numero: '',
       password: '',
       showPassword: false
-    }
+    })
   }
 
   render() {

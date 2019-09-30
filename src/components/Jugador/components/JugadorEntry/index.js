@@ -450,8 +450,8 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
             </Grid>
             <Grid container className="totalContainer" >
                 <Grid item container alignItems="flex-start" className="valuesContainer"
-                    // component={(total !== 0 || comision !== 0) ? Link : "div"} to={
-                    component={(total !== 0 || comision !== 0) ? "div" : Link} to={
+                    component={(total !== 0 || comision !== 0) ? Link : "div"} to={
+                        // component={(total !== 0 || comision !== 0) ? "div" : Link} to={
                         {
                             pathname: `/jugador/apuestas/detalles`,
                             state: {

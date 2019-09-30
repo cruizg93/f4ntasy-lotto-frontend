@@ -44,10 +44,6 @@ class JugadorDetallesEntry extends React.Component {
         }
     }
     handleClickOpen() {
-        // this.setState({
-        //     ...this.state,
-        //     DoubleVerificationOpen: true
-        // })
         let icon = '', title = '', context = '', open = false, redOpen = false, purpleOpen = false;
         if (this.props.estado === 'ABIERTA') {  //open
             open = true;
@@ -244,7 +240,7 @@ class JugadorDetallesEntry extends React.Component {
                         context={this.props.type + ' - ' + (this.props.type === "DIARIA" ? this.props.hour : "12 pm") + ' - ' + this.props.day.toLowerCase()}
                         titleFontSize={'19px'}
                         contentFontSize={'16px'}
-                        contentHeight={'180px'}>
+                        contentHeight={'190px'}>
                     </InputDialog>
                     <DoubleVerificationDialog
                         open={this.state.DoubleVerificationOpen}
