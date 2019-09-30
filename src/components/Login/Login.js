@@ -5,7 +5,7 @@ import { Grid, Button, Container } from '@material-ui/core';
 import { FaUserAlt, FaLock } from "react-icons/fa";
 
 import { userActions } from '../../store/actions';
-import authenticationService from '../../service/api/authentication/authentication.service';
+// import authenticationService from '../../service/api/authentication/authentication.service';
 import './Login.css';
 import 'react-toastify/dist/ReactToastify.css';
 

@@ -5,7 +5,7 @@ import { makeStyles, withStyles } from "@material-ui/core/styles/index";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import ShowNumber from '../../../../PAsistente/components/ShowNumero/index';
+// import ShowNumber from '../../../../PAsistente/components/ShowNumero/index';
 import { playerService } from "../../../../../service/api/player/player.service";
 import { Colors } from "../../../../../utils/__colors";
 import { FaShoppingCart } from 'react-icons/fa';

@@ -5,7 +5,6 @@ import Divider from '@material-ui/core/Divider';
 import { makeStyles } from "@material-ui/core/styles/index";
 import SingleApuestaDetails from '../../components/Detalles/SingleApuestaDetails/index';
 import { red, blue } from "@material-ui/core/colors/index";
-import { Colors } from "../../../../utils/__colors";
 
 const useStyles = makeStyles(theme => ({
     root: {

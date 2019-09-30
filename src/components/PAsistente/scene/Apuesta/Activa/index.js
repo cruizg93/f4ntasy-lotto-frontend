@@ -4,12 +4,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { playerService } from "../../../../../service/api/player/player.service";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import ApuestaActivaEntry from '../../../components/ApuestaActiva/index';
 import { makeStyles, withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
-import Clear from '@material-ui/icons/Clear';
 import { printDocument6 } from "../../../../../_helpers/print";
 import { Colors } from "../../../../../utils/__colors";
 
@@ -75,33 +73,7 @@ const EditarButton = withStyles({
         },
     },
 })(Button);
-const EliminarTodoButton = withStyles({
-    root: {
-        width: '100px',
-        height: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        color: Colors.Btn_Red,
-        marginBottom: '1.5rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        border: 'none',
-        '&:hover': {
-            backgroundColor: Colors.Btn_Hover,
-            border: 'none',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            border: 'none',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
+
 const ImprimirButton = withStyles({
     root: {
         width: '100px',
@@ -130,34 +102,6 @@ const ImprimirButton = withStyles({
     },
 })(Button);
 
-const FijarButton = withStyles({
-    root: {
-        width: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#29992a',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        '&:hover': {
-            backgroundColor: '#52d94f',
-            borderColor: '#62cc68',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 
 const ApuestaActivaAsistente = ({ ...props }) => {
     const classes = useStyles();
