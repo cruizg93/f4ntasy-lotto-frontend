@@ -17,11 +17,12 @@ import Button from '@material-ui/core/Button';
 import NumberFormat from 'react-number-format';
 import { adminService } from "../../../../service/api/admin/admin.service";
 
+import { Add, Remove } from '@material-ui/icons';
+import './styles.css'
+
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
@@ -106,15 +107,14 @@ const NumerosGanadoresEntry = ({ id, title, numero, pairJBS, ...props }) => {
                 TransitionProps={{ unmountOnExit: true }}
             >
                 <ExpansionPanelSummary
-                    expandIcon={<ExpandMoreIcon />}
+                    expandIcon={expanded ? <Remove className="expansion_icon" /> : <Add className="expansion_icon" />}
                     aria-controls="panel1bh-content"
                     id="panel1bh-header"
                 >
                     {currentRole === "Master" ?
                         <>
                             <Typography onClick={handleClickOpen}
-                                className={classes.heading}>{numero ? numero : "-01"}</Typography>
-
+                                className={classes.heading}>{numero ? numero.toString().padStart(2, "0") : "-01"}</Typography>
                             <div>
                                 <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                                     <DialogTitle id="form-dialog-title">Cambiar número ganador</DialogTitle>

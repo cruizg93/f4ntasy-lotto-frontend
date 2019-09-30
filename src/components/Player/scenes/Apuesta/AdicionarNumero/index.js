@@ -218,8 +218,6 @@ class AdicionarNumeroApuesta extends Component {
     }
 
     showAddButton() {
-        // console.log("---isNumerofocus", this.isNumerofocus)
-        // console.log("---isUnidadesfocus", this.isUnidadesfocus)
         if (!this.state.showAddBtn) {
             setTimeout(() => {
                 this.setState({
@@ -231,8 +229,6 @@ class AdicionarNumeroApuesta extends Component {
     }
 
     hideAddButton() {
-        // console.log("isNumerofocus", this.isNumerofocus)
-        // console.log("isUnidadesfocus", this.isUnidadesfocus)
         if (!(this.isNumerofocus || this.isUnidadesfocus)) {
             setTimeout(() => {
                 this.setState((state) => {
@@ -494,7 +490,6 @@ class AdicionarNumeroApuesta extends Component {
     render() {
         this.classes = this.props.classes;
         const trans = this.state.showAddBtn ? 'translate(0px)' : 'translate(100px)'
-        // console.log("showAddBtn", this.state.showAddBtn)
         function updateFunction(e) {
         }
 

@@ -26,6 +26,7 @@ class ConfirmDialog extends React.Component {
     const icon = this.props.icon;
     const titleFontSize = this.props.titleFontSize ? this.props.titleFontSize : '25px';
     const contentFontSize = this.props.contentFontSize ? this.props.contentFontSize : '18px';
+    const contentHeight = this.props.contentHeight ? this.props.contentHeight : '80px';
     return (
       <div className="container_rowList">
         <Grid container className="text_container" >
@@ -52,7 +53,7 @@ class ConfirmDialog extends React.Component {
               </div>
             </DialogTitle>
             <DialogContent>
-              <DialogContentText id="alert-dialog-description" style={{ fontSize: contentFontSize, height: '80px' }}>
+              <DialogContentText id="alert-dialog-description" style={{ fontSize: contentFontSize, height: contentHeight }}>
                 {this.props.context}
               </DialogContentText>
             </DialogContent>

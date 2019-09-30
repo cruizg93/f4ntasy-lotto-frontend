@@ -1,0 +1,22 @@
+.custom_input_dialog_content{
+  
+}
+
+.custom_input_dialog_content .content_text{
+  color: #19B000;
+  font-size: 18px;
+}
+.custom_input_dialog_content .input_winNum{
+  margin-top: 10px;
+}
+
+.custom_input_dialog_content .input_admin_password{
+  margin-top: 5px;
+}
+
+.custom_input_dialog_content .input_admin_password .show_btn{
+  position: absolute;
+  margin-top: 21px;
+  margin-left: -54px;
+  color: gray;
+}

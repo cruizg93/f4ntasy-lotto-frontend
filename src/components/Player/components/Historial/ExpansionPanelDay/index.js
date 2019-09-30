@@ -11,7 +11,8 @@ import { FaFileExcel } from "react-icons/fa";
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import { Add, Remove } from '@material-ui/icons'
+import { Add, Remove } from '@material-ui/icons';
+import { playerService } from "../../../../../service/api/player/player.service";
 import { FormatCurrencySymbol } from '../../../../../utils/__currency';
 import ListHistoryDetail from '../ListHistoryDetail'
 import RowList from '../../../../View/RowList'
@@ -22,10 +23,16 @@ import './styles.css'
 const ExpanionPanelDay = (props) => {
 
   const [expanded, setExpanded] = React.useState(false);
+  const [winList, setWinList] = React.useState(null);
   const [openComprarInfo, setOpenComprarInfo] = React.useState(false);
 
   const handleChangeExpand = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
+    if (isExpanded) {
+      playerService.apuestasOverview_sorteo(props.winner.id).then((result) => {
+        setWinList(result.data)
+      })
+    }
   };
 
   function handleClickOpenDetailes() {
@@ -35,8 +42,6 @@ const ExpanionPanelDay = (props) => {
   function handleCloseComprarInfo() {
     setOpenComprarInfo(false)
   }
-
-  console.log('props11', props)
 
   return (
     <Grid container maxwidth='xs' className="time_text_valor">
@@ -56,26 +61,26 @@ const ExpanionPanelDay = (props) => {
               </Grid>
               <Grid item className="winNum" >
                 <div className="circle">
-                  <div className="inlineText">{props.winner.winNum}</div>
+                  <div className="inlineText">{props.winner.numero ? props.winner.numero.toString().padStart(2, '0') : '00'}</div>
                 </div>
               </Grid>
             </div>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className="expansionPanelBodyLast">
             {
-              props.winner.list && props.winner.list.length > 0 &&
+              winList && winList.apuestas.length > 0 &&
               <>
                 <div style={{ display: 'flex', padding: '0px 24px 0px 24px ' }}>
-                  <ListHistoryDetail list={props.winner.list} ></ListHistoryDetail>
+                  <ListHistoryDetail list={winList.apuestas} ></ListHistoryDetail>
                   <span className='header_icon' onClick={() => handleClickOpenDetailes()}> <FaFileExcel /></span>
                 </div>
                 <Divider />
                 {
-                  props.winner.raffle &&
+                  winList.summary &&
                   <Grid item xs={12} style={{ height: 126, justifyContent: 'center', display: 'flex' }}>
                     <Grid item xs={6} className="summary">
                       <RowList col_1={['Costo:', 'Comisión:', 'Total:']} symbol={props.money}
-                        col_2={[props.winner.raffle.costo, props.winner.raffle.comision, props.winner.raffle.total]}
+                        col_2={[winList.summary.ventas, winList.summary.comisiones, winList.summary.subTotal]}
                         style={{ height: 90 }}></RowList>
                       <Grid item className="premio">
                         <div className="sign">
@@ -83,7 +88,7 @@ const ExpanionPanelDay = (props) => {
                         </div>
                         <div className="value">
                           <span>
-                            {props.money}{'\u00A0'}{'\u00A0'}{'\u00A0'}{props.winner.raffle.premio.toFixed(2)}
+                            {props.money}{'\u00A0'}{'\u00A0'}{'\u00A0'}{winList.summary.premios.toFixed(2)}
                           </span>
                         </div>
                       </Grid>
@@ -100,7 +105,9 @@ const ExpanionPanelDay = (props) => {
         handleClose={handleCloseComprarInfo}
         day={props.day}
         money={props.money}
+        winNum={props.winner.numero}
         context="Su compra fue exitosa, puede ver los detalles en la pantalla de compras activas."
+        winList={winList}
         dataset={props}
       >
       </DetallesDialog>

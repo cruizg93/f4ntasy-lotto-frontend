@@ -213,33 +213,26 @@ const HistorialPlayer = (props) => {
     const [current, setCurrent] = useState(-1);
 
     useEffect(() => {
-        // playerService.list_historial_apuestas().then((result) => {
-        // setWeekList(result.data)
-        setWeekList(['1-8', '9-15', '16-21'])
-        console.log(weekList)
-        // })
+        playerService.list_historial_weeks().then((result) => {
+            setWeekList(result.data)
+        })
     }, []);
 
     const handleChangeSelect = event => {
-        let index = event.target.selectedIndex;
-        let optionElement = event.target.childNodes[index];
-        setCurrent(index)
-        console.log(entry.length)
-        // let option = optionElement.getAttribute('label');
-        // let placeValue = option.split("-");
+        setCurrent(event.target.selectedIndex)
         if (event.target.value !== '') {
-            // adminService.count_player_asistente(event.target.value).then((result) => {
-            //     console.log(placeValue)
-            //     setPlaceholderUser(placeValue[0].trim() + "x" + (result.data + 1));
-            // });
+            playerService.weekOverview_jugador(event.target.value).then((result) => {
+                let currency = result.data.summary.currency === 'LEMPIRA' ? 'L' : '$'
+                result.data.summary.currency = currency;
+                setWeek(result.data)
+            })
         } else {
             // setPlaceholderUser("P000x0");
         }
         // setEntry(event.target.value);
-        setWeek(rows1);
+        // setWeek(rows1);
 
     };
-    console.log('week', week)
     return (
         <React.Fragment>
             <AdminTitle titleLabel='Sorteos Pasados' />
@@ -255,13 +248,13 @@ const HistorialPlayer = (props) => {
                             <option value="0" >Busqueda por semanas</option>
                             {
                                 (weekList.length > 0) && weekList.map((c, index) =>
-                                    <option key={index} value={index + 1} label={c}> {c}</option>
+                                    <option key={index} value={c.id} label={c}> {c.monday} - {c.sunday}</option>
                                 )
                             }
                         </NativeSelect>
                     </Grid>
                     {
-                        current > 0 ?
+                        current > 0 && week.summary ?
                             <Grid item xs={12} className="week_total_text">
                                 <Grid item xs={6} className="left_text">
                                     <p>Compras</p>
@@ -271,19 +264,19 @@ const HistorialPlayer = (props) => {
                                     <p>Bonos</p>
                                 </Grid>
                                 <Grid item xs={6} className="right_text">
-                                    <p>{week[current - 1].money}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week[current - 1].money, week[current - 1].compras.toFixed(2))}</p>
-                                    <p>{week[current - 1].money}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week[current - 1].money, week[current - 1].comisiones.toFixed(2))}</p>
-                                    <p>{week[current - 1].money}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week[current - 1].money, week[current - 1].sub_total.toFixed(2))}</p>
-                                    <p>{week[current - 1].money}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week[current - 1].money, week[current - 1].premios.toFixed(2))}</p>
-                                    <p>{week[current - 1].money}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week[current - 1].money, week[current - 1].bonos.toFixed(2))}</p>
+                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.ventas.toFixed(2))}</p>
+                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.comisiones.toFixed(2))}</p>
+                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.subTotal.toFixed(2))}</p>
+                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.premios.toFixed(2))}</p>
+                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.bonos.toFixed(2))}</p>
                                 </Grid>
                             </Grid>
                             : null
                     }
                 </Grid>
                 {
-                    current > 0 && week[current - 1].days.map((apuesta, index) =>
-                        <HistorialData key={index} apuesta={apuesta} money={week[current - 1].money} index={index} {...props} />
+                    current > 0 && week.sorteosPasados && week.sorteosPasados.map((apuesta, index) =>
+                        <HistorialData key={index} apuesta={apuesta} money={week.summary.currency} index={index} {...props} />
                     )
                 }
             </Grid>

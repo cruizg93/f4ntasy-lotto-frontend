@@ -239,7 +239,6 @@ const NewAsistente = ({ ...props }) => {
         let placeValue = option.split("-");
         if (event.target.value !== '') {
             adminService.count_player_asistente(event.target.value).then((result) => {
-                console.log(placeValue)
                 setPlaceholderUser(placeValue[0].trim() + "x" + (result.data + 1));
             });
         } else {

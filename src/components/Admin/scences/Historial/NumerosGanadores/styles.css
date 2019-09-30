@@ -1,0 +1,13 @@
+.container_numeros_ganadores{
+  padding-top: 60px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+.container_numeros_ganadores .btn_group_moneda{
+  height: 60px;
+  text-align: end;
+  border-bottom: solid 3px #4F83C8;
+}
+.container_numeros_ganadores .btn_group_moneda button img{
+  width: 40px;
+}

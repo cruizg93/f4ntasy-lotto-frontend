@@ -187,7 +187,6 @@ const ApuestaActiva = ({ ...props }) => {
     }
 
     function deleteOneFunction(entryId) {
-        console.log('entrer', entryId)
         list[entryId]['valor'] = 0.0;
         submitUpdateData();
     }

@@ -19,7 +19,10 @@ export const playerService = {
     get_historial_apuestas_user_details_by_id,
     delete_apuesta_number,
     list_apuestas_asistente_hoy_by_username,
-    list_of_numbers_by_apuesta_id
+    list_of_numbers_by_apuesta_id,
+    list_historial_weeks,
+    weekOverview_jugador,
+    apuestasOverview_sorteo
 };
 
 function list_number() {
@@ -265,6 +268,71 @@ function update_number_apuesta_activas(data, id) {
     });
 }
 
+function list_historial_weeks() {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/history/weeks`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function weekOverview_jugador(weekId) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/history/weeks/${weekId}/jugador`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function apuestasOverview_sorteo(id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/history/weeks/jugador/sorteo/${id}`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
 
 function list_historial_apuestas() {
     const currentUser = authenticationService.currentUserValue;

@@ -148,7 +148,9 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
                 </div>
             </Container>
             <Container maxWidth="xs" className="container_detalle_individual" style={{ background: '#ffffff' }}>
-                <Grid container spacing={1} direction="row" justify="center" alignItems="flex-start">
+                <Grid container spacing={1} direction="row" justify="center" alignItems="flex-start"
+                    id="user-apuesta-activa-entries"
+                >
                     <Paper className="venta_individual_scroll" style={{ width: '98%' }}>
                         <List>
                             {list.map((apuesta, index) =>
@@ -179,7 +181,7 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
                         <LocalPrintshop className="iconP" />
                         <span className="textP">Imprimir</span>
                     </Fab>
-                    <Fab className="detalls" variant="extended" onClick={handleOnPrint}
+                    <Fab className="detalls" variant="extended"
                         component={Link}
                         to={{
                             pathname: `/jugador/apuestas/detalles/${props.location.state.id}/desglose`,

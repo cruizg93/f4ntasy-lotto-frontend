@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import Grid from '@material-ui/core/Grid';
+import { ToastContainer, toast } from 'react-toastify';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { IoIosContact } from "react-icons/io";
@@ -36,8 +37,29 @@ const JugadorDetalles = ({ ...props }) => {
             setValues([total, comision, riesgo])
         })
     }, [])
+
+    const updateApuestasActivas = (monedaType) => {
+        adminService.list_apuestas_details(username[0]).then((result) => {
+            setApuestasList([]);
+            setApuestasList(Array.from(result.data.sorteos));
+        })
+    }
+
+    function toast_notification(type) {
+        if (type === "success") {
+            toast.success("Numero adcionado", {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        } else {
+            toast.error("Numero incorrecto", {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        }
+    }
+
     return (
         <React.Fragment>
+            <ToastContainer autoClose={8000} />
             <Container maxWidth="xs" style={{ padding: 0 }}>
                 <AdminTitle titleLabel='Resumen Venta Individual' />
             </Container>
@@ -54,6 +76,8 @@ const JugadorDetalles = ({ ...props }) => {
                             username={props.location.state.username}
                             moneda={moneda.symbol}
                             name={name.length > 15 ? name.substring(0, 14) : name}
+                            update={updateApuestasActivas}
+                            toast={toast_notification}
                             {...props} />
                     )}
                 </Grid>

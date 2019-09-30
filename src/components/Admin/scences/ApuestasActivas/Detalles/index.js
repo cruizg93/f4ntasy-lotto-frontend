@@ -135,7 +135,6 @@ const ApuestaActivaAdminDetalle = (props) => {
 
     function handleOnPrint() {
         const input = document.getElementById("resumen-apuesta-activa-data-admin");
-        console.log('input', input)
         printDocument6(input, title + '-resumen-apuesta-activa-admin');
     }
     return (
