@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { playerService } from "../../../../../service/api/player/player.service";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import AsistenteEntryDetail from '../../../components/Historial/AsistenteEntryDetail/index';
 import { makeStyles, withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
-import Clear from '@material-ui/icons/Clear';
 import { printDocument6 } from "../../../../../_helpers/print";
 
 

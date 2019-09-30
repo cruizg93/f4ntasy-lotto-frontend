@@ -161,7 +161,7 @@ const ApuestaActivaAdminDetalle = (props) => {
                         </Button>
                     </Grid>
                 </Container>
-                <div id="resumen-apuesta-activa-data-admin">
+                <div id="resumen-apuesta-activa-data-admin" style={{ maxWidth: 444, width: '100%' }}>
                     <div className="container_total">
                         <RowList key={0} col_1={col} symbol={moneda === "dolar" ? '$' : 'L'} col_2={[total, comision, neta]} ></RowList>
                     </div>

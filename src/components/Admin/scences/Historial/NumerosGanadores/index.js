@@ -68,20 +68,42 @@ const NumerosGanadores = (props) => {
     const [numerosGanadoresList, setNumerosGanadoresList] = useState([]);
     const [moneda, setMoneda] = useState("lempira");
 
+    function getFakeVal() {
+        let ary = [
+            {
+                sorteo_id: 1,
+                numero: '48',
+                sorteo_type: 'DIARIA',
+                time: '11 am',
+                date: 'Mar, 3 Sep',
+                value: 640060
+            },
+            {
+                sorteo_id: 2,
+                numero: '25',
+                sorteo_type: 'DIARIA',
+                time: '11 am',
+                date: 'Mar, 3 Sep',
+                value: 0
+            }
+        ]
+        setNumerosGanadoresList(ary);
+    }
     useEffect(() => {
         adminService.get_historial_numeros_ganadores().then((result) => {
-            setNumerosGanadoresList(Array.from(result.data));
+            // setNumerosGanadoresList(Array.from(result.data));
+            getFakeVal()
         })
     }, [])
 
     function handleUpdate() {
         setTimeout(() => {
             adminService.get_historial_numeros_ganadores().then((result) => {
-                setNumerosGanadoresList([]);
-                setNumerosGanadoresList(Array.from(result.data));
+                // setNumerosGanadoresList([]);
+                // setNumerosGanadoresList(Array.from(result.data));
+                getFakeVal()
             })
         }, 3000)
-
     }
 
     const changeMonedaType = (type) => {
@@ -110,31 +132,6 @@ const NumerosGanadores = (props) => {
         })
     }
 
-    function desc(a, b, orderBy) {
-        if (b[orderBy] < a[orderBy]) {
-            return -1;
-        }
-        if (b[orderBy] > a[orderBy]) {
-            return 1;
-        }
-        return 0;
-    }
-
-    function stableSort(array, cmp) {
-        const stabilizedThis = array.map((el, index) => [el, index]);
-        stabilizedThis.sort((a, b) => {
-            const order = cmp(a[0], b[0]);
-            if (order !== 0) return order;
-            return a[1] - b[1];
-        });
-        return stabilizedThis.map((el, index) => el[0]);
-    }
-
-    function getSorting(order) {
-        return (a, b) => desc(a, b, 'title')
-    }
-
-
     return (
         <React.Fragment>
             <AdminTitle titleLabel={'Números Ganadores'}></AdminTitle>
@@ -151,7 +148,9 @@ const NumerosGanadores = (props) => {
                 <Grid container className="body">
                     {numerosGanadoresList.length > 0 ?
                         numerosGanadoresList.map((numero, index) =>
-                            <NumerosGanadoresEntry key={index} {...numero} handle={handleUpdate} {...props} />
+                            <NumerosGanadoresEntry key={index} {...numero} handle={handleUpdate} {...props}
+                                moneda={moneda.toLowerCase() === 'dolar' ? '$' : 'L'}
+                            />
                         ) :
                         <Typography variant="body1" className={classes.textNoDisponible}>
                             No hay resultados disponibles para esta semana
