@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { playerService } from "../../../../../service/api/player/player.service";
@@ -10,7 +11,7 @@ import UserEntryDetail from '../../../components/Historial/UserEntryDetail/index
 import { makeStyles, withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Clear from '@material-ui/icons/Clear';
-
+import { userActions } from '../../../../../store/actions';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -109,14 +110,16 @@ const DetallesPlayer = ({ ...props }) => {
     const [list, setList] = useState([]);
     const [disable, setDisable] = useState(true);
 
-
-
-
-
     useEffect(() => {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
         playerService.get_historial_apuestas_details_by_id(props.location.state.id).then((result) => {
             setList(result.data);
+            dispatch(userActions.loading_end())
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
         setTitle(props.location.state.title);
         setComision(props.location.state.comision);
         setPremio(props.location.state.premio);
@@ -257,4 +260,4 @@ const DetallesPlayer = ({ ...props }) => {
 };
 
 
-export default DetallesPlayer;
+export default connect()(DetallesPlayer);

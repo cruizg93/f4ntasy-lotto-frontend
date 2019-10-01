@@ -15,7 +15,7 @@ import Clock from "../../components/Clock/Clock";
 
 import authenticationService from "../../service/api/authentication/authentication.service";
 import { history } from "../../_helpers/history";
-
+import { userActions } from '../../store/actions';
 import './HeaderBar.css';
 
 class HeaderBar extends Component {
@@ -72,9 +72,18 @@ class HeaderBar extends Component {
     }
 
     handleCloseAccept() {
-        authenticationService.logout();
-        history.push('/login');
         this.setState({ open: !this.open });
+
+        const { dispatch } = this.props;
+        dispatch(userActions.loading_start())
+        authenticationService.logout().then((result) => {
+            dispatch(userActions.loading_end())
+        })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
+
+        history.push('/login');
     }
 
     render() {
@@ -90,7 +99,7 @@ class HeaderBar extends Component {
                     aria-labelledby="alert-dialog-crear-usuario"
                     aria-describedby="alert-dialog-description"
                 >
-                    <DialogTitle
+                    <DialogTitle style={{ width: '279px', textAlign: 'center' }}
                         id="alert-dialog-crear-usuario">Salir</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">

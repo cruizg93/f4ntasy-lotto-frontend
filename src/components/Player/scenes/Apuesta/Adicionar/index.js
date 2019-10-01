@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
@@ -7,6 +8,7 @@ import ApuestaData from '../../../components/Apuesta/index';
 
 import AdminTitle from '../../../../Admin/components/AdminTitle_Center';
 import RowList from '../../../../View/RowList'
+import { userActions } from '../../../../../store/actions';
 import './styles.css'
 
 class AdicionarApuesta extends React.Component {
@@ -24,6 +26,8 @@ class AdicionarApuesta extends React.Component {
     }
 
     componentWillMount() {
+        const { dispatch } = this.props;
+        dispatch(userActions.loading_start())
         playerService.list_apuestas_hoy_by_username().then((result) => {
             let total = result.data.reduce((sum, row) => sum + row.total, 0);
             let comision = result.data.reduce((sum, row) => sum + row.comision, 0);
@@ -34,7 +38,11 @@ class AdicionarApuesta extends React.Component {
                 values: [total, comision, riesgo],
                 moneda: moneda
             })
+            dispatch(userActions.loading_end())
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }
     render() {
         const col = ['Ventas:', 'Comisión:', 'Totales:'];
@@ -66,4 +74,4 @@ class AdicionarApuesta extends React.Component {
     }
 };
 
-export default AdicionarApuesta;
+export default connect()(AdicionarApuesta);

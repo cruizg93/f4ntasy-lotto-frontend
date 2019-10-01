@@ -1,8 +1,60 @@
-.form__center-label{
-    display: flex;
-   justify-content: center;
-   flex-direction: column;
-   text-align: center;
-   align-items: center;
-   margin-top: .5rem !important; 
+.container_dialogTitle{
+    width: 279px;
+    text-align: center;
+    padding-top: 29px !important;
 }
+.container_dialogTitle .dialogTitle{
+    font-size: 1.4rem !important;
+}
+.container_dialogContent{
+
+}
+.container_dialogAction{
+    display: block !important;
+    align-self: center;
+}
+.container_dialogAction .action_btn{
+    display: flex;
+    width: 100%;
+}
+.container_dialogAction .btn_p{
+    width: 70px;
+    height: 70px;
+    background: #E1ECF9;
+    border: solid 7px #99C455;
+}
+
+.container_dialogAction .btn_p span{ 
+    font-size: 39px;
+    font-weight: bold;
+    color: #033;
+    margin-left: 3px;
+}
+
+.container_dialogAction .btn_x{
+    width: 70px;
+    height: 70px;
+    margin-left: 38px;
+    background: #E1ECF9;
+    border: solid 7px #F5D657;
+}
+
+.container_dialogAction .btn_x span{
+    font-size: 39px;
+    font-weight: bold;
+    color: #033;
+    margin-left: 1px;
+}
+
+.cancel_btn_x{
+    padding-top: 60px;
+    text-align: end;
+    padding-right: 30px;
+    padding-bottom: 20px;
+}
+.cancel_btn_x button{
+    color: #4f83c8 ;
+    font-size: 18px;
+
+}
+

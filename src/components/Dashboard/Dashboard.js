@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 import Toolbar from '../Toolbar/Toolbar';
 import SideDrawer from '../SideDrawer/SideDrawer';
 import Backdrop from '../../container/HeaderBar/Backdrop/Backdrop';
@@ -19,6 +19,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 
+import { userActions } from '../../store/actions';
 import './Dashboard.css';
 
 function HideOnScroll(props) {
@@ -72,9 +73,17 @@ class Dashboard extends Component {
     };
 
     componentWillMount() {
+        const { dispatch } = this.props;
+        dispatch(userActions.loading_start())
+
         utilService.isFirstConnection().then((result) => {
             this.setState({ noFirst: result.data });
+            dispatch(userActions.loading_end())
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
+
         let role = authenticationService.type_user();
         this.setState({
             isAdmin: (role === 'Admin' || role === 'Master'),
@@ -100,12 +109,17 @@ class Dashboard extends Component {
     }
 
     handleCloseAccept() {
-        authenticationService.logout();
-        history.push('/login');
+        const { dispatch } = this.props;
         this.setState({ open: !this.open });
+        dispatch(userActions.loading_start())
+        authenticationService.logout().then((result) => {
+            dispatch(userActions.loading_end())
+        })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
+        history.push('/login');
     }
-
-
 
     render() {
         let backdrop;
@@ -121,7 +135,7 @@ class Dashboard extends Component {
                         aria-labelledby="alert-dialog-crear-usuario"
                         aria-describedby="alert-dialog-description"
                     >
-                        <DialogTitle
+                        <DialogTitle style={{ width: '279px', textAlign: 'center' }}
                             id="alert-dialog-crear-usuario">Salir</DialogTitle>
                         <DialogContent>
                             <DialogContentText id="alert-dialog-description">
@@ -168,4 +182,4 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard;
+export default connect()(Dashboard);
