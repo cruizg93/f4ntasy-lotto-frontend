@@ -55,11 +55,6 @@ export const MenuLinks = (props) => {
                     <MenuItem onClick={handleClose} component={Link} to="/usuario/nuevo">Crear Vendedores</MenuItem>
                     <MenuItem onClick={handleClose}
                         component={Link}
-                        to="/sistema/numero/ganador">
-                        Número Ganador
-                </MenuItem>
-                    <MenuItem onClick={handleClose}
-                        component={Link}
                         to={"/sistema/cambio"}
                     >
                         Tipo de Cambio</MenuItem>

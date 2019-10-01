@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import List from '@material-ui/core/List';
 import Grid from '@material-ui/core/Grid';
-import NumerosActivosUserEntry from './NumerosActivosUserEntry/index';
 import authenticationService from "../../../../service/api/authentication/authentication.service";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -65,7 +64,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const NumerosGanadoresEntry = ({ sorteo_id, numero, sorteo_type, time, date, value, moneda, ...props }) => {
+const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoType, hour, day, premio, jugadores, moneda, ...props }) => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
     const [currentRole, setCurrentRole] = useState('Player');
@@ -109,7 +108,7 @@ const NumerosGanadoresEntry = ({ sorteo_id, numero, sorteo_type, time, date, val
     }
 
     function updateValue(numero) {
-        adminService.fix_numero_ganador(numero, sorteo_id).then((result) => {
+        adminService.fix_numero_ganador(numero, numeroGanadorId).then((result) => {
             props.handle()
         })
     }
@@ -140,33 +139,33 @@ const NumerosGanadoresEntry = ({ sorteo_id, numero, sorteo_type, time, date, val
                         </CircleNumber>
                     </Grid>
                     <Grid className="icon" >
-                        {sorteo_type.toLowerCase() === "diaria" ? <img src={DiariaLogo} alt="DiariaLogo" /> : <img src={ChicaLogo} alt="ChicaLogo" />}
+                        {sorteoType.toLowerCase() === "diaria" ? <img src={DiariaLogo} alt="DiariaLogo" /> : <img src={ChicaLogo} alt="ChicaLogo" />}
                     </Grid>
                     <Grid className="time_day">
-                        <div className="time">{sorteo_type.toLowerCase() === "diaria" ? time : "12 pm"}</div>
-                        <div className="day">{date}</div>
+                        <div className="hour">{sorteoType.toLowerCase() === "diaria" ? hour : "12 pm"}</div>
+                        <div className="day">{day}</div>
                     </Grid>
                     <Grid className="value">
-                        {moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(moneda, value.toFixed(2))}
+                        {moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(moneda, premio.toFixed(2))}
                     </Grid>
                 </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                    {/* {pairJBS.length !== 0 ?
-                        <List className={classes.root}>
-                            {pairJBS.map((player, index) =>
-                                <NumerosActivosUserEntry key={index} {...player} {...props} />
-                            )
-                            }
-
-                        </List>
-                        :
-                        <Typography>
-                            Ningun usuario apostó al número ganador
-                        </Typography>
-                    } */}
-                    <div></div>
-
-                </ExpansionPanelDetails>
+                {jugadores.length !== 0 ?
+                    <ExpansionPanelDetails style={{ display: 'block', padding: 0 }}>
+                        {jugadores.map((row, index) =>
+                            <Grid container key={index} className="container_expansion_details">
+                                <div className="username">
+                                    {row.username}{moneda}-{moneda}{'['}${row.name}{']'}
+                                </div>
+                                <div className="user_value">
+                                    {moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(moneda, row.premio.toFixed(2))}
+                                </div>
+                            </Grid>
+                        )
+                        }
+                    </ExpansionPanelDetails>
+                    :
+                    null
+                }
             </ExpansionPanel>
             <ConfirmNumWinDialog
                 open={open}
@@ -174,16 +173,16 @@ const NumerosGanadoresEntry = ({ sorteo_id, numero, sorteo_type, time, date, val
                 title={'Va a cambiar el número ganador?'}
                 icon={'help'}
                 numero={numero ? numero.toString().padStart(2, "0") : "-01"}
-                type={sorteo_type.toUpperCase()}
-                time={time}
-                day={date}
+                type={sorteoType.toUpperCase()}
+                time={hour}
+                day={day}
             >
             </ConfirmNumWinDialog>
             <InputNumWinDialog
                 open={openAddition}
                 handleClose={handleCloseAddition}
                 title={`Adicionar número ganador`}
-                context={sorteo_type + ' - ' + (sorteo_type.toLowerCase() === "diaria" ? time : "12 pm") + ' - ' + date}
+                context={sorteoType + ' - ' + (sorteoType.toLowerCase() === "diaria" ? hour : "12 pm") + ' - ' + day}
                 titleFontSize={'19px'}
                 contentFontSize={'16px'}
                 contentHeight={'190px'}>

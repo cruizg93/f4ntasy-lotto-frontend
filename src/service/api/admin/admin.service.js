@@ -553,10 +553,10 @@ function get_historial_semana_anterior_by_type(type) {
     });
 }
 
-function get_historial_numeros_ganadores() {
+function get_historial_numeros_ganadores(moneda) {
     const requestOptions = { headers: authHeader() };
     return new Promise((resolve, reject) => {
-        axios.get(`${baseUrl}/admin/historial/numeros/ganadores`,
+        axios.get(`${baseUrl}/history/numeros/ganadores/${moneda}`,
             requestOptions
         )
             .then((responseJson) => {
