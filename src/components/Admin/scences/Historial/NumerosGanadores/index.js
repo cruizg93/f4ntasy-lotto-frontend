@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Container, Grid, Button, Divider } from '@material-ui/core';
 import NumerosGanadoresEntry from '../../../components/NumerosGanadoresEntry/index';
 import { adminService } from "../../../../../service/api/admin/admin.service";
@@ -6,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles/index";
 import { blue } from "@material-ui/core/colors/index";
 import Typography from '@material-ui/core/Typography';
 import AdminTitle from '../../../components/AdminTitle_Center';
+import { userActions } from '../../../../../store/actions';
 
 import Dollar_ON from '../../../../View/assets/Dollar_ON.png';
 import Dollar_OFF from '../../../../View/assets/Dollar_OFF.png';
@@ -90,19 +92,31 @@ const NumerosGanadores = (props) => {
         setNumerosGanadoresList(ary);
     }
     useEffect(() => {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
         adminService.get_historial_numeros_ganadores().then((result) => {
             // setNumerosGanadoresList(Array.from(result.data));
             getFakeVal()
+            dispatch(userActions.loading_end())
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }, [])
 
     function handleUpdate() {
         setTimeout(() => {
+            const { dispatch } = props;
+            dispatch(userActions.loading_start())
             adminService.get_historial_numeros_ganadores().then((result) => {
                 // setNumerosGanadoresList([]);
                 // setNumerosGanadoresList(Array.from(result.data));
                 getFakeVal()
+                dispatch(userActions.loading_end())
             })
+                .catch(function (error) {
+                    dispatch(userActions.loading_end())
+                });
         }, 3000)
     }
 
@@ -126,10 +140,16 @@ const NumerosGanadores = (props) => {
     }
 
     const updateApuestasActivas = (monedaType) => {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
         adminService.get_apuestas_activas(monedaType).then((result) => {
             setApuestasActivasList([]);
             setApuestasActivasList(Array.from(result.data));
+            dispatch(userActions.loading_end())
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }
 
     return (
@@ -164,4 +184,4 @@ const NumerosGanadores = (props) => {
     )
 };
 
-export default NumerosGanadores;
+export default connect()(NumerosGanadores);

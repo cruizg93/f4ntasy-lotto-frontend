@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,6 +24,7 @@ import CustomText from '../View/CustomText';
 
 import { adminService } from "../../service/api/admin/admin.service";
 import { Colors } from '../../utils/__colors';
+import { userActions } from '../../store/actions';
 
 import Dollar_ON from '../View/assets/Dollar_ON.png';
 import Dollar_OFF from '../View/assets/Dollar_OFF.png';
@@ -52,7 +54,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function Nuevo({ ...props }) {
+const Nuevo = ({ ...props }) => {
 
     const classes = useStyles();
     const [selectedValueMoneda, setSelectedValueMoneda] = React.useState('');
@@ -128,6 +130,8 @@ export default function Nuevo({ ...props }) {
     }
 
     function update_jugador() {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
         adminService.count().then((response) => {
             let number = response.data;
             let length = Math.log(number) * Math.LOG10E + 1 | 0;
@@ -144,7 +148,11 @@ export default function Nuevo({ ...props }) {
                     break;
             }
             setPlaceholderUser(pword)
-        });
+            dispatch(userActions.loading_end())
+        })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }
 
     function clean() {
@@ -232,13 +240,17 @@ export default function Nuevo({ ...props }) {
             cparam3: cparam3,
         };
 
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
         adminService.new_player(data)
             .then(function (response) {
                 handleClickOpen();
                 clean();
+                dispatch(userActions.loading_end())
             })
             .catch(function (error) {
                 error_reponse();
+                dispatch(userActions.loading_end())
             });
     }
 
@@ -360,9 +372,8 @@ export default function Nuevo({ ...props }) {
                     </Grid>
                 </Container>
             </React.Fragment>
-
-
         </div>
     );
 }
 
+export default connect()(Nuevo);

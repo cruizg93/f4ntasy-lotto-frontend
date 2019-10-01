@@ -14,6 +14,8 @@ export const SIGNUP_USER_FAILURE = 'SIGNUP_USER_FAILURE';
 export const GET_TIME_SUCCESS = 'GET_TIME_SUCCESS';
 export const GET_TIME_FAILURE = 'GET_TIME_FAILURE';
 
+// Loading 
+export const LODING_STATE = 'LODING_STATE';
 // Ui 
 export const BACKGROUND_COLOR = 'background_color';
 

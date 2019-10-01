@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import Container from '@material-ui/core/Container';
 import 'react-toastify/dist/ReactToastify.css';
@@ -31,6 +32,7 @@ import AdminTitle from '../../../../Admin/components/AdminTitle_Center'
 import ConfirmDialog from '../../../../View/Dialog/ConfirmDialog';
 import ConfirmDialogR from '../../../../View/Dialog/ConfirmDialog_R';
 import InformationDialog from '../../../../View/Dialog/InformationDialog';
+import { userActions } from '../../../../../store/actions';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -172,6 +174,8 @@ const ApuestaActiva = ({ ...props }) => {
     }
 
     function submitUpdateData() {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
         playerService.update_number_apuesta_activas(list, apuestaId).then((result) => {
             success_response();
             playerService.list_apuestas_activas_details(apuestaId).then((result) => {
@@ -182,7 +186,11 @@ const ApuestaActiva = ({ ...props }) => {
                 setRiesgo(parseFloat(result.data.riesgo));
                 setTotal(parseFloat(result.data.total));
                 setList(Array.from(result.data.list));
+                dispatch(userActions.loading_end())
             })
+                .catch(function (error) {
+                    dispatch(userActions.loading_end())
+                });
         });
     }
 
@@ -221,7 +229,8 @@ const ApuestaActiva = ({ ...props }) => {
     }
 
     useEffect(() => {
-
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
         setMonedaType(props.location.state.moneda);
         playerService.list_apuestas_activas_details(apuestaId).then((result) => {
 
@@ -234,7 +243,11 @@ const ApuestaActiva = ({ ...props }) => {
             setTotal(parseFloat(result.data.total));
             setList(prev => Array.from(result.data.list));
             setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
+            dispatch(userActions.loading_end())
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
         window.scrollTo(0, 0)
     }, []);
 
@@ -333,4 +346,4 @@ const ApuestaActiva = ({ ...props }) => {
 };
 
 
-export default ApuestaActiva;
+export default connect()(ApuestaActiva);

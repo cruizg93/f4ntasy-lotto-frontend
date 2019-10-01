@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import Container from '@material-ui/core/Container';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,7 +19,7 @@ import Dollar_ON from '../../../View/assets/Dollar_ON.png';
 import Dollar_OFF from '../../../View/assets/Dollar_OFF.png';
 import Lempiras_ON from '../../../View/assets/Lempiras_ON.png';
 import Lempiras_OFF from '../../../View/assets/Lempiras_OFF.png';
-
+import { userActions } from '../../../../store/actions';
 import './styles.css'
 
 const useStyles = makeStyles(theme => ({
@@ -40,13 +41,19 @@ const ApuestasActivasAdmin = (props) => {
     const classes = useStyles();
     const col = ['Ventas:', 'Comisión:', 'Totales:'];
     useEffect(() => {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
         adminService.get_apuestas_activas("dolar").then((result) => {
             setApuestasActivasList(Array.from(result.data));
             let total = result.data.reduce((sum, row) => sum + row.total, 0);
             let comision = result.data.reduce((sum, row) => sum + row.comision, 0);
             let riesgo = result.data.reduce((sum, row) => sum + row.neta, 0);
             setValues([total, comision, riesgo])
+            dispatch(userActions.loading_end())
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }, [])
 
     const changeMonedaType = (type) => {
@@ -69,10 +76,16 @@ const ApuestasActivasAdmin = (props) => {
     }
 
     const updateApuestasActivas = (monedaType) => {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
         adminService.get_apuestas_activas(monedaType).then((result) => {
             setApuestasActivasList([]);
             setApuestasActivasList(Array.from(result.data));
+            dispatch(userActions.loading_end())
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }
 
     function toast_notification(type) {
@@ -121,4 +134,4 @@ const ApuestasActivasAdmin = (props) => {
     )
 }
 
-export default ApuestasActivasAdmin;
+export default connect()(ApuestasActivasAdmin);

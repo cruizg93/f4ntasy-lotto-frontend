@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useReducer } from 'react';
+import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { ToastContainer, toast } from 'react-toastify';
 import Container from '@material-ui/core/Container';
@@ -10,7 +11,7 @@ import JugadorDetallesEntry from '../../../components/Apuesta/Detalles/index';
 import { Currency } from '../../../../../utils/__currency';
 import AdminTitle from '../../../../Admin/components/AdminTitle';
 import RowList from '../../../../View/RowList'
-
+import { userActions } from '../../../../../store/actions';
 import './styles.css'
 
 const userNameReducer = (state, action) => {
@@ -27,6 +28,9 @@ const JugadorDetalles = ({ ...props }) => {
     const [values, setValues] = useState([]);
     const col = ['Ventas:', 'Comisión:', 'Totales:'];
     useEffect(() => {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
+
         adminService.list_apuestas_details(username[0]).then((result) => {
             setApuestasList(Array.from(result.data.sorteos));
             setName(result.data.name);
@@ -35,14 +39,26 @@ const JugadorDetalles = ({ ...props }) => {
             let comision = result.data.sorteos.reduce((sum, row) => sum + row.comision, 0);
             let riesgo = result.data.sorteos.reduce((sum, row) => sum + row.riesgo, 0);
             setValues([total, comision, riesgo])
+
+            dispatch(userActions.loading_end())
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }, [])
 
     const updateApuestasActivas = (monedaType) => {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
+
         adminService.list_apuestas_details(username[0]).then((result) => {
             setApuestasList([]);
             setApuestasList(Array.from(result.data.sorteos));
+            dispatch(userActions.loading_end())
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }
 
     function toast_notification(type) {
@@ -93,4 +109,4 @@ const JugadorDetalles = ({ ...props }) => {
     )
 }
 
-export default JugadorDetalles;
+export default connect()(JugadorDetalles);

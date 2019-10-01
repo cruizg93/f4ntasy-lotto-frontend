@@ -1,4 +1,5 @@
 import React, { Component, useState, useEffect, useLayoutEffect } from 'react';
+import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import clsx from 'clsx';
 import { Link, Redirect } from 'react-router-dom';
@@ -16,20 +17,12 @@ import ListaApuestas from "../../../scenes/Apuesta/ListaApuestas";
 import EntrarNumero from "../../../components/EntrarNumero/index";
 import { makeStyles, withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
-import Fab from '@material-ui/core/Fab';
-import NavigationIcon from '@material-ui/icons/Navigation';
 import Typography from '@material-ui/core/Typography';
 import { Colors } from '../../../../../utils/__colors';
-import { FaShoppingCart } from 'react-icons/fa';
 import TopBar from '../../../../View/jugador/TopBar';
-import BottomBar from '../../../../View/jugador/BottomBar';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
-import { TiSocialFlickrCircular } from "react-icons/ti";
 import { MdSettingsInputSvideo, MdFileDownload, MdSettingsBackupRestore } from "react-icons/md";
 import { Currency, FormatCurrency } from '../../../../../utils/__currency';
-import { setDate } from 'date-fns';
 import { MainStyles } from '../../../../View/MainStyles'
 import { timeService } from "../../../../../service/api/time/time.service";
 import ResumenApuestas from "../Resumen/ResumenApuestas";
@@ -37,6 +30,8 @@ import ResumenApuestas from "../Resumen/ResumenApuestas";
 import ConfirmDialog from '../../../../View/Dialog/ConfirmDialog';
 import ConfirmDialogR from '../../../../View/Dialog/ConfirmDialog_R';
 import InformationDialog from '../../../../View/Dialog/InformationDialog';
+
+import { userActions } from '../../../../../store/actions';
 import './styles.css'
 
 import { whileStatement } from '@babel/types';
@@ -151,6 +146,8 @@ class AdicionarNumeroApuesta extends Component {
                 this.state.mounted.current = false;
             }
         }
+        const { dispatch } = this.props;
+        dispatch(userActions.loading_start())
         playerService.list_of_numbers_by_apuesta_id(this.match.params.apuestaId).then((result) => {
             this.setState({ name: result.data.name });
             this.setState({ entry: Array.from(result.data.list) });
@@ -175,8 +172,11 @@ class AdicionarNumeroApuesta extends Component {
                     this.setState({ costoXMil: costoXMil });
                 })
             }
-
-        });
+            dispatch(userActions.loading_end())
+        })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
         window.scrollTo(0, 0);
         // this.entryNumeroInputRef.current.focus();
     }
@@ -400,14 +400,19 @@ class AdicionarNumeroApuesta extends Component {
 
     handleFinalizarCompra = (event) => {
         let id = this.match.params.apuestaId;
+        const { dispatch } = this.props;
+        dispatch(userActions.loading_start())
         playerService.update_number(this.state.entry, id).then((result) => {
             this.props.history.push("/");
             this.handleCloseFinalizarCompraDialog(event);
-
+            dispatch(userActions.loading_end())
             return () => {
                 this.state.mounted.current = false;
             };
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }
 
     handleClickOpenRemoveAll = () => {
@@ -463,12 +468,18 @@ class AdicionarNumeroApuesta extends Component {
             openComprarInfo: false
         })
         let id = this.match.params.apuestaId;
+        const { dispatch } = this.props;
+        dispatch(userActions.loading_start())
         playerService.update_number(this.state.entry, id).then((result) => {
             this.props.history.push("/");
+            dispatch(userActions.loading_end())
             return () => {
                 this.state.mounted.current = false;
             };
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }
 
     handleClickOpenFinalizarCompraDialog = (event) => {
@@ -669,4 +680,4 @@ class AdicionarNumeroApuesta extends Component {
     }
 }
 
-export default withStyles(useStyles)(AdicionarNumeroApuesta);
+export default withStyles(useStyles)(connect()(AdicionarNumeroApuesta));

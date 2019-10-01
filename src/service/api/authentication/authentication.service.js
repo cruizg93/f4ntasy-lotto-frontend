@@ -29,6 +29,7 @@ function logout() {
     localStorage.removeItem('currentUser');
     currentUserSubject.next(null);
     window.location.reload(true);
+    return true;
 }
 
 function type_user() {

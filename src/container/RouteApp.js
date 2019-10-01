@@ -2,6 +2,7 @@ import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { NotificationContainer } from 'react-notifications';
+import LoadingOverlay from 'react-loading-overlay';
 import Login from '../components/Login/Login';
 import Jugador from '../components/Jugador/Jugador';
 import HeaderBar from './HeaderBar';
@@ -73,6 +74,8 @@ class RouterApp extends React.Component {
     if (path.indexOf('/jugador/apuestas/detalles/') === 0) return whiteColor;
     if (path.indexOf('/usuario/apuestas/') === 0) return whiteColor;
     if (path.indexOf('/usuario/password/cambiar') === 0) return whiteColor;
+    if (path.indexOf('/usuario/historial') === 0) return whiteColor;
+    if (path.indexOf('/usuario/nuevo/asistente') === 0) return whiteColor;
     return grayColor;
   }
 
@@ -85,7 +88,19 @@ class RouterApp extends React.Component {
     }
     const background = this.setBackground(this.props.location.pathname)
     return (
-      <>
+      <LoadingOverlay
+        active={this.props.loading}
+        spinner
+        styles={{
+          spinner: (base) => ({
+            ...base,
+            width: '55px',
+            '& svg circle': {
+              stroke: 'rgba(255, 0, 0, 0.5)'
+            }
+          })
+        }}
+      >
         <div className="app-container" style={{ background: background }}>
           {
             loginState &&
@@ -322,14 +337,15 @@ class RouterApp extends React.Component {
             <NotificationContainer />
           </div>
         </div>
-      </>
+      </LoadingOverlay>
 
     );
   }
 }
 
-const mapStateToProps = ({ user }) => {
+const mapStateToProps = ({ user, loading_state }) => {
   const { loginState, role } = user;
-  return { loginState, role }
+  const { loading } = loading_state;
+  return { loginState, role, loading }
 };
 export default connect(mapStateToProps)(RouterApp);

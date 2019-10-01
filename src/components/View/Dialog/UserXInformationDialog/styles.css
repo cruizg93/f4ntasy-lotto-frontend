@@ -1,0 +1,10 @@
+.container_userX_info{
+  color: rgba(0, 0, 0, 0.54);
+  display: flex;
+}
+.container_userX_info .left{
+  padding-right: 5px;
+}
+.container_userX_info .right{
+
+}

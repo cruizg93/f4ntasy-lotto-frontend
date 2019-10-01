@@ -9,6 +9,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { FaLock, FaBan } from "react-icons/fa";
+import { GiInfo } from "react-icons/gi";
 import { GoVerified } from "react-icons/go";
 import { IoIosWarning } from "react-icons/io";
 import { IoIosHelpCircleOutline, IoIosCheckmarkCircleOutline } from "react-icons/io";
@@ -33,8 +34,8 @@ class InformationDialog extends React.Component {
       <div className="container_rowList">
         <Grid container className="text_container" >
           <Dialog
-            maxWidth="xs"
-            minWidth="xs"
+            maxwidth="xs"
+            minwidth="xs"
             open={this.props.open}
             onClose={this.props.handleClose}
             aria-labelledby="confirmation-dialog-title"
@@ -44,11 +45,13 @@ class InformationDialog extends React.Component {
               <div className="dialogTitle">
                 <div style={{ textAlign: 'center' }}>
                   {
-                    icon === 'info' ?
-                      <GoVerified size={iconSize} style={{ color: "#009933", paddingTop: '15px', paddingBottom: 13 }} /> :
-                      icon === 'ioIosWarning' ?
-                        <IoIosWarning size={iconSize} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 13 }} /> :
-                        <IoIosCheckmarkCircleOutline size={iconSize} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 13 }} />
+                    icon === 'giInfo' ?
+                      <GiInfo size={iconSize} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 13 }} /> :
+                      icon === 'info' ?
+                        <GoVerified size={iconSize} style={{ color: "#009933", paddingTop: '15px', paddingBottom: 13 }} /> :
+                        icon === 'ioIosWarning' ?
+                          <IoIosWarning size={iconSize} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 13 }} /> :
+                          <IoIosCheckmarkCircleOutline size={iconSize} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 13 }} />
                   }
                 </div>
                 <div style={{ fontSize: titleFontSize }}>

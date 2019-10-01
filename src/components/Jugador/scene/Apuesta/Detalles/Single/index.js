@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid';
@@ -23,7 +24,7 @@ import AdminTitle from '../../../../../Admin/components/AdminTitle';
 import DiariaLogo from '../../../../../View/assets/Diaria_PNG.png';
 import ChicaLogo from '../../../../../View/assets/Chica_PNG.png';
 import RowList from '../../../../../View/RowList'
-
+import { userActions } from '../../../../../../store/actions';
 import './styles.css'
 
 const useStyles = makeStyles(theme => ({
@@ -109,17 +110,24 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
     }
 
     useEffect(() => {
-        adminService.list_apuestas_activas_details_by_user_id(props.location.state.username,
-            props.location.state.id).then((result) => {
-                setTitle(result.data.title);
-                setComision(result.data.comision);
-                setRiesgo(result.data.riesgo);
-                setTotal(result.data.total);
-                setList(Array.from(result.data.list));
-                setMoneda(props.location.state.moneda)
-                setType(props.location.state.type)
-                setSum(result.data.list.reduce((s, row) => s + row.valor, 0))
-            })
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
+        adminService.list_apuestas_activas_details_by_user_id(props.location.state.username, props.location.state.id).then((result) => {
+            setTitle(result.data.title);
+            setComision(result.data.comision);
+            setRiesgo(result.data.riesgo);
+            setTotal(result.data.total);
+            setList(Array.from(result.data.list));
+            setMoneda(props.location.state.moneda)
+            setType(props.location.state.type)
+            setSum(result.data.list.reduce((s, row) => s + row.valor, 0))
+        })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
+        setTimeout(() => {
+            dispatch(userActions.loading_end())
+        }, 1500)
 
     }, []);
 
@@ -203,4 +211,4 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
 };
 
 
-export default ApuestaActivaJugadorDetalles;
+export default connect()(ApuestaActivaJugadorDetalles);

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,6 +13,7 @@ import { update_password_user } from "../../../../service/api/password/password"
 import AdminTitle from '../../../Admin/components/AdminTitle_Center';
 import CustomText from '../../../View/CustomText';
 import ConfirmDialog from '../../../View/Dialog/ConfirmDialog';
+import { userActions } from '../../../../store/actions';
 
 import './styles.css'
 
@@ -35,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function PlayerPassword(props) {
+const PlayerPassword = ({ ...props }) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [password, setPassword] = useState('');
@@ -52,12 +54,18 @@ export default function PlayerPassword(props) {
     };
 
     const handleClickUpdatePassword = () => {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
         update_password_user(values.password)
             .then((result) => {
                 if (result.data.response.indexOf('Password update') === 0) {
                 }
                 props.history.push("/");
+                dispatch(userActions.loading_end())
             })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }
 
     const handleClickOpen = () => {
@@ -111,3 +119,5 @@ export default function PlayerPassword(props) {
         </React.Fragment>
     )
 }
+
+export default connect()(PlayerPassword);

@@ -14,7 +14,7 @@ class Login extends Component {
         super(props);
         this.state = {
             username: '',
-            password: '',
+            password: ''
         };
     }
 
@@ -42,6 +42,7 @@ class Login extends Component {
         return (
             <div className="login-page">
                 <ToastContainer autoClose={8000} />
+
                 <Container maxWidth="xs">
                     <Grid item xs={12} className="grid-username">
                         <div className="input-group input-group-lg">
@@ -70,4 +71,8 @@ class Login extends Component {
     }
 }
 
-export default connect()(Login);
+const mapStateToProps = ({ user }) => {
+    const { loginState, role } = user;
+    return { loginState, role }
+};
+export default connect(mapStateToProps)(Login);

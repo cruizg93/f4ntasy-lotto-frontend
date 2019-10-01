@@ -10,6 +10,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { FaUserPlus } from 'react-icons/fa';
 
+import { userActions } from '../../store/actions';
+
 import 'react-toastify/dist/ReactToastify.css';
 import './Jugador.css';
 class Jugador extends Component {
@@ -42,6 +44,9 @@ class Jugador extends Component {
     }
 
     reload() {
+        const { dispatch } = this.props;
+        dispatch(userActions.loading_start())
+
         adminService.list_players_details().then((result) => {
 
             this.toast_notification("success");
@@ -49,16 +54,26 @@ class Jugador extends Component {
                 jugadorList: Array.from(result.data)
             });
             this.update_totalsMoney()
+            dispatch(userActions.loading_end())
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }
 
     componentDidMount() {
+        const { dispatch } = this.props;
+        dispatch(userActions.loading_start())
         adminService.list_players_details().then((result) => {
             this.setState({
                 jugadorList: Array.from(result.data)
             });
             this.update_totalsMoney()
+            dispatch(userActions.loading_end())
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }
 
     render() {

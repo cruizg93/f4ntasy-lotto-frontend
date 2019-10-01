@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { playerService } from "../../../../service/api/player/player.service";
 import HistorialData from '../../components/Historial/index';
@@ -9,180 +10,8 @@ import Divider from '@material-ui/core/Divider';
 import InputBase from '@material-ui/core/InputBase';
 import { FormatCurrencySymbol } from '../../../../utils/__currency';
 import AdminTitle from '../../../Admin/components/AdminTitle_Center';
+import { userActions } from '../../../../store/actions';
 import './styles.css'
-
-const rows5 = {
-    costo: 2640,
-    comision: 580,
-    total: 2060,
-    premio: 0,
-    listWin: [
-        {
-            type: 'DIARIA',
-            hour: '11 am',
-            winNum: 48,
-            list: [
-                {
-                    numero: 54,
-                    valor: 68
-                },
-                {
-                    numero: 55,
-                    valor: 68
-                }
-            ],
-            raffle: {
-                costo: 2640,
-                comision: 580,
-                total: 2060,
-                premio: 0
-            }
-        },
-        {
-            type: 'DIARIA',
-            hour: '3 am',
-            winNum: 59,
-            list: [
-                {
-                    numero: 54,
-                    valor: 68
-                },
-                {
-                    numero: 55,
-                    valor: 68
-                }
-            ],
-            raffle: {
-                costo: 2640,
-                comision: 580,
-                total: 2060,
-                premio: 0
-            }
-        },
-        {
-            type: 'DIARIA',
-            hour: '9 am',
-            winNum: 19,
-            list: [
-                {
-                    numero: 54,
-                    valor: 68
-                },
-                {
-                    numero: 55,
-                    valor: 68
-                }
-            ],
-            raffle: {
-                costo: 2640,
-                comision: 580,
-                total: 2060,
-                premio: 0
-            }
-        }
-    ]
-}
-
-const rows3 = {
-    costo: 2640,
-    comision: 580,
-    total: 2060,
-    premio: 0,
-    listWin: [
-        {
-            type: 'DIARIA',
-            hour: '11 am',
-            winNum: 48,
-            list: [
-                {
-                    numero: 54,
-                    valor: 68
-                },
-                {
-                    numero: 55,
-                    valor: 68
-                }
-            ],
-            raffle: {
-                costo: 2640,
-                comision: 580,
-                total: 2060,
-                premio: 0
-            }
-        },
-        {
-            type: 'CHICA',
-            hour: '',
-            winNum: 94
-        },
-        {
-            type: 'DIARIA',
-            hour: '3 am',
-            winNum: 59
-        },
-        {
-            type: 'DIARIA',
-            hour: '9 am',
-            winNum: 19
-        }
-    ]
-}
-
-const rows4 = {
-    costo: 640,
-    comision: 80,
-    total: 60,
-    premio: 0,
-    listWin: [
-        {
-            type: 'CHICA',
-            hour: '',
-            winNum: 4,
-            list: [
-                {
-                    numero: 4,
-                    valor: 8
-                },
-                {
-                    numero: 5,
-                    valor: 8
-                }
-            ],
-            raffle: {
-                costo: 640,
-                comision: 80,
-                total: 60,
-                premio: 0
-            }
-        }
-    ]
-
-}
-
-function createData1(numero, numeroText, valor, details) {
-    return { numero, numeroText, valor, details };
-}
-
-const rows2 = [
-    createData1(0, 'lun, 22 abr', 123456789, rows5),
-    createData1(1, 'mar, 23 abr', -123456789, rows5),
-    createData1(2, 'mie, 24 abr', 0),
-    createData1(3, 'jue, 25 abr', -2060, rows5),
-    createData1(4, 'vie, 26 abr', 0),
-    createData1(5, 'sab, 27 abr', 0),
-    createData1(6, 'dom, 28 abr', -3000, rows4),
-];
-
-function createData(compras, comisiones, sub_total, premios, bonos, money, days) {
-    return { compras, comisiones, sub_total, premios, bonos, money, days };
-}
-
-const rows1 = [
-    createData(123456789, 0, 34, 0, 0, '$', rows2),
-    createData(23456789, 0, 0, 33, 0, '$', rows2),
-    createData(3456789, 0, 22, 0, 0, '$', rows2),
-];
-
 
 const BootstrapInput = withStyles(theme => ({
     root: {
@@ -213,24 +42,35 @@ const HistorialPlayer = (props) => {
     const [current, setCurrent] = useState(-1);
 
     useEffect(() => {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
         playerService.list_historial_weeks().then((result) => {
             setWeekList(result.data)
+            dispatch(userActions.loading_end())
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }, []);
 
     const handleChangeSelect = event => {
         setCurrent(event.target.selectedIndex)
         if (event.target.value !== '') {
+            const { dispatch } = props;
+            dispatch(userActions.loading_start())
             playerService.weekOverview_jugador(event.target.value).then((result) => {
                 let currency = result.data.summary.currency === 'LEMPIRA' ? 'L' : '$'
                 result.data.summary.currency = currency;
                 setWeek(result.data)
+                dispatch(userActions.loading_end())
             })
+                .catch(function (error) {
+                    dispatch(userActions.loading_end())
+                });
         } else {
             // setPlaceholderUser("P000x0");
         }
         // setEntry(event.target.value);
-        // setWeek(rows1);
 
     };
     return (
@@ -284,4 +124,4 @@ const HistorialPlayer = (props) => {
     )
 };
 
-export default HistorialPlayer;
+export default connect()(HistorialPlayer);

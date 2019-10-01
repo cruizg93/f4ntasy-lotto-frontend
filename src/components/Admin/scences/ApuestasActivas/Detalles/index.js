@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { adminService } from "../../../../../service/api/admin/admin.service";
@@ -18,6 +19,8 @@ import Lempiras_ON from '../../../../View/assets/Lempiras_ON.png';
 import Lempiras_OFF from '../../../../View/assets/Lempiras_OFF.png';
 import Chica_PNG from '../../../../View/assets/Chica_PNG.png';
 import Diaria_PNG from '../../../../View/assets/Diaria_PNG.png';
+
+import { userActions } from '../../../../../store/actions';
 import './styles.css'
 
 const useStyles = makeStyles(theme => ({
@@ -81,10 +84,15 @@ const ApuestaActivaAdminDetalle = (props) => {
         setComision((props.location.state.comision).toFixed(2));
         setNeta((props.location.state.neta).toFixed(2));
         // setTitle();
-
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
         adminService.get_apuesta_activa_by_type_and_id(moneda, props.match.params.apuestaId).then((result) => {
             update(result)
+            dispatch(userActions.loading_end())
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }, []);
 
     function update(result) {
@@ -100,36 +108,31 @@ const ApuestaActivaAdminDetalle = (props) => {
 
     function get_in_dolar() {
         if (moneda === 'lempira') {
+            const { dispatch } = props;
+            dispatch(userActions.loading_start())
             adminService.get_apuesta_activa_by_type_and_id("dolar", props.match.params.apuestaId).then((result) => {
                 setMoneda("dolar")
-                // setNumeroMaxRiesgo(result.data.maxRiesgo.numero);
-                // setDineroApostadoMaxRiesgo(result.data.maxRiesgo.dineroApostado);
-                // setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
-                // setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
-                // setRiesgoList(Array.from(result.data.tuplaRiesgos));
-                // setTotal(result.data.total);
-                // setComision(result.data.comision);
-                // setNeta(result.data.total - result.data.comision);
                 update(result)
+                dispatch(userActions.loading_end())
             })
+                .catch(function (error) {
+                    dispatch(userActions.loading_end())
+                });
         }
     }
 
     function get_in_lempira() {
         if (moneda === 'dolar') {
+            const { dispatch } = props;
+            dispatch(userActions.loading_start())
             adminService.get_apuesta_activa_by_type_and_id("lempira", props.match.params.apuestaId).then((result) => {
                 setMoneda("lempira");
-                // setNumeroMaxRiesgo(result.data.maxRiesgo.numero);
-                // setDineroApostadoMaxRiesgo(result.data.maxRiesgo.dineroApostado);
-                // setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
-                // setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
-                // setRiesgoList([]);
-                // setRiesgoList(Array.from(result.data.tuplaRiesgos));
-                // setTotal(result.data.total);
-                // setComision(result.data.comision);
-                // setNeta(result.data.total - result.data.comision);
                 update(result)
+                dispatch(userActions.loading_end())
             })
+                .catch(function (error) {
+                    dispatch(userActions.loading_end())
+                });
         }
     }
 
@@ -180,4 +183,4 @@ const ApuestaActivaAdminDetalle = (props) => {
     )
 };
 
-export default ApuestaActivaAdminDetalle;
+export default connect()(ApuestaActivaAdminDetalle);
