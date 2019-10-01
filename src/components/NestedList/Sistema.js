@@ -15,7 +15,7 @@ import Create from '@material-ui/icons/Create';
 import Publish from '@material-ui/icons/Publish';
 
 
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 export default function Sistema(props) {
@@ -29,49 +29,40 @@ export default function Sistema(props) {
         <>
             <ListItem button onClick={handleClick}>
                 <ListItemIcon>
-                    <ListAlt/>
+                    <ListAlt />
                 </ListItemIcon>
-                <ListItemText primary="Sistema"/>
-                {open ? <ExpandLess/> : <ExpandMore/>}
+                <ListItemText primary="Sistema" />
+                {open ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     <ListItem button className={props.classes} component={Link} to="/usuario/nuevo"
-                              onClick={props.click}>
+                        onClick={props.click}>
                         <ListItemIcon>
-                            <GroupAdd/>
+                            <GroupAdd />
                         </ListItemIcon>
-                        <ListItemText primary="Crear Jugador"/>
-                    </ListItem>
-                    <ListItem button className={props.classes}
-                              component={Link}
-                              to="/sistema/numero/ganador"
-                              onClick={props.click}>
-                        <ListItemIcon>
-                            <Casino/>
-                        </ListItemIcon>
-                        <ListItemText primary="Número Ganador"/>
+                        <ListItemText primary="Crear Jugador" />
                     </ListItem>
                     <ListItem button className={props.classes} component={Link} to="/sistema/cambio"
-                              onClick={props.click}>
+                        onClick={props.click}>
                         <ListItemIcon>
-                            <CompareArrows/>
+                            <CompareArrows />
                         </ListItemIcon>
-                        <ListItemText primary="Tipo de Cambio"/>
+                        <ListItemText primary="Tipo de Cambio" />
                     </ListItem>
                     <ListItem button className={props.classes} component={Link} to="/sistema/password/update"
-                              onClick={props.click}>
+                        onClick={props.click}>
                         <ListItemIcon>
-                            <Create/>
+                            <Create />
                         </ListItemIcon>
-                        <ListItemText primary="Contraseñas"/>
+                        <ListItemText primary="Contraseñas" />
                     </ListItem>
                     <ListItem button className={props.classes} component={Link} to="/sistema/topes"
-                              onClick={props.click}>
+                        onClick={props.click}>
                         <ListItemIcon>
-                            <Publish/>
+                            <Publish />
                         </ListItemIcon>
-                        <ListItemText primary="Fijar Topes"/>
+                        <ListItemText primary="Fijar Topes" />
                     </ListItem>
                 </List>
             </Collapse>

@@ -33,7 +33,6 @@ import HistorialUserSingleDayDetail
   from '../components/Admin/scences/Historial/SemanaActual/HistorialUserSingleDayDetail/index';
 import HistorialSemanaAnteriorAdmin from '../components/Admin/scences/Historial/SemanaAnterior/index';
 import NumerosGanadores from '../components/Admin/scences/Historial/NumerosGanadores/index';
-import NumeroGanador from '../components/Admin/scences/Sistema/NumeroGanador/index';
 import BalanceAdmin from '../components/Admin/scences/Historial/Balance/index';
 
 import ApuestaActivaAsistente from '../components/PAsistente/scene/Apuesta/Activa/index';
@@ -236,11 +235,6 @@ class RouterApp extends React.Component {
                       exact path="/sistema/topes"
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}
                       component={Fijar}
-                    />
-                    <PrivateRoute
-                      exact path="/sistema/numero/ganador"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
-                      component={NumeroGanador}
                     />
                     <PrivateRoute
                       exact path="/usuario/apuestas"

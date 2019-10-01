@@ -29,3 +29,23 @@
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
+.container_expansion_details{
+  height: 45px;
+  display: flex;
+  border-bottom: solid 1px lightgray;
+  font-size: 17px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  justify-content: center;
+}
+.container_expansion_details .username{
+  color: #4f83c8;
+  align-self: center;
+  margin-left: 2.4rem;
+  flex: 1;
+}
+.container_expansion_details .user_value{
+  color: #999999;
+  align-self: center;
+  flex: 0.8;
+}
+

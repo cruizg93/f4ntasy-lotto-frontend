@@ -73,12 +73,13 @@ const NumerosGanadores = (props) => {
     function getFakeVal() {
         let ary = [
             {
-                sorteo_id: 1,
+                numeroGanadorId: 19,
                 numero: '48',
-                sorteo_type: 'DIARIA',
-                time: '11 am',
-                date: 'Mar, 3 Sep',
-                value: 640060
+                sorteoType: 'DIARIA',
+                hour: '11 am',
+                day: 'Mar, 3 Sep',
+                premio: 0,
+                jugadores: []
             },
             {
                 sorteo_id: 2,
@@ -94,9 +95,9 @@ const NumerosGanadores = (props) => {
     useEffect(() => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
-        adminService.get_historial_numeros_ganadores().then((result) => {
-            // setNumerosGanadoresList(Array.from(result.data));
-            getFakeVal()
+        adminService.get_historial_numeros_ganadores(moneda).then((result) => {
+            setNumerosGanadoresList(Array.from(result.data));
+            // getFakeVal()
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -109,9 +110,9 @@ const NumerosGanadores = (props) => {
             const { dispatch } = props;
             dispatch(userActions.loading_start())
             adminService.get_historial_numeros_ganadores().then((result) => {
-                // setNumerosGanadoresList([]);
-                // setNumerosGanadoresList(Array.from(result.data));
-                getFakeVal()
+                setNumerosGanadoresList([]);
+                setNumerosGanadoresList(Array.from(result.data));
+                // getFakeVal()
                 dispatch(userActions.loading_end())
             })
                 .catch(function (error) {
