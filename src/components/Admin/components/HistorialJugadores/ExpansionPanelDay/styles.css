@@ -71,3 +71,29 @@
   margin-left: 25px;
   text-align: left;
 }
+
+.time_text_valor .expansionPanel_day .expansionPanelBodyLast .summary{
+  /* margin-left: -9%; */
+  align-self: center;
+}
+
+.time_text_valor .expansionPanel_day .expansionPanelBodyLast .week_total_text{
+  display: flex;
+  align-self: center;
+  line-height: 20px;
+  text-align: left;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.time_text_valor .expansionPanel_day .expansionPanelBodyLast .week_total_text p{
+  margin-bottom: 0px !important;
+}
+
+.time_text_valor .expansionPanel_day .expansionPanelBodyLast .left_text{
+  padding-left: 18px;
+  color: #999999;
+}
+.time_text_valor .expansionPanel_day .expansionPanelBodyLast .right_text{
+  padding-left: 18px;
+  color: #999999;
+}

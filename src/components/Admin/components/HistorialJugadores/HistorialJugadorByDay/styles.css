@@ -61,3 +61,24 @@
 .container_historial_jugadorByDay .expansionPanel .expansionPanelBody .summary .premio .sign{
   width: 80px;
 }
+
+.container_historial_jugadorByDay .week_total_text{
+  display: flex;
+  align-self: center;
+  line-height: 20px;
+  text-align: left;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.container_historial_jugadorByDay .expansionPanel .expansionPanelBody .week_total_text p{
+  margin-bottom: 0px !important;
+}
+
+.container_historial_jugadorByDay .expansionPanel .expansionPanelBody .left_text{
+  padding-left: 18px;
+  color: #999999;
+}
+.container_historial_jugadorByDay .expansionPanel .expansionPanelBody .right_text{
+  padding-left: 18px;
+  color: #4f83c8;
+}
