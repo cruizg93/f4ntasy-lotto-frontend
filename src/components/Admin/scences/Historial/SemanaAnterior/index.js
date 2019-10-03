@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { adminService } from "../../../../../service/api/admin/admin.service";
 import Typography from '@material-ui/core/Typography';
@@ -8,6 +9,42 @@ import { red, blue } from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
 import HistorialStatic from '../../../components/HistorialStatics/index';
 import HistorialSemanaActualUserEntry from '../../../components/HistorialSemanal/index';
+import InputBase from '@material-ui/core/InputBase';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import { userActions } from '../../../../../store/actions';
+import AdminTitle from '../../../components/AdminTitle_Center';
+import { FormatCurrencySymbol } from '../../../../../utils/__currency';
+import HistorialJugadores from '../../../components/HistorialJugadores';
+import HistorialJugadoreDayList from '../../../components/HistorialJugadores/HistorialJugadorDayList';
+
+import Dollar_ON from '../../../../View/assets/Dollar_ON.png';
+import Dollar_OFF from '../../../../View/assets/Dollar_OFF.png';
+import Lempiras_ON from '../../../../View/assets/Lempiras_ON.png';
+import Lempiras_OFF from '../../../../View/assets/Lempiras_OFF.png';
+
+import '../../../../../common.css'
+import './styles.css'
+
+const BootstrapInput = withStyles(theme => ({
+    root: {
+        'label + &': {
+            marginTop: theme.spacing(3),
+        },
+    },
+    input: {
+        borderRadius: 4,
+        position: 'relative',
+        backgroundColor: theme.palette.background.paper,
+        border: '1px solid #ced4da',
+        fontSize: 16,
+        padding: '10px 26px 10px 12px',
+        '&:focus': {
+            borderRadius: 4,
+            borderColor: '#80bdff',
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+        },
+    },
+}))(InputBase);
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -91,90 +128,149 @@ const ImprimirButton = withStyles({
 })(Button);
 const HistorialSemanaAnteriorAdmin = (props) => {
     const classes = useStyles();
-    const [usuariosList, setUsuariosList] = useState([]);
-    const [moneda, setMoneda] = useState("dolar");
-    const [title, setTitle] = useState(0.0);
-    const [totalSemanal, setTotalSemanal] = useState(0.0);
-    const [totalPremioSemanal, setTotalPremioSemanal] = useState(0.0);
-    const [comisionSemanal, setComisionSemanal] = useState(0.0);
-    const [netaSemanal, setNetaSemanal] = useState(0.0);
-    const [balanceSemanal, setBalanceSemanal] = useState(0.0);
-
+    const [weekList, setWeekList] = useState([]);
+    const [week, setWeek] = useState([]);
+    const [current, setCurrent] = useState(0);
+    const [historyType, setHistoryType] = useState('vendedor');
+    const [moneda, setMoneda] = useState('lempira');
 
     useEffect(() => {
-        adminService.get_historial_semana_anterior_by_type("dolar").then((result) => {
-            update(result)
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
+        adminService.get_historial_weeklist().then((result) => {
+            setWeekList(result.data)
+            dispatch(userActions.loading_end())
         })
-
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }, []);
 
-    function update(result) {
-        setTitle(result.data.title)
-        setTotalSemanal((result.data.totalSemana).toFixed(2));
-        setTotalPremioSemanal((result.data.totalPremio).toFixed(2));
-        setComisionSemanal((result.data.comisionesSemana).toFixed(2));
-        setNetaSemanal((result.data.entradaNetaSemana).toFixed(2));
-        setBalanceSemanal((result.data.balance).toFixed(2));
-        setUsuariosList(Array.from(result.data.pairJBList))
-
+    function updateWeekResult(id, type, moneda_type) {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
+        adminService.get_historial_weekOverview(id, type, moneda_type).then((result) => {
+            let currency = result.data.summary.currency === 'LEMPIRA' ? 'L' : '$'
+            result.data.summary.currency = currency;
+            setWeek(result.data)
+            dispatch(userActions.loading_end())
+        })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }
 
-    function get_in_dolar() {
-        if (moneda === 'lempira') {
-            adminService.get_historial_semana_anterior_by_type("dolar").then((result) => {
-                setMoneda("dolar");
-                update(result)
-            })
+    const handleChangeSelect = event => {
+        setCurrent(event.target.selectedIndex)
+        if (event.target.value !== '') {
+            updateWeekResult(event.target.value, historyType, moneda);
         }
+    };
+
+    const changeMonedaType = (moneda_type) => {
+        setMoneda(moneda_type);
+        if (current > 0)
+            updateWeekResult(weekList[current - 1].id, historyType, moneda_type)
     }
 
-    function get_in_lempira() {
-        if (moneda === 'dolar') {
-            adminService.get_historial_semana_anterior_by_type("lempira").then((result) => {
-                setMoneda("lempira");
-                update(result)
-            })
+    const handleDolar = () => {
+        if (moneda !== "dolar")
+            changeMonedaType("dolar")
+    }
+
+    const handleLempira = () => {
+        if (moneda !== "lempira")
+            changeMonedaType("lempira")
+    }
+
+    const handleHistoryType = (type) => {
+        if (historyType !== type) {
+            setHistoryType(type)
+            if (current > 0)
+                updateWeekResult(weekList[current - 1].id, type, moneda)
         }
     }
 
     return (
         <React.Fragment>
-            <HistorialStatic title={title} totalSemanal={totalSemanal} comisionSemanal={comisionSemanal}
-                netaSemanal={netaSemanal} totalPremioSemanal={totalPremioSemanal} balanceSemanal={balanceSemanal}
-                clickDolar={get_in_dolar} clickLempira={get_in_lempira} semana={"last"}
-            />
-
-            <Grid container spacing={3}
-                direction="row"
-                justify="center"
-                alignItems="center">
-
-                {usuariosList.length > 0 ?
-                    usuariosList.map((usuario, index) =>
-                        <HistorialSemanaActualUserEntry key={index} {...usuario} type={moneda} {...props} />
-                    ) :
-                    <Typography variant="body1" className={classes.textNoDisponible}>
-                        No hay resultados disponibles para esta semana
-                    </Typography>
-                }
-            </Grid>
-            <Grid container spacing={1}
-                direction="row"
-                justify="center"
-            >
-
-                <Grid item xs={6}>
-                    <ImprimirButton variant="outlined" color="primary"
-                        disabled={usuariosList.length === 0}>
-                        <Typography variant="body1"  >
-                            Imprimir
-                        </Typography>
-                    </ImprimirButton>
+            <AdminTitle titleLabel='Sorteos Pasados' />
+            <Grid container maxwidth='xs' className='admin_Sorteos_Pasados'>
+                <Grid className="btn_group_history_monda" >
+                    <Button className={`${historyType === 'casa' ? 'select' : ''} btn_casa`} onClick={() => handleHistoryType('casa')}>
+                        <span className="circle ml-10"></span>
+                        <span className="text">Casa</span>
+                    </Button>
+                    <Button className={`${historyType === 'vendedor' ? 'select' : ''} btn_casa`} style={{ marginLeft: 10 }} onClick={() => handleHistoryType('vendedor')}>
+                        <span className="circle ml-10"></span>
+                        <span className="text">Vendedor</span>
+                    </Button>
+                    <Button className="btn_dolar" onClick={() => handleDolar()}>
+                        {moneda === "dolar" ? <img src={Dollar_ON} alt="Dollar_ON" /> : <img src={Dollar_OFF} alt="Dollar_OFF" />}
+                    </Button>
+                    <Button className="btn_lempiras" onClick={() => handleLempira()}>
+                        {moneda !== "dolar" ? <img src={Lempiras_ON} alt="Dollar_ON" /> : <img src={Lempiras_OFF} alt="Lempiras_OFF" />}
+                    </Button>
                 </Grid>
-
+                <Grid container className="combo_bet">
+                    <Grid item xs={12} className="combo_box">
+                        <NativeSelect
+                            value={current}
+                            className="native_select"
+                            onChange={handleChangeSelect}
+                            input={<BootstrapInput className="bootstrap_input" />}
+                        >
+                            <option value='' >Busqueda por semanas</option>
+                            {
+                                (weekList.length > 0) && weekList.map((c, index) =>
+                                    <option key={index} value={c.id} label={c}> {c.monday} - {c.sunday}</option>
+                                )
+                            }
+                        </NativeSelect>
+                    </Grid>
+                    {
+                        current > 0 && week.summary ?
+                            <Grid item xs={12} className="week_total_text">
+                                <Grid item xs={6} className="left_text">
+                                    <p>Ventas:</p>
+                                    <p>Comisiones:</p>
+                                    <p>Sub-total:</p>
+                                    <p>Premios:</p>
+                                    <p>Bonos:</p>
+                                </Grid>
+                                <Grid item xs={6} className="right_text">
+                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.ventas.toFixed(2))}</p>
+                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.comisiones.toFixed(2))}</p>
+                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.subTotal.toFixed(2))}</p>
+                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.premios.toFixed(2))}</p>
+                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.bonos.toFixed(2))}</p>
+                                </Grid>
+                            </Grid>
+                            : null
+                    }
+                </Grid>
+                {
+                    current > 0 && week.jugadores &&
+                    <Grid className="user_list">
+                        {
+                            week.jugadores.map((jugador, index) =>
+                                <HistorialJugadores key={index} jugador={jugador} weekData={weekList[current - 1]} index={index} {...props} />
+                            )
+                        }
+                    </Grid>
+                }
+                {
+                    current > 0 && week.sorteosPasados &&
+                    <Grid className="user_list">
+                        {
+                            week.sorteosPasados.map((row, index) =>
+                                <HistorialJugadoreDayList key={index} dayList={row} weekData={weekList[current - 1]} index={index} {...props} />
+                            )
+                        }
+                    </Grid>
+                }
             </Grid>
         </React.Fragment>
     )
 };
 
-export default HistorialSemanaAnteriorAdmin;
+export default connect()(HistorialSemanaAnteriorAdmin);

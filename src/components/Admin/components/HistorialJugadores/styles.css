@@ -1,0 +1,74 @@
+.container_historial_jugadores{
+  /* display: flex; */
+}
+.container_historial_jugadores .expansionPanel{
+  background: #f4f4f4;
+}
+
+.container_historial_jugadores .expansionPanel .container_expansion_summary{
+  padding-left: 10px;
+}
+
+.container_historial_jugadores .expansionPanel:first-child .userText{
+  color: #016666;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  flex: 1;
+  border-right: solid 1px lightgray;
+  line-height: 60px;
+  padding-left: 8px;
+  letter-spacing: -0.003rem;
+}
+.container_historial_jugadores .expansionPanel:first-child .userText img{
+  width: 22px;
+  margin-left: 7px;
+}
+.container_historial_jugadores .expansionPanel:first-child .valorText:first-child{
+  width: 30px;
+  text-align: right;
+}
+.container_historial_jugadores .expansionPanel:first-child .valorText{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  flex: 0.63;
+  line-height: 60px;
+  padding-left: 9px;
+  display: flex;
+  letter-spacing: -0.05rem;
+}
+.container_historial_jugadores .expansionPanel .valorText .right{
+  text-align: right;
+  width: 20px;
+}
+.container_historial_jugadores .expansionPanel .valorText .left{
+
+}
+.container_historial_jugadores .expansionPanel .MuiExpansionPanelSummary-content{
+  margin: 0 !important;
+}
+
+.container_historial_jugadores .expansionPanel .expansion_icon_remove{
+  margin-left: -9px;
+  color: #033;
+}
+
+.container_historial_jugadores .expansionPanel .expansionPanelBody{
+  padding: 0 !important;
+  display: block;
+}
+.container_historial_jugadores .expansionPanel .expansionPanelBody .summary{
+  margin-left: -9%;
+  align-self: center;
+}
+.container_historial_jugadores .expansionPanel .expansionPanelBody .summary .premio{
+  color: #229144;
+  padding-top: 10px;
+  display: flex;
+}
+.container_historial_jugadores .expansionPanel .expansionPanelBody .summary .premio .sign{
+  width: 80px;
+}
+.container_historial_jugadores .expansionPanel .expansionPanelBody .container_expasionPanelBody{
+  border-top: solid 2px #4f83c8;
+  border-bottom: solid 2px #4f83c8;
+}

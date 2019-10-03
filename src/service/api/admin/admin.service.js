@@ -18,6 +18,9 @@ export const adminService = {
     delete_player_by_id,
     get_apuestas_activas,
     get_apuesta_activa_by_type_and_id,
+    get_historial_weeklist,
+    get_historial_weekOverview,
+    get_historial_weekOverviewByJugador,
     get_historial_by_type,
     get_historial_current_week_by_id_and_type,
     get_historial_current_week_by_id_and_type_details,
@@ -450,6 +453,72 @@ function get_apuesta_activa_by_type_and_id(currency, id) {
     });
 }
 
+
+function get_historial_weeklist() {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/history/weeks`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function get_historial_weekOverview(id, historyType, moneda) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/history/weeks/${id}/${historyType}/${moneda}`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function get_historial_weekOverviewByJugador(weekId, jugadorId) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/history/weeks/${weekId}/jugador/${jugadorId}`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
 
 function get_historial_by_type(type) {
     const currentUser = authenticationService.currentUserValue;
