@@ -69,7 +69,8 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
       adminService.admin_password_confirm('', password).then((result) => {
         if (result.data === true) {
           //bono setting
-          adminService.submit_bono(props.jugador.id, bono, props.jugador.moneda.toLowerCase(), props.weekData.id).then((result) => {
+          // adminService.submit_bono(props.jugador.id, bono, props.jugador.moneda.toLowerCase(), props.weekData.id).then((result) => {
+          adminService.submit_bono(props.jugador.id, bono, props.jugador.moneda.toLowerCase(), 1).then((result) => {
             props.updateBono()
           })
             .catch((error) => {

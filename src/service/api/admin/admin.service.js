@@ -463,8 +463,9 @@ function submit_bono(id, bono, moneda, weekId) {
             "Authorization": `Bearer ${currentUser.accessToken}`
         },
     };
+    let tmp = parseInt(bono);
     let send = {
-        bono: bono,
+        bono: tmp,
         moneda: moneda,
         weekId: weekId
     };
