@@ -18,6 +18,7 @@ export const adminService = {
     delete_player_by_id,
     get_apuestas_activas,
     get_apuesta_activa_by_type_and_id,
+    submit_bono,
     get_historial_weeklist,
     get_historial_weekOverview,
     get_historial_weekOverviewByJugador,
@@ -453,6 +454,32 @@ function get_apuesta_activa_by_type_and_id(currency, id) {
     });
 }
 
+function submit_bono(id, bono, moneda, weekId) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    let send = {
+        bonno: bono,
+        moneda: moneda,
+        weekId: weekId
+    };
+    return new Promise((resolve, reject) => {
+        axios.post(`${baseUrl}/admin/bono/jugadores/${id}`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
 
 function get_historial_weeklist() {
     const currentUser = authenticationService.currentUserValue;

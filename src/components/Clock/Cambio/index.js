@@ -14,8 +14,7 @@ class Cambio extends Component {
 
     updateCambio() {
         adminService.get_current_cambio().then((result) => {
-            this.setState({ balance: result })
-
+            this.setState({ cambio: result.data })
         })
     }
 
