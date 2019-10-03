@@ -1,0 +1,63 @@
+.container_historial_jugadorByDay{
+  /* display: flex; */
+}
+.container_historial_jugadorByDay .expansionPanel{
+  background: #f4f4f4;
+}
+.container_historial_jugadorByDay .expansionPanel div:first-child{
+  /* height: 60px !important; */
+}
+.container_historial_jugadorByDay .expansionPanel:first-child .numeroText{
+  color: #183721;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  flex: 1;
+  border-right: solid 1px lightgray;
+  line-height: 60px;
+}
+.container_historial_jugadorByDay .expansionPanel:first-child .valorText:first-child{
+  width: 30px;
+  text-align: right;
+}
+.container_historial_jugadorByDay .expansionPanel:first-child .valorText{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  flex: 1.2;
+  line-height: 60px;
+  padding-left: 9px;
+  display: flex;
+}
+.container_historial_jugadorByDay .expansionPanel .valorText .right{
+  text-align: right;
+  width: 20px;
+}
+.container_historial_jugadorByDay .expansionPanel .valorText .left{
+
+}
+.container_historial_jugadorByDay .expansionPanel .MuiExpansionPanelSummary-content{
+  margin: 0 !important;
+}
+
+.container_historial_jugadorByDay .expansionPanel .expansion_icon_remove{
+  margin-left: -9px;
+  color: #033;
+}
+
+.container_historial_jugadorByDay .expansionPanel .expansionPanelBody{
+  padding: 0 !important;
+  border-top: solid 1px gray;
+  border-bottom: solid 1px gray;
+  display: block;
+}
+.container_historial_jugadorByDay .expansionPanel .expansionPanelBody .summary{
+  margin-left: -9%;
+  align-self: center;
+}
+.container_historial_jugadorByDay .expansionPanel .expansionPanelBody .summary .premio{
+  color: #229144;
+  padding-top: 10px;
+  display: flex;
+}
+.container_historial_jugadorByDay .expansionPanel .expansionPanelBody .summary .premio .sign{
+  width: 80px;
+}

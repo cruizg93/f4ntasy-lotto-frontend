@@ -1,0 +1,137 @@
+.admin_Sorteos_Pasados{
+  padding-top: 60px;
+  width: 100%;
+}
+
+.admin_Sorteos_Pasados .btn_group_history_monda{
+  height: 65px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.admin_Sorteos_Pasados .btn_group_history_monda .btn_casa{
+  width: 102px;
+  height: 37px;
+  border: solid 1px #999999;
+  border-radius: 20px;
+  justify-content: flex-start;
+  align-self: center;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+.admin_Sorteos_Pasados .btn_group_history_monda .btn_casa .circle{
+  width:16px;
+  height: 16px;
+  border: solid 1px lightgray;
+  border-radius: 50%;
+}
+.admin_Sorteos_Pasados .btn_group_history_monda .btn_casa .text{
+  font-size: 13px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  text-transform: none !important;
+  padding-left: 4px;
+  color: gray;
+}
+
+.admin_Sorteos_Pasados .btn_group_history_monda .btn_dolar{
+  width: 37px;
+  align-self: center;
+}
+.admin_Sorteos_Pasados .btn_group_history_monda .btn_lempiras{
+  width: 37px;
+  align-self: center;
+}
+.admin_Sorteos_Pasados .btn_group_history_monda .select{
+  background: #E1ECF9;
+}
+.admin_Sorteos_Pasados .btn_group_history_monda .select .circle{
+  background: #5EBD4E;
+}
+.admin_Sorteos_Pasados .btn_group_history_monda .select .text{
+  font-weight: bold;
+}
+
+
+.admin_Sorteos_Pasados .combo_bet{
+  border-bottom: solid 3px #E9983E;
+  text-align: center;
+  height: 190px;
+  align-self: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  justify-content: center;
+}
+
+.admin_Sorteos_Pasados .week_total_text{
+  display: flex;
+  align-self: center;
+  line-height: 20px;
+  text-align: left;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.admin_Sorteos_Pasados .week_total_text p{
+  margin-bottom: 0px !important;
+}
+
+.admin_Sorteos_Pasados .left_text{
+  padding-left: 18px;
+  color: #999999;
+}
+.admin_Sorteos_Pasados .right_text{
+  padding-left: 18px;
+  color: #4f83c8;
+}
+
+.admin_Sorteos_Pasados .combo_bet .native_select{
+  width: 340px;
+  height: 45px;
+}
+
+.admin_Sorteos_Pasados .combo_bet .native_select select{
+  color: #183721;
+  font-size: 18px;
+}
+
+.admin_Sorteos_Pasados .combo_bet .native_select svg{
+  color: white;
+  background: #92BEE9;
+  right: 0;
+  height: 44px;
+  top: calc(50% - 22px);
+  width: 36px;
+  border-radius: 0 4px 4px 0;
+}
+
+.admin_Sorteos_Pasados .combo_bet .native_select option{
+  padding-left: 30px !important;
+}
+.admin_Sorteos_Pasados .combo_bet .native_select select{
+  background: #EDEDED !important;
+  border: solid 1px #80bdff;
+}
+
+.admin_Sorteos_Pasados .combo_bet .bootstrap_input{
+  border-radius: 4px;
+  position: 'relative';
+  background-color: lightgray;
+  border: 1px solid #ced4da;
+  font-size: 16px;
+  width: 11rem !important;
+  padding: 10px 26px 10px 12px;
+}
+.admin_Sorteos_Pasados .bootstrap_input:focus{
+        /* transition: theme.transitions.create(['border-color', 'box-shadow']), */
+  border-radius: 4px;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.admin_Sorteos_Pasados .user_list{
+  width: 100%;
+  padding: 0; 
+   border-bottom: solid 3px #E9983E;
+}
+
+

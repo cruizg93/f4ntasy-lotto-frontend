@@ -1,0 +1,73 @@
+.time_text_valor{
+}
+.time_text_valor .expansionPanel_day{
+  background: #f4f4f4;  
+}
+
+.time_text_valor .expansionPanel_day .icon {
+  line-height: 60px;
+  flex: 1;
+  text-align: right;
+  padding-left: 15px;
+}
+
+.time_text_valor .expansionPanel_day .icon img {
+  width: 80px !important;
+  vertical-align: middle; 
+}
+
+.time_text_valor .expansionPanel_day .time {
+  line-height: 60px;
+  font-size: 21px;
+  color: #183721;
+  flex: 1;
+  text-align: right;
+  padding-left: 10px;
+}
+
+.time_text_valor .expansionPanel_day .winNum {
+  line-height: 60px;
+  font-size: 21px;
+  color: #183721;
+  flex: 1;
+  text-align: center;
+  margin-left: 7px;
+  display: flex;
+  justify-content: center;
+}
+
+.time_text_valor .expansionPanel_day .winNum .circle{
+  border-radius: 50%;
+  border: solid 2px #008000;
+  width: 47px;
+  height: 47px;
+  background: #f9f055;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  margin-left: 7px;
+}
+.time_text_valor .expansionPanel_day .winNum .circle .inlineText{
+  align-self: center;
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.time_text_valor .expansionPanel_day .expansionPanelBodyLast{
+  background: white;
+  border: none !important;
+}
+
+.time_text_valor .expansionPanel_day .expansionPanelBodyLast{
+  display: block;  
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 10px;
+}
+
+.time_text_valor .expansionPanel_day .header_icon{
+  color: #183721;
+  font-size: 29px !important;
+  margin-left: 25px;
+  text-align: left;
+}
