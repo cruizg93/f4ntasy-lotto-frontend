@@ -464,7 +464,7 @@ function submit_bono(id, bono, moneda, weekId) {
         },
     };
     let send = {
-        bonno: bono,
+        bono: bono,
         moneda: moneda,
         weekId: weekId
     };
