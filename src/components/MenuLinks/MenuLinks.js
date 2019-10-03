@@ -52,7 +52,7 @@ export const MenuLinks = (props) => {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
-                    <MenuItem onClick={handleClose} component={Link} to="/usuario/nuevo">Crear Jugador</MenuItem>
+                    <MenuItem onClick={handleClose} component={Link} to="/usuario/nuevo">Crear Vendedores</MenuItem>
                     <MenuItem onClick={handleClose}
                         component={Link}
                         to={"/sistema/cambio"}
@@ -90,12 +90,8 @@ export const MenuLinks = (props) => {
                     onClose={handleCloseHistorial}
                 >
                     <MenuItem onClick={handleClose} component={Link}
-                        to="/historial/semana/actual">
-                        Semana en Curso
-                </MenuItem>
-                    <MenuItem onClick={handleClose} component={Link}
                         to="/historial/semana/anterior">
-                        Semana Pasada
+                        Sorteos Pasados
                 </MenuItem>
                     <MenuItem onClick={handleClose} component={Link}
                         to="/historial/numeros/ganadores">

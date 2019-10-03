@@ -27,10 +27,7 @@ import AdicionarNumero from '../components/Player/scenes/Apuesta/AdicionarNumero
 import ApuestaActiva from "../components/Player/scenes/Apuesta/Activa";
 import ApuestasActivasAdmin from '../components/Admin/scences/ApuestasActivas/index';
 import ApuestaActivaAdminDetalle from '../components/Admin/scences/ApuestasActivas/Detalles/index';
-import HistorialSemanaActualAdmin from '../components/Admin/scences/Historial/SemanaActual/index';
 import HistorialUsuarioDetalles from '../components/Admin/components/HistorialUsuarioDetalles/index';
-import HistorialUserSingleDayDetail
-  from '../components/Admin/scences/Historial/SemanaActual/HistorialUserSingleDayDetail/index';
 import HistorialSemanaAnteriorAdmin from '../components/Admin/scences/Historial/SemanaAnterior/index';
 import NumerosGanadores from '../components/Admin/scences/Historial/NumerosGanadores/index';
 import BalanceAdmin from '../components/Admin/scences/Historial/Balance/index';
@@ -167,19 +164,9 @@ class RouterApp extends React.Component {
                       component={ApuestaActivaAdminDetalle}
                     />
                     <PrivateRoute
-                      exact path="/historial/semana/actual"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
-                      component={HistorialSemanaActualAdmin}
-                    />
-                    <PrivateRoute
                       exact path="/historial/semana/actual/usuario/:userId"
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}
                       component={HistorialUsuarioDetalles}
-                    />
-                    <PrivateRoute
-                      exact path="/historial/semana/actual/usuario/:userId/desglose"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
-                      component={HistorialUserSingleDayDetail}
                     />
                     <PrivateRoute
                       exact path="/historial/numeros/ganadores"
@@ -196,12 +183,6 @@ class RouterApp extends React.Component {
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}
                       component={HistorialUsuarioDetalles}
                     />
-                    <PrivateRoute
-                      exact path="/historial/semana/anterior/usuario/:userId/desglose"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
-                      component={HistorialUserSingleDayDetail}
-                    />
-
                     <PrivateRoute
                       exact path="/historial/balance"
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}

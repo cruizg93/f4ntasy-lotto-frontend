@@ -53,7 +53,7 @@ export default function NestedList(props) {
                     <ListItemIcon>
                         <SupervisedUserCircle />
                     </ListItemIcon>
-                    <ListItemText primary="Jugadores" />
+                    <ListItemText primary="Vendedores" />
                 </ListItem>
             }
 
@@ -62,7 +62,7 @@ export default function NestedList(props) {
                     <ListItemIcon>
                         <Style />
                     </ListItemIcon>
-                    <ListItemText primary="Apuestas Activas" />
+                    <ListItemText primary="Ventas Activas" />
                 </ListItem>
             }
 

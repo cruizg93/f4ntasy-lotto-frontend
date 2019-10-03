@@ -90,12 +90,8 @@ export const MenuLinks = (props) => {
                     onClose={handleCloseHistorial}
                 >
                     <MenuItem onClick={handleClose} component={Link}
-                        to="/historial/semana/actual">
-                        Sorteos Pasados
-                </MenuItem>
-                    <MenuItem onClick={handleClose} component={Link}
                         to="/historial/semana/anterior">
-                        Semana Pasada
+                        Sorteos Pasados
                 </MenuItem>
                     <MenuItem onClick={handleClose} component={Link}
                         to="/historial/numeros/ganadores">

@@ -38,6 +38,11 @@
   width: 37px;
   align-self: center;
 }
+
+.admin_Sorteos_Pasados .btn_group_history_monda .btn_dolar img{
+  width: 48px !important;
+  height: 48px !important;
+}
 .admin_Sorteos_Pasados .btn_group_history_monda .btn_lempiras{
   width: 37px;
   align-self: center;
