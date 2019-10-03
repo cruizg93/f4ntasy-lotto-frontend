@@ -15,7 +15,7 @@ import { userActions } from '../../../../../store/actions';
 import AdminTitle from '../../../components/AdminTitle_Center';
 import { FormatCurrencySymbol } from '../../../../../utils/__currency';
 import HistorialJugadores from '../../../components/HistorialJugadores';
-import HistorialJugadoreDayList from '../../../components/HistorialJugadores/HistorialJugadorDayList';
+import HistorialJugadoreByDay from '../../../components/HistorialJugadores/HistorialJugadorByDay';
 
 import Dollar_ON from '../../../../View/assets/Dollar_ON.png';
 import Dollar_OFF from '../../../../View/assets/Dollar_OFF.png';
@@ -150,8 +150,10 @@ const HistorialSemanaAnteriorAdmin = (props) => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         adminService.get_historial_weekOverview(id, type, moneda_type).then((result) => {
-            let currency = result.data.summary.currency === 'LEMPIRA' ? 'L' : '$'
-            result.data.summary.currency = currency;
+            if (result.data.summary) {
+                let currency = result.data.summary.currency.toUpperCase() === 'LEMPIRA' ? 'L' : '$'
+                result.data.summary.currency = currency;
+            }
             setWeek(result.data)
             dispatch(userActions.loading_end())
         })
@@ -245,7 +247,7 @@ const HistorialSemanaAnteriorAdmin = (props) => {
                                     <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.bonos.toFixed(2))}</p>
                                 </Grid>
                             </Grid>
-                            : null
+                            : <div></div>
                     }
                 </Grid>
                 {
@@ -263,7 +265,9 @@ const HistorialSemanaAnteriorAdmin = (props) => {
                     <Grid className="user_list">
                         {
                             week.sorteosPasados.map((row, index) =>
-                                <HistorialJugadoreDayList key={index} dayList={row} weekData={weekList[current - 1]} index={index} {...props} />
+                                <HistorialJugadoreByDay key={index} casa={'casa'} apuesta={row}
+                                    moneda={week.summary.currency}
+                                    weekData={weekList[current - 1]} index={index} {...props} />
                             )
                         }
                     </Grid>

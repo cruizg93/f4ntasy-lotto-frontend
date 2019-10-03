@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 const HistorialJugadorByDay = (props) => {
   const classes = useStyles();
-
+  console.log('monde', props.moneda)
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChangeExpand = panel => (event, isExpanded) => {
@@ -38,7 +38,8 @@ const HistorialJugadorByDay = (props) => {
     props.apuesta.balance < 0 ? '#ED1C24' : '#4E84C8';
   const sign = props.apuesta.balance > 0 ? '+' :
     props.apuesta.balance < 0 ? '-' : '\u00A0';
-  const disable = props.apuesta.balance === 0 ? true : false;
+  const disable = props.apuesta.balance === 0 ? false : false;
+  // const disable = props.apuesta.balance === 0 ? true : false;
 
   return (
     <Grid container maxwidth='xs' className="container_historial_jugadorByDay">
@@ -71,27 +72,50 @@ const HistorialJugadorByDay = (props) => {
                 <>
                   {
                     props.apuesta.sorteos.map((row, index) =>
+                      row.id &&
                       <Grid item xs={12} key={index}>
-                        <ExpanionPanelDay winner={row} day={props.apuesta.sorteoTime} moneda={props.moneda}></ExpanionPanelDay>
+                        <ExpanionPanelDay winner={row} casa={props.casa ? props.casa : 'vendedor'} day={props.apuesta.sorteoTime} moneda={props.moneda}></ExpanionPanelDay>
                       </Grid>
                     )
                   }
                   <Grid item xs={12} style={{ height: 126, justifyContent: 'center', display: 'flex' }}>
-                    <Grid item xs={6} className="summary">
-                      <RowList col_1={['Costo:', 'Comisión:', 'Total:']} symbol={props.moneda}
-                        col_2={[props.apuesta.summary.ventas, props.apuesta.summary.comisiones, props.apuesta.summary.subTotal]}
-                        style={{ height: 90 }}></RowList>
-                      <Grid item className="premio">
-                        <div className="sign">
-                          <span>Premio</span>
-                        </div>
-                        <div className="value">
-                          <span>
-                            {props.moneda}{'\u00A0'}{'\u00A0'}{'\u00A0'}{props.apuesta.summary.premios.toFixed(2)}
-                          </span>
-                        </div>
-                      </Grid>
-                    </Grid>
+                    {
+                      props.casa && props.casa === 'casa' ?
+                        <Grid item xs={12} className="summary" style={{ marginLeft: 20 }}>
+                          <Grid item xs={12} className="week_total_text">
+                            <Grid item xs={6} className="left_text">
+                              <p>Ventas:</p>
+                              <p>Comisiones:</p>
+                              <p>Sub-total:</p>
+                              <p>Premios:</p>
+                              <p>Perdidas / Ganancias:</p>
+                            </Grid>
+                            <Grid item xs={6} className="right_text">
+                              <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, props.apuesta.summary.ventas.toFixed(2))}</p>
+                              <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, props.apuesta.summary.comisiones.toFixed(2))}</p>
+                              <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, props.apuesta.summary.subTotal.toFixed(2))}</p>
+                              <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, props.apuesta.summary.premios.toFixed(2))}</p>
+                              <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, props.apuesta.summary.perdidasGanas.toFixed(2))}</p>
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                        :
+                        <Grid item xs={6} className="summary">
+                          <RowList col_1={['Costo:', 'Comisión:', 'Total:']} symbol={props.moneda}
+                            col_2={[props.apuesta.summary.ventas, props.apuesta.summary.comisiones, props.apuesta.summary.subTotal]}
+                            style={{ height: 90 }}></RowList>
+                          <Grid item className="premio">
+                            <div className="sign">
+                              <span>Premio</span>
+                            </div>
+                            <div className="value">
+                              <span>
+                                {props.moneda}{'\u00A0'}{'\u00A0'}{'\u00A0'}{props.apuesta.summary.premios.toFixed(2)}
+                              </span>
+                            </div>
+                          </Grid>
+                        </Grid>
+                    }
                   </Grid>
                 </>
                 : null
