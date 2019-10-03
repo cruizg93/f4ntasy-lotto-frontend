@@ -42,7 +42,6 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
     if (isExpanded) {
       adminService.get_historial_weekOverviewByJugador(props.weekData.id, props.jugador.id).then((result) => {
         setDayList(result.data)
-        console.log(result.data)
       })
     }
   };
@@ -67,10 +66,15 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
     setErrorPasswordOpen(false);
     setBono(bono);
     if (flag === true) {
-      adminService.get_historial_weekOverviewByJugador('', password).then((result) => {
+      adminService.admin_password_confirm('', password).then((result) => {
         if (result.data === true) {
           //bono setting
-
+          adminService.submit_bono(props.jugador.id, bono, props.jugador.moneda.toLowerCase(), props.weekData.id).then((result) => {
+            props.updateBono()
+          })
+            .catch((error) => {
+              setErrorPasswordOpen(true)
+            })
         } else {
           setErrorPasswordOpen(true)
         }

@@ -131,6 +131,7 @@ const HistorialSemanaAnteriorAdmin = (props) => {
     const [weekList, setWeekList] = useState([]);
     const [week, setWeek] = useState([]);
     const [current, setCurrent] = useState(0);
+    const [weekId, setWeekId] = useState(0);
     const [historyType, setHistoryType] = useState('vendedor');
     const [moneda, setMoneda] = useState('lempira');
 
@@ -145,6 +146,10 @@ const HistorialSemanaAnteriorAdmin = (props) => {
                 dispatch(userActions.loading_end())
             });
     }, []);
+
+    function updateBono() {
+        updateWeekResult(weekId, historyType, moneda)
+    }
 
     function updateWeekResult(id, type, moneda_type) {
         const { dispatch } = props;
@@ -165,6 +170,7 @@ const HistorialSemanaAnteriorAdmin = (props) => {
     const handleChangeSelect = event => {
         setCurrent(event.target.selectedIndex)
         if (event.target.value !== '') {
+            setWeekId(event.target.value)
             updateWeekResult(event.target.value, historyType, moneda);
         }
     };
@@ -255,7 +261,7 @@ const HistorialSemanaAnteriorAdmin = (props) => {
                     <Grid className="user_list">
                         {
                             week.jugadores.map((jugador, index) =>
-                                <HistorialJugadores key={index} jugador={jugador} weekData={weekList[current - 1]} index={index} {...props} />
+                                <HistorialJugadores key={index} jugador={jugador} weekData={weekList[current - 1]} updateBono={updateBono} index={index} {...props} />
                             )
                         }
                     </Grid>

@@ -37,16 +37,22 @@
 .admin_Sorteos_Pasados .btn_group_history_monda .btn_dolar{
   width: 37px;
   align-self: center;
+  padding-left: 30px;
 }
 
 .admin_Sorteos_Pasados .btn_group_history_monda .btn_dolar img{
-  width: 48px !important;
-  height: 48px !important;
+  width: 37px !important;
+  height: 37px !important;
 }
 .admin_Sorteos_Pasados .btn_group_history_monda .btn_lempiras{
   width: 37px;
   align-self: center;
 }
+.admin_Sorteos_Pasados .btn_group_history_monda .btn_lempiras img{
+  width: 37px !important;
+  height: 37px !important;
+}
+
 .admin_Sorteos_Pasados .btn_group_history_monda .select{
   background: #E1ECF9;
 }

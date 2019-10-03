@@ -78,9 +78,9 @@ const HistorialJugadorByDay = (props) => {
                       </Grid>
                     )
                   }
-                  <Grid item xs={12} style={{ height: 126, justifyContent: 'center', display: 'flex' }}>
-                    {
-                      props.casa && props.casa === 'casa' ?
+                  {
+                    props.casa && props.casa === 'casa' ?
+                      <Grid item xs={12} style={{ height: 126, justifyContent: 'center', display: 'flex' }}>
                         <Grid item xs={12} className="summary" style={{ marginLeft: 20 }}>
                           <Grid item xs={12} className="week_total_text">
                             <Grid item xs={6} className="left_text">
@@ -99,24 +99,11 @@ const HistorialJugadorByDay = (props) => {
                             </Grid>
                           </Grid>
                         </Grid>
-                        :
-                        <Grid item xs={6} className="summary">
-                          <RowList col_1={['Costo:', 'Comisión:', 'Total:']} symbol={props.moneda}
-                            col_2={[props.apuesta.summary.ventas, props.apuesta.summary.comisiones, props.apuesta.summary.subTotal]}
-                            style={{ height: 90 }}></RowList>
-                          <Grid item className="premio">
-                            <div className="sign">
-                              <span>Premio</span>
-                            </div>
-                            <div className="value">
-                              <span>
-                                {props.moneda}{'\u00A0'}{'\u00A0'}{'\u00A0'}{props.apuesta.summary.premios.toFixed(2)}
-                              </span>
-                            </div>
-                          </Grid>
-                        </Grid>
-                    }
-                  </Grid>
+                      </Grid>
+                      :
+                      <Grid >
+                      </Grid>
+                  }
                 </>
                 : null
             }
