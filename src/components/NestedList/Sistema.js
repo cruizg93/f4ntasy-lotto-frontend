@@ -41,7 +41,7 @@ export default function Sistema(props) {
                         <ListItemIcon>
                             <GroupAdd />
                         </ListItemIcon>
-                        <ListItemText primary="Crear Jugador" />
+                        <ListItemText primary="Crear Vendedores" />
                     </ListItem>
                     <ListItem button className={props.classes} component={Link} to="/sistema/cambio"
                         onClick={props.click}>

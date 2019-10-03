@@ -13,7 +13,7 @@ import LocalPlay from '@material-ui/icons/LocalPlay';
 import BarChart from '@material-ui/icons/BarChart';
 
 import SettingsBackupRestore from '@material-ui/icons/SettingsBackupRestore';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Historial(props) {
     const [open, setOpen] = React.useState(false);
@@ -26,49 +26,40 @@ export default function Historial(props) {
         <>
             <ListItem button onClick={handleClick}>
                 <ListItemIcon>
-                    <History/>
+                    <History />
                 </ListItemIcon>
-                <ListItemText primary="Historial"/>
-                {open ? <ExpandLess/> : <ExpandMore/>}
+                <ListItemText primary="Historial" />
+                {open ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    <ListItem button className={props.classes} component={Link} to="/historial/semana/actual"
-                              onClick={props.click}>
-                        <ListItemIcon>
-                            <AccessTime/>
-                        </ListItemIcon>
-                        <ListItemText primary="Semana en Curso"/>
-                    </ListItem>
-
                     <ListItem button className={props.classes}
-                              component={Link} to="/historial/semana/anterior"
-                              onClick={props.click}
-
+                        component={Link} to="/historial/semana/anterior"
+                        onClick={props.click}
                     >
                         <ListItemIcon>
-                            <SettingsBackupRestore/>
+                            <SettingsBackupRestore />
                         </ListItemIcon>
-                        <ListItemText primary="Semana Pasada"/>
+                        <ListItemText primary="Sorteos Pasados" />
                     </ListItem>
 
 
                     <ListItem button className={props.classes}
-                              component={Link} to="/historial/numeros/ganadores"
-                              onClick={props.click}>
+                        component={Link} to="/historial/numeros/ganadores"
+                        onClick={props.click}>
                         <ListItemIcon>
-                            <LocalPlay/>
+                            <LocalPlay />
                         </ListItemIcon>
-                        <ListItemText primary="Números Ganadores"/>
+                        <ListItemText primary="Números Ganadores" />
                     </ListItem>
 
                     <ListItem button className={props.classes}
-                              component={Link} to="/historial/balance"
-                              onClick={props.click}>
+                        component={Link} to="/historial/balance"
+                        onClick={props.click}>
                         <ListItemIcon>
-                            <BarChart/>
+                            <BarChart />
                         </ListItemIcon>
-                        <ListItemText primary="Perdidas y Ganancias"/>
+                        <ListItemText primary="Perdidas y Ganancias" />
                     </ListItem>
                 </List>
             </Collapse>
