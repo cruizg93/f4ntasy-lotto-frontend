@@ -131,7 +131,7 @@ const HistorialSemanaAnteriorAdmin = (props) => {
     const [weekList, setWeekList] = useState([]);
     const [week, setWeek] = useState([]);
     const [current, setCurrent] = useState(0);
-    const [weekId, setWeekId] = useState(0);
+    const [weekId, setWeekId] = useState('');
     const [historyType, setHistoryType] = useState('vendedor');
     const [moneda, setMoneda] = useState('lempira');
 
@@ -169,8 +169,8 @@ const HistorialSemanaAnteriorAdmin = (props) => {
 
     const handleChangeSelect = event => {
         setCurrent(event.target.selectedIndex)
+        setWeekId(event.target.value)
         if (event.target.value !== '') {
-            setWeekId(event.target.value)
             updateWeekResult(event.target.value, historyType, moneda);
         }
     };
@@ -204,25 +204,25 @@ const HistorialSemanaAnteriorAdmin = (props) => {
             <AdminTitle titleLabel='Sorteos Pasados' />
             <Grid container maxwidth='xs' className='admin_Sorteos_Pasados'>
                 <Grid className="btn_group_history_monda" >
-                    <Button className={`${historyType === 'casa' ? 'select' : ''} btn_casa`} onClick={() => handleHistoryType('casa')}>
+                    <Button className={`${historyType === 'casa' ? 'select' : ''} btn_casa`} onClick={() => handleHistoryType('casa')} style={{ marginLeft: 25 }}>
                         <span className="circle ml-10"></span>
                         <span className="text">Casa</span>
                     </Button>
-                    <Button className={`${historyType === 'vendedor' ? 'select' : ''} btn_casa`} style={{ marginLeft: 10 }} onClick={() => handleHistoryType('vendedor')}>
+                    <Button className={`${historyType === 'vendedor' ? 'select' : ''} btn_casa`} onClick={() => handleHistoryType('vendedor')} style={{ marginLeft: 10 }}>
                         <span className="circle ml-10"></span>
                         <span className="text">Vendedor</span>
                     </Button>
-                    <Button className="btn_dolar" onClick={() => handleDolar()}>
+                    <Button className="btn_dolar" onClick={() => handleDolar()} >
                         {moneda === "dolar" ? <img src={Dollar_ON} alt="Dollar_ON" /> : <img src={Dollar_OFF} alt="Dollar_OFF" />}
                     </Button>
-                    <Button className="btn_lempiras" onClick={() => handleLempira()}>
+                    <Button className="btn_lempiras" onClick={() => handleLempira()} >
                         {moneda !== "dolar" ? <img src={Lempiras_ON} alt="Dollar_ON" /> : <img src={Lempiras_OFF} alt="Lempiras_OFF" />}
                     </Button>
                 </Grid>
                 <Grid container className="combo_bet">
                     <Grid item xs={12} className="combo_box">
                         <NativeSelect
-                            value={current}
+                            value={weekId}
                             className="native_select"
                             onChange={handleChangeSelect}
                             input={<BootstrapInput className="bootstrap_input" />}
@@ -230,7 +230,7 @@ const HistorialSemanaAnteriorAdmin = (props) => {
                             <option value='' >Busqueda por semanas</option>
                             {
                                 (weekList.length > 0) && weekList.map((c, index) =>
-                                    <option key={index} value={c.id} label={c}> {c.monday} - {c.sunday}</option>
+                                    <option key={index} value={c.id} > {c.monday} - {c.sunday}</option>
                                 )
                             }
                         </NativeSelect>
