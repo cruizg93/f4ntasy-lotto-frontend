@@ -185,7 +185,7 @@ const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoType, hour, day,
                 context={sorteoType + ' - ' + (sorteoType.toLowerCase() === "diaria" ? hour : "12 pm") + ' - ' + day}
                 titleFontSize={'19px'}
                 contentFontSize={'16px'}
-                contentHeight={'190px'}>
+                contentHeight={'200px'}>
             </InputNumWinDialog>
             <InformationDialog
                 open={errorPasswordOpen}

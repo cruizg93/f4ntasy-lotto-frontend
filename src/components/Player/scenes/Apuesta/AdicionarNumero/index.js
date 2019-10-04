@@ -1,21 +1,13 @@
-import React, { Component, useState, useEffect, useLayoutEffect } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
-import clsx from 'clsx';
-import { Link, Redirect } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Grid from '@material-ui/core/Grid';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import { playerService } from "../../../../../service/api/player/player.service";
 import ListaApuestas from "../../../scenes/Apuesta/ListaApuestas";
-import EntrarNumero from "../../../components/EntrarNumero/index";
-import { makeStyles, withStyles } from "@material-ui/core/styles/index";
+import { withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import Typography from '@material-ui/core/Typography';
 import { Colors } from '../../../../../utils/__colors';
@@ -23,22 +15,19 @@ import TopBar from '../../../../View/jugador/TopBar';
 import TextField from '@material-ui/core/TextField';
 import { MdSettingsInputSvideo, MdFileDownload, MdSettingsBackupRestore } from "react-icons/md";
 import { Currency, FormatCurrency } from '../../../../../utils/__currency';
-import { MainStyles } from '../../../../View/MainStyles'
 import { timeService } from "../../../../../service/api/time/time.service";
 import ResumenApuestas from "../Resumen/ResumenApuestas";
 
 import ConfirmDialog from '../../../../View/Dialog/ConfirmDialog';
 import ConfirmDialogR from '../../../../View/Dialog/ConfirmDialog_R';
 import InformationDialog from '../../../../View/Dialog/InformationDialog';
+import ErrorInfoDialog from '../../../../View/Dialog/ErrorInfoDialog';
 
 import { userActions } from '../../../../../store/actions';
 import './styles.css'
 
-import { whileStatement } from '@babel/types';
-
 const useStyles = theme => ({
     root: {
-
     },
     component: {
         textDecoration: 'none',
@@ -71,7 +60,6 @@ const useStyles = theme => ({
     },
     buttonContainerApuestas: {
         backgroundColor: "#ffffff",
-        minWidth: "100%",
         position: "fixed",
         display: "flex",
         zIndex: "25",
@@ -89,8 +77,6 @@ const useStyles = theme => ({
         }
     },
 });
-
-
 
 class AdicionarNumeroApuesta extends Component {
 
@@ -120,6 +106,8 @@ class AdicionarNumeroApuesta extends Component {
             openRemoveAll: false,
             openComprar: false,
             openComprarInfo: false,
+            openError500Info: false,
+            openError409Info: false,
             isAgregar: false,
             showAddBtn: false,
             numVal: ''
@@ -404,7 +392,7 @@ class AdicionarNumeroApuesta extends Component {
         dispatch(userActions.loading_start())
         playerService.update_number(this.state.entry, id).then((result) => {
             this.props.history.push("/");
-            this.handleCloseFinalizarCompraDialog(event);
+            // this.handleCloseFinalizarCompraDialog(event);
             dispatch(userActions.loading_end())
             return () => {
                 this.state.mounted.current = false;
@@ -449,7 +437,31 @@ class AdicionarNumeroApuesta extends Component {
             openComprar: false
         })
         if (value) {
-            this.handleClickOpenComprarInfo();
+            let id = this.match.params.apuestaId;
+            const { dispatch } = this.props;
+            dispatch(userActions.loading_start())
+            playerService.update_number(this.state.entry, id).then((result) => {
+                if (result.status === 409) {
+                    this.setState({
+                        ...this.state,
+                        openError409Info: true
+                    })
+                } else if (result.status === 500) {
+                    this.setState({
+                        ...this.state,
+                        openError500Info: true
+                    })
+                } else {
+                    this.setState({
+                        ...this.state,
+                        openComprarInfo: true
+                    })
+                }
+                dispatch(userActions.loading_end())
+            })
+                .catch(function (error) {
+                    dispatch(userActions.loading_end())
+                });
         }
     }
 
@@ -467,35 +479,28 @@ class AdicionarNumeroApuesta extends Component {
             openComprar: false,
             openComprarInfo: false
         })
-        let id = this.match.params.apuestaId;
-        const { dispatch } = this.props;
-        dispatch(userActions.loading_start())
-        playerService.update_number(this.state.entry, id).then((result) => {
-            this.props.history.push("/");
-            dispatch(userActions.loading_end())
-            return () => {
-                this.state.mounted.current = false;
-            };
-        })
-            .catch(function (error) {
-                dispatch(userActions.loading_end())
-            });
+        this.props.history.push("/");
     }
 
-    handleClickOpenFinalizarCompraDialog = (event) => {
-        timeService.time().then((result) => {
-            this.setState((prevState, props) => {
-                return { time: result.data.time };
-            });
+    handleClose_500_error = () => {
+        this.setState({
+            ...this.state,
+            openRemoveAll: false,
+            openComprar: false,
+            openComprarInfo: false,
+            openError500Info: false
         })
-        this.setState((prevState, props) => {
-            return { openFinalizarCompraDialog: true };
-        });
     }
-    handleCloseFinalizarCompraDialog = (event) => {
-        this.setState((prevState, props) => {
-            return { openFinalizarCompraDialog: false };
-        });
+
+    handleClose_409_error = () => {
+        this.setState({
+            ...this.state,
+            openRemoveAll: false,
+            openComprar: false,
+            openComprarInfo: false,
+            openError500Info: false
+        })
+        this.props.history.push("/");
     }
 
     render() {
@@ -516,12 +521,11 @@ class AdicionarNumeroApuesta extends Component {
             });
         }
 
-        const ApuestaInput1 = withStyles({
+        const ApuestaInput = withStyles({
             root: {
-                fontSize: "1.25rem",
                 height: "100%",
                 height: "2.25rem",
-                borderRadius: "1000px",
+                borderRadius: "100px",
                 border: "#afb6b8 1px solid",
                 paddingRight: "0.75rem",
                 paddingLeft: "0.75rem",
@@ -531,7 +535,7 @@ class AdicionarNumeroApuesta extends Component {
                 },
                 '&$focused': {
                     borderColor: '#3366cc',
-                }
+                },
             },
 
         })(TextField);
@@ -555,16 +559,19 @@ class AdicionarNumeroApuesta extends Component {
                         style={{ padding: "20px 1.5rem 0 1.5rem" }}
                     >
                         <Grid item xs={6} style={{ textAlign: "end" }}>
-                            <ApuestaInput1
+                            <ApuestaInput
                                 inputRef={this.entryNumeroInputRef}
                                 type="tel"
                                 placeholder="Numero:"
                                 id="input-entry-numero"
                                 pattern="[0-9]*"
-                                style={{ marginRight: "0.375rem", maxWidth: "9.5rem" }}
+                                style={{ marginRight: "0.375rem", maxWidth: "9.5rem", fontSize: '1.25rem' }}
                                 InputProps={{
                                     disableUnderline: true,
-                                    maxLength: 9
+                                    maxLength: 9,
+                                    style: {
+                                        fontSize: "1.25rem"
+                                    }
                                 }}
                                 onInput={(e) => {
                                     const onlyNums = e.target.value.replace(/[^0-9]/g, '');
@@ -581,7 +588,7 @@ class AdicionarNumeroApuesta extends Component {
                             />
                         </Grid>
                         <Grid item xs={6} style={{ textAlign: "start" }}>
-                            <ApuestaInput1
+                            <ApuestaInput
                                 inputRef={this.entryUnidadesInputRef}
                                 type="tel"
                                 placeholder="Cantidad:"
@@ -590,6 +597,9 @@ class AdicionarNumeroApuesta extends Component {
                                 id="input-entry-unidad"
                                 InputProps={{
                                     disableUnderline: true,
+                                    style: {
+                                        fontSize: "1.25rem"
+                                    }
                                 }}
                                 onInput={(e) => {
                                     const onlyNums = e.target.value.replace(/[^0-9]/g, '');
@@ -656,7 +666,7 @@ class AdicionarNumeroApuesta extends Component {
                 <ConfirmDialog
                     open={this.state.openRemoveAll}
                     handleClose={this.handleCloseRemoveAll.bind(this)}
-                    title="Limipiar pantalla?"
+                    title="Limpiar pantalla?"
                     context="Toda la información digitada se perderá"
                     icon='help'>
                 </ConfirmDialog>
@@ -672,8 +682,34 @@ class AdicionarNumeroApuesta extends Component {
                     handleClose={this.handleCloseComprarInfo.bind(this)}
                     title="Compra exitosa."
                     context="Su compra fue exitosa, puede ver los detalles en la pantalla de compras activas."
+                    contentFontSize={'18px'}
                     icon='info'>
                 </InformationDialog>
+                <ErrorInfoDialog
+                    open={this.state.openError500Info}
+                    handleClose={this.handleClose_500_error.bind(this)}
+                    title={'Error del sistema.'}
+                    context={'Su compra no fue procesada. hubo algún error del sistema trate de nuevo y si el problema persiste contacte a su agente.'}
+                    icon={'ioIosWarning'}
+                    iconSize={70}
+                    iconColor={'#fdfa01'}
+                    titleFontSize={'22px'}
+                    contentFontSize={'17px'}
+                    contentHeight={'109px'}>
+                </ErrorInfoDialog>
+                <ErrorInfoDialog
+                    open={this.state.openError409Info}
+                    handleClose={this.handleClose_409_error.bind(this)}
+                    title={'Sorteo no disponible'}
+                    context={'Su compra no fue procesada. Sorteo fuera de tiempo o bloqueado... verifique el estado del sorteo o contacte a su agente.'}
+                    icon={'ioIosWarning'}
+                    iconSize={70}
+                    iconColor={'#ff3333'}
+                    titleFontSize={'22px'}
+                    contentFontSize={'17px'}
+                    lineHeight={'23px'}
+                    contentHeight={'109px'}>
+                </ErrorInfoDialog>
                 <div className='clearfix'></div>
             </div>
         )
