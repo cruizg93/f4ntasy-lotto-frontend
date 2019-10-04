@@ -118,6 +118,7 @@ class ApuestaData extends React.Component {
                                     {
                                         pathname: `/usuario/apuestas/hoy/activas/${this.props.apuesta.id}`,
                                         state: {
+
                                         }
                                     }
                                 }

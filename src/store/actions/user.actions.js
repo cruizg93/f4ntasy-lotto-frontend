@@ -47,12 +47,12 @@ function login(action, history) {
                         history.push('/');
                         dispatch({ type: LODING_STATE, payload: false });
                     }, 300);
-                    // NotificationManager.success('Account Created Successfully!');
                 } else {
 
                 }
             }).catch(e => {
-                // showMessage(e.message);
+                dispatch({ type: LOGIN_FAILURE, payload: false });
+                dispatch({ type: LODING_STATE, payload: false });
             });
     }
 }

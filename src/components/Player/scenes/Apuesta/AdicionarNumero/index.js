@@ -112,7 +112,7 @@ class AdicionarNumeroApuesta extends Component {
             showAddBtn: false,
             numVal: ''
         }
-        this.apuestaCurrency = (this.props.moneda === "LEMPIRA" || this.props.moneda === "L") ? Currency.Lempira : Currency.Dollar;
+        this.apuestaCurrency = (this.props.location.state.moneda && this.props.location.state.moneda === 'L') ? Currency.Lempira : Currency.Dollar;
         this.match = props.match;
 
         this.entryInputContainerRef = React.createRef();
@@ -166,7 +166,6 @@ class AdicionarNumeroApuesta extends Component {
                 dispatch(userActions.loading_end())
             });
         window.scrollTo(0, 0);
-        // this.entryNumeroInputRef.current.focus();
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -550,7 +549,7 @@ class AdicionarNumeroApuesta extends Component {
                     hour={this.state.hour}
                     day={this.state.day}
                     total={this.state.total}
-                    apuestaCurrency={(this.props.moneda === "LEMPIRA" || this.props.moneda === "L") ? Currency.Lempira : Currency.Dollar}
+                    apuestaCurrency={this.apuestaCurrency}
                 />
                 <Container style={{ background: 'white', marginTop: 52 }}>
                     <Grid container spacing={0}

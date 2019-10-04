@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/styles';
-import { MainStyles } from '../../View/MainStyles';
 import { Colors } from '../../../utils/__colors';
-import { FormatCurrency } from '../../../utils/__currency';
 
 import DiariaLogo from './../assets/Diaria_PNG.png';
 import ChicaLogo from './../assets/Chica_PNG.png';

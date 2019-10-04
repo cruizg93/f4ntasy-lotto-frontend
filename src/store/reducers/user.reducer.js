@@ -8,7 +8,8 @@ const currentUser = JSON.parse(localStorage.getItem('currentUser'))
 const initialize = {
   currentUser: currentUser || null,
   role: currentUser ? userService.type_user(currentUser.username) : '',
-  loginState: (currentUser) ? true : false
+  loginState: (currentUser) ? true : false,
+  loginFail: false
 }
 
 export function user(state = initialize, action) {
@@ -18,12 +19,14 @@ export function user(state = initialize, action) {
         ...state,
         currentUser: action.payload.currentUser,
         role: userService.type_user(action.payload.username),
-        loginState: true
+        loginState: true,
+        loginFail: false
       };
     case LOGIN_FAILURE:
       return {
         ...state,
-        loginState: false
+        loginState: false,
+        loginFail: true
       };
     default:
       return { ...state }

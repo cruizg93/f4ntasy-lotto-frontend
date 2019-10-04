@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
-import Paper from '@material-ui/core/Paper';
-import { red, blue } from "@material-ui/core/colors/index";
 import DetallesDialog from '../../../../View/Dialog/DetallesDialog';
 import { FaFileExcel } from "react-icons/fa";
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -13,7 +8,6 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import { Add, Remove } from '@material-ui/icons';
 import { playerService } from "../../../../../service/api/player/player.service";
-import { FormatCurrencySymbol } from '../../../../../utils/__currency';
 import ListHistoryDetail from '../ListHistoryDetail'
 import RowList from '../../../../View/RowList'
 import DiariaLogo from '../../../../View/assets/Diaria_PNG.png';
