@@ -45,13 +45,17 @@ class InformationDialog extends React.Component {
               <div className="dialogTitle">
                 <div style={{ textAlign: 'center' }}>
                   {
-                    icon === 'giInfo' ?
-                      <GiInfo size={iconSize} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 13 }} /> :
-                      icon === 'info' ?
-                        <GoVerified size={iconSize} style={{ color: "#009933", paddingTop: '15px', paddingBottom: 13 }} /> :
-                        icon === 'ioIosWarning' ?
-                          <IoIosWarning size={iconSize} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 13 }} /> :
-                          <IoIosCheckmarkCircleOutline size={iconSize} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 13 }} />
+                    icon === 'faLock' ?
+                      <FaLock size={iconSize} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 20 }} /> :
+                      icon === 'faBan' ?
+                        <FaBan size={iconSize} style={{ color: "#663399", paddingTop: '15px', paddingBottom: 20 }} /> :
+                        icon === 'giInfo' ?
+                          <GiInfo size={iconSize} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 13 }} /> :
+                          icon === 'info' ?
+                            <GoVerified size={iconSize} style={{ color: "#009933", paddingTop: '15px', paddingBottom: 13 }} /> :
+                            icon === 'ioIosWarning' ?
+                              <IoIosWarning size={iconSize} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 13 }} /> :
+                              <IoIosCheckmarkCircleOutline size={iconSize} style={{ color: "#ff3333", paddingTop: '15px', paddingBottom: 13 }} />
                   }
                 </div>
                 <div style={{ fontSize: titleFontSize }}>

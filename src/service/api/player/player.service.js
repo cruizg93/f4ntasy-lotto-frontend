@@ -22,7 +22,8 @@ export const playerService = {
     list_of_numbers_by_apuesta_id,
     list_historial_weeks,
     weekOverview_jugador,
-    apuestasOverview_sorteo
+    apuestasOverview_sorteo,
+    delete_apuestas_activas_sorteoAndNumeroAndJugador
 };
 
 function list_number() {
@@ -431,6 +432,30 @@ function delete_apuesta_number(id, numeroValue, userIdValue) {
     return new Promise((resolve, reject) => {
         axios.post(`${baseUrl}/user/sorteos/activos/${id}/delete/number`,
             send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+//sorteos/activos/{id}/apuestas/{numbero}
+
+function delete_apuestas_activas_sorteoAndNumeroAndJugador(id, numero) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    return new Promise((resolve, reject) => {
+        axios.delete(`${baseUrl}/sorteos/activos/${id}/apuestas/${numero}`,
+            requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);

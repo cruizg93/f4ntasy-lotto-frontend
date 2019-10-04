@@ -5,6 +5,10 @@
 .player_resumen_ventas_generales .container_summary{
   border-bottom: none !important;
 }
+.player_resumen_ventas_generales .container_summary .summaryTotal{
+  padding-top: 34px;
+  margin-top: 0;
+}
 .player_resumen_ventas_generales .empty_border{
   height: 38px;
   width: 100%;

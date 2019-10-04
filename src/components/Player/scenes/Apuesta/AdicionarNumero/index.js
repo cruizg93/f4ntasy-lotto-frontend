@@ -504,8 +504,10 @@ class AdicionarNumeroApuesta extends Component {
     }
 
     render() {
+        const rightPos = (window.screen.width > 444) ? (window.screen.width - 444) / 2 + 2 : 2;
+        const transPos = rightPos + 100;
         this.classes = this.props.classes;
-        const trans = this.state.showAddBtn ? 'translate(0px)' : 'translate(100px)'
+        const trans = this.state.showAddBtn ? 'translate(0px)' : `translate(${transPos}px)`
         function updateFunction(e) {
         }
 
@@ -658,7 +660,7 @@ class AdicionarNumeroApuesta extends Component {
                         </Grid>
                     </Grid>
                 </Container>
-                <div className="slideAddBtn" style={{ transform: trans }}>
+                <div className="slideAddBtn" style={{ transform: trans, right: rightPos }}>
                     <Button variant="contained" className="buttonAgregarApuesta" onClick={this.agregarApuesta}>
                         <MdFileDownload className="extendedIcon" />
                     </Button>

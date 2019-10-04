@@ -176,27 +176,31 @@ const ApuestaActiva = ({ ...props }) => {
     function submitUpdateData() {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
-        playerService.update_number_apuesta_activas(list, apuestaId).then((result) => {
-            success_response();
-            playerService.list_apuestas_activas_details(apuestaId).then((result) => {
-                setTitle(result.data.title);
-                setHour(result.data.hour);
-                setDay(result.data.day);
-                setComision(parseFloat(result.data.comision));
-                setRiesgo(parseFloat(result.data.riesgo));
-                setTotal(parseFloat(result.data.total));
-                setList(Array.from(result.data.list));
+        playerService.list_apuestas_activas_details(apuestaId).then((result) => {
+            setTitle(result.data.title);
+            setHour(result.data.hour);
+            setDay(result.data.day);
+            setComision(parseFloat(result.data.comision));
+            setRiesgo(parseFloat(result.data.riesgo));
+            setTotal(parseFloat(result.data.total));
+            setList(Array.from(result.data.list));
+            dispatch(userActions.loading_end())
+        })
+            .catch(function (error) {
                 dispatch(userActions.loading_end())
-            })
-                .catch(function (error) {
-                    dispatch(userActions.loading_end())
-                });
-        });
+            });
     }
 
-    function deleteOneFunction(entryId) {
-        list[entryId]['valor'] = 0.0;
-        submitUpdateData();
+    function deleteOneFunction(numero) {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
+        playerService.delete_apuestas_activas_sorteoAndNumeroAndJugador(apuestaId, numero).then((result) => {
+            dispatch(userActions.loading_end())
+            submitUpdateData();
+        })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }
 
     function eliminarCompleto() {
@@ -252,7 +256,7 @@ const ApuestaActiva = ({ ...props }) => {
     }, []);
 
     return (
-        <div style={{ background: 'white', paddingTop: 112, paddingBottom: 68 }}>
+        <div style={{ background: 'white', paddingBottom: 70 }}>
             <ToastContainer autoClose={8000} />
             <ConfirmDialog
                 open={open}
@@ -293,10 +297,11 @@ const ApuestaActiva = ({ ...props }) => {
             <Grid container spacing={0}
                 direction="row"
                 justify="center"
-                alignItems="center" style={{ width: "100%", paddingTop: 4 }}>
+                alignItems="center" style={{ width: "100%", paddingTop: 112 }}>
                 <ListaApuestas entryList={list} removerApuesta={(apuestaIndex) => {
-                    setTempApuestaIndex(apuestaIndex); deleteOneFunction(apuestaIndex);
+                    deleteOneFunction(list[apuestaIndex].numero);
                 }}
+                    apuestaId={props.match.params.apuestaId}
                     displayApuestaListIndex={false} fromApuestaActiva={true} />
                 <Grid item xs={12} style={{ paddingBottom: 10 }}>
                     <span style={{ textAlign: "center", color: "#999999", fontSize: '18px', marginLeft: 94 }}>

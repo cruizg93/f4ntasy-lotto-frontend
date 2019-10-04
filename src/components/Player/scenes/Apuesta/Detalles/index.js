@@ -1,25 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import { makeStyles } from '@material-ui/core/styles';
-import { red, blue } from "@material-ui/core/colors/index";
-import Button from "@material-ui/core/Button/index";
-import { withStyles } from "@material-ui/core/styles/index";
 import { playerService } from "../../../../../service/api/player/player.service";
 import ShowDetallesApuesta from '../../../components/Detalles/index';
 import { printDocument6 } from "../../../../../_helpers/print";
-import HeaderDescription from "../../../../HeaderDescription/index";
-import { Colors } from "../../../../../utils/__colors";
 import { LocalPrintshop } from "@material-ui/icons";
 import Fab from '@material-ui/core/Fab';
-
+import InformationDialog from '../../../../View/Dialog/InformationDialog';
 import DetailTitle from '../../../../Admin/components/DetailTitle'
 import TopBar from '../../../../View/jugador/TopBarDetails';
-import { Currency, FormatCurrency } from '../../../../../utils/__currency';
 import { userActions } from '../../../../../store/actions';
 
 import './styles.css'
@@ -29,6 +19,7 @@ const DetallesApuesta = ({ ...props }) => {
     const [list, setList] = useState([]);
     const [apuestaType, setApuestaType] = useState("Diaria");
     const [moneda, setMoneda] = useState(" $ ");
+    const [errorOpen, setErrorOpen] = useState(false);
     useEffect(() => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
@@ -47,8 +38,12 @@ const DetallesApuesta = ({ ...props }) => {
     }, []);
 
     function handleOnPrint() {
-        const input = document.getElementById("apuesta-activa-numeros-detalles");
-        printDocument6(input, title + '-activa-detalles');
+        setErrorOpen(true)
+        // const input = document.getElementById("apuesta-activa-numeros-detalles");
+        // printDocument6(input, title + '-activa-detalles');
+    }
+    function handleClose() {
+        setErrorOpen(false)
     }
 
     const update = () => {
@@ -91,7 +86,17 @@ const DetallesApuesta = ({ ...props }) => {
                     </Fab>
                 </div>
             </Grid>
-
+            <InformationDialog
+                open={errorOpen}
+                handleClose={handleClose}
+                title={'Opcion no disponible'}
+                context={'La opcion de imprimir no esta disponible en este momento, se esta trabajando en su implementacion'}
+                icon={'ioIosWarning'}
+                iconSize={67}
+                titleFontSize={'22px'}
+                contentFontSize={'16px'}
+                contentHeight={'80px'}>
+            </InformationDialog>
         </div>
     )
 
