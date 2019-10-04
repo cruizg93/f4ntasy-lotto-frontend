@@ -148,7 +148,7 @@ const EditarAsistente = ({ ...props }) => {
             setPlaceholderUserName(result.data.name)
             setJugadorName(result.data.jugadorName);
             setJugadorUserName(result.data.jugadorUsername);
-            setJugadorMoneda(result.data.jugadorMoneda !== "LEMPIRAS" ? "$" : "L");
+            setJugadorMoneda(result.data.jugadorMoneda !== "LEMPIRA" ? "$" : "L");
         })
     }, [])
 

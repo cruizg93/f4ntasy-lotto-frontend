@@ -98,7 +98,7 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
         printDocument6(input, title + '-detalles-apuestas-activas-user');
     }
     const col = ['Costo:', 'Comisión:', 'Total:'];
-    const symbol = moneda === "LEMPIRAS" ? " L " : " $ ";
+    const symbol = moneda === "LEMPIRA" ? " L " : " $ ";
     const values = [total.toFixed(2), comision.toFixed(2), riesgo.toFixed(2)]
     const height = window.innerHeight - 300;
     function updateFunction(e) {

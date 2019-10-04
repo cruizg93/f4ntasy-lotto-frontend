@@ -62,7 +62,7 @@ const ShowDetallesApuesta = ({ title, apuestas, total, ...props }) => {
         setSum(apuestas.reduce((s, row) => s + row.valor, 0));
         setTotalData(total);
         if (props.moneda)
-            setMoneda((props.moneda === "LEMPIRAS" || props.moneda === " L ") ? "L" : " $ ");
+            setMoneda((props.moneda === "LEMPIRA" || props.moneda === " L ") ? "L" : " $ ");
     }, [])
 
     return (

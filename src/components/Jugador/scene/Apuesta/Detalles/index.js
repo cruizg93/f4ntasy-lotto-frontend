@@ -34,7 +34,7 @@ const JugadorDetalles = ({ ...props }) => {
         adminService.list_apuestas_details(username[0]).then((result) => {
             setApuestasList(Array.from(result.data.sorteos));
             setName(result.data.name);
-            setMoneda((result.data.moneda === "LEMPIRAS" || result.data.moneda === "L") ? Currency.Lempiras : Currency.Dollar);
+            setMoneda((result.data.moneda === "LEMPIRA" || result.data.moneda === "L") ? Currency.Lempira : Currency.Dollar);
             let total = result.data.sorteos.reduce((sum, row) => sum + row.total, 0);
             let comision = result.data.sorteos.reduce((sum, row) => sum + row.comision, 0);
             let riesgo = result.data.sorteos.reduce((sum, row) => sum + row.riesgo, 0);

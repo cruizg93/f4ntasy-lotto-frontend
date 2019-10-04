@@ -12,18 +12,19 @@ const useStyles = makeStyles({
     resumenCompraContainer: {
         backgroundColor: "#f4f4f4",
         paddingTop: "0.65rem",
-        paddingTop: "0.65rem",
     },
     resumenCompraText: {
         textAlign: "left",
         color: "#999999",
         lineHeight: "0.85",
         paddingBottom: "0.65rem",
+        fontSize: '1.1rem'
     },
     resumenCompraValue: {
         color: Colors.Jugador_Blue,
         lineHeight: "0.85",
         paddingBottom: "0.65rem",
+        fontSize: '1.1rem'
     }
 });
 

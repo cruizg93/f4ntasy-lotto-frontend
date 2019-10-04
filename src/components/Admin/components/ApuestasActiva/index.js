@@ -149,7 +149,6 @@ class ApuestasDetallesEntry extends React.Component {
     }
   }
   render() {
-    const apuestaCurrency = (this.props.moneda === "LEMPIRAS" || this.props.moneda === "L") ? Currency.Lempiras : Currency.Dollar;
     let title = this.props.title
     let strAry = title.split("-")
     let vip = title.substring(0, 3)

@@ -1,5 +1,5 @@
 export const Currency = {
-    Lempiras: { locale: "es-HN", currency: "HNL", symbol: "L" },
+    Lempira: { locale: "es-HN", currency: "HNL", symbol: "L" },
     Dollar: { locale: "en-US", currency: "USD", symbol: "$" }
 }
 

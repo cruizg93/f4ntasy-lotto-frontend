@@ -145,7 +145,7 @@ export default function Cambio() {
                             Tipo de cambio en sistema
                         </Typography>
                         <Typography variant="h6" className={`${classes.leftMargin} form__left-label`}>
-                            $1.00 = {currentValue} Lempiras
+                            $1.00 = {currentValue} Lempira
                         </Typography>
                         <Divider />
                     </Grid>
@@ -158,7 +158,7 @@ export default function Cambio() {
                             </Typography>
                             <NumberFormat
                                 id="cambio-update"
-                                label="Lempiras"
+                                label="Lempira"
                                 className={classes.textField}
                                 margin="dense"
                                 onChange={handleChangeValue}

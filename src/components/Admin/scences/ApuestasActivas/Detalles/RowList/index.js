@@ -9,7 +9,7 @@ import './styles.css';
 
 class RowList extends React.Component {
   render() {
-    const apuestaCurrency = this.props.symbol === "$" ? Currency.Lempiras : Currency.Dollar;
+    const apuestaCurrency = this.props.symbol === "$" ? Currency.Lempira : Currency.Dollar;
     let left = (this.props.paddingLeft && this.props.paddingLeft !== 0) ? this.props.paddingLeft : 10;
     return (
       <Grid container maxwidth="xs" className="container_rowList_1">

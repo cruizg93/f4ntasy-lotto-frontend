@@ -159,7 +159,7 @@ class JugadorDetallesEntry extends React.Component {
         }
     }
     render() {
-        const apuestaCurrency = (this.props.moneda === "LEMPIRAS" || this.props.moneda === "L") ? Currency.Lempiras : Currency.Dollar;
+        const apuestaCurrency = (this.props.moneda === "LEMPIRA" || this.props.moneda === "L") ? Currency.Lempira : Currency.Dollar;
         return (
             <>
                 <Grid container spacing={0} className="container_jugadorDetailesEntry"
