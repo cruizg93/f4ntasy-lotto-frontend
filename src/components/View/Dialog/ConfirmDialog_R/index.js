@@ -28,8 +28,6 @@ class ConfirmDialogR extends React.Component {
       <div className="container_rowList">
         <Grid container className="text_container" >
           <Dialog
-            maxWidth="xs"
-            minWidth="xs"
             open={this.props.open}
             onClose={this.props.handleClose}
             aria-labelledby="confirmation-dialog-title"

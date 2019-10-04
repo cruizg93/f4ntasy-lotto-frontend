@@ -210,6 +210,9 @@ function update_number(data, id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 409 || error.response.status === 500) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });

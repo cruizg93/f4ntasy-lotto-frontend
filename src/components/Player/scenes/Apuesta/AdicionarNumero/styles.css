@@ -1,7 +1,6 @@
 .numbers:focus-within{
   border-color: blue;
 }
-
 .clearfix{
   clear: both;
 }

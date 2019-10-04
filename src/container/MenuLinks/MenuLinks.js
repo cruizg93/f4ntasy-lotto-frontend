@@ -8,8 +8,8 @@ export const MenuLinks = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [anchorE2, setAnchorE2] = React.useState(null);
 
-    const [isAdmin, setAdminValue] = React.useState(props.admin);
-    const [isAsistente, setAsistenteValue] = React.useState(!props.admin && props.asistente);
+    const isAdmin = props.admin;
+    const isAsistente = (!props.admin && props.asistente);
 
     function handleClickHistorial(event) {
         setAnchorE2(event.currentTarget);

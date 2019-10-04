@@ -40,6 +40,7 @@ const HistorialPlayer = (props) => {
     const [weekList, setWeekList] = useState([]);
     const [week, setWeek] = useState([]);
     const [current, setCurrent] = useState(-1);
+    const [weekId, setWeekId] = useState('');
 
     useEffect(() => {
         const { dispatch } = props;
@@ -55,6 +56,7 @@ const HistorialPlayer = (props) => {
 
     const handleChangeSelect = event => {
         setCurrent(event.target.selectedIndex)
+        setWeekId(event.target.value)
         if (event.target.value !== '') {
             const { dispatch } = props;
             dispatch(userActions.loading_start())
@@ -80,7 +82,7 @@ const HistorialPlayer = (props) => {
                 <Grid container className="combo_bet">
                     <Grid item xs={12} className="combo_box">
                         <NativeSelect
-                            value={current}
+                            value={weekId}
                             className="native_select"
                             onChange={handleChangeSelect}
                             input={<BootstrapInput className="bootstrap_input" />}
