@@ -119,6 +119,7 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
                     dayList.sorteosPasados.map((row, index) =>
                       <Grid item xs={12} key={index}>
                         <HistorialJugadorByDay key={index} apuesta={row} index={index} {...props}
+                          jugadorId={props.jugador.id}
                           moneda={dayList.summary.currency.toLowerCase() === 'lempira' ? 'L' : '$'}></HistorialJugadorByDay>
                       </Grid>
                     )

@@ -74,7 +74,9 @@ const HistorialJugadorByDay = (props) => {
                     props.apuesta.sorteos.map((row, index) =>
                       row.id &&
                       <Grid item xs={12} key={index}>
-                        <ExpanionPanelDay winner={row} casa={props.casa ? props.casa : 'vendedor'} day={props.apuesta.sorteoTime} moneda={props.moneda}></ExpanionPanelDay>
+                        <ExpanionPanelDay winner={row} casa={props.casa ? props.casa : 'vendedor'}
+                          jugadorId={props.jugadorId}
+                          day={props.apuesta.sorteoTime} moneda={props.moneda}></ExpanionPanelDay>
                       </Grid>
                     )
                   }

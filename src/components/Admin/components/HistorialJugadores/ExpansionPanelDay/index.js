@@ -12,7 +12,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import { Add, Remove } from '@material-ui/icons';
-import { playerService } from "../../../../../service/api/player/player.service";
+import { adminService } from "../../../../../service/api/admin/admin.service";
 import { FormatCurrencySymbol } from '../../../../../utils/__currency';
 import ListHistoryDetail from '../ListHistoryDetail'
 import RowList from '../../../../View/RowList'
@@ -29,7 +29,7 @@ const ExpanionPanelDay = (props) => {
   const handleChangeExpand = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
     if (isExpanded) {
-      playerService.apuestasOverview_sorteo(props.winner.id).then((result) => {
+      adminService.get_historial_apuestasOverview_sorteoAndJugador(props.jugadorId, props.winner.id).then((result) => {
         setWinList(result.data)
       })
     }
