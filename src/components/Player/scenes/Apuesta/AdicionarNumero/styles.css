@@ -26,14 +26,14 @@
   border-radius: 50px 0px 0px 50px;
   text-transform: none;
   color: #ffffff;
-  background: #E7A03B;
+  background: #a3ca72;
   font-size: 20px;
   width: 85px;
-  height: 45px;
+  height: 60px;
 }
 .usuario_apuestas_id .slideAddBtn .buttonAgregarApuesta .extendedIcon{
-  font-size: 32px;
-  margin-left: -25px;
+  font-size: 35px;
+  margin-left: -10px;
   margin-top: 1px;
 }
 
@@ -69,12 +69,13 @@
 }
 
 .usuario_apuestas_id .sum_text{
+  font-size: 1.25rem;
   text-align: center;
   color: #999999;
   margin-top: 1.1875rem;
   margin-bottom: 1.1875rem;
   line-height: 0.85;
-  margin-left: -19px;
+  margin-left: -31px;
 }
 
 

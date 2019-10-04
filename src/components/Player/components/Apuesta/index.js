@@ -26,7 +26,7 @@ class ApuestaData extends React.Component {
         }
     }
     render() {
-        const apuestaCurrency = (this.props.apuesta.moneda === "LEMPIRAS" || this.props.apuesta.moneda === "L") ? Currency.Lempiras : Currency.Dollar;
+        const apuestaCurrency = (this.props.apuesta.moneda === "LEMPIRA" || this.props.apuesta.moneda === "L") ? Currency.Lempira : Currency.Dollar;
         let hour = this.props.apuesta.hour
         let day = this.props.apuesta.day.toLowerCase()
         const moneySymbol = this.props.apuesta.moneda.toLowerCase() === 'dolar' ? '$' : 'L';

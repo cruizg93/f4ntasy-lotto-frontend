@@ -120,8 +120,8 @@ const ApuestaActiva = ({ ...props }) => {
     const [apuestaType, setApuestaType] = useState('CHICA');
     const [monedaType, setMonedaType] = React.useState("$");
     const [sumValor, setSumValor] = React.useState(0);
-    const apuestaCurrency = (props.location.state.moneda === "LEMPIRAS" || props.location.state.moneda === "L")
-        ? Currency.Lempiras
+    const apuestaCurrency = (props.location.state.moneda === "LEMPIRA" || props.location.state.moneda === "L")
+        ? Currency.Lempira
         : Currency.Dollar;
     const apuestaId = props.match.params.apuestaId;
 

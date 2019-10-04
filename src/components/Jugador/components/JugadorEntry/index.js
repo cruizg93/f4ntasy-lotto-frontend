@@ -299,7 +299,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
 
     const jugadorEnable = balance == 0 && total == 0;
     const symbol = balance < 0 ? " - " : (balance > 0 ? " + " : "")
-    const apuestaCurrency = monedaType === "lempiras" ? Currency.Lempiras : Currency.Dollar;
+    const apuestaCurrency = monedaType === "lempira" ? Currency.Lempira : Currency.Dollar;
 
     const handler = props.handler;
     const toast = props.toast;
