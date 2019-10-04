@@ -5,15 +5,12 @@ import Container from '@material-ui/core/Container';
 import 'react-toastify/dist/ReactToastify.css';
 import { adminService } from "../../../../service/api/admin/admin.service";
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import ApuestasActivasAdminData from '../../components/ApuestasActiva/ApuestasActivasAdminData'
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Colors } from "../../../../utils/__colors";
 import Button from "@material-ui/core/Button/index";
 import AdminTitle from '../../components/AdminTitle';
 import ApuestasDetallesEntry from '../../components/ApuestasActiva';
 import RowList from '../../../View/RowList'
-import { IoIosContacts } from "react-icons/io";
 
 import Dollar_ON from '../../../View/assets/Dollar_ON.png';
 import Dollar_OFF from '../../../View/assets/Dollar_OFF.png';

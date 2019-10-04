@@ -30,8 +30,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import AdminTitle from '../../../../Admin/components/AdminTitle_Center'
 
 import ConfirmDialog from '../../../../View/Dialog/ConfirmDialog';
-import ConfirmDialogR from '../../../../View/Dialog/ConfirmDialog_R';
-import InformationDialog from '../../../../View/Dialog/InformationDialog';
+import ErrorInfoDialog from '../../../../View/Dialog/ErrorInfoDialog';
 import { userActions } from '../../../../../store/actions';
 
 const useStyles = makeStyles(theme => ({
@@ -125,51 +124,27 @@ const ApuestaActiva = ({ ...props }) => {
         : Currency.Dollar;
     const apuestaId = props.match.params.apuestaId;
 
-    const mounted = useState(true);
-
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
-    const [openCompraChange, setOpenCompraChange] = useState(false);
+    const [openError500Info, setOpenError500Info] = useState(false);
+    const [openError409Info, setOpenError409Info] = useState(false);
 
-    const [openDeleteOneDialog, setOpenDeleteOneDialog] = useState(false);
-    const [tempApuestaIndex, setTempApuestaIndex] = useState(-1);
+    function handleClose_409_error() {
+        setOpenError409Info(false);
+        this.props.history.push("/");
+    }
+    function handleClose_500_error() {
+        setOpenError500Info(false);
+    }
+
     function handleClickOpen() {
         setOpen(true);
     }
 
     function handleClose(value) {
-        if (value) {
-            handleCloseAccept()
-        } else {
-            setOpen(false);
-        }
-    }
-
-    function handleCloseAccept() {
-        eliminarCompleto()
         setOpen(false);
-    }
-
-    function handleClickOpenEdit() {
-        setOpenEdit(true);
-    }
-
-    function handleCloseEdit() {
-        setOpenEdit(false);
-    }
-
-    function handleDisableClick() {
-        if (!disable) {
-            setOpenCompraChange(true);
-        }
-        setDisable(!disable);
-    }
-
-    function updateFunction(e) {
-        let id = e.target.id;
-        id = id.split('-')[3];
-        if (e.target.value !== '') {
-            list[id]['valor'] = parseFloat(e.target.value);
+        if (value) {
+            deleteAllFunction()
         }
     }
 
@@ -184,6 +159,8 @@ const ApuestaActiva = ({ ...props }) => {
             setRiesgo(parseFloat(result.data.riesgo));
             setTotal(parseFloat(result.data.total));
             setList(Array.from(result.data.list));
+            setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
+
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -195,41 +172,36 @@ const ApuestaActiva = ({ ...props }) => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         playerService.delete_apuestas_activas_sorteoAndNumeroAndJugador(apuestaId, numero).then((result) => {
+            if (result.status === 409) {
+                setOpenError409Info(true);
+            } else if (result.status === 500) {
+                setOpenError500Info(true);
+            }
             dispatch(userActions.loading_end())
-            submitUpdateData();
+            if (result.status === 200)
+                submitUpdateData();
         })
             .catch(function (error) {
                 dispatch(userActions.loading_end())
             });
     }
 
-    function eliminarCompleto() {
-        list.forEach((elem, idx) => {
-            elem['valor'] = 0.0;
+    function deleteAllFunction() {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
+        playerService.delete_apuestas_activas_sorteoAndJugador(apuestaId).then((result) => {
+            if (result.status === 409) {
+                setOpenError409Info(true);
+            } else if (result.status === 500) {
+                setOpenError500Info(true);
+            }
+            dispatch(userActions.loading_end())
+            if (result.status === 200)
+                submitUpdateData();
         })
-        setSumValor(0)
-        submitUpdateData();
-    }
-
-    function success_response() {
-        toast.success("Cambio actualizado !", {
-            position: toast.POSITION.TOP_RIGHT
-        });
-    }
-
-    function handleOnPrint() {
-        const input = document.getElementById("container-apuesta-activa-data");
-        printDocument6(input, title + '-activa');
-    }
-
-    function handleCloseCompraChangeAccept() {
-        setOpenCompraChange(false);
-        submitUpdateData();
-        handleClickOpenEdit();
-    }
-
-    function handleCloseCompraChange() {
-        setOpenCompraChange(false);
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }
 
     useEffect(() => {
@@ -237,7 +209,6 @@ const ApuestaActiva = ({ ...props }) => {
         dispatch(userActions.loading_start())
         setMonedaType(props.location.state.moneda);
         playerService.list_apuestas_activas_details(apuestaId).then((result) => {
-
             setApuestaType(result.data.type)
             setTitle(result.data.title);
             setHour(result.data.hour);
@@ -258,34 +229,6 @@ const ApuestaActiva = ({ ...props }) => {
     return (
         <div style={{ background: 'white', paddingBottom: 70 }}>
             <ToastContainer autoClose={8000} />
-            <ConfirmDialog
-                open={open}
-                handleClose={handleClose}
-                title="Limipiar pantalla?"
-                context="Toda la información digitada se perderá"
-                icon='help'>
-            </ConfirmDialog>
-            <Dialog
-                open={openEdit}
-                onClose={handleCloseEdit}
-                aria-labelledby="alert-dialog-update-data"
-                aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle
-                    id="alert-dialog-update-data">Apuesta</DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        {`Su cambio a la compra a sido exitoso`}
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={() => {
-                        handleCloseEdit();
-                    }} color="primary" autoFocus>
-                        Aceptar
-                                </Button>
-                </DialogActions>
-            </Dialog>
             <AdminTitle titleLabel="Ventas Activas" />
             <TopBar apuestaType={apuestaType}
                 hour={hour}
@@ -346,6 +289,38 @@ const ApuestaActiva = ({ ...props }) => {
                     </Fab>
                 </Grid>
             </Grid>
+            <ConfirmDialog
+                open={open}
+                handleClose={handleClose}
+                title="Limipiar pantalla?"
+                context="Toda la información digitada se perderá"
+                icon='help'>
+            </ConfirmDialog>
+            <ErrorInfoDialog
+                open={openError500Info}
+                handleClose={handleClose_500_error}
+                title={'Error del sistema.'}
+                context={'Su compra no fue procesada. hubo algún error del sistema trate de nuevo y si el problema persiste contacte a su agente.'}
+                icon={'ioIosWarning'}
+                iconSize={70}
+                iconColor={'#fdfa01'}
+                titleFontSize={'22px'}
+                contentFontSize={'17px'}
+                contentHeight={'109px'}>
+            </ErrorInfoDialog>
+            <ErrorInfoDialog
+                open={openError409Info}
+                handleClose={handleClose_409_error}
+                title={'Sorteo cerrado'}
+                context={'Una vez el sorteo cerro no se pueden eliminar o modificar las compras.'}
+                icon={'ioIosWarning'}
+                iconSize={70}
+                iconColor={'#ff3333'}
+                titleFontSize={'22px'}
+                contentFontSize={'17px'}
+                lineHeight={'23px'}
+                contentHeight={'109px'}>
+            </ErrorInfoDialog>
         </div>
     )
 };

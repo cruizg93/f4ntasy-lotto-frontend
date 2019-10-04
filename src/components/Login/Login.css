@@ -8,38 +8,58 @@
   /*background-image: url("assets/background.png");*/
 }
 
-.grid-username {
-  margin: 50px 10px 20px 10px !important;
+.login-page .grid-username {
+  padding: 50px 10px 20px 10px !important;
 }
 
-.input-group {
+.login-page .input-group {
   height: 58px;
 }
 
-.form-control {
+.login-page .form-control {
   height: 58px !important;
 }
 
-.grid-password {
-  margin: 20px 10px 10px 10px !important;
+.login-page .grid-password {
+  padding: 20px 10px 10px 10px !important;
 }
 
-.grid-login {
-  margin: 50px 10px 20px 10px !important;
+.login-page .grid-login {
+  padding: 50px 10px 38px 10px !important;
 }
 
-.login-button {
-  background: #2F6EB4 !important;
+.login-page .login-button {
+  background: #2F6EB4;
   width: 100%;
   text-transform: unset !important;
-  color: white !important;
-  font-size: 14px !important;
+  color: white;
+  font-size: 27px;
+  height: 60px;
+  border-radius: 11px;
+  border: solid 1px #2F6EB4;
 }
 
-.login-button>span {
+.login-page .login-button:focus{
+    background: #2F6EB4D0;
+  border: solid 1px #474d2f;
+}
+
+.login-page .login-button>span {
   font-size: 21px;
   font-weight: bold;
   padding: 6px;
-
 }
 
+.login-page .grid-login-fail{
+  
+}
+
+.login-page .grid-login-fail .icon{
+  text-align: center;
+}
+
+.login-page .grid-login-fail .text{
+  font-size: 17px;
+  color: gray;
+  padding: 21px 10px 0px 10px;
+}
