@@ -68,7 +68,7 @@ class ListaApuestas extends React.Component {
                                 </div>
                                 <ListItemText className="apuestaNumber"
                                     primary={<Grid container>
-                                        <Grid item style={{ textAlign: "center", width: '100%' }}>{element.numero}</Grid>
+                                        <Grid item style={{ textAlign: "center", width: '100%' }}>{element.numero.toString().padStart(2, '0')}</Grid>
                                     </Grid>
                                     } />
                                 <ListItemText className="apuestaValues"

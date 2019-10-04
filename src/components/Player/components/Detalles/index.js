@@ -73,13 +73,6 @@ const ShowDetallesApuesta = ({ title, apuestas, total, ...props }) => {
                 justify="center"
                 className={classes.containerData}
             >
-                {/* {props.apuestaTitle &&
-                    <Grid item xs={8} className="apuestaTitle">
-                        <Typography variant="h5"   >
-                            {props.apuestaTitle}{' - '}{}
-                        </Typography>
-                    </Grid>
-                } */}
                 <Grid item xs={12} container justify="center">
                     <Typography className={classes.text}>
                         {" "}{titleData}
