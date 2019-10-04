@@ -33,7 +33,7 @@ function ResumenApuestas(props) {
     const paddingBottom = props.paddingBottom ? props.paddingBottom : 0;
     const marginL = props.marginL ? props.marginL : 0;
     return (
-        <Grid container className={classes.resumenCompraContainer} style={{ marginBottom: paddingBottom }}>
+        <Grid container className={classes.resumenCompraContainer} style={{ paddingBottom: paddingBottom }}>
             <Grid item xs={3} style={{ marginLeft: marginL }}></Grid>
             <Grid item xs={3} style={{ margingBottom: "0.65rem" }}>
                 <Typography variant="body1" className={classes.resumenCompraText} >

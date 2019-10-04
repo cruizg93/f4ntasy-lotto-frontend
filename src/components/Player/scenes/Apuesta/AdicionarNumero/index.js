@@ -637,7 +637,7 @@ class AdicionarNumeroApuesta extends Component {
                 <div className={this.classes.ResumenApuestas}>
                     <ResumenApuestas apuestaCurrency={this.apuestaCurrency}
                         costoTotal={this.state.costoTotal} comisionTotal={this.state.comisionTotal} total={this.state.total}
-                        paddingBottom={100} marginL={-40}
+                        paddingBottom={0} marginL={-40}
                     />
                 </div>
                 <Container maxWidth="xs" >
