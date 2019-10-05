@@ -263,6 +263,7 @@ const Nuevo = ({ ...props }) => {
                 </Container>
 
                 <Dialog
+                    disableBackdropClick
                     open={open}
                     onClose={handleClose}
                     aria-labelledby="alert-dialog-crear-usuario"

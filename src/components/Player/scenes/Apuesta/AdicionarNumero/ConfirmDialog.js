@@ -25,12 +25,16 @@ class ConfirmDialog extends React.Component {
   render() {
     return (
       <Dialog
+        disableBackdropClick
         open={this.props.open}
         onClose={this.props.onCancel}
+        maxwidth="xs"
+        minwidth="xs"
         aria-labelledby="confirmation-dialog-title"
         aria-describedby="confirmation-dialog-description"
+        containerClassName="textDialog"
       >
-        <DialogTitle id="confirmation-dialog-title">
+        <DialogTitle id="confirmation-dialog-title" style={{ maxWidth: 279 }}>
           <div className="dialogTitle">
             <div style={{ textAlign: 'center' }}>
               <IoIosWarning size={60} style={{ color: 'red', marginTop: '15px', marginBottom: 13 }} />
@@ -40,7 +44,7 @@ class ConfirmDialog extends React.Component {
             </div>
           </div>
         </DialogTitle>
-        <DialogContent>
+        <DialogContent style={{ maxWidth: 279 }}>
           <DialogContentText id="alert-dialog-description" style={{ fontSize: '17px', height: '70px' }}>
             Si se sale o refresca esta pagina, toda la información que ha digitado se perdera.
           </DialogContentText>

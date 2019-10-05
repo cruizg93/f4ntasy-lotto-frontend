@@ -39,6 +39,7 @@ class DoubleVerificationDialog extends React.Component {
     const contentHeight = this.props.contentHeight ? this.props.contentHeight : '80px';
     return (
       <Dialog
+        disableBackdropClick
         maxwidth="xs"
         minwidth="xs"
         open={this.props.open}
@@ -46,7 +47,7 @@ class DoubleVerificationDialog extends React.Component {
         aria-labelledby="confirmation-dialog-title"
         aria-describedby="confirmation-dialog-description"
       >
-        <DialogTitle id="confirmation-dialog-title">
+        <DialogTitle id="confirmation-dialog-title" style={{ maxWidth: 279 }}>
           <div >
             <div style={{ textAlign: 'center', paddingBottom: 13 }}>
             </div>
@@ -63,7 +64,7 @@ class DoubleVerificationDialog extends React.Component {
             {this.props.context.replace(',', '')}
           </Grid>
         </div>
-        <DialogActions style={{ margin: '0 auto', width: '100%' }}>
+        <DialogActions style={{ margin: '0 auto', width: '100%', maxWidth: 279 }}>
           <Button onClick={() => this.handleCancel(true)} style={{ fontSize: '17px', color: '#5891DC', marginRight: 10 }} autoFocus>Aceptar</Button>
           <Button onClick={() => this.handleCancel(false)} style={{ fontSize: '17px', color: '#5891DC', marginRight: 10 }}>Cancelar</Button>
         </DialogActions>

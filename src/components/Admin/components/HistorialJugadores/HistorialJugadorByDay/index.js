@@ -46,7 +46,7 @@ const HistorialJugadorByDay = (props) => {
       <Grid item xs={12} >
         <ExpansionPanel onChange={handleChangeExpand('panel1')}
           disabled={disable}
-          TransitionProps={{ unmountOnExit: true }} className="expansionPanel">
+          TransitionProps={{ unmountOnExit: true }} className="expansionPanel_day">
           <ExpansionPanelSummary
             expandIcon={expanded ? <Remove className="expansion_icon_remove" /> : <Add className="expansion_icon" />}
             aria-controls="panel1bh-content"

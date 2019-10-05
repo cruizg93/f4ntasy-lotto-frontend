@@ -32,7 +32,7 @@ class ListaApuestas extends React.Component {
             ...this.state,
             openRemove: false
         })
-        if (value) {
+        if (value === true) {
             if (this.props.fromApuestaActiva)
                 this.props.removerApuesta(this.state.index)
             else

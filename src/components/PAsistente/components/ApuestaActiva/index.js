@@ -79,6 +79,7 @@ const ApuestaActivaEntry = ({ numero, valor, disable, ...props }) => {
     return (
         <>
             <Dialog
+                disableBackdropClick
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-crear-usuario"
