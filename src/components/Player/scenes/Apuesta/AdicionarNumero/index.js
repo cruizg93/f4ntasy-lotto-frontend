@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Prompt } from 'react-router-dom'
 import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import { ToastContainer, toast } from 'react-toastify';
@@ -23,8 +24,11 @@ import ConfirmDialogR from '../../../../View/Dialog/ConfirmDialog_R';
 import InformationDialog from '../../../../View/Dialog/InformationDialog';
 import ErrorInfoDialog from '../../../../View/Dialog/ErrorInfoDialog';
 
+import RouteLeavingGuard from './RouteLeavingGuard'
+
 import { userActions } from '../../../../../store/actions';
 import './styles.css'
+
 
 const useStyles = theme => ({
     root: {
@@ -110,7 +114,9 @@ class AdicionarNumeroApuesta extends Component {
             openError409Info: false,
             isAgregar: false,
             showAddBtn: false,
-            numVal: ''
+            numVal: '',
+
+            isDirty: true
         }
         this.apuestaCurrency = (this.props.location.state.moneda && this.props.location.state.moneda === 'L') ? Currency.Lempira : Currency.Dollar;
         this.match = props.match;
@@ -124,6 +130,7 @@ class AdicionarNumeroApuesta extends Component {
         this.isNumerofocus = false;
         this.isUnidadesfocus = false;
         this.isFirstMount = true;
+        this.shouldBlockNavigation = true;
     }
 
     componentDidMount() {
@@ -502,6 +509,13 @@ class AdicionarNumeroApuesta extends Component {
         this.props.history.push("/");
     }
 
+    componentDidUpdate = () => {
+        if (this.shouldBlockNavigation) {
+            window.onbeforeunload = () => true
+        } else {
+            window.onbeforeunload = undefined
+        }
+    }
     render() {
         const rightPos = (window.screen.width > 444) ? (window.screen.width - 444) / 2 + 2 : 2;
         const transPos = rightPos + 100;
@@ -541,8 +555,22 @@ class AdicionarNumeroApuesta extends Component {
 
         })(TextField);
 
+
+        const { isDirty } = this.state
+        const { history } = this.props
+
         return (
             <div className="usuario_apuestas_id">
+                <RouteLeavingGuard
+                    when={isDirty}
+                    navigate={path => history.push(path)}
+                    shouldBlockNavigation={location => {
+                        if (isDirty) {
+                            return true
+                        }
+                        return false
+                    }}
+                />
                 <ToastContainer autoClose={8000} />
                 <TopBar
                     apuestaType={this.state.apuestaType}
