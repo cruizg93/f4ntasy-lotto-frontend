@@ -69,6 +69,7 @@ const ApuestaActivaEntry = ({ numero, valor, disable, ...props }) => {
     return (
         <Grid container maxWidth='xs' className="spuestaActive">
             <Dialog
+                disableBackdropClick
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-crear-usuario"

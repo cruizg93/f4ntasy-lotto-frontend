@@ -83,7 +83,7 @@ const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoType, hour, day,
 
     function handleClose(value) {
         setOpen(false);
-        if (value) {
+        if (value === true) {
             setOpenAddition(true)
         }
     }

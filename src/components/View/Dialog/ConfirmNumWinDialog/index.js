@@ -32,6 +32,7 @@ class ConfirmNumWinDialog extends React.Component {
       <div className="container_rowList">
         <Grid container className="text_container" >
           <Dialog
+            disableBackdropClick
             maxwidth="xs"
             minwidth="xs"
             open={this.props.open}
@@ -39,7 +40,7 @@ class ConfirmNumWinDialog extends React.Component {
             aria-labelledby="confirmation-dialog-title"
             aria-describedby="confirmation-dialog-description"
           >
-            <DialogTitle id="confirmation-dialog-title" style={{ paddingBottom: 0 }}>
+            <DialogTitle id="confirmation-dialog-title" style={{ paddingBottom: 0, maxWidth: 279 }}>
               <div style={{ display: 'flex' }}>
                 <div style={{ fontSize: titleFontSize, paddingTop: 16, lineHeight: '26px' }}>
                   {this.props.title}
@@ -53,7 +54,7 @@ class ConfirmNumWinDialog extends React.Component {
                 </div>
               </div>
             </DialogTitle>
-            <DialogContent style={{ alignSelf: 'center' }}>
+            <DialogContent style={{ alignSelf: 'center', maxWidth: 279 }}>
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <CircleNumber numero={this.props.numero} width={'45px'} fontSize={'25px'}></CircleNumber>
               </div>

@@ -35,7 +35,7 @@ class InputWinNumDialog extends React.Component {
   }
 
   handleCancel(value) {
-    if (value) {
+    if (value === true) {
       if (this.state.numero === '' || this.state.numero < 0 || this.state.password === '')
         return;
     }
@@ -78,6 +78,7 @@ class InputWinNumDialog extends React.Component {
     const contentHeight = this.props.contentHeight ? this.props.contentHeight : '80px';
     return (
       <Dialog
+        disableBackdropClick
         maxwidth="xs"
         minwidth="xs"
         open={this.props.open}
@@ -85,7 +86,7 @@ class InputWinNumDialog extends React.Component {
         aria-labelledby="confirmation-dialog-title"
         aria-describedby="confirmation-dialog-description"
       >
-        <DialogTitle id="confirmation-dialog-title">
+        <DialogTitle id="confirmation-dialog-title" style={{ maxWidth: 279 }}>
           <div className="dialogTitle">
             <div style={{ textAlign: 'center', paddingBottom: 13 }}>
             </div>
@@ -94,7 +95,7 @@ class InputWinNumDialog extends React.Component {
             </div>
           </div>
         </DialogTitle>
-        <DialogContent className="custom_input_dialog_content" style={{ height: contentHeight }}>
+        <DialogContent className="custom_input_dialog_content" style={{ height: contentHeight, maxWidth: 279 }}>
           {/* <DialogContentText id="alert-dialog-description" style={{ height: contentHeight }}> */}
           <Grid className='content_text'>
             {this.props.context.replace(',', '')}

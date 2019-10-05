@@ -1,13 +1,13 @@
 .container_historial_jugadorByDay{
   /* display: flex; */
 }
-.container_historial_jugadorByDay .expansionPanel{
-  background: #f4f4f4;
+.container_historial_jugadorByDay .expansionPanel_day{
+  background: #f3ecc7;
 }
-.container_historial_jugadorByDay .expansionPanel div:first-child{
+.container_historial_jugadorByDay .expansionPanel_day div:first-child{
   /* height: 60px !important; */
 }
-.container_historial_jugadorByDay .expansionPanel:first-child .numeroText{
+.container_historial_jugadorByDay .expansionPanel_day:first-child .numeroText{
   color: #183721;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 17px;
@@ -15,11 +15,11 @@
   border-right: solid 1px lightgray;
   line-height: 60px;
 }
-.container_historial_jugadorByDay .expansionPanel:first-child .valorText:first-child{
+.container_historial_jugadorByDay .expansionPanel_day:first-child .valorText:first-child{
   width: 30px;
   text-align: right;
 }
-.container_historial_jugadorByDay .expansionPanel:first-child .valorText{
+.container_historial_jugadorByDay .expansionPanel_day:first-child .valorText{
   font-family: Arial, Helvetica, sans-serif;
   font-size: 17px;
   flex: 1.2;
@@ -27,38 +27,38 @@
   padding-left: 9px;
   display: flex;
 }
-.container_historial_jugadorByDay .expansionPanel .valorText .right{
+.container_historial_jugadorByDay .expansionPanel_day .valorText .right{
   text-align: right;
   width: 20px;
 }
-.container_historial_jugadorByDay .expansionPanel .valorText .left{
+.container_historial_jugadorByDay .expansionPanel_day .valorText .left{
 
 }
-.container_historial_jugadorByDay .expansionPanel .MuiExpansionPanelSummary-content{
+.container_historial_jugadorByDay .expansionPanel_day .MuiExpansionPanelSummary-content{
   margin: 0 !important;
 }
 
-.container_historial_jugadorByDay .expansionPanel .expansion_icon_remove{
+.container_historial_jugadorByDay .expansionPanel_day .expansion_icon_remove{
   margin-left: -9px;
   color: #033;
 }
 
-.container_historial_jugadorByDay .expansionPanel .expansionPanelBody{
+.container_historial_jugadorByDay .expansionPanel_day .expansionPanelBody{
   padding: 0 !important;
   border-top: solid 1px gray;
   border-bottom: solid 1px gray;
   display: block;
 }
-.container_historial_jugadorByDay .expansionPanel .expansionPanelBody .summary{
+.container_historial_jugadorByDay .expansionPanel_day .expansionPanelBody .summary{
   margin-left: -9%;
   align-self: center;
 }
-.container_historial_jugadorByDay .expansionPanel .expansionPanelBody .summary .premio{
+.container_historial_jugadorByDay .expansionPanel_day .expansionPanelBody .summary .premio{
   color: #229144;
   padding-top: 10px;
   display: flex;
 }
-.container_historial_jugadorByDay .expansionPanel .expansionPanelBody .summary .premio .sign{
+.container_historial_jugadorByDay .expansionPanel_day .expansionPanelBody .summary .premio .sign{
   width: 80px;
 }
 
@@ -70,15 +70,15 @@
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
-.container_historial_jugadorByDay .expansionPanel .expansionPanelBody .week_total_text p{
+.container_historial_jugadorByDay .expansionPanel_day .expansionPanelBody .week_total_text p{
   margin-bottom: 0px !important;
 }
 
-.container_historial_jugadorByDay .expansionPanel .expansionPanelBody .left_text{
+.container_historial_jugadorByDay .expansionPanel_day .expansionPanelBody .left_text{
   padding-left: 18px;
   color: #999999;
 }
-.container_historial_jugadorByDay .expansionPanel .expansionPanelBody .right_text{
+.container_historial_jugadorByDay .expansionPanel_day .expansionPanelBody .right_text{
   padding-left: 18px;
   color: #4f83c8;
 }

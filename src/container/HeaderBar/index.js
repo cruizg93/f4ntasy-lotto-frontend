@@ -94,6 +94,7 @@ class HeaderBar extends Component {
         return (
             <div>
                 <Dialog
+                    disableBackdropClick
                     open={this.state.open}
                     onClose={this.handleClose}
                     aria-labelledby="alert-dialog-crear-usuario"

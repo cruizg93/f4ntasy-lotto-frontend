@@ -77,7 +77,7 @@ const HistorialData = ({ match: { url }, ...props }) => {
                                             </Grid>
                                         )
                                     }
-                                    <Grid item xs={12} style={{ height: 126, justifyContent: 'center', display: 'flex' }}>
+                                    <Grid item xs={12} className="container_summary" >
                                         <Grid item xs={6} className="summary">
                                             <RowList col_1={['Costo:', 'Comisión:', 'Total:']} symbol={props.money}
                                                 col_2={[props.apuesta.summary.ventas, props.apuesta.summary.comisiones, props.apuesta.summary.subTotal]}

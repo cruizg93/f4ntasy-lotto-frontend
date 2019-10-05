@@ -28,10 +28,11 @@ class DetallesDialog extends React.Component {
     return (
       this.props.winList ?
         <Dialog
+          disableBackdropClick
           open={this.props.open}
           onClose={this.props.handleClose}
         >
-          <DialogTitle className="detalles-dialog-title" >
+          <DialogTitle className="detalles-dialog-title"  >
             <div className="header">
               <div className="text">
                 Detalles

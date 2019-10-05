@@ -143,7 +143,7 @@ const ApuestaActiva = ({ ...props }) => {
 
     function handleClose(value) {
         setOpen(false);
-        if (value) {
+        if (value === true) {
             deleteAllFunction()
         }
     }
@@ -227,7 +227,7 @@ const ApuestaActiva = ({ ...props }) => {
     }, []);
 
     return (
-        <div style={{ background: 'white', paddingBottom: 70 }}>
+        <div className="userP_ventas_activas" >
             <ToastContainer autoClose={8000} />
             <AdminTitle titleLabel="Ventas Activas" />
             <TopBar apuestaType={apuestaType}
@@ -240,17 +240,17 @@ const ApuestaActiva = ({ ...props }) => {
             <Grid container spacing={0}
                 direction="row"
                 justify="center"
-                alignItems="center" style={{ width: "100%", paddingTop: 112 }}>
+                alignItems="center" className="list_apuestas" >
                 <ListaApuestas entryList={list} removerApuesta={(apuestaIndex) => {
                     deleteOneFunction(list[apuestaIndex].numero);
                 }}
                     apuestaId={props.match.params.apuestaId}
                     displayApuestaListIndex={false} fromApuestaActiva={true} />
-                <Grid item xs={12} style={{ paddingBottom: 10 }}>
-                    <span style={{ textAlign: "center", color: "#999999", fontSize: '18px', marginLeft: 94 }}>
+                <Grid item xs={12} className="total" style={{ paddingBottom: 10 }}>
+                    <span className="text">
                         Total:
                     </span>
-                    <span style={{ textAlign: "center", color: "#999999", fontSize: '18px', marginLeft: 44 }}>
+                    <span className="value">
                         {sumValor}
                     </span>
                 </Grid>
@@ -292,7 +292,7 @@ const ApuestaActiva = ({ ...props }) => {
             <ConfirmDialog
                 open={open}
                 handleClose={handleClose}
-                title="Limipiar pantalla?"
+                title="Limpiar pantalla?"
                 context="Toda la información digitada se perderá"
                 icon='help'>
             </ConfirmDialog>
