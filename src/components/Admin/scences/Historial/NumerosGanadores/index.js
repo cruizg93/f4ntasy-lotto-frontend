@@ -109,7 +109,7 @@ const NumerosGanadores = (props) => {
         setTimeout(() => {
             const { dispatch } = props;
             dispatch(userActions.loading_start())
-            adminService.get_historial_numeros_ganadores().then((result) => {
+            adminService.get_historial_numeros_ganadores(moneda).then((result) => {
                 setNumerosGanadoresList([]);
                 setNumerosGanadoresList(Array.from(result.data));
                 // getFakeVal()
