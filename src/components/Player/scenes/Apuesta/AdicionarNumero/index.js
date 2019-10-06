@@ -115,7 +115,7 @@ class AdicionarNumeroApuesta extends Component {
             isAgregar: false,
             showAddBtn: false,
             numVal: '',
-            isDirty: true
+            isDirty: false
         }
         this.apuestaCurrency = (this.props.location.state.moneda && this.props.location.state.moneda === 'L') ? Currency.Lempira : Currency.Dollar;
         this.match = props.match;
@@ -181,11 +181,11 @@ class AdicionarNumeroApuesta extends Component {
         if (this.isUnidadesfocus) {
             this.entryUnidadesInputRef.current.focus();
         }
-        if (this.shouldBlockNavigation) {
-            window.onbeforeunload = () => true
-        } else {
-            window.onbeforeunload = undefined
-        }
+        // if (this.shouldBlockNavigation === true) {
+        //     window.onbeforeunload = () => true
+        // } else {
+        //     window.onbeforeunload = undefined
+        // }
     }
 
     handleNumeroInputFocus = (event) => {
@@ -316,7 +316,7 @@ class AdicionarNumeroApuesta extends Component {
 
         setTimeout(() => {
             this.setState((state) => {
-                return { isAgregar: false };
+                return { isAgregar: false, isDirty: true };
             });
         }, 100);
         this.entryNumeroInputRef.current.focus();
@@ -391,6 +391,7 @@ class AdicionarNumeroApuesta extends Component {
             });
             return {
                 entry,
+                isDirty: false
             };
         });
     }
@@ -463,7 +464,8 @@ class AdicionarNumeroApuesta extends Component {
                 } else {
                     this.setState({
                         ...this.state,
-                        openComprarInfo: true
+                        openComprarInfo: true,
+                        isDirty: false
                     })
                 }
                 dispatch(userActions.loading_end())
@@ -513,7 +515,6 @@ class AdicionarNumeroApuesta extends Component {
     }
 
     render() {
-        console.log('width', window.screen.width)
         const rightPos = (window.screen.width > 444) ? (window.screen.width - 444) / 2 + 2 : 2;
         const transPos = rightPos + 100;
         this.classes = this.props.classes;

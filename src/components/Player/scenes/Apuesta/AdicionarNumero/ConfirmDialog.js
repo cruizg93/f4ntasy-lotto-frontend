@@ -32,7 +32,6 @@ class ConfirmDialog extends React.Component {
         minwidth="xs"
         aria-labelledby="confirmation-dialog-title"
         aria-describedby="confirmation-dialog-description"
-        containerClassName="textDialog"
       >
         <DialogTitle id="confirmation-dialog-title" style={{ maxWidth: 279 }}>
           <div className="dialogTitle">
