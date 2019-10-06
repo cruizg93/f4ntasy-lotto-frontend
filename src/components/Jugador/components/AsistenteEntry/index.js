@@ -62,6 +62,7 @@ const AsistenteDataShow = ({ match, id, username, name, ...props }) => {
                 <GoTrashcan style={{ color: "#ff3333" }} onClick={handleClickOpen} />
             </Grid>
             <Dialog
+                disableBackdropClick
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-eliminar-usuario"

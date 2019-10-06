@@ -57,8 +57,9 @@ class Login extends Component {
         return (
             <div className="login-page">
                 <ToastContainer autoClose={8000} />
-
                 <Container maxWidth="xs">
+                    <input name="DummyUsername" type="text" style={{ display: 'none' }} />
+                    <input name="DummyPassword" type="password" style={{ display: 'none' }} />
                     <Grid item xs={12} className="grid-username">
                         <div className="input-group input-group-lg">
                             <div className="input-group-prepend">

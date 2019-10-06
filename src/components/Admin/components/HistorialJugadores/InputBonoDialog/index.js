@@ -34,7 +34,7 @@ class InputBonoDialog extends React.Component {
   }
 
   handleCancel(value) {
-    if (value) {
+    if (value === true) {
       if (this.state.bono === '' || this.state.bono < 0 || this.state.password === '')
         return;
     }
@@ -58,6 +58,7 @@ class InputBonoDialog extends React.Component {
   render() {
     return (
       <Dialog
+        disableBackdropClick
         maxwidth="xs"
         minwidth="xs"
         open={this.props.open}

@@ -46,6 +46,7 @@ class NewUser extends React.Component {
         return (
             <React.Fragment>
                 <Dialog
+                    disableBackdropClick
                     open={this.state.open}
                     onClose={this.handleClose.bind(this)}
                 >

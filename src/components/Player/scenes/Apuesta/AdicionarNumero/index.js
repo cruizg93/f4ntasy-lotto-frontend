@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Prompt } from 'react-router-dom'
 import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import { ToastContainer, toast } from 'react-toastify';
@@ -23,8 +24,11 @@ import ConfirmDialogR from '../../../../View/Dialog/ConfirmDialog_R';
 import InformationDialog from '../../../../View/Dialog/InformationDialog';
 import ErrorInfoDialog from '../../../../View/Dialog/ErrorInfoDialog';
 
+import RouteLeavingGuard from './RouteLeavingGuard'
+
 import { userActions } from '../../../../../store/actions';
 import './styles.css'
+
 
 const useStyles = theme => ({
     root: {
@@ -110,7 +114,8 @@ class AdicionarNumeroApuesta extends Component {
             openError409Info: false,
             isAgregar: false,
             showAddBtn: false,
-            numVal: ''
+            numVal: '',
+            isDirty: false
         }
         this.apuestaCurrency = (this.props.location.state.moneda && this.props.location.state.moneda === 'L') ? Currency.Lempira : Currency.Dollar;
         this.match = props.match;
@@ -124,6 +129,7 @@ class AdicionarNumeroApuesta extends Component {
         this.isNumerofocus = false;
         this.isUnidadesfocus = false;
         this.isFirstMount = true;
+        // this.shouldBlockNavigation = true;
     }
 
     componentDidMount() {
@@ -175,7 +181,11 @@ class AdicionarNumeroApuesta extends Component {
         if (this.isUnidadesfocus) {
             this.entryUnidadesInputRef.current.focus();
         }
-
+        // if (this.shouldBlockNavigation === true) {
+        //     window.onbeforeunload = () => true
+        // } else {
+        //     window.onbeforeunload = undefined
+        // }
     }
 
     handleNumeroInputFocus = (event) => {
@@ -306,7 +316,7 @@ class AdicionarNumeroApuesta extends Component {
 
         setTimeout(() => {
             this.setState((state) => {
-                return { isAgregar: false };
+                return { isAgregar: false, isDirty: true };
             });
         }, 100);
         this.entryNumeroInputRef.current.focus();
@@ -381,6 +391,7 @@ class AdicionarNumeroApuesta extends Component {
             });
             return {
                 entry,
+                isDirty: false
             };
         });
     }
@@ -414,7 +425,7 @@ class AdicionarNumeroApuesta extends Component {
             ...this.state,
             openRemoveAll: false
         })
-        if (value) {
+        if (value === true) {
             this.limpiarApuestas()
         }
     }
@@ -435,7 +446,7 @@ class AdicionarNumeroApuesta extends Component {
             openRemoveAll: false,
             openComprar: false
         })
-        if (value) {
+        if (value === true) {
             let id = this.match.params.apuestaId;
             const { dispatch } = this.props;
             dispatch(userActions.loading_start())
@@ -453,7 +464,8 @@ class AdicionarNumeroApuesta extends Component {
                 } else {
                     this.setState({
                         ...this.state,
-                        openComprarInfo: true
+                        openComprarInfo: true,
+                        isDirty: false
                     })
                 }
                 dispatch(userActions.loading_end())
@@ -503,24 +515,11 @@ class AdicionarNumeroApuesta extends Component {
     }
 
     render() {
-        const rightPos = (window.screen.width > 444) ? (window.screen.width - 444) / 2 + 2 : 2;
+        const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        const rightPos = (width > 444) ? (width - 444) / 2 + 2 : 2;
         const transPos = rightPos + 100;
         this.classes = this.props.classes;
         const trans = this.state.showAddBtn ? 'translate(0px)' : `translate(${transPos}px)`
-        function updateFunction(e) {
-        }
-
-        function submitClickHandler() {
-            playerService.update_number(this.state.entry, this.match.params.apuestaId).then((result) => {
-                success_response();
-            })
-        }
-
-        function success_response() {
-            toast.success("Cambio actualizado !", {
-                position: toast.POSITION.TOP_RIGHT
-            });
-        }
 
         const ApuestaInput = withStyles({
             root: {
@@ -541,8 +540,22 @@ class AdicionarNumeroApuesta extends Component {
 
         })(TextField);
 
+
+        const { isDirty } = this.state
+        const { history } = this.props
+
         return (
             <div className="usuario_apuestas_id">
+                <RouteLeavingGuard
+                    when={isDirty}
+                    navigate={path => history.push(path)}
+                    shouldBlockNavigation={location => {
+                        if (isDirty) {
+                            return true
+                        }
+                        return false
+                    }}
+                />
                 <ToastContainer autoClose={8000} />
                 <TopBar
                     apuestaType={this.state.apuestaType}

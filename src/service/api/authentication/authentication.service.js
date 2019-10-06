@@ -26,10 +26,11 @@ function login(username, password) {
 
 function logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
-    currentUserSubject.next(null);
-    window.location.reload(true);
-    return true;
+    return new Promise((resolve, reject) => {
+        localStorage.removeItem('currentUser');
+        currentUserSubject.next(null);
+        window.location.reload(true);
+    });
 }
 
 function type_user() {

@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoType, hour, day, premio, jugadores, moneda, ...props }) => {
+const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoId, sorteoType, hour, day, premio, jugadores, moneda, ...props }) => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
     const [currentRole, setCurrentRole] = useState('Player');
@@ -83,7 +83,7 @@ const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoType, hour, day,
 
     function handleClose(value) {
         setOpen(false);
-        if (value) {
+        if (value === true) {
             setOpenAddition(true)
         }
     }
@@ -108,7 +108,7 @@ const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoType, hour, day,
     }
 
     function updateValue(numero) {
-        adminService.fix_numero_ganador(numero, numeroGanadorId).then((result) => {
+        adminService.fix_numero_ganador(numero, sorteoId).then((result) => {
             props.handle()
         })
     }

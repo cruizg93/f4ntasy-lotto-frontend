@@ -1,0 +1,86 @@
+.apuestaList {
+  width: 100%;
+  padding: 7px 0px 0px 0px;
+  margin: 0px;
+}
+
+.apuesta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+}
+
+.apuestaIndex {
+  min-width: 1rem;
+  color: #999999;
+  text-align: right;
+}
+
+.apuestaIndex p {
+  font-size: 0.75rem;
+}
+
+.apuestaNumber {
+  width: 60px;
+  height: 40px;
+  max-width: 12.25rem;
+  margin-left: 1rem;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  border: 1px solid #cccccc;
+  border-radius: 17px;
+  padding: 0.25rem;
+  text-align: center;
+}
+.apuestaNumber span {
+  color: #999999;
+  font-size: 1.25rem;
+}
+
+.apuestaValues {
+  width: 116px;
+  height: 40px;
+  max-width: 12.25rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  border: 1px solid #cccccc;
+  border-radius: 17px;
+  padding: 0.25rem;
+  text-align: center;
+}
+.apuestaValues span {
+  color: #999999;
+  font-size: 1.25rem;
+}
+
+.apuestaDeleteIcon {
+  font-size: 1rem;
+  color: #999999;
+}
+
+.slide:first-child {
+    animation: load2 2s ease;
+}
+@-webkit-keyframes load2 {
+  0% {
+    -webkit-transform: translateX(0%);
+    transform: translateX(-110%);
+  }
+  100% {
+    -webkit-transform: translateX(-110%);
+    transform: translateX(0%);
+  }
+}
+@keyframes load2 {
+  0% {
+    -webkit-transform: translateX(-110%);
+    transform: translateX(-110%);
+  }
+  100% {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+}

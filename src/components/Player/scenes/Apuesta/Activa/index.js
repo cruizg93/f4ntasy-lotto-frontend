@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
-import Container from '@material-ui/core/Container';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { playerService } from "../../../../../service/api/player/player.service";
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
-import Divider from '@material-ui/core/Divider';
-import ApuestaActivaEntry from '../../../components/ApuestaActiva/index';
-import { makeStyles, withStyles } from "@material-ui/core/styles/index";
-import Button from "@material-ui/core/Button/index";
-import Clear from '@material-ui/icons/Clear';
-import { printDocument6 } from "../../../../../_helpers/print";
+import { makeStyles } from "@material-ui/core/styles/index";
 import './Activa.css'
 import { Colors } from '../../../../../utils/__colors'
 import { Currency } from '../../../../../utils/__currency'
@@ -20,13 +13,6 @@ import Fab from '@material-ui/core/Fab';
 import TopBar from '../../../../View/jugador/TopBar'
 import ListaApuestas from '../ListaApuestas';
 import ResumenApuestas from '../Resumen/ResumenApuestas';
-import { MdSettingsBackupRestore } from "react-icons/md";
-import { FaFileExcel } from "react-icons/fa";
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import AdminTitle from '../../../../Admin/components/AdminTitle_Center'
 
 import ConfirmDialog from '../../../../View/Dialog/ConfirmDialog';
@@ -143,7 +129,7 @@ const ApuestaActiva = ({ ...props }) => {
 
     function handleClose(value) {
         setOpen(false);
-        if (value) {
+        if (value === true) {
             deleteAllFunction()
         }
     }
@@ -227,7 +213,7 @@ const ApuestaActiva = ({ ...props }) => {
     }, []);
 
     return (
-        <div style={{ background: 'white', paddingBottom: 70 }}>
+        <div className="userP_ventas_activas" >
             <ToastContainer autoClose={8000} />
             <AdminTitle titleLabel="Ventas Activas" />
             <TopBar apuestaType={apuestaType}
@@ -240,17 +226,17 @@ const ApuestaActiva = ({ ...props }) => {
             <Grid container spacing={0}
                 direction="row"
                 justify="center"
-                alignItems="center" style={{ width: "100%", paddingTop: 112 }}>
+                alignItems="center" className="list_apuestas" >
                 <ListaApuestas entryList={list} removerApuesta={(apuestaIndex) => {
                     deleteOneFunction(list[apuestaIndex].numero);
                 }}
                     apuestaId={props.match.params.apuestaId}
                     displayApuestaListIndex={false} fromApuestaActiva={true} />
-                <Grid item xs={12} style={{ paddingBottom: 10 }}>
-                    <span style={{ textAlign: "center", color: "#999999", fontSize: '18px', marginLeft: 94 }}>
+                <Grid item xs={12} className="total" style={{ paddingBottom: 10 }}>
+                    <span className="text">
                         Total:
                     </span>
-                    <span style={{ textAlign: "center", color: "#999999", fontSize: '18px', marginLeft: 44 }}>
+                    <span className="value">
                         {sumValor}
                     </span>
                 </Grid>
@@ -292,7 +278,7 @@ const ApuestaActiva = ({ ...props }) => {
             <ConfirmDialog
                 open={open}
                 handleClose={handleClose}
-                title="Limipiar pantalla?"
+                title="Limpiar pantalla?"
                 context="Toda la información digitada se perderá"
                 icon='help'>
             </ConfirmDialog>

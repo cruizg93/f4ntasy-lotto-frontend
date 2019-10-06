@@ -35,6 +35,7 @@ class InformationDialog extends React.Component {
       <div className="container_rowList">
         <Grid container className="text_container" >
           <Dialog
+            disableBackdropClick
             maxwidth="xs"
             minwidth="xs"
             open={this.props.open}
@@ -42,7 +43,7 @@ class InformationDialog extends React.Component {
             aria-labelledby="confirmation-dialog-title"
             aria-describedby="confirmation-dialog-description"
           >
-            <DialogTitle id="confirmation-dialog-title">
+            <DialogTitle id="confirmation-dialog-title" style={{ maxWidth: 279 }}>
               <div className="dialogTitle">
                 <div style={{ textAlign: 'center' }}>
                   {
@@ -60,7 +61,7 @@ class InformationDialog extends React.Component {
                 </div>
               </div>
             </DialogTitle>
-            <DialogContent>
+            <DialogContent style={{ maxWidth: 279 }}>
               <DialogContentText id="alert-dialog-description" style={{ fontSize: contentFontSize, height: contentHeight }}>
                 {this.props.context}
               </DialogContentText>

@@ -1,12 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
-import Divider from '@material-ui/core/Divider';
-import Paper from '@material-ui/core/Paper';
-import { red, blue } from "@material-ui/core/colors/index";
-import { Colors } from "../../../../utils/__colors";
 
 import InformationDialog from '../../../View/Dialog/InformationDialog';
 import { Currency } from '../../../../utils/__currency';
@@ -118,7 +113,7 @@ class ApuestaData extends React.Component {
                                     {
                                         pathname: `/usuario/apuestas/hoy/activas/${this.props.apuesta.id}`,
                                         state: {
-
+                                            moneda: moneySymbol,
                                         }
                                     }
                                 }

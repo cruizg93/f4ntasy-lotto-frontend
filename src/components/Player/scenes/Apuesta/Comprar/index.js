@@ -232,6 +232,7 @@ const ComprarApuesta = ({ ...props }) => {
     return (
         <React.Fragment>
             <Dialog
+                disableBackdropClick
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-crear-usuario"

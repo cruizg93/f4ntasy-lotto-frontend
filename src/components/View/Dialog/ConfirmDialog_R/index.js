@@ -28,12 +28,13 @@ class ConfirmDialogR extends React.Component {
       <div className="container_rowList">
         <Grid container className="text_container" >
           <Dialog
+            disableBackdropClick
             open={this.props.open}
             onClose={this.props.handleClose}
             aria-labelledby="confirmation-dialog-title"
             aria-describedby="confirmation-dialog-description"
           >
-            <DialogTitle id="confirmation-dialog-title">
+            <DialogTitle id="confirmation-dialog-title" style={{ maxWidth: 279 }}>
               <div className="dialogTitle">
                 <div style={{ textAlign: 'center', paddingBottom: 13 }}>
                   {
@@ -47,7 +48,7 @@ class ConfirmDialogR extends React.Component {
                 </div>
               </div>
             </DialogTitle>
-            <DialogContent>
+            <DialogContent style={{ maxWidth: 279 }}>
               <DialogContentText id="alert-dialog-description" style={{ fontSize: '18px', height: 70 }}>
                 {this.props.context}
               </DialogContentText>

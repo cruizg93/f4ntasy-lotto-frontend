@@ -124,7 +124,7 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
                       </Grid>
                     )
                   }
-                  <Grid item xs={12} style={{ height: 145, justifyContent: 'center', display: 'flex' }}>
+                  <Grid item xs={12} style={{ background: '#ecdbd2', height: 145, justifyContent: 'center', display: 'flex' }}>
                     <Grid item xs={6} className="summary">
                       <RowList col_1={['Ventas:', 'Comisión:', 'Bonno:', 'Total:']} symbol={dayList.summary.currency.toLowerCase() === 'lempira' ? 'L' : '$'}
                         col_2={[dayList.summary.ventas, dayList.summary.comisiones, dayList.summary.bonos, dayList.summary.subTotal]}

@@ -73,6 +73,7 @@ class RouterApp extends React.Component {
     if (path.indexOf('/usuario/historial') === 0) return whiteColor;
     if (path.indexOf('/usuario/nuevo/asistente') === 0) return whiteColor;
     if (path.indexOf('/historial/semana/anterior') === 0) return whiteColor;
+    if (path.indexOf('/asistente/apuestas') === 0) return whiteColor;
     return grayColor;
   }
 
@@ -284,21 +285,10 @@ class RouterApp extends React.Component {
                       component={AdicionarNumeroApuestaAsistente}
                     />
                     <PrivateRoute
-                      exact strict path="/asistente/apuestas/hoy/activas"
-                      roles={[Role.Asistente]} authed={this.props.role}
-                      component={AdicionarApuestaAsistente}
-                    />
-                    <PrivateRoute
                       exact path="/asistente/apuestas/hoy/activas/:apuestaId"
                       roles={[Role.Asistente]} authed={this.props.role}
                       component={ApuestaActivaAsistente}
                     />
-                    <PrivateRoute
-                      exact path="/asistente/historial"
-                      roles={[Role.Asistente]} authed={this.props.role}
-                      component={HistorialAsistente}
-                    />
-
                     <PrivateRoute
                       exact path="/asistente/historial/:apuestaId"
                       roles={[Role.Asistente]} authed={this.props.role}

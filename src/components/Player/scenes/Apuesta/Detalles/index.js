@@ -20,6 +20,7 @@ const DetallesApuesta = ({ ...props }) => {
     const [apuestaType, setApuestaType] = useState("Diaria");
     const [moneda, setMoneda] = useState(" $ ");
     const [errorOpen, setErrorOpen] = useState(false);
+
     useEffect(() => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())

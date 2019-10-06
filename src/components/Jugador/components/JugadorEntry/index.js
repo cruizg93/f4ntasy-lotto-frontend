@@ -506,6 +506,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                 {/* NO SE PUEDE EDITAR DIALOG END*/}
                 <Grid item xs={12}>
                     <Dialog
+                        disableBackdropClick
                         open={openNoEditar}
                         onClose={handleCloseNoEditar}
                         aria-labelledby="alert-dialog-no-editar-usuario"
@@ -536,6 +537,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                 {/* DELETE DIALOG START*/}
                 <Grid item xs={12}>
                     <Dialog
+                        disableBackdropClick
                         open={open}
                         onClose={handleClose}
                         aria-labelledby="alert-dialog-eliminar-usuario"
@@ -578,6 +580,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                 {/* NO SE PUEDE ELIMINAR DIALOG START*/}
                 <Grid item xs={12}>
                     <Dialog
+                        disableBackdropClick
                         open={openNoEliminar}
                         onClose={handleCloseNoEliminar}
                         aria-labelledby="alert-dialog-no-eliminar-usuario"
@@ -613,6 +616,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                 {/* JUGADOR INFO DIALOG START*/}
                 <Grid item xs={12}>
                     <Dialog
+                        disableBackdropClick
                         fullWidth={true}
                         open={openinfo}
                         onClose={handleInfoClose}

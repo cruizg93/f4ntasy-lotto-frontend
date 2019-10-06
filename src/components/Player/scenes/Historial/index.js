@@ -87,10 +87,10 @@ const HistorialPlayer = (props) => {
                             onChange={handleChangeSelect}
                             input={<BootstrapInput className="bootstrap_input" />}
                         >
-                            <option value="0" >Busqueda por semanas</option>
+                            <option key={0} value="0" >Busqueda por semanas</option>
                             {
                                 (weekList.length > 0) && weekList.map((c, index) =>
-                                    <option key={index} value={c.id} label={c}> {c.monday} - {c.sunday}</option>
+                                    <option key={index + 1} value={c.id}> {c.monday} - {c.sunday}</option>
                                 )
                             }
                         </NativeSelect>
@@ -104,6 +104,7 @@ const HistorialPlayer = (props) => {
                                     <p>Sub-total</p>
                                     <p>Premios</p>
                                     <p>Bonos</p>
+                                    <p>Perdidas / Ganancias:</p>
                                 </Grid>
                                 <Grid item xs={6} className="right_text">
                                     <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.ventas.toFixed(2))}</p>
@@ -111,6 +112,7 @@ const HistorialPlayer = (props) => {
                                     <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.subTotal.toFixed(2))}</p>
                                     <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.premios.toFixed(2))}</p>
                                     <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.bonos.toFixed(2))}</p>
+                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.perdidasGanas.toFixed(2))}</p>
                                 </Grid>
                             </Grid>
                             : null

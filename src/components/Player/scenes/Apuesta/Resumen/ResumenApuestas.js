@@ -32,7 +32,6 @@ function ResumenApuestas(props) {
     const classes = useStyles();
     const paddingBottom = props.paddingBottom ? props.paddingBottom : 0;
     const marginL = props.marginL ? props.marginL : 0;
-    console.log('here')
     return (
         <Grid container className={classes.resumenCompraContainer} style={{ paddingBottom: paddingBottom }}>
             <Grid item xs={3} style={{ marginLeft: marginL }}></Grid>

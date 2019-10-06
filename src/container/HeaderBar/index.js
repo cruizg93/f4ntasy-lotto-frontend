@@ -72,7 +72,7 @@ class HeaderBar extends Component {
     }
 
     handleCloseAccept() {
-        this.setState({ open: !this.open });
+        this.setState({ open: false });
 
         const { dispatch } = this.props;
         dispatch(userActions.loading_start())
@@ -94,6 +94,7 @@ class HeaderBar extends Component {
         return (
             <div>
                 <Dialog
+                    disableBackdropClick
                     open={this.state.open}
                     onClose={this.handleClose}
                     aria-labelledby="alert-dialog-crear-usuario"

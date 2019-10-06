@@ -28,42 +28,39 @@ class ConfirmDialog extends React.Component {
     const contentFontSize = this.props.contentFontSize ? this.props.contentFontSize : '18px';
     const contentHeight = this.props.contentHeight ? this.props.contentHeight : '80px';
     return (
-      <div className="container_rowList">
-        <Grid container className="text_container" >
-          <Dialog
-            maxwidth="xs"
-            minwidth="xs"
-            open={this.props.open}
-            onClose={this.props.handleClose}
-            aria-labelledby="confirmation-dialog-title"
-            aria-describedby="confirmation-dialog-description"
-          >
-            <DialogTitle id="confirmation-dialog-title">
-              <div className="dialogTitle">
-                <div style={{ textAlign: 'center', paddingBottom: 13 }}>
-                  {
-                    icon === 'help' ?
-                      <IoIosHelpCircleOutline size={60} style={{ color: "#ff3333", paddingTop: '15px' }} /> :
-                      <IoIosCheckmarkCircleOutline size={45} style={{ color: "#009933" }} />
-                  }
-                </div>
-                <div style={{ fontSize: titleFontSize }}>
-                  {this.props.title}
-                </div>
-              </div>
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description" style={{ fontSize: contentFontSize, height: contentHeight }}>
-                {this.props.context}
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions style={{ margin: '0 auto', width: '100%' }}>
-              <Button onClick={() => this.handleCancel(true)} style={{ fontSize: '18px', color: '#5891DC', marginRight: 10 }} autoFocus>Aceptar</Button>
-              <Button onClick={() => this.handleCancel(false)} style={{ fontSize: '18px', color: '#5891DC', marginRight: 10 }}>Cancelar</Button>
-            </DialogActions>
-          </Dialog>
-        </Grid>
-      </div>
+      <Dialog
+        disableBackdropClick
+        maxwidth="xs"
+        minwidth="xs"
+        open={this.props.open}
+        onClose={this.props.handleClose}
+        aria-labelledby="confirmation-dialog-title"
+        aria-describedby="confirmation-dialog-description"
+      >
+        <DialogTitle id="confirmation-dialog-title" style={{ maxWidth: 279 }}>
+          <div className="dialogTitle">
+            <div style={{ textAlign: 'center', paddingBottom: 13 }}>
+              {
+                icon === 'help' ?
+                  <IoIosHelpCircleOutline size={60} style={{ color: "#ff3333", paddingTop: '15px' }} /> :
+                  <IoIosCheckmarkCircleOutline size={45} style={{ color: "#009933" }} />
+              }
+            </div>
+            <div style={{ fontSize: titleFontSize }}>
+              {this.props.title}
+            </div>
+          </div>
+        </DialogTitle>
+        <DialogContent style={{ maxWidth: 279 }}>
+          <DialogContentText id="alert-dialog-description" style={{ fontSize: contentFontSize, height: contentHeight }}>
+            {this.props.context}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions style={{ margin: '0 auto', width: '100%' }}>
+          <Button onClick={() => this.handleCancel(true)} style={{ fontSize: '18px', color: '#5891DC', marginRight: 10 }} autoFocus>Aceptar</Button>
+          <Button onClick={() => this.handleCancel(false)} style={{ fontSize: '18px', color: '#5891DC', marginRight: 10 }}>Cancelar</Button>
+        </DialogActions>
+      </Dialog>
     );
   }
 }

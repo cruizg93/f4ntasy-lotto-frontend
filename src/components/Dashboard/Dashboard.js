@@ -130,6 +130,7 @@ class Dashboard extends Component {
             <div style={{ height: "100%" }} className="App">
                 <>
                     <Dialog
+                        disableBackdropClick
                         open={this.state.open}
                         onClose={this.handleClose}
                         aria-labelledby="alert-dialog-crear-usuario"

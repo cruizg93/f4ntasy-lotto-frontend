@@ -244,6 +244,7 @@ const HistorialSemanaAnteriorAdmin = (props) => {
                                     <p>Sub-total:</p>
                                     <p>Premios:</p>
                                     <p>Bonos:</p>
+                                    <p>Perdidas / Ganancias:</p>
                                 </Grid>
                                 <Grid item xs={6} className="right_text">
                                     <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.ventas.toFixed(2))}</p>
@@ -251,6 +252,7 @@ const HistorialSemanaAnteriorAdmin = (props) => {
                                     <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.subTotal.toFixed(2))}</p>
                                     <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.premios.toFixed(2))}</p>
                                     <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.bonos.toFixed(2))}</p>
+                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.perdidasGanas.toFixed(2))}</p>
                                 </Grid>
                             </Grid>
                             : <div></div>
