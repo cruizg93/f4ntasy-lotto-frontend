@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
-import Container from '@material-ui/core/Container';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { playerService } from "../../../../../service/api/player/player.service";
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
-import Divider from '@material-ui/core/Divider';
-import ApuestaActivaEntry from '../../../components/ApuestaActiva/index';
-import { makeStyles, withStyles } from "@material-ui/core/styles/index";
-import Button from "@material-ui/core/Button/index";
-import Clear from '@material-ui/icons/Clear';
-import { printDocument6 } from "../../../../../_helpers/print";
+import { makeStyles } from "@material-ui/core/styles/index";
 import './Activa.css'
 import { Colors } from '../../../../../utils/__colors'
 import { Currency } from '../../../../../utils/__currency'
@@ -20,13 +13,6 @@ import Fab from '@material-ui/core/Fab';
 import TopBar from '../../../../View/jugador/TopBar'
 import ListaApuestas from '../ListaApuestas';
 import ResumenApuestas from '../Resumen/ResumenApuestas';
-import { MdSettingsBackupRestore } from "react-icons/md";
-import { FaFileExcel } from "react-icons/fa";
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import AdminTitle from '../../../../Admin/components/AdminTitle_Center'
 
 import ConfirmDialog from '../../../../View/Dialog/ConfirmDialog';

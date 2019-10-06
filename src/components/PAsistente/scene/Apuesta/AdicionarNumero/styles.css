@@ -1,0 +1,80 @@
+.numbers:focus-within{
+  border-color: blue;
+}
+.clearfix{
+  clear: both;
+}
+.clearfix::after{
+  clear: both;
+}
+.clearfix::before{
+  clear: both;
+}
+.usuario_apuestas_id{
+  background: white;
+  padding-bottom: 100px;
+}
+
+.usuario_apuestas_id .slideAddBtn{
+  position: fixed;
+  bottom: 276px;
+  right: 2px;
+  z-index: 100;
+  transition: all 0.5s ease-out;
+}
+
+.usuario_apuestas_id .slideAddBtn .buttonAgregarApuesta{
+  border-radius: 50px 0px 0px 50px;
+  text-transform: none;
+  color: #ffffff;
+  background: #a3ca72;
+  font-size: 20px;
+  width: 85px;
+  height: 60px;
+}
+.usuario_apuestas_id .slideAddBtn .buttonAgregarApuesta .extendedIcon{
+  font-size: 35px;
+  margin-left: -10px;
+  margin-top: 1px;
+}
+
+
+.usuario_apuestas_id .buttonComprar {
+  border-radius: 15px;
+  text-transform: none;
+  height: 37px;
+  width: 153px !important;
+  color: #ffffff;
+  background: #5891DC;
+  width: 153px !important;
+  padding: 0px !important;
+  font-size: 19px;
+}
+.usuario_apuestas_id .buttonComprar:hover{
+  background: #5891DC;
+}
+
+.usuario_apuestas_id .buttonLimpiar{
+  border-radius: 13px;
+  text-transform: none;
+  height: 37px;
+  width: 153px !important;
+  color: #ffffff;
+  background: #CB3C34;
+  padding: 0px !important;
+  font-size: 19px;
+  margin-left: 10px;
+}
+.usuario_apuestas_id .buttonLimpiar:hover{
+  background: #CB3C34;
+}
+
+.usuario_apuestas_id .sum_text{
+  font-size: 1.25rem;
+  text-align: center;
+  color: #999999;
+  margin-top: 1.1875rem;
+  margin-bottom: 1.1875rem;
+  line-height: 0.85;
+  margin-left: -31px;
+}
