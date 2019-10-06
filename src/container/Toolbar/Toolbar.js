@@ -24,7 +24,8 @@ class Toolbar extends Component {
     };
 
     render() {
-        let color = this.props.role === 'Player' ? '#A3CA72' : '#ff9933'
+        const color = this.props.role === 'Player' ? '#A3CA72' :
+            this.props.role === 'Asistente' ? '#f5d657' : '#ff9933'
         return (
             <header className="toolbar" style={{ background: color }}>
                 <nav className="toolbar__navigation">
@@ -36,7 +37,7 @@ class Toolbar extends Component {
                     <div className="spacer" />
                     <div className="toolbar__navigation-items">
                         <ul>
-                            <MenuLinks admin={this.props.admin} asistente={this.props.asistente} />
+                            <MenuLinks admin={this.props.admin} asistente={this.props.asistente} player={this.state.isPlayer} />
                             <Button onClick={this.props.logoutClickHandler} color="inherit">Salir</Button>
                         </ul>
                     </div>

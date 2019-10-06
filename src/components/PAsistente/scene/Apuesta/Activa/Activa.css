@@ -1,0 +1,38 @@
+.entrada-datos{
+    margin: 3px !important;
+}
+
+.userX_ventas_activas{
+    background: white;
+    padding-bottom: 70px;
+}
+
+.userX_ventas_activas .list_apuestas{
+    width: 100%;
+    padding-top: 112px;
+}
+
+.userX_ventas_activas .list_apuestas .total{
+    padding-bottom: 10px;
+}
+.userX_ventas_activas .list_apuestas .total .text{
+    text-align: center;
+    color: #999999;
+    font-size: 18px;
+    margin-left: 94px;
+}
+.userX_ventas_activas .list_apuestas .total .value{
+    text-align: center;
+    color: #999999;
+    font-size: 18px;
+    margin-left: 44px;
+}
+
+@media (min-width: 410px){
+  .userX_ventas_activas .list_apuestas .total .text{
+    margin-left: 115px;
+  }
+  .userX_ventas_activas .list_apuestas .total .value{
+    margin-left: 55px;
+  }
+}

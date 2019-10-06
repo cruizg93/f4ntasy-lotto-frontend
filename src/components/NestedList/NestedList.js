@@ -34,9 +34,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function NestedList(props) {
     const classes = useStyles();
-    const [isAdmin, setAdminValue] = React.useState(props.admin);
-    const [isAsistente, setAsistenteValue] = React.useState(!props.admin && props.asistente);
-
+    const isAdmin = props.admin;
+    const isAsistente = !props.admin && props.asistente;
+    console.log('here', props)
     return (
         <List
             component="nav"
@@ -77,15 +77,6 @@ export default function NestedList(props) {
                     <ListItemText primary="Sorteos" />
                 </ListItem>
             }
-            {/* {(!isAdmin && !isAsistente) &&
-                <ListItem button component={Link} to={'/usuario/apuestas/hoy/activas'} onClick={props.click}>
-                    <ListItemIcon>
-                        <Style />
-                    </ListItemIcon>
-                    <ListItemText primary="Apuestas Activas" />
-                </ListItem>
-            } */}
-
             {(!isAdmin && !isAsistente) &&
                 <ListItem button component={Link} to={'/usuario/historial'} onClick={props.click}>
                     <ListItemIcon>
@@ -104,24 +95,13 @@ export default function NestedList(props) {
                 </ListItem>
             }
             {/* {isAsistente &&
-                <ListItem button component={Link} to={'/asistente/apuestas/hoy/activas'} onClick={props.click}>
-                    <ListItemIcon>
-                        <Style />
-                    </ListItemIcon>
-                    <ListItemText primary="Apuestas Activas" />
-                </ListItem>
-            } */}
-
-            {isAsistente &&
                 <ListItem button component={Link} to={'/asistente/historial'} onClick={props.click}>
                     <ListItemIcon>
                         <History />
                     </ListItemIcon>
                     <ListItemText primary="Historial" />
                 </ListItem>
-            }
-
-
+            } */}
             {!isAdmin &&
                 <ListItem button component={Link} to="/usuario/password/cambiar"
                     onClick={props.click}>

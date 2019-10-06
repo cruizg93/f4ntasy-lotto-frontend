@@ -200,6 +200,8 @@ function update_number(data, id) {
             "Authorization": `Bearer ${currentUser.accessToken}`
         },
     };
+    console.log('user', currentUser.username)
+    console.log('data', data)
     let send = {
         username: currentUser.username,
         data: data

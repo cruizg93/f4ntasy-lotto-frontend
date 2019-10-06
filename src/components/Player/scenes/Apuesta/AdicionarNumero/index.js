@@ -515,24 +515,11 @@ class AdicionarNumeroApuesta extends Component {
     }
 
     render() {
-        const rightPos = (window.screen.width > 444) ? (window.screen.width - 444) / 2 + 2 : 2;
+        const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        const rightPos = (width > 444) ? (width - 444) / 2 + 2 : 2;
         const transPos = rightPos + 100;
         this.classes = this.props.classes;
         const trans = this.state.showAddBtn ? 'translate(0px)' : `translate(${transPos}px)`
-        function updateFunction(e) {
-        }
-
-        function submitClickHandler() {
-            playerService.update_number(this.state.entry, this.match.params.apuestaId).then((result) => {
-                success_response();
-            })
-        }
-
-        function success_response() {
-            toast.success("Cambio actualizado !", {
-                position: toast.POSITION.TOP_RIGHT
-            });
-        }
 
         const ApuestaInput = withStyles({
             root: {

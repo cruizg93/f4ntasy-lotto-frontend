@@ -1,0 +1,17 @@
+.asistente_resumen_ventas_generales{
+  padding-top: 60px;
+  display: block;
+}
+.asistente_resumen_ventas_generales .container_summary{
+  border-bottom: none !important;
+}
+.asistente_resumen_ventas_generales .container_summary .summaryTotal{
+  padding-top: 34px;
+  margin-top: 0;
+}
+.asistente_resumen_ventas_generales .empty_border{
+  height: 38px;
+  width: 100%;
+  border-top: solid 1px #dbdcdd;
+  display: block;
+}

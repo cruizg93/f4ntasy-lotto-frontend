@@ -85,6 +85,7 @@ const PlayerPassword = ({ ...props }) => {
             <Grid container className="cambiar_contrasena">
                 <Grid container className="password_grup">
                     <Grid item xs={10} className="password_input">
+                        <input name="DummyPassword" type="password" style={{ display: 'none' }} />
                         <CustomText
                             value={values.password}
                             icon={MdSettings}

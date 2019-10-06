@@ -9,6 +9,7 @@ export const MenuLinks = (props) => {
     const [anchorE2, setAnchorE2] = React.useState(null);
 
     const isAdmin = props.admin;
+    const isPlayer = !props.admin && props.asistente;
     const isAsistente = (!props.admin && props.asistente);
 
     function handleClickHistorial(event) {
@@ -110,10 +111,6 @@ export const MenuLinks = (props) => {
                     to="/usuario/apuestas"
                     color="inherit">Sorteos</Button>
                 }
-                {/* {!isAsistente && <Button component={Link}
-                    to="/usuario/apuestas/hoy/activas"
-                    color="inherit">Apuestas Activas</Button>
-                } */}
                 {!isAsistente && <Button component={Link}
                     to="/usuario/historial"
                     color="inherit">Historial</Button>
@@ -125,13 +122,9 @@ export const MenuLinks = (props) => {
                 color="inherit">Sorteos</Button>
             }
             {/* {isAsistente && <Button component={Link}
-                to="/asistente/apuestas/hoy/activas"
-                color="inherit">Apuestas Activas</Button>
-            } */}
-            {isAsistente && <Button component={Link}
                 to="/asistente/historial"
                 color="inherit">Historial</Button>
-            }
+            } */}
 
             {!isAdmin && <Button component={Link}
                 to="/usuario/password/cambiar"

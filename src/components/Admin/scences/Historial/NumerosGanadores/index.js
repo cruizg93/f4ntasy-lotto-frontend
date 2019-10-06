@@ -66,38 +66,14 @@ const useStyles = makeStyles(theme => ({
 }));
 const NumerosGanadores = (props) => {
     const classes = useStyles();
-    const [apuestasActivas, setApuestasActivasList] = useState([]);
     const [numerosGanadoresList, setNumerosGanadoresList] = useState([]);
     const [moneda, setMoneda] = useState("lempira");
 
-    function getFakeVal() {
-        let ary = [
-            {
-                numeroGanadorId: 19,
-                numero: '48',
-                sorteoType: 'DIARIA',
-                hour: '11 am',
-                day: 'Mar, 3 Sep',
-                premio: 0,
-                jugadores: []
-            },
-            {
-                sorteo_id: 2,
-                numero: '25',
-                sorteo_type: 'DIARIA',
-                time: '11 am',
-                date: 'Mar, 3 Sep',
-                value: 0
-            }
-        ]
-        setNumerosGanadoresList(ary);
-    }
     useEffect(() => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         adminService.get_historial_numeros_ganadores(moneda).then((result) => {
             setNumerosGanadoresList(Array.from(result.data));
-            // getFakeVal()
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -105,20 +81,19 @@ const NumerosGanadores = (props) => {
             });
     }, [])
 
-    function handleUpdate() {
+    function handleUpdate(monedaType = "lempira") {
         setTimeout(() => {
             const { dispatch } = props;
             dispatch(userActions.loading_start())
-            adminService.get_historial_numeros_ganadores(moneda).then((result) => {
+            adminService.get_historial_numeros_ganadores(monedaType).then((result) => {
                 setNumerosGanadoresList([]);
                 setNumerosGanadoresList(Array.from(result.data));
-                // getFakeVal()
                 dispatch(userActions.loading_end())
             })
                 .catch(function (error) {
                     dispatch(userActions.loading_end())
                 });
-        }, 3000)
+        }, 50)
     }
 
     const changeMonedaType = (type) => {
@@ -127,7 +102,7 @@ const NumerosGanadores = (props) => {
             setMoneda("dolar")
         else
             setMoneda("lempira")
-        updateApuestasActivas(type)
+        handleUpdate(type)
     }
 
     const handleDolar = () => {
@@ -138,19 +113,6 @@ const NumerosGanadores = (props) => {
     const handleLempira = () => {
         if (moneda !== "lempira")
             changeMonedaType("lempira")
-    }
-
-    const updateApuestasActivas = (monedaType) => {
-        const { dispatch } = props;
-        dispatch(userActions.loading_start())
-        adminService.get_apuestas_activas(monedaType).then((result) => {
-            setApuestasActivasList([]);
-            setApuestasActivasList(Array.from(result.data));
-            dispatch(userActions.loading_end())
-        })
-            .catch(function (error) {
-                dispatch(userActions.loading_end())
-            });
     }
 
     return (

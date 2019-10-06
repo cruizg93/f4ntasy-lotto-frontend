@@ -72,7 +72,7 @@ class HeaderBar extends Component {
     }
 
     handleCloseAccept() {
-        this.setState({ open: !this.open });
+        this.setState({ open: false });
 
         const { dispatch } = this.props;
         dispatch(userActions.loading_start())

@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { connect } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { playerService } from "../../../../../service/api/player/player.service";
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import ApuestaActivaEntry from '../../../components/ApuestaActiva/index';
-import { makeStyles, withStyles } from "@material-ui/core/styles/index";
-import Button from "@material-ui/core/Button/index";
-import { printDocument6 } from "../../../../../_helpers/print";
-import { Colors } from "../../../../../utils/__colors";
+import { makeStyles } from "@material-ui/core/styles/index";
+import './Activa.css'
+import { Colors } from '../../../../../utils/__colors'
+import { Currency } from '../../../../../utils/__currency'
+import Fab from '@material-ui/core/Fab';
+import TopBar from '../../../../View/jugador/TopBar'
+import ListaApuestas from '../ListaApuestas';
+import AdminTitle from '../../../../Admin/components/AdminTitle_Center'
+
+import ConfirmDialog from '../../../../View/Dialog/ConfirmDialog';
+import ErrorInfoDialog from '../../../../View/Dialog/ErrorInfoDialog';
+import { userActions } from '../../../../../store/actions';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -41,219 +47,237 @@ const useStyles = makeStyles(theme => ({
     },
     apuestasContainer: {
         marginBottom: '5rem'
-    }
-
+    },
+    buttonContainerApuestas: {
+        backgroundColor: "#ffffff",
+        maxWidth: 444,
+        position: "fixed",
+        zIndex: "25",
+        bottom: 8,
+        height: '63px',
+        lineHeight: '63px',
+        justifyContent: "center",
+        textAlign: "center",
+        borderTop: 'solid 1px #9A9A9A',
+        borderLeft: 'solid 1px #9A9A9A',
+        borderRight: 'solid 1px #9A9A9A',
+        left: '50%',
+        transform: 'translateX(-50%)'
+    },
+    buttonDetalles: {
+        borderRadius: "15px",
+        textTransform: "none",
+        height: "37px",
+        width: '153px',
+        color: "#000000",
+        backgroundColor: '#f5d657',
+        fontSize: "1.2rem",
+        "&:hover": {
+            backgroundColor: '#f5d657',
+        }
+    },
+    buttonLimpiar: {
+        borderRadius: "15px",
+        textTransform: "none",
+        height: "37px",
+        width: '153px',
+        color: "#ffffff",
+        backgroundColor: '#cc3333',
+        fontSize: "1.2rem",
+        "&:hover": {
+            backgroundColor: '#cc3333',
+        }
+    },
 }));
-
-
-const EditarButton = withStyles({
-    root: {
-        width: '100px',
-        height: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        color: Colors.Green,
-        marginBottom: '1.5rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        border: 'none',
-        '&:hover': {
-            backgroundColor: Colors.Btn_Hover,
-            border: 'none',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            border: 'none',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
-
-const ImprimirButton = withStyles({
-    root: {
-        width: '100px',
-        height: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        color: Colors.Btn_Blue,
-        marginBottom: '1.5rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        border: 'none',
-        '&:hover': {
-            backgroundColor: Colors.Btn_Hover,
-            border: 'none',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            border: 'none',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 
 
 const ApuestaActivaAsistente = ({ ...props }) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
+    const [hour, setHour] = useState('');
+    const [day, setDay] = useState('');
     const [comision, setComision] = useState(0.0);
     const [riesgo, setRiesgo] = useState(0.0);
     const [total, setTotal] = useState(0.0);
     const [list, setList] = useState([]);
-    const [disable, setDisable] = useState(true);
-    const mounted = useState(true);
-    function handleDisableClick() {
-        setDisable(!disable);
-        if (!disable)
-            submitUpdateData()
+    const [apuestaType, setApuestaType] = useState('CHICA');
+    const [sumValor, setSumValor] = React.useState(0);
+    const apuestaId = props.match.params.apuestaId;
+
+    const [open, setOpen] = useState(false);
+    const [openError500Info, setOpenError500Info] = useState(false);
+    const [openError409Info, setOpenError409Info] = useState(false);
+
+    function handleClose_409_error() {
+        setOpenError409Info(false);
+        this.props.history.push("/");
+    }
+    function handleClose_500_error() {
+        setOpenError500Info(false);
     }
 
-    function updateFunction(e) {
-        let id = e.target.id;
-        id = id.split('-')[3];
-        if (e.target.value !== '') {
-            list[id]['valor'] = parseFloat(e.target.value);
+    function handleClickOpen() {
+        setOpen(true);
+    }
+
+    function handleClose(value) {
+        setOpen(false);
+        if (value === true) {
+            deleteAllFunction()
         }
     }
 
     function submitUpdateData() {
-        playerService.update_number_apuesta_activas(list, props.match.params.apuestaId).then((result) => {
-            success_response();
-            playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
-                setTitle(result.data.title);
-                setComision(result.data.comision);
-                setRiesgo(result.data.riesgo);
-                let total = 0;
-                result.data.list.forEach(function (item, index) {
-                    total = total + item['valor'];
-                });
-                setTotal(total);
-                setList(Array.from(result.data.list));
-            })
-        });
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
+        playerService.list_apuestas_activas_details(apuestaId).then((result) => {
+            setTitle(result.data.title);
+            setHour(result.data.hour);
+            setDay(result.data.day);
+            setComision(parseFloat(result.data.comision));
+            setRiesgo(parseFloat(result.data.riesgo));
+            setTotal(parseFloat(result.data.total));
+            setList(Array.from(result.data.list));
+            setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
 
-
-    }
-    function handleOnPrint() {
-        const input = document.getElementById("container-apuesta-activa-data-asistente");
-        printDocument6(input, title + '-activa-asistente');
+            dispatch(userActions.loading_end())
+        })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }
 
-    function success_response() {
-        toast.success("Cambio actualizado !", {
-            position: toast.POSITION.TOP_RIGHT
-        });
+    function deleteOneFunction(numero) {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
+        playerService.delete_apuestas_activas_sorteoAndNumeroAndJugador(apuestaId, numero).then((result) => {
+            if (result.status === 409) {
+                setOpenError409Info(true);
+            } else if (result.status === 500) {
+                setOpenError500Info(true);
+            }
+            dispatch(userActions.loading_end())
+            if (result.status === 200)
+                submitUpdateData();
+        })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
+    }
+
+    function deleteAllFunction() {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
+        playerService.delete_apuestas_activas_sorteoAndJugador(apuestaId).then((result) => {
+            if (result.status === 409) {
+                setOpenError409Info(true);
+            } else if (result.status === 500) {
+                setOpenError500Info(true);
+            }
+            dispatch(userActions.loading_end())
+            if (result.status === 200)
+                submitUpdateData();
+        })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
     }
 
     useEffect(() => {
-        playerService.list_apuestas_activas_details(props.match.params.apuestaId).then((result) => {
+        const { dispatch } = props;
+        dispatch(userActions.loading_start())
+        playerService.list_apuestas_activas_details(apuestaId).then((result) => {
+            setApuestaType(result.data.type)
             setTitle(result.data.title);
-            setComision(result.data.comision);
-            setRiesgo(result.data.riesgo);
-            /*  setTotal(result.data.total); */
-            setList(Array.from(result.data.list));
-            let total = 0;
-            result.data.list.forEach(function (item, index) {
-                total = total + item['valor'];
-            });
-            setTotal(total);
+            setHour(result.data.hour);
+            setDay(result.data.day);
+            setComision(parseFloat(result.data.comision));
+            setRiesgo(parseFloat(result.data.riesgo));
+            setTotal(parseFloat(result.data.total));
+            setList(prev => Array.from(result.data.list));
+            setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
+            dispatch(userActions.loading_end())
         })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
+        window.scrollTo(0, 0)
     }, []);
 
-    function handledeleteOneFunction(entryId) {
-        list[entryId]['valor'] = 0.0;
-        submitUpdateData();
-    }
-
     return (
-        <React.Fragment>
+        <div className="userX_ventas_activas" >
             <ToastContainer autoClose={8000} />
-            <Grid container spacing={1}
+            <AdminTitle titleLabel="Ventas Activas" />
+            <TopBar apuestaType={apuestaType}
+                hour={hour}
+                day={day}
+                total={total}
+                top={153}
+            />
+            <Grid container spacing={0}
                 direction="row"
                 justify="center"
-                alignItems="flex-start">
-                <Typography variant="h5"  >
-                    {title}
-                </Typography>
+                alignItems="center" className="list_apuestas" >
+                <ListaApuestas entryList={list} removerApuesta={(apuestaIndex) => {
+                    deleteOneFunction(list[apuestaIndex].numero);
+                }}
+                    apuestaId={props.match.params.apuestaId}
+                    displayApuestaListIndex={false} fromApuestaActiva={true} />
+                <Grid item xs={12} className="total" style={{ paddingBottom: 10 }}>
+                    <span className="text">
+                        Total:
+                    </span>
+                    <span className="value">
+                        {sumValor}
+                    </span>
+                </Grid>
+            </Grid>
+
+            <Grid container spacing={0}
+                direction="row"
+                justify="center"
+                alignItems="center" className={classes.buttonContainerApuestas} >
                 <Grid item xs={12}>
-                    <Divider />
+                    <Fab variant="extended" aria-label="removeAll" className={classes.buttonLimpiar} onClick={handleClickOpen}>
+                        Limpiar
+                        </Fab>
                 </Grid>
             </Grid>
-            <Grid container spacing={1}
-                direction="row"
-                justify="center"
-                alignItems="flex-start"
-                id="container-apuesta-activa-data-asistente">
-
-                <Grid container spacing={1}
-                    direction="row"
-                    justify="center"
-                    alignItems="flex-start">
-                    {list.map((apuesta, index) =>
-                        <ApuestaActivaEntry key={index} {...apuesta} index={index} {...props}
-                            disable={disable}
-                            onEdit={updateFunction}
-                            delete={handledeleteOneFunction}
-                            mounted={mounted}
-                        />
-                    )}
-                </Grid>
-                <Grid container>
-                    <Grid item xs={3}
-                        container
-                        justify="flex-end"
-                    >
-                        <Typography variant="body1" className={''}>
-                            Apuestas |
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={9}
-                        container
-                        justify="flex-start"
-                        className={''}
-                    >
-                        <Typography variant="body1" className={classes.numbers}>
-                            {total}
-                        </Typography>
-                    </Grid>
-                </Grid>
-            </Grid>
-            <Grid container spacing={1}
-                direction="row"
-                justify="center"
-                className={classes.fixedElement}
-            >
-                <Grid item xs={4}>
-                    <EditarButton variant="outlined" color="primary" onClick={handleDisableClick}>
-                        <Typography variant="body1"  >
-                            {disable ? "Editar" : "Fijar"}
-                        </Typography>
-                    </EditarButton>
-                </Grid>
-                <Grid item xs={4}>
-                    <ImprimirButton variant="outlined" color="primary" onClick={handleOnPrint}>
-                        <Typography variant="body1"  >
-                            Imprimir
-                        </Typography>
-                    </ImprimirButton>
-                </Grid>
-
-
-            </Grid>
-
-        </React.Fragment>
+            <ConfirmDialog
+                open={open}
+                handleClose={handleClose}
+                title="Limpiar pantalla?"
+                context="Toda la información digitada se perderá"
+                icon='help'>
+            </ConfirmDialog>
+            <ErrorInfoDialog
+                open={openError500Info}
+                handleClose={handleClose_500_error}
+                title={'Error del sistema.'}
+                context={'Su compra no fue procesada. hubo algún error del sistema trate de nuevo y si el problema persiste contacte a su agente.'}
+                icon={'ioIosWarning'}
+                iconSize={70}
+                iconColor={'#fdfa01'}
+                titleFontSize={'22px'}
+                contentFontSize={'17px'}
+                contentHeight={'109px'}>
+            </ErrorInfoDialog>
+            <ErrorInfoDialog
+                open={openError409Info}
+                handleClose={handleClose_409_error}
+                title={'Sorteo cerrado'}
+                context={'Una vez el sorteo cerro no se pueden eliminar o modificar las compras.'}
+                icon={'ioIosWarning'}
+                iconSize={70}
+                iconColor={'#ff3333'}
+                titleFontSize={'22px'}
+                contentFontSize={'17px'}
+                lineHeight={'23px'}
+                contentHeight={'109px'}>
+            </ErrorInfoDialog>
+        </div>
     )
 };
 
 
-export default ApuestaActivaAsistente;
+export default connect()(ApuestaActivaAsistente);

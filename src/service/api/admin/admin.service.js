@@ -887,7 +887,7 @@ function cerrar_bloquear(id) {
         id: id
     }
     return new Promise((resolve, reject) => {
-        axios.post(`${baseUrl}/sorteos/bloquear/${id}`,
+        axios.put(`${baseUrl}/sorteos/bloquear/${id}`,
             send, requestOptions
         )
             .then((responseJson) => {
@@ -912,7 +912,7 @@ function cerrar_desbloquear(id) {
         id: id
     }
     return new Promise((resolve, reject) => {
-        axios.post(`${baseUrl}/sorteos/desbloquear/${id}`,
+        axios.put(`${baseUrl}/sorteos/desbloquear/${id}`,
             send, requestOptions
         )
             .then((responseJson) => {
