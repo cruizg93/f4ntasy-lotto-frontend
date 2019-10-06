@@ -812,7 +812,7 @@ function cerrar_apuesta(id) {
         id: id
     }
     return new Promise((resolve, reject) => {
-        axios.put(`${baseUrl}/admin/apuesta/bloquear/${id}`,
+        axios.put(`${baseUrl}/sorteos/forceCloseStatus/${id}`,
             send, requestOptions
         )
             .then((responseJson) => {
