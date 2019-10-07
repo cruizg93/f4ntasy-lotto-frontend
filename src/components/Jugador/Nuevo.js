@@ -258,7 +258,7 @@ const Nuevo = ({ ...props }) => {
         <div>
             <React.Fragment>
                 <ToastContainer autoClose={8000} />
-                <Container maxWidth="xs" style={{ padding: 0 }}>
+                <Container maxwidth="xs" style={{ padding: 0 }}>
                     <AdminTitle titleLabel='Crear Vendedor P' />
                 </Container>
 
@@ -284,8 +284,8 @@ const Nuevo = ({ ...props }) => {
                                 </Button>
                     </DialogActions>
                 </Dialog>
-                <Container maxWidth="xs" className="container_crear_p">
-                    <Container maxWidth="xs" style={{ display: 'flex', height: 60, paddingLeft: 40 }}>
+                <Container maxwidth="xs" className="container_crear_p">
+                    <Container maxwidth="xs" style={{ display: 'flex', height: 60, paddingLeft: 40 }}>
                         <Grid item xs={8} className="title_info" >
                             <div className="text">
                                 *Escoger moneda para transacciones
@@ -300,7 +300,7 @@ const Nuevo = ({ ...props }) => {
                             </Button>
                         </Grid>
                     </Container>
-                    <Container maxWidth="xs" className="container_usersetting">
+                    <Container maxwidth="xs" className="container_usersetting">
                         <Container className="username">
                             <Grid item className="pt-15 pb-15">
                                 <CustomText readOnly value={placeholderUser} icon={MdSettings}></CustomText>

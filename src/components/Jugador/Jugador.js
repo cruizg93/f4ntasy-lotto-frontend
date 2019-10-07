@@ -5,6 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Grid, Container } from '@material-ui/core'
 
 import { adminService } from "../../service/api/admin/admin.service";
+import { FormatCurrency } from '../../utils/__currency';
+import { Currency } from '../../utils/__currency';
 import JugadorDataShow from './components/JugadorEntry/index';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -20,7 +22,8 @@ class Jugador extends Component {
         this.state = {
             jugadorList: [],
             password: '',
-            totalsMoney: 0
+            totalsMoney: 0,
+            apuestaCurrency: '$'
         };
     }
     toast_notification = (type) => {
@@ -37,9 +40,11 @@ class Jugador extends Component {
 
     update_totalsMoney() {
         const totals = this.state.jugadorList.reduce((acc, row) => acc + row.total, 0)
+        const apuestaCurrency = this.state.jugadorList[0].monedaType.toLowerCase() === "lempira" ? Currency.Lempira : Currency.Dollar;
         this.setState({
             ...this.state,
-            totalsMoney: totals
+            apuestaCurrency: apuestaCurrency,
+            totalsMoney: FormatCurrency(apuestaCurrency, totals)
         })
     }
 
@@ -80,7 +85,7 @@ class Jugador extends Component {
         return (
             <div>
                 <ToastContainer autoClose={8000} />
-                <Container maxWidth="xs" className="resumen_container">
+                <Container maxwidth="xs" className="resumen_container">
                     <Grid container
                         direction="row"
                         className="resumen_header"
@@ -101,7 +106,7 @@ class Jugador extends Component {
                     </Grid>
                     <Grid className="resumen_total">
                         <span className="resumen_total_text">Totales:</span>
-                        <span className="resumen_total_val">${'\u00A0'}{'\u00A0'}{this.state.totalsMoney}</span>
+                        <span className="resumen_total_val">{this.state.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{this.state.totalsMoney}</span>
                     </Grid>
                     <Grid container maxwidth="xs" direction="row">
                         {this.state.jugadorList.map((jugador, index) =>

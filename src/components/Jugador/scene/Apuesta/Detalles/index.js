@@ -24,13 +24,11 @@ const JugadorDetalles = ({ ...props }) => {
     const [name, setName] = useState('');
     const [moneda, setMoneda] = useState("L");
     const username = useReducer(userNameReducer, props.location.state.username);
-
     const [values, setValues] = useState([]);
     const col = ['Ventas:', 'Comisión:', 'Totales:'];
     useEffect(() => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
-
         adminService.list_apuestas_details(username[0]).then((result) => {
             setApuestasList(Array.from(result.data.sorteos));
             setName(result.data.name);
@@ -39,7 +37,6 @@ const JugadorDetalles = ({ ...props }) => {
             let comision = result.data.sorteos.reduce((sum, row) => sum + row.comision, 0);
             let riesgo = result.data.sorteos.reduce((sum, row) => sum + row.riesgo, 0);
             setValues([total, comision, riesgo])
-
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -72,24 +69,22 @@ const JugadorDetalles = ({ ...props }) => {
             });
         }
     }
-
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000} />
-            <Container maxWidth="xs" style={{ padding: 0 }}>
+            <Container maxwidth="xs" style={{ padding: 0 }}>
                 <AdminTitle titleLabel='Resumen Venta Individual' />
             </Container>
-            <Container maxWidth="xs" className="container_individual">
+            <Container maxwidth="xs" className="container_individual">
                 <Grid item xs={12} className="userInfo" >
                     <span>
-                        {username}{" - "}{moneda.symbol}
+                        {username[0]}{" - "}{moneda.symbol}
                         {'\u00A0'}{"[ "}{name.length > 15 ? name.substring(0, 14) : name}{" ]"}
                     </span>
                 </Grid>
                 <Grid container className="body">
                     {apuestasList.map((apuesta, index) =>
                         <JugadorDetallesEntry key={index} {...apuesta} index={index}
-                            username={props.location.state.username}
                             moneda={moneda.symbol}
                             name={name.length > 15 ? name.substring(0, 14) : name}
                             update={updateApuestasActivas}
@@ -98,8 +93,8 @@ const JugadorDetalles = ({ ...props }) => {
                     )}
                 </Grid>
             </Container>
-            <Container maxWidth="xs" style={{ padding: 0 }}>
-                <Grid container maxWidth="xs" className="container_summary">
+            <Container maxwidth="xs" style={{ padding: 0 }}>
+                <Grid container maxwidth="xs" className="container_summary">
                     <Grid item xs={10} className="summaryTotal" >
                         <RowList col_1={col} symbol={moneda.symbol} col_2={values} style={{ height: 95 }}></RowList>
                     </Grid>

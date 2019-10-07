@@ -126,7 +126,20 @@ class AdicionarNumeroApuestaAsistente extends Component {
                 this.state.mounted.current = false;
             }
         }
+        const { dispatch } = this.props;
+        dispatch(userActions.loading_start())
+        playerService.list_of_numbers_by_apuesta_id(this.match.params.apuestaId).then((result) => {
+            this.setState({ name: result.data.name });
+            this.setState({ entry: Array.from(result.data.list) });
+            this.setState({ hour: result.data.hour });
+            this.setState({ day: result.data.day });
+            this.setState({ apuestaType: result.data.type });
 
+            dispatch(userActions.loading_end())
+        })
+            .catch(function (error) {
+                dispatch(userActions.loading_end())
+            });
         window.scrollTo(0, 0);
     }
 
@@ -529,7 +542,7 @@ class AdicionarNumeroApuestaAsistente extends Component {
                         </Grid>
                     </Grid>
                 </Container>
-                <Container maxWidth="xs" >
+                <Container maxwidth="xs" >
                     <Grid container spacing={0}
                         direction="row"
                         justify="center"

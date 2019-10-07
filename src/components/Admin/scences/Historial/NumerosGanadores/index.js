@@ -118,7 +118,7 @@ const NumerosGanadores = (props) => {
     return (
         <React.Fragment>
             <AdminTitle titleLabel={'Números Ganadores'}></AdminTitle>
-            <Container maxWidth="xs" className="container_numeros_ganadores">
+            <Container maxwidth="xs" className="container_numeros_ganadores">
                 <Grid item xs={12} className="btn_group_moneda" >
                     <Button onClick={handleDolar}>
                         {moneda === "dolar" ? <img src={Dollar_ON} alt="Dollar_ON" /> : <img src={Dollar_OFF} alt="Dollar_OFF" />}

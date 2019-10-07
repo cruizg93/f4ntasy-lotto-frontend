@@ -61,7 +61,7 @@ class AdicionarApuesta extends React.Component {
                     <Grid item xs={12}>
                         <Divider />
                     </Grid>
-                    <Container maxWidth="xs" style={{ padding: 0 }}>
+                    <Container maxwidth="xs" style={{ padding: 0 }}>
                         <Grid container maxwidth="xs" className="container_summary">
                             <Grid item xs={10} className="summaryTotal" >
                                 <RowList col_1={col} symbol={this.state.moneda} col_2={this.state.values} style={{ height: 95 }}></RowList>

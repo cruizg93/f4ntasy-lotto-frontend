@@ -18,7 +18,6 @@ import EditarAsistente from '../components/Admin/scences/Asistente/Editar/index'
 import EditarJugador from '../components/Jugador/components/Editar/index';
 import BalanceJugador from '../components/Jugador/scene/Balance/index';
 import JugadorDetalles from '../components/Jugador/scene/Apuesta/Detalles/index';
-import DesgloseApuestaJugador from '../components/Jugador/scene/Apuesta/Detalles/Desglose/index';
 
 import ApuestaActivaJugadorDetalles from '../components/Jugador/scene/Apuesta/Detalles/Single/index';
 import PlayerPassword from "../components/Player/scenes/Password/Password";
@@ -116,7 +115,12 @@ class RouterApp extends React.Component {
                       component={Index}
                     />
                     <Route exact path="/login" component={Login} />
-                    <Route exact path="/jugador" component={Jugador} />
+                    {/* <Route exact path="/jugador" component={Jugador} /> */}
+                    <PrivateRoute
+                      exact path="/jugador"
+                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
+                      component={Jugador}
+                    />
                     <PrivateRoute
                       key="password"
                       exact path="/password/new"
@@ -145,9 +149,9 @@ class RouterApp extends React.Component {
                       component={ApuestaActivaJugadorDetalles}
                     />
                     <PrivateRoute
-                      exact path="/jugador/apuestas/detalles/:apuestaId/desglose"
+                      exact path="/jugador/apuestas/detalles/:apuestaId/imprimir"
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}
-                      component={DesgloseApuestaJugador}
+                      component={DetallesApuesta}
                     />
                     <PrivateRoute
                       exact path="/asistente/editar/:userId"

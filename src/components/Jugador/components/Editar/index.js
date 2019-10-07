@@ -324,7 +324,7 @@ const EditarJugador = (props) => {
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000} />
-            <Container maxWidth="xs" className={classes.container}>
+            <Container maxwidth="xs" className={classes.container}>
                 {!editable ?
                     <AlertDialog msg={"El jugador tiene apuestas activas"} />
                     : null

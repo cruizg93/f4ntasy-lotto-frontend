@@ -11,7 +11,7 @@ import './App.css';
 class App extends Component {
     render() {
         return (
-            <Container maxWidth="xs" className="app-main">
+            <Container maxwidth="xs" className="app-main">
                 <Provider store={configureStore()}>
                     <Router>
                         <Route path="/" component={RouteApp} />

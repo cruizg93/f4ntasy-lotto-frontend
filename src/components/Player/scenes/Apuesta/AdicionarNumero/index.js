@@ -652,7 +652,7 @@ class AdicionarNumeroApuesta extends Component {
                         paddingBottom={0} marginL={-40}
                     />
                 </div>
-                <Container maxWidth="xs" >
+                <Container maxwidth="xs" >
                     <Grid container spacing={0}
                         direction="row"
                         justify="center"

@@ -36,7 +36,6 @@ export default function NestedList(props) {
     const classes = useStyles();
     const isAdmin = props.admin;
     const isAsistente = !props.admin && props.asistente;
-    console.log('here', props)
     return (
         <List
             component="nav"

@@ -12,6 +12,7 @@
     text-align: center;
     background: white;
     color: #9C9C9C;
+    font-size: 1.25rem;
 }
 .spuestaActive .value{
     margin-right: 25px;
@@ -23,6 +24,7 @@
     border: solid 1px #C6C5C5;
     padding-left: 15px;
     background: white;
+    font-size: 1.25rem;
     color: #9C9C9C;
 }
 

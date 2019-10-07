@@ -103,10 +103,10 @@ const ApuestasActivasAdmin = (props) => {
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000} />
-            <Container maxWidth="xs" style={{ padding: 0 }}>
+            <Container maxwidth="xs" style={{ padding: 0 }}>
                 <AdminTitle titleLabel='Resumen Ventas Generales' />
             </Container>
-            <Container maxWidth="xs" className="container_ventas_generales">
+            <Container maxwidth="xs" className="container_ventas_generales">
                 <Grid item xs={12} className="btn_group_moneda" >
                     <Button style={{ paddingTop: 9 }} onClick={handleDolar}>
                         {moneda === "dolar" ? <img src={Dollar_ON} alt="Dollar_ON" /> : <img src={Dollar_OFF} alt="Dollar_OFF" />}
@@ -124,7 +124,7 @@ const ApuestasActivasAdmin = (props) => {
                     )}
                 </Grid>
             </Container>
-            <Container maxWidth="xs" style={{ padding: 0 }}>
+            <Container maxwidth="xs" style={{ padding: 0 }}>
                 <Grid container maxwidth="xs" className="container_summary">
                     <Grid item xs={10} className="summaryTotal" >
                         <RowList col_1={col} symbol={moneda.symbol} col_2={values} style={{ height: 95 }}></RowList>

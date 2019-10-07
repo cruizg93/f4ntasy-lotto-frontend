@@ -44,7 +44,9 @@ export const adminService = {
     open_apuesta,
     admin_password_confirm,
     cerrar_bloquear,
-    cerrar_desbloquear
+    cerrar_desbloquear,
+    delete_apuestas_activas_sorteoAndNumeroAndJugador,
+    delete_apuestas_activas_sorteoAndJugador
 };
 
 
@@ -306,9 +308,6 @@ function list_apuestas_details(username) {
             'Accept': 'application/json',
             "Authorization": `Bearer ${currentUser.accessToken}`
         },
-    };
-    let send = {
-        username: username
     };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/sorteos/activosResumen/judadores/${username}`,
@@ -919,6 +918,56 @@ function cerrar_desbloquear(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function delete_apuestas_activas_sorteoAndNumeroAndJugador(id, jugadorId, numero) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    return new Promise((resolve, reject) => {
+        axios.delete(`${baseUrl}/sorteos/activos/${id}/jugadores/${jugadorId}/apuestas/${numero}`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                if (error.response.status === 409 || error.response.status === 500) {
+                    resolve(error.response)
+                }
+                reject(error);
+            })
+    });
+}
+
+function delete_apuestas_activas_sorteoAndJugador(id, jugadorId) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    return new Promise((resolve, reject) => {
+        axios.delete(`${baseUrl}/sorteos/activos/${id}/jugadores/${jugadorId}/apuestas`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                if (error.response.status === 409 || error.response.status === 500) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
