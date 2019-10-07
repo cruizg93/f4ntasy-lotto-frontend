@@ -67,44 +67,42 @@ const ShowDetallesApuesta = ({ title, apuestas, total, ...props }) => {
     }, [])
 
     return (
-        <>
-            <Grid container
-                spacing={1}
-                direction="row"
-                justify="center"
-                className={classes.containerData}
-            >
-                <Grid item xs={12} container justify="center">
-                    <Typography className={classes.text}>
-                        {" "}{titleData}
-                    </Typography>
-                </Grid>
-                <Grid item xs={12} container justify="center">
-                    {apuestasData.map((apuesta, index) =>
-                        <SingleApuestaDetails key={index} {...apuesta} {...props} moneda={moneda} />
-                    )}
-                </Grid>
-                <Grid item xs={12} style={{ marginTop: -15 }}>
-                    <span style={{ fontSize: 20, color: '#929292', marginLeft: 100 }}>
-                        {"total:"}
-                    </span>
-                    <span style={{ fontSize: 20, color: '#929292', marginLeft: 32 }}>
-                        {sum}
-                    </span>
-                </Grid>
-                <Grid item xs={12} style={{ marginTop: -10 }}>
-                    <span style={{ fontSize: 20, color: '#929292', marginLeft: 94 }}>
-                        {"costo:"}
-                    </span>
-                    <span style={{ fontSize: 20, color: '#4F83C8', marginLeft: 30 }}>
-                        {moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(moneda, total.toFixed(2))}
-                    </span>
-                </Grid>
-                <Grid item xs={12}>
-                    <Divider />
-                </Grid>
+        <Grid container
+            spacing={1}
+            direction="row"
+            justify="center"
+            className={classes.containerData}
+        >
+            <Grid item xs={12} container justify="center">
+                <Typography className={classes.text}>
+                    {" "}{titleData}
+                </Typography>
             </Grid>
-        </>
+            <Grid item xs={12} container justify="center">
+                {apuestasData.map((apuesta, index) =>
+                    <SingleApuestaDetails key={index} {...apuesta} {...props} moneda={moneda} />
+                )}
+            </Grid>
+            <Grid item xs={12} style={{ marginTop: -15 }}>
+                <span style={{ fontSize: 20, color: '#929292', marginLeft: 100 }}>
+                    {"total:"}
+                </span>
+                <span style={{ fontSize: 20, color: '#929292', marginLeft: 32 }}>
+                    {sum}
+                </span>
+            </Grid>
+            <Grid item xs={12} style={{ marginTop: -10 }}>
+                <span style={{ fontSize: 20, color: '#929292', marginLeft: 94 }}>
+                    {"costo:"}
+                </span>
+                <span style={{ fontSize: 20, color: '#4F83C8', marginLeft: 30 }}>
+                    {moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(moneda, total.toFixed(2))}
+                </span>
+            </Grid>
+            <Grid item xs={12}>
+                <Divider />
+            </Grid>
+        </Grid>
     )
 
 };

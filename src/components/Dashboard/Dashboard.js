@@ -173,7 +173,7 @@ class Dashboard extends Component {
                             asistente={this.state.isAsistente}
                             isPlayer={this.state.isPlayer}
                         />
-                        <Container maxWidth="xs" className={this.state.isAdmin ? "container__box" : "container__jugador"}>
+                        <Container maxwidth="xs" className={this.state.isAdmin ? "container__box" : "container__jugador"}>
                             {this.props.childComponent}
                         </Container>
                     </main>

@@ -542,7 +542,7 @@ class AdicionarNumeroApuestaAsistente extends Component {
                         </Grid>
                     </Grid>
                 </Container>
-                <Container maxWidth="xs" >
+                <Container maxwidth="xs" >
                     <Grid container spacing={0}
                         direction="row"
                         justify="center"

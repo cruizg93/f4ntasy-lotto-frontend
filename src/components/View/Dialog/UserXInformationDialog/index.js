@@ -32,8 +32,8 @@ class UserXInformationDialog extends React.Component {
     return (
       <Dialog
         disableBackdropClick
-        maxWidth="xs"
-        minWidth="xs"
+        maxwidth="xs"
+        minwidth="xs"
         open={this.props.open}
         onClose={this.props.handleClose}
         aria-labelledby="confirmation-dialog-title"

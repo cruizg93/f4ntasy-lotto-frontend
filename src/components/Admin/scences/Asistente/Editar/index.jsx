@@ -173,7 +173,7 @@ const EditarAsistente = ({ ...props }) => {
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000} />
-            <Container maxWidth="xs" className={classes.container}>
+            <Container maxwidth="xs" className={classes.container}>
                 <Grid container spacing={1}
                     direction="row"
                     justify="center"

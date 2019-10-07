@@ -142,11 +142,11 @@ const ApuestaActivaAdminDetalle = (props) => {
     }
     return (
         <React.Fragment>
-            <Container maxWidth="xs" style={{ padding: 0 }}>
+            <Container maxwidth="xs" style={{ padding: 0 }}>
                 <AdminTitle titleLabel='Detalle Ventas Generales' iconName="IoIosContacts" />
             </Container>
             <Grid container className="detalle_ventas_generales">
-                <Container maxWidth="xs" className="container_time">
+                <Container maxwidth="xs" className="container_time">
                     <Grid item xs={8} className="title_info" >
                         <div className="icon">
                             {props.location.state.type === "DIARIA" ? <img src={Diaria_PNG} alt="Diaria_PNG" /> : <img src={Chica_PNG} alt="Chica_PNG" />}

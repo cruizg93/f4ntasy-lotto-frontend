@@ -200,8 +200,6 @@ function update_number(data, id) {
             "Authorization": `Bearer ${currentUser.accessToken}`
         },
     };
-    console.log('user', currentUser.username)
-    console.log('data', data)
     let send = {
         username: currentUser.username,
         data: data
@@ -473,7 +471,6 @@ function delete_apuestas_activas_sorteoAndNumeroAndJugador(id, numero) {
 }
 
 //sorteos/activos/{id}/apuestas
-
 function delete_apuestas_activas_sorteoAndJugador(id) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid';
+import { adminService } from "../../../../../service/api/admin/admin.service";
 import { playerService } from "../../../../../service/api/player/player.service";
 import ShowDetallesApuesta from '../../../components/Detalles/index';
-import { printDocument6 } from "../../../../../_helpers/print";
 import { LocalPrintshop } from "@material-ui/icons";
 import Fab from '@material-ui/core/Fab';
 import InformationDialog from '../../../../View/Dialog/InformationDialog';
@@ -22,16 +22,8 @@ const DetallesApuesta = ({ ...props }) => {
     const [errorOpen, setErrorOpen] = useState(false);
 
     useEffect(() => {
-        const { dispatch } = props;
-        dispatch(userActions.loading_start())
-        playerService.detalles_by_apuesta_id(props.location.state.id).then((result) => {
-            setList(Array.from(result.data));
-            dispatch(userActions.loading_end())
-        })
-            .catch(function (error) {
-                dispatch(userActions.loading_end())
-            });
-        setTitle(props.location.state.title.title);
+        update()
+        // setTitle(props.location.state.title.title);
         setApuestaType(props.location.state.type);
         setMoneda(props.location.state.moneda);
 
@@ -40,24 +32,36 @@ const DetallesApuesta = ({ ...props }) => {
 
     function handleOnPrint() {
         setErrorOpen(true)
-        // const input = document.getElementById("apuesta-activa-numeros-detalles");
-        // printDocument6(input, title + '-activa-detalles');
     }
     function handleClose() {
         setErrorOpen(false)
     }
 
     const update = () => {
-        const { dispatch } = props;
-        dispatch(userActions.loading_start())
-        playerService.detalles_by_apuesta_id(props.location.state.id).then((result) => {
-            setList([]);
-            setList(Array.from(result.data));
-            dispatch(userActions.loading_end())
-        })
-            .catch(function (error) {
+        if (props.location.state.admin && props.location.state.admin === true) {
+            const { dispatch } = props;
+            dispatch(userActions.loading_start())
+            adminService.details_apuesta_activa_by_apuesta_id(props.location.state.username, props.location.state.id).then((result) => {
+                setList([]);
+                setList(Array.from(result.data));
                 dispatch(userActions.loading_end())
-            });
+            })
+                .catch(function (error) {
+                    dispatch(userActions.loading_end())
+                });
+
+        } else {
+            const { dispatch } = props;
+            dispatch(userActions.loading_start())
+            playerService.detalles_by_apuesta_id(props.location.state.id).then((result) => {
+                setList([]);
+                setList(Array.from(result.data));
+                dispatch(userActions.loading_end())
+            })
+                .catch(function (error) {
+                    dispatch(userActions.loading_end())
+                });
+        }
     }
     return (
         <div className="ventas_activas_detalles" >
@@ -103,4 +107,4 @@ const DetallesApuesta = ({ ...props }) => {
 
 };
 
-export default connect()(DetallesApuesta);
+export default connect(null, null)(DetallesApuesta);

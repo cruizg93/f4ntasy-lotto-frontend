@@ -196,13 +196,14 @@ class JugadorDetallesEntry extends React.Component {
                                         pathname: `${this.props.match.url}/${this.props.id}`,
                                         state: {
                                             title: this.props.nombre,
-                                            username: this.props.username,
+                                            username: this.props.location.state.username,
                                             name: this.props.name,
                                             id: this.props.id,
                                             moneda: this.props.moneda,
                                             type: this.props.type,
                                             day: this.props.day,
-                                            hour: this.props.hour
+                                            hour: this.props.hour,
+                                            userId: this.props.location.state.id,
                                         }
                                     }
                                 }

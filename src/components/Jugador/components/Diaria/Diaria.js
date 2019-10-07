@@ -62,7 +62,7 @@ export default function Diaria({
     // }
 
     return (
-        <Container maxWidth="xs" className="pl-0 pr-0 container_diaria">
+        <Container maxwidth="xs" className="pl-0 pr-0 container_diaria">
             <Grid container direction="row" className="select_title">
                 <Grid item xs={3} className="title_image">
                     <img src={DiariaLogo} alt="ABIERTA" />
@@ -85,7 +85,7 @@ export default function Diaria({
                     />
                 </Grid>
             </Grid>
-            <Container maxWidth="xs" className="container_input_area">
+            <Container maxwidth="xs" className="container_input_area">
                 <Grid container direction="row" className="row_input pl-45 pt-15">
                     <Grid item className="input">
                         <CustomText
@@ -134,7 +134,7 @@ export default function Diaria({
                     />
                 </Grid>
             </Grid>
-            <Container maxWidth="xs" className="container_input_area">
+            <Container maxwidth="xs" className="container_input_area">
                 <Grid container direction="row" className="row_input pl-45 pt-15">
                     <Grid item className="input">
                         <CustomText

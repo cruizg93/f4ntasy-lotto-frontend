@@ -32,7 +32,7 @@ export default function Password() {
 
     return (
         <React.Fragment>
-            <Container maxWidth="xs" className={classes.container}>
+            <Container maxwidth="xs" className={classes.container}>
 
                 <Grid container spacing={1}
                     direction="row"

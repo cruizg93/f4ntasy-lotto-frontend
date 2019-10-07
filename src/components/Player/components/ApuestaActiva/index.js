@@ -67,7 +67,7 @@ const ApuestaActivaEntry = ({ numero, valor, disable, ...props }) => {
         update();
     }
     return (
-        <Grid container maxWidth='xs' className="spuestaActive">
+        <Grid container maxwidth='xs' className="spuestaActive">
             <Dialog
                 disableBackdropClick
                 open={open}

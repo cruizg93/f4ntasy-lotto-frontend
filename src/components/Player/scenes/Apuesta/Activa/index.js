@@ -111,7 +111,6 @@ const ApuestaActiva = ({ ...props }) => {
     const apuestaId = props.match.params.apuestaId;
 
     const [open, setOpen] = useState(false);
-    const [openEdit, setOpenEdit] = useState(false);
     const [openError500Info, setOpenError500Info] = useState(false);
     const [openError409Info, setOpenError409Info] = useState(false);
 
