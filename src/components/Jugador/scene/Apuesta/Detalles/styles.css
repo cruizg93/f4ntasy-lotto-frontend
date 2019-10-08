@@ -13,19 +13,18 @@
 }
 
 .container_individual .body{
-  border-bottom: solid 6px #7197c7;
+  border-bottom: solid 1px #dbdcdd;
 }
 
 .container_summary{
   height: 95px !important;
-  border-bottom: solid 1px #dbdcdd;
 }
 
 .container_summary .summaryTotal{
   width: 81%;
   font-size: 17px;
   padding-left: 23px;
-  margin-top: 5px;
+  padding-top: 28px;
 }
 
 .container_summary .summaryTotal .textContainer{
