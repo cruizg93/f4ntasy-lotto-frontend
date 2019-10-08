@@ -127,7 +127,7 @@ const ApuestasActivasAdmin = (props) => {
             <Container maxwidth="xs" style={{ padding: 0 }}>
                 <Grid container maxwidth="xs" className="container_summary">
                     <Grid item xs={10} className="summaryTotal" >
-                        <RowList col_1={col} symbol={moneda.symbol} col_2={values} style={{ height: 95 }}></RowList>
+                        <RowList col_1={col} symbol={moneda === "dolar" ? '$' : 'L'} col_2={values} style={{ height: 95 }}></RowList>
                     </Grid>
                 </Grid>
             </Container>

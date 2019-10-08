@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { ToastContainer, toast } from 'react-toastify';
 import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import { IoIosContact } from "react-icons/io";
 import { adminService } from "../../../../../service/api/admin/admin.service";
 import JugadorDetallesEntry from '../../../components/Apuesta/Detalles/index';
 

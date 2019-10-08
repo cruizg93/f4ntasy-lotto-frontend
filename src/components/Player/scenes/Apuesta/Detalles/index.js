@@ -15,7 +15,6 @@ import { userActions } from '../../../../../store/actions';
 import './styles.css'
 
 const DetallesApuesta = ({ ...props }) => {
-    const [title, setTitle] = useState('');
     const [list, setList] = useState([]);
     const [apuestaType, setApuestaType] = useState("Diaria");
     const [moneda, setMoneda] = useState(" $ ");
@@ -23,7 +22,6 @@ const DetallesApuesta = ({ ...props }) => {
 
     useEffect(() => {
         update()
-        // setTitle(props.location.state.title.title);
         setApuestaType(props.location.state.type);
         setMoneda(props.location.state.moneda);
 

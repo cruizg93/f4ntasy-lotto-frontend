@@ -6,8 +6,8 @@
     align-items: center;
 }
 .container_crear_p{
-    margin-top: 60px;
-    margin-bottom: 80px;
+    padding-top: 60px;
+    padding-bottom: 80px;
     padding-left: 0px !important;
     padding-right: 0px !important;
 }
@@ -19,6 +19,7 @@
 .container_crear_p .btn_group_moneda{
   text-align: right;
   display: flex;
+  padding-left: 3px;
 }
 .container_crear_p .btn_group_moneda button{
   border: none;
@@ -27,7 +28,7 @@
   width: 40px;
 }
 .container_crear_p .title_info .text{
-    font-size: 10px;
+    font-size: 12px;
     color: #BCBCBC;
     margin-top: 30px;
 }
@@ -49,7 +50,15 @@
     color: white;
     border-radius: 20px;
 }
-.container_crear_p .btn_crear{
+.container_crear_p .container_btn_crear{
+  background: white;
+  height: 76px;
+  position: fixed;
+  bottom: 0;
+  max-width: 442px;
+  border-top: solid 1px #9a9a9a;
+}
+.container_crear_p .container_btn_crear .btn_crear{
   background: #5891DC !important;
   height: 37px !important;
   width:153px !important;
@@ -58,13 +67,13 @@
   margin-left: 12px !important;
   margin-right: 14px !important;
 }
-.container_crear_p .btn_crear .iconP{
+.container_crear_p .container_btn_crear .btn_crear .iconP{
   font-size: 30px;
 }
-.container_crear_p .btn_crear .textP::first-letter {
+.container_crear_p  .container_btn_crear .btn_crear .textP::first-letter {
   text-transform: uppercase;
 }
-.container_crear_p .btn_crear .textP{
+.container_crear_p .container_btn_crear .btn_crear .textP{
   text-transform: lowercase;
   font-size: 17px;
   padding-left: 9px;

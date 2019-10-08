@@ -13,6 +13,7 @@
   border-right: solid 1px #9A9A9A;
   left: 50%;
   transform: translateX(-50%);
+  max-width: 444px;
 }
 .detalle_ventas_generales .title_info{
   flex: 2;

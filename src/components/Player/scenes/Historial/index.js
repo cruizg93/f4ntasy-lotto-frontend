@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import InputBase from '@material-ui/core/InputBase';
 import { playerService } from "../../../../service/api/player/player.service";
 import HistorialData from '../../components/Historial/index';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Divider from '@material-ui/core/Divider';
-import InputBase from '@material-ui/core/InputBase';
 import { FormatCurrencySymbol } from '../../../../utils/__currency';
 import AdminTitle from '../../../Admin/components/AdminTitle_Center';
 import { userActions } from '../../../../store/actions';
@@ -36,7 +34,6 @@ const BootstrapInput = withStyles(theme => ({
 }))(InputBase);
 
 const HistorialPlayer = (props) => {
-    const [entry, setEntry] = useState([]);
     const [weekList, setWeekList] = useState([]);
     const [week, setWeek] = useState([]);
     const [current, setCurrent] = useState(-1);

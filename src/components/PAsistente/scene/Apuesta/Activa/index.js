@@ -7,7 +7,6 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from "@material-ui/core/styles/index";
 import './Activa.css'
 import { Colors } from '../../../../../utils/__colors'
-import { Currency } from '../../../../../utils/__currency'
 import Fab from '@material-ui/core/Fab';
 import TopBar from '../../../../View/jugador/TopBar'
 import ListaApuestas from '../ListaApuestas';
@@ -93,11 +92,8 @@ const useStyles = makeStyles(theme => ({
 
 const ApuestaActivaAsistente = ({ ...props }) => {
     const classes = useStyles();
-    const [title, setTitle] = useState('');
     const [hour, setHour] = useState('');
     const [day, setDay] = useState('');
-    const [comision, setComision] = useState(0.0);
-    const [riesgo, setRiesgo] = useState(0.0);
     const [total, setTotal] = useState(0.0);
     const [list, setList] = useState([]);
     const [apuestaType, setApuestaType] = useState('CHICA');
@@ -131,11 +127,8 @@ const ApuestaActivaAsistente = ({ ...props }) => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         playerService.list_apuestas_activas_details(apuestaId).then((result) => {
-            setTitle(result.data.title);
             setHour(result.data.hour);
             setDay(result.data.day);
-            setComision(parseFloat(result.data.comision));
-            setRiesgo(parseFloat(result.data.riesgo));
             setTotal(parseFloat(result.data.total));
             setList(Array.from(result.data.list));
             setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
@@ -188,11 +181,8 @@ const ApuestaActivaAsistente = ({ ...props }) => {
         dispatch(userActions.loading_start())
         playerService.list_apuestas_activas_details(apuestaId).then((result) => {
             setApuestaType(result.data.type)
-            setTitle(result.data.title);
             setHour(result.data.hour);
             setDay(result.data.day);
-            setComision(parseFloat(result.data.comision));
-            setRiesgo(parseFloat(result.data.riesgo));
             setTotal(parseFloat(result.data.total));
             setList(prev => Array.from(result.data.list));
             setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))

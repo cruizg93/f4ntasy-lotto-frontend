@@ -13,6 +13,9 @@
   line-height: 63px;
   z-index: 50;
   background: #f4f4f4;
+  border-left: solid 1px #9A9A9A;
+  border-right: solid 1px #9A9A9A;
+  max-width: 444px;
 }
 
 .ventas_activas_detalles .fixedFooter .localPrintshop{

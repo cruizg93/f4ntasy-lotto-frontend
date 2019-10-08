@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button/index";
-import { withStyles } from "@material-ui/core/styles/index";
-import SaveIcon from '@material-ui/icons/Save';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { MdSettings } from "react-icons/md";
@@ -38,9 +35,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const PlayerPassword = ({ ...props }) => {
-    const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const [password, setPassword] = useState('');
     const [values, setValues] = React.useState({
         password: '',
         showPassword: false,

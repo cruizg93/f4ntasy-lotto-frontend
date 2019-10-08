@@ -1,7 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import NumberFormat from 'react-number-format';
 import Dialog from '@material-ui/core/Dialog';
@@ -72,9 +71,9 @@ class InputDialog extends React.Component {
   }
 
   render() {
-    const icon = this.props.icon;
+    // const icon = this.props.icon;
     const titleFontSize = this.props.titleFontSize ? this.props.titleFontSize : '25px';
-    const contentFontSize = this.props.contentFontSize ? this.props.contentFontSize : '18px';
+    // const contentFontSize = this.props.contentFontSize ? this.props.contentFontSize : '18px';
     const contentHeight = this.props.contentHeight ? this.props.contentHeight : '80px';
     return (
       <Dialog

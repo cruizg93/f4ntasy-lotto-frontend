@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
-
 import { Currency } from '../../../../utils/__currency';
 import { FormatCurrency } from '../../../../utils/__currency';
 
@@ -15,19 +12,14 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-
 import Divider from '@material-ui/core/Divider';
-
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AsistenteDataShow from '../AsistenteEntry/index';
 import { adminService } from "../../../../service/api/admin/admin.service";
 import { Colors } from '../../../../utils/__colors';
 import { FaUserTimes } from 'react-icons/fa';
-import { FaRegEdit } from "react-icons/fa";
 import { FaAddressCard } from "react-icons/fa";
 import { IoIosStar } from "react-icons/io";
 import { TiPen } from "react-icons/ti";
@@ -257,8 +249,6 @@ const useStyles = makeStyles(theme => ({
         color: Colors.Btn_Blue,
         textAlign: "center",
         display: "flex",
-        alignItems: 'center',
-        justifyContent: 'center',
         '&:hover': {
             cursor: "pointer"
         }
@@ -297,7 +287,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
 
     //JugadorEnable decide si el jugador puede ser eliminado o editado
 
-    const jugadorEnable = balance == 0 && total == 0;
+    const jugadorEnable = balance === 0 && total === 0;
     const symbol = balance < 0 ? " - " : (balance > 0 ? " + " : "")
     const apuestaCurrency = monedaType.toLowerCase() === "lempira" ? Currency.Lempira : Currency.Dollar;
 

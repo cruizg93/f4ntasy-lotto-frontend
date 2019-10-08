@@ -1,8 +1,6 @@
 import React from 'react'
 import { makeStyles } from "@material-ui/core/styles/index";
 import { Colors } from "../../../utils/__colors";
-import Typography from '@material-ui/core/Typography';
-
 
 const useStyles = makeStyles(theme => ({
     circle: {
@@ -16,7 +14,6 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'row',
         alignItems: 'center',
     }
-
 }));
 const CircleNumber = ({ ...props }) => {
     const classes = useStyles();
@@ -28,7 +25,6 @@ const CircleNumber = ({ ...props }) => {
             <div className={classes.circle} style={{ width: width, height: width, color: color, fontSize: fontSize }}>
                 {props.numero}
             </div>
-
         </React.Fragment>
     )
 }

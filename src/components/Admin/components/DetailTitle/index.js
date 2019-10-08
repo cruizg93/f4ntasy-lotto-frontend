@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid, Container } from '@material-ui/core'
 import { FaFileExcel } from "react-icons/fa";
-import { IoIosContact } from "react-icons/io";
-import { IoIosContacts } from "react-icons/io";
+// import { IoIosContact } from "react-icons/io";
+// import { IoIosContacts } from "react-icons/io";
 import './styles.css';
 
 class DetailTitle extends React.Component {

@@ -1,16 +1,14 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import CircleNumber from "../../../Utils/CircleNumber/index";
-import { FaLock, FaBan } from "react-icons/fa";
-import { GoVerified } from "react-icons/go";
+// import { FaLock, FaBan } from "react-icons/fa";
+// import { GoVerified } from "react-icons/go";
 import { IoIosHelpCircleOutline, IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 
@@ -26,8 +24,8 @@ class ConfirmNumWinDialog extends React.Component {
   render() {
     const icon = this.props.icon;
     const titleFontSize = this.props.titleFontSize ? this.props.titleFontSize : '21px';
-    const contentFontSize = this.props.contentFontSize ? this.props.contentFontSize : '18px';
-    const contentHeight = this.props.contentHeight ? this.props.contentHeight : '80px';
+    // const contentFontSize = this.props.contentFontSize ? this.props.contentFontSize : '18px';
+    // const contentHeight = this.props.contentHeight ? this.props.contentHeight : '80px';
     return (
       <div className="container_rowList">
         <Grid container className="text_container" >
