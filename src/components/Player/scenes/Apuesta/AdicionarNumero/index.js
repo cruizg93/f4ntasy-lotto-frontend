@@ -347,6 +347,10 @@ class AdicionarNumeroApuesta extends Component {
             return { totalCurrent: currentTotal };
         });
 
+        console.log('erase', index)
+        console.log('erase', current)
+        console.log('erase', numero)
+
         // quitar apuesta de lista
         this.setState(state => {
             const entryList = state.entryList.filter((apuesta, i, arr) => i !== index);
@@ -448,7 +452,7 @@ class AdicionarNumeroApuesta extends Component {
             let id = this.match.params.apuestaId;
             const { dispatch } = this.props;
             dispatch(userActions.loading_start())
-            playerService.update_number(this.state.entry, id).then((result) => {
+            playerService.update_number(this.state.entryList, id).then((result) => {
                 if (result.status === 409) {
                     this.setState({
                         ...this.state,
@@ -518,6 +522,10 @@ class AdicionarNumeroApuesta extends Component {
         const transPos = rightPos + 100;
         this.classes = this.props.classes;
         const trans = this.state.showAddBtn ? 'translate(0px)' : `translate(${transPos}px)`
+
+
+        console.log('entry', this.state.entryList)
+
 
         const ApuestaInput = withStyles({
             root: {
