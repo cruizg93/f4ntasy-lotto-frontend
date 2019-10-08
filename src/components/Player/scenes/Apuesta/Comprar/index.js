@@ -128,15 +128,11 @@ const ComprarApuesta = ({ ...props }) => {
     const title = props.location.state.title.nombre;
     const [total, setTotal] = useState(0.0);
     const [comision, setComision] = useState(0.0);
-    const moneda = useState(props.location.state.moneda);
     const [id, setIdValue] = useState(props.location.state.id);
     const mounted = useState(true);
     const apuestaType = props.location.state.apuestaName.includes("CHICA");
     const [time, setTime] = useState("");
-
     const [open, setOpen] = useState(false);
-
-
 
     function handleClickOpen() {
         timeService.time().then((result) => {

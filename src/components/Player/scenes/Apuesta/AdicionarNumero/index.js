@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Prompt } from 'react-router-dom'
 import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Grid from '@material-ui/core/Grid';
@@ -14,9 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { Colors } from '../../../../../utils/__colors';
 import TopBar from '../../../../View/jugador/TopBar';
 import TextField from '@material-ui/core/TextField';
-import { MdSettingsInputSvideo, MdFileDownload, MdSettingsBackupRestore } from "react-icons/md";
-import { Currency, FormatCurrency } from '../../../../../utils/__currency';
-import { timeService } from "../../../../../service/api/time/time.service";
+import { MdFileDownload } from "react-icons/md";
+import { Currency } from '../../../../../utils/__currency';
 import ResumenApuestas from "../Resumen/ResumenApuestas";
 
 import ConfirmDialog from '../../../../View/Dialog/ConfirmDialog';

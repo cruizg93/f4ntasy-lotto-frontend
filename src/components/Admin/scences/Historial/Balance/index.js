@@ -25,7 +25,6 @@ const useStyles = makeStyles({
     },
 });
 
-
 const ImprimirButton = withStyles({
     root: {
         width: '100%',

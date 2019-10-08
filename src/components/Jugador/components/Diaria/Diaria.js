@@ -89,6 +89,7 @@ export default function Diaria({
                 <Grid container direction="row" className="row_input pl-45 pt-15">
                     <Grid item className="input">
                         <CustomText
+                            number
                             onChange={onChangeCostoMil}
                             value={diariaType !== 'dm' ? '' : costo}
                             disabled={diariaType !== 'dm' || activate}
@@ -101,6 +102,7 @@ export default function Diaria({
                 <Grid container direction="row" className="row_input pl-45 pt-15 pb-15">
                     <Grid item className="input">
                         <CustomText
+                            number
                             value={1000}
                             disabled={diariaType !== 'dm' || activate}
                             onChange={onChangePremioMil}
@@ -138,6 +140,7 @@ export default function Diaria({
                 <Grid container direction="row" className="row_input pl-45 pt-15">
                     <Grid item className="input">
                         <CustomText
+                            number
                             onChange={onChangeComisionMil}
                             value={diariaType !== 'dd' ? '' : comision}
                             disabled={diariaType !== 'dd' || activate}
@@ -150,6 +153,7 @@ export default function Diaria({
                 <Grid container direction="row" className="row_input pl-45 pt-15 pb-15">
                     <Grid item className="input">
                         <CustomText
+                            number
                             disabled={diariaType !== 'dd' || activate}
                             value={diariaType !== 'dd' ? '' : premioLempiras}
                             onChange={onChangePremioLempirasMil}

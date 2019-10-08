@@ -27,7 +27,6 @@ const useStyles = makeStyles(theme => ({
 
 const HistorialJugadorByDay = (props) => {
   const classes = useStyles();
-  console.log('monde', props.moneda)
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChangeExpand = panel => (event, isExpanded) => {

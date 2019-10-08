@@ -1,19 +1,13 @@
 import React from 'react';
 import { makeStyles, withStyles } from "@material-ui/core/styles/index";
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import { red } from "@material-ui/core/colors/index";
-import NumberFormat from 'react-number-format';
 import { Colors } from '../../../../utils/__colors';
-import Divider from '@material-ui/core/Divider';
 import ChicaLogo from '../../../View/assets/Chica_PNG.png';
 import { Container } from '@material-ui/core';
-import { MdSettings } from "react-icons/md";
+// import { MdSettings } from "react-icons/md";
 import { TiPencil } from "react-icons/ti";
 import CustomText from '../../../View/CustomText';
 
@@ -94,6 +88,7 @@ export default function Chica({
                 <Grid container direction="row" className="row_input pl-45 pt-15">
                     <Grid item className="input">
                         <CustomText
+                            number
                             onChange={onChangeCostoMil}
                             value={chicaType !== 'cm' ? '' : costoMil}
                             disabled={chicaType !== 'cm' || activate}
@@ -106,6 +101,7 @@ export default function Chica({
                 <Grid container direction="row" className="row_input pl-45 pt-15 pb-15">
                     <Grid item className="input">
                         <CustomText
+                            number
                             value={1000}
                             disabled={chicaType !== 'cm' || activate}
                             onChange={onChangePremioMil}
@@ -143,6 +139,7 @@ export default function Chica({
                 <Grid container direction="row" className="row_input pl-45 pt-15">
                     <Grid item className="input">
                         <CustomText
+                            number
                             onChange={onChangeComisionMil}
                             value={chicaType !== 'cd' ? '' : comision}
                             disabled={chicaType !== 'cd' || activate}
@@ -155,6 +152,7 @@ export default function Chica({
                 <Grid container direction="row" className="row_input pl-45 pt-15 pb-15">
                     <Grid item className="input">
                         <CustomText
+                            number
                             value={chicaType !== 'cd' ? '' : premioDirecto}
                             disabled={chicaType !== 'cd' || activate}
                             onChange={onChangePremioDirectoMil}
@@ -193,6 +191,7 @@ export default function Chica({
                 <Grid container direction="row" className="row_input pl-45 pt-15">
                     <Grid item className="input">
                         <CustomText
+                            number
                             onChange={onChangeComisionPedazos}
                             value={chicaType !== 'cp' ? '' : comisionPedazos}
                             disabled={chicaType !== 'cp' || activate}
@@ -205,6 +204,7 @@ export default function Chica({
                 <Grid container direction="row" className="row_input pl-45 pt-15">
                     <Grid item className="input">
                         <CustomText
+                            number
                             value={chicaType !== 'cp' ? '' : costoPedazos}
                             disabled={chicaType !== 'cp' || activate}
                             onChange={onChangeCostoPedazos}
@@ -218,6 +218,7 @@ export default function Chica({
                 <Grid container direction="row" className="row_input pl-45 pt-15 pb-15">
                     <Grid item className="input">
                         <CustomText
+                            number
                             value={chicaType !== 'cp' ? '' : premioPedazos}
                             disabled={chicaType !== 'cp' || activate}
                             onChange={onChangePremioPedazos}

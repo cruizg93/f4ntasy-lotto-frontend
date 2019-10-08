@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { adminService } from "../../../../../service/api/admin/admin.service";
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, withStyles } from "@material-ui/core/styles/index";
+import { makeStyles } from "@material-ui/core/styles/index";
 import { red, blue } from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
 import ApuestaActivaRiesgoEntry from '../../../components/ApuestasActiva/Detalles/ApuestasActivaDetalles';
@@ -65,7 +64,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ApuestaActivaAdminDetalle = (props) => {
-    const classes = useStyles();
     const [riesgoList, setRiesgoList] = useState([]);
     const [moneda, setMoneda] = useState("dolar");
     const [total, setTotal] = useState(0.0);

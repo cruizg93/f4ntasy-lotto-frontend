@@ -3,21 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import List from '@material-ui/core/List';
 import Grid from '@material-ui/core/Grid';
 import authenticationService from "../../../../service/api/authentication/authentication.service";
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
-import NumberFormat from 'react-number-format';
 import { adminService } from "../../../../service/api/admin/admin.service";
 import CircleNumber from "../../../Utils/CircleNumber/index";
-import { Currency } from '../../../../utils/__currency';
 import { FormatCurrencySymbol } from '../../../../utils/__currency';
 import { Add, Remove } from '@material-ui/icons';
 import DiariaLogo from '../../../View/assets/Diaria_PNG.png';
@@ -72,7 +61,6 @@ const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoId, sorteoType, 
     const [openAddition, setOpenAddition] = useState(false);
     const [errorPasswordOpen, setErrorPasswordOpen] = useState(false);
 
-    const handle = props.handle;
     const handleChange = panel => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };

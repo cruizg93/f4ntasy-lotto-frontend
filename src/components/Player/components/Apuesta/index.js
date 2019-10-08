@@ -60,7 +60,7 @@ class ApuestaData extends React.Component {
     }
 
     render() {
-        const apuestaCurrency = (this.props.apuesta.moneda === "LEMPIRA" || this.props.apuesta.moneda === "L") ? Currency.Lempira : Currency.Dollar;
+        // const apuestaCurrency = (this.props.apuesta.moneda === "LEMPIRA" || this.props.apuesta.moneda === "L") ? Currency.Lempira : Currency.Dollar;
         let hour = this.props.apuesta.hour
         let day = this.props.apuesta.day.toLowerCase()
         const moneySymbol = this.props.apuesta.moneda.toLowerCase() === 'dolar' ? '$' : 'L';
@@ -73,7 +73,7 @@ class ApuestaData extends React.Component {
                     justify="center"
                 >
                     <Grid item xs={4} className="logo_icon"
-                        component={Link}
+                        // component={Link}
                         component={this.props.apuesta.estado === 'ABIERTA' ? Link : 'div'}
                         to={
                             {

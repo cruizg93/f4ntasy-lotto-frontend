@@ -1,16 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
-import Divider from '@material-ui/core/Divider';
-import Paper from '@material-ui/core/Paper';
-import { Currency } from '../../../../../utils/__currency';
+import React from 'react';
 import { FormatCurrencySymbol } from '../../../../../utils/__currency';
 
 import './styles.css'
 
-// const ApuestaActivaRiesgoEntry = ({ numero, dineroApostado, posibleRiesgo, totalRiesgo, moneda, total, ...props }) => {
 class ApuestaActivaRiesgoEntry extends React.Component {
     constructor(props) {
         super(props)
@@ -69,24 +61,20 @@ class ApuestaActivaRiesgoEntry extends React.Component {
                             this.stableSort(this.props.riesgoList, this.getSorting(this.state.sortFilter)).slice()
                                 .map((numero, index) => {
                                     return (
-                                        <>
-                                            {
-                                                this.props.numeroMaxRiesgo === numero.numero ?
-                                                    <tr className="highlighted">
-                                                        <td className="numero">{numero.numero.toString().padStart(2, "0")}</td>
-                                                        <td>{symbol}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(this.props.moneda, numero.dineroApostado.toFixed(2))}</td>
-                                                        <td>{symbol}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(this.props.moneda, numero.posiblePremio.toFixed(2))}</td>
-                                                        <td style={{ textAlign: 'center' }}>{FormatCurrencySymbol(this.props.moneda, numero.totalRiesgo.toFixed(2))}</td>
-                                                    </tr>
-                                                    :
-                                                    <tr>
-                                                        <td className="numero">{numero.numero.toString().padStart(2, "0")}</td>
-                                                        <td>{symbol}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(this.props.moneda, numero.dineroApostado.toFixed(2))}</td>
-                                                        <td>{symbol}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(this.props.moneda, numero.posiblePremio.toFixed(2))}</td>
-                                                        <td style={{ textAlign: 'center' }}>{FormatCurrencySymbol(this.props.moneda, numero.totalRiesgo.toFixed(2))}</td>
-                                                    </tr>
-                                            }
-                                        </>
+                                        this.props.numeroMaxRiesgo === numero.numero ?
+                                            <tr key={index} className="highlighted">
+                                                <td className="numero">{numero.numero.toString().padStart(2, "0")}</td>
+                                                <td>{symbol}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(this.props.moneda, numero.dineroApostado.toFixed(2))}</td>
+                                                <td>{symbol}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(this.props.moneda, numero.posiblePremio.toFixed(2))}</td>
+                                                <td style={{ textAlign: 'center' }}>{FormatCurrencySymbol(this.props.moneda, numero.totalRiesgo.toFixed(2))}</td>
+                                            </tr>
+                                            :
+                                            <tr key={index}>
+                                                <td className="numero">{numero.numero.toString().padStart(2, "0")}</td>
+                                                <td>{symbol}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(this.props.moneda, numero.dineroApostado.toFixed(2))}</td>
+                                                <td>{symbol}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(this.props.moneda, numero.posiblePremio.toFixed(2))}</td>
+                                                <td style={{ textAlign: 'center' }}>{FormatCurrencySymbol(this.props.moneda, numero.totalRiesgo.toFixed(2))}</td>
+                                            </tr>
                                     );
                                 })
                         }

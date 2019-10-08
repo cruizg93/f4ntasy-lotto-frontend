@@ -71,9 +71,6 @@ const ImprimirButton = withStyles({
 const DetallesPAsistente = ({ ...props }) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
-    const [comision, setComision] = useState(0.0);
-    const [premio, setPremio] = useState(0.0);
-    const [balance, setBalance] = useState(0.0);
     const [numeroValue, setNumeroValue] = useState(0);
 
     const [total, setTotal] = useState(0.0);
@@ -86,10 +83,7 @@ const DetallesPAsistente = ({ ...props }) => {
             setList(result.data);
         })
         setTitle(props.location.state.title);
-        setComision(props.location.state.comision);
-        setPremio(props.location.state.premio);
         setTotal(props.location.state.total);
-        setBalance(props.location.state.balance);
         setNumeroValue(props.location.state.numero)
 
     }, []);

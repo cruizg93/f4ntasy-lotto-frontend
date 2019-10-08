@@ -1,26 +1,10 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import NumberFormat from 'react-number-format';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import { withStyles } from "@material-ui/core/styles";
 import CircleNumber from "../../../Utils/CircleNumber/index";
-
-const styles = {
-  someTextField: {
-    minHeight: 10,
-    maxHeight: 10,
-    fontSize: '0.9rem'
-  }
-};
 
 class DoubleVerificationDialog extends React.Component {
   constructor(props) {
@@ -33,9 +17,9 @@ class DoubleVerificationDialog extends React.Component {
   }
 
   render() {
-    const icon = this.props.icon;
+    // const icon = this.props.icon;
     const titleFontSize = this.props.titleFontSize ? this.props.titleFontSize : '25px';
-    const contentFontSize = this.props.contentFontSize ? this.props.contentFontSize : '18px';
+    // const contentFontSize = this.props.contentFontSize ? this.props.contentFontSize : '18px';
     const contentHeight = this.props.contentHeight ? this.props.contentHeight : '80px';
     return (
       <Dialog
