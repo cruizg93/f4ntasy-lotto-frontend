@@ -64,6 +64,13 @@
   padding-right: 0px;
   padding-bottom: 10px;
 }
+.time_text_valor .expansionPanel_day .expansionPanelBodyLast .summary .premio{
+  display: flex;
+  color: #229144;
+}
+.time_text_valor .expansionPanel_day .expansionPanelBodyLast .summary .premio .sign{
+  padding-right: 30px;
+}
 
 .time_text_valor .expansionPanel_day .header_icon{
   color: #183721;

@@ -260,8 +260,9 @@ class AdicionarNumeroApuesta extends Component {
         if (current.length == 0 || numero.length == 0) {
             return;
         }
+
         let costoApuesta = parseFloat(current) * parseFloat(this.state.costoXMil);
-        let costoTotal = parseInt(costoApuesta) + parseInt(this.state.costoTotal);
+        let costoTotal = parseFloat(costoApuesta) + parseFloat(this.state.costoTotal);
         let comisionApuesta = parseFloat(current) * parseFloat(this.state.comisionRate) / 100;
         let comisionTotal = parseFloat(comisionApuesta) + parseFloat(this.state.comisionTotal);
 
@@ -346,10 +347,6 @@ class AdicionarNumeroApuesta extends Component {
             let currentTotal = this.state.totalCurrent - parseInt(current)
             return { totalCurrent: currentTotal };
         });
-
-        console.log('erase', index)
-        console.log('erase', current)
-        console.log('erase', numero)
 
         // quitar apuesta de lista
         this.setState(state => {
@@ -523,10 +520,6 @@ class AdicionarNumeroApuesta extends Component {
         this.classes = this.props.classes;
         const trans = this.state.showAddBtn ? 'translate(0px)' : `translate(${transPos}px)`
 
-
-        console.log('entry', this.state.entryList)
-
-
         const ApuestaInput = withStyles({
             root: {
                 height: "100%",
@@ -567,7 +560,7 @@ class AdicionarNumeroApuesta extends Component {
                     apuestaType={this.state.apuestaType}
                     hour={this.state.hour}
                     day={this.state.day}
-                    total={this.state.total}
+                    total={this.state.costoTotal}
                     apuestaCurrency={this.apuestaCurrency}
                 />
                 <Container style={{ background: 'white', marginTop: 52 }}>
@@ -655,7 +648,7 @@ class AdicionarNumeroApuesta extends Component {
                 <div className={this.classes.ResumenApuestas}>
                     <ResumenApuestas apuestaCurrency={this.apuestaCurrency}
                         costoTotal={this.state.costoTotal} comisionTotal={this.state.comisionTotal} total={this.state.total}
-                        paddingBottom={0} marginL={-40}
+                        paddingBottom={0} marginL={50}
                     />
                 </div>
                 <Container maxwidth="xs" >

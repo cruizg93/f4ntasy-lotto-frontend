@@ -114,7 +114,7 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
                       </Grid>
                     )
                   }
-                  <Grid item xs={12} style={{ background: '#ecdbd2', height: 145, justifyContent: 'center', display: 'flex' }}>
+                  <Grid item xs={12} style={{ background: '#ede7b4', height: 145, justifyContent: 'center', display: 'flex' }}>
                     <Grid item xs={6} className="summary">
                       <RowList col_1={['Ventas:', 'Comisión:', 'Bonno:', 'Total:']} symbol={dayList.summary.currency.toLowerCase() === 'lempira' ? 'L' : '$'}
                         col_2={[dayList.summary.ventas, dayList.summary.comisiones, dayList.summary.bonos, dayList.summary.subTotal]}
@@ -125,7 +125,8 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
                         </div>
                         <div className="value">
                           <span>
-                            {dayList.summary.currency.toLowerCase() === 'lempira' ? 'L' : '$'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{dayList.summary.premios.toFixed(2)}
+                            {dayList.summary.currency.toLowerCase() === 'lempira' ? 'L' : '$'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                            {FormatCurrencySymbol(moneda, dayList.summary.premios.toFixed(2))}
                           </span>
                         </div>
                       </Grid>

@@ -134,11 +134,16 @@ const HistorialSemanaAnteriorAdmin = (props) => {
     const [weekId, setWeekId] = useState('');
     const [historyType, setHistoryType] = useState('vendedor');
     const [moneda, setMoneda] = useState('lempira');
+    const [colorStyle, setColorStyle] = useState('');
 
     useEffect(() => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         adminService.get_historial_weeklist().then((result) => {
+            if (result.data.summary) {
+                let color = result.data.summary.perdidasGanas > 0 ? '#009144' : result.data.summary.perdidasGanas < 0 ? '#ED1C24' : '#4E84C8'
+                setColorStyle(color)
+            }
             setWeekList(result.data)
             dispatch(userActions.loading_end())
         })
@@ -158,6 +163,8 @@ const HistorialSemanaAnteriorAdmin = (props) => {
             if (result.data.summary) {
                 let currency = result.data.summary.currency.toUpperCase() === 'LEMPIRA' ? 'L' : '$'
                 result.data.summary.currency = currency;
+                let color = result.data.summary.perdidasGanas > 0 ? '#009144' : result.data.summary.perdidasGanas < 0 ? '#ED1C24' : '#4E84C8'
+                setColorStyle(color)
             }
             setWeek(result.data)
             dispatch(userActions.loading_end())
@@ -247,12 +254,24 @@ const HistorialSemanaAnteriorAdmin = (props) => {
                                     <p>Perdidas / Ganancias:</p>
                                 </Grid>
                                 <Grid item xs={6} className="right_text">
-                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.ventas.toFixed(2))}</p>
-                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.comisiones.toFixed(2))}</p>
-                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.subTotal.toFixed(2))}</p>
-                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.premios.toFixed(2))}</p>
-                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.bonos.toFixed(2))}</p>
-                                    <p>{week.summary.currency}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(week.summary.currency, week.summary.perdidasGanas.toFixed(2))}</p>
+                                    <div className="left">
+                                        <p>{week.summary.currency}</p>
+                                        <p>{week.summary.currency}</p>
+                                        <p>{week.summary.currency}</p>
+                                        <p>{week.summary.currency}</p>
+                                        <p>{week.summary.currency}</p>
+                                        <p style={{ color: colorStyle }}>
+                                            {week.summary.perdidasGanas > 0 ? '+' : week.summary.perdidasGanas ? '-' : ''}{week.summary.currency}
+                                        </p>
+                                    </div>
+                                    <div className="right">
+                                        <p>{FormatCurrencySymbol(week.summary.currency, week.summary.ventas.toFixed(2))}</p>
+                                        <p>{FormatCurrencySymbol(week.summary.currency, week.summary.comisiones.toFixed(2))}</p>
+                                        <p>{FormatCurrencySymbol(week.summary.currency, week.summary.subTotal.toFixed(2))}</p>
+                                        <p>{FormatCurrencySymbol(week.summary.currency, week.summary.premios.toFixed(2))}</p>
+                                        <p>{FormatCurrencySymbol(week.summary.currency, week.summary.bonos.toFixed(2))}</p>
+                                        <p>{FormatCurrencySymbol(week.summary.currency, Math.abs(week.summary.perdidasGanas).toFixed(2))}</p>
+                                    </div>
                                 </Grid>
                             </Grid>
                             : <div></div>

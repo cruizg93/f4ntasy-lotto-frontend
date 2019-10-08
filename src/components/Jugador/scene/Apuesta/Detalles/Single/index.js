@@ -133,7 +133,7 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
     : Currency.Dollar;
 
   const apuestaId = props.location.state.id;
-  const jugadorId = props.location.state.userId;
+  const jugadorId = props.location.state.userid;
   const [open, setOpen] = useState(false);
   const [openError500Info, setOpenError500Info] = useState(false);
   const [openError409Info, setOpenError409Info] = useState(false);
@@ -214,7 +214,6 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
         dispatch(userActions.loading_end())
       });
   }
-
   return (
     <div className='admmin_detalle_ventas_individual'>
       <Container maxwidth="xs" style={{ padding: 0 }} className="container_detalle_individual_title">
@@ -260,7 +259,7 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
 
       <ResumenApuestas apuestaCurrency={apuestaCurrency}
         costoTotal={total} comisionTotal={comision} total={riesgo}
-        style={{ height: 85 }} />
+        style={{ height: 85 }} marginL={92} />
 
       <Grid container spacing={0}
         direction="row"
@@ -280,7 +279,7 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
                 id: props.location.state.id,
                 type: props.location.state.type,
                 moneda: props.location.state.moneda,
-                userId: props.location.state.userId,
+                userid: props.location.state.userid,
                 name: props.location.state.name,
                 username: props.location.state.username,
                 hour: props.location.state.hour,

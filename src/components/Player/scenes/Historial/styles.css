@@ -32,6 +32,16 @@
 .player_Sorteos_Pasados .right_text{
   padding-left: 18px;
   color: #4f83c8;
+  display: flex;
+}
+.player_Sorteos_Pasados .right_text .left{
+  padding-right: 15px;
+  width: max-content;
+  text-align: right;
+}
+.player_Sorteos_Pasados .right_text .right{
+  width: max-content;
+  text-align: right;
 }
 
 .player_Sorteos_Pasados .combo_bet .native_select{
