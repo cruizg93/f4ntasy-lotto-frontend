@@ -17,7 +17,10 @@ function time() {
             .then(
                 response => dispatch(success(response.data)),
                 error => dispatch(failure(error.toString()))
-            );
+            )
+            .catch(error => {
+
+            })
     };
     function success(time) { return { type: GET_TIME_SUCCESS, payload: time } }
     function failure(error) { return { type: GET_TIME_FAILURE, payload: error } }

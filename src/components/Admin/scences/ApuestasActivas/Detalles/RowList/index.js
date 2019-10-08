@@ -10,6 +10,7 @@ import './styles.css';
 class RowList extends React.Component {
   render() {
     const apuestaCurrency = this.props.symbol === "$" ? Currency.Lempira : Currency.Dollar;
+    const alignRight = this.props.alignRight ? 'right' : 'left'
     let left = (this.props.paddingLeft && this.props.paddingLeft !== 0) ? this.props.paddingLeft : 10;
     return (
       <Grid container maxwidth="xs" className="container_rowList_1">
@@ -24,7 +25,7 @@ class RowList extends React.Component {
               this.props.col_1.map((entry, index) => <span key={index}>{this.props.symbol}{'\u00A0'}<br /></span>)
             }
           </Grid>
-          <Grid item xs={6} className="text_value" style={{ paddingLeft: left }}>
+          <Grid item xs={6} className="text_value" style={{ paddingLeft: left, textAlign: alignRight }}>
             <div className="left">
               {
                 this.props.col_2.map((entry, index) => <span key={index}>{FormatCurrency(apuestaCurrency, entry)}<br /></span>)

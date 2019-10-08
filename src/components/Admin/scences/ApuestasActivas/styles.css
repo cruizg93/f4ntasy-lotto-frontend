@@ -1,5 +1,6 @@
 .container_ventas_generales{
   padding: 0 !important;
+  border-bottom: solid 1px #dbdcdd;
 }
 .container_ventas_generales .btn_group_moneda{
   margin-top: 60px;

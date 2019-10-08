@@ -36,9 +36,11 @@
   cursor: pointer;
 }
 .container_table_ventas .numero{
-  font-family: 'Arial Rounded MT bold';
-  color: #183721;
+  /* font-family: 'Arial Rounded MT bold'; */
+  /* color: #183721; */
+  color: black;
   text-align: center !important;
+  font-size: 1rem;
 }
 
 .container_table_ventas{

@@ -31,11 +31,17 @@
 }
 .detalle_ventas_generales .title_info .text{
   flex:2;
-  font-size: 14px;
-  color: #686768;
+  color: #202020;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  font-weight: 600;
-  text-align: center;
+  font-weight: 500;
+  text-align: left;
+  padding-left: 20px;
+  padding-top: 5px;
+}
+.detalle_ventas_generales .title_info .text p{
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 0 !important;
 }
 .detalle_ventas_generales .btn_group_moneda{
   flex: 1;
