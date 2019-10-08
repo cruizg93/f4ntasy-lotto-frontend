@@ -27,10 +27,10 @@ class Time extends Component {
     render() {
         return (
             <>
-                <div className={'clock__column'} style={{ textAlign: 'left', marginTop: '-8px' }}>
+                <div className={'clock__column'} style={{ textAlign: 'left', marginTop: '-4px' }}>
                     {this.props.current_day.toLowerCase()}
                 </div>
-                <div className={'clock__column'} style={{ marginTop: '-8px' }}>
+                <div className={'clock__column'} style={{ marginTop: '-4px' }}>
                     {this.props.current_time.toLowerCase()}
                 </div>
             </>

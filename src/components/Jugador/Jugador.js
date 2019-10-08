@@ -6,6 +6,7 @@ import { Grid, Container } from '@material-ui/core'
 
 import { adminService } from "../../service/api/admin/admin.service";
 import { FormatCurrency } from '../../utils/__currency';
+import { FormatCurrencySymbol } from '../../utils/__currency';
 import { Currency } from '../../utils/__currency';
 import JugadorDataShow from './components/JugadorEntry/index';
 import Button from '@material-ui/core/Button';
@@ -44,7 +45,7 @@ class Jugador extends Component {
         this.setState({
             ...this.state,
             apuestaCurrency: apuestaCurrency,
-            totalsMoney: FormatCurrency(apuestaCurrency, totals)
+            totalsMoney: totals
         })
     }
 
@@ -105,8 +106,8 @@ class Jugador extends Component {
                         </Button>
                     </Grid>
                     <Grid className="resumen_total">
-                        <span className="resumen_total_text">Totales:</span>
-                        <span className="resumen_total_val">{this.state.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{this.state.totalsMoney}</span>
+                        <span className="resumen_total_text">{'$'}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol('$', this.state.totalsMoney.toFixed(2))}</span>
+                        <span className="resumen_total_val">{'L'}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol('L', this.state.totalsMoney.toFixed(2))}</span>
                     </Grid>
                     <Grid container maxwidth="xs" direction="row">
                         {this.state.jugadorList.map((jugador, index) =>

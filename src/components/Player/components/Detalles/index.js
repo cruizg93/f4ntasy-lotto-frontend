@@ -80,7 +80,9 @@ const ShowDetallesApuesta = ({ title, apuestas, total, ...props }) => {
             </Grid>
             <Grid item xs={12} container justify="center">
                 {apuestasData.map((apuesta, index) =>
-                    <SingleApuestaDetails key={index} {...apuesta} {...props} moneda={moneda} />
+                    <SingleApuestaDetails key={index} {...apuesta} {...props} moneda={moneda}
+                        userid={props.userid}
+                    />
                 )}
             </Grid>
             <Grid item xs={12} style={{ marginTop: -15 }}>

@@ -20,6 +20,7 @@ const DetallesApuesta = ({ ...props }) => {
     const [moneda, setMoneda] = useState(" $ ");
     const [errorOpen, setErrorOpen] = useState(false);
 
+    const userid = (props.location.state.userid && props.location.state.username) ? props.location.state.userid : ''
     useEffect(() => {
         update()
         setApuestaType(props.location.state.type);
@@ -61,6 +62,7 @@ const DetallesApuesta = ({ ...props }) => {
                 });
         }
     }
+    console.log('dfsdfa', userid)
     return (
         <div className="ventas_activas_detalles" >
             <DetailTitle titleLabel="Detalle" />
@@ -77,7 +79,8 @@ const DetallesApuesta = ({ ...props }) => {
                 <Grid item xs={12} id="apuesta-activa-numeros-detalles">
                     {list.map((apuestaDetail, index) =>
                         <ShowDetallesApuesta key={index} {...apuestaDetail} index={index} moneda={moneda}
-                            update={update}
+                            // update={update} userid={userid === '' ? apuestaDetail.userId : userid}
+                            update={update} userid={apuestaDetail.userId}
                             {...props}
                         />
                     )}

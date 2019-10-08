@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles/index";
 import Typography from '@material-ui/core/Typography';
 import { Currency, FormatCurrency } from '../../../../../utils/__currency';
 import { Colors } from '../../../../../utils/__colors';
-
+import './styles.css'
 const useStyles = makeStyles({
     apuestaList: {
         width: "100%",
@@ -33,41 +33,30 @@ function ResumenApuestas(props) {
     const paddingBottom = props.paddingBottom ? props.paddingBottom : 0;
     const marginL = props.marginL ? props.marginL : 0;
     return (
-        <Grid container className={classes.resumenCompraContainer} style={{ paddingBottom: paddingBottom }}>
-            <Grid item xs={3} style={{ marginLeft: marginL }}></Grid>
-            <Grid item xs={3} style={{ margingBottom: "0.65rem" }}>
-                <Typography variant="body1" className={classes.resumenCompraText} >
-                    Costo:
-                </Typography>
-            </Grid>
-            <Grid item xs={6}>
-                <Typography variant="body1" className={classes.resumenCompraValue}>
-                    {props.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(props.apuestaCurrency, props.costoTotal)}
-                </Typography>
-            </Grid>
-            <Grid item xs={3} style={{ marginLeft: marginL }}></Grid>
-            <Grid item xs={3}>
-                <Typography variant="body1" className={classes.resumenCompraText}>
-                    Comision:
-                </Typography>
-            </Grid>
-            <Grid item xs={6}>
-                <Typography variant="body1" className={classes.resumenCompraValue}>
-                    {props.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(props.apuestaCurrency, props.comisionTotal)}
-                </Typography>
-            </Grid>
-            <Grid item xs={3} style={{ marginLeft: marginL }}></Grid>
-            <Grid item xs={3}>
-                <Typography variant="body1" className={classes.resumenCompraText}>
-                    Total:
-                </Typography>
-            </Grid>
-            <Grid item xs={6}>
-                <Typography variant="body1" className={classes.resumenCompraValue}>
-                    {props.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(props.apuestaCurrency, props.total)}
-                </Typography>
-            </Grid>
-        </Grid>
+        <div className="userP_apuntada_resume">
+            <div style={{ marginLeft: marginL }}></div>
+            <div className="left">
+                <div>Costo:</div>
+                <div>Comision:</div>
+                <div>Total:</div>
+            </div>
+            <div className="middle">
+                <div>L</div>
+                <div>L</div>
+                <div>L</div>
+            </div>
+            <div className="right">
+                <div>
+                    {FormatCurrency(props.apuestaCurrency, props.costoTotal)}
+                </div>
+                <div>
+                    {FormatCurrency(props.apuestaCurrency, props.comisionTotal)}
+                </div>
+                <div>
+                    {FormatCurrency(props.apuestaCurrency, props.total)}
+                </div>
+            </div>
+        </div>
     )
 
 }

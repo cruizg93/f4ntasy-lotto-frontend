@@ -12,16 +12,23 @@ const SingleApuestaDetails = ({ numero, valor, ...props }) => {
     function handleClickOpen() {
         setOpen(true);
     }
-
+    console.log('useriiiiidddf', props.userid)
     function handleClose(value) {
         setOpen(false);
         if (value === true) {
-            playerService.delete_apuestas_activas_sorteoAndNumeroAndJugador(props.location.state.id, numero).then((result) => {
-                props.update();
-            })
+            if (props.userid) {
+                playerService.delete_apuestas_activas_detallesX_sorteoAndNumeroAndJugador(props.location.state.id, props.userid, numero).then((result) => {
+                    props.update();
+                })
+            } else {
+                playerService.delete_apuestas_activas_sorteoAndNumeroAndJugador(props.location.state.id, numero).then((result) => {
+                    props.update();
+                })
+            }
         }
     }
-
+    console.log('sortid', props.location.state.id)
+    console.log('userid', props.userid)
     return (
         <div className="singleApuestaDetails">
             <div id={`text-${props.index}`} className='textNumber'>

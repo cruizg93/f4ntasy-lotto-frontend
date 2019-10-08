@@ -1,0 +1,28 @@
+.userP_apuntada_resume{
+  display: flex;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  line-height: 1.5;
+  font-size: 1.1rem;
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+  background-color: #f4f4f4;
+}
+.userP_apuntada_resume .left{
+  width: max-content;
+  color: #999999;
+  text-align: left;
+  padding-right: 15px;
+}
+
+.userP_apuntada_resume .middle{
+  width: max-content;
+  color: #6699cc;
+  padding-right: 15px;
+  text-align: right;
+}
+
+.userP_apuntada_resume .right{
+  width: max-content;
+  text-align: right;
+  color: #6699cc;
+}

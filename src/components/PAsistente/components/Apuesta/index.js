@@ -120,7 +120,7 @@ class ApuestaData extends React.Component {
                                 onClick={this.handleClickValue.bind(this)}
                             >
                                 <Typography style={{ marginLeft: 7, fontSize: '1.1rem' }} >
-                                    {moneySymbol}{'\u00A0'}{FormatCurrencySymbol(moneySymbol, this.props.apuesta.total.toFixed(2))}
+                                    {this.props.apuesta.total}
                                 </Typography>
                             </Grid>
                         </Grid>

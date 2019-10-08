@@ -243,7 +243,7 @@ const ApuestaActiva = ({ ...props }) => {
 
             <ResumenApuestas apuestaCurrency={apuestaCurrency}
                 costoTotal={total} comisionTotal={comision} total={riesgo}
-                style={{ height: 85 }} />
+                style={{ height: 85 }} marginL={92} />
 
             <Grid container spacing={0}
                 direction="row"

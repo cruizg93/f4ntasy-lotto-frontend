@@ -72,7 +72,7 @@ const useStyles = makeStyles(theme => ({
     text: {
         display: 'flex',
         justifyContent: 'flex-start',
-        color: '#000000',
+        color: '#4E84C8',
     },
     textPositive: {
         display: 'flex',
@@ -445,7 +445,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                         {
                             pathname: `/jugador/apuestas/detalles`,
                             state: {
-                                id: id,
+                                userid: id,
                                 username: username
                             }
                         }
@@ -486,8 +486,8 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                     </Grid>
                     <Grid >
                         <span className={balance < 0 ? classes.textNegative : (balance > 0 ? classes.textPositive : classes.text)}
-                            style={{ padding: 10, color: '#6699cc' }}>
-                            {monedaSymbol}{'\u00A0'}{symbol}{FormatCurrency(apuestaCurrency, balance)}
+                            style={{ padding: 3 }}>
+                            {symbol}{monedaSymbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency, Math.abs(balance))}
                         </span>
                     </Grid>
                 </Grid>
