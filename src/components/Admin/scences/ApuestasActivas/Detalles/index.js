@@ -7,10 +7,11 @@ import { makeStyles } from "@material-ui/core/styles/index";
 import { red, blue } from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
 import ApuestaActivaRiesgoEntry from '../../../components/ApuestasActiva/Detalles/ApuestasActivaDetalles';
-import { printDocument6 } from "../../../../../_helpers/print";
+// import { printDocument6 } from "../../../../../_helpers/print";
 import AdminTitle from '../../../components/AdminTitle';
 import RowList from './RowList'
 import { LocalPrintshop } from "@material-ui/icons";
+import InformationDialog from '../../../../View/Dialog/InformationDialog';
 import Fab from '@material-ui/core/Fab';
 import Dollar_ON from '../../../../View/assets/Dollar_ON.png';
 import Dollar_OFF from '../../../../View/assets/Dollar_OFF.png';
@@ -65,15 +66,16 @@ const useStyles = makeStyles(theme => ({
 
 const ApuestaActivaAdminDetalle = (props) => {
     const [riesgoList, setRiesgoList] = useState([]);
-    const [moneda, setMoneda] = useState("dolar");
+    const [moneda, setMoneda] = useState("lempira");
     const [total, setTotal] = useState(0.0);
     const [comision, setComision] = useState(0.0);
     const [neta, setNeta] = useState(0.0);
-    const [title, setTitle] = useState(0.0);
+    // const [title, setTitle] = useState(0.0);
     const [numeroMaxRiesgo, setNumeroMaxRiesgo] = useState(0.0);
     const [dineroApostadoMaxRiesgo, setDineroApostadoMaxRiesgo] = useState(0.0);
     const [posiblePremioMaxRiesgo, setPosiblePremioMaxRiesgo] = useState(0.0);
     const [totalRiesgoMaxRiesgo, setTotalRiesgoMaxRiesgo] = useState(0.0);
+    const [errorOpen, setErrorOpen] = useState(false);
 
     const col = ['Ventas:', 'Comisiónes:', 'Sub-total:'];
 
@@ -94,7 +96,10 @@ const ApuestaActivaAdminDetalle = (props) => {
     }, []);
 
     function update(result) {
-        setNumeroMaxRiesgo(result.data.maxRiesgo.numero);
+        let maxPremio = result.data.tuplaRiesgos.reduce((calc, row) => (
+            (calc.posiblePremio || 0) > row.posiblePremio ? calc : row
+        ), {})
+        setNumeroMaxRiesgo(maxPremio.numero);
         setDineroApostadoMaxRiesgo(result.data.maxRiesgo.dineroApostado);
         setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
         setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
@@ -133,11 +138,17 @@ const ApuestaActivaAdminDetalle = (props) => {
                 });
         }
     }
-
     function handleOnPrint() {
-        const input = document.getElementById("resumen-apuesta-activa-data-admin");
-        printDocument6(input, title + '-resumen-apuesta-activa-admin');
+        setErrorOpen(true)
     }
+    function handleClose() {
+        setErrorOpen(false)
+    }
+
+    // function handleOnPrint() {
+    //     const input = document.getElementById("resumen-apuesta-activa-data-admin");
+    //     printDocument6(input, title + '-resumen-apuesta-activa-admin');
+    // }
     return (
         <React.Fragment>
             <Container maxwidth="xs" style={{ padding: 0 }}>
@@ -150,7 +161,8 @@ const ApuestaActivaAdminDetalle = (props) => {
                             {props.location.state.type === "DIARIA" ? <img src={Diaria_PNG} alt="Diaria_PNG" /> : <img src={Chica_PNG} alt="Chica_PNG" />}
                         </div>
                         <div className="text">
-                            {props.location.state.time}{" - "}{props.location.state.day}
+                            <p>{props.location.state.time}</p>
+                            <p>{props.location.state.day}</p>
                         </div>
                     </Grid>
                     <Grid item xs={4} className="btn_group_moneda" >
@@ -164,7 +176,8 @@ const ApuestaActivaAdminDetalle = (props) => {
                 </Container>
                 <div id="resumen-apuesta-activa-data-admin" style={{ maxWidth: 444, width: '100%' }}>
                     <div className="container_total">
-                        <RowList key={0} col_1={col} symbol={moneda === "dolar" ? '$' : 'L'} col_2={[total, comision, neta]} ></RowList>
+                        <RowList key={0} col_1={col} symbol={moneda === "dolar" ? '$' : 'L'}
+                            col_2={[total, comision, neta]} alignRight></RowList>
                     </div>
                     <Grid container>
                         <ApuestaActivaRiesgoEntry moneda={moneda} riesgoList={riesgoList} numeroMaxRiesgo={numeroMaxRiesgo} neta={neta} />
@@ -177,6 +190,17 @@ const ApuestaActivaAdminDetalle = (props) => {
                     </Grid>
                 </div>
             </Grid>
+            <InformationDialog
+                open={errorOpen}
+                handleClose={handleClose}
+                title={'Opcion no disponible'}
+                context={'La opcion de imprimir no esta disponible en este momento, se esta trabajando en su implementacion'}
+                icon={'ioIosWarning'}
+                iconSize={67}
+                titleFontSize={'22px'}
+                contentFontSize={'16px'}
+                contentHeight={'80px'}>
+            </InformationDialog>
         </React.Fragment>
     )
 };

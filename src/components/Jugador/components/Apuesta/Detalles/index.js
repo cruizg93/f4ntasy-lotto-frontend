@@ -1,19 +1,9 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Button from "@material-ui/core/Button/index";
-import TextField from '@material-ui/core/TextField';
-import NumberFormat from 'react-number-format';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-
 import { Link } from 'react-router-dom';
 import { Currency } from '../../../../../utils/__currency';
 import { FormatCurrency } from '../../../../../utils/__currency';
-import { MainStyles } from '../../../../View/MainStyles';
 import { adminService } from "../../../../../service/api/admin/admin.service";
 import DiariaLogo from '../../../../View/assets/Diaria_PNG.png';
 import ChicaLogo from '../../../../View/assets/Chica_PNG.png';

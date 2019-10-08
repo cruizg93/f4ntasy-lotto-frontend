@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Grid from '@material-ui/core/Grid';
@@ -203,7 +203,7 @@ class AdicionarNumeroApuestaAsistente extends Component {
         if (event.key === "Enter") {
             let numero = this.entryNumeroInputRef.current.value;
             let unidades = this.entryUnidadesInputRef.current.value;
-            if (unidades.length == 0 || numero.length == 0) {
+            if (unidades.length === 0 || numero.length === 0) {
                 return;
             } else {
                 this.agregarApuesta(null);
@@ -220,7 +220,7 @@ class AdicionarNumeroApuestaAsistente extends Component {
     agregarApuesta = (event) => {
         let numero = this.entryNumeroInputRef.current.value;
         let current = this.entryUnidadesInputRef.current.value;//costo
-        if (current.length == 0 || numero.length == 0) {
+        if (current.length === 0 || numero.length === 0) {
             return;
         }
         let costoApuesta = parseFloat(current) * parseFloat(this.state.costoXMil);
@@ -421,7 +421,6 @@ class AdicionarNumeroApuestaAsistente extends Component {
 
         const ApuestaInput = withStyles({
             root: {
-                height: "100%",
                 height: "2.25rem",
                 borderRadius: "100px",
                 border: "#afb6b8 1px solid",

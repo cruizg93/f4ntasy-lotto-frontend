@@ -40,6 +40,10 @@
 .valuesContainer .total_amount{
   color:#4f83c8;
 }
+.valuesContainer .total_amount .body1{
+  font-size: 1.1rem;
+  margin-left: 7px;
+}
 
 @media (max-width: 410px){
   .container_jugadorDetailesEntry .logo_icon img{

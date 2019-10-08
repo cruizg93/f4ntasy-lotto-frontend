@@ -33,14 +33,13 @@ const useStyles = makeStyles(theme => ({
 
 const ApuestasActivasAdmin = (props) => {
     const [apuestasActivas, setApuestasActivasList] = useState([]);
-    const [moneda, setMoneda] = useState("dolar");
+    const [moneda, setMoneda] = useState("lempira");
     const [values, setValues] = useState([]);
-    const classes = useStyles();
     const col = ['Ventas:', 'Comisión:', 'Totales:'];
     useEffect(() => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
-        adminService.get_apuestas_activas("dolar").then((result) => {
+        adminService.get_apuestas_activas(moneda).then((result) => {
             setApuestasActivasList(Array.from(result.data));
             let total = result.data.reduce((sum, row) => sum + row.total, 0);
             let comision = result.data.reduce((sum, row) => sum + row.comision, 0);
@@ -104,7 +103,7 @@ const ApuestasActivasAdmin = (props) => {
         <React.Fragment>
             <ToastContainer autoClose={8000} />
             <Container maxwidth="xs" style={{ padding: 0 }}>
-                <AdminTitle titleLabel='Resumen Ventas Generales' />
+                <AdminTitle titleLabel='Resumen Ventas Generales' fontSize="21px" iconName="IoIosContacts" />
             </Container>
             <Container maxwidth="xs" className="container_ventas_generales">
                 <Grid item xs={12} className="btn_group_moneda" >
@@ -124,7 +123,7 @@ const ApuestasActivasAdmin = (props) => {
                     )}
                 </Grid>
             </Container>
-            <Container maxwidth="xs" style={{ padding: 0 }}>
+            <Container maxwidth="xs" style={{ padding: 0, marginTop: -8 }}>
                 <Grid container maxwidth="xs" className="container_summary">
                     <Grid item xs={10} className="summaryTotal" >
                         <RowList col_1={col} symbol={moneda === "dolar" ? '$' : 'L'} col_2={values} style={{ height: 95 }}></RowList>

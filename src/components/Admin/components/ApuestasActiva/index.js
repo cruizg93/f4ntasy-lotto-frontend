@@ -201,7 +201,7 @@ class ApuestasDetallesEntry extends React.Component {
                   }
                 }
               >
-                <Typography variant="body1" style={{ marginLeft: 7 }} >
+                <Typography className="body1" >
                   {moneySymbol}{'\u00A0'}{FormatCurrencySymbol(moneySymbol, this.props.total.toFixed(2))}
                 </Typography>
               </Grid>

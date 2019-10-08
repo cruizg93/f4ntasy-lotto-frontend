@@ -71,7 +71,7 @@ const JugadorDetalles = ({ ...props }) => {
         <React.Fragment>
             <ToastContainer autoClose={8000} />
             <Container maxwidth="xs" style={{ padding: 0 }}>
-                <AdminTitle titleLabel='Resumen Venta Individual' iconName='IoIosContact' />
+                <AdminTitle titleLabel='Resumen Venta Individual' fontSize="21px" iconName='IoIosContact' />
             </Container>
             <Container maxwidth="xs" className="container_individual">
                 <Grid item xs={12} className="userInfo" >
