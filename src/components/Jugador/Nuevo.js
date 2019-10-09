@@ -183,7 +183,7 @@ const Nuevo = ({ ...props }) => {
     }
     let data = {
       name: inputUserName,
-      password: inputPassword,
+      password: inputPassword === '' ? "1" : inputPassword,
       username: placeholderUser,
       utype: utype,
       mtype: selectedValueMoneda,
@@ -195,6 +195,7 @@ const Nuevo = ({ ...props }) => {
       cparam2: cparam2,
       cparam3: cparam3,
     };
+
     const { dispatch } = props;
     dispatch(userActions.loading_start())
     adminService.new_player(data)

@@ -53,25 +53,22 @@ const NewAsistente = ({ ...props }) => {
     const [openError, setOpenError] = useState(false);
     const [comboBox, setComboBox] = useState('none');
     const [username, setUsername] = useState('none');
-    const mounted = useState(true);
-
 
     useEffect(() => {
         users();
     }, [])
 
     function handleClickOpen() {
-        setComboBox('none')
-        setUsername('none')
         if (inputPassword === '' || inputUserName === '' || placeholderUser.includes("P000x0")) {
             setOpenError(true)
         } else {
-            setOpen(true);
+            onClickHandlerCreate()
         }
     }
 
     function handleClose() {
         setOpen(false);
+        props.history.push("/");
     }
     function handleCloseError() {
         setOpenError(false);
@@ -87,25 +84,8 @@ const NewAsistente = ({ ...props }) => {
         }, 3000)
     }
 
-    function handleAceptarClose() {
-        onClickHandlerCreate();
-        setOpen(false);
-        props.history.push("/");
-        return () => {
-            mounted.current = false;
-        };
-    }
-
     function onClickHandlerCreate() {
         let utype = person;
-        let submit = true;
-        if (inputPassword === '' || inputUserName === '' || placeholderUser.includes("P000x0")) {
-            submit = false;
-        }
-        if (!submit) {
-            error_reponse();
-            return;
-        }
         let data = {
             name: inputUserName,
             password: inputPassword,
@@ -115,10 +95,11 @@ const NewAsistente = ({ ...props }) => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         adminService.add_player_asistente(data).then((result) => {
-            success_response();
-            setInputUserName('');
-            setInputPassword('123456789');
-            users();
+            if (result.status === 409 || result.status === 500) {
+                setOpenError(true);
+            } else {
+                setOpen(true)
+            }
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -140,28 +121,10 @@ const NewAsistente = ({ ...props }) => {
                 dispatch(userActions.loading_end())
             },
                 (error) => {
-                    var status = error.response.status
+                    // var status = error.response.status
                     dispatch(userActions.loading_end())
                 }
             );
-    }
-
-    function success_response() {
-        toast.success("Usuario guardado !", {
-            position: toast.POSITION.TOP_RIGHT
-        });
-    }
-
-    function duplicado() {
-        toast.warn("Usuario duplicado !", {
-            position: toast.POSITION.TOP_RIGHT
-        });
-    }
-
-    function error_reponse() {
-        toast.error("Existen datos erroneos o incompletos !", {
-            position: toast.POSITION.TOP_RIGHT
-        });
     }
 
     const handleChangeSelect = event => {

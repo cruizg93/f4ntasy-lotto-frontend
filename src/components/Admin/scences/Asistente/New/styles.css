@@ -5,6 +5,7 @@
   height: 80px;
   display: flex;
   justify-content: center;
+  background: white;
 }
 .container_create_vendedor_x .combo_box .native_select{
   align-self: center;
@@ -40,6 +41,11 @@
   background: white;
   width: 100%;
   height: 76px;
+  max-width: 444px;
+  border-left: solid 1px gray;
+  border-right: solid 1px gray;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .container_create_vendedor_x .container_crear_btn .crear_btn{
   background: #5891DC;

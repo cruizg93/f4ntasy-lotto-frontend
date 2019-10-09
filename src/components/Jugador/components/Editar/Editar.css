@@ -5,3 +5,77 @@
     text-align: center;
     align-items: center;
 }
+
+.container_editar_p{
+    padding-top: 60px;
+    padding-bottom: 80px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.container_editar_p .btn_group_moneda{
+  flex: 1;
+  margin-left: -15px;
+}
+.container_editar_p .btn_group_moneda{
+  text-align: right;
+  display: flex;
+  padding-left: 3px;
+}
+.container_editar_p .btn_group_moneda button{
+  border: none;
+}
+.container_editar_p .btn_group_moneda img{
+  width: 40px;
+}
+.container_editar_p .title_info .text{
+    font-size: 12px;
+    color: #BCBCBC;
+    margin-top: 30px;
+}
+
+.container_editar_p .container_usersetting{
+    background: white;
+    padding: 0;
+}
+
+.container_editar_p .container_usersetting .username{
+    width: 235px;
+    margin-left: 45px;
+}
+
+.container_editar_p .crear_vendedor_p{
+    background: blue;
+    width: 153px;
+    height: 37px;
+    color: white;
+    border-radius: 20px;
+}
+.container_editar_p .container_btn_crear{
+  background: white;
+  height: 76px;
+  position: fixed;
+  bottom: 0;
+  max-width: 442px;
+  border-top: solid 1px #9a9a9a;
+}
+.container_editar_p .container_btn_crear .btn_crear{
+  background: #5891DC !important;
+  height: 37px !important;
+  width:153px !important;
+  color: white !important;
+  padding-left: 10px !important;
+  margin-left: 12px !important;
+  margin-right: 14px !important;
+}
+.container_editar_p .container_btn_crear .btn_crear .iconP{
+  font-size: 30px;
+}
+.container_editar_p  .container_btn_crear .btn_crear .textP::first-letter {
+  text-transform: uppercase;
+}
+.container_editar_p .container_btn_crear .btn_crear .textP{
+  text-transform: lowercase;
+  font-size: 17px;
+  padding-left: 9px;
+}

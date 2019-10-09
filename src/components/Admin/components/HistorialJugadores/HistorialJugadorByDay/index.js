@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
 const HistorialJugadorByDay = (props) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [colorStyle, setColorStyle] = useState('');
 
   const handleChangeExpand = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -39,7 +40,8 @@ const HistorialJugadorByDay = (props) => {
     props.apuesta.balance < 0 ? '-' : '\u00A0';
   const disable = props.apuesta.balance === 0 ? false : false;
   // const disable = props.apuesta.balance === 0 ? true : false;
-
+  const colorTmp = props.apuesta.summary.perdidasGanas > 0 ? '#009144' : (props.apuesta.summary.perdidasGanas < 0 ? '#ED1C24' : '#4E84C8')
+  // setColorStyle(colorTmp)
   return (
     <Grid container maxwidth='xs' className="container_historial_jugadorByDay">
       <Grid item xs={12} >
@@ -92,11 +94,22 @@ const HistorialJugadorByDay = (props) => {
                               <p>Perdidas / Ganancias:</p>
                             </Grid>
                             <Grid item xs={6} className="right_text">
-                              <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, props.apuesta.summary.ventas.toFixed(2))}</p>
-                              <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, props.apuesta.summary.comisiones.toFixed(2))}</p>
-                              <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, props.apuesta.summary.subTotal.toFixed(2))}</p>
-                              <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, props.apuesta.summary.premios.toFixed(2))}</p>
-                              <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, props.apuesta.summary.perdidasGanas.toFixed(2))}</p>
+                              <div className="left">
+                                <p>{props.moneda}</p>
+                                <p>{props.moneda}</p>
+                                <p>{props.moneda}</p>
+                                <p>{props.moneda}</p>
+                                <p style={{ color: colorTmp }}>
+                                  {props.apuesta.summary.perdidasGanas > 0 ? '+' : props.apuesta.summary.perdidasGanas ? '-' : ''}{props.moneda}
+                                </p>
+                              </div>
+                              <div className="right">
+                                <p>{FormatCurrencySymbol(props.moneda, props.apuesta.summary.ventas.toFixed(2))}</p>
+                                <p>{FormatCurrencySymbol(props.moneda, props.apuesta.summary.comisiones.toFixed(2))}</p>
+                                <p>{FormatCurrencySymbol(props.moneda, props.apuesta.summary.subTotal.toFixed(2))}</p>
+                                <p>{FormatCurrencySymbol(props.moneda, props.apuesta.summary.premios.toFixed(2))}</p>
+                                <p>{FormatCurrencySymbol(props.moneda, Math.abs(props.apuesta.summary.perdidasGanas).toFixed(2))}</p>
+                              </div>
                             </Grid>
                           </Grid>
                         </Grid>
