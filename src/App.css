@@ -1,5 +1,5 @@
 .app-container{
-  height: 100vh;
+  min-height: 100vh;
   background: #f4f4f4;
   -ms-overflow-style: none; 
   overflow: -moz-scrollbars-none;
@@ -7,7 +7,10 @@
 .app-container::-webkit-scrollbar { 
     display: none;
 }
-
+body{
+  padding-right: 0 !important;
+  overflow: auto !important;
+}
 .app-main{
   padding-left: 0px !important;
   padding-right: 0px !important;
@@ -53,4 +56,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.clearfix::after {
+  content: ' ';
+  clear: both;
 }

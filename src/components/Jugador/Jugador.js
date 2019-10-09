@@ -17,6 +17,7 @@ import { userActions } from '../../store/actions';
 
 import 'react-toastify/dist/ReactToastify.css';
 import './Jugador.css';
+import { css } from "glamor";
 class Jugador extends Component {
     constructor(props) {
         super(props);
@@ -30,6 +31,9 @@ class Jugador extends Component {
     toast_notification = (type) => {
         if (type === "success") {
             toast.success("Usuario eliminado !", {
+                className: css({
+                    background: "#5891DC !important"
+                }),
                 position: toast.POSITION.TOP_RIGHT
             });
         } else {
@@ -85,7 +89,7 @@ class Jugador extends Component {
     render() {
         return (
             <div>
-                <ToastContainer autoClose={8000} />
+                <ToastContainer autoClose={3000} />
                 <Container maxwidth="xs" className="resumen_container">
                     <Grid container
                         direction="row"
