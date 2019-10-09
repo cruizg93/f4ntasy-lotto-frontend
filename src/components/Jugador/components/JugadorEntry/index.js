@@ -417,7 +417,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                     </Typography>
                 </Grid>
                 <Grid className="grid_lolosStar">
-                    <IoIosStar style={{ color: "#ff8b12" }} onClick={() => { handleClickInfoOpen(id) }} />
+                    <IoIosStar style={{ color: "#AEAEAE" }} onClick={() => { handleClickInfoOpen(id) }} />
                 </Grid>
                 <Grid className="grid_tiPen"
                     component={jugadorEnable ? Link : "div"} to={
@@ -429,10 +429,10 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                         }
                     }
                 >
-                    <TiPen style={{ color: "#009933" }} onClick={handleClickOpenNoEditar} />
+                    <TiPen style={{ color: "#AEAEAE" }} onClick={handleClickOpenNoEditar} />
                 </Grid>
                 <Grid className="grid_goTranhcan" >
-                    <GoTrashcan style={{ color: "#ff3333" }} onClick={jugadorEnable ? handleClickOpen : handleClickOpenNoEliminar} />
+                    <GoTrashcan style={{ color: "#AEAEAE" }} onClick={jugadorEnable ? handleClickOpen : handleClickOpenNoEliminar} />
                 </Grid>
                 <Grid item xs={12}>
                     <Divider />

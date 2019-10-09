@@ -56,10 +56,10 @@ const AsistenteDataShow = ({ match, id, username, name, ...props }) => {
                     }
                 }
             >
-                <TiPen style={{ color: "#009933" }} onClick={handleClickOpen} />
+                <TiPen style={{ color: "#AEAEAE" }} onClick={handleClickOpen} />
             </Grid>
             <Grid className="grid_goTranhcan" >
-                <GoTrashcan style={{ color: "#ff3333" }} onClick={handleClickOpen} />
+                <GoTrashcan style={{ color: "#AEAEAE" }} onClick={handleClickOpen} />
             </Grid>
             <Dialog
                 disableBackdropClick

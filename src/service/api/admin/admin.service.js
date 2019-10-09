@@ -23,6 +23,7 @@ export const adminService = {
     get_historial_weekOverview,
     get_historial_weekOverviewByJugador,
     get_historial_apuestasOverview_sorteoAndJugador,
+    get_historial_apuestasOverview_sorteo,
     get_historial_by_type,
     get_historial_current_week_by_id_and_type,
     get_historial_current_week_by_id_and_type_details,
@@ -273,6 +274,9 @@ function add_player_asistente(data) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 409 || error.response.status === 500) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -584,6 +588,28 @@ function get_historial_apuestasOverview_sorteoAndJugador(jugadorId, id) {
     };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/history/weeks/jugador/${jugadorId}/sorteo/${id}`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function get_historial_apuestasOverview_sorteo(id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/history/weeks/jugador/sorteo/${id}`,
             requestOptions
         )
             .then((responseJson) => {

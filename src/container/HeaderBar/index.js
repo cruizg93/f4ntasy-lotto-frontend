@@ -12,7 +12,7 @@ import Toolbar from '../Toolbar/Toolbar';
 import SideDrawer from '../SideDrawer/SideDrawer';
 import Backdrop from './Backdrop/Backdrop';
 import Clock from "../../components/Clock/Clock";
-
+import { GoSignOut } from "react-icons/go";
 import authenticationService from "../../service/api/authentication/authentication.service";
 import { history } from "../../_helpers/history";
 import { userActions } from '../../store/actions';
@@ -101,19 +101,32 @@ class HeaderBar extends Component {
                     aria-describedby="alert-dialog-description"
                 >
                     <DialogTitle style={{ width: '279px', textAlign: 'center' }}
-                        id="alert-dialog-crear-usuario">Salir</DialogTitle>
+                        id="alert-dialog-crear-usuario">
+                        <div className="dialogTitle">
+                            <div style={{ textAlign: 'center', paddingBottom: 13, paddingTop: 35 }}>
+                                <GoSignOut size={45} />
+                            </div>
+                            <div style={{ fontSize: 25, textAlign: 'left', paddingLeft: 13 }}>
+                                Salir
+                            </div>
+                        </div>
+                    </DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
                             {`Desea salir?`}
                         </DialogContentText>
                     </DialogContent>
-                    <DialogActions>
-                        <Button onClick={this.handleClose} color="primary">
+                    <DialogActions style={{ margin: '0 auto', width: '100%' }}>
+                        <Button onClick={this.handleClose}
+                            style={{ fontSize: '18px', color: '#5891DC', marginRight: 10 }}
+                            color="primary">
                             Cancel
                                 </Button>
                         <Button onClick={() => {
                             this.handleCloseAccept();
-                        }} color="primary" autoFocus>
+                        }}
+                            style={{ fontSize: '18px', color: '#5891DC', marginRight: 10 }}
+                            color="primary" autoFocus>
                             Aceptar
                                 </Button>
                     </DialogActions>

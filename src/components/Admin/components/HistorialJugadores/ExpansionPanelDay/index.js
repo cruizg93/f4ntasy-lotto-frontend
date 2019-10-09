@@ -29,9 +29,16 @@ const ExpanionPanelDay = (props) => {
   const handleChangeExpand = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
     if (isExpanded) {
-      adminService.get_historial_apuestasOverview_sorteoAndJugador(props.jugadorId, props.winner.id).then((result) => {
-        setWinList(result.data)
-      })
+      console.log('casa', props.casa)
+      if (props.casa === 'casa') {
+        adminService.get_historial_apuestasOverview_sorteo(props.winner.id).then((result) => {
+          setWinList(result.data)
+        })
+      } else {
+        adminService.get_historial_apuestasOverview_sorteoAndJugador(props.jugadorId, props.winner.id).then((result) => {
+          setWinList(result.data)
+        })
+      }
     }
   };
 

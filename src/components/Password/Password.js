@@ -83,6 +83,7 @@ const Password = (props) => {
 
     const handleClose_password = () => {
         setInformationPasswordOpen(false)
+        setPassword('')
     }
 
     const handleClickUpdatePassword = () => {
@@ -93,12 +94,12 @@ const Password = (props) => {
             password: password
         };
         update_password(data).then((result) => {
-            setPassword('')
             setInformationPasswordOpen(true)
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
                 dispatch(userActions.loading_end())
+                setInformationPasswordOpen(false)
             });
     }
 
