@@ -10,11 +10,7 @@ import './Nuevo.css';
 import './components/Diaria/Diaria'
 import Diaria from "./components/Diaria/Diaria";
 import Chica from "./components/Chica/Chica";
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import UserXInformationDialog from '../View/Dialog/UserXInformationDialog';
 import CustomText from '../View/CustomText';
 import { adminService } from "../../service/api/admin/admin.service";
 import { userActions } from '../../store/actions';
@@ -183,7 +179,7 @@ const Nuevo = ({ ...props }) => {
     }
     let data = {
       name: inputUserName,
-      password: inputPassword,
+      password: inputPassword === '' ? "1" : inputPassword,
       username: placeholderUser,
       utype: utype,
       mtype: selectedValueMoneda,
@@ -195,6 +191,7 @@ const Nuevo = ({ ...props }) => {
       cparam2: cparam2,
       cparam3: cparam3,
     };
+
     const { dispatch } = props;
     dispatch(userActions.loading_start())
     adminService.new_player(data)
@@ -217,26 +214,7 @@ const Nuevo = ({ ...props }) => {
           <AdminTitle titleLabel='Crear Vendedor P' />
         </Container>
 
-        <Dialog
-          disableBackdropClick
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-crear-usuario"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle
-            id="alert-dialog-crear-usuario">Su Jugador a sido creado exitosamente</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              {`Usuario: ${placeholderUser} contraseña: ${inputPassword}`}
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={() => { handleClose() }} color="primary" autoFocus>
-              Aceptar
-            </Button>
-          </DialogActions>
-        </Dialog>
+
         <Container maxwidth="xs" className="container_crear_p">
           <Container maxwidth="xs" style={{ display: 'flex', height: 60, paddingLeft: 35 }}>
             <Grid item xs={8} className="title_info" >
@@ -245,11 +223,11 @@ const Nuevo = ({ ...props }) => {
               </div>
             </Grid>
             <Grid item xs={4} className="btn_group_moneda" >
-              <Button style={{ paddingTop: 9 }} onClick={() => handleChange('l')}>
-                {selectedValueMoneda === 'l' ? <img src={Dollar_ON} alt="Dollar_ON" /> : <img src={Dollar_OFF} alt="Dollar_OFF" />}
-              </Button>
               <Button style={{ paddingTop: 9 }} onClick={() => handleChange('d')}>
-                {selectedValueMoneda === 'd' ? <img src={Lempiras_ON} alt="Dollar_ON" /> : <img src={Lempiras_OFF} alt="Lempiras_OFF" />}
+                {selectedValueMoneda === 'd' ? <img src={Dollar_ON} alt="Dollar_ON" /> : <img src={Dollar_OFF} alt="Dollar_OFF" />}
+              </Button>
+              <Button style={{ paddingTop: 9 }} onClick={() => handleChange('l')}>
+                {selectedValueMoneda === 'l' ? <img src={Lempiras_ON} alt="Lempiras_ON" /> : <img src={Lempiras_OFF} alt="Lempiras_OFF" />}
               </Button>
             </Grid>
           </Container>
@@ -323,6 +301,18 @@ const Nuevo = ({ ...props }) => {
             </Fab>
           </Grid>
         </Container>
+        <UserXInformationDialog
+          open={open}
+          handleClose={handleClose}
+          title={'Creación exitosa'}
+          context={'El usuario a sido creado exitosamente'}
+          id={placeholderUser}
+          password={inputPassword}
+          iconSize={67}
+          titleFontSize={'22px'}
+          contentFontSize={'16px'}
+          contentHeight={'60px'}>
+        </UserXInformationDialog>
       </React.Fragment>
     </div>
   );

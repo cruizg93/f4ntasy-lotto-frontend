@@ -149,7 +149,7 @@ class AdicionarNumeroApuesta extends Component {
 
             let comisionRate = 0;
             let costoXMil = 0;
-            if (result.data.type == "CHICA") {
+            if (result.data.type === "CHICA") {
                 playerService.comision_directo("chica").then((result) => {
                     comisionRate = result.data.comision;
                     costoXMil = result.data.costoMil
@@ -237,7 +237,7 @@ class AdicionarNumeroApuesta extends Component {
         if (event.key === "Enter") {
             let numero = this.entryNumeroInputRef.current.value;
             let unidades = this.entryUnidadesInputRef.current.value;
-            if (unidades.length == 0 || numero.length == 0) {
+            if (unidades.length === 0 || numero.length === 0) {
                 return;
             } else {
                 this.agregarApuesta(null);
@@ -257,7 +257,7 @@ class AdicionarNumeroApuesta extends Component {
     agregarApuesta = (event) => {
         let numero = this.entryNumeroInputRef.current.value;
         let current = this.entryUnidadesInputRef.current.value;//costo
-        if (current.length == 0 || numero.length == 0) {
+        if (current.length === 0 || numero.length === 0) {
             return;
         }
 
@@ -522,7 +522,6 @@ class AdicionarNumeroApuesta extends Component {
 
         const ApuestaInput = withStyles({
             root: {
-                height: "100%",
                 height: "2.25rem",
                 borderRadius: "100px",
                 border: "#afb6b8 1px solid",

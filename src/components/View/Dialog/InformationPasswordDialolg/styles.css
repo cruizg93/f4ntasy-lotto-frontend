@@ -1,0 +1,16 @@
+.information_password_dialog .dialog_content{
+  max-width: 279px;
+}
+.information_password_dialog .dialog_content .pass_info{
+  display: flex;
+  color: gray;
+}
+.information_password_dialog .dialog_content .pass_info .left{
+ padding-right: 5px; 
+}
+.information_password_dialog .dialog_content .pass_info .middle{
+  padding-right: 5px;
+}
+.information_password_dialog .dialog_content .pass_info .right{
+ 
+}

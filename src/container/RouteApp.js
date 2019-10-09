@@ -44,7 +44,6 @@ import HistorialAsistente from '../components/PAsistente/scene/Historial/index';
 
 import NewUser from '../components/Admin/scences/Usuario/New/index';
 import NewAsistente from '../components/Admin/scences/Asistente/New/index';
-import FirstChangePassword from '../components/Password/scene/FirstChange/index'
 
 import Index from '../components/Index/index';
 
@@ -75,6 +74,10 @@ class RouterApp extends React.Component {
     if (path.indexOf('/asistente/apuestas') === 0) return whiteColor;
     if (path.indexOf('/apuestas/activas/') === 0) return whiteColor;
     if (path.indexOf('/usuario/nuevo/jugador') === 0) return whiteColor;
+    if (path.indexOf('/sistema/cambio') === 0) return whiteColor;
+    if (path.indexOf('/sistema/password/update') === 0) return whiteColor;
+    if (path.indexOf('/jugador/editar/') === 0) return whiteColor;
+    if (path.indexOf('/sistema/topes') === 0) return whiteColor;
     return grayColor;
   }
 
@@ -117,18 +120,17 @@ class RouterApp extends React.Component {
                       component={Index}
                     />
                     <Route exact path="/login" component={Login} />
-                    {/* <Route exact path="/jugador" component={Jugador} /> */}
                     <PrivateRoute
                       exact path="/jugador"
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}
                       component={Jugador}
                     />
-                    <PrivateRoute
+                    {/* <PrivateRoute
                       key="password"
                       exact path="/password/new"
                       roles={[Role.Admin, Role.Master, Role.Player, Role.Asistente]} authed={this.props.role}
                       component={FirstChangePassword}
-                    />
+                    /> */}
                     <PrivateRoute
                       exact path="/jugador/editar/:jugadorId"
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}
@@ -155,11 +157,11 @@ class RouterApp extends React.Component {
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}
                       component={DetallesApuesta}
                     />
-                    <PrivateRoute
+                    {/* <PrivateRoute
                       exact path="/asistente/editar/:userId"
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}
                       component={EditarAsistente}
-                    />
+                    /> */}
                     <PrivateRoute
                       exact path="/apuestas/activas"
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}

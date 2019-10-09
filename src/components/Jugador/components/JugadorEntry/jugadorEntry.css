@@ -107,3 +107,128 @@
     margin-left: 10vw !important;
   }
 }
+ /* delete dialog*/
+.dialog_delete_seller{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    width: 279px;
+}
+.dialog_delete_seller .title{
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  border-bottom: solid 2px #acabab;
+}
+.dialog_delete_seller .title .icon{
+  color: lightgray;
+  padding-right: 8px;
+  align-content: center;
+}
+.dialog_delete_seller .title .text{
+  color: #066;
+  font-size: 18px;
+  padding-top: 5px;
+}
+.dialog_delete_seller .textH{
+  padding-top: 25px;
+  padding-bottom: 30px;
+  font-size: 27px;
+  font-stretch: condensed;
+}
+.dialog_delete_seller .textL{
+  font-size: 18px;
+  color: gray;
+  padding-bottom: 50px;
+}
+.dialog_delete_seller_action{
+  justify-content: center !important;
+}
+.dialog_delete_seller_action .cancle{
+  font-size: 16px;
+  color: #4f83c8 ;
+  padding-bottom: 20px;
+}
+.dialog_delete_seller_action .accept{
+  font-size: 16px;
+  color: #4f83c8;
+  padding-bottom: 20px;
+}
+
+/* dialog_imposible_eliminar */
+.dialog_imposible_eliminar{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    width: 279px;
+}
+.dialog_imposible_eliminar .title{
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  border-bottom: solid 2px #acabab;
+}
+.dialog_imposible_eliminar .title .icon{
+  color: lightgray;
+  padding-right: 8px;
+  align-content: center;
+}
+.dialog_imposible_eliminar .title .text{
+  color: #066;
+  font-size: 18px;
+  padding-top: 5px;
+}
+.dialog_imposible_eliminar .textH{
+  padding-top: 24px;
+  padding-bottom: 25px;
+  font-size: 23px;
+}
+.dialog_imposible_eliminar .textL{
+  font-size: 17px;
+  color: gray;
+  padding-bottom: 20px;
+  line-height: 20px;
+}
+.dialog_imposible_eliminar_action{
+  justify-content: end !important;
+  padding-right: 2em !important;
+}
+.dialog_imposible_eliminar_action .ok{
+  font-size: 16px;
+  color: #4f83c8 ;
+  padding-bottom: 20px;
+}
+
+/* dialog-info-star */
+.dialog_info_description{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    width: 279px;
+}
+.dialog_info_description .title{
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  border-bottom: solid 2px #acabab;
+}
+.dialog_info_description .title .icon{
+  color: lightgray;
+  padding-right: 10px;
+  align-content: center;
+}
+.dialog_info_description .title .text{
+  color: #066;
+  font-size: 18px;
+  padding-top: 5px;
+}
+.dialog_info_description .content{
+  padding-top: 30px;
+}
+.dialog_info_description .content .diaria_title{
+  font-size: 20px;
+  font-weight: 500;
+  padding-bottom: 10px;
+}
+.dialog_info_description .content .diaria_content{
+  display: flex;
+  color: gray;
+}
+.dialog_info_description .content .diaria_content .left{
+  padding-left: 20px;
+  width: 120px;
+}
