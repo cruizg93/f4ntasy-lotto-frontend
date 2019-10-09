@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
-import Grid from '@material-ui/core/Grid';
+import React from 'react';
 import { makeStyles } from "@material-ui/core/styles/index";
-import Typography from '@material-ui/core/Typography';
-import { Currency, FormatCurrency } from '../../../../../utils/__currency';
+import { FormatCurrency } from '../../../../../utils/__currency';
 import { Colors } from '../../../../../utils/__colors';
 import './styles.css'
 const useStyles = makeStyles({
@@ -29,8 +27,7 @@ const useStyles = makeStyles({
 });
 
 function ResumenApuestas(props) {
-    const classes = useStyles();
-    const paddingBottom = props.paddingBottom ? props.paddingBottom : 0;
+    // const paddingBottom = props.paddingBottom ? props.paddingBottom : 0;
     const marginL = props.marginL ? props.marginL : 0;
     return (
         <div className="userP_apuntada_resume">

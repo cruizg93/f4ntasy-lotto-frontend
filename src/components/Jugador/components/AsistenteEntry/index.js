@@ -41,24 +41,12 @@ const AsistenteDataShow = ({ match, id, username, name, ...props }) => {
 
     return (
         <Grid container style={{ lineHeight: '39px' }} className="container_expand">
-            <Grid className="labelUser" style={{ flex: 8, textAlign: 'left' }}>
+            <Grid className="labelUser" style={{ flex: 4, textAlign: 'left' }}>
                 <Typography className="form_center-label expand_labelText" >
                     {username} {' ['} {name} {']'}
                 </Typography>
             </Grid>
-            <Grid className="grid_tiPen"
-                component={Link} to={
-                    {
-                        pathname: `/asistente/editar/${id}`,
-                        state: {
-                            id: id,
-                        }
-                    }
-                }
-            >
-                <TiPen style={{ color: "#AEAEAE" }} onClick={handleClickOpen} />
-            </Grid>
-            <Grid className="grid_goTranhcan" >
+            <Grid className="grid_goTranhcan" style={{ textAlign: 'left', paddingLeft: '3em' }} >
                 <GoTrashcan style={{ color: "#AEAEAE" }} onClick={handleClickOpen} />
             </Grid>
             <Dialog

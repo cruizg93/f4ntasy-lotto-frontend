@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
 const HistorialJugadores = ({ match: { url }, ...props }) => {
   const [expanded, setExpanded] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [successPasswordOpen, setSuccessPasswordOpen] = React.useState(false);
   const [errorPasswordOpen, setErrorPasswordOpen] = React.useState(false);
   const [bono, setBono] = React.useState('');
   const [dayList, setDayList] = React.useState(null);
@@ -48,6 +49,13 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
     setOpen(true)
   }
 
+  const handleClose_password_success = () => {
+    setOpen(false);
+    setErrorPasswordOpen(false);
+    setSuccessPasswordOpen(false);
+    props.updateBono()
+  }
+
   const handleClose_password_error = () => {
     setOpen(false);
     setErrorPasswordOpen(false);
@@ -61,7 +69,7 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
       adminService.admin_password_confirm('', password).then((result) => {
         if (result.data === true) {
           adminService.submit_bono(props.jugador.id, bono, props.jugador.moneda.toLowerCase(), 1).then((result) => {
-            props.updateBono()
+            setSuccessPasswordOpen(true);
           })
             .catch((error) => {
               setErrorPasswordOpen(true)
@@ -147,15 +155,26 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
         days={`${props.weekData.monday} - ${props.weekData.sunday}`}>
       </InputBonoDialog>
       <InformationDialog
+        open={successPasswordOpen}
+        handleClose={handleClose_password_success}
+        title={'Transacción exitosa'}
+        context={'El bono fue aplicado correctamente.'}
+        icon={'ioIosCheckmarkCircleOutline'}
+        iconSize={70}
+        titleFontSize={'22px'}
+        contentFontSize={'18px'}
+        contentHeight={'100px'}>
+      </InformationDialog>
+      <InformationDialog
         open={errorPasswordOpen}
         handleClose={handleClose_password_error}
-        title={'Contraseña incorrecta! intente otra vez...'}
-        context={''}
+        title={''}
+        context={'Un bono solo se puede asignar una vez que la semana cierra los domingos a las 9 pm.'}
         icon={'ioIosWarning'}
-        iconSize={67}
+        iconSize={70}
         titleFontSize={'22px'}
-        contentFontSize={'16px'}
-        contentHeight={'60px'}>
+        contentFontSize={'18px'}
+        contentHeight={'70px'}>
       </InformationDialog>
     </Grid>
 

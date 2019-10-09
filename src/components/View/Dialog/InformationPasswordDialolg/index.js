@@ -7,9 +7,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import { FaLock, FaBan } from "react-icons/fa";
-import { GiInfo } from "react-icons/gi";
-import { GoVerified } from "react-icons/go";
+// import { FaLock, FaBan } from "react-icons/fa";
+// import { GiInfo } from "react-icons/gi";
+// import { GoVerified } from "react-icons/go";
 import { IoIosWarning } from "react-icons/io";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import './styles.css'
@@ -28,7 +28,7 @@ class InformationPasswordDialolg extends React.Component {
     const iconSize = this.props.iconSize ? this.props.iconSize : 60;
     const titleFontSize = this.props.titleFontSize ? this.props.titleFontSize : '25px';
     const contentFontSize = this.props.contentFontSize ? this.props.contentFontSize : '25px';
-    const contentHeight = this.props.contentHeight ? this.props.contentHeight : '90px'
+    // const contentHeight = this.props.contentHeight ? this.props.contentHeight : '90px'
     return (
       <div className="container_rowList">
         <Grid container className="text_container" >
