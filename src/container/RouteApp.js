@@ -120,7 +120,6 @@ class RouterApp extends React.Component {
                       component={Index}
                     />
                     <Route exact path="/login" component={Login} />
-                    {/* <Route exact path="/jugador" component={Jugador} /> */}
                     <PrivateRoute
                       exact path="/jugador"
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}
@@ -158,11 +157,11 @@ class RouterApp extends React.Component {
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}
                       component={DetallesApuesta}
                     />
-                    <PrivateRoute
+                    {/* <PrivateRoute
                       exact path="/asistente/editar/:userId"
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}
                       component={EditarAsistente}
-                    />
+                    /> */}
                     <PrivateRoute
                       exact path="/apuestas/activas"
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}

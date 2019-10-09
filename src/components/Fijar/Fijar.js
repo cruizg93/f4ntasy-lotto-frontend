@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import List from '@material-ui/core/List';
-
-import Entry from './components/entry';
-import { list_numeros } from "../../service/api/fijar/fijar";
 import { GoTools } from "react-icons/go";
 
 const useStyles = makeStyles(theme => ({
@@ -23,8 +18,6 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function Fijar() {
-    const classes = useStyles();
-
     // const [numberList, setNumberList] = useState([]);
 
     // useEffect(() => {
