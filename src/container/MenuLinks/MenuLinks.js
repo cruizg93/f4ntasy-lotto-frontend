@@ -63,7 +63,7 @@ export const MenuLinks = (props) => {
                         component={Link}
                         to="/sistema/password/update"
                     >Contraseñas</MenuItem>
-                    <MenuItem onClick={handleClose}>Fijar Topes</MenuItem>
+                    <MenuItem onClick={handleClose} component={Link} to="/sistema/topes">Fijar Topes</MenuItem>
                 </Menu>
             }
 
