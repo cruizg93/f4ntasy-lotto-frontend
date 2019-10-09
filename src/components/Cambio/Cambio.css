@@ -1,0 +1,25 @@
+.admin_tipo_de_cambio{
+  padding-top: 60px;
+  text-align: center;
+  background: white;
+}
+.admin_tipo_de_cambio .input{
+  width: 70%;
+  display: inline-block;
+  padding-top: 42px;
+  padding-bottom: 49px;
+}
+.admin_tipo_de_cambio .button{
+  display: inline-block;
+}
+.admin_tipo_de_cambio .button .btn_change{
+  background: #5891DC !important;
+  text-transform: none;
+  color: white;
+  height: 39px;
+}
+.admin_tipo_de_cambio .button .btn_change .text{
+  font-size: 1.3rem;
+  padding-left: 25px;
+  padding-right: 25px;
+}

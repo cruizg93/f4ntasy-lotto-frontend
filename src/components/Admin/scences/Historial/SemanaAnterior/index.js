@@ -2,13 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { adminService } from "../../../../../service/api/admin/admin.service";
-import Typography from '@material-ui/core/Typography';
-
 import { makeStyles, withStyles } from "@material-ui/core/styles/index";
 import { red, blue } from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
-import HistorialStatic from '../../../components/HistorialStatics/index';
-import HistorialSemanaActualUserEntry from '../../../components/HistorialSemanal/index';
 import InputBase from '@material-ui/core/InputBase';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import { userActions } from '../../../../../store/actions';
@@ -98,34 +94,6 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const ImprimirButton = withStyles({
-    root: {
-        width: '100%',
-        boxShadow: 'none',
-        textTransform: 'none',
-        fontSize: 16,
-        padding: '6px 12px',
-        lineHeight: 1.5,
-        backgroundColor: '#2b85c2',
-        color: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        marginRight: '.5rem',
-        marginLeft: '.5rem',
-        '&:hover': {
-            backgroundColor: '#0069d9',
-            borderColor: '#0062cc',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#0062cc',
-            borderColor: '#005cbf',
-        },
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-        },
-    },
-})(Button);
 const HistorialSemanaAnteriorAdmin = (props) => {
     const classes = useStyles();
     const [weekList, setWeekList] = useState([]);
