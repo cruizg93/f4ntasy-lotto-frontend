@@ -246,11 +246,11 @@ const Nuevo = ({ ...props }) => {
               </div>
             </Grid>
             <Grid item xs={4} className="btn_group_moneda" >
-              <Button style={{ paddingTop: 9 }} onClick={() => handleChange('l')}>
-                {selectedValueMoneda === 'l' ? <img src={Dollar_ON} alt="Dollar_ON" /> : <img src={Dollar_OFF} alt="Dollar_OFF" />}
-              </Button>
               <Button style={{ paddingTop: 9 }} onClick={() => handleChange('d')}>
-                {selectedValueMoneda === 'd' ? <img src={Lempiras_ON} alt="Dollar_ON" /> : <img src={Lempiras_OFF} alt="Lempiras_OFF" />}
+                {selectedValueMoneda === 'd' ? <img src={Dollar_ON} alt="Dollar_ON" /> : <img src={Dollar_OFF} alt="Dollar_OFF" />}
+              </Button>
+              <Button style={{ paddingTop: 9 }} onClick={() => handleChange('l')}>
+                {selectedValueMoneda === 'l' ? <img src={Lempiras_ON} alt="Lempiras_ON" /> : <img src={Lempiras_OFF} alt="Lempiras_OFF" />}
               </Button>
             </Grid>
           </Container>
