@@ -70,6 +70,6 @@
 
 @media (min-width: 410px) {
     .day_text_valor .expansionPanel .expansionPanelBody .container_summary .summary .premio .value{
-      padding-left: 17px;
+      /* padding-left: 17px; */
     }
 }
