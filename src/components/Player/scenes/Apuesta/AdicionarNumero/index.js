@@ -554,7 +554,7 @@ class AdicionarNumeroApuesta extends Component {
                         return false
                     }}
                 />
-                <ToastContainer autoClose={8000} />
+                <ToastContainer autoClose={3000} />
                 <TopBar
                     apuestaType={this.state.apuestaType}
                     hour={this.state.hour}

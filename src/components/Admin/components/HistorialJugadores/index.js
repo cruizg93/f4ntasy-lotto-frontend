@@ -174,7 +174,7 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
         iconSize={70}
         titleFontSize={'22px'}
         contentFontSize={'18px'}
-        contentHeight={'70px'}>
+        contentHeight={'100px'}>
       </InformationDialog>
     </Grid>
 

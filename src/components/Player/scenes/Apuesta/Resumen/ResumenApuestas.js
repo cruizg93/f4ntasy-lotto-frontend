@@ -29,6 +29,7 @@ const useStyles = makeStyles({
 function ResumenApuestas(props) {
     // const paddingBottom = props.paddingBottom ? props.paddingBottom : 0;
     const marginL = props.marginL ? props.marginL : 0;
+    const currencySymbol = props.apuestaCurrency ? props.apuestaCurrency.symbol : 'L'
     return (
         <div className="userP_apuntada_resume">
             <div style={{ marginLeft: marginL }}></div>
@@ -38,9 +39,9 @@ function ResumenApuestas(props) {
                 <div>Total:</div>
             </div>
             <div className="middle">
-                <div>L</div>
-                <div>L</div>
-                <div>L</div>
+                <div>{currencySymbol}</div>
+                <div>{currencySymbol}</div>
+                <div>{currencySymbol}</div>
             </div>
             <div className="right">
                 <div>

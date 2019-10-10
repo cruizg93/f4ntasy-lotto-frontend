@@ -76,10 +76,12 @@ class Jugador extends Component {
         dispatch(userActions.loading_start())
         adminService.list_players_details().then((result) => {
             this.setState({
-                jugadorList: Array.from(result.data)
+                jugadorList: Array.from(result.data.jugadores)
             });
             this.update_totalsMoney()
             dispatch(userActions.loading_end())
+            window.scrollTo(0, 0);
+
         })
             .catch(function (error) {
                 dispatch(userActions.loading_end())
