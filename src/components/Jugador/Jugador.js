@@ -86,6 +86,8 @@ class Jugador extends Component {
             });
             this.update_totalsMoney()
             dispatch(userActions.loading_end())
+            window.scrollTo(0, 0);
+
         })
             .catch(function (error) {
                 dispatch(userActions.loading_end())

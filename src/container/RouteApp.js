@@ -2,7 +2,6 @@ import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { NotificationContainer } from 'react-notifications';
-import LoadingOverlay from 'react-loading-overlay';
 import Login from '../components/Login/Login';
 import Jugador from '../components/Jugador/Jugador';
 import HeaderBar from './HeaderBar';
@@ -40,12 +39,13 @@ import ComprarApuesta from '../components/Player/scenes/Apuesta/Comprar/index';
 import HistorialPlayer from '../components/Player/scenes/Historial/index';
 import DetallesPlayer from '../components/Player/scenes/Historial/Detalles/index';
 import DetallesPAsistente from '../components/PAsistente/scene/Historial/Detalles/index';
-import HistorialAsistente from '../components/PAsistente/scene/Historial/index';
+// import HistorialAsistente from '../components/PAsistente/scene/Historial/index';
 
 import NewUser from '../components/Admin/scences/Usuario/New/index';
 import NewAsistente from '../components/Admin/scences/Asistente/New/index';
 
 import Index from '../components/Index/index';
+import LoadingOverlay from '../components/View/LoadingOverlay/LoadingOverlay';
 
 /**
  * Initial Path To Check Whether User Is Logged In Or Not
@@ -92,16 +92,8 @@ class RouterApp extends React.Component {
     return (
       <LoadingOverlay
         active={this.props.loading}
+        // active={true}
         spinner
-        styles={{
-          spinner: (base) => ({
-            ...base,
-            width: '55px',
-            '& svg circle': {
-              stroke: 'rgba(255, 0, 0, 0.5)'
-            }
-          })
-        }}
       >
         <div className="app-container" style={{ background: background }}>
           {
@@ -125,12 +117,6 @@ class RouterApp extends React.Component {
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}
                       component={Jugador}
                     />
-                    {/* <PrivateRoute
-                      key="password"
-                      exact path="/password/new"
-                      roles={[Role.Admin, Role.Master, Role.Player, Role.Asistente]} authed={this.props.role}
-                      component={FirstChangePassword}
-                    /> */}
                     <PrivateRoute
                       exact path="/jugador/editar/:jugadorId"
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}
@@ -157,11 +143,6 @@ class RouterApp extends React.Component {
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}
                       component={DetallesApuesta}
                     />
-                    {/* <PrivateRoute
-                      exact path="/asistente/editar/:userId"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
-                      component={EditarAsistente}
-                    /> */}
                     <PrivateRoute
                       exact path="/apuestas/activas"
                       roles={[Role.Admin, Role.Master]} authed={this.props.role}

@@ -477,15 +477,18 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
             </Grid>
           </Grid>
         </Grid>
-        <Grid item className="balanceLink" >
-          <Grid component={(balance !== 0) ? Link : "div"} to={
+        <Grid item className="balanceLink"
+          component={(balance === 0) ? "div" : Link} to={
             {
-              pathname: `/jugador/balance/${id}`,
+              pathname: `/historial/semana/anterior`,
               state: {
                 id: id,
+                username: username
               },
             }
-          }>
+          }
+        >
+          <Grid>
             <span style={{ color: "#999999", padding: 11 }}>
               Balance
                         </span>

@@ -13,12 +13,12 @@
   border-right: solid 1px #9a9a9a;
 }
 .container_detalle_individual_title .userInfo .icon{
-  line-height: 65px !important;
+  line-height: 55px !important;
   vertical-align: middle !important;
   padding-left: 23px !important;
 }
 .container_detalle_individual_title .userInfo img{
-  width: 75px;
+  width: 70px;
 }
 .container_detalle_individual_title .right_text{
   justify-content: center !important;
@@ -28,12 +28,10 @@
   box-shadow: none;
 }
 .container_detalle_individual_title .date_time{
-  font-size: 14px;
-  font-weight: 600;
-  margin-left: -30px;
-  color: #9C9C9C;
-  margin-bottom: 0px;
-  padding-left: 10px;
+  font-size: 15px;
+  margin-left: -12px;
+  align-self: center;
+  flex: 1;
 }
 .container_detalle_individual_title .user_name{
   font-size: 16px;
@@ -41,8 +39,8 @@
   color: #066;
   text-align: right;
   margin-bottom: 0px;
-  margin-top: 2px;
-  padding-right: 20px;
+  padding-right: 16px;
+  align-self: center;
 }
 
 .container_detalle_individual .summaryTotal .text_container{
