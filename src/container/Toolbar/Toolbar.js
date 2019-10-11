@@ -25,7 +25,7 @@ class Toolbar extends Component {
 
     render() {
         const color = this.props.role === 'Player' ? '#A3CA72' :
-            this.props.role === 'Asistente' ? '#f5d657' : '#ff9933'
+            this.props.role === 'Asistente' ? '#f5d657' : '#f7941d'
         return (
             <header className="toolbar" style={{ background: color }}>
                 <nav className="toolbar__navigation">

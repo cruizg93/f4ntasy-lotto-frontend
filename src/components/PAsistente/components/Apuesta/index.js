@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 import InformationDialog from '../../../View/Dialog/InformationDialog';
 import { Currency } from '../../../../utils/__currency';
-import { FormatCurrencySymbol } from '../../../../utils/__currency';
 import DiariaLogo from '../../../View/assets/Diaria_PNG.png';
 import ChicaLogo from '../../../View/assets/Chica_PNG.png';
 import imgRed from '../../../View/assets/RED_PNG.png';

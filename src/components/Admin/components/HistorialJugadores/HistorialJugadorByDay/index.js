@@ -11,7 +11,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import { Add, Remove } from '@material-ui/icons'
-import { FormatCurrencySymbol } from '../../../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../../../utils/__currency';
 import RowList from '../../../../View/RowList'
 import ExpanionPanelDay from '../ExpansionPanelDay';
 import './styles.css'
@@ -62,7 +62,7 @@ const HistorialJugadorByDay = (props) => {
               </div>
               <div className="left">
                 <span>
-                  {'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, Math.abs(props.apuesta.balance).toFixed(2))}
+                  {'\u00A0'}{'\u00A0'}{FormatNumberSymbol(Math.abs(props.apuesta.balance))}
                 </span>
               </div>
             </Grid>
@@ -104,12 +104,12 @@ const HistorialJugadorByDay = (props) => {
                                 </p>
                               </div>
                               <div className="right">
-                                <p>{FormatCurrencySymbol(props.moneda, props.apuesta.summary.ventas.toFixed(2))}</p>
-                                <p>{FormatCurrencySymbol(props.moneda, props.apuesta.summary.comisiones.toFixed(2))}</p>
-                                <p>{FormatCurrencySymbol(props.moneda, props.apuesta.summary.subTotal.toFixed(2))}</p>
-                                <p>{FormatCurrencySymbol(props.moneda, props.apuesta.summary.premios.toFixed(2))}</p>
+                                <p>{FormatNumberSymbol(props.apuesta.summary.ventas)}</p>
+                                <p>{FormatNumberSymbol(props.apuesta.summary.comisiones)}</p>
+                                <p>{FormatNumberSymbol(props.apuesta.summary.subTotal)}</p>
+                                <p>{FormatNumberSymbol(props.apuesta.summary.premios)}</p>
                                 <p style={{ color: colorTmp }}>
-                                  {FormatCurrencySymbol(props.moneda, Math.abs(props.apuesta.summary.perdidasGanas).toFixed(2))}
+                                  {FormatNumberSymbol(Math.abs(props.apuesta.summary.perdidasGanas))}
                                 </p>
                               </div>
                             </Grid>

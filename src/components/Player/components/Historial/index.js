@@ -5,7 +5,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import { Add, Remove } from '@material-ui/icons'
-import { FormatCurrencySymbol } from '../../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../../utils/__currency';
 import RowList from '../../../View/RowList'
 import ExpanionPanelDay from './ExpansionPanelDay';
 import './styles.css'
@@ -55,7 +55,7 @@ const HistorialData = ({ match: { url }, ...props }) => {
               </div>
               <div className="left">
                 <span>
-                  {'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.money, Math.abs(props.apuesta.balance).toFixed(2))}
+                  {'\u00A0'}{'\u00A0'}{FormatNumberSymbol(Math.abs(props.apuesta.balance))}
                 </span>
               </div>
             </Grid>
@@ -85,7 +85,7 @@ const HistorialData = ({ match: { url }, ...props }) => {
                             {props.money}
                           </span>
                           <span style={{ paddingLeft: 20 }}>
-                            {FormatCurrencySymbol(props.money, props.apuesta.summary.premios.toFixed(2))}
+                            {FormatNumberSymbol(props.apuesta.summary.premios)}
                           </span>
                         </div>
                       </Grid>

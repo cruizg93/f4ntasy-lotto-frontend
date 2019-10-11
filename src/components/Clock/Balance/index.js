@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { playerService } from "../../../service/api/player/player.service";
-import { FormatCurrencySymbol } from '../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../utils/__currency';
 import './Balance.css';
 
 class Balance extends Component {
@@ -36,7 +36,7 @@ class Balance extends Component {
 
     render() {
         const sign = this.state.balance > 0 ? '+' : this.state.balance < 0 ? '-' : ''
-        const balance = FormatCurrencySymbol(this.state.symbol, Math.abs(this.state.balance).toFixed(2))
+        const balance = FormatNumberSymbol(Math.abs(this.state.balance))
         return (
             <React.Fragment >
                 <div style={{ textAlign: 'right', marginTop: '-4px' }} className={this.state.balance < 0 ? 'clock__column red__balance' : this.state.balance > 0 ? "clock__column green__balance" : "clock__column blue_balance"}>

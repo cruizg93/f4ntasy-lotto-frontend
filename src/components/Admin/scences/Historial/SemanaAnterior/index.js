@@ -9,7 +9,7 @@ import InputBase from '@material-ui/core/InputBase';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import { userActions } from '../../../../../store/actions';
 import AdminTitle from '../../../components/AdminTitle_Center';
-import { FormatCurrencySymbol } from '../../../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../../../utils/__currency';
 import HistorialJugadores from '../../../components/HistorialJugadores';
 import HistorialJugadoreByDay from '../../../components/HistorialJugadores/HistorialJugadorByDay';
 
@@ -233,13 +233,13 @@ const HistorialSemanaAnteriorAdmin = (props) => {
                                         </p>
                                     </div>
                                     <div className="right">
-                                        <p>{FormatCurrencySymbol(week.summary.currency, week.summary.ventas.toFixed(2))}</p>
-                                        <p>{FormatCurrencySymbol(week.summary.currency, week.summary.comisiones.toFixed(2))}</p>
-                                        <p>{FormatCurrencySymbol(week.summary.currency, week.summary.subTotal.toFixed(2))}</p>
-                                        <p>{FormatCurrencySymbol(week.summary.currency, week.summary.premios.toFixed(2))}</p>
-                                        <p>{FormatCurrencySymbol(week.summary.currency, week.summary.bonos.toFixed(2))}</p>
+                                        <p>{FormatNumberSymbol(week.summary.ventas)}</p>
+                                        <p>{FormatNumberSymbol(week.summary.comisiones)}</p>
+                                        <p>{FormatNumberSymbol(week.summary.subTotal)}</p>
+                                        <p>{FormatNumberSymbol(week.summary.premios)}</p>
+                                        <p>{FormatNumberSymbol(week.summary.bonos)}</p>
                                         <p style={{ color: colorStyle }}>
-                                            {FormatCurrencySymbol(week.summary.currency, Math.abs(week.summary.perdidasGanas).toFixed(2))}
+                                            {FormatNumberSymbol(Math.abs(week.summary.perdidasGanas))}
                                         </p>
                                     </div>
                                 </Grid>

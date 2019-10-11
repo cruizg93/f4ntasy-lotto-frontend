@@ -7,7 +7,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import { Add, Remove } from '@material-ui/icons';
-import { FormatCurrencySymbol } from '../../../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../../../utils/__currency';
 import { playerService } from "../../../../../service/api/player/player.service";
 import ListHistoryDetail from '../ListHistoryDetail'
 import RowList from '../../../../View/RowList'
@@ -83,7 +83,7 @@ const ExpanionPanelDay = (props) => {
                         </div>
                         <div className="value">
                           <span>
-                            {props.money}{'\u00A0'}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.money, winList.summary.premios.toFixed(2))}
+                            {props.money}{'\u00A0'}{'\u00A0'}{'\u00A0'}{FormatNumberSymbol(winList.summary.premios)}
                           </span>
                         </div>
                       </Grid>

@@ -8,7 +8,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import { Add, Remove } from '@material-ui/icons'
-import { FormatCurrencySymbol } from '../../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../../utils/__currency';
 import RowList from '../../../View/RowList'
 
 import HistorialJugadorByDay from './HistorialJugadorByDay';
@@ -103,7 +103,7 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
               </div>
               <div className="left">
                 <span>
-                  {'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(moneda, Math.abs(props.jugador.balance).toFixed(2))}
+                  {'\u00A0'}{'\u00A0'}{FormatNumberSymbol(Math.abs(props.jugador.balance))}
                 </span>
               </div>
             </Grid>
@@ -124,17 +124,17 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
                   }
                   <Grid item xs={12} style={{ background: '#ede7b4', height: 145, justifyContent: 'center', display: 'flex' }}>
                     <Grid item xs={6} className="summary">
-                      <RowList col_1={['Ventas:', 'Comisión:', 'Bono:', 'Total:']} symbol={dayList.summary.currency.toLowerCase() === 'lempira' ? 'L' : '$'}
-                        col_2={[dayList.summary.ventas, dayList.summary.comisiones, dayList.summary.bonos, dayList.summary.subTotal]}
+                      <RowList col_1={['Ventas:', 'Comisión:', 'Total:', 'Bono:']} symbol={dayList.summary.currency.toLowerCase() === 'lempira' ? 'L' : '$'}
+                        col_2={[dayList.summary.ventas, dayList.summary.comisiones, dayList.summary.subTotal, dayList.summary.bonos]}
                         style={{ height: 90 }}></RowList>
                       <Grid item className="premio">
                         <div className="sign">
-                          <span>Premio_1</span>
+                          <span>Premio</span>
                         </div>
                         <div className="value">
                           <span>
                             {dayList.summary.currency.toLowerCase() === 'lempira' ? 'L' : '$'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                            {FormatCurrencySymbol(moneda, dayList.summary.premios.toFixed(2))}
+                            {FormatNumberSymbol(dayList.summary.premios)}
                           </span>
                         </div>
                       </Grid>

@@ -6,7 +6,7 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 import { playerService } from "../../../../service/api/player/player.service";
 import HistorialData from '../../components/Historial/index';
-import { FormatCurrencySymbol } from '../../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../../utils/__currency';
 import AdminTitle from '../../../Admin/components/AdminTitle_Center';
 import { userActions } from '../../../../store/actions';
 import './styles.css'
@@ -118,12 +118,12 @@ const HistorialPlayer = (props) => {
                     </p>
                   </div>
                   <div className="right">
-                    <p>{FormatCurrencySymbol(week.summary.currency, week.summary.ventas.toFixed(2))}</p>
-                    <p>{FormatCurrencySymbol(week.summary.currency, week.summary.comisiones.toFixed(2))}</p>
-                    <p>{FormatCurrencySymbol(week.summary.currency, week.summary.subTotal.toFixed(2))}</p>
-                    <p>{FormatCurrencySymbol(week.summary.currency, week.summary.premios.toFixed(2))}</p>
-                    <p>{FormatCurrencySymbol(week.summary.currency, week.summary.bonos.toFixed(2))}</p>
-                    <p>{FormatCurrencySymbol(week.summary.currency, Math.abs(week.summary.perdidasGanas).toFixed(2))}</p>
+                    <p>{FormatNumberSymbol(week.summary.ventas)}</p>
+                    <p>{FormatNumberSymbol(week.summary.comisiones)}</p>
+                    <p>{FormatNumberSymbol(week.summary.subTotal)}</p>
+                    <p>{FormatNumberSymbol(week.summary.premios)}</p>
+                    <p>{FormatNumberSymbol(week.summary.bonos)}</p>
+                    <p>{FormatNumberSymbol(Math.abs(week.summary.perdidasGanas))}</p>
                   </div>
                 </Grid>
               </Grid>

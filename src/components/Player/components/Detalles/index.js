@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from "@material-ui/core/styles/index";
 import SingleApuestaDetails from '../../components/Detalles/SingleApuestaDetails/index';
-import { FormatCurrencySymbol } from '../../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../../utils/__currency';
 import { red, blue } from "@material-ui/core/colors/index";
 
 const useStyles = makeStyles(theme => ({
@@ -98,7 +98,7 @@ const ShowDetallesApuesta = ({ title, apuestas, total, ...props }) => {
                     {"costo:"}
                 </span>
                 <span style={{ fontSize: 20, color: '#4F83C8', marginLeft: 30 }}>
-                    {moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(moneda, total.toFixed(2))}
+                    {moneda}{'\u00A0'}{'\u00A0'}{FormatNumberSymbol(total)}
                 </span>
             </Grid>
             <Grid item xs={12}>

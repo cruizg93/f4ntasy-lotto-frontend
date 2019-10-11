@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
-import Paper from '@material-ui/core/Paper';
-import { red, blue } from "@material-ui/core/colors/index";
 import DetallesDialog from '../../../../View/Dialog/DetallesDialog';
 import { FaFileExcel } from "react-icons/fa";
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -13,7 +9,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import { Add, Remove } from '@material-ui/icons';
 import { adminService } from "../../../../../service/api/admin/admin.service";
-import { FormatCurrencySymbol } from '../../../../../utils/__currency';
+import { userActions } from '../../../../../store/actions';
+import { FormatNumberSymbol } from '../../../../../utils/__currency';
 import ListHistoryDetail from '../ListHistoryDetail'
 import RowList from '../../../../View/RowList'
 import DiariaLogo from '../../../../View/assets/Diaria_PNG.png';
@@ -24,11 +21,13 @@ const ExpanionPanelDay = (props) => {
 
   const [expanded, setExpanded] = React.useState(false);
   const [winList, setWinList] = React.useState(null);
+  const [winDetailList, setWinDetailList] = React.useState(null);
   const [colorStyle, setColorStyle] = useState('');
   const [openComprarInfo, setOpenComprarInfo] = React.useState(false);
 
   const handleChangeExpand = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
+    console.log('props', props)
     if (isExpanded) {
       if (props.casa === 'casa') {
         adminService.get_historial_apuestasOverview_sorteo(props.winner.id).then((result) => {
@@ -45,11 +44,21 @@ const ExpanionPanelDay = (props) => {
   };
 
   function handleClickOpenDetailes() {
-    setOpenComprarInfo(true)
+    const { dispatch } = props;
+    dispatch(userActions.loading_start())
+    adminService.get_historial_apuestas_sorteoAndJugador(props.winner.id, props.jugadorId).then((result) => {
+      setWinDetailList(result.data)
+      setOpenComprarInfo(true)
+    })
+      .catch(function (error) {
+        dispatch(userActions.loading_end())
+      });
   }
 
   function handleCloseComprarInfo() {
     setOpenComprarInfo(false)
+    const { dispatch } = props;
+    dispatch(userActions.loading_end())
   }
 
   return (
@@ -115,12 +124,12 @@ const ExpanionPanelDay = (props) => {
                                 </p>
                               </div>
                               <div className="right">
-                                <p>{FormatCurrencySymbol(props.moneda, winList.summary.ventas.toFixed(2))}</p>
-                                <p>{FormatCurrencySymbol(props.moneda, winList.summary.comisiones.toFixed(2))}</p>
-                                <p>{FormatCurrencySymbol(props.moneda, winList.summary.subTotal.toFixed(2))}</p>
-                                <p>{FormatCurrencySymbol(props.moneda, winList.summary.premios.toFixed(2))}</p>
+                                <p>{FormatNumberSymbol(winList.summary.ventas)}</p>
+                                <p>{FormatNumberSymbol(winList.summary.comisiones)}</p>
+                                <p>{FormatNumberSymbol(winList.summary.subTotal)}</p>
+                                <p>{FormatNumberSymbol(winList.summary.premios)}</p>
                                 <p style={{ color: colorStyle }}>
-                                  {FormatCurrencySymbol(props.moneda, Math.abs(winList.summary.perdidasGanas).toFixed(2))}
+                                  {FormatNumberSymbol(Math.abs(winList.summary.perdidasGanas))}
                                 </p>
                               </div>
                             </Grid>
@@ -157,7 +166,7 @@ const ExpanionPanelDay = (props) => {
         money={props.moneda}
         winNum={props.winner.numero}
         context="Su compra fue exitosa, puede ver los detalles en la pantalla de compras activas."
-        winList={winList}
+        winList={winDetailList}
         dataset={props}
       >
       </DetallesDialog>
@@ -166,5 +175,5 @@ const ExpanionPanelDay = (props) => {
   )
 };
 
-export default ExpanionPanelDay;
+export default connect(null, null)(ExpanionPanelDay);
 
