@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
-import DetallesDialog from '../../../../View/Dialog/DetallesDialog';
+import DetallesDialogP from '../../../../View/Dialog/DetallesDialogP';
 import { FaFileExcel } from "react-icons/fa";
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -18,7 +18,7 @@ import './styles.css'
 const ExpanionPanelDay = (props) => {
 
   const [expanded, setExpanded] = React.useState(false);
-  const [winList, setWinList] = React.useState(null);
+  const [winList, setWinList] = React.useState([]);
   const [openComprarInfo, setOpenComprarInfo] = React.useState(false);
 
   const handleChangeExpand = panel => (event, isExpanded) => {
@@ -63,7 +63,7 @@ const ExpanionPanelDay = (props) => {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className="expansionPanelBodyLast">
             {
-              winList && winList.apuestas.length > 0 &&
+              winList && winList.apuestas && winList.apuestas.length > 0 &&
               <>
                 <div style={{ display: 'flex', padding: '0px 24px 0px 24px ' }}>
                   <ListHistoryDetail list={winList.apuestas} ></ListHistoryDetail>
@@ -95,7 +95,7 @@ const ExpanionPanelDay = (props) => {
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </Grid>
-      <DetallesDialog
+      <DetallesDialogP
         open={openComprarInfo}
         handleClose={handleCloseComprarInfo}
         day={props.day}
@@ -105,7 +105,7 @@ const ExpanionPanelDay = (props) => {
         winList={winList}
         dataset={props}
       >
-      </DetallesDialog>
+      </DetallesDialogP>
     </Grid>
 
   )

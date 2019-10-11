@@ -145,7 +145,7 @@ class Dashboard extends Component {
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={this.handleClose} color="primary">
-                                Cancel
+                                Cancelar
                                 </Button>
                             <Button onClick={() => {
                                 this.handleCloseAccept();

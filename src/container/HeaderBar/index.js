@@ -119,7 +119,7 @@ class HeaderBar extends Component {
                         <Button onClick={this.handleClose}
                             style={{ fontSize: '18px', color: '#5891DC', marginRight: 10 }}
                             color="primary">
-                            Cancel
+                            Cancelar
                                 </Button>
                         <Button onClick={() => {
                             this.handleCloseAccept();

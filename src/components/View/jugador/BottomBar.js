@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 import { MainStyles } from '../MainStyles';
 import { Colors } from '../../../utils/__colors';
-import { FormatCurrency } from '../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../utils/__currency';
 
 import DiariaLogo from './../assets/Diaria_PNG.png';
 import ChicaLogo from './../assets/Chica_PNG.png';

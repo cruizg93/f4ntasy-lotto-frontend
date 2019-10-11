@@ -1,0 +1,128 @@
+.detalles-dialog-title{
+  padding: 0 !important;
+  max-width: 279px !important;
+  width: 100%;
+}
+.detalles-dialog-title .header{
+  display: flex;
+  justify-content: center;
+  background: #F5D657;
+  height: 50px;
+}
+.detalles-dialog-title .text{
+  align-self: center;
+  color: #183721;
+  padding-right: 8px;
+}
+.detalles-dialog-title .icon_fileExcel{
+  align-self: center;
+  color: #183721;
+}
+.detalles-dialog-title .icon_close{
+  color: #393939;
+  position: absolute;
+  top: 0;
+  right: 0px;
+  margin-right: 0px;
+}
+.detalles-dialog-title .date_winNum{
+  display: flex;
+  background: #f4f4f4;
+}
+.detalles-dialog-title .date_winNum .icon{
+  line-height: 50px;
+  flex: 1;
+  text-align: right;
+  padding-left: 8px;
+}
+.detalles-dialog-title .date_winNum .icon img{
+  width: 70px !important;
+  vertical-align: middle; 
+}
+.detalles-dialog-title .date_winNum .date{
+  line-height: 50px;
+  font-size: 16px;
+  color: #183721;
+  flex: 2.5;
+  text-align: right;
+  padding-left: 5px;
+  letter-spacing: -0.06rem;
+  text-align: center;
+}
+.detalles-dialog-title .date_winNum .winNum{
+  line-height: 50px;
+  font-size: 21px;
+  color: #183721;
+  flex: 0.5;
+  text-align: center;
+  margin-left: 3px;
+  display: flex;
+  justify-content: center;
+  padding-right: 12px;
+}
+.detalles-dialog-title .date_winNum .winNum .circle{
+  border-radius: 50%;
+  border: solid 2px #008000;
+  width: 40px;
+  height: 40px;
+  background: #f9f055;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  margin-left: 3px;
+}
+.detalles-dialog-title .date_winNum .winNum .circle .inlineText{
+  align-self: center;
+  font-size: 23px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.detalles-dialog-title .blank_white{
+  height: 35px;
+  border-top: solid 1px #D1D3D4;
+  border-bottom: solid 1px #D1D3D4;
+}
+
+.detalles-dialog-content{
+  width: 100%;
+  max-width: 279px !important;
+  padding: 0 !important;
+}
+.detalles-dialog-content .username{
+  height: 35px;
+  width: 100%;
+  background: #f4f4f4;
+  color: #183721;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 35px;
+}
+.detalles-dialog-content .bet_info{
+  padding-bottom: 10px;
+}
+.detalles-dialog-content .username_bottom{
+  height: 35px;
+  width: 100%;
+  background: #f4f4f4;
+  color: #183721;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
+  border-top: solid 1px #D1D3D4;
+  line-height: 35px;
+}
+.detalles-dialog-content .etc{
+  padding-top: 20px;
+  padding-bottom: 40px;
+  width: 100%;
+  color: #ED1C24;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
