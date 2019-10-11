@@ -24,14 +24,16 @@ const ExpanionPanelDay = (props) => {
 
   const [expanded, setExpanded] = React.useState(false);
   const [winList, setWinList] = React.useState(null);
+  const [colorStyle, setColorStyle] = useState('');
   const [openComprarInfo, setOpenComprarInfo] = React.useState(false);
 
   const handleChangeExpand = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
     if (isExpanded) {
-      console.log('casa', props.casa)
       if (props.casa === 'casa') {
         adminService.get_historial_apuestasOverview_sorteo(props.winner.id).then((result) => {
+          let color = result.data.summary.perdidasGanas > 0 ? '#009144' : result.data.summary.perdidasGanas < 0 ? '#ED1C24' : '#4E84C8'
+          setColorStyle(color)
           setWinList(result.data)
         })
       } else {
@@ -102,12 +104,25 @@ const ExpanionPanelDay = (props) => {
                               <p>Premios:</p>
                               <p>Perdidas / Ganancias:</p>
                             </Grid>
-                            <Grid item xs={6} className="right_text" style={{ color: '#999999', display: 'block' }}>
-                              <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, winList.summary.ventas.toFixed(2))}</p>
-                              <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, winList.summary.comisiones.toFixed(2))}</p>
-                              <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, winList.summary.subTotal.toFixed(2))}</p>
-                              <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, winList.summary.premios.toFixed(2))}</p>
-                              <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, winList.summary.perdidasGanas.toFixed(2))}</p>
+                            <Grid item xs={6} className="right_text" style={{ color: '#999999' }}>
+                              <div className="left">
+                                <p>{props.moneda}</p>
+                                <p>{props.moneda}</p>
+                                <p>{props.moneda}</p>
+                                <p>{props.moneda}</p>
+                                <p style={{ color: colorStyle }}>
+                                  {winList.summary.perdidasGanas > 0 ? '+' : winList.summary.perdidasGanas ? '-' : ''}{props.moneda}
+                                </p>
+                              </div>
+                              <div className="right">
+                                <p>{FormatCurrencySymbol(props.moneda, winList.summary.ventas.toFixed(2))}</p>
+                                <p>{FormatCurrencySymbol(props.moneda, winList.summary.comisiones.toFixed(2))}</p>
+                                <p>{FormatCurrencySymbol(props.moneda, winList.summary.subTotal.toFixed(2))}</p>
+                                <p>{FormatCurrencySymbol(props.moneda, winList.summary.premios.toFixed(2))}</p>
+                                <p style={{ color: colorStyle }}>
+                                  {FormatCurrencySymbol(props.moneda, Math.abs(winList.summary.perdidasGanas).toFixed(2))}
+                                </p>
+                              </div>
                             </Grid>
                           </Grid>
                         </Grid>
