@@ -7,8 +7,8 @@ const Spinner = ({ getStyles, cx }) => (
     <svg viewBox='25 25 50 50'>
       <defs>
         <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#262626" />
-          <stop offset="100%" stop-color="#E6E6E6" />
+          <stop offset="0%" stopColor="#262626" />
+          <stop offset="100%" stopColor="#E6E6E6" />
         </linearGradient>
       </defs>
       <circle

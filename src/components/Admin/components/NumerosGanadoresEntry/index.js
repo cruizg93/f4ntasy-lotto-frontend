@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import authenticationService from "../../../../service/api/authentication/authentication.service";
 import { adminService } from "../../../../service/api/admin/admin.service";
 import CircleNumber from "../../../Utils/CircleNumber/index";
-import { FormatCurrencySymbol } from '../../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../../utils/__currency';
 import { Add, Remove } from '@material-ui/icons';
 import DiariaLogo from '../../../View/assets/Diaria_PNG.png';
 import ChicaLogo from '../../../View/assets/Chica_PNG.png';
@@ -134,7 +134,7 @@ const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoId, sorteoType, 
                         <div className="day">{day}</div>
                     </Grid>
                     <Grid className="value">
-                        {moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(moneda, premio.toFixed(2))}
+                        {moneda}{'\u00A0'}{'\u00A0'}{FormatNumberSymbol(premio)}
                     </Grid>
                 </ExpansionPanelSummary>
                 {jugadores.length !== 0 ?
@@ -145,7 +145,7 @@ const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoId, sorteoType, 
                                     {row.username}{moneda}-{moneda}{'['}${row.name}{']'}
                                 </div>
                                 <div className="user_value">
-                                    {moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(moneda, row.premio.toFixed(2))}
+                                    {moneda}{'\u00A0'}{'\u00A0'}{FormatNumberSymbol(row.premio)}
                                 </div>
                             </Grid>
                         )

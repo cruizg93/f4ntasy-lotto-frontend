@@ -4,8 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 
 import InformationDialog from '../../../View/Dialog/InformationDialog';
-import { Currency } from '../../../../utils/__currency';
-import { FormatCurrencySymbol } from '../../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../../utils/__currency';
 import DiariaLogo from '../../../View/assets/Diaria_PNG.png';
 import ChicaLogo from '../../../View/assets/Chica_PNG.png';
 import imgRed from '../../../View/assets/RED_PNG.png';
@@ -120,7 +119,7 @@ class ApuestaData extends React.Component {
                                 onClick={this.handleClickValue.bind(this)}
                             >
                                 <Typography style={{ marginLeft: 7, fontSize: '1.1rem' }} >
-                                    {moneySymbol}{'\u00A0'}{FormatCurrencySymbol(moneySymbol, this.props.apuesta.total.toFixed(2))}
+                                    {moneySymbol}{'\u00A0'}{FormatNumberSymbol(this.props.apuesta.total)}
                                 </Typography>
                             </Grid>
                         </Grid>

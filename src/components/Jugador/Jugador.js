@@ -5,8 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Grid, Container } from '@material-ui/core'
 
 import { adminService } from "../../service/api/admin/admin.service";
-import { FormatCurrency } from '../../utils/__currency';
-import { FormatCurrencySymbol } from '../../utils/__currency';
+import { FormatNumberSymbol } from '../../utils/__currency';
 import { Currency } from '../../utils/__currency';
 import JugadorDataShow from './components/JugadorEntry/index';
 import Button from '@material-ui/core/Button';
@@ -118,8 +117,8 @@ class Jugador extends Component {
                         </Button>
                     </Grid>
                     <Grid className="resumen_total">
-                        <span className="resumen_total_text">{'$'}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol('$', this.state.totalsDolar.toFixed(2))}</span>
-                        <span className="resumen_total_val">{'L'}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol('L', this.state.totalsLempira.toFixed(2))}</span>
+                        <span className="resumen_total_text">{'$'}{'\u00A0'}{'\u00A0'}{FormatNumberSymbol(this.state.totalsDolar)}</span>
+                        <span className="resumen_total_val">{'L'}{'\u00A0'}{'\u00A0'}{FormatNumberSymbol(this.state.totalsLempira)}</span>
                     </Grid>
                     <Grid container maxwidth="xs" direction="row">
                         {this.state.jugadorList.map((jugador, index) =>

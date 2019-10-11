@@ -20,6 +20,7 @@ export const adminService = {
     get_apuesta_activa_by_type_and_id,
     submit_bono,
     get_historial_weeklist,
+    get_historial_apuestas_sorteoAndJugador,
     get_historial_weekOverview,
     get_historial_weekOverviewByJugador,
     get_historial_apuestasOverview_sorteoAndJugador,
@@ -497,6 +498,28 @@ function get_historial_weeklist() {
     };
     return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/history/weeks`,
+            requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    });
+}
+
+function get_historial_apuestas_sorteoAndJugador(sorteosId, userId) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    return new Promise((resolve, reject) => {
+        axios.get(`${baseUrl}/history/sorteos/${sorteosId}/apuestas/detalles/${userId}`,
             requestOptions
         )
             .then((responseJson) => {

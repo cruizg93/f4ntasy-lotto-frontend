@@ -106,13 +106,12 @@ class HeaderBar extends Component {
                             <div style={{ textAlign: 'center', paddingBottom: 13, paddingTop: 35 }}>
                                 <GoSignOut size={45} />
                             </div>
-                            <div style={{ fontSize: 25, textAlign: 'left', paddingLeft: 13 }}>
-                                Salir
-                            </div>
                         </div>
                     </DialogTitle>
                     <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
+                        <DialogContentText id="alert-dialog-description"
+                            style={{ fontSize: 25, textAlign: 'center', color: 'black', padding: '10px 0px 15px 0px' }}
+                        >
                             {`Desea salir?`}
                         </DialogContentText>
                     </DialogContent>

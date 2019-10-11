@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
-import { FormatCurrencySymbol } from '../../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../../utils/__currency';
 import { adminService } from "../../../../service/api/admin/admin.service";
 import DiariaLogo from '../../../View/assets/Diaria_PNG.png';
 import ChicaLogo from '../../../View/assets/Chica_PNG.png';
@@ -202,7 +202,7 @@ class ApuestasDetallesEntry extends React.Component {
                 }
               >
                 <Typography className="body1" >
-                  {moneySymbol}{'\u00A0'}{FormatCurrencySymbol(moneySymbol, this.props.total.toFixed(2))}
+                  {moneySymbol}{'\u00A0'}{FormatNumberSymbol(this.props.total)}
                 </Typography>
               </Grid>
             </Grid>
