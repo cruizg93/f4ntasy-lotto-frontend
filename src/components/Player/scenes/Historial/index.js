@@ -123,7 +123,9 @@ const HistorialPlayer = (props) => {
                     <p>{FormatNumberSymbol(week.summary.subTotal)}</p>
                     <p>{FormatNumberSymbol(week.summary.premios)}</p>
                     <p>{FormatNumberSymbol(week.summary.bonos)}</p>
-                    <p>{FormatNumberSymbol(Math.abs(week.summary.perdidasGanas))}</p>
+                    <p style={{ color: colorStyle }}>
+                      {FormatNumberSymbol(Math.abs(week.summary.perdidasGanas))}
+                    </p>
                   </div>
                 </Grid>
               </Grid>

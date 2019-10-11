@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/styles';
 import { Colors } from '../../../utils/__colors';
-import { FormatCurrency } from '../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../utils/__currency';
 
 import DiariaLogo from './../assets/Diaria_PNG.png';
 import ChicaLogo from './../assets/Chica_PNG.png';
@@ -98,7 +98,7 @@ function TopBar(props) {
                     {
                         props.apuestaCurrency &&
                         <>
-                            {props.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(props.apuestaCurrency, props.total)}
+                            {props.apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatNumberSymbol(props.total)}
                         </>
                     }
                 </Typography>

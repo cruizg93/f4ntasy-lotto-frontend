@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-import { FormatCurrency } from '../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../utils/__currency';
 import { Currency } from '../../../utils/__currency';
 
 import './styles.css';
@@ -26,7 +26,7 @@ class RowList extends React.Component {
           <Grid item xs={6} className="text_value" style={{ paddingLeft: 10 }}>
             <div className="left">
               {
-                this.props.col_2.map((entry, index) => <span key={index}>{FormatCurrency(apuestaCurrency, entry)}<br /></span>)
+                this.props.col_2.map((entry, index) => <span key={index}>{FormatNumberSymbol(entry)}<br /></span>)
               }
             </div>
           </Grid>

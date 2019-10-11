@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from "@material-ui/core/styles/index";
-import { FormatCurrency } from '../../../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../../../utils/__currency';
 import { Colors } from '../../../../../utils/__colors';
 import './styles.css'
 const useStyles = makeStyles({
@@ -45,13 +45,13 @@ function ResumenApuestas(props) {
             </div>
             <div className="right">
                 <div>
-                    {FormatCurrency(props.apuestaCurrency, props.costoTotal)}
+                    {FormatNumberSymbol(props.costoTotal)}
                 </div>
                 <div>
-                    {FormatCurrency(props.apuestaCurrency, props.comisionTotal)}
+                    {FormatNumberSymbol(props.comisionTotal)}
                 </div>
                 <div>
-                    {FormatCurrency(props.apuestaCurrency, props.total)}
+                    {FormatNumberSymbol(props.total)}
                 </div>
             </div>
         </div>

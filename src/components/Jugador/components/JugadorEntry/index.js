@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { Currency } from '../../../../utils/__currency';
-import { FormatCurrency } from '../../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../../utils/__currency';
 
 import { makeStyles, withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
@@ -27,7 +27,7 @@ import { TiPen } from "react-icons/ti";
 import { GoTrashcan } from "react-icons/go";
 import { userActions } from '../../../../store/actions';
 import { Add, Remove } from '@material-ui/icons'
-
+import numeral from 'numeral';
 import './jugadorEntry.css';
 
 const useStyles = makeStyles(theme => ({
@@ -470,9 +470,9 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
             </Grid>
             <Grid item xs={6} className="text_value">
               <div className="left">
-                <span>{FormatCurrency(apuestaCurrency, total)}<br /></span>
-                <span>{FormatCurrency(apuestaCurrency, comision)}<br /></span>
-                <span>{FormatCurrency(apuestaCurrency, riesgo)}</span>
+                <span>{FormatNumberSymbol(total)}<br /></span>
+                <span>{FormatNumberSymbol(comision)}<br /></span>
+                <span>{FormatNumberSymbol(riesgo)}</span>
               </div>
             </Grid>
           </Grid>
@@ -496,7 +496,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
           <Grid >
             <span className={balance < 0 ? classes.textNegative : (balance > 0 ? classes.textPositive : classes.text)}
               style={{ padding: 3 }}>
-              {symbol}{monedaSymbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency, Math.abs(balance))}
+              {symbol}{monedaSymbol}{'\u00A0'}{'\u00A0'}{FormatNumberSymbol(Math.abs(balance))}
             </span>
           </Grid>
         </Grid>

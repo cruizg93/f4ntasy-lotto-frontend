@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { Currency } from '../../../../../utils/__currency';
-import { FormatCurrency } from '../../../../../utils/__currency';
+import { FormatNumberSymbol } from '../../../../../utils/__currency';
 import { adminService } from "../../../../../service/api/admin/admin.service";
 import DiariaLogo from '../../../../View/assets/Diaria_PNG.png';
 import ChicaLogo from '../../../../View/assets/Chica_PNG.png';
@@ -202,7 +202,7 @@ class JugadorDetallesEntry extends React.Component {
                 }
               >
                 <Typography className="body1" >
-                  {apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatCurrency(apuestaCurrency, this.props.total.toFixed(2))}
+                  {apuestaCurrency.symbol}{'\u00A0'}{'\u00A0'}{FormatNumberSymbol(this.props.total)}
                 </Typography>
               </Grid>
             </Grid>
