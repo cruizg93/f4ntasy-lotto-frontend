@@ -108,7 +108,9 @@ const HistorialJugadorByDay = (props) => {
                                 <p>{FormatCurrencySymbol(props.moneda, props.apuesta.summary.comisiones.toFixed(2))}</p>
                                 <p>{FormatCurrencySymbol(props.moneda, props.apuesta.summary.subTotal.toFixed(2))}</p>
                                 <p>{FormatCurrencySymbol(props.moneda, props.apuesta.summary.premios.toFixed(2))}</p>
-                                <p>{FormatCurrencySymbol(props.moneda, Math.abs(props.apuesta.summary.perdidasGanas).toFixed(2))}</p>
+                                <p style={{ color: colorTmp }}>
+                                  {FormatCurrencySymbol(props.moneda, Math.abs(props.apuesta.summary.perdidasGanas).toFixed(2))}
+                                </p>
                               </div>
                             </Grid>
                           </Grid>

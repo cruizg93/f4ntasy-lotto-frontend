@@ -66,7 +66,10 @@
   display: flex;
 }
 .container_historial_jugadores .expansionPanel .expansionPanelBody .summary .premio .sign{
-  width: 80px;
+  flex: 0.75;
+}
+.container_historial_jugadores .expansionPanel .expansionPanelBody .summary .premio .value{
+  flex: 1;
 }
 .container_historial_jugadores .expansionPanel .expansionPanelBody .container_expasionPanelBody{
   border-top: solid 2px #4f83c8;
