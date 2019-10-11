@@ -25,6 +25,8 @@ class Jugador extends Component {
             jugadorList: [],
             password: '',
             totalsMoney: 0,
+            totalsDolar: 0,
+            totalsLempira: 0,
             apuestaCurrency: '$'
         };
     }
@@ -61,7 +63,9 @@ class Jugador extends Component {
 
             this.toast_notification("success");
             this.setState({
-                jugadorList: Array.from(result.data)
+                jugadorList: Array.from(result.data.jugadores),
+                totalsDolar: result.data.totalDolar,
+                totalsLempira: result.data.totalLempira
             });
             this.update_totalsMoney()
             dispatch(userActions.loading_end())
@@ -76,7 +80,9 @@ class Jugador extends Component {
         dispatch(userActions.loading_start())
         adminService.list_players_details().then((result) => {
             this.setState({
-                jugadorList: Array.from(result.data.jugadores)
+                jugadorList: Array.from(result.data.jugadores),
+                totalsDolar: result.data.totalDolar,
+                totalsLempira: result.data.totalLempira
             });
             this.update_totalsMoney()
             dispatch(userActions.loading_end())
@@ -112,8 +118,8 @@ class Jugador extends Component {
                         </Button>
                     </Grid>
                     <Grid className="resumen_total">
-                        <span className="resumen_total_text">{'$'}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol('$', this.state.totalsMoney.toFixed(2))}</span>
-                        <span className="resumen_total_val">{'L'}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol('L', this.state.totalsMoney.toFixed(2))}</span>
+                        <span className="resumen_total_text">{'$'}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol('$', this.state.totalsDolar.toFixed(2))}</span>
+                        <span className="resumen_total_val">{'L'}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol('L', this.state.totalsLempira.toFixed(2))}</span>
                     </Grid>
                     <Grid container maxwidth="xs" direction="row">
                         {this.state.jugadorList.map((jugador, index) =>

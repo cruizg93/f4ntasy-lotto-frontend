@@ -102,7 +102,7 @@ const ExpanionPanelDay = (props) => {
                               <p>Premios:</p>
                               <p>Perdidas / Ganancias:</p>
                             </Grid>
-                            <Grid item xs={6} className="right_text" style={{ color: '#999999' }}>
+                            <Grid item xs={6} className="right_text" style={{ color: '#999999', display: 'block' }}>
                               <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, winList.summary.ventas.toFixed(2))}</p>
                               <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, winList.summary.comisiones.toFixed(2))}</p>
                               <p>{props.moneda}{'\u00A0'}{'\u00A0'}{FormatCurrencySymbol(props.moneda, winList.summary.subTotal.toFixed(2))}</p>
@@ -117,7 +117,7 @@ const ExpanionPanelDay = (props) => {
                             col_2={[winList.summary.ventas, winList.summary.comisiones, winList.summary.subTotal]}
                             style={{ height: 90 }}></RowList>
                           <Grid item className="premio">
-                            <div className="sign">
+                            <div className="sign" style={{ paddingRight: 0 }}>
                               <span>Premio</span>
                             </div>
                             <div className="value">

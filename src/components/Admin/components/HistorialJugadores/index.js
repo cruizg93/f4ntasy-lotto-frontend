@@ -129,7 +129,7 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
                         style={{ height: 90 }}></RowList>
                       <Grid item className="premio">
                         <div className="sign">
-                          <span>Premio</span>
+                          <span>Premio_1</span>
                         </div>
                         <div className="value">
                           <span>

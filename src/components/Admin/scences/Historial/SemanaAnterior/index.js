@@ -238,7 +238,9 @@ const HistorialSemanaAnteriorAdmin = (props) => {
                                         <p>{FormatCurrencySymbol(week.summary.currency, week.summary.subTotal.toFixed(2))}</p>
                                         <p>{FormatCurrencySymbol(week.summary.currency, week.summary.premios.toFixed(2))}</p>
                                         <p>{FormatCurrencySymbol(week.summary.currency, week.summary.bonos.toFixed(2))}</p>
-                                        <p>{FormatCurrencySymbol(week.summary.currency, Math.abs(week.summary.perdidasGanas).toFixed(2))}</p>
+                                        <p style={{ color: colorStyle }}>
+                                            {FormatCurrencySymbol(week.summary.currency, Math.abs(week.summary.perdidasGanas).toFixed(2))}
+                                        </p>
                                     </div>
                                 </Grid>
                             </Grid>

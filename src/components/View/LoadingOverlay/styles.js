@@ -52,7 +52,8 @@ export default {
     borderRadius: '10px',
     border: 'solid 2px #a6a5a5',
     position: 'fixed',
-    left: '38%',
+    left: '50%',
+    transform: 'translateX(-50%)',
     top: '44%'
   }),
   spinner: (state) => ({
