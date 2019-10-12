@@ -336,12 +336,15 @@ function list_apuestas_activas_details_by_user_id(username, id) {
             "Authorization": `Bearer ${currentUser.accessToken}`
         },
     };
-    let send = {
+    /*let send = {
         username: username
-    };
+    };*/
     return new Promise((resolve, reject) => {
-        axios.post(`${baseUrl}/admin/jugador/apuestas/${id}`,
-            send, requestOptions
+        /*axios.post(`${baseUrl}/admin/jugador/apuestas/${id}`,
+            send, requestOptions*/
+
+        axios.get(`${baseUrl}/sorteos/activos/${id}/apuestas/${username}`,
+            requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);
@@ -392,8 +395,11 @@ function details_apuesta_activa_by_apuesta_id(username, id) {
         username: username
     };
     return new Promise((resolve, reject) => {
-        axios.post(`${baseUrl}/admin/jugador/apuestas/activas/${id}/detalles`,
-            send, requestOptions
+        /*axios.post(`${baseUrl}/admin/jugador/apuestas/activas/${id}/detalles`,
+            send, requestOptions*/
+
+        axios.get(`${baseUrl}/sorteos/activos/${id}/apuestas/detalles/${username}`,
+            requestOptions
         )
             .then((responseJson) => {
                 resolve(responseJson);
