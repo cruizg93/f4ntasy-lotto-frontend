@@ -104,9 +104,9 @@ const ApuestaActivaAdminDetalle = (props) => {
         setPosiblePremioMaxRiesgo((result.data.maxRiesgo.totalRiesgo / result.data.total).toFixed(2));
         setTotalRiesgoMaxRiesgo(result.data.maxRiesgo.totalRiesgo);
         setRiesgoList(Array.from(result.data.tuplaRiesgos));
-        setTotal((result.data.total).toFixed(2));
-        setComision(result.data.comision.toFixed(2));
-        setNeta((result.data.total - result.data.comision).toFixed(2));
+        setTotal(result.data.total);
+        setComision(result.data.comision);
+        setNeta((result.data.total - result.data.comision));
     }
 
     function get_in_dolar() {
@@ -177,7 +177,7 @@ const ApuestaActivaAdminDetalle = (props) => {
                 <div id="resumen-apuesta-activa-data-admin" style={{ maxWidth: 444, width: '100%' }}>
                     <div className="container_total">
                         <RowList key={0} col_1={col} symbol={moneda === "dolar" ? '$' : 'L'}
-                            col_2={[total, comision, neta]} alignRight></RowList>
+                            col_2={[parseFloat(total), parseFloat(comision), parseFloat(neta)]} alignRight></RowList>
                     </div>
                     <Grid container>
                         <ApuestaActivaRiesgoEntry moneda={moneda} riesgoList={riesgoList} numeroMaxRiesgo={numeroMaxRiesgo} neta={neta} />

@@ -14,14 +14,16 @@
   padding-right: 3px;
 }
 .expansion_numeros_ganadores .icon img{
-  width: 78px;
+  width: 75px;
 }
 .expansion_numeros_ganadores .time_day{
-  flex: 1.2;
+  flex: 1.3;
+  align-self: center;
   font-size: 14px;
   font-weight: 500;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   color: #999999;
+  white-space: nowrap;
 }
 .expansion_numeros_ganadores .value{
   color: #4f83c8;
