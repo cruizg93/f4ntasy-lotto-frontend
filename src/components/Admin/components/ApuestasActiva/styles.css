@@ -19,6 +19,7 @@
   height: 33px !important;
   margin-top: 1px !important;
   margin-left: -20px !important;
+  white-space: nowrap;
 }
 .headerLabelSorteoHour .time{
   flex: 2;

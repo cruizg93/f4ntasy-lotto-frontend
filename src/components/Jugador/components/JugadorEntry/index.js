@@ -493,7 +493,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
               Balance
                         </span>
           </Grid>
-          <Grid >
+          <Grid style={{ whiteSpace: 'nowrap' }}>
             <span className={balance < 0 ? classes.textNegative : (balance > 0 ? classes.textPositive : classes.text)}
               style={{ padding: 3 }}>
               {symbol}{monedaSymbol}{'\u00A0'}{'\u00A0'}{FormatNumberSymbol(Math.abs(balance))}
