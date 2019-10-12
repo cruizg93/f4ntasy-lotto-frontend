@@ -149,8 +149,6 @@ class JugadorDetallesEntry extends React.Component {
     }
   }
   render() {
-    console.log('props', this.props)
-
     const apuestaCurrency = (this.props.moneda === "LEMPIRA" || this.props.moneda === "L") ? Currency.Lempira : Currency.Dollar;
     return (
       <>

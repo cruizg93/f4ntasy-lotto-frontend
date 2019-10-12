@@ -142,7 +142,7 @@ const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoId, sorteoType, 
                         {jugadores.map((row, index) =>
                             <Grid container key={index} className="container_expansion_details">
                                 <div className="username">
-                                    {row.username}{moneda}-{moneda}{'['}${row.name}{']'}
+                                    {row.username}-{moneda}{'['}{row.name}{']'}
                                 </div>
                                 <div className="user_value">
                                     {moneda}{'\u00A0'}{'\u00A0'}{FormatNumberSymbol(row.premio)}

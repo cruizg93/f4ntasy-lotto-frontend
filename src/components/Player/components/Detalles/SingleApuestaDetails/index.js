@@ -12,7 +12,6 @@ const SingleApuestaDetails = ({ numero, valor, ...props }) => {
     function handleClickOpen() {
         setOpen(true);
     }
-    console.log('useriiiiidddf', props.userid)
     function handleClose(value) {
         setOpen(false);
         if (value === true) {
@@ -27,8 +26,6 @@ const SingleApuestaDetails = ({ numero, valor, ...props }) => {
             }
         }
     }
-    console.log('sortid', props.location.state.id)
-    console.log('userid', props.userid)
     return (
         <div className="singleApuestaDetails">
             <div id={`text-${props.index}`} className='textNumber'>

@@ -62,7 +62,6 @@ const DetallesApuesta = ({ ...props }) => {
                 });
         }
     }
-    console.log('dfsdfa', userid)
     return (
         <div className="ventas_activas_detalles" >
             <DetailTitle titleLabel="Detalle" />

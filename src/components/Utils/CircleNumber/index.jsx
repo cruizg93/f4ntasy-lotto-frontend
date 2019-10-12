@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
+        alignSelf: 'center'
     }
 }));
 const CircleNumber = ({ ...props }) => {

@@ -56,7 +56,6 @@ const EditarJugador = (props) => {
     //     setSelectedDiariaType(event.target.value);
     // }
     const handleChangeDiariaType = event => {
-        console.log('here')
         if (event.target.value === 'dm') {
             setDiariaPremioMil(1000);
         }
@@ -239,7 +238,6 @@ const EditarJugador = (props) => {
         if (editable)
             setDisable(!disable);
     }
-    console.log('here', selectedValueMoneda)
     return (
         <React.Fragment>
             <ToastContainer autoClose={8000} />

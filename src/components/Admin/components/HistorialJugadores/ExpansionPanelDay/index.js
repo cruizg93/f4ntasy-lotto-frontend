@@ -27,7 +27,6 @@ const ExpanionPanelDay = (props) => {
 
   const handleChangeExpand = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
-    console.log('props', props)
     if (isExpanded) {
       if (props.casa === 'casa') {
         adminService.get_historial_apuestasOverview_sorteo(props.winner.id).then((result) => {
