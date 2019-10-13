@@ -60,7 +60,7 @@ class InformationPasswordDialolg extends React.Component {
               <DialogContentText id="alert-dialog-description" style={{ fontSize: contentFontSize }}>
                 {this.props.context}
               </DialogContentText>
-              <div className="pass_info">
+              {/*<div className="pass_info">
                 <div className="left">
                   <div>Usuario</div>
                   <div>Contraseñas</div>
@@ -73,7 +73,7 @@ class InformationPasswordDialolg extends React.Component {
                   <div>{this.props.userName}</div>
                   <div>{this.props.password}</div>
                 </div>
-              </div>
+                </div>*/}
             </DialogContent>
             <DialogActions style={{ display: 'flex', margin: '0 auto', width: '78%' }}>
               <Button onClick={() => this.handleCancel()} style={{ fontSize: '18px', color: '#5891DC' }}>OK</Button>
