@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Grid, Container } from '@material-ui/core'
 
 import { adminService } from "../../service/api/admin/admin.service";
+import authenticationService from '../../service/api/authentication/authentication.service';
 import { FormatNumberSymbol } from '../../utils/__currency';
 import { Currency } from '../../utils/__currency';
 import JugadorDataShow from './components/JugadorEntry/index';
@@ -59,14 +60,17 @@ class Jugador extends Component {
         dispatch(userActions.loading_start())
 
         adminService.list_players_details().then((result) => {
-
-            this.toast_notification("success");
-            this.setState({
-                jugadorList: Array.from(result.data.jugadores),
-                totalsDolar: result.data.totalDolar,
-                totalsLempira: result.data.totalLempira
-            });
-            this.update_totalsMoney()
+            if (result.status === 401) {
+                authenticationService.logout()
+            } else {
+                this.toast_notification("success");
+                this.setState({
+                    jugadorList: Array.from(result.data.jugadores),
+                    totalsDolar: result.data.totalDolar,
+                    totalsLempira: result.data.totalLempira
+                });
+                this.update_totalsMoney()
+            }
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -78,12 +82,16 @@ class Jugador extends Component {
         const { dispatch } = this.props;
         dispatch(userActions.loading_start())
         adminService.list_players_details().then((result) => {
-            this.setState({
-                jugadorList: Array.from(result.data.jugadores),
-                totalsDolar: result.data.totalDolar,
-                totalsLempira: result.data.totalLempira
-            });
-            this.update_totalsMoney()
+            if (result.status === 401) {
+                authenticationService.logout()
+            } else {
+                this.setState({
+                    jugadorList: Array.from(result.data.jugadores),
+                    totalsDolar: result.data.totalDolar,
+                    totalsLempira: result.data.totalLempira
+                });
+                this.update_totalsMoney()
+            }
             dispatch(userActions.loading_end())
             window.scrollTo(0, 0);
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Container, Grid, Button, Divider } from '@material-ui/core';
 import NumerosGanadoresEntry from '../../../components/NumerosGanadoresEntry/index';
 import { adminService } from "../../../../../service/api/admin/admin.service";
+import authenticationService from '../../../../../service/api/authentication/authentication.service';
 import { makeStyles } from "@material-ui/core/styles/index";
 import { blue } from "@material-ui/core/colors/index";
 import Typography from '@material-ui/core/Typography';
@@ -73,7 +74,10 @@ const NumerosGanadores = (props) => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         adminService.get_historial_numeros_ganadores(moneda).then((result) => {
-            setNumerosGanadoresList(Array.from(result.data));
+            if (result.status === 401)
+                authenticationService.logout()
+            else
+                setNumerosGanadoresList(Array.from(result.data));
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -86,8 +90,12 @@ const NumerosGanadores = (props) => {
             const { dispatch } = props;
             dispatch(userActions.loading_start())
             adminService.get_historial_numeros_ganadores(monedaType).then((result) => {
-                setNumerosGanadoresList([]);
-                setNumerosGanadoresList(Array.from(result.data));
+                if (result.status === 401) {
+                    authenticationService.logout()
+                } else {
+                    setNumerosGanadoresList([]);
+                    setNumerosGanadoresList(Array.from(result.data));
+                }
                 dispatch(userActions.loading_end())
             })
                 .catch(function (error) {

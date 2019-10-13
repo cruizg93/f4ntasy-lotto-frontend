@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import { playerService } from "../../../../../service/api/player/player.service";
+import authenticationService from '../../../../../service/api/authentication/authentication.service';
 import ApuestaData from '../../../components/Apuesta/index';
 
 import AdminTitle from '../../../../Admin/components/AdminTitle_Center';
@@ -20,6 +21,9 @@ class AdicionarApuestaAsistente extends React.Component {
     }
 
     componentDidMount() {
+        if (this.props.firstConnection === true) {
+            authenticationService.logout()
+        }
         window.scrollTo(0, 0);
     }
 
@@ -27,9 +31,13 @@ class AdicionarApuestaAsistente extends React.Component {
         const { dispatch } = this.props;
         dispatch(userActions.loading_start())
         playerService.list_apuestas_asistente_hoy_by_username().then((result) => {
-            this.setState({
-                entry: result.data,
-            })
+            if (result.status === 401) {
+                authenticationService.logout()
+            } else {
+                this.setState({
+                    entry: result.data,
+                })
+            }
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -57,4 +65,9 @@ class AdicionarApuestaAsistente extends React.Component {
     }
 };
 
-export default connect()(AdicionarApuestaAsistente);
+
+const mapStateToProps = ({ user }) => {
+    const { firstConnection } = user;
+    return { firstConnection }
+};
+export default connect(mapStateToProps)(AdicionarApuestaAsistente);

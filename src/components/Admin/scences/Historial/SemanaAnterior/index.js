@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { adminService } from "../../../../../service/api/admin/admin.service";
+import authenticationService from '../../../../../service/api/authentication/authentication.service';
 import { makeStyles, withStyles } from "@material-ui/core/styles/index";
 import { red, blue } from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
@@ -108,11 +109,15 @@ const HistorialSemanaAnteriorAdmin = (props) => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         adminService.get_historial_weeklist().then((result) => {
-            if (result.data.summary) {
-                let color = result.data.summary.perdidasGanas > 0 ? '#009144' : result.data.summary.perdidasGanas < 0 ? '#ED1C24' : '#4E84C8'
-                setColorStyle(color)
+            if (result.status === 401) {
+                authenticationService.logout()
+            } else {
+                if (result.data.summary) {
+                    let color = result.data.summary.perdidasGanas > 0 ? '#009144' : result.data.summary.perdidasGanas < 0 ? '#ED1C24' : '#4E84C8'
+                    setColorStyle(color)
+                }
+                setWeekList(result.data)
             }
-            setWeekList(result.data)
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -128,13 +133,17 @@ const HistorialSemanaAnteriorAdmin = (props) => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         adminService.get_historial_weekOverview(id, type, moneda_type).then((result) => {
-            if (result.data.summary) {
-                let currency = result.data.summary.currency.toUpperCase() === 'LEMPIRA' ? 'L' : '$'
-                result.data.summary.currency = currency;
-                let color = result.data.summary.perdidasGanas > 0 ? '#009144' : result.data.summary.perdidasGanas < 0 ? '#ED1C24' : '#4E84C8'
-                setColorStyle(color)
+            if (result.status === 401) {
+                authenticationService.logout()
+            } else {
+                if (result.data.summary) {
+                    let currency = result.data.summary.currency.toUpperCase() === 'LEMPIRA' ? 'L' : '$'
+                    result.data.summary.currency = currency;
+                    let color = result.data.summary.perdidasGanas > 0 ? '#009144' : result.data.summary.perdidasGanas < 0 ? '#ED1C24' : '#4E84C8'
+                    setColorStyle(color)
+                }
+                setWeek(result.data)
             }
-            setWeek(result.data)
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {

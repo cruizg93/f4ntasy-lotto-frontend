@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { red, blue } from "@material-ui/core/colors/index";
 import { adminService } from "../../../../service/api/admin/admin.service";
+import authenticationService from '../../../../service/api/authentication/authentication.service';
 import HistorialUsuarioDetallesEntry from '../HistorialUsuarioDetalles/HUDEntry/index';
 
 const useStyles = makeStyles(theme => ({
@@ -59,8 +60,12 @@ const HistorialUsuarioDetalles = (props) => {
         setSemana(props.location.state.semana);
         adminService.get_historial_current_week_by_id_and_type(props.location.state.id, props.location.state.type)
             .then((result) => {
-                setDaysEntry(Array.from(result.data.uddList))
-                setBalance((result.data.balance).toFixed(2))
+                if (result.status === 401) {
+                    authenticationService.logout()
+                } else {
+                    setDaysEntry(Array.from(result.data.uddList))
+                    setBalance((result.data.balance).toFixed(2))
+                }
             })
     }, []);
     return (

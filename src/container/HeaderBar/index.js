@@ -125,7 +125,7 @@ class HeaderBar extends Component {
                             this.handleCloseAccept();
                         }}
                             style={{ fontSize: '18px', color: '#5891DC', marginRight: 10 }}
-                            color="primary" autoFocus>
+                            color="primary" >
                             Aceptar
                                 </Button>
                     </DialogActions>

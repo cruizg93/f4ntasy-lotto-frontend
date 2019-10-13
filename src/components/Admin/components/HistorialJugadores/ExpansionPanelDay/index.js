@@ -9,6 +9,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import { Add, Remove } from '@material-ui/icons';
 import { adminService } from "../../../../../service/api/admin/admin.service";
+import authenticationService from '../../../../../service/api/authentication/authentication.service';
 import { userActions } from '../../../../../store/actions';
 import { FormatNumberSymbol } from '../../../../../utils/__currency';
 import ListHistoryDetail from '../ListHistoryDetail'
@@ -30,13 +31,20 @@ const ExpanionPanelDay = (props) => {
     if (isExpanded) {
       if (props.casa === 'casa') {
         adminService.get_historial_apuestasOverview_sorteo(props.winner.id).then((result) => {
-          let color = result.data.summary.perdidasGanas > 0 ? '#009144' : result.data.summary.perdidasGanas < 0 ? '#ED1C24' : '#4E84C8'
-          setColorStyle(color)
-          setWinList(result.data)
+          if (result.status === 401) {
+            authenticationService.logout()
+          } else {
+            let color = result.data.summary.perdidasGanas > 0 ? '#009144' : result.data.summary.perdidasGanas < 0 ? '#ED1C24' : '#4E84C8'
+            setColorStyle(color)
+            setWinList(result.data)
+          }
         })
       } else {
         adminService.get_historial_apuestasOverview_sorteoAndJugador(props.jugadorId, props.winner.id).then((result) => {
-          setWinList(result.data)
+          if (result.status === 401) {
+            authenticationService.logout()
+          } else
+            setWinList(result.data)
         })
       }
     }
@@ -46,8 +54,12 @@ const ExpanionPanelDay = (props) => {
     const { dispatch } = props;
     dispatch(userActions.loading_start())
     adminService.get_historial_apuestas_sorteoAndJugador(props.winner.id, props.jugadorId).then((result) => {
-      setWinDetailList(result.data)
-      setOpenComprarInfo(true)
+      if (result.status === 401) {
+        authenticationService.logout()
+      } else {
+        setWinDetailList(result.data)
+        setOpenComprarInfo(true)
+      }
     })
       .catch(function (error) {
         dispatch(userActions.loading_end())

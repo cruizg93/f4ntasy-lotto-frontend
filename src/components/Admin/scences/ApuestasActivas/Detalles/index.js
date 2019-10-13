@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { adminService } from "../../../../../service/api/admin/admin.service";
+import authenticationService from '../../../../../service/api/authentication/authentication.service';
 import { makeStyles } from "@material-ui/core/styles/index";
 import { red, blue } from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
@@ -87,7 +88,10 @@ const ApuestaActivaAdminDetalle = (props) => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         adminService.get_apuesta_activa_by_type_and_id(moneda, props.match.params.apuestaId).then((result) => {
-            update(result)
+            if (result.status === 401)
+                authenticationService.logout()
+            else
+                update(result)
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -114,8 +118,12 @@ const ApuestaActivaAdminDetalle = (props) => {
             const { dispatch } = props;
             dispatch(userActions.loading_start())
             adminService.get_apuesta_activa_by_type_and_id("dolar", props.match.params.apuestaId).then((result) => {
-                setMoneda("dolar")
-                update(result)
+                if (result.status === 401) {
+                    authenticationService.logout()
+                } else {
+                    setMoneda("dolar")
+                    update(result)
+                }
                 dispatch(userActions.loading_end())
             })
                 .catch(function (error) {
@@ -129,8 +137,12 @@ const ApuestaActivaAdminDetalle = (props) => {
             const { dispatch } = props;
             dispatch(userActions.loading_start())
             adminService.get_apuesta_activa_by_type_and_id("lempira", props.match.params.apuestaId).then((result) => {
-                setMoneda("lempira");
-                update(result)
+                if (result.status === 401) {
+                    authenticationService.logout()
+                } else {
+                    setMoneda("lempira");
+                    update(result)
+                }
                 dispatch(userActions.loading_end())
             })
                 .catch(function (error) {

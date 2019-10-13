@@ -13,6 +13,7 @@ import Chica from "./components/Chica/Chica";
 import UserXInformationDialog from '../View/Dialog/UserXInformationDialog';
 import CustomText from '../View/CustomText';
 import { adminService } from "../../service/api/admin/admin.service";
+import authenticationService from '../../service/api/authentication/authentication.service';
 import { userActions } from '../../store/actions';
 import Dollar_ON from '../View/assets/Dollar_ON.png';
 import Dollar_OFF from '../View/assets/Dollar_OFF.png';
@@ -98,10 +99,14 @@ const Nuevo = ({ ...props }) => {
     const { dispatch } = props;
     dispatch(userActions.loading_start())
     adminService.count().then((response) => {
-      let number = response.data;
-      let pword = number.toString().padStart(3, '0')
-      pword = 'P' + pword
-      setPlaceholderUser(pword)
+      if (response.status === 401) {
+        authenticationService.logout()
+      } else {
+        let number = response.data;
+        let pword = number.toString().padStart(3, '0')
+        pword = 'P' + pword
+        setPlaceholderUser(pword)
+      }
       dispatch(userActions.loading_end())
     })
       .catch(function (error) {

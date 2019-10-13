@@ -149,7 +149,7 @@ class Dashboard extends Component {
                                 </Button>
                             <Button onClick={() => {
                                 this.handleCloseAccept();
-                            }} color="primary" autoFocus>
+                            }} color="primary" >
                                 Aceptar
                                 </Button>
                         </DialogActions>

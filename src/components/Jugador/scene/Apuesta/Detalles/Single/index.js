@@ -14,6 +14,7 @@ import ResumenApuestas from '../../../../../Player/scenes/Apuesta/Resumen/Resume
 import { Currency } from '../../../../../../utils/__currency'
 import { makeStyles } from "@material-ui/core/styles/index";
 import { adminService } from "../../../../../../service/api/admin/admin.service";
+import authenticationService from '../../../../../../service/api/authentication/authentication.service';
 import { Colors } from "../../../../../../utils/__colors";
 
 import AdminTitle from '../../../../../Admin/components/AdminTitle';
@@ -165,13 +166,17 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
     const { dispatch } = props;
     dispatch(userActions.loading_start())
     adminService.list_apuestas_activas_details_by_user_id(props.location.state.username, props.location.state.id).then((result) => {
-      setComision(result.data.comision);
-      setRiesgo(result.data.riesgo);
-      setTotal(result.data.total);
-      setList(Array.from(result.data.list));
-      setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
-      setMoneda(props.location.state.moneda)
-      setType(props.location.state.type)
+      if (result.status === 401) {
+        authenticationService.logout()
+      } else {
+        setComision(result.data.comision);
+        setRiesgo(result.data.riesgo);
+        setTotal(result.data.total);
+        setList(Array.from(result.data.list));
+        setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
+        setMoneda(props.location.state.moneda)
+        setType(props.location.state.type)
+      }
       dispatch(userActions.loading_end())
     })
       .catch(function (error) {
@@ -183,7 +188,9 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
     const { dispatch } = props;
     dispatch(userActions.loading_start())
     adminService.delete_apuestas_activas_sorteoAndNumeroAndJugador(apuestaId, jugadorId, numero).then((result) => {
-      if (result.status === 409) {
+      if (result.status === 401) {
+        authenticationService.logout()
+      } else if (result.status === 409) {
         setOpenError409Info(true);
       } else if (result.status === 500) {
         setOpenError500Info(true);
@@ -201,7 +208,9 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
     const { dispatch } = props;
     dispatch(userActions.loading_start())
     adminService.delete_apuestas_activas_sorteoAndJugador(apuestaId, jugadorId).then((result) => {
-      if (result.status === 409) {
+      if (result.status === 401) {
+        authenticationService.logout()
+      } else if (result.status === 409) {
         setOpenError409Info(true);
       } else if (result.status === 500) {
         setOpenError500Info(true);
