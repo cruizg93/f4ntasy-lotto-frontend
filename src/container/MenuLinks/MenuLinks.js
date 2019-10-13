@@ -1,16 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-export const MenuLinks = (props) => {
+const MenuLinks = ({ ...props }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [anchorE2, setAnchorE2] = React.useState(null);
 
     const isAdmin = props.admin;
     const isPlayer = !props.admin && props.asistente;
     const isAsistente = (!props.admin && props.asistente);
+    const hiddenHeader = (props.firstConnection === true) && ((props.role === 'Player') || (props.role === 'Asistente'))
 
     function handleClickHistorial(event) {
         setAnchorE2(event.currentTarget);
@@ -107,17 +109,17 @@ export const MenuLinks = (props) => {
 
 
             {!isAdmin && <>
-                {!isAsistente && <Button component={Link}
+                {!isAsistente && !hiddenHeader && <Button component={Link}
                     to="/usuario/apuestas"
                     color="inherit">Sorteos</Button>
                 }
-                {!isAsistente && <Button component={Link}
+                {!isAsistente && !hiddenHeader && <Button component={Link}
                     to="/usuario/historial"
                     color="inherit">Historial</Button>
                 }
             </>
             }
-            {isAsistente && <Button component={Link}
+            {isAsistente && !hiddenHeader && <Button component={Link}
                 to="/asistente/apuestas"
                 color="inherit">Sorteos</Button>
             }
@@ -135,3 +137,10 @@ export const MenuLinks = (props) => {
         </>
     )
 };
+
+const mapStateToProps = ({ user }) => {
+    const { role, firstConnection } = user;
+    return { role, firstConnection }
+};
+
+export default connect(mapStateToProps)(MenuLinks);

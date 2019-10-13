@@ -87,6 +87,7 @@ class HeaderBar extends Component {
     }
 
     render() {
+        const { firstConnection, role } = this.props;
         let backdrop;
         if (this.state.sideDrawerOpen) {
             backdrop = <Backdrop click={this.backdropClickHandler} />
@@ -134,7 +135,8 @@ class HeaderBar extends Component {
                     logoutClickHandler={this.logoutClickHandler.bind(this)}
                     admin={this.state.isAdmin}
                     asistente={this.state.isAsistente}
-                    isPlayer={this.state.isPlayer} />
+                    isPlayer={this.state.isPlayer}
+                />
                 <SideDrawer show={this.state.sideDrawerOpen}
                     drawerClickHandler={this.drawerToggleClickHandler.bind(this)}
                     logoutClickHandler={this.logoutClickHandler.bind(this)}
@@ -154,8 +156,8 @@ class HeaderBar extends Component {
 
 const mapStateToProps = ({ ui, user }) => {
     const { drawerType } = ui;
-    const { role } = user;
-    return { drawerType, role }
+    const { role, firstConnection } = user;
+    return { drawerType, role, firstConnection }
 };
 
 export default connect(mapStateToProps)(HeaderBar);
