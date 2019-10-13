@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid';
 import { adminService } from "../../../../../service/api/admin/admin.service";
 import { playerService } from "../../../../../service/api/player/player.service";
+import authenticationService from '../../../../../service/api/authentication/authentication.service';
 import ShowDetallesApuesta from '../../../components/Detalles/index';
 import { LocalPrintshop } from "@material-ui/icons";
 import Fab from '@material-ui/core/Fab';
@@ -41,8 +42,12 @@ const DetallesApuesta = ({ ...props }) => {
             const { dispatch } = props;
             dispatch(userActions.loading_start())
             adminService.details_apuesta_activa_by_apuesta_id(props.location.state.username, props.location.state.id).then((result) => {
-                setList([]);
-                setList(Array.from(result.data));
+                if (result.status === 401) {
+                    authenticationService.logout()
+                } else {
+                    setList([]);
+                    setList(Array.from(result.data));
+                }
                 dispatch(userActions.loading_end())
             })
                 .catch(function (error) {
@@ -53,8 +58,12 @@ const DetallesApuesta = ({ ...props }) => {
             const { dispatch } = props;
             dispatch(userActions.loading_start())
             playerService.detalles_by_apuesta_id(props.location.state.id).then((result) => {
-                setList([]);
-                setList(Array.from(result.data));
+                if (result.status === 401) {
+                    authenticationService.logout()
+                } else {
+                    setList([]);
+                    setList(Array.from(result.data));
+                }
                 dispatch(userActions.loading_end())
             })
                 .catch(function (error) {

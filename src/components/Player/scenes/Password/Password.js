@@ -7,6 +7,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { MdSettings } from "react-icons/md";
 import { update_password_user } from "../../../../service/api/password/password";
+import authenticationService from '../../../../service/api/authentication/authentication.service';
 import AdminTitle from '../../../Admin/components/AdminTitle_Center';
 import CustomText from '../../../View/CustomText';
 import ConfirmDialog from '../../../View/Dialog/ConfirmDialog';
@@ -54,8 +55,9 @@ const PlayerPassword = ({ ...props }) => {
         update_password_user(values.password)
             .then((result) => {
                 if (result.data.response.indexOf('Password update') === 0) {
+                    authenticationService.logout();
+                    props.history.push("/");
                 }
-                props.history.push("/");
                 dispatch(userActions.loading_end())
             })
             .catch(function (error) {
@@ -64,7 +66,8 @@ const PlayerPassword = ({ ...props }) => {
     }
 
     const handleClickOpen = () => {
-        setOpen(true)
+        if (values.password !== '')
+            setOpen(true)
     }
 
     const handleClose = (value) => {

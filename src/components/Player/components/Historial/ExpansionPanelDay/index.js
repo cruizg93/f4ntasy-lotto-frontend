@@ -9,6 +9,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import { Add, Remove } from '@material-ui/icons';
 import { FormatNumberSymbol } from '../../../../../utils/__currency';
 import { playerService } from "../../../../../service/api/player/player.service";
+import authenticationService from '../../../../../service/api/authentication/authentication.service';
 import ListHistoryDetail from '../ListHistoryDetail'
 import RowList from '../../../../View/RowList'
 import DiariaLogo from '../../../../View/assets/Diaria_PNG.png';
@@ -25,7 +26,11 @@ const ExpanionPanelDay = (props) => {
     setExpanded(isExpanded ? panel : false);
     if (isExpanded) {
       playerService.apuestasOverview_sorteo(props.winner.id).then((result) => {
-        setWinList(result.data)
+        if (result.status === 401) {
+          authenticationService.logout()
+        } else {
+          setWinList(result.data)
+        }
       })
     }
   };

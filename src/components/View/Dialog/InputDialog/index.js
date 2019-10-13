@@ -147,7 +147,7 @@ class InputDialog extends React.Component {
           </DialogContentText>
         </DialogContent>
         <DialogActions style={{ margin: '0 auto', width: '100%' }}>
-          <Button onClick={() => this.handleCancel(true)} style={{ fontSize: '17px', color: '#5891DC', marginRight: 10 }} autoFocus>Aceptar</Button>
+          <Button onClick={() => this.handleCancel(true)} style={{ fontSize: '17px', color: '#5891DC', marginRight: 10 }} >Aceptar</Button>
           <Button onClick={() => this.handleCancel(false)} style={{ fontSize: '17px', color: '#5891DC', marginRight: 10 }}>Cancelar</Button>
         </DialogActions>
       </Dialog>

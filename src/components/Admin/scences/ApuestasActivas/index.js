@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Container from '@material-ui/core/Container';
 import 'react-toastify/dist/ReactToastify.css';
 import { adminService } from "../../../../service/api/admin/admin.service";
+import authenticationService from '../../../../service/api/authentication/authentication.service';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { Colors } from "../../../../utils/__colors";
@@ -40,11 +41,15 @@ const ApuestasActivasAdmin = (props) => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         adminService.get_apuestas_activas(moneda).then((result) => {
-            setApuestasActivasList(Array.from(result.data));
-            let total = result.data.reduce((sum, row) => sum + row.total, 0);
-            let comision = result.data.reduce((sum, row) => sum + row.comision, 0);
-            let riesgo = result.data.reduce((sum, row) => sum + row.neta, 0);
-            setValues([total, comision, riesgo])
+            if (result.status === 401) {
+                authenticationService.logout()
+            } else {
+                setApuestasActivasList(Array.from(result.data));
+                let total = result.data.reduce((sum, row) => sum + row.total, 0);
+                let comision = result.data.reduce((sum, row) => sum + row.comision, 0);
+                let riesgo = result.data.reduce((sum, row) => sum + row.neta, 0);
+                setValues([total, comision, riesgo])
+            }
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -75,12 +80,16 @@ const ApuestasActivasAdmin = (props) => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         adminService.get_apuestas_activas(monedaType).then((result) => {
-            setApuestasActivasList([]);
-            setApuestasActivasList(Array.from(result.data));
-            let total = result.data.reduce((sum, row) => sum + row.total, 0);
-            let comision = result.data.reduce((sum, row) => sum + row.comision, 0);
-            let riesgo = result.data.reduce((sum, row) => sum + row.neta, 0);
-            setValues([total, comision, riesgo])
+            if (result.status === 401) {
+                authenticationService.logout()
+            } else {
+                setApuestasActivasList([]);
+                setApuestasActivasList(Array.from(result.data));
+                let total = result.data.reduce((sum, row) => sum + row.total, 0);
+                let comision = result.data.reduce((sum, row) => sum + row.comision, 0);
+                let riesgo = result.data.reduce((sum, row) => sum + row.neta, 0);
+                setValues([total, comision, riesgo])
+            }
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {

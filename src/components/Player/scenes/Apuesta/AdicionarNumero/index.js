@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Grid from '@material-ui/core/Grid';
 import { playerService } from "../../../../../service/api/player/player.service";
+import authenticationService from '../../../../../service/api/authentication/authentication.service';
 import ListaApuestas from "../../../scenes/Apuesta/ListaApuestas";
 import { withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
@@ -141,28 +142,32 @@ class AdicionarNumeroApuesta extends Component {
         const { dispatch } = this.props;
         dispatch(userActions.loading_start())
         playerService.list_of_numbers_by_apuesta_id(this.match.params.apuestaId).then((result) => {
-            this.setState({ name: result.data.name });
-            this.setState({ entry: Array.from(result.data.list) });
-            this.setState({ hour: result.data.hour });
-            this.setState({ day: result.data.day });
-            this.setState({ apuestaType: result.data.type });
-
-            let comisionRate = 0;
-            let costoXMil = 0;
-            if (result.data.type === "CHICA") {
-                playerService.comision_directo("chica").then((result) => {
-                    comisionRate = result.data.comision;
-                    costoXMil = result.data.costoMil
-                    this.setState({ comisionRate: comisionRate });
-                    this.setState({ costoXMil: costoXMil });
-                })
+            if (result.status === 401) {
+                authenticationService.logout();
             } else {
-                playerService.comision_directo("directo").then((result) => {
-                    comisionRate = result.data.comision;
-                    costoXMil = result.data.costoMil;
-                    this.setState({ comisionRate: comisionRate });
-                    this.setState({ costoXMil: costoXMil });
-                })
+                this.setState({ name: result.data.name });
+                this.setState({ entry: Array.from(result.data.list) });
+                this.setState({ hour: result.data.hour });
+                this.setState({ day: result.data.day });
+                this.setState({ apuestaType: result.data.type });
+
+                let comisionRate = 0;
+                let costoXMil = 0;
+                if (result.data.type === "CHICA") {
+                    playerService.comision_directo("chica").then((result) => {
+                        comisionRate = result.data.comision;
+                        costoXMil = result.data.costoMil
+                        this.setState({ comisionRate: comisionRate });
+                        this.setState({ costoXMil: costoXMil });
+                    })
+                } else {
+                    playerService.comision_directo("directo").then((result) => {
+                        comisionRate = result.data.comision;
+                        costoXMil = result.data.costoMil;
+                        this.setState({ comisionRate: comisionRate });
+                        this.setState({ costoXMil: costoXMil });
+                    })
+                }
             }
             dispatch(userActions.loading_end())
         })
@@ -400,7 +405,11 @@ class AdicionarNumeroApuesta extends Component {
         const { dispatch } = this.props;
         dispatch(userActions.loading_start())
         playerService.update_number(this.state.entry, id).then((result) => {
-            this.props.history.push("/");
+            if (result.status === 401) {
+                authenticationService.logout();
+            } else {
+                this.props.history.push("/");
+            }
             // this.handleCloseFinalizarCompraDialog(event);
             dispatch(userActions.loading_end())
             return () => {
@@ -450,7 +459,9 @@ class AdicionarNumeroApuesta extends Component {
             const { dispatch } = this.props;
             dispatch(userActions.loading_start())
             playerService.update_number(this.state.entryList, id).then((result) => {
-                if (result.status === 409) {
+                if (result.status === 401) {
+                    authenticationService.logout();
+                } else if (result.status === 409) {
                     this.setState({
                         ...this.state,
                         openError409Info: true

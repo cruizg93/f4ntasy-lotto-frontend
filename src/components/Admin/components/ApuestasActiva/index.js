@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { FormatNumberSymbol } from '../../../../utils/__currency';
 import { adminService } from "../../../../service/api/admin/admin.service";
+import authenticationService from '../../../../service/api/authentication/authentication.service';
 import DiariaLogo from '../../../View/assets/Diaria_PNG.png';
 import ChicaLogo from '../../../View/assets/Chica_PNG.png';
 import imgRed from '../../../View/assets/RED_PNG.png';
@@ -69,7 +70,11 @@ class ApuestasDetallesEntry extends React.Component {
     })
     if (value === true) {
       adminService.cerrar_desbloquear(this.props.id).then((result) => {
-        this.props.update(this.props.moneda);
+        if (result.status === 401) {
+          authenticationService.logout()
+        } else {
+          this.props.update(this.props.moneda);
+        }
       })
     }
   }
@@ -86,7 +91,11 @@ class ApuestasDetallesEntry extends React.Component {
     if (value === true) {
       if (this.props.estado === 'ABIERTA') {
         adminService.cerrar_apuesta(this.props.id).then((result) => {
-          this.props.update(this.props.moneda);
+          if (result.status === 401) {
+            authenticationService.logout()
+          } else {
+            this.props.update(this.props.moneda);
+          }
         })
       }
     }

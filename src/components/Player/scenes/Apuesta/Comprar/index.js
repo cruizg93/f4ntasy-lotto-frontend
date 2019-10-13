@@ -247,7 +247,7 @@ const ComprarApuesta = ({ ...props }) => {
                                 </Button>
                     <Button onClick={() => {
                         handleCloseAccept();
-                    }} color="primary" autoFocus>
+                    }} color="primary" >
                         Aceptar
                                 </Button>
                 </DialogActions>

@@ -71,7 +71,7 @@ const AsistenteDataShow = ({ match, id, username, name, ...props }) => {
                         handleClose();
                         deletePlayer();
 
-                    }} color="primary" autoFocus>
+                    }} color="primary" >
                         Aceptar
                         </Button>
                 </DialogActions>

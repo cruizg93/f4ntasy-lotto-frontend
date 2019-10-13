@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { playerService } from "../../../../../service/api/player/player.service";
+import authenticationService from '../../../../../service/api/authentication/authentication.service';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles/index";
@@ -137,15 +138,18 @@ const ApuestaActiva = ({ ...props }) => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         playerService.list_apuestas_activas_details(apuestaId).then((result) => {
-            setTitle(result.data.title);
-            setHour(result.data.hour);
-            setDay(result.data.day);
-            setComision(parseFloat(result.data.comision));
-            setRiesgo(parseFloat(result.data.riesgo));
-            setTotal(parseFloat(result.data.total));
-            setList(Array.from(result.data.list));
-            setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
-
+            if (result.status === 401) {
+                authenticationService.logout();
+            } else {
+                setTitle(result.data.title);
+                setHour(result.data.hour);
+                setDay(result.data.day);
+                setComision(parseFloat(result.data.comision));
+                setRiesgo(parseFloat(result.data.riesgo));
+                setTotal(parseFloat(result.data.total));
+                setList(Array.from(result.data.list));
+                setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
+            }
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -157,7 +161,9 @@ const ApuestaActiva = ({ ...props }) => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         playerService.delete_apuestas_activas_sorteoAndNumeroAndJugador(apuestaId, numero).then((result) => {
-            if (result.status === 409) {
+            if (result.status === 401) {
+                authenticationService.logout();
+            } else if (result.status === 409) {
                 setOpenError409Info(true);
             } else if (result.status === 500) {
                 setOpenError500Info(true);
@@ -175,7 +181,9 @@ const ApuestaActiva = ({ ...props }) => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         playerService.delete_apuestas_activas_sorteoAndJugador(apuestaId).then((result) => {
-            if (result.status === 409) {
+            if (result.status === 401) {
+                authenticationService.logout()
+            } else if (result.status === 409) {
                 setOpenError409Info(true);
             } else if (result.status === 500) {
                 setOpenError500Info(true);
@@ -194,15 +202,19 @@ const ApuestaActiva = ({ ...props }) => {
         dispatch(userActions.loading_start())
         setMonedaType(props.location.state.moneda);
         playerService.list_apuestas_activas_details(apuestaId).then((result) => {
-            setApuestaType(result.data.type)
-            setTitle(result.data.title);
-            setHour(result.data.hour);
-            setDay(result.data.day);
-            setComision(parseFloat(result.data.comision));
-            setRiesgo(parseFloat(result.data.riesgo));
-            setTotal(parseFloat(result.data.total));
-            setList(prev => Array.from(result.data.list));
-            setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
+            if (result.status === 401) {
+                authenticationService.logout()
+            } else {
+                setApuestaType(result.data.type)
+                setTitle(result.data.title);
+                setHour(result.data.hour);
+                setDay(result.data.day);
+                setComision(parseFloat(result.data.comision));
+                setRiesgo(parseFloat(result.data.riesgo));
+                setTotal(parseFloat(result.data.total));
+                setList(prev => Array.from(result.data.list));
+                setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
+            }
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
