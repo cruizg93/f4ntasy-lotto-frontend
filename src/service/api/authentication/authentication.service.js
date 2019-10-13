@@ -29,7 +29,7 @@ function logout() {
     return new Promise((resolve, reject) => {
         localStorage.removeItem('currentUser');
         currentUserSubject.next(null);
-        window.location.reload(true);
+        //window.location.reload(true);
     });
 }
 
