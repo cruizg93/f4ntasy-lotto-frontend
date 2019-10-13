@@ -26,6 +26,8 @@ class HeaderBar extends Component {
             sideDrawerOpen: false,
             redirect: false,
             isAdmin: false,
+            isMaster:false,
+            isSupervisor:false,
             isAsistente: false,
             isPlayer: false,
             open: false
@@ -52,9 +54,11 @@ class HeaderBar extends Component {
     componentWillMount() {
         let role = this.props.role || '';
         this.setState({
-            isAdmin: (role === 'Admin' || role === 'Master'),
+            isAdmin: (role === 'Admin' || role === 'Master' || role === 'Supervisor'),
+            isMaster: role === 'Master',
             isAsistente: role === 'Asistente',
-            isPlayer: role === 'Player'
+            isPlayer: role === 'Player',
+            isSupervisor: role === 'Supervisor'
         })
     }
 
@@ -133,8 +137,10 @@ class HeaderBar extends Component {
                 <Toolbar drawerClickHandler={this.drawerToggleClickHandler.bind(this)}
                     logoutClickHandler={this.logoutClickHandler.bind(this)}
                     admin={this.state.isAdmin}
+                    master={this.state.isMaster}
+                    supervisor={this.state.isSupervisor}
                     asistente={this.state.isAsistente}
-                    isPlayer={this.state.isPlayer} />
+                    player={this.state.isPlayer} />
                 <SideDrawer show={this.state.sideDrawerOpen}
                     drawerClickHandler={this.drawerToggleClickHandler.bind(this)}
                     logoutClickHandler={this.logoutClickHandler.bind(this)}

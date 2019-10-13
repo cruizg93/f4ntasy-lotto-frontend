@@ -36,25 +36,24 @@ function deleteDetail(apiEndpoint) {
     })
 }
 
-function type_user(username) {
-    if (username !== null) {
-        let init_letter = username.charAt(0);
-        let role = 'Player';
-        switch (init_letter) {
-            case 'C':
+function type_user(roles) {
+    let role ="";
+    for(var i=0; i<roles.length; i++){
+        if(roles[i] == "ROLE_MASTER"){
+            role = 'Master'
+            break;
+        }else{
+            if(roles[i] == "ROLE_ADMIN"){
                 role = 'Admin';
-                if (username === 'C01') {
-                    role = 'Master'
-                }
+            }else if(roles[i] == "ROLE_SUPERVISOR"){
+                role = "Supervisor";
                 break;
-            case 'P':
-                if (username.includes('x')) {
-                    role = 'Asistente'
-                }
-                break;
-            default:
-                break;
+            }else if(roles[i] == "ROLE_USER"){
+                role = 'Player';
+            }else if(roles[i] == "ROLE_ASIS"){
+                role = 'Asistente'
+            }
         }
-        return role;
     }
+    return role;
 }

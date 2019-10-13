@@ -48,8 +48,10 @@ class Dashboard extends Component {
         sideDrawerOpen: false,
         redirect: false,
         isAdmin: false,
+        isMaster:false,
         isAsistente: false,
         isPlayer: false,
+        isSupervisor:false,
         noFirst: true,
         open: false
     };
@@ -86,9 +88,11 @@ class Dashboard extends Component {
 
         let role = authenticationService.type_user();
         this.setState({
-            isAdmin: (role === 'Admin' || role === 'Master'),
+            isAdmin: (role === 'Admin' || role === 'Master'  || role === 'Supervisor'),
+            isMaster: role === 'Master',
             isAsistente: role === 'Asistente',
-            isPlayer: role === 'Player'
+            isPlayer: role === 'Player',
+            isSupervisor: role === "Supervisor"
         })
     }
 
@@ -157,8 +161,10 @@ class Dashboard extends Component {
                     <Toolbar drawerClickHandler={this.drawerToggleClickHandler}
                         logoutClickHandler={this.logoutClickHandler}
                         admin={this.state.isAdmin}
+                        master={this.state.isMaster}                        
                         asistente={this.state.isAsistente}
-                        isPlayer={this.state.isPlayer} />
+                        player={this.state.isPlayer}
+                        supervisor={this.state.isSupervisor} />
                     <SideDrawer show={this.state.sideDrawerOpen}
                         drawerClickHandler={this.drawerToggleClickHandler}
                         logoutClickHandler={this.logoutClickHandler}

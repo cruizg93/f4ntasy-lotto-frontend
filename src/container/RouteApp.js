@@ -108,13 +108,13 @@ class RouterApp extends React.Component {
                     <PrivateRoute
                       key="main"
                       exact path="/"
-                      roles={[Role.Admin, Role.Master, Role.Player, Role.Asistente]} authed={this.props.role}
+                      roles={[Role.Admin, Role.Master, Role.Player, Role.Asistente, Role.Supervisor]} authed={this.props.role}
                       component={Index}
                     />
                     <Route exact path="/login" component={Login} />
                     <PrivateRoute
                       exact path="/jugador"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
+                      roles={[Role.Admin, Role.Master, Role.Supervisor]} authed={this.props.role}
                       component={Jugador}
                     />
                     <PrivateRoute
@@ -129,53 +129,53 @@ class RouterApp extends React.Component {
                     />
                     <PrivateRoute
                       exact path="/jugador/apuestas/detalles"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
+                      roles={[Role.Admin, Role.Master, Role.Supervisor]} authed={this.props.role}
                       component={JugadorDetalles}
                     />
 
                     <PrivateRoute
                       exact path="/jugador/apuestas/detalles/:apuestaId"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
+                      roles={[Role.Admin, Role.Master, Role.Supervisor]} authed={this.props.role}
                       component={ApuestaActivaJugadorDetalles}
                     />
                     <PrivateRoute
                       exact path="/jugador/apuestas/detalles/:apuestaId/imprimir"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
+                      roles={[Role.Admin, Role.Master, Role.Supervisor]} authed={this.props.role}
                       component={DetallesApuesta}
                     />
                     <PrivateRoute
                       exact path="/apuestas/activas"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
+                      roles={[Role.Admin, Role.Master, Role.Supervisor]} authed={this.props.role}
                       component={ApuestasActivasAdmin}
                     />
                     <PrivateRoute
                       exact path="/apuestas/activas/:apuestaId"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
+                      roles={[Role.Admin, Role.Master, Role.Supervisor]} authed={this.props.role}
                       component={ApuestaActivaAdminDetalle}
                     />
                     <PrivateRoute
                       exact path="/historial/semana/actual/usuario/:userId"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
+                      roles={[Role.Admin, Role.Master, Role.Supervisor]} authed={this.props.role}
                       component={HistorialUsuarioDetalles}
                     />
                     <PrivateRoute
                       exact path="/historial/numeros/ganadores"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
+                      roles={[Role.Admin, Role.Master, Role.Supervisor]} authed={this.props.role}
                       component={NumerosGanadores}
                     />
                     <PrivateRoute
                       exact path="/historial/semana/anterior"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
+                      roles={[Role.Admin, Role.Master, Role.Supervisor]} authed={this.props.role}
                       component={HistorialSemanaAnteriorAdmin}
                     />
                     <PrivateRoute
                       exact path="/historial/semana/anterior/usuario/:userId"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
+                      roles={[Role.Admin, Role.Master, Role.Supervisor]} authed={this.props.role}
                       component={HistorialUsuarioDetalles}
                     />
                     <PrivateRoute
                       exact path="/historial/balance"
-                      roles={[Role.Admin, Role.Master]} authed={this.props.role}
+                      roles={[Role.Admin, Role.Master, Role.Supervisor]} authed={this.props.role}
                       component={BalanceAdmin}
                     />
                     <PrivateRoute

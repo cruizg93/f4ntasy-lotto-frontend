@@ -7,7 +7,7 @@ import { userService } from '../actions/user.service'
 const currentUser = JSON.parse(localStorage.getItem('currentUser'))
 const initialize = {
   currentUser: currentUser || null,
-  role: currentUser ? userService.type_user(currentUser.username) : '',
+  role: currentUser ? userService.type_user(currentUser.roles) : '',
   loginState: (currentUser) ? true : false,
   loginFail: false
 }
@@ -18,7 +18,7 @@ export function user(state = initialize, action) {
       return {
         ...state,
         currentUser: action.payload.currentUser,
-        role: userService.type_user(action.payload.username),
+        role: userService.type_user(action.payload.currentUser.roles),
         loginState: true,
         loginFail: false
       };
