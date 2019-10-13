@@ -97,6 +97,7 @@ class RouterApp extends React.Component {
       >
         <div className="app-container" style={{ background: background }}>
           {
+            /* loginState && !hiddenHeader && */
             loginState &&
             <HeaderBar />
           }
@@ -299,8 +300,8 @@ class RouterApp extends React.Component {
 }
 
 const mapStateToProps = ({ user, loading_state }) => {
-  const { loginState, role } = user;
+  const { loginState, firstConnection, role } = user;
   const { loading } = loading_state;
-  return { loginState, role, loading }
+  return { loginState, firstConnection, role, loading }
 };
 export default connect(mapStateToProps)(RouterApp);

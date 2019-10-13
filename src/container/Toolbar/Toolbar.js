@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 
 import DrawerToggleButton from './DrawerToggleButton';
-import { MenuLinks } from '../MenuLinks/MenuLinks';
+import MenuLinks from '../MenuLinks/MenuLinks';
 
 import './Toolbar.css';
 import LogoMini from './assets/Apuntada con Lapiz_PNG.png';
@@ -37,7 +37,8 @@ class Toolbar extends Component {
                     <div className="spacer" />
                     <div className="toolbar__navigation-items">
                         <ul>
-                            <MenuLinks admin={this.props.admin} asistente={this.props.asistente} player={this.state.isPlayer} />
+                            <MenuLinks admin={this.props.admin} asistente={this.props.asistente} player={this.state.isPlayer}
+                            />
                             <Button onClick={this.props.logoutClickHandler} color="inherit">Salir</Button>
                         </ul>
                     </div>
