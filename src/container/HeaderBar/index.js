@@ -79,11 +79,11 @@ class HeaderBar extends Component {
         authenticationService.logout().then((result) => {
             dispatch(userActions.loading_end())
         })
-            .catch(function (error) {
-                dispatch(userActions.loading_end())
-            });
+        .catch(function (error) {
+            dispatch(userActions.loading_end())
+        });
 
-        history.push('/login');
+        //history.push('/login');
     }
 
     render() {
