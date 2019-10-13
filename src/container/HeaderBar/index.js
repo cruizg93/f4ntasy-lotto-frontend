@@ -83,7 +83,7 @@ class HeaderBar extends Component {
             dispatch(userActions.loading_end())
         });
 
-        //history.push('/login');
+        history.push('/login');
     }
 
     render() {
