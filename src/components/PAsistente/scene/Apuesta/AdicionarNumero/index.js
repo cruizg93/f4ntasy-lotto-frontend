@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Grid from '@material-ui/core/Grid';
 import { playerService } from "../../../../../service/api/player/player.service";
+import authenticationService from '../../../../../service/api/authentication/authentication.service';
 import ListaApuestas from "../../Apuesta/ListaApuestas";
 import { withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
@@ -129,12 +130,15 @@ class AdicionarNumeroApuestaAsistente extends Component {
         const { dispatch } = this.props;
         dispatch(userActions.loading_start())
         playerService.list_of_numbers_by_apuesta_id(this.match.params.apuestaId).then((result) => {
-            this.setState({ name: result.data.name });
-            this.setState({ entry: Array.from(result.data.list) });
-            this.setState({ hour: result.data.hour });
-            this.setState({ day: result.data.day });
-            this.setState({ apuestaType: result.data.type });
-
+            if (result.status === 401) {
+                authenticationService.logout()
+            } else {
+                this.setState({ name: result.data.name });
+                this.setState({ entry: Array.from(result.data.list) });
+                this.setState({ hour: result.data.hour });
+                this.setState({ day: result.data.day });
+                this.setState({ apuestaType: result.data.type });
+            }
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -349,7 +353,9 @@ class AdicionarNumeroApuestaAsistente extends Component {
             const { dispatch } = this.props;
             dispatch(userActions.loading_start())
             playerService.update_number(this.state.entryList, id).then((result) => {
-                if (result.status === 409) {
+                if (result.status === 401) {
+                    authenticationService.logout()
+                } else if (result.status === 409) {
                     this.setState({
                         ...this.state,
                         openError409Info: true

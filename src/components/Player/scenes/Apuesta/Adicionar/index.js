@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import { playerService } from "../../../../../service/api/player/player.service";
+import authenticationService from '../../../../../service/api/authentication/authentication.service';
 import ApuestaData from '../../../components/Apuesta/index';
 
 import AdminTitle from '../../../../Admin/components/AdminTitle_Center';
@@ -22,6 +23,9 @@ class AdicionarApuesta extends React.Component {
     }
 
     componentDidMount() {
+        if (this.props.firstConnection === true) {
+            authenticationService.logout();
+        }
         window.scrollTo(0, 0);
     }
 
@@ -29,15 +33,19 @@ class AdicionarApuesta extends React.Component {
         const { dispatch } = this.props;
         dispatch(userActions.loading_start())
         playerService.list_apuestas_hoy_by_username().then((result) => {
-            let total = result.data.reduce((sum, row) => sum + row.total, 0);
-            let comision = result.data.reduce((sum, row) => sum + row.comision, 0);
-            let riesgo = result.data.reduce((sum, row) => sum + row.riesgo, 0);
-            let moneda = ((result.data.length > 0) && (result.data[0].moneda.indexOf("LEMPIRA") === 0)) ? 'L' : '$'
-            this.setState({
-                entry: result.data,
-                values: [total, comision, riesgo],
-                moneda: moneda
-            })
+            if (result.status === 401) {
+                authenticationService.logout();
+            } else {
+                let total = result.data.reduce((sum, row) => sum + row.total, 0);
+                let comision = result.data.reduce((sum, row) => sum + row.comision, 0);
+                let riesgo = result.data.reduce((sum, row) => sum + row.riesgo, 0);
+                let moneda = ((result.data.length > 0) && (result.data[0].moneda.indexOf("LEMPIRA") === 0)) ? 'L' : '$'
+                this.setState({
+                    entry: result.data,
+                    values: [total, comision, riesgo],
+                    moneda: moneda
+                })
+            }
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -74,4 +82,9 @@ class AdicionarApuesta extends React.Component {
     }
 };
 
-export default connect()(AdicionarApuesta);
+const mapStateToProps = ({ user }) => {
+    const { loginState, firstConnection, role } = user;
+    return { loginState, firstConnection, role }
+};
+
+export default connect(mapStateToProps)(AdicionarApuesta);

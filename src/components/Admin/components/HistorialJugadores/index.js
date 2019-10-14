@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { adminService } from "../../../../service/api/admin/admin.service";
+import authenticationService from '../../../../service/api/authentication/authentication.service';
 import InputBonoDialog from './InputBonoDialog';
 import InformationDialog from '../../../View/Dialog/InformationDialog';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -34,7 +35,10 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
     setExpanded(isExpanded ? panel : false);
     if (isExpanded) {
       adminService.get_historial_weekOverviewByJugador(props.weekData.id, props.jugador.id).then((result) => {
-        setDayList(result.data)
+        if (result.status === 401) {
+          authenticationService.logout()
+        } else
+          setDayList(result.data)
       })
     }
   };
@@ -69,7 +73,10 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
       adminService.admin_password_confirm('', password).then((result) => {
         if (result.data === true) {
           adminService.submit_bono(props.jugador.id, bono, props.jugador.moneda.toLowerCase(), 1).then((result) => {
-            setSuccessPasswordOpen(true);
+            if (result.status === 401) {
+              authenticationService.logout()
+            } else
+              setSuccessPasswordOpen(true);
           })
             .catch((error) => {
               setErrorPasswordOpen(true)

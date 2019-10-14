@@ -62,6 +62,9 @@ function temporal_service(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -77,6 +80,9 @@ function temporal_reset_balance_service() {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -92,6 +98,9 @@ function temporal_insert_service() {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -106,6 +115,9 @@ function temporal_insert_chica_service() {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -122,6 +134,9 @@ function count() {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -144,6 +159,9 @@ function new_player(data) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -166,6 +184,9 @@ function edit_player(data) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -181,6 +202,9 @@ function list_players() {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     })
@@ -196,6 +220,9 @@ function list_players_details() {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     })
@@ -211,6 +238,9 @@ function get_player_by_id(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     })
@@ -226,6 +256,9 @@ function get_asistente_by_id(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     })
@@ -253,6 +286,9 @@ function count_player_asistente(data) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -275,7 +311,7 @@ function add_player_asistente(data) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 409 || error.response.status === 500) {
+                if (error.response.status === 409 || error.response.status === 500 || error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -300,6 +336,9 @@ function edit_asistente(data) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -322,6 +361,9 @@ function list_apuestas_details(username) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -350,6 +392,9 @@ function list_apuestas_activas_details_by_user_id(username, id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -376,6 +421,9 @@ function details_apuesta_activa_by_user_id(username, id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -405,6 +453,9 @@ function details_apuesta_activa_by_apuesta_id(username, id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -421,6 +472,9 @@ function delete_player_by_id(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     })
@@ -437,6 +491,9 @@ function get_apuestas_activas(moneda) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     })
@@ -460,6 +517,9 @@ function get_apuesta_activa_by_type_and_id(currency, id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -488,6 +548,9 @@ function submit_bono(id, bono, moneda, weekId) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -510,6 +573,9 @@ function get_historial_weeklist() {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -532,6 +598,9 @@ function get_historial_apuestas_sorteoAndJugador(sorteosId, userId) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -554,6 +623,9 @@ function get_historial_weekOverview(id, historyType, moneda) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -576,6 +648,9 @@ function get_historial_weekOverviewByJugador(weekId, jugadorId) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -601,6 +676,9 @@ function get_historial_by_type(type) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -623,6 +701,9 @@ function get_historial_apuestasOverview_sorteoAndJugador(jugadorId, id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -645,6 +726,9 @@ function get_historial_apuestasOverview_sorteo(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -670,6 +754,9 @@ function get_historial_current_week_by_id_and_type(id, type) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -696,6 +783,9 @@ function get_historial_current_week_by_id_and_type_details(id, type, date) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -721,6 +811,9 @@ function get_historial_semana_anterior_by_type(type) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -736,6 +829,9 @@ function get_historial_numeros_ganadores(moneda) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     })
@@ -751,6 +847,9 @@ function get_numeros_ganadores() {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     })
@@ -777,6 +876,9 @@ function fix_numero_ganador(numero, id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -803,6 +905,9 @@ function get_ganancias_perdidas(inicio, fin) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -830,6 +935,9 @@ function update_numero_ganador(numero, numeroOld, id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -847,6 +955,9 @@ function get_current_cambio() {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     })
@@ -873,6 +984,9 @@ function cerrar_apuesta(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -898,6 +1012,9 @@ function open_apuesta(numero, id, adminPassword) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -923,6 +1040,9 @@ function admin_password_confirm(id, adminPassword) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -948,6 +1068,9 @@ function cerrar_bloquear(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -973,6 +1096,9 @@ function cerrar_desbloquear(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
+                if (error.response.status === 401) {
+                    resolve(error.response)
+                }
                 reject(error);
             })
     });
@@ -995,7 +1121,7 @@ function delete_apuestas_activas_sorteoAndNumeroAndJugador(id, jugadorId, numero
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 409 || error.response.status === 500) {
+                if (error.response.status === 409 || error.response.status === 500 || error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -1020,7 +1146,7 @@ function delete_apuestas_activas_sorteoAndJugador(id, jugadorId) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 409 || error.response.status === 500) {
+                if (error.response.status === 409 || error.response.status === 500 || error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);

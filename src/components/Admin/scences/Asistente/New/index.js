@@ -15,6 +15,7 @@ import CustomText from '../../../../View/CustomText';
 import { MdSettings } from "react-icons/md";
 import { TiPencil } from "react-icons/ti";
 import { adminService } from '../../../../../service/api/admin/admin.service';
+import authenticationService from '../../../../../service/api/authentication/authentication.service';
 import InformationDialog from '../../../../View/Dialog/InformationDialog';
 import UserXInformationDialog from '../../../../View/Dialog/UserXInformationDialog';
 import { userActions } from '../../../../../store/actions';
@@ -95,7 +96,9 @@ const NewAsistente = ({ ...props }) => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         adminService.add_player_asistente(data).then((result) => {
-            if (result.status === 409 || result.status === 500) {
+            if (result.status === 401) {
+                authenticationService.logout()
+            } else if (result.status === 409 || result.status === 500) {
                 setOpenError(true);
             } else {
                 setOpen(true)
@@ -112,12 +115,16 @@ const NewAsistente = ({ ...props }) => {
         dispatch(userActions.loading_start())
         adminService.list_players_username()
             .then((response) => {
-                let users = response.data.map((c, index) =>
-                    <option key={index} value={c.id} label={c.username}> {c.username}</option>
-                );
-                setOptions(users);
-                setComboBox('none')
-                setUsername('none')
+                if (response.status === 401) {
+                    authenticationService.logout()
+                } else {
+                    let users = response.data.map((c, index) =>
+                        <option key={index} value={c.id} label={c.username}> {c.username}</option>
+                    );
+                    setOptions(users);
+                    setComboBox('none')
+                    setUsername('none')
+                }
                 dispatch(userActions.loading_end())
             },
                 (error) => {
@@ -136,7 +143,10 @@ const NewAsistente = ({ ...props }) => {
             const { dispatch } = props;
             dispatch(userActions.loading_start())
             adminService.count_player_asistente(event.target.value).then((result) => {
-                setPlaceholderUser(placeValue[0].trim() + "x" + (result.data + 1));
+                if (result.status === 401) {
+                    authenticationService.logout()
+                } else
+                    setPlaceholderUser(placeValue[0].trim() + "x" + (result.data + 1));
                 dispatch(userActions.loading_end())
             })
                 .catch(function (error) {

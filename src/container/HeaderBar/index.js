@@ -83,14 +83,15 @@ class HeaderBar extends Component {
         authenticationService.logout().then((result) => {
             dispatch(userActions.loading_end())
         })
-            .catch(function (error) {
-                dispatch(userActions.loading_end())
-            });
+        .catch(function (error) {
+            dispatch(userActions.loading_end())
+        });
 
         history.push('/login');
     }
 
     render() {
+        const { firstConnection, role } = this.props;
         let backdrop;
         if (this.state.sideDrawerOpen) {
             backdrop = <Backdrop click={this.backdropClickHandler} />
@@ -129,7 +130,7 @@ class HeaderBar extends Component {
                             this.handleCloseAccept();
                         }}
                             style={{ fontSize: '18px', color: '#5891DC', marginRight: 10 }}
-                            color="primary" autoFocus>
+                            color="primary" >
                             Aceptar
                                 </Button>
                     </DialogActions>
@@ -160,8 +161,8 @@ class HeaderBar extends Component {
 
 const mapStateToProps = ({ ui, user }) => {
     const { drawerType } = ui;
-    const { role } = user;
-    return { drawerType, role }
+    const { role, firstConnection } = user;
+    return { drawerType, role, firstConnection }
 };
 
 export default connect(mapStateToProps)(HeaderBar);

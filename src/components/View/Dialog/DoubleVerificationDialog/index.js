@@ -49,7 +49,7 @@ class DoubleVerificationDialog extends React.Component {
           </Grid>
         </div>
         <DialogActions style={{ margin: '0 auto', width: '100%', maxWidth: 279 }}>
-          <Button onClick={() => this.handleCancel(true)} style={{ fontSize: '17px', color: '#5891DC', marginRight: 10 }} autoFocus>Aceptar</Button>
+          <Button onClick={() => this.handleCancel(true)} style={{ fontSize: '17px', color: '#5891DC', marginRight: 10 }} >Aceptar</Button>
           <Button onClick={() => this.handleCancel(false)} style={{ fontSize: '17px', color: '#5891DC', marginRight: 10 }}>Cancelar</Button>
         </DialogActions>
       </Dialog>

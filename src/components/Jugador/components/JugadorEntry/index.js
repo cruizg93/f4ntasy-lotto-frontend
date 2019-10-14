@@ -12,22 +12,22 @@ import Button from "@material-ui/core/Button/index";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
+// import DialogContentText from '@material-ui/core/DialogContentText';
 import Divider from '@material-ui/core/Divider';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import AsistenteDataShow from '../AsistenteEntry/index';
 import { adminService } from "../../../../service/api/admin/admin.service";
+import authenticationService from '../../../../service/api/authentication/authentication.service';
 import { Colors } from '../../../../utils/__colors';
-import { FaUserTimes } from 'react-icons/fa';
-import { FaAddressCard } from "react-icons/fa";
+// import { FaUserTimes } from 'react-icons/fa';
+// import { FaAddressCard } from "react-icons/fa";
 import { IoIosStar } from "react-icons/io";
 import { TiPen } from "react-icons/ti";
 import { GoTrashcan } from "react-icons/go";
 import { userActions } from '../../../../store/actions';
 import { Add, Remove } from '@material-ui/icons'
-import numeral from 'numeral';
 import './jugadorEntry.css';
 
 const useStyles = makeStyles(theme => ({
@@ -288,7 +288,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
 
   //JugadorEnable decide si el jugador puede ser eliminado o editado
 
-  const jugadorEnable = balance === 0 && total === 0;
+  const jugadorEnable = true;//balance === 0 && total === 0;
   const symbol = balance < 0 ? " - " : (balance > 0 ? " + " : "")
   const apuestaCurrency = monedaType.toLowerCase() === "lempira" ? Currency.Lempira : Currency.Dollar;
 
@@ -299,12 +299,14 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
   /* USER INFO FOR jugador data popup*/
   const [userInfoloading, setUserInfoloading] = React.useState(false);
   const [diariaTipo, setDiariaTipo] = React.useState('dm');
+  const [diariaTipoText, setDiariaTipoText] = React.useState('');
   const [diariaCostoComisionTexto, setDiariaCostoComisionTexto] = React.useState('');
   const [diariaCostoComisionValor, setDiariaCostoComisionValor] = React.useState(0);
   const [diariaPremioTexto, setDiariaPremioTexto] = React.useState('');
   const [diariaPremioValor, setDiariaPremioValor] = React.useState(0);
 
   const [chicaTipo, setChicaTipo] = React.useState('cm');
+  const [chicaTipoText, setChicaTipoText] = React.useState('');
   const [chicaCostoTexto, setChicaCostoTexto] = React.useState('');
   const [chicaCostoValor, setChicaCostoValor] = React.useState(0);
   const [chicaComisionPercentageTexto, setChicaComisionPercentageTexto] = React.useState(0);
@@ -321,49 +323,57 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
     const { dispatch } = props;
     dispatch(userActions.loading_start())
     adminService.get_player_by_id(jugadorId).then((result) => {
-      /* DIARIA */
-      setUserInfoloading(true);
-
-      if (result.data.premioDirecto !== 0) {
-        setDiariaTipo("Directo L/$");
-        setDiariaCostoComisionTexto("Comision %");
-        setDiariaCostoComisionValor(result.data.comisionDirecto);
-        setDiariaPremioTexto("Premio");
-        setDiariaPremioValor(result.data.premioDirecto);
+      if (result.status === 401) {
+        authenticationService.logout()
       } else {
-        setDiariaTipo("X Miles");
-        setDiariaCostoComisionTexto("Costo x mil");
-        setDiariaCostoComisionValor(result.data.costoMil);
-        setDiariaPremioTexto("Premio");
-        setDiariaPremioValor(result.data.premioMil);
-      }
-      /* DIARIA FIN*/
-      /*CHICA */
-      if (result.data.costoChicaPedazos !== 0) {
-        setChicaTipo('X Pedazos')
-        setChicaComisionPercentageTexto("Comision %");
-        setChicaComisionPercentageValor(result.data.comisionChicaPedazos);
-        setChicaCostoTexto("Pedazos");
-        setChicaCostoValor(result.data.costoChicaPedazos.toFixed(2));
-        setChicaPremioTexto("Premio")
-        setChicaPremioValor(result.data.premioChicaPedazos)
+        /* DIARIA */
+        setUserInfoloading(true);
 
-      } else if (result.data.comisionChicaDirecto !== 0 && result.data.premioChicaDirecto !== 0) {
-        setChicaTipo("Directo L/$");
-        setChicaComisionPercentageTexto("Comision %");
-        setChicaComisionPercentageValor(result.data.comisionChicaDirecto);
-        setChicaPremioTexto("Premio");
-        setChicaPremioValor(result.data.premioChicaDirecto);
-      } else {
-        setChicaTipo("X Miles");
-        setChicaCostoTexto("Costo x mil");
-        setChicaCostoValor(result.data.costoChicaMiles);
-        setChicaPremioTexto("Premio");
-        setChicaPremioValor(result.data.premioChicaMiles);
+        if (result.data.diariaType == "dm"){
+          setDiariaTipo("dm");
+          setDiariaTipoText("X Miles");
+          setDiariaCostoComisionTexto("Costo x mil");
+          setDiariaCostoComisionValor(result.data.costoMil);
+          setDiariaPremioTexto("Premio");
+          setDiariaPremioValor(result.data.premioMil);
+        }else if (result.data.diariaType == "dd"){
+          setDiariaTipo("dd");
+          setDiariaTipoText("Directo L/$");
+          setDiariaCostoComisionTexto("Comision %");
+          setDiariaCostoComisionValor(result.data.comisionDirecto);
+          setDiariaPremioTexto("Premio");
+          setDiariaPremioValor(result.data.premioDirecto);
+        }
+        /* DIARIA FIN*/
+        /*CHICA */
+        if (result.data.chicaType == "cp"){
+          setChicaTipo('cp')
+          setChicaTipoText('X Pedazos')
+          setChicaComisionPercentageTexto("Comision %");
+          setChicaComisionPercentageValor(result.data.comisionChicaPedazos);
+          setChicaCostoTexto("Pedazos");
+          setChicaCostoValor(result.data.costoChicaPedazos.toFixed(2));
+          setChicaPremioTexto("Premio")
+          setChicaPremioValor(result.data.premioChicaPedazos)
+        }else if (result.data.chicaType == "cd"){
+          setChicaTipo("cd");
+          setChicaTipoText("Directo L/$");
+          setChicaComisionPercentageTexto("Comision %");
+          setChicaComisionPercentageValor(result.data.comisionChicaDirecto);
+          setChicaPremioTexto("Premio");
+          setChicaPremioValor(result.data.premioChicaDirecto);
+        }else if (result.data.chicaType == "cm"){
+          setChicaTipo("cm");
+          setChicaTipoText("X Miles");
+          setChicaCostoTexto("Costo x mil");
+          setChicaCostoValor(result.data.costoChicaMiles);
+          setChicaPremioTexto("Premio");
+          setChicaPremioValor(result.data.premioChicaMiles);
+        }
+        setOpenInfo(true);
+        /*CHICA FIN*/
+        setUserInfoloading(false);
       }
-      setOpenInfo(true);
-      /*CHICA FIN*/
-      setUserInfoloading(false);
       dispatch(userActions.loading_end())
     })
       .catch(function (error) {
@@ -397,10 +407,14 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
 
   function deletePlayer() {
     adminService.delete_player_by_id(id).then((result) => {
-      if (result.data === "Apuestas") {
-        toast("fail");
+      if (result.status === 401) {
+        authenticationService.logout()
       } else {
-        handler();
+        if (result.data === "Apuestas") {
+          toast("fail");
+        } else {
+          handler();
+        }
       }
     })
   }
@@ -542,7 +556,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                 handleClose();
                 deletePlayer();
 
-              }} color="primary" autoFocus>
+              }} color="primary">
                 ACEPTAR
               </Button>
             </DialogActions>
@@ -583,11 +597,12 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
         </Grid>
         {/* NO SE PUEDE ELIMINAR DIALOG END*/}
         {/* JUGADOR INFO DIALOG START*/}
-        <Grid item xs={12}>
+        <Grid item>
           <Dialog
             disableBackdropClick
-            fullWidth={true}
             open={openinfo}
+            fullWidth={false}
+            maxWidth={'xs'}
             onClose={handleInfoClose}
             aria-labelledby="alert-dialog-info-usuario"
             aria-describedby="alert-dialog-info-description"
@@ -603,7 +618,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
               </Grid>
               <Grid container className='content'>
                 <Grid item xs={12} className='diaria_title'>
-                  Diaria{" - "}{diariaTipo}
+                  Diaria{" - "}{diariaTipoText}
                 </Grid>
                 <Grid item xs={12} className='diaria_content'>
                   <div className='left'>
@@ -617,14 +632,14 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                 </Grid>
 
                 <Grid item xs={12} className='diaria_title'>
-                  Chica{" - "}{chicaTipo}
+                  Chica{" - "}{chicaTipoText}
                 </Grid>
                 <Grid container item xs={12} className='diaria_content'>
                   <div className='left'>
                     <div style={chicaCostoValor > 0 ? { display: "flex" } : { display: "none" }}>
                       {" - "} {chicaCostoTexto}
                     </div>
-                    <div style={chicaComisionPercentageValor > 0 ? { display: "flex" } : { display: "none" }}>
+                    <div style={chicaTipo != 'cm' ? { display: "flex" } : { display: "none" }}>
                       {" - "} {chicaComisionPercentageTexto}
                     </div>
                     <div> {" - "}{chicaPremioTexto}</div>
@@ -633,7 +648,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                     <div style={chicaCostoValor > 0 ? { display: "flex" } : { display: "none" }}>
                       {"="}{'\u00A0'}{'\u00A0'}{chicaCostoValor}
                     </div>
-                    <div style={chicaComisionPercentageValor > 0 ? { display: "flex" } : { display: "none" }}>
+                    <div style={chicaTipo != 'cm' ? { display: "flex" } : { display: "none" }}>
                       {"="}{'\u00A0'}{'\u00A0'}{chicaComisionPercentageValor}
                     </div>
                     <div>{"="}{'\u00A0'}{'\u00A0'}{chicaPremioValor}</div>

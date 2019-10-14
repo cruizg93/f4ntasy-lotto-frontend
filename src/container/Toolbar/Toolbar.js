@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 
 import DrawerToggleButton from './DrawerToggleButton';
-import { MenuLinks } from '../MenuLinks/MenuLinks';
+import MenuLinks from '../MenuLinks/MenuLinks';
 
 import './Toolbar.css';
 import LogoMini from './assets/Apuntada con Lapiz_PNG.png';

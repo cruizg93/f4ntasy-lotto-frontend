@@ -198,7 +198,7 @@
 /* dialog-info-star */
 .dialog_info_description{
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    width: 279px;
+    width: 100%;
 }
 .dialog_info_description .title{
   display: flex;

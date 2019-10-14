@@ -88,7 +88,7 @@ const ApuestaActivaEntry = ({ numero, valor, disable, ...props }) => {
                     </Button>
                     <Button onClick={() => {
                         handleCloseAccept();
-                    }} color="primary" autoFocus>
+                    }} color="primary" >
                         Aceptar
                     </Button>
                 </DialogActions>

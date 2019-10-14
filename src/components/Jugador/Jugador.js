@@ -62,14 +62,17 @@ class Jugador extends Component {
         dispatch(userActions.loading_start())
 
         adminService.list_players_details().then((result) => {
-
-            this.toast_notification("success");
-            this.setState({
-                jugadorList: Array.from(result.data.jugadores),
-                totalsDolar: result.data.totalDolar,
-                totalsLempira: result.data.totalLempira
-            });
-            this.update_totalsMoney()
+            if (result.status === 401) {
+                authenticationService.logout()
+            } else {
+                this.toast_notification("success");
+                this.setState({
+                    jugadorList: Array.from(result.data.jugadores),
+                    totalsDolar: result.data.totalDolar,
+                    totalsLempira: result.data.totalLempira
+                });
+                this.update_totalsMoney()
+            }
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -81,12 +84,16 @@ class Jugador extends Component {
         const { dispatch } = this.props;
         dispatch(userActions.loading_start())
         adminService.list_players_details().then((result) => {
-            this.setState({
-                jugadorList: Array.from(result.data.jugadores),
-                totalsDolar: result.data.totalDolar,
-                totalsLempira: result.data.totalLempira
-            });
-            this.update_totalsMoney()
+            if (result.status === 401) {
+                authenticationService.logout()
+            } else {
+                this.setState({
+                    jugadorList: Array.from(result.data.jugadores),
+                    totalsDolar: result.data.totalDolar,
+                    totalsLempira: result.data.totalLempira
+                });
+                this.update_totalsMoney()
+            }
             dispatch(userActions.loading_end())
             window.scrollTo(0, 0);
 

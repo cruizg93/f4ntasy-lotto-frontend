@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -32,10 +33,12 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function NestedList(props) {
+const NestedList = ({ ...props }) => {
     const classes = useStyles();
     const isAdmin = props.admin;
     const isAsistente = !props.admin && props.asistente;
+    const hiddenHeader = (props.firstConnection === true) && ((props.role === 'Player') || (props.role === 'Asistente'))
+
     return (
         <List
             component="nav"
@@ -68,7 +71,7 @@ export default function NestedList(props) {
             {isAdmin && <Sistema classes={classes.nested} click={props.click} />}
             {isAdmin && <Historial classes={classes.nested} click={props.click} />}
 
-            {(!isAdmin && !isAsistente) &&
+            {(!isAdmin && !isAsistente && !hiddenHeader) &&
                 <ListItem button component={Link} to={'/usuario/apuestas'} onClick={props.click}>
                     <ListItemIcon>
                         <ArrowRightAlt />
@@ -76,7 +79,7 @@ export default function NestedList(props) {
                     <ListItemText primary="Sorteos" />
                 </ListItem>
             }
-            {(!isAdmin && !isAsistente) &&
+            {(!isAdmin && !isAsistente && !hiddenHeader) &&
                 <ListItem button component={Link} to={'/usuario/historial'} onClick={props.click}>
                     <ListItemIcon>
                         <History />
@@ -85,7 +88,7 @@ export default function NestedList(props) {
                 </ListItem>
             }
 
-            {isAsistente &&
+            {isAsistente && !hiddenHeader &&
                 <ListItem button component={Link} to={'/asistente/apuestas'} onClick={props.click}>
                     <ListItemIcon>
                         <ArrowRightAlt />
@@ -120,3 +123,10 @@ export default function NestedList(props) {
         </List>
     );
 }
+
+const mapStateToProps = ({ user }) => {
+    const { role, firstConnection } = user;
+    return { role, firstConnection }
+};
+
+export default connect(mapStateToProps)(NestedList);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { adminService } from "../../../service/api/admin/admin.service";
+import authenticationService from '../../../service/api/authentication/authentication.service';
 import './Cambio.css';
 
 class Cambio extends Component {
@@ -14,13 +15,19 @@ class Cambio extends Component {
 
     updateCambio() {
         adminService.get_current_cambio().then((result) => {
-            this.setState({ cambio: result.data })
+            if (result.status === 401) {
+                authenticationService.logout()
+            } else
+                this.setState({ cambio: result.data })
         })
     }
 
     componentWillMount() {
         adminService.get_current_cambio().then((result) => {
-            this.setState({ cambio: result.data })
+            if (result.status === 401) {
+                authenticationService.logout()
+            } else
+                this.setState({ cambio: result.data })
 
         })
     }

@@ -9,7 +9,8 @@ const initialize = {
   currentUser: currentUser || null,
   role: currentUser ? userService.type_user(currentUser.roles) : '',
   loginState: (currentUser) ? true : false,
-  loginFail: false
+  loginFail: false,
+  firstConnection: true
 }
 
 export function user(state = initialize, action) {
@@ -20,7 +21,8 @@ export function user(state = initialize, action) {
         currentUser: action.payload.currentUser,
         role: userService.type_user(action.payload.currentUser.roles),
         loginState: true,
-        loginFail: false
+        loginFail: false,
+        firstConnection: action.payload.firstConnection
       };
     case LOGIN_FAILURE:
       return {
