@@ -593,11 +593,12 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
         </Grid>
         {/* NO SE PUEDE ELIMINAR DIALOG END*/}
         {/* JUGADOR INFO DIALOG START*/}
-        <Grid item xs={12}>
+        <Grid item>
           <Dialog
             disableBackdropClick
-            fullWidth={true}
             open={openinfo}
+            fullWidth={false}
+            maxWidth={'xs'}
             onClose={handleInfoClose}
             aria-labelledby="alert-dialog-info-usuario"
             aria-describedby="alert-dialog-info-description"
