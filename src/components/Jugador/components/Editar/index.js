@@ -125,29 +125,28 @@ const EditarJugador = (props) => {
                 setSelectedValueMoneda('l');
             }
 
-            if (result.data.costoChicaPedazos !== 0) {
+            if (result.data.chicaType == "cp"){
                 setSelectedChicaType('cp');
                 setChicaCostoPedazos(result.data.costoChicaPedazos);
                 setChicaComisionPedazos(result.data.comisionChicaPedazos);
                 setChicaPremioPedazosMil(result.data.premioChicaPedazos)
-
-            } else if (result.data.comisionChicaDirecto !== 0
-                && result.data.premioChicaDirecto !== 0) {
+            }else if (result.data.chicaType == "cd"){
                 setSelectedChicaType('cd');
                 setChicaPremioDirectoMil(result.data.premioChicaDirecto);
                 setChicaComision(result.data.comisionChicaDirecto);
-            } else {
+            }else if (result.data.chicaType == "cm"){
                 setChicaPremioMil(result.data.premioChicaMiles);
                 setChicaCostoMil(result.data.costoChicaMiles);
             }
 
-            if (result.data.premioDirecto !== 0) {
+            if (result.data.diariaType == "dm"){
+                setSelectedDiariaType('dm');
+                setDiariaPremioMil(result.data.premioMil);
+                setDiariaCostoMil(result.data.costoMil);   
+            }else if (result.data.diariaType == "dd"){
                 setSelectedDiariaType('dd');
                 setDiariaPremioLempirasMil(result.data.premioDirecto);
                 setDiariaComision(result.data.comisionDirecto);
-            } else {
-                setDiariaPremioMil(result.data.premioMil);
-                setDiariaCostoMil(result.data.costoMil);
             }
 
         })
@@ -161,17 +160,34 @@ const EditarJugador = (props) => {
         let utype = 'p';
         let submit = true;
         if (inputUserName === '') {
-            submit = false;
+            error_reponse();
+            return;
         }
 
-        let dparam1 = diariaCostoMil;
-        let dparam2 = diariaPremioMil;
-        if (selectedDiariaType === 'dd') {
+        let dparam1;
+        let dparam2;
+        if (selectedDiariaType === 'dm') {
+            dparam1 = diariaCostoMil;
+            dparam2 = 1000;//diariaPremioMil;
+
+            if (dparam1 === '' || parseFloat(dparam1) <= 0 || dparam2 === '' || parseFloat(dparam2) <= 0) {
+                submit = false;
+            }
+
+        }else if (selectedDiariaType === 'dd') {
             dparam1 = diariaComision;
             dparam2 = diariaPremioLempirasMil;
-        }
-        if (dparam1 === '' || dparam1 === 0 || dparam2 === '' || dparam2 === 0) {
+
+            if (dparam1 === '' || parseFloat(dparam1) < 0 || dparam2 === '' || parseFloat(dparam2) <= 0) {
+                submit = false;
+            }
+        }else{
             submit = false;
+        }
+        
+        if (!submit) {
+            error_reponse();
+            return;
         }
 
         let cparam1 = 0;
@@ -181,20 +197,23 @@ const EditarJugador = (props) => {
             case 'cd':
                 cparam1 = chicaComision;
                 cparam2 = chicaPremioDirectoMil;
+                submit = cparam1 !== '' && parseFloat(cparam1) >= 0 && cparam2 !== '' && parseFloat(cparam2) > 0;
                 break;
             case 'cp':
                 cparam1 = chicaComisionPedazos;
                 cparam2 = chicaCostoPedazos;
                 cparam3 = chicaPremioPedazosMil;
+                submit = cparam1 !== '' && parseFloat(cparam1) >= 0 && cparam2 !== '' && parseFloat(cparam2) > 0 && cparam3 !=='' && parseFloat(cparam3) > 0;
                 break;
             default:
                 cparam1 = chicaCostoMil;
-                cparam2 = chicaPremioMil;
+                cparam2 = 1000;//chicaPremioMil;
+                submit = cparam1 !== '' && parseFloat(cparam1) > 0 && cparam2 !== '' && parseFloat(cparam2) > 0;
                 break;
         }
-        if ((cparam1 === 0 && cparam2 === 0) || (selectedChicaType === 'cp' && cparam3 === 0)) {
+        /*if ((cparam1 === 0 && cparam2 === 0) || (selectedChicaType === 'cp' && cparam3 === 0)) {
             submit = false;
-        }
+        }*/
         if (!submit) {
             error_reponse();
             return;
@@ -234,9 +253,9 @@ const EditarJugador = (props) => {
     const editarFijarHandler = (e) => {
         if (!disable && editable) {
             onClickHandlerEditar();
-        }
-        if (editable)
+        }else if (editable){
             setDisable(!disable);
+        }
     }
     return (
         <React.Fragment>
