@@ -13,7 +13,6 @@ const Index=({...props})=>{
         setAdmin(role === 'Admin' || role === 'Master' || role === 'Supervisor');
         setAsistente(role === 'Asistente')
         setPlayer(role === 'Player')
-        console.log(" ROLESSSSSS"+role)
     }, [props])
 
     return (
