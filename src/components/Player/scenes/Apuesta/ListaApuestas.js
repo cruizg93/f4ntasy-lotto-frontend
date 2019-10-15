@@ -58,9 +58,7 @@ class ListaApuestas extends React.Component {
     render() {
         const title = "Eliminar?"
         const context = "Esta seguro que quiere eliminar estas compras?"
-        this.state = {
-            isSupervisor: this.props.supervisor
-        }
+        
         return (
             <div style={{ width: '80%' }}>
                 <List className="apuestaList">
