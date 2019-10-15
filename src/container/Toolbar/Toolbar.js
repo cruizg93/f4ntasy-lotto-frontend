@@ -16,7 +16,7 @@ class Toolbar extends Component {
             sideDrawerOpen: false,
         };
     }
-
+    
     drawerToggleClickHandler = () => {
         this.setState((prevState) => {
             return { sideDrawerOpen: !prevState.sideDrawerOpen };
@@ -37,8 +37,7 @@ class Toolbar extends Component {
                     <div className="spacer" />
                     <div className="toolbar__navigation-items">
                         <ul>
-                            <MenuLinks admin={this.props.admin} asistente={this.props.asistente} player={this.state.isPlayer}
-                            />
+                            <MenuLinks admin={this.props.admin} master={this.props.master} asistente={this.props.asistente} player={this.props.player} supervisor={this.props.supervisor}/>
                             <Button onClick={this.props.logoutClickHandler} color="inherit">Salir</Button>
                         </ul>
                     </div>

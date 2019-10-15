@@ -69,6 +69,7 @@ const NumerosGanadores = (props) => {
     const classes = useStyles();
     const [numerosGanadoresList, setNumerosGanadoresList] = useState([]);
     const [moneda, setMoneda] = useState("lempira");
+    const [isMaster, setIsMaster] = useState(false);
 
     useEffect(() => {
         const { dispatch } = props;
@@ -83,6 +84,9 @@ const NumerosGanadores = (props) => {
             .catch(function (error) {
                 dispatch(userActions.loading_end())
             });
+
+        let role = authenticationService.type_user();
+        setIsMaster(role === 'Master');
     }, [])
 
     function handleUpdate(monedaType = "lempira") {
@@ -139,7 +143,7 @@ const NumerosGanadores = (props) => {
                 <Grid container className="body">
                     {numerosGanadoresList.length > 0 ?
                         numerosGanadoresList.map((numero, index) =>
-                            <NumerosGanadoresEntry key={index} {...numero} handle={handleUpdate} {...props}
+                            <NumerosGanadoresEntry key={index} {...numero} handle={handleUpdate} isMaster={isMaster} {...props}
                                 moneda={moneda.toLowerCase() === 'dolar' ? '$' : 'L'}
                             />
                         ) :

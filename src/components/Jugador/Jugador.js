@@ -15,6 +15,7 @@ import { FaUserPlus } from 'react-icons/fa';
 
 import { userActions } from '../../store/actions';
 
+
 import 'react-toastify/dist/ReactToastify.css';
 import './Jugador.css';
 import { css } from "glamor";
@@ -27,7 +28,8 @@ class Jugador extends Component {
             totalsMoney: 0,
             totalsDolar: 0,
             totalsLempira: 0,
-            apuestaCurrency: '$'
+            apuestaCurrency: '$',
+            isSupervisor: false,
         };
     }
     toast_notification = (type) => {
@@ -99,6 +101,9 @@ class Jugador extends Component {
             .catch(function (error) {
                 dispatch(userActions.loading_end())
             });
+        
+        let role = authenticationService.type_user();
+        this.setState({isSupervisor: role === 'Supervisor'})
     }
 
     render() {
@@ -113,7 +118,7 @@ class Jugador extends Component {
                         <Typography variant="h5" className="resume_title">
                             Resumen Vendedores
                         </Typography>
-                        <Button color="primary" className="resume_create_btn"
+                        {!this.state.isSupervisor && <Button color="primary" className="resume_create_btn"
                             component={Link}
                             to={
                                 {
@@ -123,6 +128,7 @@ class Jugador extends Component {
                         >
                             <FaUserPlus className="resumen_create_icon" />
                         </Button>
+                        }
                     </Grid>
                     <Grid className="resumen_total">
                         <span className="resumen_total_text">{'$'}{'\u00A0'}{'\u00A0'}{FormatNumberSymbol(this.state.totalsDolar)}</span>
@@ -130,7 +136,7 @@ class Jugador extends Component {
                     </Grid>
                     <Grid container maxwidth="xs" direction="row">
                         {this.state.jugadorList.map((jugador, index) =>
-                            <JugadorDataShow key={index} {...jugador} {...this.props} handler={this.reload.bind(this)} toast={this.toast_notification} />
+                            <JugadorDataShow key={index} {...jugador} {...this.props} handler={this.reload.bind(this)} toast={this.toast_notification} isSupervisor={this.state.isSupervisor} />
                         )}
                     </Grid>
                 </Container>

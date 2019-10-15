@@ -138,9 +138,12 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
   const [open, setOpen] = useState(false);
   const [openError500Info, setOpenError500Info] = useState(false);
   const [openError409Info, setOpenError409Info] = useState(false);
+  const [isSupervisor,setIsSupervisor] = useState(false);
 
   useEffect(() => {
     submitUpdateData()
+    let role = authenticationService.type_user();
+    setIsSupervisor(role === 'Supervisor');
   }, []);
 
   function handleClose_409_error() {
@@ -256,7 +259,7 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
           deleteOneFunction(list[apuestaIndex].numero);
         }}
           apuestaId={props.match.params.apuestaId}
-          displayApuestaListIndex={false} fromApuestaActiva={true} />
+          displayApuestaListIndex={false} fromApuestaActiva={true} supervisor={isSupervisor}/>
         <Grid item xs={12} className="total" style={{ paddingBottom: 10 }}>
           <span className="text">
             Total:
@@ -271,6 +274,7 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
         costoTotal={total} comisionTotal={comision} total={riesgo}
         style={{ height: 85 }} marginL={92} />
 
+      {!isSupervisor &&
       <Grid container spacing={0}
         direction="row"
         justify="center"
@@ -303,7 +307,7 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
                     </Fab>
         </Grid>
       </Grid>
-
+      }
       <ConfirmDialog
         open={open}
         handleClose={handleClose}

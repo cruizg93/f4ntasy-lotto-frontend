@@ -30,7 +30,7 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
   const [errorPasswordOpen, setErrorPasswordOpen] = React.useState(false);
   const [bono, setBono] = React.useState('');
   const [dayList, setDayList] = React.useState(null);
-
+  
   const handleChangeExpand = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
     if (isExpanded) {
@@ -97,7 +97,7 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
             expandIcon={expanded ? <Remove className="expansion_icon_remove" /> : <Add className="expansion_icon" />}
             aria-controls="panel1bh-content" className="container_expansion_summary"
           >
-            <Grid item className="userText" onClick={() => showOpen()}>
+            <Grid item className="userText" onClick={() => props.master ?showOpen() : ''}>
               <span>{props.jugador.username}{'\u00A0'}{'-'}{'\u00A0'}{moneda}{'\u00A0'}{' ['}{props.jugador.name}{']'}</span>
               {
                 props.jugador.haveBono &&

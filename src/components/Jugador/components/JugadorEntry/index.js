@@ -294,6 +294,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
 
   const handler = props.handler;
   const toast = props.toast;
+  const isSupervisor = props.isSupervisor;
 
   /* USER INFO FOR jugador data popup*/
   const [userInfoloading, setUserInfoloading] = React.useState(false);
@@ -439,7 +440,8 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
         <Grid className="grid_lolosStar">
           <IoIosStar style={{ color: "#AEAEAE" }} onClick={() => { handleClickInfoOpen(id) }} />
         </Grid>
-        <Grid className="grid_tiPen"
+        {!isSupervisor 
+        && <Grid className="grid_tiPen"
           component={jugadorEnable ? Link : "div"} to={
             {
               pathname: `/jugador/editar/${id}`,
@@ -451,9 +453,11 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
         >
           <TiPen style={{ color: "#AEAEAE" }} onClick={handleClickOpenNoEditar} />
         </Grid>
+        && 
         <Grid className="grid_goTranhcan" >
           <GoTrashcan style={{ color: "#AEAEAE" }} onClick={jugadorEnable ? handleClickOpen : handleClickOpenNoEliminar} />
         </Grid>
+        }
         <Grid item xs={12}>
           <Divider />
         </Grid>

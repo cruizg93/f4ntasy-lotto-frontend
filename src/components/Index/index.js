@@ -11,9 +11,11 @@ const Index = ({ ...props }) => {
     const [player, setPlayer] = useState(false);
 
     useEffect(() => {
-        setAdmin(authenticationService.type_user() === 'Admin' || authenticationService.type_user() === 'Master');
-        setAsistente(authenticationService.type_user() === 'Asistente')
-        setPlayer(authenticationService.type_user() === 'Player')
+        let role = authenticationService.type_user();
+        
+        setAdmin(role === 'Admin' || role === 'Master' || role === 'Supervisor');
+        setAsistente(role === 'Asistente')
+        setPlayer(role === 'Player')
     }, [props])
 
     return (
