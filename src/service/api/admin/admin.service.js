@@ -500,7 +500,7 @@ function get_apuestas_activas(moneda) {
 }
 
 
-function get_apuesta_activa_by_type_and_id(currency, id) {
+function get_apuesta_activa_by_type_and_id(currency, id, isHistory) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
         headers: {
@@ -509,8 +509,14 @@ function get_apuesta_activa_by_type_and_id(currency, id) {
             "Authorization": `Bearer ${currentUser.accessToken}`
         },
     };
+    console.log(isHistory);
+    let requestUrl = `/sorteos/activos/detalles/${id}/${currency}`;
+    if( isHistory){
+        requestUrl = `/history/sorteos/${id}/apuestas/riesgo/${currency}`;
+    }
+
     return new Promise((resolve, reject) => {
-        axios.get(`${baseUrl}/sorteos/activos/detalles/${id}/${currency}`,
+        axios.get(`${baseUrl}${requestUrl}`,
             requestOptions
         )
             .then((responseJson) => {

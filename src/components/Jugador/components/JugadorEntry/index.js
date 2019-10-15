@@ -453,7 +453,9 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
         >
           <TiPen style={{ color: "#AEAEAE" }} onClick={handleClickOpenNoEditar} />
         </Grid>
-        && 
+        }
+        {!isSupervisor 
+        &&
         <Grid className="grid_goTranhcan" >
           <GoTrashcan style={{ color: "#AEAEAE" }} onClick={jugadorEnable ? handleClickOpen : handleClickOpenNoEliminar} />
         </Grid>
