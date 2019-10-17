@@ -710,7 +710,7 @@ function get_historial_apuestasOverview_sorteoAndJugador(jugadorId, id) {
     });
 }
 
-function get_historial_apuestasOverview_sorteo(id) {
+function get_historial_apuestasOverview_sorteo(id, currency) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
         headers: {
@@ -720,7 +720,7 @@ function get_historial_apuestasOverview_sorteo(id) {
         },
     };
     return new Promise((resolve, reject) => {
-        axios.get(`${baseUrl}/history/weeks/jugador/sorteo/${id}`,
+        axios.get(`${baseUrl}/history/weeks/jugador/sorteo/${id}/${currency}`,
             requestOptions
         )
             .then((responseJson) => {

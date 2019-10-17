@@ -20,7 +20,7 @@ import ChicaLogo from '../../../../View/assets/Chica_PNG.png';
 import './styles.css'
 
 const ExpanionPanelDay = (props) => {
-
+  
   const [expanded, setExpanded] = React.useState(false);
   const [winList, setWinList] = React.useState(null);
   const [winDetailList, setWinDetailList] = React.useState(null);
@@ -31,7 +31,8 @@ const ExpanionPanelDay = (props) => {
     setExpanded(isExpanded ? panel : false);
     if (isExpanded) {
       if (props.casa === 'casa') {
-        adminService.get_historial_apuestasOverview_sorteo(props.winner.id).then((result) => {
+        let currency = props.moneda === 'L' ? "lempira" : "dolar"
+        adminService.get_historial_apuestasOverview_sorteo(props.winner.id, currency).then((result) => {
           if (result.status === 401) {
             authenticationService.logout()
           } else {
