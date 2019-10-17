@@ -60,7 +60,7 @@ class InputBonoDialog extends React.Component {
         onClose={this.props.handleClose}
       >
         <div className="bono-dialog-title">
-          <img src={this.props.icon} />
+          <img src={this.props.icon} alt="bono" />
           <span>
             {this.props.title}
           </span>

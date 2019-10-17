@@ -19,8 +19,6 @@ class DetallesDialog extends React.Component {
     this.props.handleClose();
   }
   render() {
-    const icon = this.props.icon;
-
     return (
       this.props.winList ?
         <Dialog

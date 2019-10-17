@@ -18,9 +18,8 @@ class DetallesDialogP extends React.Component {
   handleCancel() {
     this.props.handleClose();
   }
-  render() {
-    const icon = this.props.icon;
 
+  render() {
     return (
       this.props.winList ?
         <Dialog

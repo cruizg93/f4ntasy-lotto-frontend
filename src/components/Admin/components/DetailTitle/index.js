@@ -8,7 +8,6 @@ import './styles.css';
 class DetailTitle extends React.Component {
 
   render() {
-    let iconName = (this.props.iconName && this.props.iconName === 'IoIosContacts') ? 'IoIosContacts' : '';
     return (
       <Container maxwidth="xs" className="detail_header">
         <Grid item xs={7} className="header_title">

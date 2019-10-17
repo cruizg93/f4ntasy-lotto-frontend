@@ -1,30 +1,6 @@
 import React from 'react';
-import { makeStyles } from "@material-ui/core/styles/index";
 import { FormatNumberSymbol } from '../../../../../utils/__currency';
-import { Colors } from '../../../../../utils/__colors';
 import './styles.css'
-const useStyles = makeStyles({
-    apuestaList: {
-        width: "100%",
-    },
-    resumenCompraContainer: {
-        backgroundColor: "#f4f4f4",
-        paddingTop: "0.65rem",
-    },
-    resumenCompraText: {
-        textAlign: "left",
-        color: "#999999",
-        lineHeight: "0.85",
-        paddingBottom: "0.65rem",
-        fontSize: '1.1rem'
-    },
-    resumenCompraValue: {
-        color: Colors.Jugador_Blue,
-        lineHeight: "0.85",
-        paddingBottom: "0.65rem",
-        fontSize: '1.1rem'
-    }
-});
 
 function ResumenApuestas(props) {
     // const paddingBottom = props.paddingBottom ? props.paddingBottom : 0;

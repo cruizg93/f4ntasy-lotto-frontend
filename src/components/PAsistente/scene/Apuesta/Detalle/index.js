@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -173,11 +172,7 @@ const DetalleAsistente = ({ list, ...props }) => {
             }
         })
     }
-    function success_response() {
-        toast.success("Cambio actualizado !", {
-            position: toast.POSITION.TOP_RIGHT
-        });
-    }
+
     return (
         <React.Fragment>
             <Dialog

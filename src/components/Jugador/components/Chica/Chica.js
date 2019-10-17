@@ -1,10 +1,9 @@
 import React from 'react';
-import { makeStyles, withStyles } from "@material-ui/core/styles/index";
+import { withStyles } from "@material-ui/core/styles/index";
 import Grid from '@material-ui/core/Grid';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { red } from "@material-ui/core/colors/index";
-import { Colors } from '../../../../utils/__colors';
 import ChicaLogo from '../../../View/assets/Chica_PNG.png';
 import { Container } from '@material-ui/core';
 // import { MdSettings } from "react-icons/md";
@@ -20,23 +19,6 @@ const RedRadio = withStyles({
     },
     checked: {},
 })(props => <Radio color="default" {...props} />);
-
-const useStyles = makeStyles(theme => ({
-    card: {
-        display: 'flex',
-        marginTop: '.5rem',
-        background: Colors.Main,
-        boxShadow: 'none',
-        borderRadius: '0'
-    },
-    inputData: {
-        background: Colors.Input_bkg,
-    },
-    labelChica: {
-        marginTop: ".5rem"
-    }
-
-}));
 
 export default function Chica({
     premioMil,
@@ -56,9 +38,7 @@ export default function Chica({
     chicaType,
     onChangeChicaType, ...props
 }) {
-    const classes = useStyles();
     const activate = props.activate ? props.activate : false;
-
 
     return (
         <Container maxwidth="xs" className="pl-0 pr-0 container_diaria">

@@ -117,9 +117,7 @@ function comision_directo(type) {
 function detalles_by_apuesta_id(id) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = { headers: authHeader() };
-    let send = {
-        username: currentUser.username
-    };
+
     return new Promise((resolve, reject) => {
         /*axios.post(`${baseUrl}/user/apuestas/activa/${id}/detalles`,
             send, requestOptions*/

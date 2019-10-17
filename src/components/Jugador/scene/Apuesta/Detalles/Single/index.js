@@ -4,7 +4,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
 import NumberFormat from 'react-number-format';
 import Fab from '@material-ui/core/Fab';
 import { Link } from 'react-router-dom';

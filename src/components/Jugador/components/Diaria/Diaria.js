@@ -1,13 +1,11 @@
 import React from 'react';
-import { makeStyles, withStyles } from "@material-ui/core/styles/index";
+import { withStyles } from "@material-ui/core/styles/index";
 import Grid from '@material-ui/core/Grid';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { Colors } from '../../../../utils/__colors';
 import DiariaLogo from '../../../View/assets/Diaria_PNG.png';
 import { Container } from '@material-ui/core';
 import CustomText from '../../../View/CustomText';
-
 // import { MdSettings } from "react-icons/md";
 import { TiPencil } from "react-icons/ti";
 
@@ -24,21 +22,6 @@ const GreenRadio = withStyles({
     checked: {},
 })(props => <Radio color="default" {...props} />);
 
-const useStyles = makeStyles(theme => ({
-    card: {
-        display: 'flex',
-        background: Colors.Main,
-        boxShadow: 'none',
-        borderRadius: '0'
-    },
-    inputData: {
-        background: Colors.Input_bkg,
-    },
-    labelChica: {
-    }
-
-}));
-
 export default function Diaria({
     premio, costo, comision, premioLempiras,
     onChangePremioMil,
@@ -49,17 +32,7 @@ export default function Diaria({
     onChangeDiariaType, ...props
 }) {
 
-
-    // const classes = useStyles();
-    // const [selectedValue, setSelectedValue] = React.useState('dm');
-    const [select, setSelectState] = React.useState(true);
-
     const activate = props.activate ? props.activate : false;
-
-    // function handleChange(event) {
-    //     // setSelectedValue(event.target.value);
-    //     setSelectState(!select);
-    // }
 
     return (
         <Container maxwidth="xs" className="pl-0 pr-0 container_diaria">

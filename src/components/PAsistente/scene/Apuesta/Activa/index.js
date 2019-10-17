@@ -12,7 +12,6 @@ import Fab from '@material-ui/core/Fab';
 import TopBar from '../../../../View/jugador/TopBar'
 import ListaApuestas from '../ListaApuestas';
 import AdminTitle from '../../../../Admin/components/AdminTitle_Center'
-
 import ConfirmDialog from '../../../../View/Dialog/ConfirmDialog';
 import ErrorInfoDialog from '../../../../View/Dialog/ErrorInfoDialog';
 import { userActions } from '../../../../../store/actions';

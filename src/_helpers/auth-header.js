@@ -1,5 +1,3 @@
-import authenticationService from '../service/api/authentication/authentication.service';
-
 export function authHeader() {
     // return authorization header with jwt token
 

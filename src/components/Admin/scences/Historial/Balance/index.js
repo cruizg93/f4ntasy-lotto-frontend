@@ -14,10 +14,8 @@ import { withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import { adminService } from "../../../../../service/api/admin/admin.service";
 
-
 const localeMap = {
     es: es,
-
 };
 const useStyles = makeStyles({
     grid: {
@@ -55,7 +53,7 @@ const ImprimirButton = withStyles({
 })(Button);
 
 const BalanceAdmin = (props) => {
-    const [locale, setLocale] = useState('es');
+    const [locale,] = useState('es');
     const [selectedDate, setSelectedDate] = React.useState(new Date());
     const [selectedDate1, setSelectedDate1] = React.useState(new Date());
     const [disable, setDisable] = useState(false);

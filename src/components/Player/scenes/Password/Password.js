@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button/index";
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
@@ -14,26 +13,6 @@ import ConfirmDialog from '../../../View/Dialog/ConfirmDialog';
 import { userActions } from '../../../../store/actions';
 
 import './styles.css'
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
-    },
-    container: {
-        background: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-    },
-    btnContainer: {
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        alignItems: 'center',
-    }
-}));
-
 
 const PlayerPassword = ({ ...props }) => {
     const [open, setOpen] = useState(false);

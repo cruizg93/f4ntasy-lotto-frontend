@@ -23,7 +23,6 @@ const ShowNumero = ({ numero, valor, ...props }) => {
         setNumberLimit(valor)
     }, []);
 
-
     return (
         <ListItem key={props.index} className={''}>
             <ListItemText id={props.index} primary={`${numero}`} className={classes.root} />

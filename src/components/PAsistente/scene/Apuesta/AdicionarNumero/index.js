@@ -123,9 +123,10 @@ class AdicionarNumeroApuestaAsistente extends Component {
         let reg = /^\d+$/;
         if (!reg.test(this.match.params.apuestaId)) {
             this.props.history.push('/asistente/apuestas');
-            return () => {
-                this.state.mounted.current = false;
-            }
+            this.setState({
+                ...this.state,
+                mounted: true
+            })
         }
         const { dispatch } = this.props;
         dispatch(userActions.loading_start())

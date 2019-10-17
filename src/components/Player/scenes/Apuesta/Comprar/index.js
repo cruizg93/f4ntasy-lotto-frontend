@@ -212,7 +212,6 @@ const ComprarApuesta = ({ ...props }) => {
                 setTotal(totald.toFixed(2));
             })
         }
-
     }, []);
 
     function submitClickHandler() {

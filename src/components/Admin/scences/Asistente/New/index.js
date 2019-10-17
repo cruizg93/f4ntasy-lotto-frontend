@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { withStyles } from '@material-ui/core/styles';
-
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
-
 import AdminTitle from '../../../components/AdminTitle_Center';
 import CustomText from '../../../../View/CustomText';
 import { MdSettings } from "react-icons/md";

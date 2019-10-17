@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { adminService } from "../../../../service/api/admin/admin.service";
 import authenticationService from '../../../../service/api/authentication/authentication.service';
@@ -11,24 +10,15 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import { Add, Remove } from '@material-ui/icons'
 import { FormatNumberSymbol } from '../../../../utils/__currency';
 import RowList from '../../../View/RowList'
-
 import HistorialJugadorByDay from './HistorialJugadorByDay';
 import Bono_PNG from '../../../View/assets/bono.png';
 import './styles.css'
-
-const useStyles = makeStyles(theme => ({
-  disabled: {
-    background: '#f4f4f4',
-    opacity: '1 !important'
-  },
-}));
 
 const HistorialJugadores = ({ match: { url }, ...props }) => {
   const [expanded, setExpanded] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [successPasswordOpen, setSuccessPasswordOpen] = React.useState(false);
   const [errorPasswordOpen, setErrorPasswordOpen] = React.useState(false);
-  const [bono, setBono] = React.useState('');
   const [dayList, setDayList] = React.useState(null);
 
   const handleChangeExpand = panel => (event, isExpanded) => {
@@ -68,7 +58,6 @@ const HistorialJugadores = ({ match: { url }, ...props }) => {
   const handleClose = (bono, flag, password = '') => {
     setOpen(false);
     setErrorPasswordOpen(false);
-    setBono(bono);
     if (flag === true) {
       adminService.admin_password_confirm('', password).then((result) => {
         if (result.data === true) {

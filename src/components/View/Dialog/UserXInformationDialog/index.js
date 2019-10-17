@@ -9,7 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 // import { FaLock, FaBan } from "react-icons/fa";
 import { GoVerified } from "react-icons/go";
 import { IoIosWarning } from "react-icons/io";
-import { IoIosHelpCircleOutline, IoIosCheckmarkCircleOutline } from "react-icons/io";
+import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import './styles.css'
 
 class UserXInformationDialog extends React.Component {

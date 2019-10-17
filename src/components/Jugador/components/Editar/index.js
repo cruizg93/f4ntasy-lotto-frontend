@@ -2,29 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { makeStyles } from '@material-ui/core/styles';
-import { withStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import Radio from '@material-ui/core/Radio';
-import Button from '@material-ui/core/Button';
-import { green } from '@material-ui/core/colors';
-
+import { Container, Fab, Button, Grid } from '@material-ui/core';
 import Diaria from "../Diaria/Diaria";
 import Chica from "../Chica/Chica";
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import { Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText } from '@material-ui/core';
 import { adminService } from "../../../../service/api/admin/admin.service";
-import { Colors } from "../../../../utils/__colors";
 import AlertDialog from "../../../AlertDialog/index";
-
 import AdminTitle from '../../../Admin/components/AdminTitle_Center';
 import CustomText from '../../../View/CustomText';
-
 import { userActions } from '../../../../store/actions';
 import { MdSettings } from "react-icons/md";
 import { TiPencil } from "react-icons/ti";
@@ -89,10 +74,6 @@ const EditarJugador = (props) => {
     const [open, setOpen] = useState(false);
     const mounted = useState(true);
 
-    function handleClickOpen() {
-        setOpen(true);
-    }
-
     function handleClose() {
         setOpen(false);
         props.history.push("/");
@@ -115,7 +96,6 @@ const EditarJugador = (props) => {
 
     useEffect(() => {
         adminService.get_player_by_id(props.match.params.jugadorId).then((result) => {
-            // setEditable(result.data.editable);
             setEditable(true);
             setPlaceholderUser(result.data.username);
             setInputUserName(result.data.name);
@@ -124,13 +104,11 @@ const EditarJugador = (props) => {
             } else {
                 setSelectedValueMoneda('l');
             }
-
             if (result.data.costoChicaPedazos !== 0) {
                 setSelectedChicaType('cp');
                 setChicaCostoPedazos(result.data.costoChicaPedazos);
                 setChicaComisionPedazos(result.data.comisionChicaPedazos);
                 setChicaPremioPedazosMil(result.data.premioChicaPedazos)
-
             } else if (result.data.comisionChicaDirecto !== 0
                 && result.data.premioChicaDirecto !== 0) {
                 setSelectedChicaType('cd');
@@ -140,7 +118,6 @@ const EditarJugador = (props) => {
                 setChicaPremioMil(result.data.premioChicaMiles);
                 setChicaCostoMil(result.data.costoChicaMiles);
             }
-
             if (result.data.premioDirecto !== 0) {
                 setSelectedDiariaType('dd');
                 setDiariaPremioLempirasMil(result.data.premioDirecto);
@@ -163,7 +140,6 @@ const EditarJugador = (props) => {
         if (inputUserName === '') {
             submit = false;
         }
-
         let dparam1 = diariaCostoMil;
         let dparam2 = diariaPremioMil;
         if (selectedDiariaType === 'dd') {
@@ -173,7 +149,6 @@ const EditarJugador = (props) => {
         if (dparam1 === '' || dparam1 === 0 || dparam2 === '' || dparam2 === 0) {
             submit = false;
         }
-
         let cparam1 = 0;
         let cparam2 = 0;
         let cparam3 = 0;
@@ -222,13 +197,10 @@ const EditarJugador = (props) => {
                 return () => {
                     mounted.current = false;
                 };
-
             })
             .catch(function (error) {
                 duplicado();
-
             });
-
     }
 
     const editarFijarHandler = (e) => {
@@ -264,7 +236,6 @@ const EditarJugador = (props) => {
             </Button>
                 </DialogActions>
             </Dialog>
-
             <Container maxwidth="xs" className="container_editar_p">
                 {!editable ?
                     <AlertDialog msg={"El jugador tiene apuestas activas"} />
@@ -298,8 +269,6 @@ const EditarJugador = (props) => {
                         </Grid>
                     </Container>
                 </Container>
-
-
                 <Grid container
                     direction="row"
                     justify="center"
@@ -318,8 +287,6 @@ const EditarJugador = (props) => {
                         activate={disable}
                     />
                 </Grid>
-
-
                 <Grid container
                     direction="row"
                     justify="center"
@@ -355,127 +322,10 @@ const EditarJugador = (props) => {
                     <Fab className="btn_crear" variant="extended" onClick={editarFijarHandler} >
                         <span className="textP">{disable ? "Editar" : "Fijar"}</span>
                     </Fab>
-                    {/* <EditarFijarButton variant="outlined" color="primary"
-                        className={disable ? classes.editLabel : classes.fijarLabel}
-                        onClick={editarFijarHandler}
-                    >
-                        {disable ? "Editar" : "Fijar"}
-                    </EditarFijarButton> */}
                 </Grid>
             </Container>
         </React.Fragment>
     )
 }
 
-
 export default connect(null, null)(EditarJugador);
-
-
-{/* <Grid container spacing={1}
-    direction="row"
-    justify="center"
-    alignItems="flex-start"
-    className={classes.headerContainer}
->
-    <Grid item xs={6}>
-        <Typography variant="h6" className={"form__center-label"}>
-            {placeholderUser} / {inputUserName}
-        </Typography>
-    </Grid>
-    <Grid item xs={6}>
-        <FormControlLabel
-            value="lempiras"
-            control={
-                <GreenRadio
-                    checked={selectedValueMoneda === 'l'}
-                    onChange={handleChange}
-                    value="l"
-                    name="radio-button-moneda"
-                    inputProps={{ 'aria-label': 'L' }}
-                    disabled={disable}
-                />}
-            label="Lempiras"
-            labelPlacement="bottom"
-
-        />
-        <FormControlLabel
-            value="dolar"
-            control={
-                <GreenRadio
-                    checked={selectedValueMoneda === 'd'}
-                    onChange={handleChange}
-                    value="d"
-                    name="radio-button-moneda"
-                    inputProps={{ 'aria-label': 'D' }}
-                    disabled={disable}
-                />}
-            label="Dolares"
-            labelPlacement="bottom"
-        />
-    </Grid>
-</Grid>
-
-    <Divider />
-    <Grid container spacing={1}
-        direction="row"
-        justify="center"
-        alignItems="center">
-        <Grid item xs={12}
-            className={classes.boxContainerNuevo}
-        >
-            <TextField
-                id="user"
-                label="Nuevo Usuario"
-                margin="normal"
-                InputProps={{
-                    readOnly: true,
-                }}
-                variant="outlined"
-                fullWidth
-                required
-                value={placeholderUser}
-                InputLabelProps={{
-                    shrink: true,
-                }}
-                className={classes.inputData}
-
-            />
-
-            <TextField
-                id="password"
-                label="Contraseña"
-                placeholder="Si no edita este campo la contraseña no se cambia"
-                margin="normal"
-                variant="outlined"
-                fullWidth
-                required
-                value={inputPassword}
-                InputLabelProps={{
-                    shrink: true,
-                }}
-                onInput={e => setInputPassword(e.target.value)}
-                className={classes.inputData}
-                disabled={disable}
-            />
-
-            <TextField
-                id="username"
-                label="Nombre"
-                placeholder="Nombre"
-                margin="normal"
-                variant="outlined"
-                fullWidth
-                required
-                value={inputUserName}
-                InputLabelProps={{
-                    shrink: true,
-                }}
-                onInput={e => setInputUserName(e.target.value)}
-                className={classes.inputData}
-                disabled={disable}
-            />
-        </Grid>
-
-    </Grid>
-
-    <Divider /> */}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 
 import ConfirmDialog from '../../../../View/Dialog/ConfirmDialog';
@@ -6,7 +6,6 @@ import './styles.css'
 import { playerService } from "../../../../../service/api/player/player.service"
 
 const SingleApuestaDetails = ({ numero, valor, ...props }) => {
-
     const [open, setOpen] = useState(false);
     const numberValue = valor.toFixed(2)
     function handleClickOpen() {

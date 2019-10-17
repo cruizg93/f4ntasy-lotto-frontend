@@ -21,7 +21,6 @@ const DetallesApuesta = ({ ...props }) => {
     const [moneda, setMoneda] = useState(" $ ");
     const [errorOpen, setErrorOpen] = useState(false);
 
-    const userid = (props.location.state.userid && props.location.state.username) ? props.location.state.userid : ''
     useEffect(() => {
         update()
         setApuestaType(props.location.state.type);
