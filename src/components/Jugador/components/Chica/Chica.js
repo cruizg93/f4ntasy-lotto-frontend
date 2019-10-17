@@ -172,8 +172,8 @@ export default function Chica({
                     <Grid item className="input">
                         <CustomText
                             number
-                            onChange={onChangeComisionPedazos}
-                            value={chicaType !== 'cp' ? '' : comisionPedazos}
+                            onChange={onChangeCostoPedazos}
+                            value={chicaType !== 'cp' ? '' : costoPedazos}
                             disabled={chicaType !== 'cp' || activate}
                             icon={TiPencil}></CustomText>
                     </Grid>
@@ -185,9 +185,9 @@ export default function Chica({
                     <Grid item className="input">
                         <CustomText
                             number
-                            value={chicaType !== 'cp' ? '' : costoPedazos}
+                            value={chicaType !== 'cp' ? '' : comisionPedazos}
                             disabled={chicaType !== 'cp' || activate}
-                            onChange={onChangeCostoPedazos}
+                            onChange={onChangeComisionPedazos}
                             icon={TiPencil}
                         ></CustomText>
                     </Grid>

@@ -15,7 +15,8 @@ class ListaApuestas extends React.Component {
         this.state = {
             openRemove: false,
             index: 0,
-            isIndexDisplay: props.displayApuestaListIndex === undefined ? true : props.displayApuestaListIndex
+            isIndexDisplay: props.displayApuestaListIndex === undefined ? true : props.displayApuestaListIndex,
+            isSupervisor: props.supervisor
         }
     }
 
@@ -57,6 +58,7 @@ class ListaApuestas extends React.Component {
     render() {
         const title = "Eliminar?"
         const context = "Esta seguro que quiere eliminar estas compras?"
+        
         return (
             <div style={{ width: '80%' }}>
                 <List className="apuestaList">
@@ -76,10 +78,11 @@ class ListaApuestas extends React.Component {
                                         <Grid item style={{ textAlign: "left", width: '100%', paddingLeft: 15 }}>{element.current === undefined ? element.valor : element.current}</Grid>
                                     </Grid>
                                     } />
-                                <ListItemIcon style={{ minWidth: "auto" }}>
+                                {!this.state.isSupervisor && <ListItemIcon style={{ minWidth: "auto" }}>
                                     <FaTrashAlt className="apuestaDeleteIcon"
                                         onClick={() => this.handleClickOpen(index)} />
                                 </ListItemIcon>
+                                }
                             </ListItem>
                         )}
                 </List>

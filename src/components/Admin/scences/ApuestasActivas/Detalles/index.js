@@ -20,12 +20,16 @@ import Chica_PNG from '../../../../View/assets/Chica_PNG.png';
 import Diaria_PNG from '../../../../View/assets/Diaria_PNG.png';
 
 import { userActions } from '../../../../../store/actions';
+import { FormatNumberSymbol } from '../../../../../utils/__currency';
+
 import './styles.css'
 
 const ApuestaActivaAdminDetalle = (props) => {
     const [riesgoList, setRiesgoList] = useState([]);
     const [moneda, setMoneda] = useState("lempira");
     const [total, setTotal] = useState(0.0);
+    const [totalsDolar, setTotalsDolar] = useState(0.0);
+    const [totalsLempira, setTotalsLempira] = useState(0.0);
     const [comision, setComision] = useState(0.0);
     const [neta, setNeta] = useState(0.0);
     // const [title, setTitle] = useState(0.0);
@@ -34,16 +38,19 @@ const ApuestaActivaAdminDetalle = (props) => {
     const [, setPosiblePremioMaxRiesgo] = useState(0.0);
     const [, setTotalRiesgoMaxRiesgo] = useState(0.0);
     const [errorOpen, setErrorOpen] = useState(false);
+
+    const [isHistoryRequest, setIsHistoryRequest] = useState(props.match.path.includes("historial"));
     const col = ['Ventas:', 'Comisiónes:', 'Sub-total:'];
 
     useEffect(() => {
-        setTotal((props.location.state.total).toFixed(2));
+        /*setTotal((props.location.state.total).toFixed(2));
         setComision((props.location.state.comision).toFixed(2));
-        setNeta((props.location.state.neta).toFixed(2));
+        setNeta((props.location.state.neta).toFixed(2));*/
         // setTitle();
         const { dispatch } = props;
         dispatch(userActions.loading_start())
-        adminService.get_apuesta_activa_by_type_and_id(moneda, props.match.params.apuestaId).then((result) => {
+
+        adminService.get_apuesta_activa_by_type_and_id(moneda, props.match.params.apuestaId, isHistoryRequest).then((result) => {
             if (result.status === 401)
                 authenticationService.logout()
             else
@@ -67,13 +74,15 @@ const ApuestaActivaAdminDetalle = (props) => {
         setTotal(result.data.total);
         setComision(result.data.comision);
         setNeta((result.data.total - result.data.comision));
+        setTotalsDolar(result.data.totalDolar);
+        setTotalsLempira(result.data.totalLempira);
     }
 
     function get_in_dolar() {
         if (moneda === 'lempira') {
             const { dispatch } = props;
             dispatch(userActions.loading_start())
-            adminService.get_apuesta_activa_by_type_and_id("dolar", props.match.params.apuestaId).then((result) => {
+            adminService.get_apuesta_activa_by_type_and_id("dolar", props.match.params.apuestaId, isHistoryRequest).then((result) => {
                 if (result.status === 401) {
                     authenticationService.logout()
                 } else {
@@ -92,7 +101,7 @@ const ApuestaActivaAdminDetalle = (props) => {
         if (moneda === 'dolar') {
             const { dispatch } = props;
             dispatch(userActions.loading_start())
-            adminService.get_apuesta_activa_by_type_and_id("lempira", props.match.params.apuestaId).then((result) => {
+            adminService.get_apuesta_activa_by_type_and_id("lempira", props.match.params.apuestaId, isHistoryRequest).then((result) => {
                 if (result.status === 401) {
                     authenticationService.logout()
                 } else {
@@ -143,6 +152,12 @@ const ApuestaActivaAdminDetalle = (props) => {
                     </Grid>
                 </Container>
                 <div id="resumen-apuesta-activa-data-admin" style={{ maxWidth: 444, width: '100%' }}>
+                    <div className="container_total_byCurrency">
+                        <Grid item xs={12} className="resumen_total_riesgo">
+                            <span className="resumen_total_riesgo_text">{'$'}{'\u00A0'}{'\u00A0'}{FormatNumberSymbol(totalsDolar)}</span>
+                            <span className="resumen_total_riesgo_val">{'L'}{'\u00A0'}{'\u00A0'}{FormatNumberSymbol(totalsLempira)}</span>
+                        </Grid>
+                    </div>
                     <div className="container_total">
                         <RowList key={0} col_1={col} symbol={moneda === "dolar" ? '$' : 'L'}
                             col_2={[parseFloat(total), parseFloat(comision), parseFloat(neta)]} alignRight></RowList>

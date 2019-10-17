@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoId, sorteoType, hour, day, premio, jugadores, moneda, ...props }) => {
+const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoId, sorteoType, hour, day, premio, jugadores, moneda, isMaster, ...props }) => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
     const [open, setOpen] = useState(false);
@@ -112,7 +112,7 @@ const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoId, sorteoType, 
                 >
                     <Grid className="circle_number"
                         style={{ display: 'flex', justifyContent: 'center' }}
-                        onClick={() => handleClickOpen()}
+                        onClick={() => isMaster ? handleClickOpen(): ''}
                     >
                         <CircleNumber numero={numero ? numero.toString().padStart(2, "0") : "-01"}
                             width={'45px'} fontSize={'25px'}

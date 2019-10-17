@@ -50,9 +50,13 @@ const HistorialSemanaAnteriorAdmin = (props) => {
     const [historyType, setHistoryType] = useState('vendedor');
     const [moneda, setMoneda] = useState('lempira');
     const [colorStyle, setColorStyle] = useState('');
+    const [isMaster,setIsMaster] = useState(false);
 
     useEffect(() => {
         const { dispatch } = props;
+        let role = authenticationService.type_user();
+        setIsMaster(role === 'Master');
+        
         dispatch(userActions.loading_start())
         adminService.get_historial_weeklist().then((result) => {
             if (result.status === 401) {
@@ -69,7 +73,7 @@ const HistorialSemanaAnteriorAdmin = (props) => {
             .catch(function (error) {
                 dispatch(userActions.loading_end())
             });
-    });
+    }, []);
 
     function updateBono() {
         updateWeekResult(weekId, historyType, moneda)
@@ -207,7 +211,7 @@ const HistorialSemanaAnteriorAdmin = (props) => {
                     <Grid className="user_list">
                         {
                             week.jugadores.map((jugador, index) =>
-                                <HistorialJugadores key={index} jugador={jugador} weekData={weekList[current - 1]} updateBono={updateBono} index={index} {...props} />
+                                <HistorialJugadores key={index} jugador={jugador} weekData={weekList[current - 1]} updateBono={updateBono} index={index} master={isMaster} {...props} />
                             )
                         }
                     </Grid>

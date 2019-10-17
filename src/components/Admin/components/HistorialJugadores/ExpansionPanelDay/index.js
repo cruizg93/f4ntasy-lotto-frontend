@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import DetallesDialog from '../../../../View/Dialog/DetallesDialog';
@@ -82,7 +83,16 @@ const ExpanionPanelDay = (props) => {
             aria-controls="panel1bh-content"
           >
             <div style={{ display: 'flex', width: '100%' }}>
-              <Grid item className="icon">
+              <Grid item className="icon" component={Link} 
+              to={
+                {
+                    pathname: `/historial/sorteos/${props.winner.id}/apuestas`,
+                    state: {
+                        type: props.winner.type,
+                    }
+                }
+            }
+              >
                 {props.winner.type === "DIARIA" ? <img src={DiariaLogo} alt="DiariaLogo" /> : <img src={ChicaLogo} alt="ChicaLogo" />}
               </Grid>
               <Grid item className="time" >

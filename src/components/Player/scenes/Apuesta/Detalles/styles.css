@@ -4,6 +4,10 @@
   padding-bottom: 68px;
 }
 
+#apuesta-activa-numeros-detalles{
+  background-color:#fbf7ea;
+}
+
 .ventas_activas_detalles .fixedFooter{
   height: 63px !important;
   position: fixed;
