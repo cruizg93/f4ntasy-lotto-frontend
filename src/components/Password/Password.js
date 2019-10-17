@@ -39,6 +39,7 @@ const Password = (props) => {
     const [informationPasswordOpen, setInformationPasswordOpen] = useState(false);
     const [current, setCurrent] = useState(-1);
     const [userName, setUserName] = useState('');
+    const [userId, setUserId] = useState('');
     const [userList, setUserList] = useState([]);
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -57,7 +58,8 @@ const Password = (props) => {
 
     const handleChangeSelect = event => {
         setCurrent(event.target.selectedIndex - 1)
-        setUserName(event.target.value)
+        setUserId(event.target.value)
+        setUserName(event.target.text)
         if (event.target.value !== '') {
             setPassword('')
             setShowPassword(false)
@@ -69,7 +71,7 @@ const Password = (props) => {
     };
 
     function handleOnClickCambio() {
-        if (password !== '' && current > 0) {
+        if (password !== '' && current >= 0) {
             setOpen(true)
         }
     }
@@ -84,13 +86,14 @@ const Password = (props) => {
     const handleClose_password = () => {
         setInformationPasswordOpen(false)
         setPassword('')
+        setUserId('');
     }
 
     const handleClickUpdatePassword = () => {
         const { dispatch } = props;
         dispatch(userActions.loading_start())
         let data = {
-            username: userName,
+            id: userId,
             password: password
         };
         update_password(data).then((result) => {
@@ -109,7 +112,7 @@ const Password = (props) => {
             <Container maxwidth="xs" className="admin_change_password">
                 <Grid className="user_list">
                     <NativeSelect
-                        value={userName}
+                        value={userId}
                         className="native_select"
                         onChange={handleChangeSelect}
                         input={<BootstrapInput className="bootstrap_input" />}
@@ -117,7 +120,7 @@ const Password = (props) => {
                         <option value='' >Lista de usuarios</option>
                         {
                             (userList.length > 0) && userList.map((c, index) =>
-                                <option key={index} value={c} >{c}</option>
+                                <option key={index} value={c.id} >{c.name}</option>
                             )
                         }
                     </NativeSelect>

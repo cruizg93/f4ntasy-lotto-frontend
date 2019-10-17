@@ -504,7 +504,7 @@ function get_apuesta_activa_by_type_and_id(currency, id, isHistory) {
             "Authorization": `Bearer ${currentUser.accessToken}`
         },
     };
-    console.log(isHistory);
+
     let requestUrl = `/sorteos/activos/detalles/${id}/${currency}`;
     if( isHistory){
         requestUrl = `/history/sorteos/${id}/apuestas/riesgo/${currency}`;
@@ -710,7 +710,7 @@ function get_historial_apuestasOverview_sorteoAndJugador(jugadorId, id) {
     });
 }
 
-function get_historial_apuestasOverview_sorteo(id) {
+function get_historial_apuestasOverview_sorteo(id, currency) {
     const currentUser = authenticationService.currentUserValue;
     const requestOptions = {
         headers: {
@@ -720,7 +720,7 @@ function get_historial_apuestasOverview_sorteo(id) {
         },
     };
     return new Promise((resolve, reject) => {
-        axios.get(`${baseUrl}/history/weeks/jugador/sorteo/${id}`,
+        axios.get(`${baseUrl}/history/weeks/jugador/sorteo/${id}/${currency}`,
             requestOptions
         )
             .then((responseJson) => {
