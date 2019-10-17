@@ -1,5 +1,4 @@
-// export const baseUrl = 'https://fant4sylotto.herokuapp.com'; //process.env.NODE_ENV === 'development' ? 'http://localhost:8080' : 'https://fant4sylotto.herokuapp.com';
-export const baseUrl = 'https://apuntada.net/backend';
+export const baseUrl = window.location.host == 'apuntada.net' ? '/backend' : 'https://fant4sylotto.herokuapp.com';
 
 export const API = {
   LOGIN: baseUrl + '/api/auth/signin',
