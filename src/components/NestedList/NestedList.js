@@ -16,7 +16,6 @@ import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
 
 import Historial from './Historial';
 import Sistema from './Sistema';
-import { authenticationService } from "../../service/api/authentication/authentication.service";
 // import {history} from "../../_helpers/history";
 
 const useStyles = makeStyles(theme => ({

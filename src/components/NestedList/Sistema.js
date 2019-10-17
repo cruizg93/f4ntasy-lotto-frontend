@@ -1,5 +1,4 @@
 import React from 'react';
-
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -9,14 +8,10 @@ import ListAlt from '@material-ui/icons/ListAlt';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import GroupAdd from '@material-ui/icons/GroupAdd';
-import Casino from '@material-ui/icons/Casino';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 import Create from '@material-ui/icons/Create';
 import Publish from '@material-ui/icons/Publish';
-
-
 import { Link } from "react-router-dom";
-
 
 export default function Sistema(props) {
     const [open, setOpen] = React.useState(false);

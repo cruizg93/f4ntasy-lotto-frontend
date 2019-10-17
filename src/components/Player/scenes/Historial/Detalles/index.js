@@ -107,7 +107,7 @@ const DetallesPlayer = ({ ...props }) => {
 
     const [total, setTotal] = useState(0.0);
     const [list, setList] = useState([]);
-    const [disable, setDisable] = useState(true);
+    const [disable,] = useState(true);
 
     useEffect(() => {
         const { dispatch } = props;

@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Grid from '@material-ui/core/Grid';
-import authenticationService from "../../../../service/api/authentication/authentication.service";
 import { adminService } from "../../../../service/api/admin/admin.service";
 import CircleNumber from "../../../Utils/CircleNumber/index";
 import { FormatNumberSymbol } from '../../../../utils/__currency';
@@ -56,7 +55,6 @@ const useStyles = makeStyles(theme => ({
 const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoId, sorteoType, hour, day, premio, jugadores, moneda, isMaster, ...props }) => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-    const [currentRole, setCurrentRole] = useState('Player');
     const [open, setOpen] = useState(false);
     const [openAddition, setOpenAddition] = useState(false);
     const [errorPasswordOpen, setErrorPasswordOpen] = useState(false);
@@ -101,10 +99,6 @@ const NumerosGanadoresEntry = ({ numero, numeroGanadorId, sorteoId, sorteoType, 
         })
     }
 
-    useEffect(() => {
-        setCurrentRole(authenticationService.type_user())
-
-    }, [])
     return (
         <div className={classes.root} >
             <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')}

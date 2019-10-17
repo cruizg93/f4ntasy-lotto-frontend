@@ -6,8 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { adminService } from "../../../../service/api/admin/admin.service";
 import authenticationService from '../../../../service/api/authentication/authentication.service';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import { Colors } from "../../../../utils/__colors";
 import Button from "@material-ui/core/Button/index";
 import AdminTitle from '../../components/AdminTitle';
 import ApuestasDetallesEntry from '../../components/ApuestasActiva';
@@ -19,18 +17,6 @@ import Lempiras_ON from '../../../View/assets/Lempiras_ON.png';
 import Lempiras_OFF from '../../../View/assets/Lempiras_OFF.png';
 import { userActions } from '../../../../store/actions';
 import './styles.css'
-
-const useStyles = makeStyles(theme => ({
-    headerContainer: {
-        background: Colors.Main,
-        marginBottom: "1rem"
-    },
-    label: {
-        borderBottom: `${Colors.Btn_Red} 2px solid`,
-        paddingBottom: "1rem !important",
-        marginTop: ".5rem",
-    },
-}));
 
 const ApuestasActivasAdmin = (props) => {
     const [apuestasActivas, setApuestasActivasList] = useState([]);

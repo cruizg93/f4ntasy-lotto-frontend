@@ -17,17 +17,13 @@ import TextField from '@material-ui/core/TextField';
 import { MdFileDownload } from "react-icons/md";
 import { Currency } from '../../../../../utils/__currency';
 import ResumenApuestas from "../Resumen/ResumenApuestas";
-
 import ConfirmDialog from '../../../../View/Dialog/ConfirmDialog';
 import ConfirmDialogR from '../../../../View/Dialog/ConfirmDialog_R';
 import InformationDialog from '../../../../View/Dialog/InformationDialog';
 import ErrorInfoDialog from '../../../../View/Dialog/ErrorInfoDialog';
-
 import RouteLeavingGuard from './RouteLeavingGuard'
-
 import { userActions } from '../../../../../store/actions';
 import './styles.css'
-
 
 const useStyles = theme => ({
     root: {
@@ -135,9 +131,10 @@ class AdicionarNumeroApuesta extends Component {
         let reg = /^\d+$/;
         if (!reg.test(this.match.params.apuestaId)) {
             this.props.history.push('/usuario/apuestas');
-            return () => {
-                this.state.mounted.current = false;
-            }
+            this.setState({
+                ...this.state,
+                mounted: true
+            })
         }
         const { dispatch } = this.props;
         dispatch(userActions.loading_start())
@@ -412,9 +409,10 @@ class AdicionarNumeroApuesta extends Component {
             }
             // this.handleCloseFinalizarCompraDialog(event);
             dispatch(userActions.loading_end())
-            return () => {
-                this.state.mounted.current = false;
-            };
+            this.setState({
+                ...this.state,
+                mounted: true
+            })
         })
             .catch(function (error) {
                 dispatch(userActions.loading_end())

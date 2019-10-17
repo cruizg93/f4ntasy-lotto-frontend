@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { CSSTransition } from 'react-transition-group'
 import { css, cx } from 'emotion'
-
 import Spinner from './Spinner'
 import STYLES from './styles'
 

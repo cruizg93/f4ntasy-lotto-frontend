@@ -13,7 +13,6 @@ class CustomText extends React.Component {
   }
 
   render() {
-    const Icon = this.props.icon;
     return (
       <div className="container_custominput_1" style={{ width: this.props.width }}>
         <div className="icon-container">

@@ -4,8 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { adminService } from "../../../../../service/api/admin/admin.service";
 import authenticationService from '../../../../../service/api/authentication/authentication.service';
-import { makeStyles } from "@material-ui/core/styles/index";
-import { red, blue } from "@material-ui/core/colors/index";
 import Button from "@material-ui/core/Button/index";
 import ApuestaActivaRiesgoEntry from '../../../components/ApuestasActiva/Detalles/ApuestasActivaDetalles';
 // import { printDocument6 } from "../../../../../_helpers/print";
@@ -26,46 +24,6 @@ import { FormatNumberSymbol } from '../../../../../utils/__currency';
 
 import './styles.css'
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        padding: theme.spacing(3, 2),
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-
-    },
-    component: {
-        textDecoration: 'none',
-    },
-    componentDisable: {
-        textDecoration: 'none',
-        pointerEvents: 'none'
-    },
-    text: {
-        fontWeight: 'bold'
-    },
-    textWithBorder: {
-        fontWeight: 'bold',
-        border: '1px solid #747474',
-        margin: '1rem',
-    },
-    textBlock: {
-        fontWeight: 'bold',
-        display: 'block !important'
-    },
-    close: {
-        color: red[400]
-    },
-    open: {
-        color: blue[300]
-    },
-    disableLink: {
-        pointerEvents: 'none'
-    }
-}));
-
 const ApuestaActivaAdminDetalle = (props) => {
     const [riesgoList, setRiesgoList] = useState([]);
     const [moneda, setMoneda] = useState("lempira");
@@ -76,10 +34,11 @@ const ApuestaActivaAdminDetalle = (props) => {
     const [neta, setNeta] = useState(0.0);
     // const [title, setTitle] = useState(0.0);
     const [numeroMaxRiesgo, setNumeroMaxRiesgo] = useState(0.0);
-    const [dineroApostadoMaxRiesgo, setDineroApostadoMaxRiesgo] = useState(0.0);
-    const [posiblePremioMaxRiesgo, setPosiblePremioMaxRiesgo] = useState(0.0);
-    const [totalRiesgoMaxRiesgo, setTotalRiesgoMaxRiesgo] = useState(0.0);
+    const [, setDineroApostadoMaxRiesgo] = useState(0.0);
+    const [, setPosiblePremioMaxRiesgo] = useState(0.0);
+    const [, setTotalRiesgoMaxRiesgo] = useState(0.0);
     const [errorOpen, setErrorOpen] = useState(false);
+
     const [isHistoryRequest, setIsHistoryRequest] = useState(props.match.path.includes("historial"));
     const col = ['Ventas:', 'Comisiónes:', 'Sub-total:'];
 

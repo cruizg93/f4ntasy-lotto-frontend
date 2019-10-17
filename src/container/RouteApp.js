@@ -5,15 +5,12 @@ import { NotificationContainer } from 'react-notifications';
 import Login from '../components/Login/Login';
 import Jugador from '../components/Jugador/Jugador';
 import HeaderBar from './HeaderBar';
-
 import PrivateRoute from './PrivateRoute';
 import { Role } from "../_helpers/role";
-
 import Nuevo from '../components/Jugador/Nuevo';
 import Cambio from '../components/Cambio/Cambio';
 import Password from '../components/Password/Password';
 import Fijar from '../components/Fijar/Fijar';
-import EditarAsistente from '../components/Admin/scences/Asistente/Editar/index';
 import EditarJugador from '../components/Jugador/components/Editar/index';
 import BalanceJugador from '../components/Jugador/scene/Balance/index';
 import JugadorDetalles from '../components/Jugador/scene/Apuesta/Detalles/index';

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import { playerService } from "../../../../../service/api/player/player.service";
@@ -8,7 +7,6 @@ import authenticationService from '../../../../../service/api/authentication/aut
 import ApuestaData from '../../../components/Apuesta/index';
 
 import AdminTitle from '../../../../Admin/components/AdminTitle_Center';
-import RowList from '../../../../View/RowList'
 import { userActions } from '../../../../../store/actions';
 import './styles.css'
 

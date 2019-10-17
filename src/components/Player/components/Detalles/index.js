@@ -49,7 +49,6 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-
 const ShowDetallesApuesta = ({ title, apuestas, total, ...props }) => {
     const classes = useStyles();
     const [titleData, setTitleData] = useState('');
@@ -68,7 +67,6 @@ const ShowDetallesApuesta = ({ title, apuestas, total, ...props }) => {
 
     return (
         <Grid container
-            spacing={1}
             direction="row"
             justify="center"
             className={classes.containerData}

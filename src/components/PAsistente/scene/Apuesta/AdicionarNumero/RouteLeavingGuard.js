@@ -37,7 +37,7 @@ export class RouteLeavingGuard extends React.Component {
   })
   render() {
     const { when } = this.props
-    const { modalVisible, lastLocation } = this.state
+    const { modalVisible } = this.state
     return (
       <>
         <Prompt

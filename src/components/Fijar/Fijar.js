@@ -1,21 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { GoTools } from "react-icons/go";
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
-    },
-    container: {
-        background: '#FFF',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-    },
-}));
-
 
 export default function Fijar() {
     // const [numberList, setNumberList] = useState([]);

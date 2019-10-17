@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-
 import Button from "@material-ui/core/Button/index";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -10,14 +8,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { adminService } from "../../../../service/api/admin/admin.service";
-import { TiPen } from "react-icons/ti";
+// import { TiPen } from "react-icons/ti";
 import { GoTrashcan } from "react-icons/go";
 
 import "./styles.css";
 
 const AsistenteDataShow = ({ match, id, username, name, ...props }) => {
     const [open, setOpen] = useState(false);
-
     const handler = props.handler;
     const toast = props.toast;
 

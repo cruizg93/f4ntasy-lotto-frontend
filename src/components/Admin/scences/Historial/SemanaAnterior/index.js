@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { adminService } from "../../../../../service/api/admin/admin.service";
 import authenticationService from '../../../../../service/api/authentication/authentication.service';
-import { makeStyles, withStyles } from "@material-ui/core/styles/index";
-import { red, blue } from "@material-ui/core/colors/index";
+import { withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
 import InputBase from '@material-ui/core/InputBase';
 import NativeSelect from '@material-ui/core/NativeSelect';
@@ -43,60 +42,7 @@ const BootstrapInput = withStyles(theme => ({
     },
 }))(InputBase);
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        padding: theme.spacing(3, 2),
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-        '&:hover': {
-            backgroundColor: '#e5e5e5',
-        },
-    },
-    component: {
-        textDecoration: 'none',
-    },
-    componentDisable: {
-        textDecoration: 'none',
-        pointerEvents: 'none'
-    },
-    text: {
-        fontWeight: 'bold'
-    },
-    textWithBorder: {
-        fontWeight: 'bold',
-        border: '1px solid #747474',
-        margin: '1rem',
-    },
-    textWithBorderTop: {
-        fontWeight: 'bold',
-        borderTop: '1px solid #747474',
-        margin: '1rem',
-    },
-    textBlock: {
-        fontWeight: 'bold',
-        display: 'block !important'
-    },
-    textNoDisponible: {
-        fontWeight: 'bold',
-        margin: '2rem',
-    },
-    close: {
-        color: red[400]
-    },
-    open: {
-        color: blue[300]
-    },
-    disableLink: {
-        pointerEvents: 'none'
-    }
-
-}));
-
 const HistorialSemanaAnteriorAdmin = (props) => {
-    const classes = useStyles();
     const [weekList, setWeekList] = useState([]);
     const [week, setWeek] = useState([]);
     const [current, setCurrent] = useState(0);
@@ -127,7 +73,6 @@ const HistorialSemanaAnteriorAdmin = (props) => {
             .catch(function (error) {
                 dispatch(userActions.loading_end())
             });
-
     }, []);
 
     function updateBono() {

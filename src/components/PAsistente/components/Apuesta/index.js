@@ -1,10 +1,7 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { Grid, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-
 import InformationDialog from '../../../View/Dialog/InformationDialog';
-import { Currency } from '../../../../utils/__currency';
 import DiariaLogo from '../../../View/assets/Diaria_PNG.png';
 import ChicaLogo from '../../../View/assets/Chica_PNG.png';
 import imgRed from '../../../View/assets/RED_PNG.png';
@@ -59,7 +56,6 @@ class ApuestaData extends React.Component {
     }
 
     render() {
-        const apuestaCurrency = (this.props.apuesta.moneda === "LEMPIRA" || this.props.apuesta.moneda === "L") ? Currency.Lempira : Currency.Dollar;
         let hour = this.props.apuesta.hour
         let day = this.props.apuesta.day.toLowerCase()
         const moneySymbol = this.props.apuesta.moneda.toLowerCase() === 'dolar' ? '$' : 'L';
@@ -72,7 +68,7 @@ class ApuestaData extends React.Component {
                     justify="center"
                 >
                     <Grid item xs={4} className="logo_icon"
-                        component={Link}
+                        // component={Link}
                         component={this.props.apuesta.estado === 'ABIERTA' ? Link : 'div'}
                         to={
                             {

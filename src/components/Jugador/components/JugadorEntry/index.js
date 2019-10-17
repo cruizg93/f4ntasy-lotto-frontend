@@ -5,14 +5,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { Currency } from '../../../../utils/__currency';
 import { FormatNumberSymbol } from '../../../../utils/__currency';
-
 import { makeStyles, withStyles } from "@material-ui/core/styles/index";
 import Button from "@material-ui/core/Button/index";
-
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-// import DialogContentText from '@material-ui/core/DialogContentText';
 import Divider from '@material-ui/core/Divider';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -276,28 +273,22 @@ const StyleExpansionPanelSummary = withStyles(() => ({
 const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, total, username, name, asistentes, ...props }) => {
   const classes = useStyles();
   const [monedaSymbol, setMonedaSymbol] = useState('$');
-
   const [open, setOpen] = React.useState(false);
   const [openNoEliminar, setOpenNoEliminar] = React.useState(false);
   const [openinfo, setOpenInfo] = React.useState(false);
-  const [openNoEditar, setOpenNoEditar] = React.useState(false);
-
-
+  const [, setOpenNoEditar] = React.useState(false);
   const [expanded, setExpanded] = React.useState(false);
   const [asignedAsistentes, setAsignedAsistentes] = React.useState([]);
-
   //JugadorEnable decide si el jugador puede ser eliminado o editado
-
   const jugadorEnable = true;//balance === 0 && total === 0;
   const symbol = balance < 0 ? " - " : (balance > 0 ? " + " : "")
   const apuestaCurrency = monedaType.toLowerCase() === "lempira" ? Currency.Lempira : Currency.Dollar;
-
   const handler = props.handler;
   const toast = props.toast;
   const isSupervisor = props.isSupervisor;
 
   /* USER INFO FOR jugador data popup*/
-  const [userInfoloading, setUserInfoloading] = React.useState(false);
+  const [, setUserInfoloading] = React.useState(false);
   const [diariaTipo, setDiariaTipo] = React.useState('dm');
   const [diariaTipoText, setDiariaTipoText] = React.useState('');
   const [diariaCostoComisionTexto, setDiariaCostoComisionTexto] = React.useState('');
@@ -401,10 +392,6 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
     setOpenNoEliminar(false);
   }
 
-  function handleCloseNoEditar() {
-    setOpenNoEditar(false);
-  }
-
   function deletePlayer() {
     adminService.delete_player_by_id(id).then((result) => {
       if (result.status === 401) {
@@ -422,7 +409,6 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
   const handleChangeExpand = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-
 
   useEffect(() => {
     setMonedaSymbol(apuestaCurrency.symbol);

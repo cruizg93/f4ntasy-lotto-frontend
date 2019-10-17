@@ -1,15 +1,10 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-
 import { FormatNumberSymbol } from '../../../../../../utils/__currency';
-import { Currency } from '../../../../../../utils/__currency';
-
 import './styles.css';
 
 class RowList extends React.Component {
   render() {
-    const apuestaCurrency = this.props.symbol === "$" ? Currency.Lempira : Currency.Dollar;
     const alignRight = this.props.alignRight ? 'right' : 'left'
     let left = (this.props.paddingLeft && this.props.paddingLeft !== 0) ? this.props.paddingLeft : 10;
     return (

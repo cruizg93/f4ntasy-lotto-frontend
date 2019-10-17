@@ -72,11 +72,8 @@ const DetallesPAsistente = ({ ...props }) => {
     const classes = useStyles();
     const [title, setTitle] = useState('');
     const [numeroValue, setNumeroValue] = useState(0);
-
     const [total, setTotal] = useState(0.0);
     const [list, setList] = useState([]);
-    const [disable, setDisable] = useState(true);
-
 
     useEffect(() => {
         playerService.get_historial_apuestas_details_by_id(props.location.state.id).then((result) => {
@@ -85,7 +82,6 @@ const DetallesPAsistente = ({ ...props }) => {
         setTitle(props.location.state.title);
         setTotal(props.location.state.total);
         setNumeroValue(props.location.state.numero)
-
     }, []);
 
     function handleOnPrint() {
@@ -119,7 +115,7 @@ const DetallesPAsistente = ({ ...props }) => {
 
                     {list.map((apuesta, index) =>
                         <AsistenteEntryDetail key={index} {...apuesta} index={index} {...props}
-                            disable={disable}
+                            disable={true}
                         />
                     )}
                 </Grid>

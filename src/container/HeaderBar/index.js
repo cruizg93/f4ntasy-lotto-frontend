@@ -91,7 +91,6 @@ class HeaderBar extends Component {
     }
 
     render() {
-        const { firstConnection, role } = this.props;
         let backdrop;
         if (this.state.sideDrawerOpen) {
             backdrop = <Backdrop click={this.backdropClickHandler} />

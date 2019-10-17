@@ -439,13 +439,8 @@ function details_apuesta_activa_by_apuesta_id(username, id) {
             "Authorization": `Bearer ${currentUser.accessToken}`
         },
     };
-    let send = {
-        username: username
-    };
-    return new Promise((resolve, reject) => {
-        /*axios.post(`${baseUrl}/admin/jugador/apuestas/activas/${id}/detalles`,
-            send, requestOptions*/
 
+    return new Promise((resolve, reject) => {
         axios.get(`${baseUrl}/sorteos/activos/${id}/apuestas/detalles/${username}`,
             requestOptions
         )

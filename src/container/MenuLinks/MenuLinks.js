@@ -8,11 +8,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 const MenuLinks = ({ ...props }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [anchorE2, setAnchorE2] = React.useState(null);
-
     const isAdmin = props.admin;
+  
     const isMaster = props.master;
     const isSupervisor = props.supervisor;
     const isPlayer = !props.admin && props.player;
+  
     const isAsistente = (!props.admin && props.asistente);
     const hiddenHeader = (props.firstConnection === true) && ((props.role === 'Player') || (props.role === 'Asistente'))
 

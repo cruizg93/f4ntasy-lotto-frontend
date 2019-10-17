@@ -102,7 +102,6 @@ const ApuestaActiva = ({ ...props }) => {
     const [riesgo, setRiesgo] = useState(0.0);
     const [total, setTotal] = useState(0.0);
     const [list, setList] = useState([]);
-    const [disable, setDisable] = useState(true);
     const [apuestaType, setApuestaType] = useState('CHICA');
     const [monedaType, setMonedaType] = React.useState("$");
     const [sumValor, setSumValor] = React.useState(0);
