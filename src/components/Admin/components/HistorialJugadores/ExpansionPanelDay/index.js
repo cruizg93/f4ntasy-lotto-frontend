@@ -90,6 +90,8 @@ const ExpanionPanelDay = (props) => {
                     pathname: `/historial/sorteos/${props.winner.id}/apuestas`,
                     state: {
                         type: props.winner.type,
+                        day: props.day,
+                        time: props.winner.hour
                     }
                 }
             }

@@ -504,7 +504,7 @@ function get_apuesta_activa_by_type_and_id(currency, id, isHistory) {
             "Authorization": `Bearer ${currentUser.accessToken}`
         },
     };
-    console.log(isHistory);
+
     let requestUrl = `/sorteos/activos/detalles/${id}/${currency}`;
     if( isHistory){
         requestUrl = `/history/sorteos/${id}/apuestas/riesgo/${currency}`;
