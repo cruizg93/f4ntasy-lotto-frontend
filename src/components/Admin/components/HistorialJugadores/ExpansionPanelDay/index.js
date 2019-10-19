@@ -37,6 +37,7 @@ const ExpanionPanelDay = (props) => {
   const image = props.winner && props.winner.type === 'DIARIA' ? DiariaLogo : ChicaLogo
   const hour = props.winner && props.winner.type === 'DIARIA' ? props.winner.hour : '12 pm'
   const winNumber = props.winner ? props.winner.numero.toString().padStart(2, '0') : '00'
+  const fileName = props.jugadorUsername + '_' + props.jugadorName + '_' + props.day + '_' + hour + '.pdf'
 
   const handleChangeExpand = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -149,7 +150,7 @@ const ExpanionPanelDay = (props) => {
                                 summary={winList.summary}
                               />
                             }
-                            fileName="movielist.pdf"
+                            fileName={fileName}
                             style={{
                               textDecoration: "none",
                               padding: "3px 25px 6px 25px",

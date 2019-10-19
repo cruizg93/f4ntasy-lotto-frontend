@@ -235,13 +235,4 @@ const PrintPdfAdmin = (props) => {
   )
 };
 
-// const PrintPdfAdmin = (userInfo) => {
-// const string = renderToString(<Prints userInfo={userInfo} />);
-// console.log("fsdfs", string)
-// const pdf = new jsPDF("p", "mm", "a4");
-// pdf.fromHTML(string);
-// pdf.save("pdf");
-// };
-
 export default PrintPdfAdmin;
-
