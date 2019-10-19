@@ -1,6 +1,7 @@
 import {
   LOGIN_SUCCESS,
-  LOGIN_FAILURE
+  LOGIN_FAILURE,
+  SET_FIRST_CONNECTION
 } from '../actions/types';
 import { userService } from '../actions/user.service'
 
@@ -29,6 +30,11 @@ export function user(state = initialize, action) {
         ...state,
         loginState: false,
         loginFail: true
+      };
+    case SET_FIRST_CONNECTION:
+      return {
+        ...state,
+        firstConnection: action.payload,
       };
     default:
       return { ...state }

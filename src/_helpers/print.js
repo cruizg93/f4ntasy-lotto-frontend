@@ -1,20 +1,63 @@
+import React from 'react'
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
+import { renderToString } from "react-dom/server";
 
 window.html2canvas = html2canvas;
+const Prints = (props) => (
+    <div>
+        <h3>{props.val}Time & Materials Statement of Work (SOW)</h3>
+        <h4>General Information</h4>
+        <table id="tab_customers" class="table table-striped" >
+            <colgroup>
+                <col span="1" />
+                <col span="1" />
+            </colgroup>
+            <thead>
+                <tr class="warning">
+                    <th>SOW Creation Date</th>
+                    <th>SOW Start Date</th>
+                    <th>Project</th>
+                    <th>Last Updated</th>
+                    <th>SOW End Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dec 13, 2017</td>
+                    <td>Jan 1, 2018</td>
+                    <td>NM Connect - NMETNMCM</td>
+                    <td>Dec 13, 2017</td>
+                    <td>Dec 31, 2018</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            This is a Time and Materials Statement of Work between Northwestern Mutual
+            Life Insurance Company and Infosys with all general terms and conditions
+            as described in the current Master Agreement and its related documents
+    </p>
+    </div>
+);
 
 export function printDocument(input) {
-    html2canvas(input)
-        .then((canvas) => {
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF();
-            pdf.addImage(imgData, 'JPEG', 0, 0);
-            // pdf.output('dataurlnewwindow');
-            pdf.save("download.pdf");
-        })
-        ;
+    const string = renderToString(<Prints val={5} />);
+    const pdf = new jsPDF("p", "mm", "a4");
+    pdf.fromHTML(string);
+    pdf.save("pdf");
+
+
+    // html2canvas(input)
+    //     .then((canvas) => {
+    //         const imgData = canvas.toDataURL('image/png');
+    //         const pdf = new jsPDF();
+    //         pdf.addImage(imgData, 'JPEG', 0, 0);
+    //         // pdf.output('dataurlnewwindow');
+    //         pdf.save("download.pdf");
+    //     })
+    //     ;
 }
 
 export function printDocument2(input) {
@@ -122,12 +165,12 @@ export function printDocument5(elems) {
 
 
 export function printDocument6(elems, title) {
-    // let pdf = new jsPDF("portrait", "mm", "a4");
+    let pdf = new jsPDF("portrait", "mm", "a4");
 
     domtoimage.toBlob(elems)
         .then(function (blob) {
-            // pdf.addImage(blob, 'PNG', 0, 0);
-            // pdf.save("download.pdf");
+            pdf.addImage(blob, 'PNG', 0, 0);
+            pdf.save("download.pdf");
             saveAs(blob, title + '-apuesta.png');
         });
 }

@@ -13,7 +13,8 @@ export const SIGNUP_USER_FAILURE = 'SIGNUP_USER_FAILURE';
 //Time
 export const GET_TIME_SUCCESS = 'GET_TIME_SUCCESS';
 export const GET_TIME_FAILURE = 'GET_TIME_FAILURE';
-
+//firstConnection
+export const SET_FIRST_CONNECTION = 'SET_FIRST_CONNECTION';
 // Loading 
 export const LODING_STATE = 'LODING_STATE';
 // Ui 

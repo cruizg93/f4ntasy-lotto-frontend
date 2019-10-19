@@ -320,14 +320,14 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
         /* DIARIA */
         setUserInfoloading(true);
 
-        if (result.data.diariaType == "dm"){
+        if (result.data.diariaType === "dm") {
           setDiariaTipo("dm");
           setDiariaTipoText("X Miles");
           setDiariaCostoComisionTexto("Costo x mil");
           setDiariaCostoComisionValor(result.data.costoMil);
           setDiariaPremioTexto("Premio");
           setDiariaPremioValor(result.data.premioMil);
-        }else if (result.data.diariaType == "dd"){
+        } else if (result.data.diariaType === "dd") {
           setDiariaTipo("dd");
           setDiariaTipoText("Directo L/$");
           setDiariaCostoComisionTexto("Comision %");
@@ -337,7 +337,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
         }
         /* DIARIA FIN*/
         /*CHICA */
-        if (result.data.chicaType == "cp"){
+        if (result.data.chicaType === "cp") {
           setChicaTipo('cp')
           setChicaTipoText('X Pedazos')
           setChicaComisionPercentageTexto("Comision %");
@@ -346,14 +346,14 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
           setChicaCostoValor(result.data.costoChicaPedazos.toFixed(2));
           setChicaPremioTexto("Premio")
           setChicaPremioValor(result.data.premioChicaPedazos)
-        }else if (result.data.chicaType == "cd"){
+        } else if (result.data.chicaType === "cd") {
           setChicaTipo("cd");
           setChicaTipoText("Directo L/$");
           setChicaComisionPercentageTexto("Comision %");
           setChicaComisionPercentageValor(result.data.comisionChicaDirecto);
           setChicaPremioTexto("Premio");
           setChicaPremioValor(result.data.premioChicaDirecto);
-        }else if (result.data.chicaType == "cm"){
+        } else if (result.data.chicaType === "cm") {
           setChicaTipo("cm");
           setChicaTipoText("X Miles");
           setChicaCostoTexto("Costo x mil");
@@ -426,25 +426,25 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
         <Grid className="grid_lolosStar">
           <IoIosStar style={{ color: "#AEAEAE" }} onClick={() => { handleClickInfoOpen(id) }} />
         </Grid>
-        {!isSupervisor 
-        && <Grid className="grid_tiPen"
-          component={jugadorEnable ? Link : "div"} to={
-            {
-              pathname: `/jugador/editar/${id}`,
-              state: {
-                id: id,
+        {!isSupervisor
+          && <Grid className="grid_tiPen"
+            component={jugadorEnable ? Link : "div"} to={
+              {
+                pathname: `/jugador/editar/${id}`,
+                state: {
+                  id: id,
+                }
               }
             }
-          }
-        >
-          <TiPen style={{ color: "#AEAEAE" }} onClick={handleClickOpenNoEditar} />
-        </Grid>
+          >
+            <TiPen style={{ color: "#AEAEAE" }} onClick={handleClickOpenNoEditar} />
+          </Grid>
         }
-        {!isSupervisor 
-        &&
-        <Grid className="grid_goTranhcan" >
-          <GoTrashcan style={{ color: "#AEAEAE" }} onClick={jugadorEnable ? handleClickOpen : handleClickOpenNoEliminar} />
-        </Grid>
+        {!isSupervisor
+          &&
+          <Grid className="grid_goTranhcan" >
+            <GoTrashcan style={{ color: "#AEAEAE" }} onClick={jugadorEnable ? handleClickOpen : handleClickOpenNoEliminar} />
+          </Grid>
         }
         <Grid item xs={12}>
           <Divider />
@@ -627,7 +627,7 @@ const JugadorDataShow = ({ match, balance, comision, id, monedaType, riesgo, tot
                     <div style={chicaCostoValor > 0 ? { display: "flex" } : { display: "none" }}>
                       {" - "} {chicaCostoTexto}
                     </div>
-                    <div style={chicaTipo != 'cm' ? { display: "flex" } : { display: "none" }}>
+                    <div style={chicaTipo !== 'cm' ? { display: "flex" } : { display: "none" }}>
                       {" - "} {chicaComisionPercentageTexto}
                     </div>
                     <div> {" - "}{chicaPremioTexto}</div>

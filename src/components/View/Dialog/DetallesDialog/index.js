@@ -25,6 +25,7 @@ class DetallesDialog extends React.Component {
           disableBackdropClick
           open={this.props.open}
           onClose={this.props.handleClose}
+
         >
           <DialogTitle className="detalles-dialog-title"  >
             <div className="header">
@@ -53,7 +54,7 @@ class DetallesDialog extends React.Component {
             </div>
             <div className="blank_white"></div>
           </DialogTitle>
-          <DialogContent className="detalles-dialog-content">
+          <DialogContent className="detalles-dialog-content" id="aaa">
             {
               this.props.winList.map((winData, index) =>
                 <>
@@ -62,7 +63,7 @@ class DetallesDialog extends React.Component {
                   </div>
                   <div className="bet_info">
                     <ListHistoryDetail list={winData.apuestas}
-                      width={'78%'} marginLeft={22} paddingTop={12}
+                      width={'80%'} marginLeft={22} paddingTop={12}
                     >
                     </ListHistoryDetail>
                   </div>

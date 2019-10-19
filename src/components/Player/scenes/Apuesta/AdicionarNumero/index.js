@@ -645,7 +645,9 @@ class AdicionarNumeroApuesta extends Component {
                         justify="center"
                         alignItems="center" style={{ width: "100%", marginLeft: -29 }}>
                         <ListaApuestas entryList={this.state.entryList} removerApuesta={this.removerApuesta} fromApuestaActiva={false}
-                            displayApuestaListIndex={this.state.displayApuestaListIndex} isAgregar={this.state.isAgregar} />
+                            displayApuestaListIndex={this.state.displayApuestaListIndex} isAgregar={this.state.isAgregar}
+                            borderRadius={'17px'} marginLeft={'1em'}
+                        />
                         <Grid item xs={12}>
                             <Typography variant="body1" className="sum_text">
                                 Total &mdash; {this.state.totalCurrent}

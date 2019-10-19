@@ -104,24 +104,24 @@ const EditarJugador = (props) => {
             } else {
                 setSelectedValueMoneda('l');
             }
-            if (result.data.chicaType == "cp"){
+            if (result.data.chicaType === "cp") {
                 setSelectedChicaType('cp');
                 setChicaCostoPedazos(result.data.costoChicaPedazos);
                 setChicaComisionPedazos(result.data.comisionChicaPedazos);
                 setChicaPremioPedazosMil(result.data.premioChicaPedazos)
-            }else if (result.data.chicaType == "cd"){
+            } else if (result.data.chicaType === "cd") {
                 setSelectedChicaType('cd');
                 setChicaPremioDirectoMil(result.data.premioChicaDirecto);
                 setChicaComision(result.data.comisionChicaDirecto);
-            }else if (result.data.chicaType == "cm"){
+            } else if (result.data.chicaType === "cm") {
                 setChicaPremioMil(result.data.premioChicaMiles);
                 setChicaCostoMil(result.data.costoChicaMiles);
             }
-            if (result.data.diariaType == "dm"){
+            if (result.data.diariaType === "dm") {
                 setSelectedDiariaType('dm');
                 setDiariaPremioMil(result.data.premioMil);
-                setDiariaCostoMil(result.data.costoMil);   
-            }else if (result.data.diariaType == "dd"){
+                setDiariaCostoMil(result.data.costoMil);
+            } else if (result.data.diariaType === "dd") {
                 setSelectedDiariaType('dd');
                 setDiariaPremioLempirasMil(result.data.premioDirecto);
                 setDiariaComision(result.data.comisionDirecto);
@@ -151,14 +151,14 @@ const EditarJugador = (props) => {
                 submit = false;
             }
 
-        }else if (selectedDiariaType === 'dd') {
+        } else if (selectedDiariaType === 'dd') {
             dparam1 = diariaComision;
             dparam2 = diariaPremioLempirasMil;
 
             if (dparam1 === '' || parseFloat(dparam1) < 0 || dparam2 === '' || parseFloat(dparam2) <= 0) {
                 submit = false;
             }
-        }else{
+        } else {
             submit = false;
         }
         let cparam1 = 0;
@@ -174,7 +174,7 @@ const EditarJugador = (props) => {
                 cparam1 = chicaComisionPedazos;
                 cparam2 = chicaCostoPedazos;
                 cparam3 = chicaPremioPedazosMil;
-                submit = cparam1 !== '' && parseFloat(cparam1) >= 0 && cparam2 !== '' && parseFloat(cparam2) > 0 && cparam3 !=='' && parseFloat(cparam3) > 0;
+                submit = cparam1 !== '' && parseFloat(cparam1) >= 0 && cparam2 !== '' && parseFloat(cparam2) > 0 && cparam3 !== '' && parseFloat(cparam3) > 0;
                 break;
             default:
                 cparam1 = chicaCostoMil;
@@ -221,7 +221,7 @@ const EditarJugador = (props) => {
     const editarFijarHandler = (e) => {
         if (!disable && editable) {
             onClickHandlerEditar();
-        }else if (editable){
+        } else if (editable) {
             setDisable(!disable);
         }
     }

@@ -16,8 +16,9 @@ class ListHistoryDetail extends React.Component {
         const width = this.props.width ? this.props.width : '67%';
         const marginLeft = this.props.marginLeft ? this.props.marginLeft : 39;
         const paddingTop = this.props.paddingTop ? this.props.paddingTop : 5;
+        const flex = this.props.flex ? this.props.flex : 1;
         return (
-            <div style={{ width: width, marginLeft: marginLeft, paddingTop: paddingTop }}>
+            <div style={{ width: width, marginLeft: marginLeft, paddingTop: paddingTop, flex: flex }}>
                 {
                     this.props.list ?
                         <>

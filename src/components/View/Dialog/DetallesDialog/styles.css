@@ -1,6 +1,7 @@
 .detalles-dialog-title{
   padding: 0 !important;
   max-width: 279px !important;
+  min-width: 279px;
   width: 100%;
 }
 .detalles-dialog-title .header{
