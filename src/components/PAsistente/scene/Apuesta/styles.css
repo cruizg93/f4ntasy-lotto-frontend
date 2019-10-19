@@ -29,7 +29,6 @@
   margin-top: 0px !important;
   margin-bottom: 0px !important;
   border: 1px solid #cccccc;
-  border-radius: 17px;
   padding: 0.25rem;
   text-align: center;
 }
@@ -42,12 +41,11 @@
   width: 116px;
   height: 40px;
   max-width: 12.25rem;
-  margin-left: 1rem;
+  margin-left: 0px;
   margin-right: 1rem;
   margin-top: 0px !important;
   margin-bottom: 0px !important;
   border: 1px solid #cccccc;
-  border-radius: 17px;
   padding: 0.25rem;
   text-align: center;
 }

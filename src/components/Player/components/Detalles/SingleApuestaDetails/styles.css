@@ -9,7 +9,6 @@
   width: 60px;
   height: 40px;
   border: solid 1px lightgray;
-  border-radius: 14px;
   margin-left: 85px;
   line-height: 40px;
 }
@@ -20,9 +19,7 @@
   width: 118px;
   height: 40px;
   border: solid 1px lightgray;
-  border-radius: 14px;
-  border-radius: 14px;
-  margin-left: 15px;
+  margin-left: 0px;
   line-height: 40px;
 }
 .singleApuestaDetails .textValue p{

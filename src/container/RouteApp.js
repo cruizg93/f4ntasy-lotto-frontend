@@ -37,6 +37,8 @@ import HistorialPlayer from '../components/Player/scenes/Historial/index';
 import DetallesPlayer from '../components/Player/scenes/Historial/Detalles/index';
 import DetallesPAsistente from '../components/PAsistente/scene/Historial/Detalles/index';
 // import HistorialAsistente from '../components/PAsistente/scene/Historial/index';
+import { utilService } from '../service/api/utils/util.service';
+import { userActions } from '../store/actions';
 
 import NewUser from '../components/Admin/scences/Usuario/New/index';
 import NewAsistente from '../components/Admin/scences/Asistente/New/index';
@@ -78,6 +80,22 @@ class RouterApp extends React.Component {
     return grayColor;
   }
 
+  componentDidMount() {
+    if (this.props.firstConnection === true && window.location.pathname !== '/login') {
+      const { dispatch } = this.props;
+      dispatch(userActions.loading_start())
+      utilService.isFirstConnection().then((result) => {
+        if (result.data === false) {
+          dispatch(userActions.setFirstConnection(false))
+        }
+        dispatch(userActions.loading_end())
+      })
+        .catch(function (error) {
+          dispatch(userActions.loading_end())
+        });
+    }
+  }
+
   render() {
     const { loginState } = this.props;
     if (window.location.pathname !== '/login') {
@@ -89,7 +107,6 @@ class RouterApp extends React.Component {
     return (
       <LoadingOverlay
         active={this.props.loading}
-        // active={true}
         spinner
       >
         <div className="app-container" style={{ background: background }}>

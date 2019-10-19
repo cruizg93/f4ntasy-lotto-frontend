@@ -1,7 +1,8 @@
 import {
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
-    LODING_STATE
+    LODING_STATE,
+    SET_FIRST_CONNECTION
 } from './types';
 
 import { userService } from './user.service';
@@ -13,7 +14,8 @@ export const userActions = {
     login,
     logout,
     loading_start,
-    loading_end
+    loading_end,
+    setFirstConnection
 };
 
 function loading_start() {
@@ -25,6 +27,12 @@ function loading_start() {
 function loading_end() {
     return dispatch => {
         dispatch({ type: LODING_STATE, payload: false });
+    }
+}
+
+function setFirstConnection(isFirstConnection) {
+    return dispatch => {
+        dispatch({ type: SET_FIRST_CONNECTION, payload: isFirstConnection });
     }
 }
 

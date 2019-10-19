@@ -58,7 +58,8 @@ class ListaApuestas extends React.Component {
     render() {
         const title = "Eliminar?"
         const context = "Esta seguro que quiere eliminar estas compras?"
-        
+        const marginLeft = this.props.marginLeft ? this.props.marginLeft : '0px'
+        const borderRadius = this.props.borderRadius ? this.props.borderRadius : '0px'
         return (
             <div style={{ width: '80%' }}>
                 <List className="apuestaList">
@@ -69,11 +70,13 @@ class ListaApuestas extends React.Component {
                                     <ListItemText className="apuestaIndex" primary={this.props.entryList.length - index} />
                                 </div>
                                 <ListItemText className="apuestaNumber"
+                                    style={{ borderRadius: borderRadius }}
                                     primary={<Grid container>
                                         <Grid item style={{ textAlign: "center", width: '100%' }}>{element.numero.toString().padStart(2, '0')}</Grid>
                                     </Grid>
                                     } />
                                 <ListItemText className="apuestaValues"
+                                    style={{ borderRadius: borderRadius, marginLeft: marginLeft }}
                                     primary={<Grid container>
                                         <Grid item style={{ textAlign: "left", width: '100%', paddingLeft: 15 }}>{element.current === undefined ? element.valor : element.current}</Grid>
                                     </Grid>

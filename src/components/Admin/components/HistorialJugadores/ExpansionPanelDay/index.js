@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
+import Fab from '@material-ui/core/Fab';
 import Divider from '@material-ui/core/Divider';
 import DetallesDialog from '../../../../View/Dialog/DetallesDialog';
 import { FaFileExcel } from "react-icons/fa";
+import { LocalPrintshop } from "@material-ui/icons";
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -17,15 +19,24 @@ import ListHistoryDetail from '../ListHistoryDetail'
 import RowList from '../../../../View/RowList'
 import DiariaLogo from '../../../../View/assets/Diaria_PNG.png';
 import ChicaLogo from '../../../../View/assets/Chica_PNG.png';
+import PrintPdfAdmin from "../PrintPdfAdmin";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import './styles.css'
 
 const ExpanionPanelDay = (props) => {
-  
+
   const [expanded, setExpanded] = React.useState(false);
   const [winList, setWinList] = React.useState(null);
   const [winDetailList, setWinDetailList] = React.useState(null);
   const [colorStyle, setColorStyle] = useState('');
   const [openComprarInfo, setOpenComprarInfo] = React.useState(false);
+  const [show, setShow] = React.useState(false);
+
+  console.log('props', props)
+  const userInfo = props.jugadorName ? props.jugadorUsername + ' - ' + props.moneda + ' [' + props.jugadorName + ']' : ''
+  const image = props.winner && props.winner.type === 'DIARIA' ? DiariaLogo : ChicaLogo
+  const hour = props.winner && props.winner.type === 'DIARIA' ? props.winner.hour : '12 pm'
+  const winNumber = props.winner ? props.winner.numero.toString().padStart(2, '0') : '00'
 
   const handleChangeExpand = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -47,6 +58,7 @@ const ExpanionPanelDay = (props) => {
             authenticationService.logout()
           } else
             setWinList(result.data)
+          setShow(true)
         })
       }
     }
@@ -78,23 +90,23 @@ const ExpanionPanelDay = (props) => {
     <Grid container maxwidth='xs' className="time_text_valor">
       <Grid item xs={12} >
         <ExpansionPanel onChange={handleChangeExpand('panel1')}
-          TransitionProps={{ unmountOnExit: true }} className="expansionPanel_day">
+          TransitionProps={{ unmountOnExit: true }} className="expansionPanel_day" >
           <ExpansionPanelSummary
             expandIcon={expanded ? <Remove className="expansion_icon_remove" /> : <Add className="expansion_icon" />}
             aria-controls="panel1bh-content"
           >
             <div style={{ display: 'flex', width: '100%' }}>
-              <Grid item className="icon" component={Link} 
-              to={
-                {
+              <Grid item className="icon" component={Link}
+                to={
+                  {
                     pathname: `/historial/sorteos/${props.winner.id}/apuestas`,
                     state: {
-                        type: props.winner.type,
-                        day: props.day,
-                        time: props.winner.hour
+                      type: props.winner.type,
+                      day: props.day,
+                      time: props.winner.hour
                     }
+                  }
                 }
-            }
               >
                 {props.winner.type === "DIARIA" ? <img src={DiariaLogo} alt="DiariaLogo" /> : <img src={ChicaLogo} alt="ChicaLogo" />}
               </Grid>
@@ -116,9 +128,43 @@ const ExpanionPanelDay = (props) => {
                 {
                   props.casa && props.casa !== 'casa' &&
                   <>
-                    <div style={{ display: 'flex', padding: '0px 24px 0px 24px ' }}>
-                      <ListHistoryDetail list={winList.apuestas} ></ListHistoryDetail>
-                      <span className='header_icon' onClick={() => handleClickOpenDetailes()}> <FaFileExcel /></span>
+                    <div id="container-apuesta-historial-data-asistente" style={{ display: 'flex', padding: '0px 24px 0px 24px ' }}>
+                      <ListHistoryDetail list={winList.apuestas} flex={1} width={'100%'}></ListHistoryDetail>
+                      <div style={{ flex: 0.3, textAlign: 'center' }}>
+                        {
+                          winList.xApuestas === true ?
+                            <div className='admin_header_icon' onClick={() => handleClickOpenDetailes()}> <FaFileExcel /></div>
+                            : <div style={{ paddingTop: 18 }}></div>
+                        }
+                        {show && (
+                          <PDFDownloadLink
+                            document={
+                              <PrintPdfAdmin
+                                userInfo={userInfo}
+                                image={image}
+                                hour={hour}
+                                day={props.day}
+                                winNumber={winNumber}
+                                list={winList.apuestas}
+                                summary={winList.summary}
+                              />
+                            }
+                            fileName="movielist.pdf"
+                            style={{
+                              textDecoration: "none",
+                              padding: "3px 25px 6px 25px",
+                              color: "#ffffff",
+                              backgroundColor: "#663399",
+                              border: "1px solid #4a4a4a",
+                              borderRadius: '15px'
+                            }}
+                          >
+                            {({ blob, url, loading, error }) =>
+                              <LocalPrintshop className="iconP" />
+                            }
+                          </PDFDownloadLink>
+                        )}
+                      </div>
                     </div>
                     <Divider />
                   </>

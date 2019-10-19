@@ -38,7 +38,7 @@ function list_number() {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -60,7 +60,7 @@ function list_number_by_apuesta_id(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -83,7 +83,7 @@ function list_of_numbers_by_apuesta_id(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -106,7 +106,7 @@ function comision_directo(type) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -128,7 +128,7 @@ function detalles_by_apuesta_id(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -147,7 +147,7 @@ function list_apuestas_hoy() {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -169,7 +169,7 @@ function get_balance() {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -189,7 +189,7 @@ function list_apuestas_hoy_by_username() {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -211,7 +211,7 @@ function list_apuestas_asistente_hoy_by_username() {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -240,7 +240,7 @@ function update_number(data, id) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 409 || error.response.status === 500 || error.response.status === 401) {
+                if (error.response && (error.response.status === 409 || error.response.status === 500 || error.response.status === 401)) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -272,7 +272,7 @@ function list_apuestas_activas_details(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -302,7 +302,7 @@ function update_number_apuesta_activas(data, id) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -327,7 +327,7 @@ function list_historial_weeks() {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -352,7 +352,7 @@ function weekOverview_jugador(weekId) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -377,7 +377,7 @@ function apuestasOverview_sorteo(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -405,7 +405,7 @@ function list_historial_apuestas() {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -433,7 +433,7 @@ function get_historial_apuestas_details_by_id(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -461,7 +461,7 @@ function get_historial_apuestas_user_details_by_id(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -493,7 +493,7 @@ function delete_apuesta_number(id, numeroValue, userIdValue) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -520,7 +520,7 @@ function delete_apuestas_activas_sorteoAndNumeroAndJugador(id, numero) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 409 || error.response.status === 500 || error.response.status === 401) {
+                if (error.response && error.response.status === 409 || error.response.status === 500 || error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -546,7 +546,7 @@ function delete_apuestas_activas_sorteoAndJugador(id) {
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 409 || error.response.status === 500 || error.response.status === 401) {
+                if (error.response && error.response.status === 409 || error.response.status === 500 || error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);
@@ -571,7 +571,7 @@ function delete_apuestas_activas_detallesX_sorteoAndNumeroAndJugador(id, userId,
                 resolve(responseJson);
             })
             .catch((error) => {
-                if (error.response.status === 409 || error.response.status === 500 || error.response.status === 401) {
+                if (error.response && error.response.status === 409 || error.response.status === 500 || error.response.status === 401) {
                     resolve(error.response)
                 }
                 reject(error);

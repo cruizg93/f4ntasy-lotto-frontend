@@ -6,6 +6,7 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 import { playerService } from "../../../../service/api/player/player.service";
 import authenticationService from '../../../../service/api/authentication/authentication.service';
+import { utilService } from '../../../../service/api/utils/util.service';
 import HistorialData from '../../components/Historial/index';
 import { FormatNumberSymbol } from '../../../../utils/__currency';
 import AdminTitle from '../../../Admin/components/AdminTitle_Center';
@@ -45,20 +46,31 @@ const HistorialPlayer = (props) => {
     const { dispatch } = props;
     dispatch(userActions.loading_start())
     if (props.firstConnection === true) {
-      authenticationService.logout();
-    } else {
-      playerService.list_historial_weeks().then((result) => {
-        if (result.status === 401) {
-          authenticationService.logout();
+      utilService.isFirstConnection().then((result) => {
+        if (result.data === false) {
+          dispatch(userActions.setFirstConnection(false))
         } else {
-          setWeekList(result.data)
+          authenticationService.logout();
         }
         dispatch(userActions.loading_end())
       })
         .catch(function (error) {
+          authenticationService.logout();
           dispatch(userActions.loading_end())
         });
     }
+
+    playerService.list_historial_weeks().then((result) => {
+      if (result.status === 401) {
+        authenticationService.logout();
+      } else {
+        setWeekList(result.data)
+      }
+      dispatch(userActions.loading_end())
+    })
+      .catch(function (error) {
+        dispatch(userActions.loading_end())
+      });
   }, []);
 
   const handleChangeSelect = event => {

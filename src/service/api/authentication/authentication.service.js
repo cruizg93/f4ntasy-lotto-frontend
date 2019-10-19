@@ -2,8 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { baseUrl } from '../../../config/const';
 import { handleResponse } from '../../../_helpers/handle-response';
-import { history } from "../../../_helpers/history";
-
+// import { history } from "../../../_helpers/history";
 
 var currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 
@@ -38,20 +37,20 @@ function logout() {
 function type_user() {
     if (currentUserSubject.value !== null) {
         let roles = currentUserSubject.value.roles;
-        let role ="";
-        for(var i=0; i<roles.length; i++){
-            if(roles[i] == "ROLE_MASTER"){
+        let role = "";
+        for (var i = 0; i < roles.length; i++) {
+            if (roles[i] === "ROLE_MASTER") {
                 role = 'Master'
                 break;
-            }else{
-                if(roles[i] == "ROLE_ADMIN"){
+            } else {
+                if (roles[i] === "ROLE_ADMIN") {
                     role = 'Admin';
-                }else if(roles[i] == "ROLE_SUPERVISOR"){
+                } else if (roles[i] === "ROLE_SUPERVISOR") {
                     role = "Supervisor";
                     break;
-                }else if(roles[i] == "ROLE_USER"){
+                } else if (roles[i] === "ROLE_USER") {
                     role = 'Player';
-                }else if(roles[i] == "ROLE_ASIS"){
+                } else if (roles[i] === "ROLE_ASIS") {
                     role = 'Asistente'
                 }
             }

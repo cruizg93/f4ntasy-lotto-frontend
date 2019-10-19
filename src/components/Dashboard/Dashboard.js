@@ -48,10 +48,10 @@ class Dashboard extends Component {
         sideDrawerOpen: false,
         redirect: false,
         isAdmin: false,
-        isMaster:false,
+        isMaster: false,
         isAsistente: false,
         isPlayer: false,
-        isSupervisor:false,
+        isSupervisor: false,
         noFirst: true,
         open: false
     };
@@ -80,6 +80,7 @@ class Dashboard extends Component {
 
         utilService.isFirstConnection().then((result) => {
             this.setState({ noFirst: result.data });
+            dispatch(userActions.setFirstConnection(result.data))
             dispatch(userActions.loading_end())
         })
             .catch(function (error) {
@@ -88,7 +89,7 @@ class Dashboard extends Component {
 
         let role = authenticationService.type_user();
         this.setState({
-            isAdmin: (role === 'Admin' || role === 'Master'  || role === 'Supervisor'),
+            isAdmin: (role === 'Admin' || role === 'Master' || role === 'Supervisor'),
             isMaster: role === 'Master',
             isAsistente: role === 'Asistente',
             isPlayer: role === 'Player',
@@ -161,7 +162,7 @@ class Dashboard extends Component {
                     <Toolbar drawerClickHandler={this.drawerToggleClickHandler}
                         logoutClickHandler={this.logoutClickHandler}
                         admin={this.state.isAdmin}
-                        master={this.state.isMaster}                        
+                        master={this.state.isMaster}
                         asistente={this.state.isAsistente}
                         player={this.state.isPlayer}
                         supervisor={this.state.isSupervisor} />

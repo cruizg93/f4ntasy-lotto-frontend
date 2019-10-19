@@ -66,7 +66,7 @@ const HistorialJugadorByDay = (props) => {
                       row.id &&
                       <Grid item xs={12} key={index}>
                         <ExpanionPanelDay winner={row} casa={props.casa ? props.casa : 'vendedor'}
-                          jugadorId={props.jugadorId}
+                          jugadorId={props.jugadorId} jugadorUsername={props.jugadorUsername} jugadorName={props.jugadorName}
                           day={props.apuesta.sorteoTime} moneda={props.moneda}></ExpanionPanelDay>
                       </Grid>
                     )

@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import { playerService } from "../../../../../service/api/player/player.service";
 import authenticationService from '../../../../../service/api/authentication/authentication.service';
+import { utilService } from '../../../../../service/api/utils/util.service';
 import ApuestaData from '../../../components/Apuesta/index';
 
 import AdminTitle from '../../../../Admin/components/AdminTitle_Center';
@@ -19,8 +20,20 @@ class AdicionarApuestaAsistente extends React.Component {
     }
 
     componentDidMount() {
+        const { dispatch } = this.props;
         if (this.props.firstConnection === true) {
-            authenticationService.logout()
+            utilService.isFirstConnection().then((result) => {
+                if (result.data === false) {
+                    dispatch(userActions.setFirstConnection(false))
+                } else {
+                    authenticationService.logout();
+                }
+                dispatch(userActions.loading_end())
+            })
+                .catch(function (error) {
+                    authenticationService.logout();
+                    dispatch(userActions.loading_end())
+                });
         }
         window.scrollTo(0, 0);
     }
