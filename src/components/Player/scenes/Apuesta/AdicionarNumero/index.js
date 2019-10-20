@@ -23,6 +23,7 @@ import InformationDialog from '../../../../View/Dialog/InformationDialog';
 import ErrorInfoDialog from '../../../../View/Dialog/ErrorInfoDialog';
 import RouteLeavingGuard from './RouteLeavingGuard'
 import { userActions } from '../../../../../store/actions';
+import { utils } from '../../../../../utils/util';
 import './styles.css'
 
 const useStyles = theme => ({
@@ -124,10 +125,15 @@ class AdicionarNumeroApuesta extends Component {
         this.isNumerofocus = false;
         this.isUnidadesfocus = false;
         this.isFirstMount = true;
+
+        this.isMobile = false;
+        this.isiPhone = false;
         // this.shouldBlockNavigation = true;
     }
 
     componentDidMount() {
+        this.isMobile = utils.isMobile.any() ? true : false
+        this.isiPhone = utils.isMobile.iOS() ? true : false
         let reg = /^\d+$/;
         if (!reg.test(this.match.params.apuestaId)) {
             this.props.history.push('/usuario/apuestas');
@@ -181,11 +187,6 @@ class AdicionarNumeroApuesta extends Component {
         if (this.isUnidadesfocus) {
             this.entryUnidadesInputRef.current.focus();
         }
-        // if (this.shouldBlockNavigation === true) {
-        //     window.onbeforeunload = () => true
-        // } else {
-        //     window.onbeforeunload = undefined
-        // }
     }
 
     handleNumeroInputFocus = (event) => {
@@ -528,6 +529,8 @@ class AdicionarNumeroApuesta extends Component {
         const transPos = rightPos + 100;
         this.classes = this.props.classes;
         const trans = this.state.showAddBtn ? 'translate(0px)' : `translate(${transPos}px)`
+        const bottom = (this.isMobile === true && this.isiPhone === false) ? 10 : 276
+        const visibility = this.state.showAddBtn ? 'hidden' : 'visible'
 
         const ApuestaInput = withStyles({
             root: {
@@ -667,7 +670,7 @@ class AdicionarNumeroApuesta extends Component {
                         justify="center"
                         alignItems="center"
                         ref={this.buttonContainerApuestasRef}>
-                        <Grid item xs={12} className={this.classes.buttonContainerApuestas}>
+                        <Grid item xs={12} className={this.classes.buttonContainerApuestas} style={{ visibility: visibility }}>
                             <Grid item xs={6}>
                                 <Button variant="contained" className="buttonLimpiar" onClick={() => this.handleClickOpenRemoveAll()}>
                                     Limpiar
@@ -681,7 +684,7 @@ class AdicionarNumeroApuesta extends Component {
                         </Grid>
                     </Grid>
                 </Container>
-                <div className="slideAddBtn" style={{ transform: trans, right: rightPos }}>
+                <div className="slideAddBtn" style={{ transform: trans, right: rightPos, bottom: bottom }}>
                     <Button variant="contained" className="buttonAgregarApuesta" onClick={this.agregarApuesta}>
                         <MdFileDownload className="extendedIcon" />
                     </Button>

@@ -12,7 +12,7 @@ import { FormatNumberSymbol } from '../../../../../utils/__currency';
 const styles = StyleSheet.create({
   page: {
     flexDirection: "column",
-    padding: 50,
+    paddingTop: 500,
   },
   userInfo: {
     color: '#016666',

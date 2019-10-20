@@ -1,19 +1,23 @@
 .singleApuestaDetails{
-  width: 100%;
+  width: 80%;
   display: flex;
   color: #929292;
   font-size: 23px;
   padding-bottom: 14px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 .singleApuestaDetails .textNumber{
   width: 60px;
   height: 40px;
   border: solid 1px lightgray;
-  margin-left: 85px;
+  margin-left: 16px;
   line-height: 40px;
+  flex: 0.6;
+  text-align: center;
 }
 .singleApuestaDetails .textNumber p{
-  margin-left: 16px;
+  margin: 0;
 }
 .singleApuestaDetails .textValue{
   width: 118px;
@@ -21,6 +25,7 @@
   border: solid 1px lightgray;
   margin-left: 0px;
   line-height: 40px;
+  flex: 1;
 }
 .singleApuestaDetails .textValue p{
   margin-left: 16px;

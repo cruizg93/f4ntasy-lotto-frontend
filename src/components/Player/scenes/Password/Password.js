@@ -68,6 +68,7 @@ const PlayerPassword = ({ ...props }) => {
                             icon={MdSettings}
                             type={values.showPassword ? 'text' : 'password'}
                             onChange={handleChange('password')}
+                            placeholder={'nueva contraseña'}
                             fontSize={'1.1rem'}
                         >
                         </CustomText>
