@@ -148,11 +148,6 @@ const styles = StyleSheet.create({
 });
 
 const PrintPdfDetailUserP = (props) => {
-  // const total = props.list ? props.list.reduce((sum, row) => sum + row.valor, 0) : 0
-  // const moneda = props.summary && props.summary.currency === 'LEMPIRA' ? 'L' : '$'
-  // const max = (props.summary.ventas.toString()).length
-  // const width = 45 + (max - 1) * 10;
-
   return (
     <Document>
       <Page style={styles.page} size="A4">
