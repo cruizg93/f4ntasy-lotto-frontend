@@ -17,7 +17,6 @@
 
 .usuario_apuestas_id .slideAddBtn{
   position: fixed;
-  bottom: 276px;
   right: 2px;
   z-index: 100;
   transition: all 0.5s ease-out;

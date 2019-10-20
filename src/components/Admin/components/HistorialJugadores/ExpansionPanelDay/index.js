@@ -160,7 +160,7 @@ const ExpanionPanelDay = (props) => {
                               borderRadius: '15px'
                             }}
                           >
-                            {({ blob, url, loading, error }) =>
+                            {({ blob, url, loading, error }) => //'New'
                               <LocalPrintshop className="iconP" />
                             }
                           </PDFDownloadLink>
