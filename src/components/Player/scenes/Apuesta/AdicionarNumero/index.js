@@ -530,7 +530,7 @@ class AdicionarNumeroApuesta extends Component {
         this.classes = this.props.classes;
         const trans = this.state.showAddBtn ? 'translate(0px)' : `translate(${transPos}px)`
         const bottom = (this.isMobile === true && this.isiPhone === false) ? 10 : 276
-        const visibility = this.state.showAddBtn ? 'hidden' : 'visible'
+        const visibility = (this.isMobile === true && this.state.showAddBtn === true) ? 'hidden' : 'visible'
 
         const ApuestaInput = withStyles({
             root: {
