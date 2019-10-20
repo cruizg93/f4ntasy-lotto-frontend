@@ -7,11 +7,16 @@ import { playerService } from "../../../../../service/api/player/player.service"
 import authenticationService from '../../../../../service/api/authentication/authentication.service';
 import ShowDetallesApuesta from '../../../components/Detalles/index';
 import { LocalPrintshop } from "@material-ui/icons";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import Fab from '@material-ui/core/Fab';
 import InformationDialog from '../../../../View/Dialog/InformationDialog';
 import DetailTitle from '../../../../Admin/components/DetailTitle'
 import TopBar from '../../../../View/jugador/TopBarDetails';
 import { userActions } from '../../../../../store/actions';
+import PrintPdfDetailUserP from './PrintPdfDetailUserP'
+
+import DiariaLogo from '../../../../View/assets/Diaria_PNG.png';
+import ChicaLogo from '../../../../View/assets/Chica_PNG.png';
 
 import './styles.css'
 
@@ -20,12 +25,17 @@ const DetallesApuesta = ({ ...props }) => {
     const [apuestaType, setApuestaType] = useState("Diaria");
     const [moneda, setMoneda] = useState(" $ ");
     const [errorOpen, setErrorOpen] = useState(false);
+    const [show, setShow] = React.useState(false);
+
+    const image = props.location.state.type === 'DIARIA' ? DiariaLogo : ChicaLogo
+    const hour = props.location.state.hour ? props.location.state.hour : '12 pm'
+    const username = props.location.state.username ? props.location.state.username : JSON.parse(localStorage.getItem('currentUser'))['username']
+    const fileName = username + '_' + props.location.state.day + '_' + hour + '.pdf'
 
     useEffect(() => {
         update()
         setApuestaType(props.location.state.type);
         setMoneda(props.location.state.moneda);
-
         window.scrollTo(0, 0)
     }, []);
 
@@ -46,6 +56,7 @@ const DetallesApuesta = ({ ...props }) => {
                 } else {
                     setList([]);
                     setList(Array.from(result.data));
+                    setShow(true)
                 }
                 dispatch(userActions.loading_end())
             })
@@ -62,6 +73,7 @@ const DetallesApuesta = ({ ...props }) => {
                 } else {
                     setList([]);
                     setList(Array.from(result.data));
+                    setShow(true)
                 }
                 dispatch(userActions.loading_end())
             })
@@ -93,10 +105,39 @@ const DetallesApuesta = ({ ...props }) => {
                     )}
                 </Grid>
                 <div className="fixedFooter">
-                    <Fab className="localPrintshop" onClick={handleOnPrint} >
+                    {show && (
+                        <PDFDownloadLink
+                            document={
+                                <PrintPdfDetailUserP
+                                    image={image}
+                                    hour={hour}
+                                    day={props.location.state.day}
+                                    moneda={moneda}
+                                    list={list}
+                                />
+                            }
+                            fileName={fileName}
+                            style={{
+                                textDecoration: "none",
+                                padding: "3px 25px 6px 25px",
+                                color: "#ffffff",
+                                backgroundColor: "#663399",
+                                border: "1px solid #4a4a4a",
+                                borderRadius: '15px'
+                            }}
+                        >
+                            {({ blob, url, loading, error }) => //'New'
+                                <>
+                                    <LocalPrintshop className="iconP" />
+                                    <span className="textP">Imprimir</span>
+                                </>
+                            }
+                        </PDFDownloadLink>
+                    )}
+                    {/* <Fab className="localPrintshop" onClick={handleOnPrint} >
                         <LocalPrintshop className="iconP" />
                         <span className="textP">Imprimir</span>
-                    </Fab>
+                    </Fab> */}
                 </div>
             </Grid>
             <InformationDialog
