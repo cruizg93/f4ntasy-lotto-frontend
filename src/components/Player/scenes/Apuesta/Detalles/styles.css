@@ -37,12 +37,7 @@
   font-size: 30px;
 }
 
-.ventas_activas_detalles .fixedFooter .localPrintshop .textP{
-  text-transform: lowercase;
+.ventas_activas_detalles .fixedFooter .textP{
   font-size: 17px;
-  padding-left: 9px;
-}
-
-.ventas_activas_detalles .fixedFooter .localPrintshop .textP::first-letter{
-  text-transform: uppercase;
+  padding-left: 7px;
 }
