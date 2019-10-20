@@ -69,7 +69,10 @@
   color: #229144;
 }
 .time_text_valor .expansionPanel_day .expansionPanelBodyLast .summary .premio .sign{
-  padding-right: 30px;
+  flex: 0.75;
+}
+.time_text_valor .expansionPanel_day .expansionPanelBodyLast .summary .premio .value{
+  flex: 1;
 }
 
 .time_text_valor .expansionPanel_day .header_icon{
@@ -77,4 +80,5 @@
   font-size: 29px !important;
   margin-left: 25px;
   text-align: left;
+  padding-bottom: 20px;
 }

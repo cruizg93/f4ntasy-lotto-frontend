@@ -2,6 +2,8 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import DetallesDialogP from '../../../../View/Dialog/DetallesDialogP';
+import { LocalPrintshop } from "@material-ui/icons";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import { FaFileExcel } from "react-icons/fa";
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -12,15 +14,25 @@ import { playerService } from "../../../../../service/api/player/player.service"
 import authenticationService from '../../../../../service/api/authentication/authentication.service';
 import ListHistoryDetail from '../ListHistoryDetail'
 import RowList from '../../../../View/RowList'
+import PrintPdfUserP from "../PrintPdfUserP"
+
 import DiariaLogo from '../../../../View/assets/Diaria_PNG.png';
 import ChicaLogo from '../../../../View/assets/Chica_PNG.png';
 import './styles.css'
 
 const ExpanionPanelDay = (props) => {
-
   const [expanded, setExpanded] = React.useState(false);
   const [winList, setWinList] = React.useState([]);
   const [openComprarInfo, setOpenComprarInfo] = React.useState(false);
+  const [show, setShow] = React.useState(false);
+
+  // const userInfo = props.jugadorName ? props.jugadorUsername + ' - ' + props.moneda + ' [' + props.jugadorName + ']' : ''
+  const username = JSON.parse(localStorage.getItem('currentUser'))['username']
+  const userInfo = username ? username + ' - ' + props.money + ' [' + ']' : ''
+  const image = props.winner && props.winner.type === 'DIARIA' ? DiariaLogo : ChicaLogo
+  const hour = props.winner && props.winner.type === 'DIARIA' ? props.winner.hour : '12 pm'
+  const winNumber = props.winner ? props.winner.numero.toString().padStart(2, '0') : '00'
+  const fileName = username + '_' + props.day + '_' + hour + '.pdf'
 
   const handleChangeExpand = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -30,6 +42,7 @@ const ExpanionPanelDay = (props) => {
           authenticationService.logout()
         } else {
           setWinList(result.data)
+          setShow(true)
         }
       })
     }
@@ -67,12 +80,48 @@ const ExpanionPanelDay = (props) => {
             </div>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className="expansionPanelBodyLast">
+            <div></div>
             {
               winList && winList.apuestas && winList.apuestas.length > 0 &&
               <>
                 <div style={{ display: 'flex', padding: '0px 24px 0px 24px ' }}>
                   <ListHistoryDetail list={winList.apuestas} ></ListHistoryDetail>
-                  <span className='header_icon' onClick={() => handleClickOpenDetailes()}> <FaFileExcel /></span>
+                  <div style={{ flex: 0.3, textAlign: 'center' }}>
+                    {
+                      winList.xApuestas === true ?
+                        <div className='header_icon' onClick={() => handleClickOpenDetailes()}> <FaFileExcel /></div>
+                        : <div style={{ paddingTop: 18 }}></div>
+                    }
+                    {show && (
+                      <PDFDownloadLink
+                        document={
+                          <PrintPdfUserP
+                            userInfo={userInfo}
+                            image={image}
+                            hour={hour}
+                            day={props.day}
+                            winNumber={winNumber}
+                            list={winList.apuestas}
+                            summary={winList.summary}
+                          />
+                        }
+                        fileName={fileName}
+                        style={{
+                          textDecoration: "none",
+                          padding: "3px 25px 6px 25px",
+                          color: "#ffffff",
+                          backgroundColor: "#663399",
+                          border: "1px solid #4a4a4a",
+                          borderRadius: '15px'
+                        }}
+                      >
+                        {({ blob, url, loading, error }) => //'New'
+                          <LocalPrintshop className="iconP" />
+                        }
+                      </PDFDownloadLink>
+                    )}
+                  </div>
+
                 </div>
                 <Divider />
                 {

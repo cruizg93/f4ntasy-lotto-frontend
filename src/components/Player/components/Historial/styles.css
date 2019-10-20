@@ -65,7 +65,10 @@
   display: flex;
 }
 .day_text_valor .expansionPanel .expansionPanelBody .container_summary .summary .premio .sign{
-  width: 80px;
+  flex: 1;
+}
+.day_text_valor .expansionPanel .expansionPanelBody .container_summary .summary .premio .value{
+  flex: 1.3;
 }
 
 @media (min-width: 410px) {

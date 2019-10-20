@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const PrintPdfAdmin = (props) => {
+const PrintPdfUserP = (props) => {
   const total = props.list ? props.list.reduce((sum, row) => sum + row.valor, 0) : 0
   const moneda = props.summary && props.summary.currency === 'LEMPIRA' ? 'L' : '$'
   const max = (props.summary.ventas.toString()).length
@@ -235,4 +235,4 @@ const PrintPdfAdmin = (props) => {
   )
 };
 
-export default PrintPdfAdmin;
+export default PrintPdfUserP;

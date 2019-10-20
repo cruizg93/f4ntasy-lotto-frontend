@@ -32,7 +32,6 @@ const ExpanionPanelDay = (props) => {
   const [openComprarInfo, setOpenComprarInfo] = React.useState(false);
   const [show, setShow] = React.useState(false);
 
-  console.log('props', props)
   const userInfo = props.jugadorName ? props.jugadorUsername + ' - ' + props.moneda + ' [' + props.jugadorName + ']' : ''
   const image = props.winner && props.winner.type === 'DIARIA' ? DiariaLogo : ChicaLogo
   const hour = props.winner && props.winner.type === 'DIARIA' ? props.winner.hour : '12 pm'

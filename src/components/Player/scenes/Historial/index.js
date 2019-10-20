@@ -41,7 +41,6 @@ const HistorialPlayer = (props) => {
   const [current, setCurrent] = useState(-1);
   const [weekId, setWeekId] = useState('');
   const [colorStyle, setColorStyle] = useState('');
-
   useEffect(() => {
     const { dispatch } = props;
     dispatch(userActions.loading_start())
