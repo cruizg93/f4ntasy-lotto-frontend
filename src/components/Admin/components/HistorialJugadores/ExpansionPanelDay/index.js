@@ -58,7 +58,9 @@ const ExpanionPanelDay = (props) => {
             authenticationService.logout()
           } else
             setWinList(result.data)
-          setShow(true)
+          setTimeout(() => {
+            setShow(true)
+          }, 10)
         })
       }
     }
@@ -136,7 +138,7 @@ const ExpanionPanelDay = (props) => {
                             <div className='admin_header_icon' onClick={() => handleClickOpenDetailes()}> <FaFileExcel /></div>
                             : <div style={{ paddingTop: 18 }}></div>
                         }
-                        {show && (
+                        {show === true && (
                           <PDFDownloadLink
                             document={
                               <PrintPdfAdmin

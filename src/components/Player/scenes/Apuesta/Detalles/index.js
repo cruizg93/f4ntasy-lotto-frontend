@@ -56,7 +56,9 @@ const DetallesApuesta = ({ ...props }) => {
                 } else {
                     setList([]);
                     setList(Array.from(result.data));
-                    setShow(true)
+                    setTimeout(() => {
+                        setShow(true)
+                    }, 50)
                 }
                 dispatch(userActions.loading_end())
             })
@@ -73,7 +75,9 @@ const DetallesApuesta = ({ ...props }) => {
                 } else {
                     setList([]);
                     setList(Array.from(result.data));
-                    setShow(true)
+                    setTimeout(() => {
+                        setShow(true)
+                    }, 50)
                 }
                 dispatch(userActions.loading_end())
             })
@@ -105,7 +109,7 @@ const DetallesApuesta = ({ ...props }) => {
                     )}
                 </Grid>
                 <div className="fixedFooter">
-                    {show && (
+                    {show === true && (
                         <PDFDownloadLink
                             document={
                                 <PrintPdfDetailUserP
