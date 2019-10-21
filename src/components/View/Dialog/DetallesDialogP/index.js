@@ -55,21 +55,21 @@ class DetallesDialogP extends React.Component {
             <div className="blank_white"></div>
           </DialogTitle>
           <DialogContent className="detalles-dialog-content">
-            <div className="username">
-              {'Propias'}{'\u00A0'}{this.props.currentUser.username}{'\u00A0'}{'-'}{'\u00A0'}{this.props.money}{'[nombre]'}
-            </div>
-            <div className="bet_info">
-              <ListHistoryDetail list={this.props.winList.apuestas}
-                width={'78%'} marginLeft={22} paddingTop={12}
-              >
-              </ListHistoryDetail>
-            </div>
-            <div className="username_bottom">
-              {this.props.currentUser.username}{'x1'}{'\u00A0'}{'[nombre]'}
-            </div>
-            <div className="etc">
-              {'Etc..etc...etc.'}
-            </div>
+            {
+              this.props.winList.map((userInfo, index) =>
+                <>
+                  <div className="username">
+                    {userInfo.title}
+                  </div>
+                  <div className="bet_info">
+                    <ListHistoryDetail list={userInfo.apuestas}
+                      width={'78%'} marginLeft={22} paddingTop={12}
+                    >
+                    </ListHistoryDetail>
+                  </div>
+                </>
+              )
+            }
           </DialogContent>
         </Dialog>
         :
