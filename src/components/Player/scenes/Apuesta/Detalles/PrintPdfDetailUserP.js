@@ -9,6 +9,7 @@ import {
 } from "@react-pdf/renderer";
 import { FormatNumberSymbol } from '../../../../../utils/__currency';
 import FaFileExcel from '../../../../View/assets/FileExcel.png';
+import Trash from '../../../../View/assets/trash.png';
 
 const styles = StyleSheet.create({
   page: {
@@ -69,6 +70,15 @@ const styles = StyleSheet.create({
   detailUser: {
     paddingLeft: 20,
   },
+  smallDivider: {
+    width: "60%",
+    height: 0,
+    borderBottomStyle: 'solid',
+    borderBottomColor: "#b7b7b7",
+    borderBottomWidth: 1,
+    marginTop: 10,
+    marginLeft: 15,
+  },
   titleUserText: {
     color: 'gray',
     paddingTop: 15,
@@ -107,11 +117,17 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     paddingLeft: 20,
   },
+  imgTrash: {
+    width: 15,
+    height: 17,
+    marginTop: 10,
+    marginLeft: 20
+  },
   total: {
     display: 'flex',
     flexDirection: "row",
     width: "50%",
-    paddingTop: 5,
+    paddingTop: 12,
     paddingLeft: 20,
     marginLeft: 25,
     color: 'gray',
@@ -130,6 +146,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: "row",
     width: "50%",
+    paddingTop: 8,
     paddingLeft: 20,
     marginLeft: 25,
     color: 'gray',
@@ -171,6 +188,10 @@ const PrintPdfDetailUserP = (props) => {
           {
             props.list && props.list.map((detailUser, index) =>
               <View key={index} style={styles.detailUser}>
+                {
+                  index > 0 &&
+                  <View style={styles.smallDivider}></View>
+                }
                 <View>
                   <Text style={styles.titleUserText}>{detailUser.title}</Text>
                 </View>
@@ -183,6 +204,7 @@ const PrintPdfDetailUserP = (props) => {
                       <View style={styles.apuestaVal}>
                         <Text style={styles.apuestaValText}>{apuesta.valor}</Text>
                       </View>
+                      <Image style={styles.imgTrash} source={Trash} />
                     </View>
                   )
                 }
