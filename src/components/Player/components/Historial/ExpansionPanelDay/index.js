@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import DetallesDialogP from '../../../../View/Dialog/DetallesDialogP';
@@ -11,6 +12,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import { Add, Remove } from '@material-ui/icons';
 import { FormatNumberSymbol } from '../../../../../utils/__currency';
 import { playerService } from "../../../../../service/api/player/player.service";
+import { adminService } from "../../../../../service/api/admin/admin.service";
+import { userActions } from '../../../../../store/actions';
 import authenticationService from '../../../../../service/api/authentication/authentication.service';
 import ListHistoryDetail from '../ListHistoryDetail'
 import RowList from '../../../../View/RowList'
@@ -23,11 +26,13 @@ import './styles.css'
 const ExpanionPanelDay = (props) => {
   const [expanded, setExpanded] = React.useState(false);
   const [winList, setWinList] = React.useState([]);
+  const [winDetailList, setWinDetailList] = React.useState(null);
   const [openComprarInfo, setOpenComprarInfo] = React.useState(false);
   const [show, setShow] = React.useState(false);
 
   // const userInfo = props.jugadorName ? props.jugadorUsername + ' - ' + props.moneda + ' [' + props.jugadorName + ']' : ''
   const username = JSON.parse(localStorage.getItem('currentUser'))['username']
+  const userId = JSON.parse(localStorage.getItem('currentUser'))['userId']
   const userInfo = username ? username + ' - ' + props.money + ' [' + ']' : ''
   const image = props.winner && props.winner.type === 'DIARIA' ? DiariaLogo : ChicaLogo
   const hour = props.winner && props.winner.type === 'DIARIA' ? props.winner.hour : '12 pm'
@@ -51,7 +56,20 @@ const ExpanionPanelDay = (props) => {
   };
 
   function handleClickOpenDetailes() {
-    setOpenComprarInfo(true)
+    const { dispatch } = props;
+    dispatch(userActions.loading_start())
+    adminService.get_historial_apuestas_sorteoAndJugador(props.winner.id, userId).then((result) => {
+      if (result.status === 401) {
+        authenticationService.logout()
+      } else {
+        setWinDetailList(result.data)
+        dispatch(userActions.loading_end())
+        setOpenComprarInfo(true)
+      }
+    })
+      .catch(function (error) {
+        dispatch(userActions.loading_end())
+      });
   }
 
   function handleCloseComprarInfo() {
@@ -157,8 +175,7 @@ const ExpanionPanelDay = (props) => {
         day={props.day}
         money={props.money}
         winNum={props.winner.numero}
-        context="Su compra fue exitosa, puede ver los detalles en la pantalla de compras activas."
-        winList={winList}
+        winList={winDetailList}
         dataset={props}
       >
       </DetallesDialogP>
@@ -167,5 +184,5 @@ const ExpanionPanelDay = (props) => {
   )
 };
 
-export default ExpanionPanelDay;
+export default connect(null, null)(ExpanionPanelDay);
 
