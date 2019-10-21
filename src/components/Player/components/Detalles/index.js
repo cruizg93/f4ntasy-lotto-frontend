@@ -46,6 +46,22 @@ const useStyles = makeStyles(theme => ({
     },
     apuestaContainer: {
         borderRight: "#afb6b8 1px solid",
+    },
+    total: {
+        maxWidth: '80%',
+        paddingLeft: 16,
+        paddingRight: 16,
+        display: 'flex',
+        fontSize: 20,
+        color: '#929292'
+    },
+    totalText: {
+        flex: 1,
+        textAlign: 'right'
+    },
+    totalVal: {
+        flex: 1.6,
+        paddingLeft: '1.2em'
     }
 }));
 
@@ -83,19 +99,19 @@ const ShowDetallesApuesta = ({ title, apuestas, total, ...props }) => {
                     />
                 )}
             </Grid>
-            <Grid item xs={12} style={{ marginTop: -15 }}>
-                <span style={{ fontSize: 20, color: '#929292', marginLeft: 100 }}>
+            <Grid item xs={12} className={classes.total}>
+                <span className={classes.totalText}>
                     {"total:"}
                 </span>
-                <span style={{ fontSize: 20, color: '#929292', marginLeft: 32 }}>
+                <span className={classes.totalVal}>
                     {sum}
                 </span>
             </Grid>
-            <Grid item xs={12} style={{ marginTop: -10 }}>
-                <span style={{ fontSize: 20, color: '#929292', marginLeft: 94 }}>
+            <Grid item xs={12} className={classes.total} style={{ paddingBottom: 10 }}>
+                <span className={classes.totalText}>
                     {"costo:"}
                 </span>
-                <span style={{ fontSize: 20, color: '#4F83C8', marginLeft: 30 }}>
+                <span className={classes.totalVal} style={{ color: '#4F83C8' }}>
                     {moneda}{'\u00A0'}{'\u00A0'}{FormatNumberSymbol(total)}
                 </span>
             </Grid>
