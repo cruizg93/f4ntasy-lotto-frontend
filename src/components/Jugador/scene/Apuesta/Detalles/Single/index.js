@@ -137,7 +137,8 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
   const [open, setOpen] = useState(false);
   const [openError500Info, setOpenError500Info] = useState(false);
   const [openError409Info, setOpenError409Info] = useState(false);
-  const [isSupervisor,setIsSupervisor] = useState(false);
+  const [isSupervisor, setIsSupervisor] = useState(false);
+  const [xApuestas, setxApuestas] = useState(false);
 
   useEffect(() => {
     submitUpdateData()
@@ -178,6 +179,7 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
         setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
         setMoneda(props.location.state.moneda)
         setType(props.location.state.type)
+        setxApuestas(result.data.xApuestas)
       }
       dispatch(userActions.loading_end())
     })
@@ -258,7 +260,7 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
           deleteOneFunction(list[apuestaIndex].numero);
         }}
           apuestaId={props.match.params.apuestaId}
-          displayApuestaListIndex={false} fromApuestaActiva={true} supervisor={isSupervisor}/>
+          displayApuestaListIndex={false} fromApuestaActiva={true} supervisor={isSupervisor} />
         <Grid item xs={12} className="total" style={{ paddingBottom: 10 }}>
           <span className="text">
             Total:
@@ -274,38 +276,41 @@ const ApuestaActivaJugadorDetalles = ({ ...props }) => {
         style={{ height: 85 }} marginL={92} />
 
       {!isSupervisor &&
-      <Grid container spacing={0}
-        direction="row"
-        justify="center"
-        alignItems="center" className={classes.buttonContainerApuestas} >
-        <Grid item xs={6}>
-          <Fab variant="extended" aria-label="removeAll" className={classes.buttonLimpiar} onClick={handleClickOpen}>
-            Limpiar
-                        </Fab>
+        <Grid container spacing={0}
+          direction="row"
+          justify="center"
+          alignItems="center" className={classes.buttonContainerApuestas} >
+          <Grid item xs={6}>
+            <Fab variant="extended" aria-label="removeAll" className={classes.buttonLimpiar} onClick={handleClickOpen}>
+              Limpiar
+          </Fab>
+          </Grid>
+          {
+            xApuestas &&
+            <Grid item xs={6}>
+              <Fab variant="extended" aria-label="buyAll" className={classes.buttonDetalles}
+                component={Link}
+                to={{
+                  pathname: `/jugador/apuestas/detalles/${props.location.state.id}/imprimir`,
+                  state: {
+                    id: props.location.state.id,
+                    type: props.location.state.type,
+                    moneda: props.location.state.moneda,
+                    userid: props.location.state.userid,
+                    name: props.location.state.name,
+                    username: props.location.state.username,
+                    hour: props.location.state.hour,
+                    day: props.location.state.day,
+                    total: sumValor,
+                    admin: true,
+                  }
+                }}
+              >
+                Detalles X
+            </Fab>
+            </Grid>
+          }
         </Grid>
-        <Grid item xs={6}>
-          <Fab variant="extended" aria-label="buyAll" className={classes.buttonDetalles}
-            component={Link}
-            to={{
-              pathname: `/jugador/apuestas/detalles/${props.location.state.id}/imprimir`,
-              state: {
-                id: props.location.state.id,
-                type: props.location.state.type,
-                moneda: props.location.state.moneda,
-                userid: props.location.state.userid,
-                name: props.location.state.name,
-                username: props.location.state.username,
-                hour: props.location.state.hour,
-                day: props.location.state.day,
-                total: sumValor,
-                admin: true,
-              }
-            }}
-          >
-            Detalles X
-                    </Fab>
-        </Grid>
-      </Grid>
       }
       <ConfirmDialog
         open={open}

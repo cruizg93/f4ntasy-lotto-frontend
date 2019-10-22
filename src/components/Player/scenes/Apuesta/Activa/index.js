@@ -114,6 +114,8 @@ const ApuestaActiva = ({ ...props }) => {
     const [openError500Info, setOpenError500Info] = useState(false);
     const [openError409Info, setOpenError409Info] = useState(false);
 
+    const [xApuestas, setxApuestas] = useState(false);
+
     function handleClose_409_error() {
         setOpenError409Info(false);
         this.props.history.push("/");
@@ -148,6 +150,7 @@ const ApuestaActiva = ({ ...props }) => {
                 setTotal(parseFloat(result.data.total));
                 setList(Array.from(result.data.list));
                 setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
+                setxApuestas(result.data.xApuestas);
             }
             dispatch(userActions.loading_end())
         })
@@ -213,6 +216,7 @@ const ApuestaActiva = ({ ...props }) => {
                 setTotal(parseFloat(result.data.total));
                 setList(prev => Array.from(result.data.list));
                 setSumValor(result.data.list.reduce((sum, row) => sum + row.valor, 0))
+                setxApuestas(result.data.xApuestas);
             }
             dispatch(userActions.loading_end())
         })
@@ -265,25 +269,28 @@ const ApuestaActiva = ({ ...props }) => {
                         Limpiar
                         </Fab>
                 </Grid>
-                <Grid item xs={6}>
-                    <Fab variant="extended" aria-label="buyAll" className={classes.buttonDetalles}
-                        component={Link}
-                        to={{
-                            pathname: '/usuario/apuesta/detalles',
-                            state: {
-                                title: { title },
-                                id: props.match.params.apuestaId,
-                                type: apuestaType,
-                                moneda: monedaType,
-                                hour: hour,
-                                day: day,
-                                total: total
-                            }
-                        }}
-                    >
-                        Detalles X
+                {
+                    xApuestas &&
+                    <Grid item xs={6}>
+                        <Fab variant="extended" aria-label="buyAll" className={classes.buttonDetalles}
+                            component={Link}
+                            to={{
+                                pathname: '/usuario/apuesta/detalles',
+                                state: {
+                                    title: { title },
+                                    id: props.match.params.apuestaId,
+                                    type: apuestaType,
+                                    moneda: monedaType,
+                                    hour: hour,
+                                    day: day,
+                                    total: total
+                                }
+                            }}
+                        >
+                            Detalles X
                     </Fab>
-                </Grid>
+                    </Grid>
+                }
             </Grid>
             <ConfirmDialog
                 open={open}
