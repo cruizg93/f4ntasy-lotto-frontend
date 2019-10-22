@@ -30,10 +30,10 @@ const ExpanionPanelDay = (props) => {
   const [openComprarInfo, setOpenComprarInfo] = React.useState(false);
   const [show, setShow] = React.useState(false);
 
-  // const userInfo = props.jugadorName ? props.jugadorUsername + ' - ' + props.moneda + ' [' + props.jugadorName + ']' : ''
   const username = JSON.parse(localStorage.getItem('currentUser'))['username']
+  const name = JSON.parse(localStorage.getItem('currentUser'))['name']
   const userId = JSON.parse(localStorage.getItem('currentUser'))['userId']
-  const userInfo = username ? username + ' - ' + props.money + ' [' + ']' : ''
+  const userInfo = username ? username + ' - ' + props.money + ' [' + name + ']' : ''
   const image = props.winner && props.winner.type === 'DIARIA' ? DiariaLogo : ChicaLogo
   const hour = props.winner && props.winner.type === 'DIARIA' ? props.winner.hour : '12 pm'
   const winNumber = props.winner ? props.winner.numero.toString().padStart(2, '0') : '00'
