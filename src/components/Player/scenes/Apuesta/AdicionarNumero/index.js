@@ -271,13 +271,13 @@ class AdicionarNumeroApuesta extends Component {
 
         //Actualiza total de unidades/costo/current en apuesta actual
         this.setState((prevState, props) => {
-            let currentTotal = this.state.totalCurrent + parseInt(current)
+            let currentTotal = this.state.totalCurrent + parseFloat(current)
             return { totalCurrent: currentTotal };
         });
 
         //Actualizar lista
         this.setState(state => {
-            const apuestaNueva = { numero: numero, current: parseInt(current) };
+            const apuestaNueva = { numero: numero, current: parseFloat(current) };
             const entryList = [apuestaNueva].concat(state.entryList);
             return {
                 entryList,
@@ -304,8 +304,8 @@ class AdicionarNumeroApuesta extends Component {
         //Agregar apuesta a fetchedList entry
         this.setState(state => {
             const entry = state.entry.map((item, j) => {
-                if (j === parseInt(numero)) {
-                    let newCurrent = parseInt(item.current) + parseInt(current);
+                if (j === parseFloat(numero)) {
+                    let newCurrent = parseFloat(item.current) + parseFloat(current);
                     return { numero: numero, tope: newCurrent, max: newCurrent, current: newCurrent, noFirst: false }
                 } else {
                     return item;
@@ -347,7 +347,7 @@ class AdicionarNumeroApuesta extends Component {
 
         //Actualiza total de unidades/costo/current en apuesta actual
         this.setState((prevState, props) => {
-            let currentTotal = this.state.totalCurrent - parseInt(current)
+            let currentTotal = this.state.totalCurrent - parseFloat(current)
             return { totalCurrent: currentTotal };
         });
 
@@ -614,9 +614,9 @@ class AdicionarNumeroApuesta extends Component {
                         <Grid item xs={6} style={{ textAlign: "start" }}>
                             <ApuestaInput
                                 inputRef={this.entryUnidadesInputRef}
-                                type="tel"
+                                type="number"
                                 placeholder="Cantidad:"
-                                pattern="[1-9]*"
+                                pattern="^[1-9]+(\.[0-9]{1,2})?$"
                                 style={{ marginLeft: "0.375rem", maxWidth: "9.5rem" }}
                                 id="input-entry-unidad"
                                 InputProps={{
@@ -626,7 +626,7 @@ class AdicionarNumeroApuesta extends Component {
                                     }
                                 }}
                                 onInput={(e) => {
-                                    const onlyNums = e.target.value.replace(/[^0-9]/g, '');
+                                    const onlyNums = e.target.value;//.replace(/[^0-9]/g, '');
                                     e.target.value = onlyNums;
                                     if (onlyNums.length > 7) {
                                         e.target.value = e.target.value.toString().slice(0, 7);
