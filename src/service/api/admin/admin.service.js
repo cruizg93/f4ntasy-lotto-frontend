@@ -48,7 +48,8 @@ export const adminService = {
     cerrar_bloquear,
     cerrar_desbloquear,
     delete_apuestas_activas_sorteoAndNumeroAndJugador,
-    delete_apuestas_activas_sorteoAndJugador
+    delete_apuestas_activas_sorteoAndJugador,
+    isUserC00
 };
 
 
@@ -1153,4 +1154,12 @@ function delete_apuestas_activas_sorteoAndJugador(id, jugadorId) {
                 reject(error);
             })
     });
+}
+
+function isUserC00(){
+    const currentUser = authenticationService.currentUserValue;
+    if (currentUser.username == 'C00'){
+        return true;
+    }
+    return false;
 }
