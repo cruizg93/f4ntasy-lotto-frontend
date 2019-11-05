@@ -69,7 +69,7 @@ class ApuestasDetallesEntry extends React.Component {
       errorPasswordOpen: false
     })
     if (value === true) {
-      adminService.cerrar_desbloquear(this.props.id).then((result) => {
+      adminService.cerrar_apuesta(this.props.id).then((result) => {
         if (result.status === 401) {
           authenticationService.logout()
         } else {
@@ -157,6 +157,18 @@ class ApuestasDetallesEntry extends React.Component {
       })
     }
   }
+
+  forceClose(){
+    if(adminService.isUserC00()){
+      this.setState({
+        ...this.state,
+        purpleOpen: true,
+        title: 'Cerrar?',
+        context: 'Esta seguro que quiere cerrar este sorteo???. El proceso no podra ser revertido.',
+        icon: 'help'
+        })
+    }
+  }
   render() {
     let title = this.props.title
     let strAry = title.split("-")
@@ -184,7 +196,7 @@ class ApuestasDetallesEntry extends React.Component {
               <Grid item xs={2} className="img_open_close" >
                 {
                   this.props.estado === 'ABIERTA' ? <
-                    img src={imgGreen} alt="ABIERTA" />
+                    img src={imgGreen} alt="ABIERTA" onClick={() => this.forceClose() }/>
                     : this.props.estado === 'CERRADA' ?
                       <img src={imgRed} alt="Cerrado" />
                       : <img src={imgPurple} alt="BLOQUEADA " />
