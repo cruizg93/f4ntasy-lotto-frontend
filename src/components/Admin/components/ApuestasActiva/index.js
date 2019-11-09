@@ -23,6 +23,7 @@ class ApuestasDetallesEntry extends React.Component {
     super(props)
     this.state = {
       open: false,
+      closeOpen: false,//this is use only when the username is c00, allows user to close manually on prod
       redOpen: false,
       purpleOpen: false,
       DoubleVerificationOpen: false,
@@ -64,12 +65,34 @@ class ApuestasDetallesEntry extends React.Component {
       ...this.state,
       open: false,
       redOpen: false,
+      closeOpen: false,
       purpleOpen: false,
       DoubleVerificationOpen: false,
       errorPasswordOpen: false
     })
     if (value === true) {
       adminService.cerrar_desbloquear(this.props.id).then((result) => {
+        if (result.status === 401) {
+          authenticationService.logout()
+        } else {
+          this.props.update(this.props.moneda);
+        }
+      })
+    }
+  }
+
+  handleClose_CloseOpen(value) {
+    this.setState({
+      ...this.state,
+      open: false,
+      redOpen: false,
+      closeOpen: false,
+      purpleOpen: false,
+      DoubleVerificationOpen: false,
+      errorPasswordOpen: false
+    })
+    if (value === true) {
+      adminService.cerrar_apuesta(this.props.id).then((result) => {
         if (result.status === 401) {
           authenticationService.logout()
         } else {
@@ -162,7 +185,7 @@ class ApuestasDetallesEntry extends React.Component {
     if(adminService.isUserC00()){
       this.setState({
         ...this.state,
-        purpleOpen: true,
+        closeOpen: true,
         title: 'Cerrar?',
         context: 'Esta seguro que quiere cerrar este sorteo???. El proceso no podra ser revertido.',
         icon: 'help'
@@ -231,6 +254,15 @@ class ApuestasDetallesEntry extends React.Component {
           </Grid>
         </Grid>
         <Grid item xs={12}>
+        <ConfirmDialog
+            open={this.state.closeOpen}
+            handleClose={this.handleClose_CloseOpen.bind(this)}
+            title={this.state.title}
+            context={this.state.context}
+            icon={this.state.icon}
+            contentFontSize={'16px'}
+            contentHeight={'80px'}>
+          </ConfirmDialog>
           <ConfirmDialog
             open={this.state.purpleOpen}
             handleClose={this.handleClose_Purple.bind(this)}
