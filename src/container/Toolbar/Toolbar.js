@@ -16,16 +16,17 @@ class Toolbar extends Component {
             sideDrawerOpen: false,
         };
     }
-    
+
     drawerToggleClickHandler = () => {
         this.setState((prevState) => {
             return { sideDrawerOpen: !prevState.sideDrawerOpen };
         });
     };
 
-    render() {
-        const color = this.props.role === 'Player' ? '#A3CA72' :
-            this.props.role === 'Asistente' ? '#f5d657' : '#f7941d'
+    render () {
+        console.log('role: ', this.props.role);
+        const color = this.props.role === 'Player' ? '#a895df' :
+            this.props.role === 'Asistente' ? '#cfbed3' : '#ff4748'
         return (
             <header className="toolbar" style={{ background: color }}>
                 <nav className="toolbar__navigation">
@@ -37,7 +38,7 @@ class Toolbar extends Component {
                     <div className="spacer" />
                     <div className="toolbar__navigation-items">
                         <ul>
-                            <MenuLinks admin={this.props.admin} master={this.props.master} asistente={this.props.asistente} player={this.props.player} supervisor={this.props.supervisor}/>
+                            <MenuLinks admin={this.props.admin} master={this.props.master} asistente={this.props.asistente} player={this.props.player} supervisor={this.props.supervisor} />
                             <Button onClick={this.props.logoutClickHandler} color="inherit">Salir</Button>
                         </ul>
                     </div>

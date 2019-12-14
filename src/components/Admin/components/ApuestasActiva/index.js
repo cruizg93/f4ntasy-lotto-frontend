@@ -34,7 +34,7 @@ class ApuestasDetallesEntry extends React.Component {
       numero: ''
     }
   }
-  handleClickOpen() {
+  handleClickOpen () {
     let icon = '', title = '', context = '', open = false, redOpen = false, purpleOpen = false;
     if (this.props.estado === 'ABIERTA') {  //open
       open = true;
@@ -46,7 +46,7 @@ class ApuestasDetallesEntry extends React.Component {
       icon = 'help'
       title = 'Desbloquear?'
       context = 'Si desbloquea este sorteo todos los vendedores tendrán acceso a el.'
-    } else if (this.props.estado === 'CERRADA') { //block
+    } else if (this.props.estado === 'CERRADA') { //closed
       redOpen = true;
     }
     this.setState({
@@ -60,7 +60,7 @@ class ApuestasDetallesEntry extends React.Component {
     })
   }
 
-  handleClose_Purple(value) {
+  handleClose_Purple (value) {
     this.setState({
       ...this.state,
       open: false,
@@ -92,7 +92,8 @@ class ApuestasDetallesEntry extends React.Component {
       errorPasswordOpen: false
     })
     if (value === true) {
-      adminService.cerrar_apuesta(this.props.id).then((result) => {
+      // adminService.cerrar_apuesta(this.props.id).then((result) => {
+      adminService.cerrar_desbloquear(this.props.id).then((result) => {
         if (result.status === 401) {
           authenticationService.logout()
         } else {
@@ -102,7 +103,7 @@ class ApuestasDetallesEntry extends React.Component {
     }
   }
 
-  handleClose(value) {
+  handleClose (value) {
     this.setState({
       ...this.state,
       open: false,
@@ -125,7 +126,7 @@ class ApuestasDetallesEntry extends React.Component {
     }
   }
 
-  handleClose_password_error() {
+  handleClose_password_error () {
     this.setState({
       ...this.state,
       open: false,
@@ -136,7 +137,7 @@ class ApuestasDetallesEntry extends React.Component {
     })
   }
 
-  handleClose_double_verification(value) {
+  handleClose_double_verification (value) {
     this.setState({
       ...this.state,
       open: false,
@@ -152,7 +153,7 @@ class ApuestasDetallesEntry extends React.Component {
     }
   }
 
-  handleCloseRed(numero, flag, password = '') {
+  handleCloseRed (numero, flag, password = '') {
     this.setState({
       ...this.state,
       open: false,
@@ -181,18 +182,18 @@ class ApuestasDetallesEntry extends React.Component {
     }
   }
 
-  forceClose(){
-    if(adminService.isUserC00()){
+  forceClose () {
+    if (adminService.isUserC00()) {
       this.setState({
         ...this.state,
         closeOpen: true,
         title: 'Cerrar?',
         context: 'Esta seguro que quiere cerrar este sorteo???. El proceso no podra ser revertido.',
         icon: 'help'
-        })
+      })
     }
   }
-  render() {
+  render () {
     let title = this.props.title
     let strAry = title.split("-")
     let vip = title.substring(0, 3)
@@ -219,7 +220,7 @@ class ApuestasDetallesEntry extends React.Component {
               <Grid item xs={2} className="img_open_close" >
                 {
                   this.props.estado === 'ABIERTA' ? <
-                    img src={imgGreen} alt="ABIERTA" onClick={() => this.forceClose() }/>
+                    img src={imgGreen} alt="ABIERTA" onClick={() => this.forceClose()} />
                     : this.props.estado === 'CERRADA' ?
                       <img src={imgRed} alt="Cerrado" />
                       : <img src={imgPurple} alt="BLOQUEADA " />
