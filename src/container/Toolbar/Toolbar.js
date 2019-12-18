@@ -7,7 +7,7 @@ import DrawerToggleButton from './DrawerToggleButton';
 import MenuLinks from '../MenuLinks/MenuLinks';
 
 import './Toolbar.css';
-import LogoMini from './assets/Apuntada con Lapiz_PNG.png';
+import LogoMini from './assets/Anotada.png';
 
 class Toolbar extends Component {
     constructor(props) {
@@ -24,9 +24,8 @@ class Toolbar extends Component {
     };
 
     render () {
-        console.log('role: ', this.props.role);
-        const color = this.props.role === 'Player' ? '#a3ca72' :
-            this.props.role === 'Asistente' ? '#f5d657' : '#f7941d'
+        const color = this.props.role === 'Player' ? '#59b950' :
+            this.props.role === 'Asistente' ? '#d4c27f' : '#428ae0'
         return (
             <header className="toolbar" style={{ background: color }}>
                 <nav className="toolbar__navigation">

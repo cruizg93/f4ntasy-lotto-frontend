@@ -29,18 +29,18 @@
 }
 
 .login-page .login-button {
-  background: #f7941d;
+  background: #2F6EB4;
   width: 100%;
   text-transform: unset !important;
   color: white;
   font-size: 27px;
   height: 60px;
   border-radius: 11px;
-  border: solid 1px #f7941d;
+  border: solid 1px #2F6EB4;
 }
 
 .login-page .login-button:focus{
-  background: #f7941dD0;
+    background: #2F6EB4D0;
   border: solid 1px #474d2f;
 }
 

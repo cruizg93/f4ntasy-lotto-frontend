@@ -1,4 +1,4 @@
-export const baseUrl = window.location.host == 'apuntada.net' ? '/backend' : 'https://fant4sylotto.herokuapp.com';
+export const baseUrl = window.location.host == 'anotada.com' ? '/backend' : 'https://fant4sylotto.herokuapp.com';
 
 export const API = {
   LOGIN: baseUrl + '/api/auth/signin',
