@@ -1,4 +1,4 @@
-export const baseUrl = window.location.host == 'localhost' ? 'https://fant4sylotto.herokuapp.com' : '/backend';
+export const baseUrl = window.location.host == 'localhost:3000' ? 'https://fant4sylotto.herokuapp.com' : '/backend';
 
 export const API = {
   LOGIN: baseUrl + '/api/auth/signin',
