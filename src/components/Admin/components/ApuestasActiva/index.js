@@ -92,8 +92,8 @@ class ApuestasDetallesEntry extends React.Component {
       errorPasswordOpen: false
     })
     if (value === true) {
-      // adminService.cerrar_apuesta(this.props.id).then((result) => {
-      adminService.cerrar_desbloquear(this.props.id).then((result) => {
+      adminService.cerrar_apuesta(this.props.id).then((result) => {
+      // adminService.cerrar_desbloquear(this.props.id).then((result) => {
         if (result.status === 401) {
           authenticationService.logout()
         } else {
