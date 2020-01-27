@@ -23,7 +23,7 @@ class ApuestasDetallesEntry extends React.Component {
     super(props)
     this.state = {
       open: false,
-      closeOpen: false,//this is use only when the username is c00, allows user to close manually on prod
+      closeC00Action: false,//this is use only when the username is c00, allows user to close manually on prod
       redOpen: false,
       purpleOpen: false,
       DoubleVerificationOpen: false,
@@ -65,7 +65,7 @@ class ApuestasDetallesEntry extends React.Component {
       ...this.state,
       open: false,
       redOpen: false,
-      closeOpen: false,
+      closeC00Action: false,
       purpleOpen: false,
       DoubleVerificationOpen: false,
       errorPasswordOpen: false
@@ -81,19 +81,27 @@ class ApuestasDetallesEntry extends React.Component {
     }
   }
 
-  handleClose_CloseOpen(value) {
+  handleClose_C00Action(value) {
     this.setState({
       ...this.state,
       open: false,
       redOpen: false,
-      closeOpen: false,
+      closeC00Action: false,
       purpleOpen: false,
       DoubleVerificationOpen: false,
       errorPasswordOpen: false
     })
-    if (value === true) {
+    if (value === true && this.state.title == 'Cerrar?' ) {
       adminService.cerrar_apuesta(this.props.id).then((result) => {
-      // adminService.cerrar_desbloquear(this.props.id).then((result) => {
+        if (result.status === 401) {
+          authenticationService.logout()
+        } else {
+          this.props.update(this.props.moneda);
+        }
+      })
+    }
+    else if (value === true && this.state.title == 'Abrir?' ) {
+      adminService.abrir_apuesta(this.props.id).then((result) => {
         if (result.status === 401) {
           authenticationService.logout()
         } else {
@@ -114,8 +122,7 @@ class ApuestasDetallesEntry extends React.Component {
     })
     if (value === true) {
       if (this.props.estado === 'ABIERTA') {
-        adminService.cerrar_apuesta(this.props.id).then((result) => {
-        // adminService.cerrar_bloquear(this.props.id).then((result) => {
+        adminService.cerrar_bloquear(this.props.id).then((result) => {
           if (result.status === 401) {
             authenticationService.logout()
           } else {
@@ -186,13 +193,26 @@ class ApuestasDetallesEntry extends React.Component {
     if (adminService.isUserC00()) {
       this.setState({
         ...this.state,
-        closeOpen: true,
+        closeC00Action: true,
         title: 'Cerrar?',
         context: 'Esta seguro que quiere cerrar este sorteo???. El proceso no podra ser revertido.',
         icon: 'help'
       })
     }
   }
+
+  forceReOpen () {
+    if (adminService.isUserC00()) {
+      this.setState({
+        ...this.state,
+        closeC00Action: true,
+        title: 'Abrir?',
+        context: 'Esta seguro que quiere abrir este sorteo?',
+        icon: 'help'
+      })
+    }
+  }
+
   render () {
     let title = this.props.title
     let strAry = title.split("-")
@@ -222,7 +242,7 @@ class ApuestasDetallesEntry extends React.Component {
                   this.props.estado === 'ABIERTA' ? <
                     img src={imgGreen} alt="ABIERTA" onClick={() => this.forceClose()} />
                     : this.props.estado === 'CERRADA' ?
-                      <img src={imgRed} alt="Cerrado" />
+                      <img src={imgRed} alt="Cerrado" onClick={() => this.forceReOpen()} />
                       : <img src={imgPurple} alt="BLOQUEADA " />
                 }
               </Grid>
@@ -256,8 +276,8 @@ class ApuestasDetallesEntry extends React.Component {
         </Grid>
         <Grid item xs={12}>
         <ConfirmDialog
-            open={this.state.closeOpen}
-            handleClose={this.handleClose_CloseOpen.bind(this)}
+            open={this.state.closeC00Action}
+            handleClose={this.handleClose_C00Action.bind(this)}
             title={this.state.title}
             context={this.state.context}
             icon={this.state.icon}
