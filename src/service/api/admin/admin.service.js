@@ -42,6 +42,7 @@ export const adminService = {
     temporal_insert_service,
     temporal_insert_chica_service,
     cerrar_apuesta,
+    abrir_apuesta,
     details_apuesta_activa_by_apuesta_id,
     open_apuesta,
     admin_password_confirm,
@@ -980,6 +981,35 @@ function cerrar_apuesta(id) {
     }
     return new Promise((resolve, reject) => {
         axios.put(`${baseUrl}/sorteos/forceCloseStatus/${id}`,
+            send, requestOptions
+        )
+            .then((responseJson) => {
+                resolve(responseJson);
+            })
+            .catch((error) => {
+                if (error.response && error.response.status === 401) {
+                    resolve(error.response)
+                }
+                reject(error);
+            })
+    });
+}
+
+// /admin/apuesta / bloquear / ${ id }
+function abrir_apuesta(id) {
+    const currentUser = authenticationService.currentUserValue;
+    const requestOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${currentUser.accessToken}`
+        },
+    };
+    const send = {
+        id: id
+    }
+    return new Promise((resolve, reject) => {
+        axios.put(`${baseUrl}/sorteos/forceOpenStatus/${id}`,
             send, requestOptions
         )
             .then((responseJson) => {
