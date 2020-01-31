@@ -32,7 +32,7 @@ class InputWinNumDialog extends React.Component {
     this.handleCancel = this.handleCancel.bind(this);
   }
 
-  handleCancel(value) {
+  handleCancel (value) {
     if (value === true) {
       if (this.state.numero === '' || this.state.numero < 0 || this.state.password === '')
         return;
@@ -61,7 +61,7 @@ class InputWinNumDialog extends React.Component {
     this.setState({ ...this.state, showPassword: !this.state.showPassword });
   };
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps () {
     this.setState({
       numero: '',
       password: '',
@@ -69,7 +69,7 @@ class InputWinNumDialog extends React.Component {
     })
   }
 
-  render() {
+  render () {
     // const icon = this.props.icon;
     const titleFontSize = this.props.titleFontSize ? this.props.titleFontSize : '25px';
     // const contentFontSize = this.props.contentFontSize ? this.props.contentFontSize : '18px';
@@ -102,6 +102,7 @@ class InputWinNumDialog extends React.Component {
             <NumberFormat
               id="numero-ganador-input"
               label="Número ganador"
+              type="tel"
               placeholder="Número ganador(0-99)"
               margin="normal"
               variant="outlined"
