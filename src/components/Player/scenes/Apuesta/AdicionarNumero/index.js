@@ -131,7 +131,7 @@ class AdicionarNumeroApuesta extends Component {
         // this.shouldBlockNavigation = true;
     }
 
-    componentDidMount() {
+    componentDidMount () {
         this.isMobile = utils.isMobile.any() ? true : false
         this.isiPhone = utils.isMobile.iOS() ? true : false
         let reg = /^\d+$/;
@@ -174,13 +174,13 @@ class AdicionarNumeroApuesta extends Component {
             }
             dispatch(userActions.loading_end())
         })
-            .catch(function (error) {
+            .catch(function(error) {
                 dispatch(userActions.loading_end())
             });
         window.scrollTo(0, 0);
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate (prevProps, prevState) {
         if (this.isNumerofocus) {
             this.entryNumeroInputRef.current.focus();
         }
@@ -215,7 +215,7 @@ class AdicionarNumeroApuesta extends Component {
         }, 50);
     }
 
-    showAddButton() {
+    showAddButton () {
         if (!this.state.showAddBtn) {
             setTimeout(() => {
                 this.setState({
@@ -226,7 +226,7 @@ class AdicionarNumeroApuesta extends Component {
         }
     }
 
-    hideAddButton() {
+    hideAddButton () {
         if (!(this.isNumerofocus || this.isUnidadesfocus)) {
             setTimeout(() => {
                 this.setState((state) => {
@@ -415,7 +415,7 @@ class AdicionarNumeroApuesta extends Component {
                 mounted: true
             })
         })
-            .catch(function (error) {
+            .catch(function(error) {
                 dispatch(userActions.loading_end())
             });
     }
@@ -427,7 +427,7 @@ class AdicionarNumeroApuesta extends Component {
         })
     }
 
-    handleCloseRemoveAll(value) {
+    handleCloseRemoveAll (value) {
         this.setState({
             ...this.state,
             openRemoveAll: false
@@ -447,7 +447,7 @@ class AdicionarNumeroApuesta extends Component {
         })
     }
 
-    handleCloseComprar(value) {
+    handleCloseComprar (value) {
         this.setState({
             ...this.state,
             openRemoveAll: false,
@@ -479,7 +479,7 @@ class AdicionarNumeroApuesta extends Component {
                 }
                 dispatch(userActions.loading_end())
             })
-                .catch(function (error) {
+                .catch(function(error) {
                     dispatch(userActions.loading_end())
                 });
         }
@@ -492,7 +492,7 @@ class AdicionarNumeroApuesta extends Component {
         })
     }
 
-    handleCloseComprarInfo() {
+    handleCloseComprarInfo () {
         this.setState({
             ...this.state,
             openRemoveAll: false,
@@ -523,7 +523,7 @@ class AdicionarNumeroApuesta extends Component {
         this.props.history.push("/");
     }
 
-    render() {
+    render () {
         const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
         const rightPos = (width > 444) ? (width - 444) / 2 + 2 : 2;
         const transPos = rightPos + 100;
@@ -614,7 +614,7 @@ class AdicionarNumeroApuesta extends Component {
                         <Grid item xs={6} style={{ textAlign: "start" }}>
                             <ApuestaInput
                                 inputRef={this.entryUnidadesInputRef}
-                                type="number"
+                                type="tel"
                                 placeholder="Cantidad:"
                                 pattern="^[1-9]+(\.[0-9]{1,2})?$"
                                 style={{ marginLeft: "0.375rem", maxWidth: "9.5rem" }}
