@@ -626,7 +626,7 @@ class AdicionarNumeroApuesta extends Component {
                                     }
                                 }}
                                 onInput={(e) => {
-                                    const onlyNums = e.target.value;//.replace(/[^0-9]/g, '');
+                                    const onlyNums = e.target.value.replace(/[^0-9.,]/g, '').replace(/,/g, '.').replace(/\.{2}/g, '.');
                                     e.target.value = onlyNums;
                                     if (onlyNums.length > 7) {
                                         e.target.value = e.target.value.toString().slice(0, 7);
